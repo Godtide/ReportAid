@@ -1,0 +1,14 @@
+---
+title: The Four Facets of Humanitarian Aid Transparency
+header-includes:
+    - \usepackage{fancyhdr}
+    - \pagestyle{fancy}
+    - \lhead{\thepage}
+    - \chead{}
+    - \rhead{}
+    - \lfoot{© Steven Huckle, Lara Llopis, Tilemachos Chatziioannidis and Raul Araiza at the University of Sussex}
+    - \cfoot{}
+    - \rfoot{}
+    - \renewcommand{\headrulewidth}{0.4pt}
+    - \renewcommand{\footrulewidth}{0.4pt}
+---

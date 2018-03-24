@@ -1,0 +1,17 @@
+# The Four Facets of Humanitarian Aid Transparency
+
+This report offers a policy proposal for increasing the transparency of humanitarian aid. The UN Office for the Coordination of Humanitarian Affairs (OCHA) has committed to improving the timeliness and transparency of information about humanitarian financing [@UNOfficefortheCoordinationofHumanitarian_Improvinghumanitariantransparency_2017]. That commitment was the result of a 'Grand Bargain' made by humanitarian organisations at the 2016 World Humanitarian Summit (WHS) in Istanbul [@AGENDAFORHUMANITY_WorldHumanitarianSummit_2016]. The summit identified the ‘3Ts’ of transparency, namely traceability, totality and timeliness. However, we argue there's a fourth 'T' - trust.
+
+Evidence from the UK suggests that such transparency is necessary. The amount of humanitarian aid given by the UK is a result of the official development assistance (ODA) target of 0.7% of gross national income [@GOV.UK_OfficialDevelopmentAssistance_2018]. In 2015, that amounted to the UK spending £12.1bn [@Morris_RealityCheckHow_2017], a degree of funding that has received much criticism. For example, while giving evidence to a U.S. Senate Committee on foreign relations, ex-UK Prime Minister David Cameron suggested that much of the money goes to corrupt regimes: "If what we do is just have continued programs for countries that sometimes fail year after year after year, we just keep going, maybe that’s not a good use of our money" [@MailOnline_Stripaidmoney_2018]. However, it should be possible to address such criticisms by increasing the transparency of the UK's aid spend because that would make it easier to prove where the money has gone and, thereby, ensure its appropriate use.
+
+The question then is this: how to make humanitarian financing transparent? The WHS Grand Bargain committed to greater transparency through reporting on humanitarian aid through the International Aid Transparency Initiative (IATI) and the UN OCHA Financial Tracking Service (FTS) [@UNOfficefortheCoordinationofHumanitarian_Improvinghumanitariantransparency_2017]. The WHS identified what they considered to be three facets of transparent data:
+
+1. Traceability - the entire transaction chain of the data must be traceable.
+2. Totality - the data must be complete and relevant.
+3. Timeliness - the data should be up-to-date.
+
+While we agree with the importance of the OCHA’s ‘3Ts’ of transparency, we suggest that trust is important, too; after all, the information reported must be trustworthy.  Thus, we propose to meet OCHA's transparency requirements through technology that is suited to meeting all four facets of transparency. That technology is blockchain, which has inbuilt mechanisms for meeting the '4Ts';  namely, traceability, totality, timeliness and trust.
+
+We believe the use of blockchains to improve the transparency of humanitarian financing would be novel; while organisations are researching the deployment of the technology to deliver help directly to those in need, there is very little research into how to use blockchains to help improve the transparency of humanitarian aid at all levels. We aim to provide a prototype of just such a blockchain-based system that, while using the same underlying IATI foundations proposed by OCHA, could be used to help increase the accountability of humanitarian efforts. We hope the software will form the basis of further research and, ultimately, lead to the deployment of an aid reporting system that helps OCHA's FTS increase transparency.
+
+## References
