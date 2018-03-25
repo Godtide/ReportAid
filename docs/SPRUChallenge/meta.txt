@@ -1,5 +1,5 @@
 ---
-title: The Four Facets of Humanitarian Aid Transparency
+title: Humanitarian Aid Transparency
 header-includes:
     - \usepackage{fancyhdr}
     - \pagestyle{fancy}
