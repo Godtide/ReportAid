@@ -16,7 +16,7 @@ While we agree with the importance of those _3Ts_, we suggest that **trust** is 
 
 ## Humanitarian Blockchain
 
-We aim to provide a prototype of a blockchain-based system for disseminating information about humanitarian financing. The system will use the same foundations proposed by the _Grand Bargain_ made at the WHS, namely the data format developed by the International Aid Transparency Initiative (IATI) and OCHA's voluntary information reporting platform, the Financial Tracking Service (FTS) [@UNOfficefortheCoordinationofHumanitarian_Improvinghumanitariantransparency_2017]. The IATA will provide the schema for the aid funding information stored on the blockchain, and the FTS will serve as a template for the interface for storing that data.
+We aim to provide a prototype of a blockchain-based system for disseminating information about humanitarian financing. The system will use the same foundations proposed by the _Grand Bargain_ made at the WHS, namely the data format developed by the International Aid Transparency Initiative (IATI) and OCHA's voluntary information reporting platform, the Financial Tracking Service (FTS) [@UNOfficefortheCoordinationofHumanitarian_Improvinghumanitariantransparency_2017]. The IATI will provide the schema for the aid funding information stored on the blockchain, and the FTS will serve as a template for the interface for storing that data.
 
 ## Barriers to Implementation
 
@@ -26,9 +26,9 @@ While the WHS recognise that OCHA's FTS needs enhancing [@UNOfficefortheCoordina
 2. **Organisational**. Public blockchains are inherently non-hierarchical that cannot be controlled by any single entity [@Huckle_FakeNewsTechnological_2017]. However, the FTS is a reporting platform run by OCHA. Hence, a fully-public blockchain-based system may challenge centralised, top-down governance and related assumptions the UN have about reporting on their aid funding. Indeed, Figure 1. shows that, potentially, a blockchain-based system offers the possibility of direct aid funding that bypasses the UN altogether.
 3. **Cost**.  New software may incur significant costs, including those required for development, training, maintenance, and infrastructure.
 
-![Figure 1: Direct aid funding?](./images/OCHA.png)
+![Figure 1: Direct aid funding?](./images/OCHA.png) 
 
-To overcome some of those hurdles, we propose a comparative analysis of outcomes through a test pilot program. That could involve a private UN blockchain, which might help address some of the organisational issues, or a public test blockchain, which would address some of the technological obstacles, and, perhaps, challenge those organisational concerns, too. Such a scheme would aid a greater understanding of the technology. It could also unearth other barriers. Finally, it might go some way to justifying (or not) the cost of a fully-operational system.
+To overcome some of those hurdles, we propose a comparative analysis of outcomes through a test pilot program. That could involve a private UN blockchain, which might help address some of the organisational issues, and a public test blockchain, which would address some of the technological obstacles, and, perhaps, challenge those organisational concerns, too. Such a scheme would aid a greater understanding of the technology. It could also unearth other barriers. Finally, it might go some way to justifying (or not) the cost of a fully-operational system.
 
 ## Conclusion
 
