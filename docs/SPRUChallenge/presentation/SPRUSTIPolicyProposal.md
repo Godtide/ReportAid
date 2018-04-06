@@ -48,7 +48,6 @@ A prototype of a blockchain-based system for disseminating information about hum
 
 Comparative analysis of technology and outcomes:
 
-> + Private UN (OCHA) blockchain
 > + A public test blockchain
 
 ## Thank You
