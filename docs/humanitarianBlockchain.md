@@ -1,0 +1,1 @@
+"The main innovative feature of the blockchain is not its potential for bringing about fully anonymous transactions, but its capacity to track transactions within a systems and therefore fully exclude counterfeiting" [@Coeckelbergh_Cryptocurrenciesnarrativetechnologies_2016]
