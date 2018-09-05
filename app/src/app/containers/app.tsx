@@ -2,10 +2,15 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators, Dispatch } from 'redux'
 import { RouteComponentProps } from 'react-router'
-import { TodoActions } from 'app/actions'
-import { RootState } from 'app/reducers'
-import { omit } from 'app/utils'
-import { Header, TodoList, Footer } from 'app/components'
+// import { TodoActions } from 'app/actions'
+// import * as Actions from '../actions'
+// import { RootState } from '../reducers'
+// import * as Reducers from '../reducers'
+// import { omit } from 'app/utils'
+// import { Header, TodoList, Footer } from 'app/components'
+import * as Components from '../components'
+
+/*
 
 const FILTER_VALUES = (Object.keys(TodoModel.Filter) as (keyof typeof TodoModel.Filter)[]).map(
   (key) => TodoModel.Filter[key]
@@ -74,6 +79,27 @@ export class App extends React.Component<App.Props> {
           onClickClearCompleted={this.handleClearCompleted}
           onClickFilter={this.handleFilterChange}
         />
+      </div>
+    )
+  }
+}
+
+*/
+
+export namespace App {
+  export interface Props extends RouteComponentProps<void> {
+  }
+}
+
+export class App extends React.Component<App.Props> {
+
+  constructor(props: App.Props, context?: any) {
+    super(props, context)
+  }
+
+  render () {
+    return (
+      <div>
       </div>
     )
   }
