@@ -1,21 +1,33 @@
 {
-    "compilerOptions": {
-      "outDir": "./dist/",
-      "sourceMap": true,
-      "noImplicitAny": true,
-      "module": "commonjs",
-      "target": "es2015",
-      "jsx": "preserve",
-      "removeComments": true,
-    },
-    "awesomeTypescriptLoaderOptions": {
-      "useCache": true,
-      "useBabel": true,
-      "babelOptions": {
-        "babelrc": true
-      }
-    },
-    "include": [
-        "./src/**/*"
-    ]
+  "compilerOptions": {
+    "sourceMap": true,
+    "target": "2015",
+    "jsx": "preserve",
+    "module": "es6",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "declaration": false,
+    "removeComments": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "strict": true,
+    "outDir": "build",
+    "lib": ["es6", "es7", "dom"],
+    "baseUrl": "src",
+    "paths": {
+      "app/*": ["./src/*"]
+    }
+  },
+  "awesomeTypescriptLoaderOptions": {
+    "useCache": true,
+    "useBabel": true,
+    "babelOptions": {
+      "babelrc": true
+    }
+  },
+  "include": [
+      "./src/*"
+  ],
+  "exclude": ["dist", "build", "node_modules"]
 }
