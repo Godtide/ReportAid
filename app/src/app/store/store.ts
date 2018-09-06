@@ -1,47 +1,35 @@
-import * as React from 'react'
-import { createStore, applyMiddleware } from 'redux'
-import { RouteComponentProps } from 'react-router'
-import { routerMiddleware, connectRouter } from 'connected-react-router'
-import { createBrowserHistory } from 'history'
-import { composeWithDevTools } from 'redux-devtools-extension'
-import Immutable from 'immutable'
+import { combineReducers, Dispatch, Action, AnyAction } from 'redux'
+import { all, fork } from 'redux-saga/effects'
 
-import { logger } from '../middleware'
+import { LayoutState, layoutReducer } from './layout'
 
-const history = createBrowserHistory()
-const initialState = Immutable.Map()
+import heroesSaga from './heroes/sagas'
+import { heroesReducer } from './heroes/reducer'
+import { HeroesState } from './heroes/types'
+import teamsSaga from './teams/sagas'
+import { TeamsState } from './teams/types'
+import { teamsReducer } from './teams/reducer'
 
-export namespace Store {
-  export interface Props extends RouteComponentProps<void> {
-    history: history,
-    initialState: initialState
-  }
+// The top-level state object
+export interface ApplicationState {
+  layout: LayoutState
 }
 
-export class Store extends React.Component<Store.Props> {
+// Additional props for connected React components. This prop is passed by default with `connect()`
+export interface ConnectedReduxProps<A extends Action = AnyAction> {
+  dispatch: Dispatch<A>
+}
 
-  constructor(props: Store.Props, context?: any) {
-    super(props, context)
-  }
+// Whenever an action is dispatched, Redux will update each top-level application state property
+// using the reducer with the matching name. It's important that the names match exactly, and that
+// the reducer acts on the corresponding ApplicationState property type.
+export const rootReducer = combineReducers<ApplicationState>({
+  layout: layoutReducer
+})
 
-  getHistory () {
-    return this.props.history
-  }
-
-  configureStore () {
-
-    let middleware = applyMiddleware(logger, routerMiddleware(history))
-
-    if (process.env.NODE_ENV !== 'production') {
-      middleware = composeWithDevTools(middleware);
-    }
-
-    const store = createStore(
-      connectRouter(history)(rootReducer), // new root reducer with router state
-      initialState,
-      middleware
-    )
-
-    return store
-  }
+// Here we use `redux-saga` to trigger actions asynchronously. `redux-saga` uses something called a
+// "generator function", which you can read about here:
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*
+export function* rootSaga() {
+  yield all([fork(heroesSaga), fork(teamsSaga)])
 }

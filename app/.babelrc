@@ -1,24 +1,30 @@
 {
   "presets" : [
-    "env",
-    [
-      "env", {
-        "targets": {
-          "browsers": ["last 2 versions"]
-        },
-        "modules": false
-      }
-    ],
+    "env", {
+      "targets": {
+        "browsers": ["last 2 versions"]
+      },
+      "modules": false
+    },
     "stage-0",
     "react"
   ],
   "plugins": [
-    "transform-class-properties",
-    [
-      "import", {
-        "libraryName": "antd",
-        "style": true
+    "babel-plugin-emotion",
+    {
+      "hoist": false,
+      "sourceMap": true,
+      "autoLabel": true,
+      "labelFormat": "[local]",
+      "extractStatic": false,
+      "outputDir": "",
+      "importedNames": {
+        "styled": "styled",
+        "css": "css",
+        "keyframes": "keyframes",
+        "injectGlobal": "injectGlobal",
+        "merge": "merge"
       }
-    ]
+    }
   ]
 }
