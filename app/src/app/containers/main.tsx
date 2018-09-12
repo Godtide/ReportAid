@@ -1,8 +1,15 @@
 import * as React from 'react'
 import { Provider, connect } from 'react-redux'
-import { ConnectedRouter } from 'connected-react-router'
 import { Store } from 'redux'
 import { History } from 'history'
+
+import {
+  ConnectedRouter,
+  routerReducer,
+  routerMiddleware,
+  push
+} from "react-router-redux";
+
 import { ThemeProvider } from 'emotion-theming'
 
 import Routes from '../utils/routes'

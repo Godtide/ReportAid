@@ -3,6 +3,8 @@ import { NavLink } from 'react-router-dom'
 import LayoutContainer from '../../containers/layoutContainer'
 import Container from './container'
 
+import styled from '../../styles/styled'
+
 interface HeaderProps {
   title: string
 }
