@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { NavLink } from 'react-router-dom'
-import LayoutContainer from '../../containers/layoutContainer'
+import LayoutContainer from '../../containers/pages/layoutContainer'
 import Container from './container'
 
 import styled from '../../styles/styled'
@@ -19,10 +19,10 @@ const Header: React.SFC<HeaderProps> = ({ title }) => (
         <HeaderNavLink exact to="/" activeClassName={HeaderLinkActive}>
           Home
         </HeaderNavLink>
-        <HeaderNavLink to="/heroes" activeClassName={HeaderLinkActive}>
+        <HeaderNavLink to="/IATIWriter" activeClassName={HeaderLinkActive}>
           Heroes
         </HeaderNavLink>
-        <HeaderNavLink to="/teams" activeClassName={HeaderLinkActive}>
+        <HeaderNavLink to="/IATIReader" activeClassName={HeaderLinkActive}>
           Teams
         </HeaderNavLink>
       </HeaderNav>

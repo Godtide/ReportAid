@@ -12,7 +12,7 @@ import {
 
 import { ThemeProvider } from 'emotion-theming'
 
-import Routes from '../utils/routes'
+import Routes from './pages/routes'
 import { ApplicationState } from '../store'
 import { ThemeColors } from '../store/layout'
 import * as themes from '../styles/theme'

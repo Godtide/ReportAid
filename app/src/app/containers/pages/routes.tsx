@@ -1,12 +1,12 @@
 import * as React from 'react'
 import { Route, Switch } from 'react-router-dom'
 
-import Root from '../components/layout/root'
-import Header from '../components/layout/header'
-import Footer from '../components/layout/footer'
-import IndexPage from './pages/index'
-import HeroesPage from './pages/heroes'
-import TeamsPage from './pages/teams'
+import Root from '../../components/layout/root'
+import Header from '../../components/layout/header'
+//  import Footer from '../../components/layout/footer'
+import IndexPage from './index'
+import IATIWriterPage from './IATIWriter'
+import IATIReaderPage from './IATIReader'
 
 // If your app is big + you have routes with a lot of components, you should consider
 // code-splitting your routes! If you bundle stuff up with Webpack, I recommend `react-loadable`.
@@ -21,8 +21,8 @@ const Routes: React.SFC = () => (
     <Header title="Example App" />
     <Switch>
       <Route exact path="/" component={IndexPage} />
-      <Route path="/heroes" component={HeroesPage} />
-      <Route path="/teams" component={TeamsPage} />
+      <Route path="/IATIWriter" component={IATIWriterPage} />
+      <Route path="/IATIReader" component={IATIReaderPage} />
       <Route component={() => <div>Not Found</div>} />
     </Switch>
   </Root>

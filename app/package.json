@@ -1,11 +1,11 @@
 {
-  "name": "Provenator",
+  "name": "Chroniclaid",
   "version": "0.0.5",
-  "description": "Provenator Application",
+  "description": "Humanitarian Aid Reporting",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/glowkeeper/Provenator.git"
+    "url": "git+https://github.com/glowkeeper/HumanitarianBlockchain.git"
   },
   "scripts": {
     "compile": "./node_modules/.bin/webpack --config ./webpack.dev.js --mode development",
@@ -77,7 +77,7 @@
     "fsevents": "*"
   },
   "bugs": {
-    "url": "https://github.com/glowkeeper/Provenator/issues"
+    "url": "https://github.com/glowkeeper/HumanitarianBlockchain/issues"
   },
-  "homepage": "https://github.com/glowkeeper/Provenator#readme"
+  "homepage": "https://github.com/glowkeeper/HumanitarianBlockchain#readme"
 }
