@@ -1,107 +1,74 @@
 import * as React from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators, Dispatch } from 'redux'
-import { RouteComponentProps } from 'react-router'
-// import { TodoActions } from 'app/actions'
-// import * as Actions from '../actions'
-// import { RootState } from '../reducers'
-// import * as Reducers from '../reducers'
-// import { omit } from 'app/utils'
-// import { Header, TodoList, Footer } from 'app/components'
-// import * as Components from '../components'
+import { Link } from 'react-router-dom'
+import { connect, Dispatch } from 'react-redux'
+// import moment from 'moment'
 
-/*
+import styled from '../../../styles/styled'
+import Page from '../../../components/layout/page'
+import Container from '../../../components/layout/container'
+/*import LoadingOverlay from '../../components/data/LoadingOverlay'
+import LoadingOverlayInner from '../../components/data/LoadingOverlayInner'
+import LoadingSpinner from '../../components/data/LoadingSpinner'*/
 
-const FILTER_VALUES = (Object.keys(TodoModel.Filter) as (keyof typeof TodoModel.Filter)[]).map(
-  (key) => TodoModel.Filter[key]
-)
+import { ApplicationState, ConnectedReduxProps } from '../../../store'
+import { IATIWriter } from '../../../store/IATIWriter/types'
+import { fetchRequest } from '../../../store/IATIWriter/actions'
 
-const FILTER_FUNCTIONS: Record<TodoModel.Filter, (todo: TodoModel) => boolean> = {
-  [TodoModel.Filter.SHOW_ALL]: () => true,
-  [TodoModel.Filter.SHOW_ACTIVE]: (todo) => !todo.completed,
-  [TodoModel.Filter.SHOW_COMPLETED]: (todo) => todo.completed
+// Separate state props + dispatch props to their own interfaces.
+interface PropsFromState {
+  loading: boolean
+  data: IATIWriter[]
+  errors: string
 }
 
-export namespace App {
-  export interface Props extends RouteComponentProps<void> {
-    todos: RootState.TodoState
-    actions: TodoActions
-    filter: TodoModel.Filter
-  }
+// We can use `typeof` here to map our dispatch types to the props, like so.
+interface PropsFromDispatch {
+  fetchRequest: typeof fetchRequest
 }
 
-@connect(
-  (state: RootState): Pick<App.Props, 'todos' | 'filter'> => {
-    const hash = state.router.location && state.router.location.hash.replace('#', '')
-    const filter = FILTER_VALUES.find((value) => value === hash) || TodoModel.Filter.SHOW_ALL
-    return { todos: state.todos, filter }
-  },
-  (dispatch: Dispatch): Pick<App.Props, 'actions'> => ({
-    actions: bindActionCreators(omit(TodoActions, 'Type'), dispatch)
-  })
-)
-export class App extends React.Component<App.Props> {
-  static defaultProps: Partial<App.Props> = {
-    filter: TodoModel.Filter.SHOW_ALL
-  }
+// Combine both state + dispatch props - as well as any props we want to pass - in a union type.
+type AllProps = PropsFromState & PropsFromDispatch & ConnectedReduxProps
 
-  constructor(props: App.Props, context?: any) {
-    super(props, context)
-    this.handleClearCompleted = this.handleClearCompleted.bind(this)
-    this.handleFilterChange = this.handleFilterChange.bind(this)
-  }
+class IATIWriterIndexPage extends React.Component<AllProps> {
+  public componentDidMount() {
+    const { data } = this.props
 
-  handleClearCompleted(): void {
-    const hasCompletedTodo = this.props.todos.some((todo) => todo.completed || false)
-    if (hasCompletedTodo) {
-      this.props.actions.clearCompleted()
+    if (data.length === 0) {
+      this.props.fetchRequest()
     }
   }
 
-  handleFilterChange(filter: TodoModel.Filter): void {
-    this.props.history.push(`#${filter}`)
-  }
-
-  render() {
-    const { todos, actions, filter } = this.props
-    const activeCount = todos.length - todos.filter((todo) => todo.completed).length
-    const filteredTodos = filter ? todos.filter(FILTER_FUNCTIONS[filter]) : todos
-    const completedCount = todos.reduce((count, todo) => (todo.completed ? count + 1 : count), 0)
+  public render() {
+    const { loading } = this.props
 
     return (
-      <div className={style.normal}>
-        <Header addTodo={actions.addTodo} />
-        <TodoList todos={filteredTodos} actions={actions} />
-        <Footer
-          filter={filter}
-          activeCount={activeCount}
-          completedCount={completedCount}
-          onClickClearCompleted={this.handleClearCompleted}
-          onClickFilter={this.handleFilterChange}
-        />
-      </div>
+      <Page>
+        <Container>
+            blah blah blah
+        </Container>
+      </Page>
     )
   }
 }
 
-*/
+// It's usually good practice to only include one context at a time in a connected component.
+// Although if necessary, you can always include multiple contexts. Just make sure to
+// separate them from each other to prevent prop conflicts.
+const mapStateToProps = ({ writer }: ApplicationState) => ({
+  loading: writer.loading,
+  errors: writer.errors,
+  data: writer.data
+})
 
-export namespace IATIWriterIndex {
-  export interface Props extends RouteComponentProps<void> {
-  }
-}
+// mapDispatchToProps is especially useful for constraining our actions to the connected component.
+// You can access these via `this.props`.
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  fetchRequest: () => dispatch(fetchRequest())
+})
 
-export class IATIWriterIndex extends React.Component<IATIWriterIndex.Props> {
-
-  constructor(props: IATIWriterIndex.Props, context?: any) {
-    super(props, context)
-  }
-
-  render () {
-    return (
-      <div>
-        blah
-      </div>
-    )
-  }
-}
+// Now let's connect our component!
+// With redux v4's improved typings, we can finally omit generics here.
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(IATIWriterIndexPage)

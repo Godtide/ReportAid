@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { connect, Dispatch } from 'react-redux'
-// import moment from 'moment'
+//import moment from 'moment'
 
 import styled from '../../../styles/styled'
 import Page from '../../../components/layout/page'
@@ -12,7 +12,7 @@ import LoadingSpinner from '../../components/data/LoadingSpinner'*/
 
 import { ApplicationState, ConnectedReduxProps } from '../../../store'
 import { IATIReader } from '../../../store/IATIReader/types'
-import { fetchRequest } from '../../../store/IATIReader/actions'
+import { fetchRequest } from '../../..store/IATIReader/actions'
 
 // Separate state props + dispatch props to their own interfaces.
 interface PropsFromState {
@@ -29,7 +29,7 @@ interface PropsFromDispatch {
 // Combine both state + dispatch props - as well as any props we want to pass - in a union type.
 type AllProps = PropsFromState & PropsFromDispatch & ConnectedReduxProps
 
-class IATIReaderIndexPage extends React.Component<AllProps> {
+class HomeIndexPage extends React.Component<AllProps> {
   public componentDidMount() {
     const { data } = this.props
 
@@ -44,7 +44,7 @@ class IATIReaderIndexPage extends React.Component<AllProps> {
     return (
       <Page>
         <Container>
-            blah blah
+            blah
         </Container>
       </Page>
     )
@@ -54,10 +54,10 @@ class IATIReaderIndexPage extends React.Component<AllProps> {
 // It's usually good practice to only include one context at a time in a connected component.
 // Although if necessary, you can always include multiple contexts. Just make sure to
 // separate them from each other to prevent prop conflicts.
-const mapStateToProps = ({ reader }: ApplicationState) => ({
-  loading: reader.loading,
-  errors: reader.errors,
-  data: reader.data
+const mapStateToProps = ({ home }: ApplicationState) => ({
+  loading: home.loading,
+  errors: home.errors,
+  data: home.data
 })
 
 // mapDispatchToProps is especially useful for constraining our actions to the connected component.
@@ -71,4 +71,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(IATIReaderIndexPage)
+)(HomeIndexPage)
