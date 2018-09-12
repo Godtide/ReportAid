@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { NavLink } from 'react-router-dom'
-import LayoutContainer from '../../containers/LayoutContainer'
-import Container from './Container'
+import LayoutContainer from '../../containers/layoutContainer'
+import Container from './container'
 
 interface HeaderProps {
   title: string

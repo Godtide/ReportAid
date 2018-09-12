@@ -1,9 +1,9 @@
 import * as React from 'react'
 import { Route, Switch } from 'react-router-dom'
 
-import Root from './components/layout/Root'
-import Header from './components/layout/header'
-import Header from './components/layout/footer'
+import Root from '../components/layout/root'
+import Header from '../components/layout/header'
+import Footer from '../components/layout/footer'
 import IndexPage from './pages/index'
 import HeroesPage from './pages/heroes'
 import TeamsPage from './pages/teams'

@@ -22,11 +22,11 @@ export type ApiResponse = Record<string, any>
 // personally, I use the `@@context/ACTION_TYPE` convention, to follow the convention
 // of Redux's `@@INIT` action.
 export const enum IATIReaderActionTypes {
-  FETCH_REQUEST = '@@heroes/FETCH_REQUEST',
-  FETCH_SUCCESS = '@@heroes/FETCH_SUCCESS',
-  FETCH_ERROR = '@@heroes/FETCH_ERROR',
-  SELECT_HERO = '@@heroes/SELECT_HERO',
-  SELECTED = '@@heroes/SELECTED'
+  FETCH_REQUEST = '@@IATIReader/FETCH_REQUEST',
+  FETCH_SUCCESS = '@@IATIReader/FETCH_SUCCESS',
+  FETCH_ERROR = '@@IATIReader/FETCH_ERROR',
+  SELECT_HERO = '@@IATIReader/SELECT_HERO',
+  SELECTED = '@@IATIReader/SELECTED'
 }
 
 // Declare state types with `readonly` modifier to get compile time immutability.

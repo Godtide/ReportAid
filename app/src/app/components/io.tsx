@@ -2,8 +2,6 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { RouteComponentProps } from 'react-router'
 
-import { Icon, Button, Tooltip, Input, Card, Select, Radio, DatePicker } from 'antd'
-
 export namespace IOAppHeading {
   export interface Props extends RouteComponentProps<void> {
     heading: 'blah'

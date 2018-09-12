@@ -1,30 +1,54 @@
 {
-  "presets" : [
-    "env", {
-      "targets": {
-        "browsers": ["last 2 versions"]
-      },
-      "modules": false
+  "env": {
+    "production": {
+      "plugins": [
+      [
+        "emotion",
+        {
+          "hoist": true,
+          "sourceMap": false,
+          "autoLabel": true,
+          "labelFormat": "[local]",
+          "extractStatic": false,
+          "outputDir": "",
+          "importedNames": {
+            "styled": "styled",
+            "css": "css",
+            "keyframes": "keyframes",
+            "injectGlobal": "injectGlobal",
+            "merge": "merge"
+          }
+        }
+      ]],
     },
-    "stage-0",
-    "react"
-  ],
-  "plugins": [
-    "babel-plugin-emotion",
-    {
-      "hoist": false,
-      "sourceMap": true,
-      "autoLabel": true,
-      "labelFormat": "[local]",
-      "extractStatic": false,
-      "outputDir": "",
-      "importedNames": {
-        "styled": "styled",
-        "css": "css",
-        "keyframes": "keyframes",
-        "injectGlobal": "injectGlobal",
-        "merge": "merge"
-      }
-    }
-  ]
+    "development": {
+      "plugins": [
+        [
+          "emotion",
+          {
+            "hoist": false,
+            "sourceMap": true,
+            "autoLabel": true,
+            "labelFormat": "[local]",
+            "extractStatic": false,
+            "outputDir": "",
+            "importedNames": {
+              "styled": "styled",
+              "css": "css",
+              "keyframes": "keyframes",
+              "injectGlobal": "injectGlobal",
+              "merge": "merge"
+            }
+          }
+      ]]
+    },
+    "targets": {
+      "browsers": ["last 2 versions"]
+    },
+    "presets": [
+      "stage-0",
+      "modules",
+      "react"
+    ]
+  }
 }
