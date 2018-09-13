@@ -2,15 +2,15 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { RouteComponentProps } from 'react-router'
 
-export namespace IOAppHeading {
+export namespace AppHeading {
   export interface Props extends RouteComponentProps<void> {
     heading: 'blah'
   }
 }
 
-export class IOAppHeading extends React.Component<IOAppHeading.Props> {
+export class AppHeading extends React.Component<AppHeading.Props> {
 
-  constructor(props: IOAppHeading.Props, context?: any) {
+  constructor(props: AppHeading.Props, context?: any) {
     super(props, context)
   }
 
@@ -26,13 +26,7 @@ export class IOAppHeading extends React.Component<IOAppHeading.Props> {
   }
 }
 
-/*
-
-IOAppHeading.propTypes = {
-  heading: PropTypes.string
-}
-
-class IOTagline extends React.Component {
+class Tagline extends React.Component {
 
   constructor (props) {
     super(props)
@@ -47,11 +41,7 @@ class IOTagline extends React.Component {
   }
 }
 
-IOTagline.propTypes = {
-  tagLine: PropTypes.string
-}
-
-class IOHeading extends React.Component {
+class Heading extends React.Component {
 
   render () {
     return (
@@ -62,40 +52,36 @@ class IOHeading extends React.Component {
   }
 }
 
-IOHeading.propTypes = {
-  heading: PropTypes.string
-}
-
-class IORadioOptions extends React.Component {
+class RadOptns extends React.Component {
 
   constructor(props) {
     super(props)
 
-    this.options = this.props.options
+    this.optns = this.props.optns
 
     this.state = {
-      option: this.options[0]
+      optn: this.optns[0]
     }
   }
 
   _handleChange (e) {
     this.setState({
-      option: e.target.value
+      optn: e.target.value
     })
     this.props.parentFunc(e.target.value)
   }
 
   render () {
 
-    const RadioGroup = Radio.Group
+    const RadGroup = Rad.Group
     return (
       <div>
         {this.props.label}
         <Tooltip title={this.props.tip}>
-          <RadioGroup
-            options={this.options}
+          <RadGroup
+            optns={this.optns}
             onChange={this._handleChange.bind(this)}
-            value={this.state.option}
+            value={this.state.optn}
           />
         </Tooltip>
       </div>
@@ -103,14 +89,7 @@ class IORadioOptions extends React.Component {
   }
 }
 
-IORadioOptions.propTypes = {
-  parentFunc: PropTypes.func,
-  label: PropTypes.string,
-  options: PropTypes.array,
-  tip: PropTypes.string
-}
-
-class IOPlainTextOutput extends React.Component {
+class PlainTextOutput extends React.Component {
 
   constructor(props) {
     super(props)
@@ -125,12 +104,7 @@ class IOPlainTextOutput extends React.Component {
   }
 }
 
-IOPlainTextOutput.propTypes = {
-  text: PropTypes.string
-}
-
-
-class IOTextOutput extends React.Component {
+class TextOutput extends React.Component {
 
 render () {
     return (
@@ -141,12 +115,7 @@ render () {
   }
 }
 
-IOTextOutput.propTypes = {
-  label: PropTypes.string,
-  text: PropTypes.string
-}
-
-class IOTextInput extends React.Component {
+class TextInput extends React.Component {
 
   _handleChange (e) {
     this.props.parentFunc(e.target.value)
@@ -167,15 +136,7 @@ class IOTextInput extends React.Component {
   }
 }
 
-IOTextInput.propTypes = {
-  parentFunc: PropTypes.func,
-  placeHolder: PropTypes.string,
-  numRows: PropTypes.string,
-  label: PropTypes.string,
-  tip: PropTypes.string
-}
-
-class IOTextAreaInput extends React.Component {
+class TextAreaInput extends React.Component {
 
   _handleChange (e) {
     //console.log(e.target.value)
@@ -201,18 +162,7 @@ class IOTextAreaInput extends React.Component {
   }
 }
 
-IOTextAreaInput.propTypes = {
-  parentFunc: PropTypes.func,
-  numRows: PropTypes.number,
-  label: PropTypes.string,
-  tip: PropTypes.string
-}
-
-IOTextAreaInput.defaultProps = {
-  numRows: 2
-}
-
-class IODate extends React.Component {
+class Date extends React.Component {
 
   constructor(props) {
     super(props)
@@ -239,13 +189,7 @@ class IODate extends React.Component {
   }
 }
 
-IODate.propTypes = {
-  parentFunc: PropTypes.func,
-  label: PropTypes.string,
-  tip: PropTypes.string
-}
-
-class IOSelect extends React.Component {
+class Select extends React.Component {
 
   constructor(props) {
     super(props)
@@ -257,15 +201,15 @@ class IOSelect extends React.Component {
 
   render () {
 
-    const Option = Select.Option
+    const Optn = Select.Optn
     let children = []
-    let size = this.props.selections.length
+    let size = this.props.selectns.length
     for (let i = 0; i < size; i++) {
-      children.push(<Option key={this.props.selections[i]}>{this.props.selections[i]}</Option>)
+      children.push(<Optn key={this.props.selectns[i]}>{this.props.selectns[i]}</Optn>)
     }
 
     return (
-      <Tooltip title={this.props.tip} position="top">
+      <Tooltip title={this.props.tip} positn="top">
         <Select placeholder={this.props.label}
                 style={{ width: '100%' }}
                 onChange={this._handleChange.bind(this)}
@@ -278,14 +222,7 @@ class IOSelect extends React.Component {
   }
 }
 
-IOSelect.propTypes = {
-  parentFunc: PropTypes.func,
-  selections: PropTypes.array,
-  label: PropTypes.string,
-  tip: PropTypes.string
-}
-
-class IOLogger extends React.Component {
+class Logger extends React.Component {
 
   constructor(props) {
     super(props)
@@ -308,11 +245,7 @@ class IOLogger extends React.Component {
   }
 }
 
-IOLogger.propTypes = {
-  log: PropTypes.array
-}
-
-class IOButtonLoad extends React.Component {
+class ButtonLoad extends React.Component {
 
   constructor (props) {
     super(props);
@@ -339,19 +272,7 @@ class IOButtonLoad extends React.Component {
   }
 }
 
-IOButtonLoad.propTypes = {
-  parentFunc: PropTypes.func,
-  icon: PropTypes.string,
-  label: PropTypes.string,
-  loading: PropTypes.bool,
-  tip: PropTypes.string
-}
-
-IOButtonLoad.defaultProps = {
-  loading: false
-}
-
-class IOButton extends React.Component {
+class Button extends React.Component {
 
   constructor (props) {
     super(props);
@@ -378,19 +299,7 @@ class IOButton extends React.Component {
   }
 }
 
-IOButton.propTypes = {
-  parentFunc: PropTypes.func,
-  icon: PropTypes.string,
-  label: PropTypes.string,
-  loading: PropTypes.bool,
-  tip: PropTypes.string
-}
-
-IOButton.defaultProps = {
-  loading: false
-}
-
-export {IOAppHeading, IOTagline, IOHeading, IORadioOptions, IOPlainTextOutput, IOTextOutput, IOTextInput,
-        IOTextAreaInput, IODate, IOSelect, IOLogger, IOButtonLoad, IOButton}
+export {AppHeading, Tagline, Heading, RadOptns, PlainTextOutput, TextOutput, TextInput,
+        TextAreaInput, Date, Select, Logger, ButtonLoad, Button}
 
 */

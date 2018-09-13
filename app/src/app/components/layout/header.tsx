@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Icon, Layout, Menu, Row, Col } from 'antd'
 
 interface HeaderProps {
