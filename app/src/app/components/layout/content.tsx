@@ -1,47 +1,65 @@
 import * as React from 'react'
-import {Link} from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import { Layout, Breadcrumb } from 'antd'
-import LayoutContainer from '../../containers/pages/layoutContainer'
+
+import Home from '../../containers/pages/helpers/home'
+import About from '../../containers/pages/helpers/about'
+import Overview from '../../containers/pages/helpers/overview'
+import Help from '../../containers/pages/helpers/help'
 
 interface ContentProps {
-  title: string
+  homeName: string
+  homePath: string
+  about: string
+  aboutPath: string
+  overview: string
+  overviewPath: string
+  help: string
+  helpPath: string
 }
 
-const Content: React.SFC<ContentProps> = ({ title }) => (
+const Content: React.SFC<ContentProps> = ({appStrings: {
+    home,
+    homePath,
+    about,
+    aboutPath,
+    overview,
+    overviewPath,
+    help,
+    helpPath
+  }}) => (
 
-  const { SubMenu } = Menu
   const { Content } = Layout
 
   return (
     <div>
       <Breadcrumb style={{ margin: '16px 0' }}>
-        <Breadcrumb.Item>{AppStrings.home}</Breadcrumb.Item>
-        <Breadcrumb.Item>{AppStrings.create}</Breadcrumb.Item>
-        <Breadcrumb.Item>{AppStrings.read}</Breadcrumb.Item>
-        <Breadcrumb.Item>{AppStrings.about}</Breadcrumb.Item>
-        <Breadcrumb.Item>{AppStrings.overview}</Breadcrumb.Item>
-        <Breadcrumb.Item>{AppStrings.help}</Breadcrumb.Item>
+        <Breadcrumb.Item>{home}</Breadcrumb.Item>
+        <Breadcrumb.Item>{about}</Breadcrumb.Item>
+        <Breadcrumb.Item>{overview}</Breadcrumb.Item>
+        <Breadcrumb.Item>{help}</Breadcrumb.Item>
       </Breadcrumb>
 
       <Content style={{ padding: 24, margin: 0, minHeight: 280 }}>
-
-        <Route name={AppStrings.home} exact path={AppPaths.home} component={Home} />
-        <Route name={AppStrings.about} path={AppPaths.about} component={About} />
-        <Route name={AppStrings.overview} path={AppPaths.overview} component={Overview} />
-        <Route name={AppStrings.help} path={AppPaths.help} component={Help} />
-        <Route
-          name={AppStrings.create}
-          path={AppPaths.create}
-          render={() => <Writer contracts={this.contractHandler} web3={this.web3Handler} />}
-        />
-        <Route
-          name={AppStrings.read}
-          path={AppPaths.read}
-          render={() => <Reader contracts={this.contractHandler} web3={this.web3Handler} />}
-        />
-
+        <Route name={home} exact path={homePath} component={Home} />
+        <Route name={about} path={aboutPath} component={About} />
+        <Route name={overview} path={overviewPath} component={Overview} />
+        <Route name={help} path={helpPath} component={Help} />
       </Content>
     </div>
 )
 
 export default Container
+
+/*
+<Route
+  name={AppStrings.create}
+  path={AppPaths.create}
+  render={() => <Writer contracts={this.contractHandler} web3={this.web3Handler} />}
+/>
+<Route
+  name={AppStrings.read}
+  path={AppPaths.read}
+  render={() => <Reader contracts={this.contractHandler} web3={this.web3Handler} />}
+/>
+*/

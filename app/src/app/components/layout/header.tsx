@@ -1,9 +1,6 @@
 import * as React from 'react'
 import { NavLink } from 'react-router-dom'
 import { Icon, Layout, Menu, Row, Col } from 'antd'
-import LayoutContainer from '../../containers/pages/layoutContainer'
-
-import styled from '../../styles/styled'
 
 interface HeaderProps {
   title: string
@@ -52,37 +49,3 @@ const Header: React.SFC<HeaderProps> = ({ title }) => (
 )
 
 export default Header
-
-/*
-  <Wrapper>
-    <HeaderInner>
-      <HeaderLeft>
-        <Title>{title}</Title>
-      </HeaderLeft>
-      <HeaderNav>
-        <HeaderNavLink exact to="/" activeClassName={HeaderLinkActive}>
-          Home
-        </HeaderNavLink>
-        <HeaderNavLink to="/IATIWriter" activeClassName={HeaderLinkActive}>
-          Heroes
-        </HeaderNavLink>
-        <HeaderNavLink to="/IATIReader" activeClassName={HeaderLinkActive}>
-          Teams
-        </HeaderNavLink>
-      </HeaderNav>
-      <HeaderRight>
-        <LayoutContainer>
-          {({ theme, setTheme }) => (
-            <React.Fragment>
-              <CurrentTheme>Current theme: {theme}</CurrentTheme>
-              <ThemeSwitcherButton onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
-                Switch theme
-              </ThemeSwitcherButton>
-            </React.Fragment>
-          )}
-        </LayoutContainer>
-      </HeaderRight>
-    </HeaderInner>
-  </Wrapper>
-
-  */

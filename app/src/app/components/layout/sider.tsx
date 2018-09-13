@@ -1,10 +1,7 @@
 import * as React from 'react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Icon, Layout, Menu, Row, Col } from 'antd'
-
 import { MenuMode } from '../../styles/types'
-
-// import LayoutContainer from '../../containers/pages/layoutContainer'
 
 interface FooterProps {
   width: number

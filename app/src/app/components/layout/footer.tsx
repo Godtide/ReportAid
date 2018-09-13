@@ -1,7 +1,5 @@
 import * as React from 'react'
-import { NavLink } from 'react-router-dom'
 import { Layout } from 'antd'
-import LayoutContainer from '../../containers/pages/layoutContainer'
 
 interface FooterProps {
   copyright: string
