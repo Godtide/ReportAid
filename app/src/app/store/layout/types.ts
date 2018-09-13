@@ -1,5 +1,7 @@
-// Example for using discriminated union types.
-export type ThemeColors = 'light' | 'dark'
+import { ThemeColours, MenuMode } from '../../styles/theme'
+
+export type ThemeColours = ThemeColours.DARK | ThemeColours.LIGHT
+export type MenuMode = MenuMode.HORIZONTAL | MenuMode.INLINE
 
 // Use const enums for better autocompletion of action type names. These will
 // be compiled away leaving only the final value in your compiled code.
@@ -9,10 +11,12 @@ export type ThemeColors = 'light' | 'dark'
 // of Redux's `@@INIT` action.
 export const enum LayoutActionTypes {
   SET_THEME = '@@layout/SET_THEME'
+  SET_MODE = '@@layout/SET_MODE'
 }
 
 // Declare state types with `readonly` modifier to get compile time immutability.
 // https://github.com/piotrwitek/react-redux-typescript-guide#state-with-type-level-immutability
 export interface LayoutState {
-  readonly theme: ThemeColors
+  readonly theme: ThemeColours
+  readonly mode: MenuMode
 }

@@ -3,7 +3,8 @@ import { LayoutState, LayoutActionTypes } from './types'
 
 // Type-safe initialState!
 const initialState: LayoutState = {
-  theme: 'light'
+  theme: 'light',
+  mode: 'horizontal'
 }
 
 // Thanks to Redux 4's much simpler typings, we can take away a lot of typings on the reducer side,
@@ -12,6 +13,9 @@ const reducer: Reducer<LayoutState> = (state = initialState, action) => {
   switch (action.type) {
     case LayoutActionTypes.SET_THEME: {
       return { ...state, theme: action.payload }
+    }
+    case LayoutActionTypes.SET_MODE: {
+      return { ...state, mode: action.payload }
     }
     default: {
       return state

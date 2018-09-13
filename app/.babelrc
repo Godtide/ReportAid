@@ -1,54 +1,28 @@
 {
-  "env": {
-    "production": {
-      "plugins": [
-      [
-        "emotion",
-        {
-          "hoist": true,
-          "sourceMap": false,
-          "autoLabel": true,
-          "labelFormat": "[local]",
-          "extractStatic": false,
-          "outputDir": "",
-          "importedNames": {
-            "styled": "styled",
-            "css": "css",
-            "keyframes": "keyframes",
-            "injectGlobal": "injectGlobal",
-            "merge": "merge"
-          }
-        }
-      ]],
-    },
-    "development": {
-      "plugins": [
-        [
-          "emotion",
-          {
-            "hoist": false,
-            "sourceMap": true,
-            "autoLabel": true,
-            "labelFormat": "[local]",
-            "extractStatic": false,
-            "outputDir": "",
-            "importedNames": {
-              "styled": "styled",
-              "css": "css",
-              "keyframes": "keyframes",
-              "injectGlobal": "injectGlobal",
-              "merge": "merge"
-            }
-          }
-      ]]
-    },
-    "targets": {
-      "browsers": ["last 2 versions"]
-    },
-    "presets": [
-      "stage-0",
-      "modules",
-      "react"
+  "presets": [
+  [
+    "stage-0",
+    "react",
+    "env",
+    {
+      "modules": false,
+      "production": {
+      },
+      "development": {
+      },
+      "targets":
+      {
+        "browsers": ["last 2 versions"]
+      }
+    }
+  ]],
+  "plugins": [
+    "transform-class-properties",
+    [
+      "import", {
+        "libraryName": "antd",
+        "style": true
+      }
     ]
-  }
+  ]
 }

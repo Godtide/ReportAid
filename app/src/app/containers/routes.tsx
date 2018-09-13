@@ -18,7 +18,6 @@ import IATIReaderPage from './IATIReader/IATIReaderPage'
 // code-splittable.
 const Routes: React.SFC = () => (
   <Root>
-    <Header title="Example App" />
     <Switch>
       <Route path="/IATIWriter" component={IATIWriterPage} />
       <Route path="/IATIReader" component={IATIReaderPage} />

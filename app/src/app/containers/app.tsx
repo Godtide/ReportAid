@@ -1,106 +1,46 @@
 import * as React from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators, Dispatch } from 'redux'
-import { RouteComponentProps } from 'react-router'
-// import { TodoActions } from 'app/actions'
-// import * as Actions from '../actions'
-// import { RootState } from '../reducers'
-// import * as Reducers from '../reducers'
-// import { omit } from 'app/utils'
-// import { Header, TodoList, Footer } from 'app/components'
-import * as Components from '../components'
+import { Provider, connect } from 'react-redux'
 
-/*
+import { ApplicationState } from '../store'
+import { ThemeColours, MenuMode } from '../store/layout'
 
-const FILTER_VALUES = (Object.keys(TodoModel.Filter) as (keyof typeof TodoModel.Filter)[]).map(
-  (key) => TodoModel.Filter[key]
-)
-
-const FILTER_FUNCTIONS: Record<TodoModel.Filter, (todo: TodoModel) => boolean> = {
-  [TodoModel.Filter.SHOW_ALL]: () => true,
-  [TodoModel.Filter.SHOW_ACTIVE]: (todo) => !todo.completed,
-  [TodoModel.Filter.SHOW_COMPLETED]: (todo) => todo.completed
+// Separate props from state and props from dispatch to their own interfaces.
+interface PropsFromState {
 }
 
-export namespace App {
-  export interface Props extends RouteComponentProps<void> {
-    todos: RootState.TodoState
-    actions: TodoActions
-    filter: TodoModel.Filter
-  }
+interface PropsFromDispatch {
+  [key: string]: any
 }
 
-@connect(
-  (state: RootState): Pick<App.Props, 'todos' | 'filter'> => {
-    const hash = state.router.location && state.router.location.hash.replace('#', '')
-    const filter = FILTER_VALUES.find((value) => value === hash) || TodoModel.Filter.SHOW_ALL
-    return { todos: state.todos, filter }
-  },
-  (dispatch: Dispatch): Pick<App.Props, 'actions'> => ({
-    actions: bindActionCreators(omit(TodoActions, 'Type'), dispatch)
-  })
-)
-export class App extends React.Component<App.Props> {
-  static defaultProps: Partial<App.Props> = {
-    filter: TodoModel.Filter.SHOW_ALL
-  }
+// Any additional component props go here.
+interface OwnProps {
+  store: Store<ApplicationState>
+}
 
-  constructor(props: App.Props, context?: any) {
-    super(props, context)
-    this.handleClearCompleted = this.handleClearCompleted.bind(this)
-    this.handleFilterChange = this.handleFilterChange.bind(this)
-  }
+// Create an intersection type of the component props and our Redux props.
+type AllProps = PropsFromState & PropsFromDispatch & OwnProps
 
-  handleClearCompleted(): void {
-    const hasCompletedTodo = this.props.todos.some((todo) => todo.completed || false)
-    if (hasCompletedTodo) {
-      this.props.actions.clearCompleted()
-    }
-  }
-
-  handleFilterChange(filter: TodoModel.Filter): void {
-    this.props.history.push(`#${filter}`)
-  }
-
-  render() {
-    const { todos, actions, filter } = this.props
-    const activeCount = todos.length - todos.filter((todo) => todo.completed).length
-    const filteredTodos = filter ? todos.filter(FILTER_FUNCTIONS[filter]) : todos
-    const completedCount = todos.reduce((count, todo) => (todo.completed ? count + 1 : count), 0)
+class App extends React.Component<AllProps> {
+  public render() {
+    const { store  } = this.props
 
     return (
-      <div className={style.normal}>
-        <Header addTodo={actions.addTodo} />
-        <TodoList todos={filteredTodos} actions={actions} />
-        <Footer
-          filter={filter}
-          activeCount={activeCount}
-          completedCount={completedCount}
-          onClickClearCompleted={this.handleClearCompleted}
-          onClickFilter={this.handleFilterChange}
-        />
-      </div>
+      <Provider store={store}>
+        <Routes />
+      </Provider>
     )
   }
 }
 
-*/
+// It's usually good practice to only include one context at a time in a connected component.
+// Although if necessary, you can always include multiple contexts. Just make sure to
+// separate them from each other to prevent prop conflicts.
+const mapStateToProps = ({ layout }: ApplicationState) => ({
+})
 
-export namespace App {
-  export interface Props extends RouteComponentProps<void> {
-  }
-}
-
-export class App extends React.Component<App.Props> {
-
-  constructor(props: App.Props, context?: any) {
-    super(props, context)
-  }
-
-  render () {
-    return (
-      <div>
-      </div>
-    )
-  }
-}
+// Normally you wouldn't need any generics here (since types infer from the passed functions).
+// But since we pass some props from the `index.js` file, we have to include them.
+// For an example of a `connect` function without generics, see `./containers/LayoutContainer`.
+export default connect<PropsFromState, PropsFromDispatch, OwnProps, ApplicationState>(
+  mapStateToProps
+)(App)

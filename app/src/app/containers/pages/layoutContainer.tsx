@@ -2,27 +2,21 @@ import * as React from 'react'
 import { connect, Dispatch } from 'react-redux'
 
 import { ApplicationState } from '../../store'
-import { ThemeColors } from '../../store/layout'
+import { ThemeColours, MenuMode } from '../../store/layout'
 import * as layoutActions from '../../store/layout/actions'
-
-// Now here is an example of creating container components.
-//
-// Before React v16 I would've suggested against implementing container components that are
-// separate from their connected view logic, since they intrude at the very definition of a view,
-// but now with newer patterns (e.g. render props), it makes sense to use them once again.
-//
-// See how this works at `./src/components/Header`
 
 // Separate state props + dispatch props to their own interfaces.
 
 // Props passed from mapStateToProps
 interface PropsFromState {
-  theme: ThemeColors
+  theme: ThemeColours
+  mode: MenuMode
 }
 
 // Props passed from mapDispatchToProps
 interface PropsFromDispatch {
   setTheme: typeof layoutActions.setTheme
+  setMode: typeof layoutActions.setMode
 }
 
 // Component-specific props.
@@ -36,7 +30,6 @@ type LayoutContainerProps = PropsFromState & PropsFromDispatch
 class LayoutContainer extends React.Component<LayoutContainerProps & OtherProps> {
   public render() {
     const { children, ...rest } = this.props
-
     return children({ ...rest })
   }
 }
@@ -45,12 +38,14 @@ class LayoutContainer extends React.Component<LayoutContainerProps & OtherProps>
 // Although if necessary, you can always include multiple contexts. Just make sure to
 // separate them from each other to prevent prop conflicts.
 const mapStateToProps = ({ layout }: ApplicationState) => ({
-  theme: layout.theme
+  theme: layout.theme,
+  mode: layout.mode
 })
 
 // Mapping our action dispatcher to props is especially useful when creating container components.
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  setTheme: (theme: ThemeColors) => dispatch(layoutActions.setTheme(theme))
+  setTheme: (theme: ThemeColours) => dispatch(layoutActions.setTheme(theme)),
+  setMode: (mode: MenuMode) => dispatch(layoutActions.setMode(mode))
 })
 
 // Now let's connect our component!

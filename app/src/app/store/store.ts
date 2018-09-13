@@ -1,8 +1,6 @@
 import { combineReducers, Dispatch, Action, AnyAction } from 'redux'
 import { all, fork } from 'redux-saga/effects'
 
-import { LayoutState, layoutReducer } from './layout'
-
 import IATIWriterSaga from './IATIWriter/sagas'
 import { IATIWriterReducer } from './IATIWriter/reducer'
 import { IATIWriterState } from './IATIWriter/types'
@@ -12,7 +10,6 @@ import { IATIReaderState } from './IATIReader/types'
 
 // The top-level state object
 export interface ApplicationState {
-  layout: LayoutState
   writer: IATIWriterState
   reader: IATIReaderState
 }
@@ -26,7 +23,6 @@ export interface ConnectedReduxProps<A extends Action = AnyAction> {
 // using the reducer with the matching name. It's important that the names match exactly, and that
 // the reducer acts on the corresponding ApplicationState property type.
 export const rootReducer = combineReducers<ApplicationState>({
-  layout: layoutReducer,
   writer: IATIWriterReducer,
   reader: IATIReaderReducer
 })
