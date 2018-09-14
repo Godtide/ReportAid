@@ -3,11 +3,10 @@ import * as ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
-import App from './app/components/layout/app'
+import App from './app/components/app'
 import configureStore from './app/store/configureStore'
-import { Window } from './types'
 
-const initialState = Window.initialReduxState
+const initialState = (window as any).initialReduxState
 const store = configureStore(initialState)
 
 // Now you can dispatch navigation actions from anywhere!

@@ -2,50 +2,50 @@ import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { Icon, Layout, Menu, Row, Col } from 'antd'
 
-interface HeaderProps {
-  title: string
+import { PathStrings } from '../../utils/strings'
+
+interface HeaderInterface {
+  headerTitle: string
 }
 
-const Header: React.SFC<HeaderProps> = ({ title }) => (
+export type  HeaderProps = PathStrings & HeaderInterface
 
-  const { SubMenu } = Menu
-  const { Header, Content, Sider, Footer } = Layout
+const Header: React.SFC<HeaderProps> = ( props ) => {
 
   return (
     <div>
       <Layout>
-        <Header>
-          <Row>
-            <Col span={4}><img src={logo} /></Col>
-            <Col span={10}>
-              <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['home']} style={{ lineHeight: '64px' }} >
-                <Menu.Item key={AppStrings.home}>
-                  <Icon type={HomeStrings.icon}/><span>{AppStrings.home}</span>
-                  <Link to={AppPaths.home}/>
-                </Menu.Item>
-                <Menu.Item key={AppStrings.about}>
-                  <Icon type={AboutStrings.icon}/><span>{AppStrings.about}</span>
-                  <Link to={AppPaths.about}/>
-                </Menu.Item>
-                <Menu.Item key={AppStrings.overview}>
-                  <Icon type={OverviewStrings.icon}/><span>{AppStrings.overview}</span>
-                  <Link to={AppPaths.overview}/>
-                </Menu.Item>
-                <Menu.Item key={AppStrings.help}>
-                  <Icon type={HelpStrings.icon}/><span>{AppStrings.help}</span>
-                  <Link to={AppPaths.help}/>
-                </Menu.Item>
-              </Menu>
-            </Col>
-            <Col span={10} style={{ textAlign: 'right' }}>
-              <h5>{title}</h5>
-            </Col>
-          </Row>
-        </Header>
+        <Row>
+          <Col span={4}>
+            <p>Logo to go here</p>
+          </Col>
+          <Col span={10}>
+            <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['home']} style={{ lineHeight: '64px' }} >
+              <Menu.Item key={props.home}>
+                <Icon type={props.homeIcon}/><span>{props.home}</span>
+                <Link to={props.homePath}/>
+              </Menu.Item>
+              <Menu.Item key={props.about}>
+                <Icon type={props.aboutIcon}/><span>{props.about}</span>
+                <Link to={props.aboutPath}/>
+              </Menu.Item>
+              <Menu.Item key={props.overview}>
+                <Icon type={props.overviewIcon}/><span>{props.overview}</span>
+                <Link to={props.overviewPath}/>
+              </Menu.Item>
+              <Menu.Item key={props.help}>
+                <Icon type={props.helpIcon}/><span>{props.help}</span>
+                <Link to={props.helpPath}/>
+              </Menu.Item>
+            </Menu>
+          </Col>
+          <Col span={10} style={{ textAlign: 'right' }}>
+            <h5>{props.headerTitle}</h5>
+          </Col>
+        </Row>
       </Layout>
-      <Layout>
-
-
-)
+    </div>
+  )
+}
 
 export default Header

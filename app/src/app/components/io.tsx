@@ -1,55 +1,46 @@
 import * as React from 'react'
-import * as ReactDOM from 'react-dom'
-import { RouteComponentProps } from 'react-router'
 
-export namespace AppHeading {
-  export interface Props extends RouteComponentProps<void> {
-    heading: 'blah'
-  }
+interface AppHeadingInterface {
+  heading: string
 }
 
-export class AppHeading extends React.Component<AppHeading.Props> {
+export type AppHeadingProps = AppHeadingInterface
 
-  constructor(props: AppHeading.Props, context?: any) {
-    super(props, context)
-  }
+const AppHeading: React.SFC<AppHeadingProps> = (props) => {
 
-  render () {
-
-    const { heading } = this.props
-
-    return (
+  return (
       <div>
-        <h1>{heading}</h1>
+        <h1>{props.heading}</h1>
       </div>
     )
-  }
 }
 
-class Tagline extends React.Component {
-
-  constructor (props) {
-    super(props)
-  }
-
-  render () {
-    return (
-      <div>
-        <h1>{this.props.tagLine}</h1>
-      </div>
-    )
-  }
+interface TaglineInterface {
+  tagLine: string
 }
 
-class Heading extends React.Component {
+export type TaglineProps = TaglineInterface
 
-  render () {
-    return (
-      <div>
-        <h2>{this.props.heading}</h2>
-      </div>
-    )
-  }
+const Tagline: React.SFC<TaglineProps> = (props) => {
+
+  return (
+    <div>
+      <h1>{props.tagLine}</h1>
+    </div>
+  )
+}
+
+interface HeadingInterface {
+  heading: string
+}
+
+export type HeadingProps = HeadingInterface
+
+const Heading: React.SFC<HeadingProps> = (props) => {
+
+  return (
+    <h2>{props.heading}</h2>
+  )
 }
 
 class RadOptns extends React.Component {
@@ -89,30 +80,31 @@ class RadOptns extends React.Component {
   }
 }
 
-class PlainTextOutput extends React.Component {
-
-  constructor(props) {
-    super(props)
-  }
-
-  render () {
-    return (
-      <div>
-        <ReactMarkdown escapeHtml={false} source={this.props.text} />
-      </div>
-    )
-  }
+interface PlainTextInterface {
+  text: string
 }
 
-class TextOutput extends React.Component {
+export type PlainTextProps = PlainTextInterface
 
-render () {
-    return (
-      <div>
-        <p>{this.props.label} {this.props.text}</p>
-      </div>
-    )
-  }
+const PlainText: React.SFC<PlainTextProps> = (props) => {
+
+  return (
+    <p>{props.text}</p>
+  )
+}
+
+interface LabelledTextInterface {
+  label: string
+  text: string
+}
+
+export type LabelledTextProps = LabelledTextInterface
+
+const LabelledText: React.SFC<LabelledTextProps> = (props) => {
+
+  return (
+      <p>{props.label} {props.text}</p>
+  )
 }
 
 class TextInput extends React.Component {
@@ -222,27 +214,26 @@ class Select extends React.Component {
   }
 }
 
-class Logger extends React.Component {
+interface LoggerInterface {
+  log: string
+}
 
-  constructor(props) {
-    super(props)
-  }
+export type LoggerProps = LoggerInterface
 
-  render () {
-    let logs = this.props.log.map((text, index) =>
-      <span key={index}>
-        {text}
-        <br />
-      </span>
-    )
-    return (
-      <div>
-        <Card>
-          <p>{logs}</p>
-        </Card>
-      </div>
-    )
-  }
+const Logger: React.SFC<LoggerProps> = (props) => {
+
+  let logs = props.log.map((text, index) =>
+    <span key={index}>
+      {text}
+      <br />
+    </span>
+  )
+
+  return (
+      <Card>
+        <p>{logs}</p>
+      </Card>
+  )
 }
 
 class ButtonLoad extends React.Component {
@@ -299,7 +290,5 @@ class Button extends React.Component {
   }
 }
 
-export {AppHeading, Tagline, Heading, RadOptns, PlainTextOutput, TextOutput, TextInput,
+export {AppHeading, Tagline, Heading, RadOptns, PlainText, LabelledText, TextInput,
         TextAreaInput, Date, Select, Logger, ButtonLoad, Button}
-
-*/

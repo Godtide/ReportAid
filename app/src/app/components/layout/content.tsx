@@ -7,49 +7,33 @@ import About from '../../containers/pages/helpers/about'
 import Overview from '../../containers/pages/helpers/overview'
 import Help from '../../containers/pages/helpers/help'
 
-interface ContentProps {
-  homeName: string
-  homePath: string
-  about: string
-  aboutPath: string
-  overview: string
-  overviewPath: string
-  help: string
-  helpPath: string
-}
+import { PathStrings } from '../../utils/strings'
 
-const Content: React.SFC<ContentProps> = ({appStrings: {
-    home,
-    homePath,
-    about,
-    aboutPath,
-    overview,
-    overviewPath,
-    help,
-    helpPath
-  }}) => (
+export type  ContentProps = PathStrings
 
-  const { Content } = Layout
+const Content: React.SFC<ContentProps> = (props) => {
 
   return (
-    <div>
-      <Breadcrumb style={{ margin: '16px 0' }}>
-        <Breadcrumb.Item>{home}</Breadcrumb.Item>
-        <Breadcrumb.Item>{about}</Breadcrumb.Item>
-        <Breadcrumb.Item>{overview}</Breadcrumb.Item>
-        <Breadcrumb.Item>{help}</Breadcrumb.Item>
-      </Breadcrumb>
-
-      <Content style={{ padding: 24, margin: 0, minHeight: 280 }}>
-        <Route name={home} exact path={homePath} component={Home} />
-        <Route name={about} path={aboutPath} component={About} />
-        <Route name={overview} path={overviewPath} component={Overview} />
-        <Route name={help} path={helpPath} component={Help} />
-      </Content>
+    <div>props.
+      <Layout>
+        <Breadcrumb style={{ margin: '16px 0' }}>
+          <Breadcrumb.Item>{props.home}</Breadcrumb.Item>
+          <Breadcrumb.Item>{props.about}</Breadcrumb.Item>
+          <Breadcrumb.Item>{props.overview}</Breadcrumb.Item>
+          <Breadcrumb.Item>{props.help}</Breadcrumb.Item>
+        </Breadcrumb>
+        <Layout style={{ padding: 24, margin: 0, minHeight: 280 }}>
+          <Route name={props.home} exact path={props.homePath} component={Home} />
+          <Route name={props.about} path={props.aboutPath} component={About} />
+          <Route name={props.overview} path={props.overviewPath} component={Overview} />
+          <Route name={props.help} path={props.helpPath} component={Help} />
+        </Layout>
+      </Layout>
     </div>
-)
+  )
+}
 
-export default Container
+export default Content
 
 /*
 <Route
