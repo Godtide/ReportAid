@@ -1,35 +1,5 @@
 import * as React from 'react'
 
-interface AppHeadingInterface {
-  heading: string
-}
-
-export type AppHeadingProps = AppHeadingInterface
-
-const AppHeading: React.SFC<AppHeadingProps> = (props) => {
-
-  return (
-      <div>
-        <h1>{props.heading}</h1>
-      </div>
-    )
-}
-
-interface TaglineInterface {
-  tagLine: string
-}
-
-export type TaglineProps = TaglineInterface
-
-const Tagline: React.SFC<TaglineProps> = (props) => {
-
-  return (
-    <div>
-      <h1>{props.tagLine}</h1>
-    </div>
-  )
-}
-
 interface HeadingInterface {
   heading: string
 }
@@ -42,6 +12,8 @@ const Heading: React.SFC<HeadingProps> = (props) => {
     <h2>{props.heading}</h2>
   )
 }
+
+export default Heading
 
 class RadOptns extends React.Component {
 

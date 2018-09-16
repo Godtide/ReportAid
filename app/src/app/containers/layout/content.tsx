@@ -2,10 +2,10 @@ import * as React from 'react'
 import { Route } from 'react-router-dom'
 import { Layout, Breadcrumb } from 'antd'
 
-import Home from '../../containers/pages/helpers/home'
-import About from '../../containers/pages/helpers/about'
-import Overview from '../../containers/pages/helpers/overview'
-import Help from '../../containers/pages/helpers/help'
+import Home from '../pages/helpers/home'
+import About from '../pages/helpers/about'
+import Overview from '../pages/helpers/overview'
+import Help from '../pages/helpers/help'
 
 import { PathStrings } from '../../utils/strings'
 

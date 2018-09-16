@@ -3,8 +3,10 @@ import * as ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
-import App from './app/components/app'
-import configureStore from './app/store/configureStore'
+import CssBaseline from '@material-ui/core/CssBaseline';
+
+import App from './app/containers/app'
+import { configureStore } from './app/store'
 
 const initialState = (window as any).initialReduxState
 const store = configureStore(initialState)
@@ -15,6 +17,7 @@ const store = configureStore(initialState)
 ReactDOM.render((
   <Provider store={store}>
     <BrowserRouter>
+      <CssBaseline />
       <App />
     </BrowserRouter>
   </Provider>

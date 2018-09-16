@@ -1,33 +1,20 @@
 import * as React from 'react'
-import { Home } from './types'
-import { fetchRequest } from '../../..store/IATIReader/actions'
+import { HomeState } from './types'
+import { ConnectedReduxProps } from '../../../store'
 
-// Separate state props + dispatch props to their own interfaces.
-interface PropsFromState {
-  loading: boolean
-  errors: string
-  data: Home[]
-}
 
-// Combine both state + dispatch props - as well as any props we want to pass - in a union type.
+interface HomeProps extends ConnectedReduxProps<HomeState> {}
+
 type AllProps = PropsFromState & PropsFromDispatch & ConnectedReduxProps
 
-class Home extends React.Component<AllProps> {
-  public componentDidMount() {
+export class Home extends React.Component<AllProps> {
+  public render() {
     const { data } = this.props
 
-    if (data.length === 0) {
-      this.props.fetchRequest()
-    }
-  }
-
-  public render() {
-    const { loading } = this.props
-
     return (
-      <div>
-        Home
-      </div>
+      <p>
+        {data}
+      </p>
     )
   }
 }

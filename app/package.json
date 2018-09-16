@@ -18,7 +18,8 @@
   "author": "Steve Huckle",
   "license": "LGPL-3.0",
   "dependencies": {
-    "antd": "^3.9.2",
+    "@material-ui/core": "^3.0.3",
+    "@material-ui/icons": "^3.0.1",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-redux": "^5.0.7",

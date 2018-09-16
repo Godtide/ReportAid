@@ -1,15 +1,15 @@
-export interface Home  {
+export interface HomeState {
   text: string
 }
 
-export interface About  {
+export interface AboutInterface {
   text: string
 }
 
-export interface Overview  {
+export interface OverviewInterface {
   text: string
 }
 
-export interface Help {
+export interface HelpInterface {
   text: string
 }

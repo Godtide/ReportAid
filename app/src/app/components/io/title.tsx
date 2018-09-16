@@ -1,0 +1,18 @@
+import * as React from 'react'
+
+interface TitleInterface {
+  title: string
+}
+
+export type TitleProps = TitleInterface
+
+const Title: React.SFC<TitleProps> = (props) => {
+
+  return (
+      <div>
+        <h1>{props.title}</h1>
+      </div>
+    )
+}
+
+export default Title

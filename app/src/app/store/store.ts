@@ -1,4 +1,6 @@
-import { combineReducers, Dispatch, Action, AnyAction } from 'redux'
+import { combineReducers, Dispatch, Reducer, Action, AnyAction } from 'redux'
+import { Store, createStore, applyMiddleware } from 'redux'
+import createSagaMiddleware from 'redux-saga'
 import { all, fork } from 'redux-saga/effects'
 
 import IATIWriterSaga from './IATIWriter/sagas'
@@ -19,10 +21,7 @@ export interface ConnectedReduxProps<A extends Action = AnyAction> {
   dispatch: Dispatch<A>
 }
 
-// Whenever an action is dispatched, Redux will update each top-level application state property
-// using the reducer with the matching name. It's important that the names match exactly, and that
-// the reducer acts on the corresponding ApplicationState property type.
-export const rootReducer = combineReducers<ApplicationState>({
+export const reducers: Reducer<ApplicationState> = combineReducers<ApplicationState>({
   writer: IATIWriterReducer,
   reader: IATIReaderReducer
 })
@@ -32,4 +31,21 @@ export const rootReducer = combineReducers<ApplicationState>({
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*
 export function* rootSaga() {
   yield all([fork(IATIWriterSaga), fork(IATIReaderSaga)])
+}
+
+export function configureStore(
+  initialState: ApplicationState
+): Store<ApplicationState> {
+
+  // create the redux-saga middleware
+  const sagaMiddleware = createSagaMiddleware()
+  const store = createStore(
+    reducers,
+    initialState,
+    applyMiddleware(sagaMiddleware)
+  )
+
+  // Don't forget to run the root saga, and return the store object.
+  sagaMiddleware.run(rootSaga)
+  return store
 }
