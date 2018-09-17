@@ -1,27 +1,30 @@
 import * as React from 'react'
-import { Tooltip, DatePicker } from 'antd'
+import TextField from '@material-ui/core/TextField'
 
 interface DateInterface {
-  tip: string
-  icon: string
-  format: string
-  placeholder: string
+  label: string
+  default: string
+  textField: string
+  container: string
 }
 
 export type DateProps = DateInterface
 
-const Date: React.SFC<DateProps> = (props) => {
+const DatePicker: React.SFC<DateProps> = (props) => {
 
   return (
-    <Tooltip title={props.tip}>
-      <DatePicker
-        icon={props.icon}
-        placeholder={props.placeholder}
-        format={props.format}
-        onChange={}
+    <form className={props.container} noValidate>
+      <TextField
+        id="date"
+        label={props.label}
+        type={props.default}
+        className={props.textField}
+        InputLabelProps={{
+          shrink: true,
+        }}
       />
-    </Tooltip>
-  )
+    </form>
+  );
 }
 
-export default Date
+export default DatePicker

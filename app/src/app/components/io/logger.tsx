@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Card } from 'antd'
+import Card from '@material-ui/core/Card'
 
 interface LoggerInterface {
   log: string[]
@@ -17,9 +17,9 @@ const Logger: React.SFC<LoggerProps> = (props) => {
   )
 
   return (
-      <Card>
-        <p>{logs}</p>
-      </Card>
+    <Card>
+      <p>{logs}</p>
+    </Card>
   )
 }
 

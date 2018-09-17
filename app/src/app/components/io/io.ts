@@ -1,4 +1,4 @@
-export * from './buttonLoad'
+export * from './appButton'
 export * from './date'
 export * from './heading'
 export * from './labelledText'

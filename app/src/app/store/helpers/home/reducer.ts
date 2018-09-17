@@ -1,8 +1,8 @@
 import { Reducer } from 'redux'
-import {IATIReaderState, IATIReaderActionTypes } from './types'
+import { HomeState, HomeActionTypes } from './types'
 
 // Type-safe initialState!
-const initialState: IATIReaderState = {
+const initialState: HomeState = {
   data: [],
   errors: undefined,
   loading: false
@@ -10,15 +10,15 @@ const initialState: IATIReaderState = {
 
 // Thanks to Redux 4's much simpler typings, we can take away a lot of typings on the reducer side,
 // everything will remain type-safe.
-const reducer: Reducer<IATIReaderState> = (state = initialState, action) => {
+const reducer: Reducer<HomeState> = (state = initialState, action) => {
   switch (action.type) {
-    case IATIReaderActionTypes.FETCH_REQUEST: {
+    case HomeActionTypes.FETCH_REQUEST: {
       return { ...state, loading: true }
     }
-    case IATIReaderActionTypes.FETCH_SUCCESS: {
+    case HomeActionTypes.FETCH_SUCCESS: {
       return { ...state, loading: false, data: action.payload }
     }
-    case IATIReaderActionTypes.FETCH_ERROR: {
+    case HomeActionTypes.FETCH_ERROR: {
       return { ...state, loading: false, errors: action.payload }
     }
     default: {
@@ -29,4 +29,4 @@ const reducer: Reducer<IATIReaderState> = (state = initialState, action) => {
 
 // Instead of using default export, we use named exports. That way we can group these exports
 // inside the `index.js` folder.
-export { reducer as IATIReaderReducer }
+export { reducer as HomeReducer }

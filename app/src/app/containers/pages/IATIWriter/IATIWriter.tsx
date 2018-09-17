@@ -1,14 +1,7 @@
 import * as React from 'react'
-import { Link } from 'react-router-dom'
-import { connect, Dispatch } from 'react-redux'
+import { connect } from 'react-redux'
+import { Dispatch } from 'redux';
 // import moment from 'moment'
-
-import styled from '../../../styles/styled'
-import Page from '../../../components/layout/page'
-import Container from '../../../components/layout/container'
-/*import LoadingOverlay from '../../components/data/LoadingOverlay'
-import LoadingOverlayInner from '../../components/data/LoadingOverlayInner'
-import LoadingSpinner from '../../components/data/LoadingSpinner'*/
 
 import { ApplicationState, ConnectedReduxProps } from '../../../store'
 import { IATIWriter } from '../../../store/IATIWriter/types'
@@ -16,7 +9,6 @@ import { fetchRequest } from '../../../store/IATIWriter/actions'
 
 // Separate state props + dispatch props to their own interfaces.
 interface PropsFromState {
-  loading: boolean
   data: IATIWriter[]
   errors: string
 }
@@ -29,7 +21,7 @@ interface PropsFromDispatch {
 // Combine both state + dispatch props - as well as any props we want to pass - in a union type.
 type AllProps = PropsFromState & PropsFromDispatch & ConnectedReduxProps
 
-class IATIWriterIndexPage extends React.Component<AllProps> {
+class IATIWriterPage extends React.Component<AllProps> {
   public componentDidMount() {
     const { data } = this.props
 
@@ -39,14 +31,10 @@ class IATIWriterIndexPage extends React.Component<AllProps> {
   }
 
   public render() {
-    const { loading } = this.props
-
     return (
-      <Page>
-        <Container>
-            blah blah blah
-        </Container>
-      </Page>
+      <p>
+          blah blah blah
+      </p>
     )
   }
 }
@@ -71,4 +59,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(IATIWriterIndexPage)
+)(IATIWriterPage)

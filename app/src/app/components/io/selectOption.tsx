@@ -1,5 +1,7 @@
 import * as React from 'react'
-import { Tooltip, Select } from 'antd'
+import Tooltip from '@material-ui/core/Tooltip'
+import Select from '@material-ui/core/Select'
+import MenuItem from '@material-ui/core/MenuItem';
 
 interface SelectInterface {
   tip: string
@@ -12,22 +14,23 @@ export type SelectProps = SelectInterface
 
 const SelectOption: React.SFC<SelectProps> = (props) => {
 
-  const Optn = Select.Option
-  let children = []
-  let size = props.selections.length
-  for (let i = 0; i < size; i++) {
-    children.push(<Optn key={this.props.selections[i]}>{props.selections[i]}</Optn>)
-  }
-
   return (
     <Tooltip title={props.tip}>
-      <Select placeholder={props.label}
-              style={{ width: '100%' }}
-              onChange={}
-              tokenSeparators={[',']}
-      >
-        {children}
-      </Select>
+      <Select
+            value={this.state.age}
+            onChange={this.handleChange}
+            inputProps={{
+              name: 'age',
+              id: 'age-simple',
+            }}
+          >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Select>
     </Tooltip>
   )
 }

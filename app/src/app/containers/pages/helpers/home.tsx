@@ -2,12 +2,11 @@ import * as React from 'react'
 import { HomeState } from './types'
 import { ConnectedReduxProps } from '../../../store'
 
-
 interface HomeProps extends ConnectedReduxProps<HomeState> {}
 
-type AllProps = PropsFromState & PropsFromDispatch & ConnectedReduxProps
+type AllProps = PropsFromState & PropsFromDispatch & HomeProps
 
-export class Home extends React.Component<AllProps> {
+class Home extends React.Component<AllProps> {
   public render() {
     const { data } = this.props
 
@@ -39,4 +38,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(HomeIndexPage)
+)(Home)

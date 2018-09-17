@@ -4,9 +4,6 @@ const htmlWebpackPlugin = require('html-webpack-plugin');
 const cleanWebpackPlugin = require('clean-webpack-plugin');
 const { CheckerPlugin } = require('awesome-typescript-loader')
 const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
-const lessToJs = require('less-vars-to-js');
-const themeVariables = lessToJs(fs.readFileSync(path.join(__dirname, './app/stylesheets/themeVariables.less'), 'utf8'));
-themeVariables["@icon-url"] = 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:regular,bold,italic&subset=latin,latin-ext';
 
 var config = {
   node: {
@@ -43,24 +40,6 @@ var config = {
   },
   module: {
     rules: [
-      {
-        test: /\.less$/,
-        use: [
-          {
-            loader: "style-loader" // creates style nodes from JS strings
-          },
-          {
-            loader: "css-loader" // translates CSS into CommonJS
-          },
-          {
-            loader: "less-loader", // compiles Less to CSS
-            options: {
-              javascriptEnabled: true,
-              modifyVars: themeVariables
-            }
-          }
-        ]
-      },
       {
         test: /\.js$/,
         use: ["source-map-loader"],

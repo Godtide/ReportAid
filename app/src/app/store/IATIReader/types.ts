@@ -24,9 +24,7 @@ export type ApiResponse = Record<string, any>
 export const enum IATIReaderActionTypes {
   FETCH_REQUEST = '@@IATIReader/FETCH_REQUEST',
   FETCH_SUCCESS = '@@IATIReader/FETCH_SUCCESS',
-  FETCH_ERROR = '@@IATIReader/FETCH_ERROR',
-  SELECT_HERO = '@@IATIReader/SELECT_HERO',
-  SELECTED = '@@IATIReader/SELECTED'
+  FETCH_ERROR = '@@IATIReader/FETCH_ERROR'
 }
 
 // Declare state types with `readonly` modifier to get compile time immutability.
