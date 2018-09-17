@@ -1,7 +1,5 @@
-// This file holds our state type, as well as any other types related to this Redux store.
+export type ApiResponse = Record<string, any>
 
-// Response object for GET /heroes
-// https://docs.opendota.com/#tag/heroes%2Fpaths%2F~1heroes%2Fget
 export interface HomePage extends ApiResponse {
   id: number
   name: string
@@ -10,10 +8,6 @@ export interface HomePage extends ApiResponse {
   img: string
   icon: string
 }
-
-// This type is basically shorthand for `{ [key: string]: any }`. Feel free to replace `any` with
-// the expected return type of your API response.
-export type ApiResponse = Record<string, any>
 
 // Use `const enum`s for better autocompletion of action type names. These will
 // be compiled away leaving only the final value in your compiled code.
@@ -33,4 +27,5 @@ export interface HomeState {
   readonly loading: boolean
   readonly data: HomePage[]
   readonly errors?: string
+  readonly type: string
 }

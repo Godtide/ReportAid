@@ -1,8 +1,21 @@
 import * as React from 'react'
-import { HomeState } from './types'
-import { ConnectedReduxProps } from '../../../store'
+import { connect } from 'react-redux'
+import { Dispatch } from 'redux'
+import { HomeState, HomePage, fetchRequest } from '../../../store/helpers/home'
+import { ConnectedReduxProps, ApplicationState } from '../../../store'
 
 interface HomeProps extends ConnectedReduxProps<HomeState> {}
+
+// Separate state props + dispatch props to their own interfaces.
+interface PropsFromState {
+  data: HomePage[]
+  errors: string
+}
+
+// We can use `typeof` here to map our dispatch types to the props, like so.
+interface PropsFromDispatch {
+  fetchRequest: typeof fetchRequest
+}
 
 type AllProps = PropsFromState & PropsFromDispatch & HomeProps
 
