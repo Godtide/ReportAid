@@ -20,7 +20,7 @@ const Sider: React.SFC<AllProps> = (props: AllProps) => {
         <Menu
           id="simple-menu"
           anchorEl={null}
-          open={Boolean(null)}
+          open={Boolean(true)}
           onClose={props.handleClose}
         >
           <MenuItem onClick={props.handleClose}>{props.home}</MenuItem>

@@ -8,7 +8,6 @@ import MenuItem from '@material-ui/core/MenuItem'
 import { Paths } from './types'
 
 interface HeaderProps {
-  headerTitle: string
   handleClose: () => void
 }
 
@@ -17,32 +16,33 @@ export type  Allprops = HeaderProps & Paths
 const Header: React.SFC<Allprops> = ( props: Allprops ) => {
 
   return (
-    <Grid container spacing={24}>
-      <Grid item xs={4}>
+    <Grid container spacing={8}>
+      <Grid item xs={1}>
         <Paper className={'blah'}><p>Logo to go here</p></Paper>
       </Grid>
-      <Grid item xs={10}>
+      <Grid item xs={11}>
 
-        <Menu
-          id="simple-menu"
-          anchorEl={null}
-          open={Boolean(null)}
-          onClose={props.handleClose}
-        >
-          <MenuItem onClick={props.handleClose}>{props.home}</MenuItem>
-          <MenuItem onClick={props.handleClose}>{props.about}</MenuItem>
-          <MenuItem onClick={props.handleClose}>{props.overview}</MenuItem>
-          <MenuItem onClick={props.handleClose}>{props.help}</MenuItem>
-        </Menu>
-      </Grid>
-      <Grid item xs={10}>
-        <Paper className={'blah'}><h5>{props.headerTitle}</h5></Paper>
+         <Paper className={'blah'}><p>blah</p></Paper>
       </Grid>
     </Grid>
   )
 }
 
 export default Header
+
+/*
+<Menu
+    id="simple-menu"
+    anchorEl={null}
+    open={Boolean(true)}
+    onClose={props.handleClose}
+  >
+    <MenuItem onClick={props.handleClose}>{props.home}</MenuItem>
+    <MenuItem onClick={props.handleClose}>{props.about}</MenuItem>
+    <MenuItem onClick={props.handleClose}>{props.overview}</MenuItem>
+    <MenuItem onClick={props.handleClose}>{props.help}</MenuItem>
+  </Menu>
+  */
 
 /* <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['home']} style={{ lineHeight: '64px' }} >
   <Menu.Item key={props.home}>
