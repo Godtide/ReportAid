@@ -1,8 +1,11 @@
 import * as React from 'react'
 // import { Link } from 'react-router-dom'
+import { withStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
+
+import { Styles, ClassNames } from '../../styles/theme'
 
 import { Paths } from './types'
 
@@ -10,13 +13,13 @@ interface SiderProps {
   handleClose: () => void
 }
 
-export type  AllProps = SiderProps & Paths
+type  AllProps = SiderProps & Paths & ClassNames
 
 const Sider: React.SFC<AllProps> = (props: AllProps) => {
 
   return (
     <Grid container spacing={24}>
-      <Grid item xs={12}>
+      <Grid className={props.classes.main} item xs={12}>
         <Menu
           id="simple-menu"
           anchorEl={null}
@@ -33,7 +36,7 @@ const Sider: React.SFC<AllProps> = (props: AllProps) => {
   )
 }
 
-export default Sider
+export default withStyles(Styles)(Sider)
 
 /*
 <Menu mode={mode} defaultSelectedKeys={['1']} defaultOpenKeys={['Home']} style={{ height: '100%', borderRight: 0 }} >
