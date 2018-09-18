@@ -14,10 +14,14 @@ import { IATIReaderState } from './IATIReader/types'
 import { appFormReducer } from './helpers/form'
 import { FormState } from './helpers/form' */
 
+
+import { IATIWriterState } from './IATIWriter/types'
+import { IATIWriterReducer } from './IATIWriter/reducer'
+
 // The top-level state object
 export interface ApplicationState {
-  /* writer: IATIWriterState
-  reader: IATIReaderState
+  writer: IATIWriterState
+  /* reader: IATIReaderState
   form: appFormReducer */
   // home: HomeState
 }
@@ -28,8 +32,8 @@ export interface ConnectedReduxProps<A extends Action = AnyAction> {
 }*/
 
 export const rootReducer: Reducer<ApplicationState> = combineReducers<ApplicationState>({
-  /* writer: IATIWriterReducer,
-  reader: IATIReaderReducer,
+  writer: IATIWriterReducer,
+  /* reader: IATIReaderReducer,
   form: formReducer */
   // home: HomeReducer
 })

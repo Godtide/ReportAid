@@ -34,10 +34,6 @@ var config = {
     new CheckerPlugin(),
     new TsConfigPathsPlugin(/* { configFileName, compiler } */)
   ],
-  externals: {
-    "react": "React",
-    "react-dom": "ReactDOM"
-  },
   module: {
     rules: [
       {

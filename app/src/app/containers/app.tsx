@@ -1,11 +1,11 @@
 import * as React from 'react'
+import CssBaseline from '@material-ui/core/CssBaseline';
+
 import Header from './layout/header'
 import Sider from './layout/sider'
 import Content from './layout/content'
 import Footer from './layout/footer'
-
 import { AppStrings } from '../utils/strings'
-
 
   /*
   readonly appTitle='ReportAid'
@@ -24,6 +24,7 @@ const Func = () => {
 
 const App = () => (
   <div>
+    <CssBaseline />
     <Header
       headerTitle={AppStrings.appTitle}
       handleClose={Func}
