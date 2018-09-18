@@ -1,28 +1,22 @@
 import * as React from 'react'
 // import { Link } from 'react-router-dom'
 import Grid from '@material-ui/core/Grid'
-import Paper from '@material-ui/core/Paper'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 
-import { PathStrings } from '../../utils/strings'
+import { Paths } from './types'
 
-interface SiderInterface {
-  siderTitle: string
+interface SiderProps {
   handleClose: () => void
 }
 
-export type  SiderProps = SiderInterface & PathStrings
+export type  AllProps = SiderProps & Paths
 
-const Sider: React.SFC<SiderProps> = (props) => {
+const Sider: React.SFC<AllProps> = (props: AllProps) => {
 
   return (
     <Grid container spacing={24}>
       <Grid item xs={12}>
-        <Paper className={'blah'}><h5>{props.siderTitle}</h5></Paper>
-      </Grid>
-      <Grid item xs={12}>
-
         <Menu
           id="simple-menu"
           anchorEl={null}

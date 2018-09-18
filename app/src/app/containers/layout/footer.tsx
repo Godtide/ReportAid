@@ -1,12 +1,10 @@
 import * as React from 'react'
 
-import { FooterStrings } from '../../utils/strings'
+interface FooterProps {
+  copyright: string
+}
 
-// { textAlign: 'center' }
-
-export type FooterProps = FooterStrings
-
-const Footer: React.SFC<FooterProps> = (props) => {
+const Footer: React.SFC<FooterProps> = (props: FooterProps) => {
 
   return (
     <h5>{props.copyright}</h5>

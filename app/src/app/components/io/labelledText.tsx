@@ -5,7 +5,7 @@ interface LabelledTextProps {
   text: string
 }
 
-const LabelledText: React.SFC<LabelledTextProps> = (props) => {
+const LabelledText: React.SFC<LabelledTextProps> = (props: LabelledTextProps) => {
 
   return (
       <p>{props.label} {props.text}</p>

@@ -4,7 +4,7 @@ interface TitleProps {
   title: string
 }
 
-const Title: React.SFC<TitleProps> = (props) => {
+const Title: React.SFC<TitleProps> = (props: TitleProps) => {
 
   return (
       <div>

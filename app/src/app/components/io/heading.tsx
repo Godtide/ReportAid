@@ -4,7 +4,7 @@ interface HeadingProps {
   heading: string
 }
 
-const Heading: React.SFC<HeadingProps> = (props) => {
+const Heading: React.SFC<HeadingProps> = (props: HeadingProps) => {
 
   return (
     <h2>{props.heading}</h2>

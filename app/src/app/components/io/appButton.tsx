@@ -8,7 +8,7 @@ interface AppButtonProps {
   submit: () => void
 }
 
-const AppButton: React.SFC<AppButtonProps> = (props) => {
+const AppButton: React.SFC<AppButtonProps> = (props: AppButtonProps) => {
 
   return (
     <Tooltip title={props.tip}>

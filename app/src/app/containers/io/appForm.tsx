@@ -12,7 +12,7 @@ interface AppFormProps {
 class AppForm extends React.Component<InjectedFormProps<AppFormProps> & AppFormProps> {
 
   render() {
-    const { pristine, submitting, reset, handleSubmit, message } = this.props;
+    const { pristine, submitting, reset, handleSubmit, message } = this.props
     return (
       <form onSubmit={handleSubmit}>
         <div>{message}</div>

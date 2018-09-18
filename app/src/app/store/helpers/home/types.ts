@@ -1,11 +1,6 @@
-export type ApiResponse = Record<string, any>
-
-export interface HomePage extends ApiResponse {
-  id: number
-  name: string
-  localized_name: string
-  primary_attr: string
-  img: string
+export interface HomePage {
+  title: string
+  data: string[]
   icon: string
 }
 
@@ -24,8 +19,6 @@ export const enum HomeActionTypes {
 // Declare state types with `readonly` modifier to get compile time immutability.
 // https://github.com/piotrwitek/react-redux-typescript-guide#state-with-type-level-immutability
 export interface HomeState {
-  readonly loading: boolean
   readonly data: HomePage[]
   readonly errors?: string
-  readonly type: string
 }

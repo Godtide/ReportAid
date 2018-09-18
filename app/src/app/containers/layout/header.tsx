@@ -5,16 +5,16 @@ import Grid from '@material-ui/core/Grid'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 
-import { PathStrings } from '../../utils/strings'
+import { Paths } from './types'
 
-interface HeaderInterface {
+interface HeaderProps {
   headerTitle: string
   handleClose: () => void
 }
 
-export type  HeaderProps = PathStrings & HeaderInterface
+export type  Allprops = HeaderProps & Paths
 
-const Header: React.SFC<HeaderProps> = ( props ) => {
+const Header: React.SFC<Allprops> = ( props: Allprops ) => {
 
   return (
     <Grid container spacing={24}>

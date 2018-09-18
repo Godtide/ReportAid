@@ -2,15 +2,13 @@ import * as React from 'react'
 import Tooltip from '@material-ui/core/Tooltip'
 import TextField from '@material-ui/core/TextField'
 
-interface TextAreaInputInterface {
+interface TextAreaInputProps {
   tip: string
   label: string
   submit: () => void
 }
 
-export type TextAreaInputProps = TextAreaInputInterface
-
-const TextInput: React.SFC<TextAreaInputProps> = (props) => {
+const TextInput: React.SFC<TextAreaInputProps> = (props: TextAreaInputProps) => {
 
   return (
     <Tooltip title={this.props.tip}>

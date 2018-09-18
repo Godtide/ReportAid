@@ -1,7 +1,8 @@
-import { combineReducers, Dispatch, Reducer, Action, AnyAction } from 'redux'
+// import { combineReducers, Dispatch, Reducer, Action, AnyAction } from 'redux'
+import { combineReducers, Reducer } from 'redux'
 import { Store, createStore, applyMiddleware } from 'redux'
 import createSagaMiddleware from 'redux-saga'
-import { all, fork } from 'redux-saga/effects'
+//import { all, fork } from 'redux-saga/effects'
 
 import { HomeState, HomeReducer } from './helpers/home'
 
@@ -23,10 +24,10 @@ export interface ApplicationState {
   home: HomeState
 }
 
-// Additional props for connected React components. This prop is passed by default with `connect()`
+/*
 export interface ConnectedReduxProps<A extends Action = AnyAction> {
   dispatch: Dispatch<A>
-}
+}*/
 
 export const rootReducer: Reducer<ApplicationState> = combineReducers<ApplicationState>({
   /* writer: IATIWriterReducer,

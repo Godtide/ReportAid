@@ -6,11 +6,11 @@ import About from '../pages/helpers/about'
 import Overview from '../pages/helpers/overview'
 import Help from '../pages/helpers/help'
 
-import { PathStrings } from '../../utils/strings'
+import { Paths } from './types'
 
-export type  ContentProps = PathStrings
+export type  AllProps = Paths
 
-const Content: React.SFC<ContentProps> = (props) => {
+const Content: React.SFC<AllProps> = (props: AllProps) => {
 
   return (
     <div>

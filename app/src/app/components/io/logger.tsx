@@ -5,7 +5,7 @@ interface LoggerProps {
   log: string[]
 }
 
-const Logger: React.SFC<LoggerProps> = (props) => {
+const Logger: React.SFC<LoggerProps> = (props: LoggerProps) => {
 
   let logs = props.log.map((text, index) =>
     <span key={index}>

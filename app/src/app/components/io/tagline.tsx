@@ -4,7 +4,7 @@ interface TaglineProps {
   tagLine: string
 }
 
-const Tagline: React.SFC<TaglineProps> = (props) => {
+const Tagline: React.SFC<TaglineProps> = (props: TaglineProps) => {
 
   return (
     <h1>{props.tagLine}</h1>

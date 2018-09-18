@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Tooltip from '@material-ui/core/Tooltip'
-import Textfield from '@material-ui/core/Textfield'
+import TextField from '@material-ui/core/TextField'
 
 interface TextAreaInputProps {
   tip: string
@@ -8,12 +8,12 @@ interface TextAreaInputProps {
   submit: () => void
 }
 
-const TextAreaInput: React.SFC<TextAreaInputProps> = (props) => {
+const TextAreaInput: React.SFC<TextAreaInputProps> = (props: TextAreaInputProps) => {
 
   return (
     <Tooltip title={this.props.tip}>
       <p>{this.props.label}
-        <Textfield
+        <TextField
           label={props.label}
           multiline={true}
           onChange={props.submit}

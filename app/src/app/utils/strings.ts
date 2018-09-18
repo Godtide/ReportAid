@@ -1,20 +1,17 @@
-interface PathStrings {
-  home: string
-  homePath: string
-  homeIcon: string
-  about: string
-  aboutPath: string
-  aboutIcon: string
-  overview: string
-  overviewPath: string
-  overviewIcon: string
-  help: string
-  helpPath: string
-  helpIcon: string
+class AppStrings {
+
+  static readonly appTitle='ReportAid'
+  static readonly home='home'
+  static readonly homePath='/'
+  static readonly about='about'
+  static readonly aboutPath='/about'
+  static readonly overview='overview'
+  static readonly overviewPath='/overview'
+  static readonly help='help'
+  static readonly helpPath='/help'
+
+  static readonly copyright='University of Sussex © 2018. Created by Steven Huckle'
+
 }
 
-interface FooterStrings {
-  copyright: string
-}
-
-export { PathStrings, FooterStrings }
+export { AppStrings }
