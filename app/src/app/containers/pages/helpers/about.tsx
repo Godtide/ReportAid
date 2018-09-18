@@ -2,26 +2,23 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 
 import { ApplicationState } from '../../../store'
-import { HomePage } from '../../../store/helpers/home/types'
-import { fetchRequest } from '../../../store/helpers/home/actions'
 
 // Separate state props + dispatch props to their own interfaces.
-interface AboutPropsFromState {
-  data: string
-  errors: string
+interface AboutProps {
+  title: string
+  data: []
 }
 
-// Combine both state + dispatch props - as well as any props we want to pass - in a union type.
-type AllProps = AboutPropsFromState
-
-class About extends React.Component<AllProps> {
+class About extends React.Component<AboutProps> {
 
   public render() {
-    const { data } = this.props
     return (
-      <p>
-        {data}
-      </p>
+      <div>
+        <h2>{this.props.title}</h2>
+        <p>
+          {this.props.data}
+        </p>
+      </div>
     )
   }
 }
@@ -29,10 +26,10 @@ class About extends React.Component<AllProps> {
 // It's usually good practice to only include one context at a time in a connected component.
 // Although if necessary, you can always include multiple contexts. Just make sure to
 // separate them from each other to prevent prop conflicts.
-const mapStateToProps = (ownProps: HomePropsFromState): HomePropsFromState => {
+const mapStateToProps = (state: ApplicationState, ownProps: AboutProps): AboutProps => {
   return {
-    data: ownProps.data,
-    errors: ownProps.errors
+    title: ownProps.title,
+    data: ownProps.data
   }
 }
 

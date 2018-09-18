@@ -19,11 +19,14 @@ import { AppStrings } from '../utils/strings'
   readonly helpPath='/help'
 */
 
+const Func = () => {
+}
+
 const App = () => (
   <div>
     <Header
       headerTitle={AppStrings.appTitle}
-      handleClose={null}
+      handleClose={Func}
       home={AppStrings.home}
       homePath={AppStrings.homePath}
       about={AppStrings.about}
@@ -34,7 +37,7 @@ const App = () => (
       helpPath={AppStrings.helpPath}
     />
     <Sider
-      handleClose={null}
+      handleClose={Func}
       home={AppStrings.home}
       homePath={AppStrings.homePath}
       about={AppStrings.about}

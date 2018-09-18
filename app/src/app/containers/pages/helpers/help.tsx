@@ -2,33 +2,30 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 
 import { ApplicationState } from '../../../store'
-import { IATIReader } from '../../../store/IATIReader/types'
-import { fetchRequest } from '../../..store/IATIReader/actions'
 
-interface HelpPropsFromState {
-  data: string
-  errors: string
+interface HelpProps {
+  title: string
+  data: []
 }
 
-// Combine both state + dispatch props - as well as any props we want to pass - in a union type.
-type AllProps = HelpPropsFromState
-
-class Help extends React.Component<AllProps> {
+class Help extends React.Component<HelpProps> {
 
   public render() {
-    const { data } = this.props
     return (
-      <p>
-        {data}
-      </p>
+      <div>
+        <h2>{this.props.title}</h2>
+        <p>
+          {this.props.data}
+        </p>
+      </div>
     )
   }
 }
 
-const mapStateToProps = (ownProps: HomePropsFromState): HomePropsFromState => {
+const mapStateToProps = (state: ApplicationState, ownProps: HelpProps): HelpProps => {
   return {
-    data: ownProps.data,
-    errors: ownProps.errors
+    title: ownProps.title,
+    data: ownProps.data
   }
 }
 

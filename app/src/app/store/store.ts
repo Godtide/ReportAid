@@ -4,8 +4,6 @@ import { Store, createStore, applyMiddleware } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 //import { all, fork } from 'redux-saga/effects'
 
-import { HomeState, HomeReducer } from './helpers/home'
-
 /* import IATIWriterSaga from './IATIWriter/sagas'
 import { IATIWriterReducer } from './IATIWriter/reducer'
 import { IATIWriterState } from './IATIWriter/types'
@@ -21,7 +19,7 @@ export interface ApplicationState {
   /* writer: IATIWriterState
   reader: IATIReaderState
   form: appFormReducer */
-  home: HomeState
+  // home: HomeState
 }
 
 /*
@@ -33,7 +31,7 @@ export const rootReducer: Reducer<ApplicationState> = combineReducers<Applicatio
   /* writer: IATIWriterReducer,
   reader: IATIReaderReducer,
   form: formReducer */
-  home: HomeReducer
+  // home: HomeReducer
 })
 
 // Here we use `redux-saga` to trigger actions asynchronously. `redux-saga` uses something called a

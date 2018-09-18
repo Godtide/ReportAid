@@ -2,20 +2,14 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 
 import { ApplicationState } from '../../../store'
-import { IATIReader } from '../../../store/IATIReader/types'
-import { fetchRequest } from '../../..store/IATIReader/actions'
 
 // Separate state props + dispatch props to their own interfaces.
-interface OverviewPropsFromState {
-  loading: boolean
-  data: IATIReader[]
-  errors: string
+interface OverviewProps {
+  title: string
+  data: []
 }
 
-// Combine both state + dispatch props - as well as any props we want to pass - in a union type.
-type AllProps = OverviewPropsFromState
-
-class Overview extends React.Component<AllProps> {
+class Overview extends React.Component<OverviewProps> {
 
   public render() {
 
@@ -28,10 +22,10 @@ class Overview extends React.Component<AllProps> {
   }
 }
 
-const mapStateToProps = (ownProps: HomePropsFromState): HomePropsFromState => {
+const mapStateToProps = (state: ApplicationState, ownProps: OverviewProps): OverviewProps => {
   return {
-    data: ownProps.data,
-    errors: ownProps.errors
+    title: ownProps.title,
+    data: ownProps.data
   }
 }
 
