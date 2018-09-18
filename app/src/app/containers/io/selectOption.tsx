@@ -1,13 +1,13 @@
 import * as React from 'react'
 import Tooltip from '@material-ui/core/Tooltip'
 import Select from '@material-ui/core/Select'
-import MenuItem from '@material-ui/core/MenuItem';
+import MenuItem from '@material-ui/core/MenuItem'
 
 interface SelectInterface {
   tip: string
   label: string
   selections: string[]
-  optionIndex: number
+  onChange: () => void
 }
 
 export type SelectProps = SelectInterface
@@ -18,7 +18,7 @@ const SelectOption: React.SFC<SelectProps> = (props) => {
     <Tooltip title={props.tip}>
       <Select
             value={this.state.age}
-            onChange={this.handleChange}
+            onChange={props.onChange}
             inputProps={{
               name: 'age',
               id: 'age-simple',

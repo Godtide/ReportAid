@@ -1,10 +1,8 @@
 import * as React from 'react'
 
-interface PlainTextInterface {
+interface PlainTextProps {
   text: string
 }
-
-export type PlainTextProps = PlainTextInterface
 
 const PlainText: React.SFC<PlainTextProps> = (props) => {
 

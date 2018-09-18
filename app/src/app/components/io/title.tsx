@@ -1,10 +1,8 @@
 import * as React from 'react'
 
-interface TitleInterface {
+interface TitleProps {
   title: string
 }
-
-export type TitleProps = TitleInterface
 
 const Title: React.SFC<TitleProps> = (props) => {
 

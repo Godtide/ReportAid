@@ -1,11 +1,9 @@
 import * as React from 'react'
 import Card from '@material-ui/core/Card'
 
-interface LoggerInterface {
+interface LoggerProps {
   log: string[]
 }
-
-export type LoggerProps = LoggerInterface
 
 const Logger: React.SFC<LoggerProps> = (props) => {
 

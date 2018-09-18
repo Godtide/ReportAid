@@ -1,11 +1,9 @@
 import * as React from 'react'
 
-interface LabelledTextInterface {
+interface LabelledTextProps {
   label: string
   text: string
 }
-
-export type LabelledTextProps = LabelledTextInterface
 
 const LabelledText: React.SFC<LabelledTextProps> = (props) => {
 

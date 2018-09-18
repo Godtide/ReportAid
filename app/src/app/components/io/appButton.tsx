@@ -2,13 +2,11 @@ import * as React from 'react'
 import Tooltip from '@material-ui/core/Tooltip'
 import Button from '@material-ui/core/Button'
 
-interface AppButtonInterface {
+interface AppButtonProps {
   label: string
   tip: string
   submit: () => void
 }
-
-export type AppButtonProps = AppButtonInterface
 
 const AppButton: React.SFC<AppButtonProps> = (props) => {
 

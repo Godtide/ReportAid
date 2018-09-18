@@ -9,10 +9,6 @@ import { PathStrings } from '../../utils/strings'
 
 interface HeaderInterface {
   headerTitle: string
-  home: string
-  about: string
-  overview: string
-  help: string
   handleClose: () => void
 }
 
@@ -21,30 +17,28 @@ export type  HeaderProps = PathStrings & HeaderInterface
 const Header: React.SFC<HeaderProps> = ( props ) => {
 
   return (
-    <div>
-      <Grid container spacing={24}>
-        <Grid item xs={4}>
-          <Paper className={'blah'}><p>Logo to go here</p></Paper>
-        </Grid>
-        <Grid item xs={10}>
-
-          <Menu
-            id="simple-menu"
-            anchorEl={null}
-            open={Boolean(null)}
-            onClose={props.handleClose}
-          >
-            <MenuItem onClick={props.handleClose}>{props.home}</MenuItem>
-            <MenuItem onClick={props.handleClose}>{props.about}</MenuItem>
-            <MenuItem onClick={props.handleClose}>{props.overview}</MenuItem>
-            <MenuItem onClick={props.handleClose}>{props.help}</MenuItem>
-          </Menu>
-        </Grid>
-        <Grid item xs={10}>
-          <Paper className={'blah'}><h5>{props.headerTitle}</h5></Paper>
-        </Grid>
+    <Grid container spacing={24}>
+      <Grid item xs={4}>
+        <Paper className={'blah'}><p>Logo to go here</p></Paper>
       </Grid>
-    </div>
+      <Grid item xs={10}>
+
+        <Menu
+          id="simple-menu"
+          anchorEl={null}
+          open={Boolean(null)}
+          onClose={props.handleClose}
+        >
+          <MenuItem onClick={props.handleClose}>{props.home}</MenuItem>
+          <MenuItem onClick={props.handleClose}>{props.about}</MenuItem>
+          <MenuItem onClick={props.handleClose}>{props.overview}</MenuItem>
+          <MenuItem onClick={props.handleClose}>{props.help}</MenuItem>
+        </Menu>
+      </Grid>
+      <Grid item xs={10}>
+        <Paper className={'blah'}><h5>{props.headerTitle}</h5></Paper>
+      </Grid>
+    </Grid>
   )
 }
 

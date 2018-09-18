@@ -1,14 +1,12 @@
 import * as React from 'react'
 import TextField from '@material-ui/core/TextField'
 
-interface DateInterface {
+interface DateProps {
   label: string
   default: string
   textField: string
   container: string
 }
-
-export type DateProps = DateInterface
 
 const DatePicker: React.SFC<DateProps> = (props) => {
 

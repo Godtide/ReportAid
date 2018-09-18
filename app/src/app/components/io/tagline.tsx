@@ -1,10 +1,8 @@
 import * as React from 'react'
 
-interface TaglineInterface {
+interface TaglineProps {
   tagLine: string
 }
-
-export type TaglineProps = TaglineInterface
 
 const Tagline: React.SFC<TaglineProps> = (props) => {
 

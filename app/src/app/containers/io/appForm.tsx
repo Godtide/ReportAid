@@ -1,18 +1,16 @@
 import * as React from 'react';
-import { reduxForm, InjectedFormProps, Field } from 'redux-form';
+import { reduxForm, InjectedFormProps, Field } from 'redux-form'
 
-interface IUser {
-  pristine: string
-  submitting: string
-  reset: string
-  handleSubmit: string
+interface AppFormProps {
+  message: string
+  pristine: boolean
+  submitting: boolean
+  reset: () => void
+  handleSubmit: () => void
 }
 
-interface IProps {
-  message: string;
-}
+class AppForm extends React.Component<InjectedFormProps<AppFormProps> & AppFormProps> {
 
-class UserForm extends React.Component<InjectedFormProps<IUser, IProps> & IProps> {
   render() {
     const { pristine, submitting, reset, handleSubmit, message } = this.props;
     return (
@@ -45,10 +43,10 @@ class UserForm extends React.Component<InjectedFormProps<IUser, IProps> & IProps
           </button>
         </div>
       </form>
-    );
+    )
   }
 }
 
-export default reduxForm<IUser, IProps>({
+export default reduxForm<AppFormProps>({
   form: 'userForm',
-})(UserForm);
+})(AppForm);

@@ -1,10 +1,8 @@
 import * as React from 'react'
 
-interface HeadingInterface {
+interface HeadingProps {
   heading: string
 }
-
-export type HeadingProps = HeadingInterface
 
 const Heading: React.SFC<HeadingProps> = (props) => {
 
