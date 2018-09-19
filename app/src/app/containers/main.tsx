@@ -1,6 +1,5 @@
 import * as React from 'react'
 import Grid from '@material-ui/core/Grid'
-//import Paper from '@material-ui/core/Paper'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import { withTheme, styles } from '../styles/theme'
@@ -19,10 +18,11 @@ class Main extends React.Component<WithStyles<typeof styles>> {
   render() {
 
     return (
-      <div className={this.props.classes.root} >
-        <Grid spacing={0}>
-          <Grid item xs={12}>
+      <div className={this.props.classes.root}>
+        <Grid container spacing={8}>
+          <Grid xs={12}>
             <Header
+              appTitle={AppStrings.appTitle}
               handleClose={Func}
               home={AppStrings.home}
               homePath={AppStrings.homePath}
@@ -34,7 +34,7 @@ class Main extends React.Component<WithStyles<typeof styles>> {
               helpPath={AppStrings.helpPath}
             />
           </Grid>
-          <Grid item xs={2}>
+          <Grid container spacing={8}>
             <Sider
               handleClose={Func}
               home={AppStrings.home}
@@ -46,8 +46,6 @@ class Main extends React.Component<WithStyles<typeof styles>> {
               help={AppStrings.help}
               helpPath={AppStrings.helpPath}
             />
-          </Grid>
-          <Grid item xs={10}>
             <Content
               home={AppStrings.home}
               homePath={AppStrings.homePath}
@@ -59,7 +57,7 @@ class Main extends React.Component<WithStyles<typeof styles>> {
               helpPath={AppStrings.helpPath}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid xs={12}>
             <Footer
               copyright={AppStrings.copyright}
             />

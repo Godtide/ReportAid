@@ -1,6 +1,11 @@
 import * as React from 'react'
 import { Route } from 'react-router-dom'
 
+import Paper from '@material-ui/core/Paper'
+import Grid from '@material-ui/core/Grid'
+import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
+import { withTheme, styles } from '../../styles/theme'
+
 import Home from '../pages/helpers/home'
 import About from '../pages/helpers/about'
 import Overview from '../pages/helpers/overview'
@@ -10,19 +15,27 @@ import { Paths } from './types'
 
 export type  AllProps = Paths
 
-const Content: React.SFC<AllProps> = (props: AllProps) => {
+class Content extends React.Component<WithStyles<typeof styles> & AllProps> {
 
-  return (
-    <div>
-      <Route name={props.home} exact path={props.homePath} component={Home} />
-      <Route name={props.about} path={props.aboutPath} component={About} />
-      <Route name={props.overview} path={props.overviewPath} component={Overview} />
-      <Route name={props.help} path={props.helpPath} component={Help} />
-    </div>
-  )
+    render() {
+
+      return (
+        <React.Fragment>
+          <Grid item xs={10}>
+            <Paper>
+              <p>blah</p>
+              <Route name={this.props.home} exact path={this.props.homePath} component={Home} />
+              <Route name={this.props.about} path={this.props.aboutPath} component={About} />
+              <Route name={this.props.overview} path={this.props.overviewPath} component={Overview} />
+              <Route name={this.props.help} path={this.props.helpPath} component={Help} />
+            </Paper>
+          </Grid>
+        </React.Fragment>
+      )
+    }
 }
 
-export default Content
+export default withTheme(withStyles(styles)(Content))
 
 /*
 <Breadcrumb style={{ margin: '16px 0' }}>

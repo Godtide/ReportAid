@@ -5,6 +5,9 @@ import Menu from '@material-ui/core/Menu'
 import Paper from '@material-ui/core/Paper'
 import MenuItem from '@material-ui/core/MenuItem'
 
+import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
+import { withTheme, styles } from '../../styles/theme'
+
 import { Paths } from './types'
 
 interface SiderProps {
@@ -13,35 +16,38 @@ interface SiderProps {
 
 type  AllProps = SiderProps & Paths
 
-const Sider: React.SFC<AllProps> = (props: AllProps) => {
+class Sider extends React.Component<WithStyles<typeof styles> & AllProps> {
 
-  return (
-    <Grid container spacing={24}>
-      <Grid item xs={12}>
-        <Paper>
-          <Menu
-            id="simple-menu"
-            anchorEl={null}
-            open={Boolean(true)}
-            onClose={props.handleClose}
-          >
-            <MenuItem>
-              <Link to={props.homePath}/><span>{props.home}</span>
-            </MenuItem>
-            <MenuItem>
-              <Link to={props.aboutPath}/><span>{props.about}</span>
-            </MenuItem>
-            <MenuItem>
-              <Link to={props.overviewPath}/><span>{props.overview}</span>
-            </MenuItem>
-            <MenuItem>
-              <Link to={props.helpPath}/><span>{props.help}</span>
-            </MenuItem>
-          </Menu>
-        </Paper>
-      </Grid>
-    </Grid>
-  )
+  public render() {
+
+    return (
+      <React.Fragment>
+        <Grid item xs={2}>
+          <Paper>
+            <Menu
+              id="simple-menu"
+              anchorEl={null}
+              open={Boolean(true)}
+              onClose={this.props.handleClose}
+            >
+              <MenuItem>
+                <Link to={this.props.homePath}/><span>{this.props.home}</span>
+              </MenuItem>
+              <MenuItem>
+                <Link to={this.props.aboutPath}/><span>{this.props.about}</span>
+              </MenuItem>
+              <MenuItem>
+                <Link to={this.props.overviewPath}/><span>{this.props.overview}</span>
+              </MenuItem>
+              <MenuItem>
+                <Link to={this.props.helpPath}/><span>{this.props.help}</span>
+              </MenuItem>
+            </Menu>
+          </Paper>
+        </Grid>
+      </React.Fragment>
+    )
+  }
 }
 
-export default Sider
+export default withTheme(withStyles(styles)(Sider))

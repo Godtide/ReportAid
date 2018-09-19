@@ -2,32 +2,40 @@ import * as React from 'react'
 //import { Link } from 'react-router-dom'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
-import Menu from '@material-ui/core/Menu'
-import MenuItem from '@material-ui/core/MenuItem'
+//import Menu from '@material-ui/core/Menu'
+//import MenuItem from '@material-ui/core/MenuItem'
+
+import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
+import { withTheme, styles } from '../../styles/theme'
 
 import { Paths } from './types'
 
 interface HeaderProps {
+  appTitle: string
   handleClose: () => void
 }
 
-export type  Allprops = HeaderProps & Paths
+export type  AllProps = HeaderProps & Paths
 
-const Header: React.SFC<Allprops> = ( props: Allprops ) => {
+class Header extends React.Component<WithStyles<typeof styles> & AllProps> {
 
-  return (
-    <Grid container spacing={8}>
-      <Grid item xs={1}>
-        <Paper className={'blah'}><p>Logo to go here</p></Paper>
-      </Grid>
-      <Grid item xs={11}>
-         <Paper className={'blah'}><p>blah</p></Paper>
-      </Grid>
-    </Grid>
-  )
+    public render() {
+      return (
+        <div className={this.props.classes.root}>
+          <Grid container spacing={8}>
+            <Grid item xs={2}>
+               <Paper><p>logo to go here</p></Paper>
+            </Grid>
+            <Grid item xs={10}>
+              <Paper><h1>{this.props.appTitle}</h1></Paper>
+            </Grid>
+          </Grid>
+        </div>
+      )
+    }
 }
 
-export default Header
+export default withTheme(withStyles(styles)(Header))
 
 /*
 <Menu
