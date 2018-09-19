@@ -21,8 +21,8 @@ class Content extends React.Component<WithStyles<typeof styles> & AllProps> {
 
       return (
         <React.Fragment>
-          <Grid item xs={10}>
-            <Paper>
+          <Grid item xs={12} sm={10}>
+            <Paper className={this.props.classes.paper}>
               <p>blah</p>
               <Route name={this.props.home} exact path={this.props.homePath} component={Home} />
               <Route name={this.props.about} path={this.props.aboutPath} component={About} />

@@ -19,9 +19,14 @@ const theme = createMuiTheme({
 const styles = (theme: Theme) =>
   createStyles({
     root: {
-      textAlign: 'center',
-      padding: theme.spacing.unit,
+      padding: theme.spacing.unit * 2,
+      flexGrow: 1,
     },
+    paper: {
+      padding: theme.spacing.unit * 2,
+      textAlign: 'center',
+      color: theme.palette.text.secondary,
+    }
   })
 
 function withTheme<P>(Component: React.ComponentType<P>) {

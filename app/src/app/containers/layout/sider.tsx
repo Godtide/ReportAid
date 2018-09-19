@@ -22,8 +22,8 @@ class Sider extends React.Component<WithStyles<typeof styles> & AllProps> {
 
     return (
       <React.Fragment>
-        <Grid item xs={2}>
-          <Paper>
+        <Grid item xs={12} sm={2}>
+          <div className={this.props.classes.root}>
             <Menu
               id="simple-menu"
               anchorEl={null}
@@ -43,7 +43,7 @@ class Sider extends React.Component<WithStyles<typeof styles> & AllProps> {
                 <Link to={this.props.helpPath}/><span>{this.props.help}</span>
               </MenuItem>
             </Menu>
-          </Paper>
+          </div>
         </Grid>
       </React.Fragment>
     )

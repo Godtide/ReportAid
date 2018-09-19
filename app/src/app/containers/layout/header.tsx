@@ -2,6 +2,8 @@ import * as React from 'react'
 //import { Link } from 'react-router-dom'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
+
+import logo from '../../images/owl.png'
 //import Menu from '@material-ui/core/Menu'
 //import MenuItem from '@material-ui/core/MenuItem'
 
@@ -21,16 +23,14 @@ class Header extends React.Component<WithStyles<typeof styles> & AllProps> {
 
     public render() {
       return (
-        <div className={this.props.classes.root}>
-          <Grid container spacing={8}>
-            <Grid item xs={2}>
-               <Paper><p>logo to go here</p></Paper>
-            </Grid>
-            <Grid item xs={10}>
-              <Paper><h1>{this.props.appTitle}</h1></Paper>
-            </Grid>
+        <React.Fragment>
+          <Grid item xs={12} sm={2}>
+             <Paper className={this.props.classes.paper}><img src={logo}/></Paper>
           </Grid>
-        </div>
+          <Grid item xs={12} sm={10}>
+            <Paper  className={this.props.classes.paper}><h1>{this.props.appTitle}</h1></Paper>
+          </Grid>
+        </React.Fragment>
       )
     }
 }

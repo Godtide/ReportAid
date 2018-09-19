@@ -15,7 +15,7 @@ class Footer extends React.Component<WithStyles<typeof styles> & FooterProps> {
     return (
       <React.Fragment>
         <Grid item xs={12}>
-          <Paper>
+          <Paper className={this.props.classes.paper}>
             <h5>{this.props.copyright}</h5>
           </Paper>
         </Grid>

@@ -19,49 +19,47 @@ class Main extends React.Component<WithStyles<typeof styles>> {
 
     return (
       <div className={this.props.classes.root}>
-        <Grid container spacing={8}>
-          <Grid xs={12}>
-            <Header
-              appTitle={AppStrings.appTitle}
-              handleClose={Func}
-              home={AppStrings.home}
-              homePath={AppStrings.homePath}
-              about={AppStrings.about}
-              aboutPath={AppStrings.aboutPath}
-              overview={AppStrings.overview}
-              overviewPath={AppStrings.overviewPath}
-              help={AppStrings.help}
-              helpPath={AppStrings.helpPath}
-            />
-          </Grid>
-          <Grid container spacing={8}>
-            <Sider
-              handleClose={Func}
-              home={AppStrings.home}
-              homePath={AppStrings.homePath}
-              about={AppStrings.about}
-              aboutPath={AppStrings.aboutPath}
-              overview={AppStrings.overview}
-              overviewPath={AppStrings.overviewPath}
-              help={AppStrings.help}
-              helpPath={AppStrings.helpPath}
-            />
-            <Content
-              home={AppStrings.home}
-              homePath={AppStrings.homePath}
-              about={AppStrings.about}
-              aboutPath={AppStrings.aboutPath}
-              overview={AppStrings.overview}
-              overviewPath={AppStrings.overviewPath}
-              help={AppStrings.help}
-              helpPath={AppStrings.helpPath}
-            />
-          </Grid>
-          <Grid xs={12}>
-            <Footer
-              copyright={AppStrings.copyright}
-            />
-          </Grid>
+        <Grid container spacing={0} wrap='nowrap'>
+          <Header
+            appTitle={AppStrings.appTitle}
+            handleClose={Func}
+            home={AppStrings.home}
+            homePath={AppStrings.homePath}
+            about={AppStrings.about}
+            aboutPath={AppStrings.aboutPath}
+            overview={AppStrings.overview}
+            overviewPath={AppStrings.overviewPath}
+            help={AppStrings.help}
+            helpPath={AppStrings.helpPath}
+          />
+        </Grid>
+        <Grid container spacing={0}>
+          <Sider
+            handleClose={Func}
+            home={AppStrings.home}
+            homePath={AppStrings.homePath}
+            about={AppStrings.about}
+            aboutPath={AppStrings.aboutPath}
+            overview={AppStrings.overview}
+            overviewPath={AppStrings.overviewPath}
+            help={AppStrings.help}
+            helpPath={AppStrings.helpPath}
+          />
+          <Content
+            home={AppStrings.home}
+            homePath={AppStrings.homePath}
+            about={AppStrings.about}
+            aboutPath={AppStrings.aboutPath}
+            overview={AppStrings.overview}
+            overviewPath={AppStrings.overviewPath}
+            help={AppStrings.help}
+            helpPath={AppStrings.helpPath}
+          />
+        </Grid>
+        <Grid container spacing={0}>
+          <Footer
+            copyright={AppStrings.copyright}
+          />
         </Grid>
       </div>
     )
