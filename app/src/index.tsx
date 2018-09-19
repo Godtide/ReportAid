@@ -1,23 +1,25 @@
 import * as React from 'react'
-import * as ReactDOM from 'react-dom'
+import { render } from "react-dom"
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
+import CssBaseline from '@material-ui/core/CssBaseline'
 
-import App from './app/containers/app'
+import  Main from './app/containers/main'
 import { configureStore } from './app/store'
-import { AppStrings } from './app/utils/strings'
-
+//import { AppStrings } from './app/utils/strings'
 
 const initialState = (window as any).initialReduxState
 const store = configureStore(initialState)
 
-// Now you can dispatch navigation actions from anywhere!
-// store.dispatch(push('/foo'))
+const App = () => (
+    <Provider store={store}>
+      <React.Fragment>
+        <CssBaseline />
+        <BrowserRouter>
+          <Main/>
+        </BrowserRouter>
+      </React.Fragment>
+    </Provider>
+);
 
-ReactDOM.render((
-  <Provider store={store}>
-    <BrowserRouter>
-      <App appTitle={AppStrings.appTitle}/>
-    </BrowserRouter>
-  </Provider>
-), document.getElementById("root"))
+render(<App />, document.querySelector("#root"))

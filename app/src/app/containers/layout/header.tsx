@@ -21,7 +21,6 @@ const Header: React.SFC<Allprops> = ( props: Allprops ) => {
         <Paper className={'blah'}><p>Logo to go here</p></Paper>
       </Grid>
       <Grid item xs={11}>
-
          <Paper className={'blah'}><p>blah</p></Paper>
       </Grid>
     </Grid>
