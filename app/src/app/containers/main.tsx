@@ -21,19 +21,21 @@ class Main extends React.Component<WithStyles<typeof styles>> {
   render() {
 
     return (
-      <div className={this.props.classes.root}>
-        <Paper className={this.props.classes.paper}>
-          <Grid container justify='center' spacing={0} wrap='nowrap'>
+      <Paper className={this.props.classes.root}>
+        <Paper className={this.props.classes.header}>
+          <Grid container justify='center' spacing={0}>
             <Grid item xs={12} sm={2}>
-               <Paper className={this.props.classes.paper}><img src={logo}/></Paper>
+               <Paper className={this.props.classes.sider}><img src={logo}/></Paper>
             </Grid>
             <Grid item xs={12} sm={10}>
-              <Paper className={this.props.classes.paper}><h1>{AppStrings.appTitle}</h1></Paper>
+              <Paper className={this.props.classes.header}><h1>{AppStrings.appTitle}</h1></Paper>
             </Grid>
           </Grid>
+        </Paper>
+        <Paper className={this.props.classes.content}>
           <Grid container spacing={0}>
             <Grid item xs={12} sm={2}>
-              <Paper className={this.props.classes.paper}>
+              <Paper className={this.props.classes.sider}>
                 <MenuList>
                   <Link to={PathStrings.homePath}>
                     <MenuItem>
@@ -59,7 +61,7 @@ class Main extends React.Component<WithStyles<typeof styles>> {
               </Paper>
             </Grid>
             <Grid item xs={12} sm={10}>
-              <Paper className={this.props.classes.paper}>
+              <Paper className={this.props.classes.content}>
                 <Switch>
                   <Route
                     name={PathStrings.home}
@@ -85,20 +87,22 @@ class Main extends React.Component<WithStyles<typeof styles>> {
               </Paper>
             </Grid>
           </Grid>
+        </Paper>
+        <Paper className={this.props.classes.footer}>
           <Grid container spacing={0}>
             <Grid item xs={2}>
-              <Paper className={this.props.classes.paper}>
+              <Paper className={this.props.classes.footer}>
                 <p>&nbsp;</p>
               </Paper>
             </Grid>
             <Grid item xs={10}>
-              <Paper className={this.props.classes.paper}>
-                <h5>{AppStrings.copyright}</h5>
+              <Paper className={this.props.classes.footer}>
+                <p>{AppStrings.copyright}</p>
               </Paper>
             </Grid>
           </Grid>
         </Paper>
-      </div>
+      </Paper>
     )
   }
 }
