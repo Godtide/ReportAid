@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-import PlainText from '../../../components/io/plainText'
+import MarkdownText from '../../../containers/io/markdownText'
 
 import { ApplicationState } from '../../../store'
 
@@ -19,7 +19,7 @@ class Overview extends React.Component<WithStyles<typeof styles> & OverviewProps
     return (
       <div>
         <h2>{this.props.title}</h2>
-        <PlainText text={this.props.data} />
+        <MarkdownText text={this.props.data} />
       </div>
     )
   }

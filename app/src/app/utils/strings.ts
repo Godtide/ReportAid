@@ -8,17 +8,17 @@ class AppStrings {
 
 class PathStrings {
 
-  static readonly home='home'
+  static readonly home='Home'
   static readonly homePath='/'
-  static readonly about='about'
+  static readonly about='About'
   static readonly aboutPath='/about'
-  static readonly overview='overview'
+  static readonly overview='Overview'
   static readonly overviewPath='/overview'
-  static readonly help='help'
+  static readonly help='Help'
   static readonly helpPath='/help'
-  static readonly writer='create record'
+  static readonly writer='Create Record'
   static readonly writerPath='/create-record'
-  static readonly reader='fetch record'
+  static readonly reader='Fetch Record'
   static readonly readerPath='/fetch-record'
 
 }

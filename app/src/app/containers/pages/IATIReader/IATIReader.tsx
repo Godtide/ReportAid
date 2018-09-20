@@ -1,8 +1,7 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 // import { Dispatch } from 'redux'
-import { MarkdownText } from '../../../containers/io/markdownText'
-import PlainText from '../../../components/io/plainText'
+import MarkdownText from '../../../containers/io/markdownText'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
@@ -30,7 +29,7 @@ class IATIReader extends React.Component<WithStyles<typeof styles> & IATIReaderP
     return (
       <div>
         <h2>{this.props.title}</h2>
-        <PlainText text={this.props.data} />
+        <MarkdownText text={this.props.data} />
       </div>
     )
   }

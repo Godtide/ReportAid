@@ -1,5 +1,5 @@
 import * as React from 'react'
-import * as ReactMarkdown from 'react-markdown'
+import * as Markdown from 'react-markdown'
 
 interface MarkdownTextProps {
   text: string
@@ -8,12 +8,12 @@ interface MarkdownTextProps {
 class MarkdownText extends React.Component<MarkdownTextProps> {
 
   render() {
+    //console.log(this.props.text)
     return (
-      <div>
-        <ReactMarkdown escapeHtml={false} source={this.props.text} />
-      </div>
+      // <Markdown escapeHtml={false} source={this.props.text} />
+      <p>{this.props.text}</p>
     )
   }
 }
 
-export { MarkdownText }
+export default MarkdownText
