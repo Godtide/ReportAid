@@ -4,13 +4,16 @@ import PlainText from '../../../components/io/plainText'
 
 import { ApplicationState } from '../../../store'
 
+import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
+import { withTheme, styles } from '../../../styles/theme'
+
 // Separate state props + dispatch props to their own interfaces.
 interface OverviewProps {
   title: string
   data: string
 }
 
-class Overview extends React.Component<OverviewProps> {
+class Overview extends React.Component<WithStyles<typeof styles> & OverviewProps> {
 
   public render() {
     return (
@@ -31,6 +34,6 @@ const mapStateToProps = (state: ApplicationState, ownProps: OverviewProps): Over
 
 // Now let's connect our component!
 // With redux v4's improved typings, we can finally omit generics here.
-export default connect(
+export default withTheme(withStyles(styles)(connect(
   mapStateToProps
-)(Overview)
+)(Overview)))

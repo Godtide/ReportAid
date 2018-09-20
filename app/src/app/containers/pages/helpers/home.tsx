@@ -2,6 +2,9 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import PlainText from '../../../components/io/plainText'
 
+import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
+import { withTheme, styles } from '../../../styles/theme'
+
 import { ApplicationState } from '../../../store'
 
 interface HomeProps {
@@ -9,7 +12,7 @@ interface HomeProps {
   data: string
 }
 
-class Home extends React.Component<HomeProps> {
+class Home extends React.Component<WithStyles<typeof styles> & HomeProps> {
 
   public render() {
     return (
@@ -33,6 +36,6 @@ const mapStateToProps = (state: ApplicationState, ownProps: HomeProps): HomeProp
 
 // Now let's connect our component!
 // With redux v4's improved typings, we can finally omit generics here.
-export default connect(
+export default withTheme(withStyles(styles)(connect(
   mapStateToProps
-)(Home)
+)(Home)))
