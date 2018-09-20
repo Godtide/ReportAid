@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 import Grid from '@material-ui/core/Grid'
-import Menu from '@material-ui/core/Menu'
+import MenuList from '@material-ui/core/MenuList'
 import Paper from '@material-ui/core/Paper'
 import MenuItem from '@material-ui/core/MenuItem'
 
@@ -23,13 +23,8 @@ class Sider extends React.Component<WithStyles<typeof styles> & AllProps> {
     return (
       <React.Fragment>
         <Grid item xs={12} sm={2}>
-          <div className={this.props.classes.root}>
-            <Menu
-              id="simple-menu"
-              anchorEl={null}
-              open={Boolean(true)}
-              onClose={this.props.handleClose}
-            >
+          <Paper className={this.props.classes.paper}>
+            <MenuList>
               <MenuItem>
                 <Link to={this.props.homePath}/><span>{this.props.home}</span>
               </MenuItem>
@@ -42,8 +37,8 @@ class Sider extends React.Component<WithStyles<typeof styles> & AllProps> {
               <MenuItem>
                 <Link to={this.props.helpPath}/><span>{this.props.help}</span>
               </MenuItem>
-            </Menu>
-          </div>
+            </MenuList>
+          </Paper>
         </Grid>
       </React.Fragment>
     )
