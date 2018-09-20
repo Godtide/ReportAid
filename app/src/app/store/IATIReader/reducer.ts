@@ -1,16 +1,17 @@
 import { Reducer } from 'redux'
-import {IATIReaderState, IATIReaderActionTypes } from './types'
+
+import { IATIReaderProps } from '../../containers/pages/IATIReader/IATIReader'
+import { IATIReaderActionTypes } from './types'
 
 // Type-safe initialState!
-const initialState: IATIReaderState = {
-  data: [],
-  errors: undefined,
-  loading: false
+const initialState: IATIReaderProps = {
+  title: '',
+  data: '',
 }
 
 // Thanks to Redux 4's much simpler typings, we can take away a lot of typings on the reducer side,
 // everything will remain type-safe.
-const reducer: Reducer<IATIReaderState> = (state = initialState, action) => {
+const reducer: Reducer<IATIReaderProps> = (state = initialState, action) => {
   switch (action.type) {
     case IATIReaderActionTypes.FETCH_REQUEST: {
       return { ...state, loading: true }

@@ -8,8 +8,8 @@ import { withTheme, styles } from '../../../styles/theme'
 import { ApplicationState } from '../../../store'
 
 interface HomeProps {
-  title: string
-  data: string
+  readonly title: string
+  readonly data: string
 }
 
 class Home extends React.Component<WithStyles<typeof styles> & HomeProps> {

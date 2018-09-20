@@ -8,8 +8,8 @@ import { withTheme, styles } from '../../../styles/theme'
 import { ApplicationState } from '../../../store'
 
 interface HelpProps {
-  title: string
-  data: string
+  readonly title: string
+  readonly data: string
 }
 
 class Help extends React.Component<WithStyles<typeof styles> & HelpProps> {

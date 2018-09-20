@@ -1,16 +1,16 @@
 import { Reducer } from 'redux'
-import {IATIWriterState, IATIWriterActionTypes } from './types'
+import { IATIWriterProps } from '../../containers/pages/IATIWriter/IATIWriter'
+import { IATIWriterActionTypes } from './types'
 
 // Type-safe initialState!
-const initialState: IATIWriterState = {
-  data: [],
-  errors: undefined,
-  loading: false
+const initialState: IATIWriterProps = {
+  title: '',
+  data: '',
 }
 
 // Thanks to Redux 4's much simpler typings, we can take away a lot of typings on the reducer side,
 // everything will remain type-safe.
-const reducer: Reducer<IATIWriterState> = (state = initialState, action) => {
+const reducer: Reducer<IATIWriterProps> = (state = initialState, action) => {
   switch (action.type) {
     case IATIWriterActionTypes.FETCH_REQUEST: {
       return { ...state, loading: true }

@@ -9,12 +9,14 @@ import Paper from '@material-ui/core/Paper'
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import { withTheme, styles } from '../styles/theme'
 
-import { AppStrings, PathStrings, HomeStrings, AboutStrings, OverviewStrings, HelpStrings } from '../utils/strings'
+import { AppStrings, PathStrings, HomeStrings, AboutStrings, OverviewStrings, HelpStrings, WriterStrings, ReaderStrings } from '../utils/strings'
 
 import Home from './pages/helpers/home'
 import About from './pages/helpers/about'
 import Overview from './pages/helpers/overview'
 import Help from './pages/helpers/help'
+import IATIWriter from './pages/IATIWriter/IATIWriter'
+import IATIReader from './pages/IATIReader/IATIReader'
 
 class Main extends React.Component<WithStyles<typeof styles>> {
 
@@ -57,6 +59,16 @@ class Main extends React.Component<WithStyles<typeof styles>> {
                       {PathStrings.help}
                     </MenuItem>
                   </Link>
+                  <Link to={PathStrings.writerPath}>
+                    <MenuItem>
+                      {PathStrings.writer}
+                    </MenuItem>
+                  </Link>
+                  <Link to={PathStrings.readerPath}>
+                    <MenuItem>
+                      {PathStrings.reader}
+                    </MenuItem>
+                  </Link>
                 </MenuList>
               </Paper>
             </Grid>
@@ -83,6 +95,16 @@ class Main extends React.Component<WithStyles<typeof styles>> {
                     path={PathStrings.helpPath}
                     render={() => <Help title={HelpStrings.heading} data={HelpStrings.info} />}
                   />
+                  <Route
+                    name={PathStrings.writer}
+                    path={PathStrings.writerPath}
+                    render={() => <IATIWriter title={WriterStrings.heading} data={''} />}
+                  />
+                  <Route
+                    name={PathStrings.reader}
+                    path={PathStrings.readerPath}
+                    render={() => <IATIReader title={ReaderStrings.heading}  data={''} />}
+                  />
                 </Switch>
               </Paper>
             </Grid>
@@ -92,7 +114,7 @@ class Main extends React.Component<WithStyles<typeof styles>> {
           <Grid container spacing={0}>
             <Grid item xs={2}>
               <Paper className={this.props.classes.footer}>
-                <p>&nbsp;</p>
+                <p>{AppStrings.author}</p>
               </Paper>
             </Grid>
             <Grid item xs={10}>

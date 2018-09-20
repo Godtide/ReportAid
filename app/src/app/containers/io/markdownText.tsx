@@ -16,4 +16,4 @@ class MarkdownText extends React.Component<MarkdownTextProps> {
   }
 }
 
-export default MarkdownText
+export { MarkdownText }

@@ -9,8 +9,8 @@ import { withTheme, styles } from '../../../styles/theme'
 
 // Separate state props + dispatch props to their own interfaces.
 interface OverviewProps {
-  title: string
-  data: string
+  readonly title: string
+  readonly data: string
 }
 
 class Overview extends React.Component<WithStyles<typeof styles> & OverviewProps> {

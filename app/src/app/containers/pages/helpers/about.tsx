@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { ApplicationState } from '../../../store'
-import MarkdownText from '../../../containers/io/markdownText'
+import { MarkdownText } from '../../../containers/io/markdownText'
 import PlainText from '../../../components/io/plainText'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
@@ -9,8 +9,8 @@ import { withTheme, styles } from '../../../styles/theme'
 
 // Separate state props + dispatch props to their own interfaces.
 interface AboutProps {
-  title: string
-  data: string
+  readonly title: string
+  readonly data: string
 }
 
 class About extends React.Component<WithStyles<typeof styles> & AboutProps> {

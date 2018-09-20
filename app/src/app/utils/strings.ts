@@ -1,7 +1,8 @@
 class AppStrings {
 
   static readonly appTitle='ReportAid'
-  static readonly copyright='University of Sussex © 2018. Created by Steven Huckle'
+  static readonly copyright='University of Sussex © 2018'
+  static readonly author='Created by Steven Huckle'
 
 }
 
@@ -15,6 +16,10 @@ class PathStrings {
   static readonly overviewPath='/overview'
   static readonly help='help'
   static readonly helpPath='/help'
+  static readonly writer='create record'
+  static readonly writerPath='/create-record'
+  static readonly reader='fetch record'
+  static readonly readerPath='/fetch-record'
 
 }
 
@@ -32,7 +37,7 @@ class AboutStrings {
 
   static heading = 'About ReportAid'
 
-  static info = '**ReportAid** is the result of an academic paper titled: _Humanitarian Aid - a Blockchain Application That Adds Trust to Aid Provisioning_. The article discusses how the trust mechanisms of blockchain technology might be used to promote transparanecy in humanitarian aid provisioning. The general idea is that blockchains can add trust to the reporting of humanitarian aid funding.<br /><br />For more information about **Provenator**, please contact s dot huckle at sussex dot ac dot uk.'
+  static info = '**ReportAid** is the result of an academic paper titled: _Humanitarian Aid - a Blockchain Application That Adds Trust to Aid Provisioning_. The article discusses how the trust mechanisms of blockchain technology might be used to promote transparanecy in humanitarian aid provisioning. The general idea is that blockchains can add trust to the reporting of humanitarian aid funding.<br /><br />For more information about **ReportAid**, please contact s dot huckle at sussex dot ac dot uk.'
 
   static icon='info'
 
@@ -58,4 +63,18 @@ class HelpStrings {
 
 }
 
-export { AppStrings, PathStrings, HomeStrings, AboutStrings, OverviewStrings, HelpStrings }
+class WriterStrings {
+
+  static heading = 'ReportAid Writer'
+  static icon='question'
+
+}
+
+class ReaderStrings {
+
+  static heading = 'ReportAid Reader'
+  static icon='question'
+
+}
+
+export { AppStrings, PathStrings, HomeStrings, AboutStrings, OverviewStrings, HelpStrings, WriterStrings, ReaderStrings }
