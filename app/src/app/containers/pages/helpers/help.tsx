@@ -1,11 +1,12 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
+import PlainText from '../../../components/io/plainText'
 
 import { ApplicationState } from '../../../store'
 
 interface HelpProps {
   title: string
-  data: []
+  data: string
 }
 
 class Help extends React.Component<HelpProps> {
@@ -14,9 +15,7 @@ class Help extends React.Component<HelpProps> {
     return (
       <div>
         <h2>{this.props.title}</h2>
-        <p>
-          {this.props.data}
-        </p>
+        <PlainText text={this.props.data} />
       </div>
     )
   }

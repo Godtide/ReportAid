@@ -6,7 +6,6 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 
 import  Main from './app/containers/main'
 import { configureStore } from './app/store'
-import { AppStrings } from './app/utils/strings'
 
 const initialState = (window as any).initialReduxState
 const store = configureStore(initialState)

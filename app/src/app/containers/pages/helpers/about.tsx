@@ -1,12 +1,13 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-
 import { ApplicationState } from '../../../store'
+import MarkdownText from '../../../components/io/markdownText'
+import PlainText from '../../../components/io/plainText'
 
 // Separate state props + dispatch props to their own interfaces.
 interface AboutProps {
   title: string
-  data: []
+  data: string
 }
 
 class About extends React.Component<AboutProps> {
@@ -15,9 +16,7 @@ class About extends React.Component<AboutProps> {
     return (
       <div>
         <h2>{this.props.title}</h2>
-        <p>
-          {this.props.data}
-        </p>
+        <PlainText text={this.props.data} />
       </div>
     )
   }

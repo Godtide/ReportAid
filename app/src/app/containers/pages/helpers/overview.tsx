@@ -1,23 +1,23 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
+import PlainText from '../../../components/io/plainText'
 
 import { ApplicationState } from '../../../store'
 
 // Separate state props + dispatch props to their own interfaces.
 interface OverviewProps {
   title: string
-  data: []
+  data: string
 }
 
 class Overview extends React.Component<OverviewProps> {
 
   public render() {
-
-    const { data } = this.props
     return (
-        <p>
-          {data}
-        </p>
+      <div>
+        <h2>{this.props.title}</h2>
+        <PlainText text={this.props.data} />
+      </div>
     )
   }
 }

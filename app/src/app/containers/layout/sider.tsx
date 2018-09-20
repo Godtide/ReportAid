@@ -25,18 +25,26 @@ class Sider extends React.Component<WithStyles<typeof styles> & AllProps> {
         <Grid item xs={12} sm={2}>
           <Paper className={this.props.classes.paper}>
             <MenuList>
-              <MenuItem>
-                <Link to={this.props.homePath}/><span>{this.props.home}</span>
-              </MenuItem>
-              <MenuItem>
-                <Link to={this.props.aboutPath}/><span>{this.props.about}</span>
-              </MenuItem>
-              <MenuItem>
-                <Link to={this.props.overviewPath}/><span>{this.props.overview}</span>
-              </MenuItem>
-              <MenuItem>
-                <Link to={this.props.helpPath}/><span>{this.props.help}</span>
-              </MenuItem>
+              <Link to={this.props.homePath}>
+                <MenuItem>
+                  {this.props.home}
+                </MenuItem>
+              </Link>
+              <Link to={this.props.aboutPath}>
+                <MenuItem>
+                  {this.props.about}
+                </MenuItem>
+              </Link>
+              <Link to={this.props.overviewPath}>
+                <MenuItem>
+                  {this.props.overview}
+                </MenuItem>
+              </Link>
+              <Link to={this.props.helpPath}>
+                <MenuItem>
+                  {this.props.help}
+                </MenuItem>
+              </Link>
             </MenuList>
           </Paper>
         </Grid>
@@ -46,3 +54,21 @@ class Sider extends React.Component<WithStyles<typeof styles> & AllProps> {
 }
 
 export default withTheme(withStyles(styles)(Sider))
+
+/*
+<MenuItem>
+  <Link to={this.props.aboutPath}/><span>{this.props.about}</span>
+</MenuItem>
+<MenuItem>
+  <Link to={this.props.overviewPath}/><span>{this.props.overview}</span>
+</MenuItem>
+<MenuItem>
+  <Link to={this.props.helpPath}/><span>{this.props.help}</span>
+</MenuItem>
+</MenuList>
+
+<ul>
+  <li><Link to='/'>Home</Link></li>
+  <li><Link to='/about'>About</Link></li>
+</ul>
+*/

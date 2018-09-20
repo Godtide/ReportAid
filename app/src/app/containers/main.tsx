@@ -8,7 +8,7 @@ import Header from './layout/header'
 import Sider from './layout/sider'
 import Content from './layout/content'
 import Footer from './layout/footer'
-import { AppStrings } from '../utils/strings'
+import { AppStrings, PathStrings } from '../utils/strings'
 
 const Func = () => {
 }
@@ -19,41 +19,41 @@ class Main extends React.Component<WithStyles<typeof styles>> {
 
     return (
       <div className={this.props.classes.root}>
-        <Grid container spacing={0} wrap='nowrap'>
+        <Grid container justify='center' spacing={0} wrap='nowrap'>
           <Header
             appTitle={AppStrings.appTitle}
             handleClose={Func}
-            home={AppStrings.home}
-            homePath={AppStrings.homePath}
-            about={AppStrings.about}
-            aboutPath={AppStrings.aboutPath}
-            overview={AppStrings.overview}
-            overviewPath={AppStrings.overviewPath}
-            help={AppStrings.help}
-            helpPath={AppStrings.helpPath}
+            home={PathStrings.home}
+            homePath={PathStrings.homePath}
+            about={PathStrings.about}
+            aboutPath={PathStrings.aboutPath}
+            overview={PathStrings.overview}
+            overviewPath={PathStrings.overviewPath}
+            help={PathStrings.help}
+            helpPath={PathStrings.helpPath}
           />
         </Grid>
         <Grid container spacing={0}>
           <Sider
             handleClose={Func}
-            home={AppStrings.home}
-            homePath={AppStrings.homePath}
-            about={AppStrings.about}
-            aboutPath={AppStrings.aboutPath}
-            overview={AppStrings.overview}
-            overviewPath={AppStrings.overviewPath}
-            help={AppStrings.help}
-            helpPath={AppStrings.helpPath}
+            home={PathStrings.home}
+            homePath={PathStrings.homePath}
+            about={PathStrings.about}
+            aboutPath={PathStrings.aboutPath}
+            overview={PathStrings.overview}
+            overviewPath={PathStrings.overviewPath}
+            help={PathStrings.help}
+            helpPath={PathStrings.helpPath}
           />
           <Content
-            home={AppStrings.home}
-            homePath={AppStrings.homePath}
-            about={AppStrings.about}
-            aboutPath={AppStrings.aboutPath}
-            overview={AppStrings.overview}
-            overviewPath={AppStrings.overviewPath}
-            help={AppStrings.help}
-            helpPath={AppStrings.helpPath}
+            home={PathStrings.home}
+            homePath={PathStrings.homePath}
+            about={PathStrings.about}
+            aboutPath={PathStrings.aboutPath}
+            overview={PathStrings.overview}
+            overviewPath={PathStrings.overviewPath}
+            help={PathStrings.help}
+            helpPath={PathStrings.helpPath}
           />
         </Grid>
         <Grid container spacing={0}>
