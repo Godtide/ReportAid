@@ -169,6 +169,9 @@ const styles = (theme: Theme) =>
       lineHeight: theme.typography.subheading.lineHeight,
       backgroundColor: theme.palette.primary.main,
     },
+    button: {
+      margin: theme.spacing.unit,
+    },
   })
 
 function withTheme<P>(Component: React.ComponentType<P>) {
