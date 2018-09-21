@@ -17,14 +17,14 @@ const theme = createMuiTheme({
       fontSize: "1.2rem",
       fontWeight: 400,
       fontFamily: "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif",
-      lineHeight: "1.35417em",
+      lineHeight: "1.7em",
       color: "rgba(0, 0, 0, 1)"
     },
     title: {
       fontSize: "1.1125rem",
       fontWeight: 500,
       fontFamily: "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif",
-      lineHeight: "1.16667em",
+      lineHeight: "1.6em",
       color: "rgba(0, 0, 0, 0.97)"
     },
     subheading: {
@@ -116,8 +116,19 @@ const styles = (theme: Theme) =>
       color: theme.typography.title.color,
       backgroundColor: theme.palette.primary.main,
     },
+    title: {
+      padding: theme.spacing.unit,
+      margin: theme.spacing.unit,
+      fontSize: theme.typography.headline.fontSize,
+      fontWeight: theme.typography.headline.fontWeight,
+      fontFamily: theme.typography.headline.fontFamily,
+      lineHeight: theme.typography.headline.lineHeight,
+      textAlign: 'center',
+      color: theme.typography.title.color,
+      backgroundColor: theme.palette.primary.main,
+    },
     subHeader: {
-      padding: theme.spacing.unit * 2,
+      padding: theme.spacing.unit,
       margin: theme.spacing.unit,
       fontSize: theme.typography.subheading.fontSize,
       fontWeight: theme.typography.subheading.fontWeight,

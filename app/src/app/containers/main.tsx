@@ -22,15 +22,13 @@ class Main extends React.Component<WithStyles<typeof styles>> {
           <Paper className={this.props.classes.header}>
             <Grid container justify='center' spacing={0}>
               <Grid item xs={12} sm={2}>
-                 <Paper className={this.props.classes.sider}><img src={logo}/></Paper>
+                <img className={this.props.classes.button} src={logo}/>
               </Grid>
               <Grid item xs={12} sm={10}>
-                <Grid item xs={12}>
-                  <Paper className={this.props.classes.header}><h1>{AppStrings.appTitle}</h1></Paper>
-                </Grid>
-                <Grid item xs={12}>
-                  <Paper className={this.props.classes.subHeader}><h3>{AppStrings.appTagline}</h3></Paper>
-                </Grid>
+                <Paper className={this.props.classes.title}>
+                  <h1>{AppStrings.appTitle}</h1>
+                  <h3>{AppStrings.appTagline}</h3>
+                </Paper>
               </Grid>
             </Grid>
           </Paper>
