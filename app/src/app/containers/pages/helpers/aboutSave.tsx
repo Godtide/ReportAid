@@ -7,6 +7,19 @@ import MarkdownText from '../../../containers/io/markdownText'
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
 
+// It's usually good practice to only include one context at a time in a connected component.
+// Although if necessary, you can always include multiple contexts. Just make sure to
+// separate them from each other to prevent prop conflicts.
+const mapStateToProps = (state: ApplicationState, ownProps: AboutProps): AboutProps => {
+  return {
+    title: ownProps.title,
+    data: ownProps.data
+  }
+}
+
+type AllProps = AboutProps & mapStateToProps
+
+
 class About extends React.Component<WithStyles<typeof styles> & AboutProps> {
 
   public render() {
@@ -17,16 +30,6 @@ class About extends React.Component<WithStyles<typeof styles> & AboutProps> {
         <MarkdownText text={this.props.data} />
       </div>
     )
-  }
-}
-
-// It's usually good practice to only include one context at a time in a connected component.
-// Although if necessary, you can always include multiple contexts. Just make sure to
-// separate them from each other to prevent prop conflicts.
-const mapStateToProps = (state: ApplicationState, ownProps: AboutProps): AboutProps => {
-  return {
-    title: ownProps.title,
-    data: ownProps.data
   }
 }
 

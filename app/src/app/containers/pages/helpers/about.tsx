@@ -12,7 +12,7 @@ import getData from '../../../store/helpers/about/actions'
 
 
 interface AboutPropsFromState {
-  about: ApplicationState
+  about: AboutProps
 }
 
 interface AboutPropsFromDispatch {
@@ -20,22 +20,24 @@ interface AboutPropsFromDispatch {
 }
 
 // Combine both state + dispatch props - as well as any props we want to pass - in a union type.
-type AllProps = AboutProps & AboutPropsFromState & AboutPropsFromDispatch
+type AllProps = AboutPropsFromState & AboutPropsFromDispatch
 
 class About extends React.Component<WithStyles<typeof styles> & AllProps> {
 
   componentDidMount() {
     // only fetch the data if there is no data
-    if (!this.props.data) this.props.getData()
+    if (!this.props.about) this.props.getData
+    console.log(this.props.about)
   }
 
   render() {
-    const data  = this.props.getData()
-    console.log(data)
+    const about  = this.props.about
+    console.log(about)
 
     return (
       <div>
-        &nbsp;
+        <h2>{about.title}</h2>
+        <MarkdownText text={about.data} />
       </div>
     )
   }
