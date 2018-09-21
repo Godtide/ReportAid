@@ -1,6 +1,7 @@
 class AppStrings {
 
   static readonly appTitle='ReportAid'
+  static readonly appTagline='Adding Trust to Humanitarian Aid Reporing, through Blockchain Technology'
   static readonly copyright='University of Sussex © 2018'
   static readonly author='Created by Steven Huckle'
 
@@ -27,7 +28,7 @@ class HomeStrings {
 
   static heading = 'Home'
 
-  static info = 'Use this application to record humanitarian aid data and to get humanitarian aid information.<br /><br />Read the [About](/about) section to learn about the origins of **ReportAid**.<br /><br />The [Overview](/overview) section describes a scenario where an organisation uses **ReportAid** to store information about their funding.<br /><br />The [Help](/help) section gives brief instructions as to how to use **ReportAid** - in essence, to store a humanitarian aid record, click on the [Create Aid Record](/create-aid-record) link and fill in all fields. To retrieve information, click on the [Get Aid Record](/get-aid-record) link.'
+  static info = 'Use this application to record humanitarian aid data and to get humanitarian aid information.<br /><br />Read the [About](#/about) section to learn about the origins of **ReportAid**.<br /><br />The [Overview](/overview) section describes a scenario where an organisation uses **ReportAid** to store information about their funding.<br /><br />The [Help](#/help) section gives brief instructions as to how to use **ReportAid** - in essence, to create a humanitarian aid record, click on the [Create Record](#/create-record) link and fill in all fields. To retrieve a humanitarian aid record, click on the [Fetch Record](#/fetch-record) link.'
 
   static icon='home'
 
@@ -57,7 +58,7 @@ class HelpStrings {
 
   static heading = 'ReportAid Help'
 
-  static info = '**ReportAid** allows humanitarian aid organisations to record information about funding.<br /><br />Have a read of the [Overview](/overview), which describes a scenario where an organisation uses **ReportAid** to store information about their funding..<br /><br />to store a humanitarian aid record, click on the [Create Aid Record](/create-aid-record) link and fill in all fields. That will create some blockchain transactions, which can be signed in [MetaMask](https://metamask.io/). To retrieve information, click on the [Get Aid Record](/get-aid-record) link.'
+  static info = '**ReportAid** allows humanitarian aid organisations to record information about funding.<br /><br />Have a read of the [Overview](#/overview), which describes a scenario where an organisation uses **ReportAid** to store information about their funding..<br /><br />to store a humanitarian aid record, click on the [Create Aid Record](#/create-aid-record) link and fill in all fields. That will create some blockchain transactions, which can be signed in [MetaMask](https://metamask.io/). To retrieve information, click on the [Get Aid Record](#/get-aid-record) link.'
 
   static icon='question'
 

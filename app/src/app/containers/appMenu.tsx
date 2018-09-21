@@ -13,38 +13,40 @@ class AppMenu extends React.Component<WithStyles<typeof styles>> {
   public render() {
 
     return (
-      <MenuList>
-        <Link to={PathStrings.homePath}>
-          <MenuItem>
-            {PathStrings.home}
-          </MenuItem>
-        </Link>
-        <Link to={PathStrings.aboutPath}>
-          <MenuItem>
-            {PathStrings.about}
-          </MenuItem>
-        </Link>
-        <Link to={PathStrings.overviewPath}>
-          <MenuItem>
-            {PathStrings.overview}
-          </MenuItem>
-        </Link>
-        <Link to={PathStrings.helpPath}>
-          <MenuItem>
-            {PathStrings.help}
-          </MenuItem>
-        </Link>
-        <Link to={PathStrings.writerPath}>
-          <MenuItem>
-            {PathStrings.writer}
-          </MenuItem>
-        </Link>
-        <Link to={PathStrings.readerPath}>
-          <MenuItem>
-            {PathStrings.reader}
-          </MenuItem>
-        </Link>
-      </MenuList>
+      <div>
+        <MenuList>
+          <Link to={PathStrings.homePath}>
+            <MenuItem>
+              {PathStrings.home}
+            </MenuItem>
+          </Link>
+          <Link to={PathStrings.aboutPath}>
+            <MenuItem>
+              {PathStrings.about}
+            </MenuItem>
+          </Link>
+          <Link to={PathStrings.overviewPath}>
+            <MenuItem>
+              {PathStrings.overview}
+            </MenuItem>
+          </Link>
+          <Link to={PathStrings.helpPath}>
+            <MenuItem>
+              {PathStrings.help}
+            </MenuItem>
+          </Link>
+          <Link to={PathStrings.writerPath}>
+            <MenuItem>
+              {PathStrings.writer}
+            </MenuItem>
+          </Link>
+          <Link to={PathStrings.readerPath}>
+            <MenuItem>
+              {PathStrings.reader}
+            </MenuItem>
+          </Link>
+        </MenuList>
+      </div>
     )
   }
 }

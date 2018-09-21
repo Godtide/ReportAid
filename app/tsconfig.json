@@ -3,17 +3,19 @@
     "sourceMap": true,
     "target": "ES6",
     "jsx": "Preserve",
-    "jsxFactory": "React.createElement",
     "module": "ES6",
     "moduleResolution": "node",
-    "experimentalDecorators": false,
-    "declaration": false,
-    "removeComments": true,
-    "noImplicitReturns": true,
+    "experimentalDecorators": true,
+    "noImplicitAny": true,
+    "keyofStringsOnly": true,
     "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "strict": true,
     "outDir": "build",
-    "lib": ["es6", "es7", "dom"]
+    "lib": [
+      "es6",
+      "dom"
+    ]
   },
   "awesomeTypescriptLoaderOptions": {
     "useCache": true,
@@ -25,5 +27,9 @@
   "include": [
       "./src/*"
   ],
-  "exclude": ["dist", "build", "node_modules"]
+  "exclude": [
+    "dist",
+    "build",
+    "node_modules"
+  ]
 }
