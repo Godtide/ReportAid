@@ -1,42 +1,66 @@
 import * as React from 'react'
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { ApplicationState } from '../../../store'
+import { AboutProps } from '../../../store/helpers/about/types'
 import MarkdownText from '../../../containers/io/markdownText'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
 
-// Separate state props + dispatch props to their own interfaces.
-interface AboutProps {
-  readonly title: string
-  readonly data: string
+import getData from '../../../store/helpers/about/actions'
+
+
+interface AboutPropsFromState {
+  about: ApplicationState
 }
 
-class About extends React.Component<WithStyles<typeof styles> & AboutProps> {
+interface AboutPropsFromDispatch {
+  getData: typeof getData
+}
 
-  public render() {
+// Combine both state + dispatch props - as well as any props we want to pass - in a union type.
+type AllProps = AboutProps & AboutPropsFromState & AboutPropsFromDispatch
+
+class About extends React.Component<WithStyles<typeof styles> & AllProps> {
+
+  componentDidMount() {
+    // only fetch the data if there is no data
+    if (!this.props.data) this.props.getData()
+  }
+
+  render() {
+    const data  = this.props.getData()
+    console.log(data)
 
     return (
       <div>
-        <h2>{this.props.title}</h2>
-        <MarkdownText text={this.props.data} />
+        &nbsp;
       </div>
     )
   }
 }
 
-// It's usually good practice to only include one context at a time in a connected component.
-// Although if necessary, you can always include multiple contexts. Just make sure to
-// separate them from each other to prevent prop conflicts.
-const mapStateToProps = (state: ApplicationState, ownProps: AboutProps): AboutProps => {
+/*
+<div>
+  <h2>{data.title}</h2>
+  <MarkdownText text={data.text} />
+</div>
+*/
+
+const mapStateToProps = (state: ApplicationState, ownProps: AboutProps): ApplicationState => {
   return {
-    title: ownProps.title,
-    data: ownProps.data
+    about: state.about
   }
 }
 
-// Now let's connect our component!
-// With redux v4's improved typings, we can finally omit generics here.
+const mapDispatchToProps = (dispatch: any, ownProps: AboutProps) => {
+  return bindActionCreators({
+    getData: getData
+  }, dispatch)
+}
+
 export default withTheme(withStyles(styles)(connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(About)))

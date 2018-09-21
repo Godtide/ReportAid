@@ -11,6 +11,8 @@ import Help from './pages/helpers/help'
 import IATIWriter from './pages/IATIWriter/IATIWriter'
 import IATIReader from './pages/IATIReader/IATIReader'
 
+import getData from '../store/helpers/about/actions'
+
 import { PathStrings, HomeStrings, AboutStrings, OverviewStrings, HelpStrings, WriterStrings, ReaderStrings } from '../utils/strings'
 
 class Content extends React.Component<WithStyles<typeof styles>> {
@@ -26,8 +28,9 @@ class Content extends React.Component<WithStyles<typeof styles>> {
           />
           <Route
             name={PathStrings.about}
-            path={PathStrings.aboutPath}
-            render={() => <About title={AboutStrings.heading} data={AboutStrings.info} />}
+            exact path={PathStrings.aboutPath}
+            component={About}
+            loadData={() => getData()}
           />
           <Route
             name={PathStrings.overview}
