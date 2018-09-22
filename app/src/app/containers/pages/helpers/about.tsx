@@ -2,63 +2,58 @@ import * as React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { ApplicationState } from '../../../store'
-import { AboutProps } from '../../../store/helpers/about/types'
 import MarkdownText from '../../../containers/io/markdownText'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
 
-import getData from '../../../store/helpers/about/actions'
+import { AboutFetchRequest, AboutRequestDataAction } from '../../../store/helpers/about/actions'
+import { AboutProps, AboutActionTypes } from '../../../store/helpers/about/types'
+import { AboutStrings } from '../../../utils/strings'
 
-
-interface AboutPropsFromState {
-  about: AboutProps
+interface AllProps {
+  data: AboutProps
 }
-
-interface AboutPropsFromDispatch {
-  getData: typeof getData
-}
-
-// Combine both state + dispatch props - as well as any props we want to pass - in a union type.
-type AllProps = AboutPropsFromState & AboutPropsFromDispatch
 
 class About extends React.Component<WithStyles<typeof styles> & AllProps> {
 
   componentDidMount() {
-    // only fetch the data if there is no data
-    if (!this.props.about) this.props.getData
-    console.log(this.props.about)
+
+    const type = AboutActionTypes.REQ_DATA
+    const payload = {
+      title: AboutStrings.heading,
+      data: AboutStrings.info
+    }
+    AboutFetchRequest(type, payload)
   }
 
   render() {
-    const about  = this.props.about
-    console.log(about)
 
     return (
       <div>
-        <h2>{about.title}</h2>
-        <MarkdownText text={about.data} />
+        <h2>{this.props.data.title}</h2>
+        <MarkdownText text={this.props.data.data} />
       </div>
     )
   }
 }
 
-/*
-<div>
-  <h2>{data.title}</h2>
-  <MarkdownText text={data.text} />
-</div>
-*/
-
-const mapStateToProps = (state: ApplicationState, ownProps: AboutProps): ApplicationState => {
+const mapStateToProps = (state: ApplicationState): AllProps => {
+  //const props = { state.about.title, data: state.about.data }
   return {
-    about: state.about
+    data: { title: state.about.title, data: state.about.data }
   }
 }
 
-const mapDispatchToProps = (dispatch: any, ownProps: AboutProps) => {
-  return bindActionCreators({
-    getData: getData
+const mapDispatchToProps = (dispatch: any, ownProps: AboutProps): AllProps => {
+  console.log('bollox')
+  const type = AboutActionTypes.REQ_DATA
+  const payload = {
+    title: ownProps.title,
+    data: ownProps.data
+  }
+  return bindActionCreators<AboutRequestDataAction, any>({
+    data: AboutFetchRequest(type, payload)
   }, dispatch)
 }
 

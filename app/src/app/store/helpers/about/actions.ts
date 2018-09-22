@@ -1,12 +1,14 @@
-import { AboutActionTypes } from './types'
-//import { Promise } from 'bluebird'
-import { AboutStrings } from '../../../utils/strings'
+import { Action, ActionCreator } from 'redux'
+import { AboutActionTypes, AboutProps } from './types'
 
-export default function getData() {
-  return (dispatch: any) => {
-    dispatch({
-      type: AboutActionTypes.REQ_DATA,
-      data: { text: AboutStrings.info, title: AboutStrings.heading }
-    })
-  }
+export interface AboutRequestDataAction extends Action {
+  type: AboutActionTypes.REQ_DATA
+  payload: AboutProps
+}
+
+export const AboutFetchRequest: ActionCreator<AboutRequestDataAction> = (type, payload) => {
+  console.log('blah', type, payload)
+  return (
+    { type: type, payload: payload }
+  )
 }

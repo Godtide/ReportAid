@@ -6,14 +6,16 @@ const initialState: AboutProps = {
   data: '',
 }
 
-function resData(state: AboutProps, action: any) {
-  const { data } = action
-  return data
-}
-
-export const AboutReducer: Reducer<AboutProps> = (state = initialState, action) => {
+export const AboutReducer: Reducer<AboutProps> = (state = initialState, action): AboutProps => {
+  console.log('fek!', action)
   switch (action.type) {
-    case AboutActionTypes.RES_DATA: return resData(state, action)
-    default: return state
+    case AboutActionTypes.REQ_DATA:
+      console.log('Gee!', action.payload.title, action.payload.data)
+      return Object.assign({}, state, {
+        title: action.payload.title,
+        data: action.payload.data
+      })
+    default:
+      return state
   }
 }
