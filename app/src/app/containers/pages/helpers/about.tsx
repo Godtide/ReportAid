@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { bindActionCreators } from 'redux'
+import { bindActionCreators, Dispatch, AnyAction } from 'redux'
 import { connect } from 'react-redux'
 import { ApplicationState } from '../../../store'
 import MarkdownText from '../../../containers/io/markdownText'
@@ -45,8 +45,8 @@ const mapStateToProps = (state: ApplicationState): AllProps => {
   }
 }
 
-const mapDispatchToProps = (dispatch: any, ownProps: AboutProps): AllProps => {
-  console.log('bollox')
+const mapDispatchToProps = (dispatch: Dispatch<AnyAction>, ownProps: AboutProps) => {
+  console.log('bollox', ownProps.title, ownProps.data)
   const type = AboutActionTypes.REQ_DATA
   const payload = {
     title: ownProps.title,
@@ -54,7 +54,7 @@ const mapDispatchToProps = (dispatch: any, ownProps: AboutProps): AllProps => {
   }
   return bindActionCreators<AboutRequestDataAction, any>({
     data: AboutFetchRequest(type, payload)
-  }, dispatch)
+  },dispatch)
 }
 
 export default withTheme(withStyles(styles)(connect(
