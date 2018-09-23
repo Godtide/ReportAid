@@ -1,13 +1,13 @@
 import { Action, ActionCreator } from 'redux'
-import { AboutActionTypes, AboutProps } from './types'
+import { ActionTypes, AboutProps } from './types'
 
-export interface AboutRequestDataAction extends Action {
-  type: AboutActionTypes.REQ_DATA
+export interface RequestDataAction extends Action {
+  type: ActionTypes.REQ_DATA
   payload: AboutProps
 }
 
-export const AboutFetchRequest: ActionCreator<AboutRequestDataAction> = (type, payload) => {
-  console.log('blah', type, payload)
+export const fetchRequest: ActionCreator<RequestDataAction> = (type, payload) => {
+  console.log('blah blah blah', type, payload)
   return (
     { type: type, payload: payload }
   )

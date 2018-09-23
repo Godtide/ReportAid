@@ -1,16 +1,15 @@
 import { Reducer } from 'redux'
-import { AboutActionTypes, AboutProps } from './types'
+import { ActionTypes, AboutProps } from './types'
+import { AboutStrings } from '../../../utils/strings'
 
 const initialState: AboutProps = {
-  title: '',
-  data: '',
+  title: AboutStrings.heading,
+  data: AboutStrings.info
 }
 
-export const AboutReducer: Reducer<AboutProps> = (state = initialState, action): AboutProps => {
-  console.log('fek!', action)
+export const reducer: Reducer<AboutProps> = (state = initialState, action): AboutProps => {
   switch (action.type) {
-    case AboutActionTypes.REQ_DATA:
-      console.log('Gee!', action.payload.title, action.payload.data)
+    case ActionTypes.REQ_DATA:
       return Object.assign({}, state, {
         title: action.payload.title,
         data: action.payload.data

@@ -4,6 +4,6 @@ export interface AboutProps {
   data: string
 }
 
-export const enum AboutActionTypes {
+export const enum ActionTypes {
   REQ_DATA = '@@aboutTypes/REQ_DATA'
 }

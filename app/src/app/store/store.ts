@@ -4,7 +4,7 @@ import { Store, createStore, applyMiddleware } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 
 import { AboutProps } from './helpers/about/types'
-import { AboutReducer } from './helpers/about/reducer'
+import { reducer as aboutReducer } from './helpers/about/reducer'
 
 // The top-level state object
 export interface ApplicationState {
@@ -13,7 +13,7 @@ export interface ApplicationState {
 }
 
 export const rootReducer: Reducer<ApplicationState> = combineReducers<ApplicationState>({
-  about: AboutReducer,
+  about: aboutReducer,
 })
 
 export function configureStore(

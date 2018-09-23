@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { bindActionCreators, Dispatch, AnyAction } from 'redux'
+//import { bindActionCreators, Dispatch, AnyAction } from 'redux'
 import { connect } from 'react-redux'
 import { ApplicationState } from '../../../store'
 import MarkdownText from '../../../containers/io/markdownText'
@@ -7,45 +7,29 @@ import MarkdownText from '../../../containers/io/markdownText'
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
 
-import { AboutFetchRequest, AboutRequestDataAction } from '../../../store/helpers/about/actions'
-import { AboutProps, AboutActionTypes } from '../../../store/helpers/about/types'
-import { AboutStrings } from '../../../utils/strings'
+//import { fetchRequest, RequestDataAction } from '../../../store/helpers/about/actions'
+import { AboutProps } from '../../../store/helpers/about/types'
 
-interface AllProps {
-  data: AboutProps
-}
-
-class About extends React.Component<WithStyles<typeof styles> & AllProps> {
-
-  componentDidMount() {
-
-    const type = AboutActionTypes.REQ_DATA
-    const payload = {
-      title: AboutStrings.heading,
-      data: AboutStrings.info
-    }
-    AboutFetchRequest(type, payload)
-  }
+class About extends React.Component<WithStyles<typeof styles> & AboutProps> {
 
   render() {
 
     return (
       <div>
-        <h2>{this.props.data.title}</h2>
-        <MarkdownText text={this.props.data.data} />
+        <h2>{this.props.title}</h2>
+        <MarkdownText text={this.props.data} />
       </div>
     )
   }
 }
 
-const mapStateToProps = (state: ApplicationState): AllProps => {
-  //const props = { state.about.title, data: state.about.data }
+const mapStateToProps = (state: ApplicationState): AboutProps => {
   return {
-    data: { title: state.about.title, data: state.about.data }
+    title: state.about.title, data: state.about.data
   }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch<AnyAction>, ownProps: AboutProps) => {
+/* const mapDispatchToProps = (dispatch: Dispatch<AnyAction>, ownProps: AboutProps) => {
   console.log('bollox', ownProps.title, ownProps.data)
   const type = AboutActionTypes.REQ_DATA
   const payload = {
@@ -53,11 +37,10 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>, ownProps: AboutProps)
     data: ownProps.data
   }
   return bindActionCreators<AboutRequestDataAction, any>({
-    data: AboutFetchRequest(type, payload)
+    onSomeEvent: AboutFetchRequest(type, payload)
   },dispatch)
-}
+} */
 
 export default withTheme(withStyles(styles)(connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(About)))
