@@ -3,17 +3,25 @@ import { combineReducers, Reducer } from 'redux'
 import { Store, createStore, applyMiddleware } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 
-import { AboutProps } from './helpers/about/types'
-import { reducer as aboutReducer } from './helpers/about/reducer'
+import { InfoProps } from './info/types'
+import { reducer as aboutReducer } from './info/about/reducer'
+import { reducer as homeReducer } from './info/home/reducer'
+import { reducer as helpReducer } from './info/help/reducer'
+import { reducer as overviewReducer } from './info/overview/reducer'
 
 // The top-level state object
 export interface ApplicationState {
-  about: AboutProps
-  // home: HomeState
+  about: InfoProps
+  home: InfoProps
+  help: InfoProps
+  overview: InfoProps
 }
 
 export const rootReducer: Reducer<ApplicationState> = combineReducers<ApplicationState>({
   about: aboutReducer,
+  home: homeReducer,
+  help: helpReducer,
+  overview: overviewReducer
 })
 
 export function configureStore(

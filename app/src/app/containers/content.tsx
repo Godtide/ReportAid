@@ -4,14 +4,12 @@ import { Switch, Route } from 'react-router-dom'
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../styles/theme'
 
-import Home from './pages/helpers/home'
-import About from './pages/helpers/about'
-import Overview from './pages/helpers/overview'
-import Help from './pages/helpers/help'
+import Info from './pages/info/info'
+import { InfoTypes } from './pages/info/types'
 import IATIWriter from './pages/IATIWriter/IATIWriter'
 import IATIReader from './pages/IATIReader/IATIReader'
 
-import { PathStrings, HomeStrings, OverviewStrings, HelpStrings, WriterStrings, ReaderStrings } from '../utils/strings'
+import { PathStrings, WriterStrings, ReaderStrings } from '../utils/strings'
 
 class Content extends React.Component<WithStyles<typeof styles>> {
 
@@ -22,22 +20,22 @@ class Content extends React.Component<WithStyles<typeof styles>> {
           <Route
             name={PathStrings.home}
             exact path={PathStrings.homePath}
-            render={() => <Home title={HomeStrings.heading} data={HomeStrings.info} />}
+            render={() => <Info type={InfoTypes.HOME} />}
           />
           <Route
             name={PathStrings.about}
             exact path={PathStrings.aboutPath}
-            component={About}
+            render={() => <Info type={InfoTypes.ABOUT} />}
           />
           <Route
             name={PathStrings.overview}
             path={PathStrings.overviewPath}
-            render={() => <Overview title={OverviewStrings.heading} data={OverviewStrings.info} />}
+            render={() => <Info type={InfoTypes.OVERVIEW} />}
           />
           <Route
             name={PathStrings.help}
             path={PathStrings.helpPath}
-            render={() => <Help title={HelpStrings.heading} data={HelpStrings.info} />}
+            render={() => <Info type={InfoTypes.HELP} />}
           />
           <Route
             name={PathStrings.writer}

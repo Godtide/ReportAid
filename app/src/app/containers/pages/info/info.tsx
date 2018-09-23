@@ -8,9 +8,16 @@ import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
 
 //import { fetchRequest, RequestDataAction } from '../../../store/helpers/about/actions'
-import { AboutProps } from '../../../store/helpers/about/types'
+import { InfoProps } from '../../../store/info/types'
+import { InfoTypes } from './types'
 
-class About extends React.Component<WithStyles<typeof styles> & AboutProps> {
+interface StateProps {
+  type: InfoTypes
+}
+
+type AllProps = InfoProps & StateProps
+
+class Info extends React.Component<WithStyles<typeof styles> & AllProps> {
 
   render() {
 
@@ -23,9 +30,18 @@ class About extends React.Component<WithStyles<typeof styles> & AboutProps> {
   }
 }
 
-const mapStateToProps = (state: ApplicationState): AboutProps => {
-  return {
-    title: state.about.title, data: state.about.data
+const mapStateToProps = (state: ApplicationState, ownProps: StateProps): InfoProps => {
+  switch (ownProps.type) {
+    case InfoTypes.HOME:
+      return { title: state.home.title, data: state.home.data }
+    case InfoTypes.ABOUT:
+      return { title: state.about.title, data: state.about.data }
+    case InfoTypes.OVERVIEW:
+      return { title: state.overview.title, data: state.overview.data }
+    case InfoTypes.HELP:
+      return { title: state.help.title, data: state.help.data }
+    default:
+      return { title: state.home.title, data: state.home.data }
   }
 }
 
@@ -43,4 +59,4 @@ const mapStateToProps = (state: ApplicationState): AboutProps => {
 
 export default withTheme(withStyles(styles)(connect(
   mapStateToProps
-)(About)))
+)(Info)))
