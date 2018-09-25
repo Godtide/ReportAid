@@ -11,8 +11,8 @@ interface TextAreaInputProps {
 const TextAreaInput: React.SFC<TextAreaInputProps> = (props: TextAreaInputProps) => {
 
   return (
-    <Tooltip title={this.props.tip}>
-      <p>{this.props.label}
+    <Tooltip title={props.tip}>
+      <p>{props.label}
         <TextField
           label={props.label}
           multiline={true}

@@ -1,21 +1,18 @@
-import * as React from 'react';
-import { reduxForm, InjectedFormProps, Field } from 'redux-form'
+import * as React from 'react'
+import { Field } from 'redux-form'
 
 interface AppFormProps {
-  message: string
   pristine: boolean
   submitting: boolean
   reset: () => void
   handleSubmit: () => void
 }
 
-class AppForm extends React.Component<InjectedFormProps<AppFormProps> & AppFormProps> {
+const AppForm: React.SFC<AppFormProps> = (props: AppFormProps) => {
 
-  render() {
-    const { pristine, submitting, reset, handleSubmit, message } = this.props
-    return (
-      <form onSubmit={handleSubmit}>
-        <div>{message}</div>
+  return (
+    <div>
+      <form onSubmit={props.handleSubmit}>
         <div>
           <label>First Name </label>
           <Field
@@ -35,18 +32,16 @@ class AppForm extends React.Component<InjectedFormProps<AppFormProps> & AppFormP
           />
         </div>
         <div>
-          <button type="submit" disabled={pristine || submitting}>
+          <button type="submit" disabled={props.pristine || props.submitting}>
             Submit
           </button>
-          <button type="button" disabled={pristine || submitting} onClick={reset}>
+          <button type="button" disabled={props.pristine || props.submitting} onClick={props.reset}>
             Clear Values
           </button>
         </div>
       </form>
-    )
-  }
+    </div>
+  )
 }
 
-export default reduxForm<AppFormProps>({
-  form: 'userForm',
-})(AppForm);
+export default AppForm

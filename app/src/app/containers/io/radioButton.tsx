@@ -19,11 +19,11 @@ interface RadioButtonState {
 
 export class RadioButton extends React.Component<RadioButtonProps, RadioButtonState> {
 
-  readonly state: RadioButtonState = { value: '' }
+  state: RadioButtonState = { value: '' }
 
-  handleChange = event => {
+  handleChange = (event: any) => {
     this.setState({ value: event.target.value });
-  };
+  }
 
   render() {
 

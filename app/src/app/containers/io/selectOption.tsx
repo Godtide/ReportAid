@@ -10,29 +10,46 @@ interface SelectInterface {
   onChange: () => void
 }
 
+interface SelectState {
+  readonly value: string
+}
+
 export type SelectProps = SelectInterface
 
-const SelectOption: React.SFC<SelectProps> = (props) => {
+export class SelectOption extends React.Component<SelectProps, SelectState> {
 
-  return (
-    <Tooltip title={props.tip}>
-      <Select
-            value={this.state.age}
-            onChange={props.onChange}
-            inputProps={{
-              name: 'age',
-              id: 'age-simple',
-            }}
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
-          </Select>
-    </Tooltip>
-  )
+  state: SelectState = { value: '' }
+
+  handleChange = (event: any) => {
+    this.setState({ value: event.target.value })
+    this.props.onChange
+  }
+
+  render() {
+
+    const { handleChange } = this
+
+    return (
+      <Tooltip title={this.props.tip}>
+        <Select
+              value={this.state.value}
+              onChange={handleChange}
+              inputProps={{
+                name: 'age',
+                id: 'age-simple',
+              }}
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value={10}>Ten</MenuItem>
+              <MenuItem value={20}>Twenty</MenuItem>
+              <MenuItem value={30}>Thirty</MenuItem>
+            </Select>
+      </Tooltip>
+    )
+
+  }
 }
 
 export default SelectOption
