@@ -22,7 +22,7 @@ library Strings {
         else
             return 0;
     }
-    /// @dev Compares two strings and returns true iff they are equal.
+    /// @dev Compares two strings and returns true if they are equal.
     function equal(string _a, string _b) public pure returns (bool) {
         return compare(_a, _b) == 0;
     }

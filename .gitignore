@@ -3,12 +3,10 @@ app/.awcache
 app/.awcache/*
 app/dist
 app/dist/*
-app/blockchain/build
-app/blockchain/build/*
-app/blockchain/test
-app/blockchain/test/*
-app/blockchain/node_modules
-app/blockchain/node_modules/*
+app/src/blockchain/build
+app/src/blockchain/build/*
+app/src/blockchain/node_modules
+app/src/blockchain/node_modules/*
 app/node_modules
 app/node_modules/*
 app/build
