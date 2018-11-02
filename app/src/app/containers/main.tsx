@@ -9,10 +9,20 @@ import { withTheme, styles } from '../styles/theme'
 // import Content from './content'
 import AppMenu from './appMenu'
 import Content from './content'
-
 import { AppStrings } from '../utils/strings'
 
+import Web3Handler from '../utils/web3Handler'
+import ContractHandler from '../utils/contractHandler'
+
 class Main extends React.Component<WithStyles<typeof styles>> {
+
+  web3Handler: {}
+
+  constructor () {
+    super()
+    this.web3Handler = new Web3Handler()
+    this.contractHandler = new ContractHandler(this.web3Handler)
+  }
 
   render() {
 
