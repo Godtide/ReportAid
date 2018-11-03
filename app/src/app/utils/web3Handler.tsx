@@ -1,51 +1,28 @@
 import Web3 from 'web3'
+import { ethers } from 'ethers';
+
+interface Web3HandlerProps {
+  func(): void
+  cb(): void
+}
 
 class Web3Handler {
 
+  web3Provider = {}
+
   constructor () {
-    // Checking if Web3 has been injected by the browser (Mist/MetaMask)
-    if (typeof web3 !== 'undefined') {
-      console.log('MetaMask!')
-      this.web3 = new Web3(web3.currentProvider)
-    } else {
-      console.log('No web3? You should consider trying MetaMask!')
-      let host = '127.0.0.1'
-      let port = '8545'
-      this.web3 = new Web3(new Web3.providers.HttpProvider('http://' + host + ':' + port))
-    }
-    this.web3.version.getNetwork((err, netId) => {
-      switch (netId) {
-        case "1":
-          console.log('This is mainnet')
-          break
-        case "2":
-          console.log('This is the deprecated Morden test network.')
-          break
-        case "3":
-          console.log('This is the ropsten test network.')
-          break
-        case "4":
-          console.log('This is the rinkeby test network.')
-          break
-        default:
-          console.log('This is a local, unknown network.')
-      }
-    })
-    this.web3.eth.defaultAccount = this.web3.eth.accounts[0]
-    this.account = this.web3.eth.defaultAccount
-    console.log('This account ' + this.account)
-    setInterval(this._setAccount.bind(this), 3000)
+
+    let currentProvider = new Web3.providers.HttpProvider('http://localhost:8545')
+    this.web3Provider = new ethers.providers.Web3Provider(currentProvider)
+
   }
 
   // metamask sets its account to web3.eth.accounts[0]
   _setAccount () {
-    if (this.web3.eth.accounts[0] !== this.account) {
-      this.account = this.web3.eth.accounts[0]
-    }
     //console.log("In set account for ", this.account)
   }
 
-  _callChecker (_func, _cb) {
+  _callChecker (_func: Web3HandlerProps, _cb: Web3HandlerProps) {
     // console.log('in func call checker')
     if ((typeof _func === 'function') && (typeof _cb === 'function')) {
       // console.log('Passed call checker!')
@@ -58,7 +35,7 @@ class Web3Handler {
     }
   }
 
-  _callParamsChecker (_func, _cb, _params) {
+  _callParamsChecker (_func: Web3HandlerProps, _cb: Web3HandlerProps, _params: []) {
     if ((typeof _func === 'function') && (typeof _cb === 'function') && (Array.isArray(_params))) {
       return true
     } else {
@@ -66,9 +43,9 @@ class Web3Handler {
     }
   }
 
-  _call (_caller, _func, _cb) {
+  _call (_func: Web3HandlerProps, _cb: Web3HandlerProps, _params: []) {
     if (this._callChecker(_func, _cb)) {
-      _func(function (err, result) {
+      _func(function (err: any, result: any) {
         if (err) {
           console.log(err)
         } else {

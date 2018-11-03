@@ -9,11 +9,17 @@ import { InfoTypes } from './pages/info/types'
 import IATIWriter from './pages/IATIWriter/IATIWriter'
 import IATIReader from './pages/IATIReader/IATIReader'
 
+import Web3Handler from '../utils/web3Handler'
+import ContractHandler from '../utils/contractHandler'
+
 import { PathStrings, WriterStrings, ReaderStrings } from '../utils/strings'
 
 class Content extends React.Component<WithStyles<typeof styles>> {
 
     render() {
+
+      /* const web3Handler = new Web3Handler()
+      const contractHandler = new ContractHandler(web3Handler) */
 
       return (
         <Switch>

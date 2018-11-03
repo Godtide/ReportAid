@@ -11,12 +11,9 @@ import AppMenu from './appMenu'
 import Content from './content'
 import { AppStrings } from '../utils/strings'
 
-import Web3Handler from '../utils/web3Handler'
-import ContractHandler from '../utils/contractHandler'
-
 class Main extends React.Component<WithStyles<typeof styles>> {
 
-  web3Handler: {}
+  web3Handler: typeof Web3Handler
 
   constructor () {
     super()

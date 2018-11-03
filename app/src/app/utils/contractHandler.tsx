@@ -1,9 +1,5 @@
 import Web3Handler from './web3Handler'
 
-interface ContractHandlerProps {
-  web3: Web3Handler
-}
-
 class ContractHandler {
 
   static organisationsABI = [
