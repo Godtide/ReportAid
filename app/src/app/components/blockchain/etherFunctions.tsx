@@ -1,26 +1,6 @@
-import * as React from 'react'
-import Web3 from 'web3'
-import { ethers } from 'ethers'
-
 interface CallCheckerProps {
   func(): void
   cb(): void
-}
-
-const CallChecker = (props: CallCheckerProps) => {
-
-  return (
-    // console.log('in func call checker')
-    if ((typeof CallCheckerProps.func === 'function') && (typeof CallCheckerProps.cb === 'function')) {
-      // console.log('Passed call checker!')
-      return true
-    } else {
-      /* console.log('failed call checker!')
-      console.log('func ' + _func)
-      console.log('cb ' + _cb) */
-      return false
-    }
-  )
 }
 
 interface CallParamsCheckerProps {
@@ -31,13 +11,25 @@ interface CallParamsCheckerProps {
 
 const CallChecker = (props: CallCheckerProps) => {
 
-  return (
-    if ((typeof CallCheckerProps.func === 'function') && (typeof CallCheckerProps.cb === 'function') && (Array.isArray(CallCheckerProps.params))) {
-      return true
-    } else {
-      return false
-    }
-  )
+  // console.log('in func call checker')
+  if ((typeof props.func === 'function') && (typeof props.cb === 'function')) {
+    // console.log('Passed call checker!')
+    return true
+  } else {
+    /* console.log('failed call checker!')
+    console.log('func ' + _func)
+    console.log('cb ' + _cb) */
+    return false
+  }
+}
+
+const CallParamsChecker = (props: CallParamsCheckerProps) => {
+
+  if ((typeof props.func === 'function') && (typeof props.cb === 'function') && (Array.isArray(props.params))) {
+    return true
+  } else {
+    return false
+  }
 }
 
 /*
@@ -178,4 +170,4 @@ _setAccount () {
 
 */
 
-export {CallChecker, CallParamsCheckerProps}
+export {CallChecker, CallParamsChecker}

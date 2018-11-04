@@ -11,15 +11,21 @@ import AppMenu from './appMenu'
 import Content from './content'
 import { AppStrings } from '../utils/strings'
 
+import { Blockchain } from './blockchain/blockchain'
+import { OrgsContract } from './blockchain/orgsContract'
+
 class Main extends React.Component<WithStyles<typeof styles>> {
 
-  /* web3Handler: typeof Web3Handler
+  blockchain: any
+  orgsContract: any
 
-  constructor () {
-    super()
-    this.web3Handler = new Web3Handler()
-    this.contractHandler = new ContractHandler(this.web3Handler)
-  } */
+  constructor (props: any) {
+    super(props)
+    const thisAddress = {address: "http://localhost:8545"}
+    this.blockchain = new Blockchain(thisAddress)
+    const thisBlockchain = {blockchain: this.blockchain}
+    this.orgsContract = new OrgsContract(thisBlockchain)
+  }
 
   render() {
 

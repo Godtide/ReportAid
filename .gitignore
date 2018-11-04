@@ -3,6 +3,7 @@ app/.awcache
 app/.awcache/*
 app/dist
 app/dist/*
+app/src/blockchain/typechain
 app/src/blockchain/build
 app/src/blockchain/build/*
 app/src/blockchain/node_modules
