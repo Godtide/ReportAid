@@ -13,13 +13,13 @@ import { AppStrings } from '../utils/strings'
 
 class Main extends React.Component<WithStyles<typeof styles>> {
 
-  web3Handler: typeof Web3Handler
+  /* web3Handler: typeof Web3Handler
 
   constructor () {
     super()
     this.web3Handler = new Web3Handler()
     this.contractHandler = new ContractHandler(this.web3Handler)
-  }
+  } */
 
   render() {
 
