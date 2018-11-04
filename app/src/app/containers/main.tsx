@@ -11,21 +11,8 @@ import AppMenu from './appMenu'
 import Content from './content'
 import { AppStrings } from '../utils/strings'
 
-import { Blockchain } from './blockchain/blockchain'
-import { OrgsContract } from './blockchain/orgsContract'
-
 class Main extends React.Component<WithStyles<typeof styles>> {
 
-  blockchain: any
-  orgsContract: any
-
-  constructor (props: any) {
-    super(props)
-    const thisAddress = {address: "http://localhost:8545"}
-    this.blockchain = new Blockchain(thisAddress)
-    const thisBlockchain = {blockchain: this.blockchain}
-    this.orgsContract = new OrgsContract(thisBlockchain)
-  }
 
   render() {
 
