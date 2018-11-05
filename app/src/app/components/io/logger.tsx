@@ -5,7 +5,7 @@ interface LoggerProps {
   log: string[]
 }
 
-const Logger: React.SFC<LoggerProps> = (props: LoggerProps) => {
+export const Logger: React.SFC<LoggerProps> = (props: LoggerProps) => {
 
   let logs = props.log.map((text, index) =>
     <span key={index}>
@@ -20,5 +20,3 @@ const Logger: React.SFC<LoggerProps> = (props: LoggerProps) => {
     </Card>
   )
 }
-
-export default Logger

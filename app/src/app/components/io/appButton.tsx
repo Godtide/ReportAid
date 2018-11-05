@@ -8,7 +8,7 @@ interface AppButtonProps {
   submit: () => void
 }
 
-const AppButton: React.SFC<AppButtonProps> = (props: AppButtonProps) => {
+export const AppButton: React.SFC<AppButtonProps> = (props: AppButtonProps) => {
 
   return (
     <Tooltip title={props.tip}>
@@ -20,5 +20,3 @@ const AppButton: React.SFC<AppButtonProps> = (props: AppButtonProps) => {
     </Tooltip>
   )
 }
-
-export default AppButton

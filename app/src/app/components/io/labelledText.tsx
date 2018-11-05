@@ -5,11 +5,9 @@ interface LabelledTextProps {
   text: string
 }
 
-const LabelledText: React.SFC<LabelledTextProps> = (props: LabelledTextProps) => {
+export const LabelledText: React.SFC<LabelledTextProps> = (props: LabelledTextProps) => {
 
   return (
       <p>{props.label} {props.text}</p>
   )
 }
-
-export default LabelledText

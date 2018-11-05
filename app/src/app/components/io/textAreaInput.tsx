@@ -8,7 +8,7 @@ interface TextAreaInputProps {
   submit: () => void
 }
 
-const TextAreaInput: React.SFC<TextAreaInputProps> = (props: TextAreaInputProps) => {
+export const TextAreaInput: React.SFC<TextAreaInputProps> = (props: TextAreaInputProps) => {
 
   return (
     <Tooltip title={props.tip}>
@@ -22,5 +22,3 @@ const TextAreaInput: React.SFC<TextAreaInputProps> = (props: TextAreaInputProps)
     </Tooltip>
   )
 }
-
-export default TextAreaInput

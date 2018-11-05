@@ -8,7 +8,7 @@ interface AppFormProps {
   handleSubmit: () => void
 }
 
-const AppForm: React.SFC<AppFormProps> = (props: AppFormProps) => {
+export const AppForm: React.SFC<AppFormProps> = (props: AppFormProps) => {
 
   return (
     <div>
@@ -43,5 +43,3 @@ const AppForm: React.SFC<AppFormProps> = (props: AppFormProps) => {
     </div>
   )
 }
-
-export default AppForm

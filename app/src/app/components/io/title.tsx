@@ -4,7 +4,7 @@ interface TitleProps {
   title: string
 }
 
-const Title: React.SFC<TitleProps> = (props: TitleProps) => {
+export const Title: React.SFC<TitleProps> = (props: TitleProps) => {
 
   return (
       <div>
@@ -12,5 +12,3 @@ const Title: React.SFC<TitleProps> = (props: TitleProps) => {
       </div>
     )
 }
-
-export default Title

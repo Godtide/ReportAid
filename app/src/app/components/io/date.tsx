@@ -8,7 +8,7 @@ interface DateProps {
   container: string
 }
 
-const DatePicker: React.SFC<DateProps> = (props: DateProps) => {
+export const DatePicker: React.SFC<DateProps> = (props: DateProps) => {
 
   return (
     <form className={props.container} noValidate>
@@ -24,5 +24,3 @@ const DatePicker: React.SFC<DateProps> = (props: DateProps) => {
     </form>
   );
 }
-
-export default DatePicker
