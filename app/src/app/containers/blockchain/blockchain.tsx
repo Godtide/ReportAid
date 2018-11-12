@@ -4,37 +4,64 @@ import { ethers } from 'ethers'
 
 interface BlockchainProps {
   readonly address: string
+  readonly port: string
 }
 
 export class Blockchain extends React.Component<BlockchainProps> {
 
   address: string
+  port: string
+  web3: any
   blockchainProvider: any
+  account: string
 
   constructor (props: BlockchainProps) {
     super(props)
     this.address = props.address
-    this.setProvider()
+    this.port = props.port
+    this.account = ''
+    this._setBlockchainProvider()
+    this._setAccount()
   }
 
-  async setProvider () {
+  async _setBlockchainProvider () {
+
     const ethereum = (window as any).ethereum
-    let web3 = (window as any).web3
+    this.web3 = (window as any).web3
     if (ethereum) {
-      web3 = new Web3(ethereum)
-      this.blockchainProvider = new ethers.providers.Web3Provider(web3.currentProvider)
+      console.log('New MetaMask!')
+      this.web3 = new Web3(ethereum)
+      this.blockchainProvider = new ethers.providers.Web3Provider(this.web3.currentProvider)
       try {
           // Request account access if needed
           await ethereum.enable()
       } catch (error) {
         console.log(error)
       }
-    } else if (typeof web3 !== 'undefined') {
-     this.blockchainProvider = new ethers.providers.Web3Provider(web3.currentProvider)
+    } else if (typeof this.web3 !== 'undefined') {
+      console.log('In legacy web3 provider')
+      this.blockchainProvider = new ethers.providers.Web3Provider(this.web3.currentProvider)
     } else {
-        // Set the provider you want from Web3.providers
-        web3 = new Web3(new Web3.providers.HttpProvider(this.address))
-        this.blockchainProvider = new ethers.providers.Web3Provider(web3)
+      console.log('Running our own blockchain provider')
+      const address = 'http://' + this.address + ':' + this.port
+      this.web3 = new Web3(new Web3.providers.HttpProvider(address))
+      this.blockchainProvider = new ethers.providers.Web3Provider(this.web3)
+    }
+
+    this.blockchainProvider.getNetwork().then(function(chainObj: any) {
+      console.log('Name: ', chainObj.name, ' ChainID: ', chainObj.chainId, 'ENS Address: ', chainObj.ensAddress)
+    })
+  }
+
+  // metamask sets its account to web3.eth.accounts[0]
+  async _setAccount () {
+    if (this.web3.eth.accounts[0] !== this.account) {
+      console.log('Setting Account')
+      await this.web3.eth.getAccounts((error: any, accounts: any) => {
+        this.account = accounts[0]
+      })
+      this.web3.eth.defaultAccount = this.account
+      console.log('Account: ', this.account)
     }
   }
 
@@ -42,27 +69,3 @@ export class Blockchain extends React.Component<BlockchainProps> {
     return this.blockchainProvider
   }
 }
-
-/*
-if (window.ethereum) {
-        window.web3 = new Web3(ethereum);
-        try {
-            // Request account access if needed
-            await ethereum.enable();
-            // Acccounts now exposed
-            web3.eth.sendTransaction({});
-        } catch (error) {
-            // User denied account access...
-        }
-    }
-    // Legacy dapp browsers...
-    else if (window.web3) {
-        window.web3 = new Web3(web3.currentProvider);
-        // Acccounts always exposed
-        web3.eth.sendTransaction({});
-    }
-    // Non-dapp browsers...
-    else {
-        console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
-    }
-*/

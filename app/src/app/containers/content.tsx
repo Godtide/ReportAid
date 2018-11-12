@@ -18,11 +18,12 @@ class Content extends React.Component<WithStyles<typeof styles>> {
 
   blockchain: any
   orgsContract: any
+  web3: any
 
   constructor (props: any) {
     super(props)
-    const thisAddress = {address: "http://localhost:8545"}
-    this.blockchain = new Blockchain(thisAddress)
+    const blockchainProvider = {address: "127.0.0.1", port: "8545"}
+    this.blockchain = new Blockchain(blockchainProvider)
     const thisBlockchain = {blockchain: this.blockchain}
     this.orgsContract = new OrgsContract(thisBlockchain)
   }

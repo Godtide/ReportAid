@@ -28,7 +28,7 @@ export class OrgsContract extends React.Component<OrgsContractProps> {
 
   constructor (props: OrgsContractProps) {
     super(props)
-    let blockchain = props.blockchain.getCurrentProvider()
+    const blockchain = props.blockchain.getProvider()
     this.organisations = new ethers.Contract(OrgsContract.organisationsAddress, OrgsContract.organisationsABI, blockchain)
   }
 
