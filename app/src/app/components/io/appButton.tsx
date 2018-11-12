@@ -15,7 +15,6 @@ export const AppButton: React.SFC<AppButtonProps> = (props: AppButtonProps) => {
       <Button
         aria-label={props.label}
         onClick={props.submit}>
-        >
       </Button>
     </Tooltip>
   )

@@ -12,7 +12,7 @@ import { AppButton } from '../../../components/io/appButton'
 import { ethers } from 'ethers'
 
 //import { fetchRequest, RequestDataAction } from '../../../store/helpers/about/actions'
-import { GetProvider, SetAccount } from '../../../components/blockchain/blockchain'
+import { GetWeb3, GetProvider, SetAccount } from '../../../components/blockchain/blockchain'
 import { BlockchainProps } from '../../../store/blockchain/types'
 
 class BlockchainInfo extends React.Component<WithStyles<typeof styles> & BlockchainProps> {
@@ -20,9 +20,11 @@ class BlockchainInfo extends React.Component<WithStyles<typeof styles> & Blockch
   handleSubmit(event: any): void {
     console.log('boom!')
     event.preventDefault()
-    const blockchainProvider = {address: AppStrings.blockchainHost, port:  AppStrings.blockchainPort}
-    const provider = GetProvider(blockchainProvider)
-    const account = SetAccount()
+    const web3Props = {address: AppStrings.blockchainHost, port:  AppStrings.blockchainPort}
+    const web3 = GetWeb3(web3Props)
+    const providerProps = {web3: web3}
+    const provider = GetProvider(providerProps)
+    const account = SetAccount(providerProps)
   }
 
   render() {
