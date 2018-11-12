@@ -13,7 +13,6 @@ import { AppStrings } from '../utils/strings'
 
 class Main extends React.Component<WithStyles<typeof styles>> {
 
-
   render() {
 
     return (
