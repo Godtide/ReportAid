@@ -4,12 +4,18 @@ class AppStrings {
   static readonly appTagline='Using Blockchain Technology to Add Trust to Humanitarian Aid Reporing'
   static readonly copyright='University of Sussex © 2018'
   static readonly author='Created by Steven Huckle'
+
+  // Using web3 via MetaMask, so these aren't necessary, really
+  static readonly blockchainHost = 'localhost'
+  static readonly blockchainPort = '8545'
 }
 
 class PathStrings {
 
   static readonly home='Home'
   static readonly homePath='/'
+  static readonly blockchain = 'Blockchain Data'
+  static readonly blockchainPath = '/blockchain-data'
   static readonly about='About'
   static readonly aboutPath='/about'
   static readonly overview='Overview'
@@ -20,6 +26,16 @@ class PathStrings {
   static readonly writerPath='/create-record'
   static readonly reader='Fetch Record'
   static readonly readerPath='/fetch-record'
+}
+
+class BlockchainStrings {
+
+  static heading = 'Blockchain Data'
+  static APIProvider = 'APIProvider: '
+  static networkName = 'Provider Name: '
+  static networkChainId = 'Network Chain ID: '
+  static ENSAddress = 'Network ENS Address: '
+  static networkAccount = 'Account: '
 }
 
 class HomeStrings {
@@ -61,4 +77,4 @@ class ReaderStrings {
   static heading = 'ReportAid Reader'
 }
 
-export { AppStrings, PathStrings, HomeStrings, AboutStrings, OverviewStrings, HelpStrings, WriterStrings, ReaderStrings }
+export { AppStrings, PathStrings, BlockchainStrings, HomeStrings, AboutStrings, OverviewStrings, HelpStrings, WriterStrings, ReaderStrings }

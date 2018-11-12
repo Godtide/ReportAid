@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button'
 interface AppButtonProps {
   label: string
   tip: string
-  submit: () => void
+  submit(event: any): void
 }
 
 export const AppButton: React.SFC<AppButtonProps> = (props: AppButtonProps) => {
