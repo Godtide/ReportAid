@@ -1,9 +1,9 @@
 import * as React from 'react'
-import { Blockchain } from './blockchain'
+//import { Blockchain } from './blockchain'
 import { ethers } from 'ethers'
 
 interface OrgsContractProps {
-  blockchain: Blockchain
+  blockchain: any
 }
 
 export class OrgsContract extends React.Component<OrgsContractProps> {
@@ -28,8 +28,8 @@ export class OrgsContract extends React.Component<OrgsContractProps> {
 
   constructor (props: OrgsContractProps) {
     super(props)
-    const blockchain = props.blockchain.getProvider()
-    this.organisations = new ethers.Contract(OrgsContract.organisationsAddress, OrgsContract.organisationsABI, blockchain)
+    //const blockchain = props.blockchain.getProvider()
+    //this.organisations = new ethers.Contract(OrgsContract.organisationsAddress, OrgsContract.organisationsABI, blockchain)
   }
 
   getOrganisations () {

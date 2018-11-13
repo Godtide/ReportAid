@@ -1,6 +1,5 @@
 export interface BlockchainProps {
-  title: string
-  APIProvider: string
+  APIProvider: any
   networkName: string
   networkChainId: string
   networkENSAddress: string
@@ -8,5 +7,5 @@ export interface BlockchainProps {
 }
 
 export const enum BlockchainActionTypes {
-  REQ_DATA = '@@blockchainTypes/REQ_DATA'
+  ADD_DATA = '@@blockchainActionTypes/ADD_DATA'
 }

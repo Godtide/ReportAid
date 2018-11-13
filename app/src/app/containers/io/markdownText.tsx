@@ -5,7 +5,7 @@ interface MarkdownTextProps {
   text: string
 }
 
-class MarkdownText extends React.Component<MarkdownTextProps> {
+export class MarkdownText extends React.Component<MarkdownTextProps> {
 
   render() {
     //console.log(this.props.text)
@@ -15,5 +15,3 @@ class MarkdownText extends React.Component<MarkdownTextProps> {
     )
   }
 }
-
-export default MarkdownText

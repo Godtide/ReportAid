@@ -15,10 +15,6 @@ import { PathStrings, WriterStrings, ReaderStrings } from '../utils/strings'
 
 class Content extends React.Component<WithStyles<typeof styles>> {
 
-  constructor (props: any) {
-    super(props)
-  }
-
   render() {
 
     return (
@@ -31,7 +27,14 @@ class Content extends React.Component<WithStyles<typeof styles>> {
         <Route
           name={PathStrings.blockchain}
           exact path={PathStrings.blockchainPath}
-          render={() => <BlockchainInfo />}
+          render= {() => <BlockchainInfo
+                            APIProvider=''
+                            networkName = ''
+                            networkChainId = ''
+                            networkENSAddress = ''
+                            account = ''
+                        />
+                  }
         />
         <Route
           name={PathStrings.about}

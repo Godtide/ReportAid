@@ -3,7 +3,6 @@ import { BlockchainActionTypes, BlockchainProps } from './types'
 import { BlockchainStrings } from '../../utils/strings'
 
 const initialState: BlockchainProps = {
-  title: BlockchainStrings.heading,
   APIProvider: '',
   networkName: '',
   networkChainId: '',
@@ -13,9 +12,8 @@ const initialState: BlockchainProps = {
 
 export const reducer: Reducer<BlockchainProps> = (state = initialState, action): BlockchainProps => {
   switch (action.type) {
-    case BlockchainActionTypes.REQ_DATA:
+    case BlockchainActionTypes.ADD_DATA:
       return (<any>Object).assign({}, state, {
-        title: action.payload.title,
         APIProvider: action.payload.APIProvider,
         networkName: action.payload.networkName,
         networkChainId: action.payload.networkChainId,

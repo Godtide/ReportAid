@@ -5,9 +5,6 @@ class AppStrings {
   static readonly copyright='University of Sussex © 2018'
   static readonly author='Created by Steven Huckle'
 
-  // Using web3 via MetaMask, so these aren't necessary, really
-  static readonly blockchainHost = 'localhost'
-  static readonly blockchainPort = '8545'
 }
 
 class PathStrings {
@@ -30,12 +27,18 @@ class PathStrings {
 
 class BlockchainStrings {
 
+  // Using web3 via MetaMask, so these aren't necessary, really
+  static readonly host = 'localhost'
+  static readonly port = '8545'
+
   static heading = 'Blockchain Data'
   static APIProvider = 'APIProvider: '
   static networkName = 'Provider Name: '
   static networkChainId = 'Network Chain ID: '
   static ENSAddress = 'Network ENS Address: '
   static networkAccount = 'Account: '
+  static setButton = 'Set Blockchain'
+  static setButtonTip = 'Sets the blockchain'
 }
 
 class HomeStrings {

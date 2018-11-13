@@ -2,7 +2,7 @@ import * as React from 'react'
 //import { bindActionCreators, Dispatch, AnyAction } from 'redux'
 import { connect } from 'react-redux'
 import { ApplicationState } from '../../../store'
-import MarkdownText from '../../../containers/io/markdownText'
+import { MarkdownText } from '../../../containers/io/markdownText'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'

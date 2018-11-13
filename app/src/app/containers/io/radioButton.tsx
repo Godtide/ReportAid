@@ -56,5 +56,3 @@ export class RadioButton extends React.Component<RadioButtonProps, RadioButtonSt
     )
   }
 }
-
-  export default RadioButton

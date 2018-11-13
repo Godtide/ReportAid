@@ -13,8 +13,11 @@ export const AppButton: React.SFC<AppButtonProps> = (props: AppButtonProps) => {
   return (
     <Tooltip title={props.tip}>
       <Button
-        aria-label={props.label}
-        onClick={props.submit}>
+        variant="outlined"
+        color="primary" 
+        onClick={props.submit}
+      >
+        {props.label}
       </Button>
     </Tooltip>
   )
