@@ -16,8 +16,8 @@ class BlockchainInfo extends React.Component<WithStyles<typeof styles> & Blockch
 
   constructor (props: any) {
     super(props)
-    const thisAddData: any = {addData: addData}
-    const blockchainProvider = new BlockchainProvider(thisAddData)
+    //const thisAddData: any = {addData: addData}
+    const blockchainProvider = new BlockchainProvider()
   }
 
   render() {

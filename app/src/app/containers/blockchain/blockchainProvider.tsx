@@ -10,7 +10,7 @@ import { addData } from '../../store/blockchain/actions'
 import { BlockchainStrings } from '../../utils/strings'
 
 interface PropsFromDispatch {
-  addData: (providerData: BlockchainProps) => void
+  addData: (props: BlockchainProps) => any
 }
 
 export class BlockchainProvider extends React.Component<PropsFromDispatch> {
@@ -74,7 +74,7 @@ export class BlockchainProvider extends React.Component<PropsFromDispatch> {
       networkENSAddress = chainObj.ensAddress
     })
 
-    providerData = { APIProvider: web3,
+    providerData = { APIProvider: 'web3 ' + web3.version,
                      networkName: networkName,
                      networkChainId: networkChainId,
                      networkENSAddress: networkENSAddress,
@@ -82,18 +82,19 @@ export class BlockchainProvider extends React.Component<PropsFromDispatch> {
                    }
 
     this.props.addData(providerData)
-    console.log('Added data', providerData)
+    //console.log('Added data', providerData)
   }
 
 }
 
-const mapDispatchToProps = (dispatch: any, ownProps: BlockchainProps): PropsFromDispatch => {
-  console.log('mapDispatch')
-  return {
-    addData: dispatch(addData(ownProps))
+const mapDispatchToProps = (dispatch: any, ownProps: BlockchainProps): PropsFromDispatch => ({
+  addData: (ownProps: BlockchainProps) => {
+    console.log(dispatch)
+    dispatch(addData(ownProps))
   }
-}
+})
 
 export default connect(
+  null,
   mapDispatchToProps
 )(BlockchainProvider)
