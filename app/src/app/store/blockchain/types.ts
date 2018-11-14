@@ -1,5 +1,5 @@
 export interface BlockchainProps {
-  APIProvider: any
+  APIProvider: string
   networkName: string
   networkChainId: string
   networkENSAddress: string

@@ -2,11 +2,11 @@ import { Reducer } from 'redux'
 import { BlockchainActionTypes, BlockchainProps } from './types'
 
 const initialState: BlockchainProps = {
-  APIProvider: {},
+  APIProvider: '',
   networkName: '',
   networkChainId: '',
   networkENSAddress: '',
-  account: '',
+  account: ''
 }
 
 export const reducer: Reducer<BlockchainProps> = (state = initialState, action): BlockchainProps => {

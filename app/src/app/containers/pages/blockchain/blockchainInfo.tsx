@@ -27,7 +27,7 @@ class BlockchainInfo extends React.Component<WithStyles<typeof styles> & Blockch
     return (
       <div>
         <h2>{BlockchainStrings.heading}</h2>
-        <p><b>{BlockchainStrings.APIProvider}</b></p>
+        <p><b>{BlockchainStrings.APIProvider}</b>{this.props.APIProvider}</p>
         <p><b>{BlockchainStrings.networkName}</b>{this.props.networkName}</p>
         <p><b>{BlockchainStrings.networkChainId}</b>{this.props.networkChainId}</p>
         <p><b>{BlockchainStrings.ENSAddress}</b>{this.props.networkENSAddress}</p>

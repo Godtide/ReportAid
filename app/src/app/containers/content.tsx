@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom'
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../styles/theme'
 
-import BlockchainInfo from './pages/blockchain/blockchain'
+import BlockchainInfo from './pages/blockchain/blockchainInfo'
 
 import Info from './pages/info/info'
 import { InfoTypes } from './pages/info/types'
@@ -27,13 +27,7 @@ class Content extends React.Component<WithStyles<typeof styles>> {
         <Route
           name={PathStrings.blockchain}
           exact path={PathStrings.blockchainPath}
-          render= {() => <BlockchainInfo
-                            APIProvider=''
-                            networkName = ''
-                            networkChainId = ''
-                            networkENSAddress = ''
-                            account = ''
-                        />
+          render= {() => <BlockchainInfo />
                   }
         />
         <Route

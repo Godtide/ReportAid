@@ -21,6 +21,7 @@ export class BlockchainProvider extends React.Component<PropsFromDispatch> {
   }
 
   async _setProvider () {
+
     const ethereum = (window as any).ethereum
     let web3: any = (window as any).web3
     let networkName = ''
@@ -29,7 +30,7 @@ export class BlockchainProvider extends React.Component<PropsFromDispatch> {
     let account = ''
     let blockchainProvider = undefined
 
-    let providerData: BlockchainProps = { APIProvider: {},
+    let providerData: BlockchainProps = { APIProvider: '',
                                           networkName: '',
                                           networkChainId: '',
                                           networkENSAddress: '',
@@ -64,7 +65,7 @@ export class BlockchainProvider extends React.Component<PropsFromDispatch> {
       blockchainProvider = new ethers.providers.Web3Provider(web3)
     }
 
-    console.log('Account: ', account)
+    //console.log('Account: ', account)
 
     await blockchainProvider.getNetwork().then(function(chainObj: any) {
       console.log('Name: ', chainObj.name, ' ChainID: ', chainObj.chainId, 'ENS Address: ', chainObj.ensAddress)
