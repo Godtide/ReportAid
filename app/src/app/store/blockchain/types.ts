@@ -1,4 +1,13 @@
-export interface BlockchainProps {
+import { Action } from 'redux'
+
+export type BlockchainAction = AddDataAction
+
+export interface AddDataAction extends Action {
+    type: BlockchainActionTypes.ADD_DATA
+    payload: BlockchainInfoProps
+}
+
+export interface BlockchainInfoProps {
   APIProvider: string
   networkName: string
   networkChainId: string

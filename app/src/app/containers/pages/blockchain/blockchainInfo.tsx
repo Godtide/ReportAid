@@ -9,15 +9,13 @@ import { BlockchainStrings } from '../../../utils/strings'
 import { BlockchainProvider } from '../../../containers/blockchain/blockchainProvider'
 
 //import { fetchRequest, RequestDataAction } from '../../../store/helpers/about/actions'
-import { BlockchainProps } from '../../../store/blockchain/types'
-import { addData } from '../../../store/blockchain/actions'
+import { BlockchainInfoProps } from '../../../store/blockchain/types'
 
-class BlockchainInfo extends React.Component<WithStyles<typeof styles> & BlockchainProps> {
+class BlockchainInfo extends React.Component<WithStyles<typeof styles> & BlockchainInfoProps> {
 
   constructor (props: any) {
     super(props)
-    //const thisAddData: any = {addData: addData}
-    const blockchainProvider = new BlockchainProvider()
+    const blockchainProvider = new BlockchainProvider({})
   }
 
   render() {
@@ -38,7 +36,7 @@ class BlockchainInfo extends React.Component<WithStyles<typeof styles> & Blockch
   }
 }
 
-const mapStateToProps = (state: ApplicationState): BlockchainProps => {
+const mapStateToProps = (state: ApplicationState): BlockchainInfoProps => {
   return {
     APIProvider: state.blockchain.APIProvider,
     networkName: state.blockchain.networkName,

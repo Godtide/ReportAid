@@ -1,7 +1,6 @@
-import { Reducer } from 'redux'
-import { BlockchainActionTypes, BlockchainProps } from './types'
+import { BlockchainActionTypes, BlockchainAction, BlockchainInfoProps } from './types'
 
-const initialState: BlockchainProps = {
+const initialState: BlockchainInfoProps = {
   APIProvider: '',
   networkName: '',
   networkChainId: '',
@@ -9,16 +8,10 @@ const initialState: BlockchainProps = {
   account: ''
 }
 
-export const reducer: Reducer<BlockchainProps> = (state = initialState, action): BlockchainProps => {
+export const blockchainReducer = (state: BlockchainInfoProps = initialState, action: BlockchainAction): BlockchainInfoProps => {
   switch (action.type) {
     case BlockchainActionTypes.ADD_DATA:
-      return (<any>Object).assign({}, state, {
-        APIProvider: action.payload.APIProvider,
-        networkName: action.payload.networkName,
-        networkChainId: action.payload.networkChainId,
-        networkENSAddress: action.payload.networkENSAddress,
-        account: action.payload.account,
-      })
+      return (<any>Object).assign({}, state, action.payload)
     default:
       return state
   }
