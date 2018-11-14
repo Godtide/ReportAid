@@ -6,7 +6,7 @@ import { ethers } from 'ethers'
 
 //import { fetchRequest, RequestDataAction } from '../../../store/helpers/about/actions'
 import { BlockchainInfoProps } from '../../store/blockchain/types'
-import { AddDataAction } from '../../store/blockchain/actions'
+import { addData } from '../../store/blockchain/actions'
 import { BlockchainStrings } from '../../utils/strings'
 
 interface OwnProps {
@@ -14,7 +14,7 @@ interface OwnProps {
 }
 
 interface PropsFromDispatch {
-  addData: (props: BlockchainInfoProps) => any
+  addData: (props: BlockchainInfoProps) => void
 }
 
 type BlockchainProviderProps = OwnProps & PropsFromDispatch
@@ -97,10 +97,10 @@ export class BlockchainProvider extends React.Component<BlockchainProviderProps>
 
 }
 
-const mapDispatchToProps = (dispatch: any, ownProps: BlockchainInfoProps): PropsFromDispatch => {
+const mapDispatchToProps = (dispatch: any, props: BlockchainInfoProps) => {
   console.log('dispatch')
   return {
-    addData: (ownProps: OwnProps) => dispatch(AddDataAction(ownProps))
+    addData: (props: BlockchainInfoProps) => dispatch(addData(props))
   }
 }
 
