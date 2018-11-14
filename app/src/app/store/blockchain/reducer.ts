@@ -1,9 +1,8 @@
 import { Reducer } from 'redux'
 import { BlockchainActionTypes, BlockchainProps } from './types'
-import { BlockchainStrings } from '../../utils/strings'
 
 const initialState: BlockchainProps = {
-  APIProvider: '',
+  APIProvider: {},
   networkName: '',
   networkChainId: '',
   networkENSAddress: '',
