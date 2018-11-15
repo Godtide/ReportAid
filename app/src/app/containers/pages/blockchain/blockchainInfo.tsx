@@ -6,7 +6,6 @@ import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
 
 import { BlockchainStrings } from '../../../utils/strings'
-import { BlockchainProvider } from '../../../containers/blockchain/blockchainProvider'
 
 //import { fetchRequest, RequestDataAction } from '../../../store/helpers/about/actions'
 import { BlockchainInfoProps } from '../../../store/blockchain/types'
@@ -15,8 +14,6 @@ class BlockchainInfo extends React.Component<WithStyles<typeof styles> & Blockch
 
   constructor (props: any) {
     super(props)
-    const providerProps = {getProvider: true}
-    const blockchainProvider = new BlockchainProvider(providerProps)
   }
 
   render() {

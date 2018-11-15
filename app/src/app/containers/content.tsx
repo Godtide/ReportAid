@@ -27,8 +27,7 @@ class Content extends React.Component<WithStyles<typeof styles>> {
         <Route
           name={PathStrings.blockchain}
           exact path={PathStrings.blockchainPath}
-          render= {() => <BlockchainInfo />
-                  }
+          render= {() => <BlockchainInfo />}
         />
         <Route
           name={PathStrings.about}
