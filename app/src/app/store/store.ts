@@ -4,9 +4,9 @@ import { Store, createStore, applyMiddleware } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 
 import { BlockchainInfoProps } from './blockchain/types'
-import { blockchainReducer } from './blockchain/reducer'
-
 import { InfoProps } from './info/types'
+
+import { blockchainReducer } from './blockchain/reducer'
 import { reducer as aboutReducer } from './info/about/reducer'
 import { reducer as homeReducer } from './info/home/reducer'
 import { reducer as helpReducer } from './info/help/reducer'
@@ -40,7 +40,5 @@ export function configureStore(
     applyMiddleware(thunkMiddleware)
   )
 
-  // Don't forget to run the root saga, and return the store object.
-  // sagaMiddleware.run(rootSaga)
   return store
 }
