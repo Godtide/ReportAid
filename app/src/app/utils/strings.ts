@@ -11,7 +11,7 @@ class PathStrings {
 
   static readonly home='Home'
   static readonly homePath='/'
-  static readonly blockchain = 'Blockchain Data'
+  static readonly blockchain = 'Blockchain'
   static readonly blockchainPath = '/blockchain-data'
   static readonly about='About'
   static readonly aboutPath='/about'

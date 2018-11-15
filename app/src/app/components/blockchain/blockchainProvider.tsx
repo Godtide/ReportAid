@@ -30,7 +30,7 @@ export const setBlockchain = async (props: BlockchainProviderProps) => {
                                       }
 
   if (ethereum) {
-    console.log('New MetaMask!')
+    //console.log('New MetaMask!')
     web3 = new Web3(ethereum)
     blockchainProvider = new ethers.providers.Web3Provider(web3.currentProvider)
     try {
@@ -48,10 +48,10 @@ export const setBlockchain = async (props: BlockchainProviderProps) => {
     web3.eth.defaultAccount = account
 
   } else if (typeof web3 !== 'undefined') {
-    console.log('In legacy web3 provider')
+    //console.log('In legacy web3 provider')
     blockchainProvider = new ethers.providers.Web3Provider(web3.currentProvider)
   } else {
-    console.log('Running our own blockchain provider')
+    //console.log('Running our own blockchain provider')
     const address = 'http://' + BlockchainStrings.host + ':' + BlockchainStrings.port
     web3 = new Web3(new Web3.providers.HttpProvider(address))
     blockchainProvider = new ethers.providers.Web3Provider(web3)
@@ -60,7 +60,7 @@ export const setBlockchain = async (props: BlockchainProviderProps) => {
   //console.log('Account: ', account)
 
   await blockchainProvider.getNetwork().then(function(chainObj: any) {
-    console.log('Name: ', chainObj.name, ' ChainID: ', chainObj.chainId, 'ENS Address: ', chainObj.ensAddress)
+    //console.log('Name: ', chainObj.name, ' ChainID: ', chainObj.chainId, 'ENS Address: ', chainObj.ensAddress)
     networkName = chainObj.name
     networkChainId = chainObj.chainId
     networkENSAddress = chainObj.ensAddress

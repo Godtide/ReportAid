@@ -31,6 +31,14 @@ class AppMenu extends React.Component<WithStyles<typeof styles>> {
               {PathStrings.home}
             </MenuItem>
           </Link>
+          <Link to={PathStrings.blockchainPath}>
+            <MenuItem>
+              <IconButton className={this.props.classes.button} aria-label={PathStrings.blockchain}>
+                <Home />
+              </IconButton>
+              {PathStrings.blockchain}
+            </MenuItem>
+          </Link>
           <Link to={PathStrings.aboutPath}>
             <MenuItem>
               <IconButton className={this.props.classes.button} aria-label={PathStrings.about}>
