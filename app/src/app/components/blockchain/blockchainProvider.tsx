@@ -4,8 +4,8 @@ import Web3 from 'web3'
 import { ethers } from 'ethers'
 
 //import { fetchRequest, RequestDataAction } from '../../../store/helpers/about/actions'
-import { BlockchainInfoProps } from '../../store/blockchain/types'
-import { addData } from '../../store/blockchain/actions'
+import { BlockchainInfoProps, BlockchainObjectProps } from '../../store/blockchain/types'
+import { addInfo, addObjects } from '../../store/blockchain/actions'
 import { BlockchainStrings } from '../../utils/strings'
 
 interface BlockchainProviderProps {
@@ -16,18 +16,20 @@ export const setBlockchain = async (props: BlockchainProviderProps) => {
 
   const ethereum = (window as any).ethereum
   let web3: any = (window as any).web3
-  let networkName = ''
-  let networkChainId = ''
-  let networkENSAddress = ''
-  let account = ''
   let blockchainProvider = undefined
 
-  let providerData: BlockchainInfoProps = { APIProvider: '',
-                                        networkName: '',
-                                        networkChainId: '',
-                                        networkENSAddress: '',
-                                        account: ''
-                                      }
+  let infoData: BlockchainInfoProps = {
+    APIName: '',
+    networkName: '',
+    networkChainId: '',
+    networkENSAddress: '',
+    account: ''
+  }
+
+  let objectData: BlockchainObjectProps = {
+    web3: {},
+    ethers: {}
+  }
 
   if (ethereum) {
     //console.log('New MetaMask!')
@@ -40,12 +42,12 @@ export const setBlockchain = async (props: BlockchainProviderProps) => {
       console.log(error)
     }
     await web3.eth.getAccounts((error: any, accounts: any) => {
-        account = accounts[0]
+      infoData.account = accounts[0]
     })
     .catch((error: any) => {
        console.log('Error!: ', error)
     })
-    web3.eth.defaultAccount = account
+    web3.eth.defaultAccount = infoData.account
 
   } else if (typeof web3 !== 'undefined') {
     //console.log('In legacy web3 provider')
@@ -61,17 +63,15 @@ export const setBlockchain = async (props: BlockchainProviderProps) => {
 
   await blockchainProvider.getNetwork().then(function(chainObj: any) {
     //console.log('Name: ', chainObj.name, ' ChainID: ', chainObj.chainId, 'ENS Address: ', chainObj.ensAddress)
-    networkName = chainObj.name
-    networkChainId = chainObj.chainId
-    networkENSAddress = chainObj.ensAddress
+    infoData.networkName = chainObj.name
+    infoData.networkChainId = chainObj.chainId
+    infoData.networkENSAddress = chainObj.ensAddress
   })
 
-  providerData = { APIProvider: 'web3 ' + web3.version,
-                   networkName: networkName,
-                   networkChainId: networkChainId,
-                   networkENSAddress: networkENSAddress,
-                   account: account
-                 }
+  infoData.APIName = 'web3 ' + web3.version
+  objectData.web3 = web3
+  objectData.ethers = blockchainProvider
 
-  props.store.dispatch(addData(providerData))
+  props.store.dispatch(addInfo(infoData))
+  props.store.dispatch(addObjects(objectData))
 }

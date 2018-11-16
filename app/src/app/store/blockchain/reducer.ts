@@ -1,18 +1,20 @@
-import { BlockchainActionTypes, BlockchainAction, BlockchainInfoProps } from './types'
+import { BlockchainActionTypes, BlockchainAction, BlockchainProps } from './types'
 
-const initialState: BlockchainInfoProps = {
-  APIProvider: '',
+const initialState: BlockchainProps = {
+  web3: {},
+  ethers: {},
+  APIName: '',
   networkName: '',
   networkChainId: '',
   networkENSAddress: '',
   account: ''
 }
 
-export const blockchainReducer = (state: BlockchainInfoProps = initialState, action: BlockchainAction): BlockchainInfoProps => {
-  switch (action.type) {
-    case BlockchainActionTypes.ADD_DATA:
-      return (<any>Object).assign({}, state, action.payload)
-    default:
-      return state
+export const blockchainReducer = (state: BlockchainProps = initialState, action: BlockchainAction): BlockchainProps => {
+  if ( (action.type == BlockchainActionTypes.ADD_INFO ) || (action.type == BlockchainActionTypes.ADD_OBJECTS ) ) {
+    console.log(action.payload)
+    return (<any>Object).assign({}, state, action.payload)
+  } else {
+    return state
   }
 }

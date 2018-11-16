@@ -32,7 +32,7 @@ class BlockchainStrings {
   static readonly port = '8545'
 
   static heading = 'Blockchain Data'
-  static APIProvider = 'APIProvider: '
+  static APIName = 'APIProvider: '
   static networkName = 'Provider Name: '
   static networkChainId = 'Network Chain ID: '
   static ENSAddress = 'Network ENS Address: '

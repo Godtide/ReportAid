@@ -1,8 +1,15 @@
-import { BlockchainInfoProps, BlockchainActionTypes, AddDataAction } from './types'
+import { BlockchainInfoProps, BlockchainObjectProps, BlockchainActionTypes, AddInfoAction, AddObjectsAction } from './types'
 
-export const addData = (payload: BlockchainInfoProps): AddDataAction => {
+export const addObjects = (payload: BlockchainObjectProps): AddObjectsAction => {
   return {
-    type: BlockchainActionTypes.ADD_DATA,
+    type: BlockchainActionTypes.ADD_OBJECTS,
+    payload
+  }
+}
+
+export const addInfo = (payload: BlockchainInfoProps): AddInfoAction => {
+  return {
+    type: BlockchainActionTypes.ADD_INFO,
     payload
   }
 }

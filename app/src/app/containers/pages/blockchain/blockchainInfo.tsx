@@ -18,12 +18,10 @@ class BlockchainInfo extends React.Component<WithStyles<typeof styles> & Blockch
 
   render() {
 
-    //const appButtonProps = { label: 'Get Blockchain', tip: 'Sets the blockchain', submit: this.handleSubmit }
-
     return (
       <div>
         <h2>{BlockchainStrings.heading}</h2>
-        <p><b>{BlockchainStrings.APIProvider}</b>{this.props.APIProvider}</p>
+        <p><b>{BlockchainStrings.APIName}</b>{this.props.APIName}</p>
         <p><b>{BlockchainStrings.networkName}</b>{this.props.networkName}</p>
         <p><b>{BlockchainStrings.networkChainId}</b>{this.props.networkChainId}</p>
         <p><b>{BlockchainStrings.ENSAddress}</b>{this.props.networkENSAddress}</p>
@@ -36,7 +34,7 @@ class BlockchainInfo extends React.Component<WithStyles<typeof styles> & Blockch
 
 const mapStateToProps = (state: ApplicationState): BlockchainInfoProps => {
   return {
-    APIProvider: state.blockchain.APIProvider,
+    APIName: state.blockchain.APIName,
     networkName: state.blockchain.networkName,
     networkChainId: state.blockchain.networkChainId,
     networkENSAddress: state.blockchain.networkENSAddress,
@@ -44,6 +42,10 @@ const mapStateToProps = (state: ApplicationState): BlockchainInfoProps => {
   }
 }
 
-export default withTheme(withStyles(styles)(connect(
+/* export default withTheme(withStyles(styles)(connect<BlockchainInfoProps,void,{}>(
+  mapStateToProps
+)(BlockchainInfo)))*/
+
+export default withTheme(withStyles(styles)(connect<BlockchainInfoProps, void, void, ApplicationState>(
   mapStateToProps
 )(BlockchainInfo)))
