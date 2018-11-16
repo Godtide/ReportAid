@@ -3,7 +3,6 @@ import { Store } from 'redux'
 import Web3 from 'web3'
 import { ethers } from 'ethers'
 
-//import { fetchRequest, RequestDataAction } from '../../../store/helpers/about/actions'
 import { BlockchainInfoProps, BlockchainObjectProps } from '../../store/blockchain/types'
 import { addInfo, addObjects } from '../../store/blockchain/actions'
 import { BlockchainStrings } from '../../utils/strings'
@@ -22,8 +21,7 @@ export const setBlockchain = async (props: BlockchainProviderProps) => {
     APIName: '',
     networkName: '',
     networkChainId: '',
-    networkENSAddress: '',
-    account: ''
+    networkENSAddress: ''
   }
 
   let objectData: BlockchainObjectProps = {
@@ -41,13 +39,6 @@ export const setBlockchain = async (props: BlockchainProviderProps) => {
     } catch (error) {
       console.log(error)
     }
-    await web3.eth.getAccounts((error: any, accounts: any) => {
-      infoData.account = accounts[0]
-    })
-    .catch((error: any) => {
-       console.log('Error!: ', error)
-    })
-    web3.eth.defaultAccount = infoData.account
 
   } else if (typeof web3 !== 'undefined') {
     //console.log('In legacy web3 provider')

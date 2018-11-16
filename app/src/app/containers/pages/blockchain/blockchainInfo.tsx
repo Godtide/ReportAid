@@ -7,10 +7,9 @@ import { withTheme, styles } from '../../../styles/theme'
 
 import { BlockchainStrings } from '../../../utils/strings'
 
-//import { fetchRequest, RequestDataAction } from '../../../store/helpers/about/actions'
-import { BlockchainInfoProps } from '../../../store/blockchain/types'
+import { BlockchainProps } from '../../../store/blockchain/types'
 
-class BlockchainInfo extends React.Component<WithStyles<typeof styles> & BlockchainInfoProps> {
+class BlockchainInfo extends React.Component<WithStyles<typeof styles> & BlockchainProps> {
 
   constructor (props: any) {
     super(props)
@@ -32,20 +31,18 @@ class BlockchainInfo extends React.Component<WithStyles<typeof styles> & Blockch
   }
 }
 
-const mapStateToProps = (state: ApplicationState): BlockchainInfoProps => {
+const mapStateToProps = (state: ApplicationState): BlockchainProps => {
   return {
     APIName: state.blockchain.APIName,
     networkName: state.blockchain.networkName,
     networkChainId: state.blockchain.networkChainId,
     networkENSAddress: state.blockchain.networkENSAddress,
-    account: state.blockchain.account
+    account: state.blockchain.account,
+    web3: state.blockchain.web3,
+    ethers: state.blockchain.ethers
   }
 }
 
-/* export default withTheme(withStyles(styles)(connect<BlockchainInfoProps,void,{}>(
-  mapStateToProps
-)(BlockchainInfo)))*/
-
-export default withTheme(withStyles(styles)(connect<BlockchainInfoProps, void, void, ApplicationState>(
+export default withTheme(withStyles(styles)(connect<BlockchainProps, void, void, ApplicationState>(
   mapStateToProps
 )(BlockchainInfo)))

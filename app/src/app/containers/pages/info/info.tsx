@@ -45,18 +45,6 @@ const mapStateToProps = (state: ApplicationState, ownProps: StateProps): InfoPro
   }
 }
 
-/* const mapDispatchToProps = (dispatch: Dispatch<AnyAction>, ownProps: AboutProps) => {
-  console.log('bollox', ownProps.title, ownProps.data)
-  const type = AboutActionTypes.REQ_DATA
-  const payload = {
-    title: ownProps.title,
-    data: ownProps.data
-  }
-  return bindActionCreators<AboutRequestDataAction, any>({
-    onSomeEvent: AboutFetchRequest(type, payload)
-  },dispatch)
-} */
-
-export default withTheme(withStyles(styles)(connect(
+export default withTheme(withStyles(styles)(connect<InfoProps, {}, StateProps, ApplicationState>(
   mapStateToProps
 )(Info)))
