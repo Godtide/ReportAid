@@ -4,8 +4,7 @@ import { HashRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import CssBaseline from '@material-ui/core/CssBaseline'
 
-import { setBlockchain } from './app/components/blockchain/blockchainProvider'
-import { setAccount } from './app/components/blockchain/blockchainAccount'
+import { setBlockchain } from './app/components/blockchain/blockchain'
 
 import  Main from './app/containers/main'
 import { configureStore } from './app/store'
@@ -13,7 +12,6 @@ import { configureStore } from './app/store'
 const initialState = (window as any).initialReduxState
 const store = configureStore(initialState)
 setBlockchain({store: store})
-setTimeout(setAccount, 5000, {store: store})
 
 const App = () => (
     <Provider store={store}>

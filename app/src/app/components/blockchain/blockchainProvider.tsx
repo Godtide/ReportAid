@@ -11,7 +11,7 @@ interface BlockchainProviderProps {
   store: Store
 }
 
-export const setBlockchain = async (props: BlockchainProviderProps) => {
+export const setProvider = async (props: BlockchainProviderProps) => {
 
   const ethereum = (window as any).ethereum
   let web3: any = (window as any).web3

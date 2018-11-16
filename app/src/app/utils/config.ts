@@ -1,12 +1,24 @@
-import * as React from 'react'
-//import { Blockchain } from './blockchain'
-import { ethers } from 'ethers'
+class Paths {
 
-interface OrgsContractProps {
-  blockchain: any
+  static readonly home='/'
+  static readonly blockchain = '/blockchain-data'
+  static readonly about='/about'
+  static readonly overview='/overview'
+  static readonly help='/help'
+  static readonly writer='/create'
+  static readonly reader='/fetch'
 }
 
-export class OrgsContract extends React.Component<OrgsContractProps> {
+class Blockchain {
+
+  // Using web3 via MetaMask, so these aren't necessary, really
+  static readonly host = 'localhost'
+  static readonly port = '8545'
+
+  static readonly interval = 3000
+}
+
+class OrgsContract {
 
   static organisationsABI = [
     "event OrganisationSet(string _reference, string _name, string _type)",
@@ -23,16 +35,6 @@ export class OrgsContract extends React.Component<OrgsContractProps> {
   */
 
   static organisationsAddress = "0x749f861de9e83807e0ebaadaedd88a2f645dc176"
-
-  organisations: any
-
-  constructor (props: OrgsContractProps) {
-    super(props)
-    //const blockchain = props.blockchain.getProvider()
-    //this.organisations = new ethers.Contract(OrgsContract.organisationsAddress, OrgsContract.organisationsABI, blockchain)
-  }
-
-  getOrganisations () {
-    return this.organisations
-  }
 }
+
+export { Paths, Blockchain, OrgsContract }

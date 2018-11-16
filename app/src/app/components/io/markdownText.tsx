@@ -5,13 +5,10 @@ interface MarkdownTextProps {
   text: string
 }
 
-export class MarkdownText extends React.Component<MarkdownTextProps> {
+export const MarkdownText: React.SFC<MarkdownTextProps> = (props: MarkdownTextProps) => {
 
-  render() {
-    //console.log(this.props.text)
     return (
       <Markdown escapeHtml={false} source={this.props.text} />
-      //<p>{this.props.text}</p>
     )
   }
 }
