@@ -1,21 +1,17 @@
 import { setProvider } from '../../components/blockchain/blockchainProvider'
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
+import { ApplicationState } from '../../store'
 import { addInfo, addObjects } from '../../store/blockchain/actions'
 
-interface BlockchainProviderProps {
-  addInfo: () => any,
-  addObjects: () => any
-}
-
-const mapDispatchToProps = (dispatch: Dispatch, ownProps: any): BlockchainProviderProps => {
+const mapDispatchToProps = (dispatch: Dispatch, ownProps: any): any => {
   return({
     addInfo: () => {dispatch(addInfo(ownProps))},
     addObjects: () => {dispatch(addObjects(ownProps))}
   })
 }
 
-export const SetProvider = connect<void,void,void,void>(
+export const SetProvider = connect<void, any, void, ApplicationState>(
     null, mapDispatchToProps)(
     setProvider
 )

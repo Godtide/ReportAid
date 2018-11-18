@@ -13,6 +13,11 @@ interface BlockchainProviderProps {
   store: Store
 }
 
+/* interface BlockchainProviderProps {
+  addInfo: () => any,
+  addObjects: () => any
+} */
+
 export const setProvider = (props: BlockchainProviderProps): any => {
 
   let result = true
