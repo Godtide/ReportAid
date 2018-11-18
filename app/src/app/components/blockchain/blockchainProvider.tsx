@@ -13,7 +13,7 @@ interface BlockchainProviderProps {
   store: Store
 }
 
-export const setProvider = (props: BlockchainProviderProps): Boolean => {
+export const setProvider = (props: BlockchainProviderProps): any => {
 
   let result = true
   const store = props.store
