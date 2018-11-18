@@ -11,7 +11,7 @@ interface BlockchainProviderProps {
 
 export const setBlockchain = (props: BlockchainProviderProps) => {
 
-  (window as any).setInterval(() => {
+  (window as Window).setInterval(() => {
     setProvider({store: props.store})
     setAccount({store: props.store})
   }, Blockchain.interval)

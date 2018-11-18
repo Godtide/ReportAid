@@ -13,21 +13,24 @@ interface BlockchainProviderProps {
 
 export const setProvider = async (props: BlockchainProviderProps) => {
 
-  const ethereum = (window as any).ethereum
-  let web3: any = (window as any).web3
-  let blockchainProvider = undefined
+  const store = props.store
+  const state = store.getState()
 
   let infoData: BlockchainInfoProps = {
-    APIName: '',
-    networkName: '',
-    networkChainId: '',
-    networkENSAddress: ''
+    APIName: state.blockchain.APIName,
+    networkName: state.blockchain.networkName,
+    networkChainId: state.blockchain.networkChainId,
+    networkENSAddress: state.blockchain.networkENSAddress
   }
 
   let objectData: BlockchainObjectProps = {
-    web3: {},
-    ethers: {}
+    web3: state.blockchain.web3 as Web3,
+    ethers: state.blockchain.ethereum
   }
+
+  let blockchainProvider = undefined
+  let ethereum = (window as any).ethereum
+  let web3 = (window as any).web3
 
   if (ethereum) {
     //console.log('New MetaMask!')
@@ -50,19 +53,52 @@ export const setProvider = async (props: BlockchainProviderProps) => {
     blockchainProvider = new ethers.providers.Web3Provider(web3)
   }
 
-  //console.log('Account: ', account)
+  if ( objectData.web3.hasOwnProperty('version') ) {
 
-  await blockchainProvider.getNetwork().then(function(chainObj: any) {
-    //console.log('Name: ', chainObj.name, ' ChainID: ', chainObj.chainId, 'ENS Address: ', chainObj.ensAddress)
-    infoData.networkName = chainObj.name
-    infoData.networkChainId = chainObj.chainId
-    infoData.networkENSAddress = chainObj.ensAddress
-  })
+    let thisInfoData: BlockchainInfoProps = {
+      APIName: infoData.APIName,
+      networkName: '',
+      networkChainId: '',
+      networkENSAddress: ''
+    }
 
-  infoData.APIName = 'web3 ' + web3.version
-  objectData.web3 = web3
-  objectData.ethers = blockchainProvider
+    await blockchainProvider.getNetwork().then(function(chainObj: any) {
+      thisInfoData.networkName = chainObj.name
+      thisInfoData.networkChainId = chainObj.chainId
+      thisInfoData.networkENSAddress = chainObj.ensAddress
+    })
 
-  props.store.dispatch(addInfo(infoData))
-  props.store.dispatch(addObjects(objectData))
+    if ( thisInfoData.networkName != infoData.networkName ) {
+      console.log('New call ',
+                  'Name: ', thisInfoData.networkName,
+                  ' ChainID: ', thisInfoData.networkChainId,
+                  ' ENS Address: ', thisInfoData.networkENSAddress)
+      infoData.APIName = 'web3 ' + web3.version
+      infoData.networkName = thisInfoData.networkName
+      infoData.networkChainId = thisInfoData.networkChainId
+      infoData.networkENSAddress = thisInfoData.networkENSAddress
+      objectData.web3 = web3
+      objectData.ethers = blockchainProvider
+
+      props.store.dispatch(addInfo(infoData))
+      props.store.dispatch(addObjects(objectData))
+    }
+
+  } else {
+
+    await blockchainProvider.getNetwork().then(function(chainObj: any) {
+      console.log('First call ', 'Name: ', chainObj.name, ' ChainID: ', chainObj.chainId, 'ENS Address: ', chainObj.ensAddress)
+      infoData.networkName = chainObj.name
+      infoData.networkChainId = chainObj.chainId
+      infoData.networkENSAddress = chainObj.ensAddress
+    })
+
+    infoData.APIName = 'web3 ' + web3.version
+    objectData.web3 = web3
+    objectData.ethers = blockchainProvider
+
+    props.store.dispatch(addInfo(infoData))
+    props.store.dispatch(addObjects(objectData))
+  }
+
 }

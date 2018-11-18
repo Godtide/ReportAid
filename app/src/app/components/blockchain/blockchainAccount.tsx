@@ -27,6 +27,7 @@ export const setAccount = async (props: OwnProps) => {
 
     await web3.eth.getAccounts((error: any, accounts: any) => {
       if ( accountData.account != accounts[0] ) {
+        //console.log('In setting account')
         accountData.account = accounts[0]
         web3.eth.defaultAccount = accountData.account
         store.dispatch(addAccount(accountData))
