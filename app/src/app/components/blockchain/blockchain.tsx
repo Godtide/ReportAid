@@ -15,5 +15,4 @@ export const setBlockchain = (props: BlockchainProviderProps) => {
     setProvider({store: props.store})
     setAccount({store: props.store})
   }, Blockchain.interval)
-
 }
