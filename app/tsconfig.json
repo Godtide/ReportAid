@@ -7,6 +7,7 @@
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "noImplicitAny": true,
+    "noImplicitThis": false,
     "keyofStringsOnly": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,

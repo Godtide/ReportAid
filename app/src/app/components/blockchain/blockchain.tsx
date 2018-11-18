@@ -2,7 +2,7 @@ import { Store } from 'redux'
 
 import { Blockchain } from '../../utils/config'
 
-import { setProvider } from './blockchainProvider'
+import { SetProvider } from './blockchainProvider'
 import { setAccount } from './blockchainAccount'
 
 interface BlockchainProviderProps {
@@ -11,9 +11,8 @@ interface BlockchainProviderProps {
 
 export const setBlockchain = (props: BlockchainProviderProps) => {
 
-  if (setProvider({store: props.store}) ) {
-    (window as Window).setInterval(() => {
-      setAccount({store: props.store})
-    }, Blockchain.interval)
-  }
+  const provider = new SetProvider()
+  (window as Window).setInterval(() => {
+    setAccount({store: props.store})
+  }, Blockchain.interval)
 }
