@@ -45,30 +45,29 @@ export const setProvider = (props: BlockchainProviderProps) => {
       thisInfoData.networkName = chainObj.name
       thisInfoData.networkChainId = chainObj.chainId
       thisInfoData.networkENSAddress = chainObj.ensAddress
+
+      if ( thisInfoData.networkName != infoData.networkName ) {
+        console.log('New call ',
+                    'Name: ', thisInfoData.networkName,
+                    ' ChainID: ', thisInfoData.networkChainId,
+                    ' ENS Address: ', thisInfoData.networkENSAddress)
+        infoData.networkName = thisInfoData.networkName
+        infoData.networkChainId = thisInfoData.networkChainId
+        infoData.networkENSAddress = thisInfoData.networkENSAddress
+
+        let providers = _getProvider()
+        let web3 = providers[0]
+        let blockchainProvider = providers[1]
+
+        objectData.web3 = web3
+        objectData.ethers = blockchainProvider
+
+        props.store.dispatch(addInfo(infoData))
+        props.store.dispatch(addObjects(objectData))
+      }
     }).catch(function (error: any) {
       console.log(error)
     })
-
-    if ( thisInfoData.networkName != infoData.networkName ) {
-      console.log('New call ',
-                  'Name: ', thisInfoData.networkName,
-                  ' ChainID: ', thisInfoData.networkChainId,
-                  ' ENS Address: ', thisInfoData.networkENSAddress)
-      infoData.networkName = thisInfoData.networkName
-      infoData.networkChainId = thisInfoData.networkChainId
-      infoData.networkENSAddress = thisInfoData.networkENSAddress
-
-      let providers = _getProvider()
-      let web3 = providers[0]
-      let blockchainProvider = providers[1]
-
-      objectData.web3 = web3
-      objectData.ethers = blockchainProvider
-
-      props.store.dispatch(addInfo(infoData))
-      props.store.dispatch(addObjects(objectData))
-    }
-
   } else {
 
     let providers = _getProvider()
@@ -80,16 +79,17 @@ export const setProvider = (props: BlockchainProviderProps) => {
       infoData.networkName = chainObj.name
       infoData.networkChainId = chainObj.chainId
       infoData.networkENSAddress = chainObj.ensAddress
+      infoData.APIName = 'web3 ' + web3.version
+
+      objectData.web3 = web3
+      objectData.ethers = blockchainProvider
+
+      props.store.dispatch(addInfo(infoData))
+      props.store.dispatch(addObjects(objectData))
+
     }).catch(function (error: any) {
       console.log(error)
     })
-
-    infoData.APIName = 'web3 ' + web3.version
-    objectData.web3 = web3
-    objectData.ethers = blockchainProvider
-
-    props.store.dispatch(addInfo(infoData))
-    props.store.dispatch(addObjects(objectData))
   }
 
 }
