@@ -4,16 +4,16 @@ import { Switch, Route } from 'react-router-dom'
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../styles/theme'
 
-import BlockchainInfo from './pages/blockchain/blockchainInfo'
+import { BlockchainInfo } from './pages/blockchain/blockchainInfo'
 
-import Info from './pages/info/info'
+import { Info } from './pages/info/info'
 import { InfoTypes } from './pages/info/types'
-import IATIWriter from './pages/IATIWriter/IATIWriter'
-import IATIReader from './pages/IATIReader/IATIReader'
+import { IATIWriter } from './pages/IATIWriter/IATIWriter'
+import { IATIReader } from './pages/IATIReader/IATIReader'
 
 import { PathStrings, WriterStrings, ReaderStrings } from '../utils/strings'
 
-class Content extends React.Component<WithStyles<typeof styles>> {
+class AppContent extends React.Component<WithStyles<typeof styles>> {
 
   render() {
 
@@ -59,4 +59,4 @@ class Content extends React.Component<WithStyles<typeof styles>> {
   }
 }
 
-export default withTheme(withStyles(styles)(Content))
+export const Content = withTheme(withStyles(styles)(AppContent))

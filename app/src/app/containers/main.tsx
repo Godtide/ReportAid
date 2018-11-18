@@ -7,11 +7,11 @@ import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import { withTheme, styles } from '../styles/theme'
 
 // import Content from './content'
-import AppMenu from './appMenu'
-import Content from './content'
+import { AppMenu } from './appMenu'
+import { Content } from './content'
 import { AppStrings } from '../utils/strings'
 
-class Main extends React.Component<WithStyles<typeof styles>> {
+class MainLayout extends React.Component<WithStyles<typeof styles>> {
 
   render() {
 
@@ -65,4 +65,4 @@ class Main extends React.Component<WithStyles<typeof styles>> {
   }
 }
 
-export default withTheme(withStyles(styles)(Main))
+export const Main = withTheme(withStyles(styles)(MainLayout))

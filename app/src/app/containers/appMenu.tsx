@@ -16,7 +16,7 @@ import { withTheme, styles } from '../styles/theme'
 
 import { PathStrings } from '../utils/strings'
 
-class AppMenu extends React.Component<WithStyles<typeof styles>> {
+class ApplicationMenu extends React.Component<WithStyles<typeof styles>> {
 
   public render() {
 
@@ -85,4 +85,4 @@ class AppMenu extends React.Component<WithStyles<typeof styles>> {
   }
 }
 
-export default withTheme(withStyles(styles)(AppMenu))
+export const AppMenu = withTheme(withStyles(styles)(ApplicationMenu))

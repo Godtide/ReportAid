@@ -22,7 +22,7 @@ export interface IATIWriterProps {
 // Combine both state + dispatch props - as well as any props we want to pass - in a union type.
 // type AllProps = IATIWriterProps // & PropsFromDispatch
 
-class IATIWriter extends React.Component<WithStyles<typeof styles> & IATIWriterProps> {
+class Writer extends React.Component<WithStyles<typeof styles> & IATIWriterProps> {
 
   render() {
     return (
@@ -52,7 +52,7 @@ const mapStateToProps = (state: ApplicationState, ownProps: IATIWriterProps): IA
 
 // Now let's connect our component!
 // With redux v4's improved typings, we can finally omit generics here.
-export default withTheme(withStyles(styles)(connect(
+export const IATIWriter = withTheme(withStyles(styles)(connect(
   mapStateToProps,
   //mapDispatchToProps
-)(IATIWriter)))
+)(Writer)))

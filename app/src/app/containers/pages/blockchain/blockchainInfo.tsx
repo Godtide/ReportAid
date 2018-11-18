@@ -9,7 +9,7 @@ import { BlockchainStrings } from '../../../utils/strings'
 
 import { BlockchainProps } from '../../../store/blockchain/types'
 
-class BlockchainInfo extends React.Component<WithStyles<typeof styles> & BlockchainProps> {
+class Info extends React.Component<WithStyles<typeof styles> & BlockchainProps> {
 
   constructor (props: any) {
     super(props)
@@ -43,6 +43,6 @@ const mapStateToProps = (state: ApplicationState): BlockchainProps => {
   }
 }
 
-export default withTheme(withStyles(styles)(connect<BlockchainProps, void, void, ApplicationState>(
+export const BlockchainInfo = withTheme(withStyles(styles)(connect<BlockchainProps, void, void, ApplicationState>(
   mapStateToProps
-)(BlockchainInfo)))
+)(Info)))

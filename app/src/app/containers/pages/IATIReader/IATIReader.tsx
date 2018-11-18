@@ -23,7 +23,7 @@ export interface IATIReaderProps {
 // Combine both state + dispatch props - as well as any props we want to pass - in a union type.
 // type AllProps = IATIReaderProps // & PropsFromDispatch
 
-class IATIReader extends React.Component<WithStyles<typeof styles> & IATIReaderProps> {
+class Reader extends React.Component<WithStyles<typeof styles> & IATIReaderProps> {
 
   render() {
     return (
@@ -53,7 +53,7 @@ const mapStateToProps = (state: ApplicationState, ownProps: IATIReaderProps): IA
 
 // Now let's connect our component!
 // With redux v4's improved typings, we can finally omit generics here.
-export default withTheme(withStyles(styles)(connect(
+export const IATIReader = withTheme(withStyles(styles)(connect(
   mapStateToProps,
   //mapDispatchToProps
-)(IATIReader)))
+)(Reader)))

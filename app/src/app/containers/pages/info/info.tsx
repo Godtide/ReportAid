@@ -17,7 +17,7 @@ interface StateProps {
 
 type AllProps = InfoProps & StateProps
 
-class Info extends React.Component<WithStyles<typeof styles> & AllProps> {
+class AppInfo extends React.Component<WithStyles<typeof styles> & AllProps> {
 
   render() {
 
@@ -45,6 +45,6 @@ const mapStateToProps = (state: ApplicationState, ownProps: StateProps): InfoPro
   }
 }
 
-export default withTheme(withStyles(styles)(connect<InfoProps, {}, StateProps, ApplicationState>(
+export const Info = withTheme(withStyles(styles)(connect<InfoProps, {}, StateProps, ApplicationState>(
   mapStateToProps
-)(Info)))
+)(AppInfo)))

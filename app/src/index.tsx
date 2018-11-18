@@ -6,7 +6,7 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 
 import { setBlockchain } from './app/components/blockchain/blockchain'
 
-import  Main from './app/containers/main'
+import { Main } from './app/containers/main'
 import { configureStore } from './app/store'
 
 const initialState = (window as any).initialReduxState
