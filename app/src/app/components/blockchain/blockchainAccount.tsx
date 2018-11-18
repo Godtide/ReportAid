@@ -13,9 +13,9 @@ interface OwnProps {
   store: Store
 }
 
-export const setAccount = async (props: OwnProps) => {
-
-  //console.log('In setting account')
+export const setAccount = (props: OwnProps): Boolean => {
+  
+  let result = true
   const store = props.store
   const state = store.getState()
   const web3 = state.blockchain.web3 as Web3
@@ -25,16 +25,18 @@ export const setAccount = async (props: OwnProps) => {
 
   if ( web3.hasOwnProperty('version') ) {
 
-    await web3.eth.getAccounts((error: any, accounts: any) => {
+    web3.eth.getAccounts().then(function(accounts: any) {
       if ( accountData.account != accounts[0] ) {
         //console.log('In setting account')
         accountData.account = accounts[0]
         web3.eth.defaultAccount = accountData.account
         store.dispatch(addAccount(accountData))
       }
-    })
-    .catch((error: any) => {
-       console.log('Error!: ', error)
+    }).catch(function (error: any) {
+      console.log(error)
+      result = false
     })
   }
+
+  return result
 }

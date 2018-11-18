@@ -13,8 +13,9 @@ interface BlockchainProviderProps {
   store: Store
 }
 
-export const setProvider = (props: BlockchainProviderProps) => {
+export const setProvider = (props: BlockchainProviderProps): Boolean => {
 
+  let result = true
   const store = props.store
   const state = store.getState()
   let objectData: BlockchainObjectProps = {
@@ -69,6 +70,9 @@ export const setProvider = (props: BlockchainProviderProps) => {
 
     }).catch(function (error: any) {
       console.log(error)
+      result = false
     })
   }
+
+  return result
 }
