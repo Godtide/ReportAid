@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 // import { Dispatch } from 'redux'
-import { MarkdownText } from '../../../containers/io/markdownText'
+import { MarkdownText } from '../../../components/io/markdownText'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'

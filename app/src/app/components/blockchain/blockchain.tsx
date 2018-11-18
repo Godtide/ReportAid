@@ -1,6 +1,6 @@
 import { Store } from 'redux'
 
-import { Blockchain } from '../../../utils/config'
+import { Blockchain } from '../../utils/config'
 
 import { setProvider } from './blockchainProvider'
 import { setAccount } from './blockchainAccount'

@@ -7,8 +7,7 @@ interface MarkdownTextProps {
 
 export const MarkdownText: React.SFC<MarkdownTextProps> = (props: MarkdownTextProps) => {
 
-    return (
-      <Markdown escapeHtml={false} source={this.props.text} />
-    )
-  }
+  return (
+    <Markdown escapeHtml={false} source={props.text} />
+  )
 }
