@@ -13,7 +13,7 @@ interface BlockchainProviderProps {
   store: Store
 }
 
-export const setProvider = async (props: BlockchainProviderProps) => {
+export const setProvider = (props: BlockchainProviderProps) => {
 
   const store = props.store
   const state = store.getState()
@@ -26,7 +26,7 @@ export const setProvider = async (props: BlockchainProviderProps) => {
   }
 
   let objectData: BlockchainObjectProps = {
-    web3: state.blockchain.web3 as Web3,
+    web3: state.blockchain.web3,
     ethers: state.blockchain.ethers
   }
 
@@ -39,10 +39,14 @@ export const setProvider = async (props: BlockchainProviderProps) => {
       networkENSAddress: ''
     }
 
-    await (objectData.ethers as Provider).getNetwork().then(function(chainObj: any) {
+    const ethers = (objectData.ethers as Provider)
+    ethers.getNetwork().then(function(chainObj: any) {
+      //console.log('Next call ', 'Name: ', chainObj.name, ' ChainID: ', chainObj.chainId, 'ENS Address: ', chainObj.ensAddress)
       thisInfoData.networkName = chainObj.name
       thisInfoData.networkChainId = chainObj.chainId
       thisInfoData.networkENSAddress = chainObj.ensAddress
+    }).catch(function (error: any) {
+      console.log(error)
     })
 
     if ( thisInfoData.networkName != infoData.networkName ) {
@@ -71,11 +75,13 @@ export const setProvider = async (props: BlockchainProviderProps) => {
     let web3 = providers[0]
     let blockchainProvider = providers[1]
 
-    await blockchainProvider.getNetwork().then(function(chainObj: any) {
+    blockchainProvider.getNetwork().then(function(chainObj: any) {
       console.log('First call ', 'Name: ', chainObj.name, ' ChainID: ', chainObj.chainId, 'ENS Address: ', chainObj.ensAddress)
       infoData.networkName = chainObj.name
       infoData.networkChainId = chainObj.chainId
       infoData.networkENSAddress = chainObj.ensAddress
+    }).catch(function (error: any) {
+      console.log(error)
     })
 
     infoData.APIName = 'web3 ' + web3.version
