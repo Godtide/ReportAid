@@ -6,8 +6,7 @@ const initialState: BlockchainProps = {
   networkChainId: '',
   networkENSAddress: '',
   account: '',
-  web3: {},
-  ethers: {},
+  provider: {},
 }
 
 export const blockchainReducer = (state: BlockchainProps = initialState, action: BlockchainAction): BlockchainProps => {

@@ -30,8 +30,7 @@ export interface BlockchainAccountProps {
 }
 
 export interface BlockchainObjectProps {
-  web3: object
-  ethers: object
+  provider: object
 }
 
 export const enum BlockchainActionTypes {

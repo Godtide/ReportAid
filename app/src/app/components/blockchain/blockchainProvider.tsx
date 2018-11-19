@@ -19,11 +19,10 @@ export const setProvider = (props: BlockchainProviderProps): boolean => {
   const store = props.store
   const state = store.getState()
   let objectData: BlockchainObjectProps = {
-    web3: state.blockchain.web3,
-    ethers: state.blockchain.ethers
+    provider: state.blockchain.provider
   }
 
-  if ( !(objectData.web3.hasOwnProperty('version')) ) {
+  if ( !(objectData.provider.hasOwnProperty('getDefaultProvider')) ) {
 
     let ethereum = (window as any).ethereum
     let web3 = (window as any).web3
@@ -63,8 +62,7 @@ export const setProvider = (props: BlockchainProviderProps): boolean => {
       infoData.networkENSAddress = chainObj.ensAddress
       infoData.APIName = 'web3 ' + web3.version
 
-      objectData.web3 = web3
-      objectData.ethers = blockchainProvider
+      objectData.provider = blockchainProvider
 
       props.store.dispatch(addInfo(infoData))
       props.store.dispatch(addObjects(objectData))

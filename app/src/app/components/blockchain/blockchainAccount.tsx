@@ -1,5 +1,4 @@
 import { Store } from 'redux'
-import Web3 from 'web3'
 
 import { BlockchainAccountProps } from '../../store/blockchain/types'
 import { addAccount } from '../../store/blockchain/actions'
@@ -10,21 +9,21 @@ interface OwnProps {
 
 export const setAccount = (props: OwnProps): boolean => {
 
+  //console.log('In set account')
   let result = true
   const store = props.store
   const state = store.getState()
-  const web3 = state.blockchain.web3 as Web3
+  const provider = state.blockchain.provider
   let accountData: BlockchainAccountProps = {
     account: state.blockchain.account
   }
 
-  if ( web3.hasOwnProperty('version') ) {
-
-    web3.eth.getAccounts().then(function(accounts: any) {
-      if ( accountData.account != accounts[0] ) {
-        //console.log('In setting account')
-        accountData.account = accounts[0]
-        web3.eth.defaultAccount = accountData.account
+  if ( provider.hasOwnProperty('connection') ) {
+    const signer = provider.getSigner()
+    signer.getAddress().then(function(account: string) {
+      if ( accountData.account != account ) {
+        accountData.account = account
+        console.log ('Setting account', account)
         store.dispatch(addAccount(accountData))
       }
     }).catch(function (error: any) {
