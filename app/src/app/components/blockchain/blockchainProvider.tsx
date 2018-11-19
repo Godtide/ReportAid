@@ -1,27 +1,26 @@
-//import * as React from 'react'
-import Web3 from 'web3'
-import { connect } from 'react-redux'
-import { Dispatch } from 'redux'
-import { ethers } from 'ethers'
-import { BlockchainProps, BlockchainInfoProps, BlockchainObjectProps } from '../../store/blockchain/types'
-import { BlockchainStrings } from '../../utils/strings'
-import { ApplicationState } from '../../store'
-import { addInfo, addObjects } from '../../store/blockchain/actions'
+import { Store } from 'redux'
 
-interface ProviderDispatchProps {
-    addInfo(props: BlockchainInfoProps): void,
-    addObjects(props: BlockchainObjectProps): void
+import Web3 from 'web3'
+import { ethers } from 'ethers'
+
+// import { Provider } from 'ethers/providers/abstract-provider'
+
+import { BlockchainInfoProps, BlockchainObjectProps } from '../../store/blockchain/types'
+import { addInfo, addObjects } from '../../store/blockchain/actions'
+import { BlockchainStrings } from '../../utils/strings'
+
+interface BlockchainProviderProps {
+  store: Store
 }
 
-type ProviderProps = BlockchainProps & ProviderDispatchProps
+export const setProvider = (props: BlockchainProviderProps): boolean => {
 
-const Provider = (props: ProviderProps) => {
-
-  console.log('blah')
-
+  let result = true
+  const store = props.store
+  const state = store.getState()
   let objectData: BlockchainObjectProps = {
-    web3: props.web3,
-    ethers: props.ethers
+    web3: state.blockchain.web3,
+    ethers: state.blockchain.ethers
   }
 
   if ( !(objectData.web3.hasOwnProperty('version')) ) {
@@ -31,10 +30,10 @@ const Provider = (props: ProviderProps) => {
     let blockchainProvider: any = undefined
 
     let infoData: BlockchainInfoProps = {
-      APIName: props.APIName,
-      networkName: props.networkName,
-      networkChainId: props.networkChainId,
-      networkENSAddress: props.networkENSAddress
+      APIName: state.blockchain.APIName,
+      networkName: state.blockchain.networkName,
+      networkChainId: state.blockchain.networkChainId,
+      networkENSAddress: state.blockchain.networkENSAddress
     }
 
     if (ethereum) {
@@ -45,6 +44,7 @@ const Provider = (props: ProviderProps) => {
         console.log('Ethereum enabled', result)
       }).catch(function (error: any) {
         console.log(error)
+        result = false
       })
     } else if (typeof web3 !== 'undefined') {
       //console.log('In legacy web3 provider')
@@ -66,35 +66,12 @@ const Provider = (props: ProviderProps) => {
       objectData.web3 = web3
       objectData.ethers = blockchainProvider
 
-      this.props.addInfo(infoData)
-      this.props.addObjects(objectData)
-
+      props.store.dispatch(addInfo(infoData))
+      props.store.dispatch(addObjects(objectData))
     }).catch(function (error: any) {
       console.log(error)
+      result = false
     })
   }
+  return result
 }
-
-const mapStateToProps = (state: ApplicationState): BlockchainProps => {
-  return {
-    APIName: state.blockchain.APIName,
-    networkName: state.blockchain.networkName,
-    networkChainId: state.blockchain.networkChainId,
-    networkENSAddress: state.blockchain.networkENSAddress,
-    account: state.blockchain.account,
-    web3: state.blockchain.web3,
-    ethers: state.blockchain.ethers
-  }
-}
-
-const mapDispatchToProps = (dispatch: Dispatch, ownProps: any): ProviderDispatchProps => {
-  return({
-    addInfo: () => {dispatch(addInfo(ownProps))},
-    addObjects: () => {dispatch(addObjects(ownProps))}
-  })
-}
-
-export const SetProvider = connect<BlockchainProps,ProviderDispatchProps, any,ApplicationState>(
-    mapStateToProps,
-    mapDispatchToProps)
-(Provider)

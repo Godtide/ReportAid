@@ -1,10 +1,5 @@
-import { connect } from 'react-redux'
 import { Store } from 'redux'
-
-import { ApplicationState } from '../../store'
-
 import Web3 from 'web3'
-import { ethers } from 'ethers'
 
 import { BlockchainAccountProps } from '../../store/blockchain/types'
 import { addAccount } from '../../store/blockchain/actions'
@@ -13,8 +8,8 @@ interface OwnProps {
   store: Store
 }
 
-export const setAccount = (props: OwnProps): Boolean => {
-  
+export const setAccount = (props: OwnProps): boolean => {
+
   let result = true
   const store = props.store
   const state = store.getState()
