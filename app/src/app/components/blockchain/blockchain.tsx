@@ -16,7 +16,7 @@ interface SetBlockchainProps {
 
 interface SetAccountProps {
   store: Store
-  provider: any
+  provider: Web3Provider
 }
 
 export const setAccount = (props: SetAccountProps) => {
