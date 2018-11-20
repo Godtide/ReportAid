@@ -9,7 +9,7 @@ class Paths {
   static readonly reader='/fetch'
 }
 
-class Blockchain {
+class BlockchainConfig {
 
   // Using web3 via MetaMask, so these aren't necessary, really
   static readonly host = 'localhost'
@@ -37,4 +37,4 @@ class OrgsContract {
   static organisationsAddress = "0x749f861de9e83807e0ebaadaedd88a2f645dc176"
 }
 
-export { Paths, Blockchain, OrgsContract }
+export { Paths, BlockchainConfig, OrgsContract }

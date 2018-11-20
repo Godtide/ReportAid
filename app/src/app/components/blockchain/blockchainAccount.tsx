@@ -1,36 +1,21 @@
-import { Store } from 'redux'
-
-import { BlockchainAccountProps } from '../../store/blockchain/types'
-import { addAccount } from '../../store/blockchain/actions'
-
-interface OwnProps {
-  store: Store
+interface AccountProps {
+  provider: any
 }
 
-export const setAccount = (props: OwnProps): boolean => {
+export const getAccount = (props: AccountProps) => {
 
-  //console.log('In set account')
-  let result = true
-  const store = props.store
-  const state = store.getState()
-  const provider = state.blockchain.provider
-  let accountData: BlockchainAccountProps = {
-    account: state.blockchain.account
-  }
-
+  console.log('In set account')
+  let providerAccount = ''
+  const provider = props.provider
   if ( provider.hasOwnProperty('connection') ) {
     const signer = provider.getSigner()
-    signer.getAddress().then(function(account: string) {
-      if ( accountData.account != account ) {
-        accountData.account = account
+    signer.getAddress().then((account: string) => {
+        providerAccount = account
         console.log ('Setting account', account)
-        store.dispatch(addAccount(accountData))
-      }
-    }).catch(function (error: any) {
+    }).catch((error: any) => {
       console.log(error)
-      result = false
     })
   }
 
-  return result
+  return providerAccount
 }

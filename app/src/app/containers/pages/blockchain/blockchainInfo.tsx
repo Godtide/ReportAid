@@ -38,8 +38,7 @@ const mapStateToProps = (state: ApplicationState): BlockchainProps => {
     networkChainId: state.blockchain.networkChainId,
     networkENSAddress: state.blockchain.networkENSAddress,
     account: state.blockchain.account,
-    web3: state.blockchain.web3,
-    ethers: state.blockchain.ethers
+    provider: state.blockchain.provider
   }
 }
 

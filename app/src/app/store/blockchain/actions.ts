@@ -8,6 +8,7 @@ export const addInfo = (payload: BlockchainInfoProps): AddInfoAction => {
 }
 
 export const addAccount = (payload: BlockchainAccountProps): AddAccountAction => {
+  console.log('In payload', payload)
   return {
     type: BlockchainActionTypes.ADD_ACCOUNT,
     payload
