@@ -11,7 +11,7 @@ import { configureStore } from './app/store'
 
 const initialState = (window as any).initialReduxState
 const store = configureStore(initialState)
-setBlockchain()
+setBlockchain({store: store})
 
 const App = () => (
     <Provider store={store}>

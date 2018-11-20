@@ -12,9 +12,9 @@ const initialState: BlockchainProps = {
 export const blockchainReducer = (state: BlockchainProps = initialState, action: BlockchainAction): BlockchainProps => {
   if ( (action.type == BlockchainActionTypes.ADD_INFO ) ||
        (action.type == BlockchainActionTypes.ADD_ACCOUNT ) ||
-       (action.type == BlockchainActionTypes.ADD_OBJECTS )
+       (action.type == BlockchainActionTypes.ADD_OBJECT )
      ) {
-    console.log(action.payload)
+    //console.log(action.payload)
     return (<any>Object).assign({}, state, action.payload)
   } else {
     return state

@@ -1,4 +1,10 @@
-import { BlockchainInfoProps, BlockchainAccountProps, BlockchainObjectProps, BlockchainActionTypes, AddInfoAction, AddAccountAction, AddObjectsAction } from './types'
+import { BlockchainInfoProps,
+         BlockchainAccountProps,
+         BlockchainObjectProps,
+         BlockchainActionTypes,
+         AddInfoAction,
+         AddAccountAction,
+         AddObjectAction } from './types'
 
 export const addInfo = (payload: BlockchainInfoProps): AddInfoAction => {
   return {
@@ -8,16 +14,16 @@ export const addInfo = (payload: BlockchainInfoProps): AddInfoAction => {
 }
 
 export const addAccount = (payload: BlockchainAccountProps): AddAccountAction => {
-  console.log('In payload', payload)
+  //console.log('In payload', payload)
   return {
     type: BlockchainActionTypes.ADD_ACCOUNT,
     payload
   }
 }
 
-export const addObjects = (payload: BlockchainObjectProps): AddObjectsAction => {
+export const addObject = (payload: BlockchainObjectProps): AddObjectAction => {
   return {
-    type: BlockchainActionTypes.ADD_OBJECTS,
+    type: BlockchainActionTypes.ADD_OBJECT,
     payload
   }
 }

@@ -1,6 +1,6 @@
 import { Action } from 'redux'
 
-export type BlockchainAction = AddInfoAction | AddAccountAction | AddObjectsAction
+export type BlockchainAction = AddInfoAction | AddAccountAction | AddObjectAction
 export type BlockchainProps = BlockchainInfoProps & BlockchainAccountProps & BlockchainObjectProps
 
 export interface AddInfoAction extends Action {
@@ -13,8 +13,8 @@ export interface AddAccountAction extends Action {
     payload: BlockchainAccountProps
 }
 
-export interface AddObjectsAction extends Action {
-    type: BlockchainActionTypes.ADD_OBJECTS
+export interface AddObjectAction extends Action {
+    type: BlockchainActionTypes.ADD_OBJECT
     payload: BlockchainObjectProps
 }
 
@@ -36,5 +36,5 @@ export interface BlockchainObjectProps {
 export const enum BlockchainActionTypes {
   ADD_INFO = '@@blockchainActionTypes/ADD_INFO',
   ADD_ACCOUNT = '@@blockchainActionTypes/ADD_ACCOUNT',
-  ADD_OBJECTS = '@@blockchainActionTypes/ADD_OBJECTS'
+  ADD_OBJECT = '@@blockchainActionTypes/ADD_OBJECT'
 }

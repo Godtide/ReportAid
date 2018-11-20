@@ -4,7 +4,7 @@ import { ethers } from 'ethers'
 import { Provider } from 'ethers/providers/abstract-provider'
 import { BlockchainStrings } from '../../utils/strings'
 
-export const getProviders = (): any[] => {
+export const getProviders = () => {
 
   let blockchainProvider: Provider
   let ethereum = (window as any).ethereum
