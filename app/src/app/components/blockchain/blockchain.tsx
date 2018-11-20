@@ -16,7 +16,7 @@ interface SetBlockchainProps {
 
 interface SetAccountProps {
   store: Store
-  provider: Web3Provider
+  provider: object
 }
 
 export const setAccount = (props: SetAccountProps) => {
@@ -42,7 +42,7 @@ export const setBlockchain = async (props: SetBlockchainProps) => {
   const store = props.store
   const providers = getProviders()
   let objectData: BlockchainObjectProps = {
-    provider: providers[0]
+    provider: providers[0] as Web3Provider
   }
 
   const web3 = providers[1]
