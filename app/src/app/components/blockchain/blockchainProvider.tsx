@@ -2,7 +2,7 @@ import Web3 from 'web3'
 import { ethers } from 'ethers'
 
 import { Provider } from 'ethers/providers/abstract-provider'
-import { BlockchainStrings } from '../../utils/strings'
+import { Blockchain } from '../../utils/config'
 
 export const getProviders = () => {
 
@@ -24,7 +24,7 @@ export const getProviders = () => {
     blockchainProvider = new ethers.providers.Web3Provider(web3.currentProvider)
   } else {
     //console.log('Running our own blockchain provider')
-    const address = 'http://' + BlockchainStrings.host + ':' + BlockchainStrings.port
+    const address = 'http://' + Blockchain.host + ':' + Blockchain.port
     web3 = new Web3(new Web3.providers.HttpProvider(address))
     blockchainProvider = new ethers.providers.Web3Provider(web3)
   }
