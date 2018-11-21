@@ -37,6 +37,10 @@ const mapStateToProps = (state: ApplicationState, ownProps: StateProps): InfoPro
       return { title: state.overview.title, data: state.overview.data }
     case InfoTypes.HELP:
       return { title: state.help.title, data: state.help.data }
+    case InfoTypes.IATIWriter:
+      return { title: state.writer.title, data: state.writer.data }
+      case InfoTypes.IATIReader:
+        return { title: state.reader.title, data: state.reader.data }
     default:
       return { title: state.home.title, data: state.home.data }
   }

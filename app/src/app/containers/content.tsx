@@ -8,10 +8,8 @@ import { BlockchainInfo } from './pages/blockchain/blockchainInfo'
 
 import { Info } from './pages/info/info'
 import { InfoTypes } from './pages/info/types'
-import { IATIWriter } from './pages/IATIWriter/IATIWriter'
-import { IATIReader } from './pages/IATIReader/IATIReader'
 
-import { Paths, Writer, Reader } from '../utils/strings'
+import { Paths } from '../utils/strings'
 import { Paths as PathConfig } from '../utils/config'
 
 class AppContent extends React.Component<WithStyles<typeof styles>> {
@@ -48,12 +46,12 @@ class AppContent extends React.Component<WithStyles<typeof styles>> {
         <Route
           name={Paths.writer}
           path={PathConfig.writer}
-          render={() => <IATIWriter title={Writer.heading} data={''} />}
+          render={() => <Info type={InfoTypes.IATIWriter} />}
         />
         <Route
           name={Paths.reader}
           path={PathConfig.reader}
-          render={() => <IATIReader title={Reader.heading}  data={''} />}
+          render={() => <Info type={InfoTypes.IATIReader} />}
         />
       </Switch>
     )

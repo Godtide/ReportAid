@@ -52,14 +52,18 @@ class Help {
   static info = '**ReportAid** allows humanitarian aid organisations to record information about funding.<br /><br />Have a read of the [About](#/about) section, which gives some background to the app\'. The [Overview](#/overview) section describes a scenario where an organisation uses **ReportAid** to store information about their funding.<br /><br />To store a humanitarian aid record, click on the [Create Record](#/create) link and fill in all fields. That will create some blockchain transactions, which can be signed in [MetaMask](https://metamask.io/). To retrieve information, click on the [Fetch Record](#/fetch) link.'
 }
 
-class Writer {
+class IATIWriter {
 
-  static heading = 'ReportAid Writer'
+  static heading = 'IATI Writer'
+
+  static info = 'Here, you can create IATI information.<br /><br />The [create organisation](#/create-organisation) link, lets you create a top-level record for an IATI reporting organsation.'
 }
 
-class Reader {
+class IATIReader {
 
-  static heading = 'ReportAid Reader'
+  static heading = 'IATI Reader'
+
+  static info = 'Here, you can fetch IATI information.<br /><br />The [fetch organisation](#/fetch-organisation) link, lets you read a top-level record for an IATI reporting organsation.'
 }
 
 class Organisation {
@@ -69,4 +73,4 @@ class Organisation {
   static type = 'Type'
 }
 
-export { App, Paths, Blockchain, Home, About, Overview, Help, Writer, Reader, Organisation }
+export { App, Paths, Blockchain, Home, About, Overview, Help, IATIWriter, IATIReader, Organisation }

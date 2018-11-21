@@ -11,6 +11,8 @@ import { reducer as aboutReducer } from './info/about/reducer'
 import { reducer as homeReducer } from './info/home/reducer'
 import { reducer as helpReducer } from './info/help/reducer'
 import { reducer as overviewReducer } from './info/overview/reducer'
+import { reducer as IATIWriterReducer } from './info/IATIWriter/reducer'
+import { reducer as IATIReaderReducer } from './info/IATIReader/reducer'
 
 // The top-level state object
 export interface ApplicationState {
@@ -19,6 +21,8 @@ export interface ApplicationState {
   home: InfoProps
   help: InfoProps
   overview: InfoProps
+  writer: InfoProps
+  reader: InfoProps
 }
 
 export const rootReducer: Reducer<ApplicationState> = combineReducers<ApplicationState>({
@@ -26,7 +30,9 @@ export const rootReducer: Reducer<ApplicationState> = combineReducers<Applicatio
   about: aboutReducer,
   home: homeReducer,
   help: helpReducer,
-  overview: overviewReducer
+  overview: overviewReducer,
+  writer: IATIWriterReducer,
+  reader: IATIReaderReducer
 })
 
 export function configureStore(

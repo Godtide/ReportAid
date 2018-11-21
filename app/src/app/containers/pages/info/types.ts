@@ -2,5 +2,7 @@ export const enum InfoTypes {
   ABOUT = 'about',
   HOME = 'home',
   OVERVIEW = 'overview',
-  HELP = 'help'
+  HELP = 'help',
+  IATIWriter = 'writer',
+  IATIReader = 'reader'
 }
