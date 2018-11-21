@@ -15,7 +15,7 @@ class Blockchain {
   static readonly host = 'localhost'
   static readonly port = '8545'
 
-  static readonly interval = 3000
+  static readonly checkAccountInterval = 3000
 }
 
 class OrgsContract {
