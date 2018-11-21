@@ -26,12 +26,13 @@ interface PlainTextKeyedWithTitleListProps {
 export const PlainTextKeyedList: React.SFC<PlainTextKeyedListProps> = (props: PlainTextKeyedListProps) => {
 
   const keyedList = Object.entries(props.list).map(([key,value]) =>
-    <div><b>{key}</b>: {value.toString()}</div>
+    <span key={key}>
+      <p><b>{key}</b>: {value.toString()}</p>
+    </span>
   )
 
   return (
     <div>
-
       {keyedList}
     </div>
   )
@@ -41,8 +42,7 @@ export const PlainTextKeyedWithTitleList: React.SFC<PlainTextKeyedWithTitleListP
 
   const keyedList = Object.entries(props.list).map(([key,value]) =>
     <span key={key}>
-      <b>{key}</b>: {value.toString()}
-      <br />
+      <p><b>{key}</b>: {value.toString()}</p>
     </span>
   )
 
@@ -58,14 +58,13 @@ export const PlainTextList: React.SFC<PlainTextListProps> = (props: PlainTextLis
 
   let logs = props.text.map((text, index) =>
     <span key={index}>
-      {text}
-      <br />
+      <p>{text}</p>
     </span>
   )
 
   return (
     <div>
-      <p>{logs}</p>
+      {logs}
     </div>
   )
 }
@@ -74,15 +73,14 @@ export const PlainTextListWithTitle: React.SFC<PlainTextListWithTitleProps> = (p
 
   let logs = props.text.map((text, index) =>
     <span key={index}>
-      {text}
-      <br />
+      <p>{text}</p>
     </span>
   )
 
   return (
     <div>
       <h2>{props.title}</h2>
-      <p>{logs}</p>
+      {logs}
     </div>
   )
 }
