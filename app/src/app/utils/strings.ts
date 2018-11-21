@@ -62,4 +62,11 @@ class Reader {
   static heading = 'ReportAid Reader'
 }
 
-export { App, Paths, Blockchain, Home, About, Overview, Help, Writer, Reader }
+class Organisation {
+
+  static orgName = 'Name'
+  static identifier = 'Identifier'
+  static type = 'Type'
+}
+
+export { App, Paths, Blockchain, Home, About, Overview, Help, Writer, Reader, Organisation }

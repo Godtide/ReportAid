@@ -27,7 +27,9 @@ export const PlainTextKeyedList: React.SFC<PlainTextKeyedListProps> = (props: Pl
 
   const keyedList = Object.entries(props.list).map(([key,value]) =>
     <span key={key}>
-      <p><b>{key}</b>: {value.toString()}</p>
+      <p>
+        <b>{key}</b>: {value.toString()}
+      </p>
     </span>
   )
 
@@ -40,11 +42,17 @@ export const PlainTextKeyedList: React.SFC<PlainTextKeyedListProps> = (props: Pl
 
 export const PlainTextKeyedWithTitleList: React.SFC<PlainTextKeyedWithTitleListProps> = (props: PlainTextKeyedWithTitleListProps) => {
 
+  //console.log('blah', props.list)
+
   const keyedList = Object.entries(props.list).map(([key,value]) =>
-    <span key={key}>
-      <p><b>{key}</b>: {value.toString()}</p>
+     <span key={key}>
+      <p>
+        <b>{key}</b>: {value.toString()}
+      </p>
     </span>
   )
+
+  //console.log(keyedList)
 
   return (
     <div>
@@ -56,31 +64,35 @@ export const PlainTextKeyedWithTitleList: React.SFC<PlainTextKeyedWithTitleListP
 
 export const PlainTextList: React.SFC<PlainTextListProps> = (props: PlainTextListProps) => {
 
-  let logs = props.text.map((text, index) =>
+  let text = props.text.map((text, index) =>
     <span key={index}>
-      <p>{text}</p>
+      <p>
+        {text}
+      </p>
     </span>
   )
 
   return (
     <div>
-      {logs}
+      {text}
     </div>
   )
 }
 
 export const PlainTextListWithTitle: React.SFC<PlainTextListWithTitleProps> = (props: PlainTextListWithTitleProps) => {
 
-  let logs = props.text.map((text, index) =>
+  let text = props.text.map((text, index) =>
     <span key={index}>
-      <p>{text}</p>
+      <p>
+        {text}
+      </p>
     </span>
   )
 
   return (
     <div>
       <h2>{props.title}</h2>
-      {logs}
+      {text}
     </div>
   )
 }
