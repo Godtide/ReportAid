@@ -1,9 +1,9 @@
 import { Store } from 'redux'
 import Web3 from 'web3'
-import { BlockchainConfig } from '../../utils/config'
+import { Blockchain } from '../../utils/config'
 
 import { Web3Provider } from 'ethers/providers/web3-provider'
-import { BlockchainAccountProps, BlockchainInfoProps, BlockchainObjectProps } from '../../store/blockchain/types'
+import { AccountProps, InfoProps, ObjectProps } from '../../store/blockchain/types'
 
 import { addAccount, addInfo, addObject } from '../../store/blockchain/actions'
 
@@ -23,7 +23,7 @@ export const setAccount = (props: SetAccountProps) => {
 
   const store = props.store
   const state = store.getState()
-  let accountData: BlockchainAccountProps = {
+  let accountData: AccountProps = {
     account: state.blockchain.account
   }
 
@@ -41,18 +41,18 @@ export const setBlockchain = async (props: SetBlockchainProps) => {
   //console.log(props.store)
   const store = props.store
   const providers = getProviders()
-  let objectData: BlockchainObjectProps = {
+  let objectData: ObjectProps = {
     provider: providers[0] as Web3Provider
   }
   const web3 = providers[1]
   const chainObj: any = await (objectData.provider as Web3Provider).getNetwork()
   //console.log(chainObj)
   //console.log('First call ', 'Name: ', chainObj.name, ' ChainID: ', chainObj.chainId, 'ENS Address: ', chainObj.ensAddress)
-  let infoData: BlockchainInfoProps = {
-    APIName: 'web3 ' + (web3 as Web3).version,
-    networkName: chainObj.name,
-    networkChainId: chainObj.chainId,
-    networkENSAddress: chainObj.ensAddress
+  let infoData: InfoProps = {
+    API: 'web3 ' + (web3 as Web3).version,
+    Name: chainObj.name,
+    ChainId: chainObj.chainId,
+    ENS: chainObj.ensAddress
   }
 
   store.dispatch(addInfo(infoData))
@@ -60,15 +60,5 @@ export const setBlockchain = async (props: SetBlockchainProps) => {
 
   setInterval(() => {
     setAccount({store: store, provider: objectData.provider})
-  }, BlockchainConfig.interval)
+  }, Blockchain.checkAccountInterval)
 }
-
-/* const mapDispatchToProps = (dispatch: any): DispatchBlockchainProps => {
-  return {
-    addAccount: (props: BlockchainAccountProps) => dispatch(addAccount(props))
-  }
-}
-
-export default connect(
-  mapDispatchToProps
-)(setBlockchain)*/

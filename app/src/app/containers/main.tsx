@@ -9,7 +9,7 @@ import { withTheme, styles } from '../styles/theme'
 // import Content from './content'
 import { AppMenu } from './appMenu'
 import { Content } from './content'
-import { AppStrings } from '../utils/strings'
+import { App } from '../utils/strings'
 
 class MainLayout extends React.Component<WithStyles<typeof styles>> {
 
@@ -25,8 +25,8 @@ class MainLayout extends React.Component<WithStyles<typeof styles>> {
               </Grid>
               <Grid item xs={12} sm={10}>
                 <Paper className={this.props.classes.title}>
-                  <h1>{AppStrings.appTitle}</h1>
-                  <h3>{AppStrings.appTagline}</h3>
+                  <h1>{App.title}</h1>
+                  <h3>{App.tagline}</h3>
                 </Paper>
               </Grid>
             </Grid>
@@ -49,12 +49,12 @@ class MainLayout extends React.Component<WithStyles<typeof styles>> {
             <Grid container spacing={0}>
               <Grid item xs={2}>
                 <Paper className={this.props.classes.footer}>
-                  <p>{AppStrings.author}</p>
+                  <p>{App.author}</p>
                 </Paper>
               </Grid>
               <Grid item xs={10}>
                 <Paper className={this.props.classes.footer}>
-                  <p>{AppStrings.copyright}</p>
+                  <p>{App.copyright}</p>
                 </Paper>
               </Grid>
             </Grid>

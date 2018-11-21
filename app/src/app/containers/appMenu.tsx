@@ -14,7 +14,8 @@ import Report from '@material-ui/icons/Report'
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../styles/theme'
 
-import { PathStrings } from '../utils/strings'
+import { Paths } from '../utils/strings'
+import { Paths as PathConfig } from '../utils/config'
 
 class ApplicationMenu extends React.Component<WithStyles<typeof styles>> {
 
@@ -23,60 +24,60 @@ class ApplicationMenu extends React.Component<WithStyles<typeof styles>> {
     return (
       <div>
         <MenuList>
-          <Link to={PathStrings.homePath}>
+          <Link to={PathConfig.home}>
             <MenuItem>
-              <IconButton className={this.props.classes.button} aria-label={PathStrings.home}>
+              <IconButton className={this.props.classes.button} aria-label={Paths.home}>
                 <Home />
               </IconButton>
-              {PathStrings.home}
+              {Paths.home}
             </MenuItem>
           </Link>
-          <Link to={PathStrings.blockchainPath}>
+          <Link to={PathConfig.blockchain}>
             <MenuItem>
-              <IconButton className={this.props.classes.button} aria-label={PathStrings.blockchain}>
+              <IconButton className={this.props.classes.button} aria-label={Paths.blockchain}>
                 <Home />
               </IconButton>
-              {PathStrings.blockchain}
+              {Paths.blockchain}
             </MenuItem>
           </Link>
-          <Link to={PathStrings.aboutPath}>
+          <Link to={PathConfig.about}>
             <MenuItem>
-              <IconButton className={this.props.classes.button} aria-label={PathStrings.about}>
+              <IconButton className={this.props.classes.button} aria-label={Paths.about}>
                 <Info />
               </IconButton>
-              {PathStrings.about}
+              {Paths.about}
             </MenuItem>
           </Link>
-          <Link to={PathStrings.overviewPath}>
+          <Link to={PathConfig.overview}>
             <MenuItem>
-              <IconButton className={this.props.classes.button} aria-label={PathStrings.overview}>
+              <IconButton className={this.props.classes.button} aria-label={Paths.overview}>
                 <Panorama />
               </IconButton>
-              {PathStrings.overview}
+              {Paths.overview}
             </MenuItem>
           </Link>
-          <Link to={PathStrings.helpPath}>
+          <Link to={PathConfig.help}>
             <MenuItem>
-              <IconButton className={this.props.classes.button} aria-label={PathStrings.help}>
+              <IconButton className={this.props.classes.button} aria-label={Paths.help}>
                 <Help />
               </IconButton>
-              {PathStrings.help}
+              {Paths.help}
             </MenuItem>
           </Link>
-          <Link to={PathStrings.writerPath}>
+          <Link to={PathConfig.writer}>
             <MenuItem>
-              <IconButton className={this.props.classes.button} aria-label={PathStrings.writer}>
+              <IconButton className={this.props.classes.button} aria-label={Paths.writer}>
                 <Create />
               </IconButton>
-              {PathStrings.writer}
+              {Paths.writer}
             </MenuItem>
           </Link>
-          <Link to={PathStrings.readerPath}>
+          <Link to={PathConfig.reader}>
             <MenuItem>
-              <IconButton className={this.props.classes.button} aria-label={PathStrings.reader}>
+              <IconButton className={this.props.classes.button} aria-label={Paths.reader}>
                 <Report />
               </IconButton>
-              {PathStrings.reader}
+              {Paths.reader}
             </MenuItem>
           </Link>
         </MenuList>

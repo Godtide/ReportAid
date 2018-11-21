@@ -1,18 +1,18 @@
-import { BlockchainActionTypes, BlockchainAction, BlockchainProps } from './types'
+import { ActionTypes, AddAction, BlockchainProps } from './types'
 
 const initialState: BlockchainProps = {
-  APIName: '',
-  networkName: '',
-  networkChainId: '',
-  networkENSAddress: '',
+  API: '',
+  Name: '',
+  ChainId: '',
+  ENS: '',
   account: '',
   provider: {},
 }
 
-export const blockchainReducer = (state: BlockchainProps = initialState, action: BlockchainAction): BlockchainProps => {
-  if ( (action.type == BlockchainActionTypes.ADD_INFO ) ||
-       (action.type == BlockchainActionTypes.ADD_ACCOUNT ) ||
-       (action.type == BlockchainActionTypes.ADD_OBJECT )
+export const reducer = (state: BlockchainProps = initialState, action: AddAction): BlockchainProps => {
+  if ( (action.type == ActionTypes.ADD_INFO ) ||
+       (action.type == ActionTypes.ADD_ACCOUNT ) ||
+       (action.type == ActionTypes.ADD_OBJECT )
      ) {
     //console.log(action.payload)
     return (<any>Object).assign({}, state, action.payload)

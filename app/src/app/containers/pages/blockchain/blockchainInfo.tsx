@@ -6,7 +6,7 @@ import { PlainTextKeyedWithTitleList } from '../../../components/io/plainText'
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
 
-import { BlockchainStrings } from '../../../utils/strings'
+import { Blockchain } from '../../../utils/strings'
 
 interface InfoProps {
   propertiesList: object
@@ -17,17 +17,17 @@ class Info extends React.Component<WithStyles<typeof styles> & InfoProps> {
   render() {
 
     return (
-      <PlainTextKeyedWithTitleList title={BlockchainStrings.heading} list={this.props.propertiesList} />
+      <PlainTextKeyedWithTitleList title={Blockchain.heading} list={this.props.propertiesList} />
     )
   }
 }
 
 const mapStateToProps = (state: ApplicationState): InfoProps => {
   const propertiesList = {
-      API: state.blockchain.APIName,
-      Network: state.blockchain.networkName,
-      ChainId: state.blockchain.networkChainId,
-      ENS: state.blockchain.networkENSAddress,
+      API: state.blockchain.API,
+      Network: state.blockchain.Name,
+      ChainId: state.blockchain.ChainId,
+      ENS: state.blockchain.ENS,
       Account: state.blockchain.account
   }
   const properties = {

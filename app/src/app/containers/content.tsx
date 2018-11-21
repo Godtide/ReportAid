@@ -11,7 +11,8 @@ import { InfoTypes } from './pages/info/types'
 import { IATIWriter } from './pages/IATIWriter/IATIWriter'
 import { IATIReader } from './pages/IATIReader/IATIReader'
 
-import { PathStrings, WriterStrings, ReaderStrings } from '../utils/strings'
+import { Paths, Writer, Reader } from '../utils/strings'
+import { Paths as PathConfig } from '../utils/config'
 
 class AppContent extends React.Component<WithStyles<typeof styles>> {
 
@@ -20,39 +21,39 @@ class AppContent extends React.Component<WithStyles<typeof styles>> {
     return (
       <Switch>
         <Route
-          name={PathStrings.home}
-          exact path={PathStrings.homePath}
+          name={Paths.home}
+          exact path={PathConfig.home}
           render={() => <Info type={InfoTypes.HOME} />}
         />
         <Route
-          name={PathStrings.blockchain}
-          exact path={PathStrings.blockchainPath}
+          name={Paths.blockchain}
+          exact path={PathConfig.blockchain}
           render= {() => <BlockchainInfo />}
         />
         <Route
-          name={PathStrings.about}
-          exact path={PathStrings.aboutPath}
+          name={Paths.about}
+          exact path={PathConfig.about}
           render={() => <Info type={InfoTypes.ABOUT} />}
         />
         <Route
-          name={PathStrings.overview}
-          path={PathStrings.overviewPath}
+          name={Paths.overview}
+          path={PathConfig.overview}
           render={() => <Info type={InfoTypes.OVERVIEW} />}
         />
         <Route
-          name={PathStrings.help}
-          path={PathStrings.helpPath}
+          name={Paths.help}
+          path={PathConfig.help}
           render={() => <Info type={InfoTypes.HELP} />}
         />
         <Route
-          name={PathStrings.writer}
-          path={PathStrings.writerPath}
-          render={() => <IATIWriter title={WriterStrings.heading} data={''} />}
+          name={Paths.writer}
+          path={PathConfig.writer}
+          render={() => <IATIWriter title={Writer.heading} data={''} />}
         />
         <Route
-          name={PathStrings.reader}
-          path={PathStrings.readerPath}
-          render={() => <IATIReader title={ReaderStrings.heading}  data={''} />}
+          name={Paths.reader}
+          path={PathConfig.reader}
+          render={() => <IATIReader title={Reader.heading}  data={''} />}
         />
       </Switch>
     )

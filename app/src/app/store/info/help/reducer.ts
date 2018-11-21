@@ -1,10 +1,10 @@
 import { Reducer } from 'redux'
 import { InfoProps } from '../types'
-import { HelpStrings } from '../../../utils/strings'
+import { Help } from '../../../utils/strings'
 
 const initialState: InfoProps = {
-  title: HelpStrings.heading,
-  data: HelpStrings.info
+  title: Help.heading,
+  data: Help.info
 }
 
 export const reducer: Reducer<InfoProps> = (state = initialState): InfoProps => {

@@ -6,7 +6,7 @@ import thunkMiddleware from 'redux-thunk'
 import { BlockchainProps } from './blockchain/types'
 import { InfoProps } from './info/types'
 
-import { blockchainReducer } from './blockchain/reducer'
+import { reducer as blockchainReducer } from './blockchain/reducer'
 import { reducer as aboutReducer } from './info/about/reducer'
 import { reducer as homeReducer } from './info/home/reducer'
 import { reducer as helpReducer } from './info/help/reducer'
