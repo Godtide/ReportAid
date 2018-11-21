@@ -8,8 +8,6 @@ import { withTheme, styles } from '../../../styles/theme'
 
 import { BlockchainStrings } from '../../../utils/strings'
 
-//import { BlockchainProps } from '../../../store/blockchain/types'
-
 interface InfoProps {
   propertiesList: object
 }
@@ -17,8 +15,6 @@ interface InfoProps {
 class Info extends React.Component<WithStyles<typeof styles> & InfoProps> {
 
   render() {
-
-    //console.log(this.props)
 
     return (
       <PlainTextKeyedWithTitleList title={BlockchainStrings.heading} list={this.props.propertiesList} />
