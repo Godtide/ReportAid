@@ -1,9 +1,9 @@
 import { Action } from 'redux'
 
-export type OrganisationWriterAction = AddOrganisationAction
+export type AddAction = AddOrgAction
 
-export interface AddOrganisationAction extends Action {
-    type: OrganisationWriterActionTypes.ADD_ORG
+export interface AddOrgAction extends Action {
+    type: ActionTypes.ADD_ORG
     payload: OrganisationProps
 }
 
@@ -14,6 +14,6 @@ export interface OrganisationProps {
   type: string
 }
 
-export const enum OrganisationWriterActionTypes {
+export const enum ActionTypes {
   ADD_ORG = '@@blockchainActionTypes/ADD_ORG'
 }

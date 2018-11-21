@@ -1,4 +1,4 @@
-import { OrganisationWriterActionTypes, OrganisationWriterAction, OrganisationProps } from './types'
+import { ActionTypes, AddAction, OrganisationProps } from './types'
 
 const initialState: OrganisationProps = {
   reference: '',
@@ -6,9 +6,9 @@ const initialState: OrganisationProps = {
   type: ''
 }
 
-export const organisationWriterReducer = (state: OrganisationProps = initialState, action: OrganisationWriterAction): OrganisationProps => {
+export const organisationWriterReducer = (state: OrganisationProps = initialState, action: AddAction): OrganisationProps => {
   switch (action.type) {
-    case OrganisationWriterActionTypes.ADD_ORG:
+    case ActionTypes.ADD_ORG:
       return (<any>Object).assign({}, state, action.payload)
     default:
       return state

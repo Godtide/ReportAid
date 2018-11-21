@@ -5,6 +5,7 @@ import { Field } from 'redux-form'
 import { ApplicationState } from '../../store'
 
 import { Organisation } from '../../utils/strings'
+import { addOrganisation } from '../../store/IATIWriter/organisationWriter/actions'
 
 interface OrganisationFormProps {
   pristine: boolean
@@ -12,8 +13,7 @@ interface OrganisationFormProps {
 }
 
 interface DispatchProps {
-  reset: () => void
-  handleSubmit: () => void
+  handleSubmit: (ownProps: any) => void
 }
 
 type AllProps = OrganisationFormProps & DispatchProps
@@ -54,23 +54,15 @@ const Form: React.SFC<AllProps> = (props: AllProps) => {
           <button type="submit" disabled={props.pristine || props.submitting}>
             Submit
           </button>
-          <button type="button" disabled={props.pristine || props.submitting} onClick={props.reset}>
-            Clear Values
-          </button>
         </div>
       </form>
     </div>
   )
 }
 
-const blah = (): any => {
-
-}
-
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): DispatchProps => {
   return ({
-    reset: () => dispatch(blah()),
-    handleSubmit: () => dispatch(blah())
+    handleSubmit: (ownProps: any) => dispatch(addOrganisation(ownProps))
   })
 }
 
