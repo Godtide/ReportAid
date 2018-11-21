@@ -2,7 +2,7 @@ import * as React from 'react'
 //import { bindActionCreators, Dispatch, AnyAction } from 'redux'
 import { connect } from 'react-redux'
 import { ApplicationState } from '../../../store'
-import { MarkdownText } from '../../../components/io/markdownText'
+import { MarkdownTextWithTitle } from '../../../components/io/markdownText'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
@@ -22,10 +22,7 @@ class AppInfo extends React.Component<WithStyles<typeof styles> & AllProps> {
   render() {
 
     return (
-      <div>
-        <h2>{this.props.title}</h2>
-        <MarkdownText text={this.props.data} />
-      </div>
+      <MarkdownTextWithTitle title={this.props.title} text={this.props.data} />
     )
   }
 }

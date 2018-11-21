@@ -2,46 +2,44 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { ApplicationState } from '../../../store'
 
+import { PlainTextKeyedWithTitleList } from '../../../components/io/plainText'
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
 
 import { BlockchainStrings } from '../../../utils/strings'
 
-import { BlockchainProps } from '../../../store/blockchain/types'
+//import { BlockchainProps } from '../../../store/blockchain/types'
 
-class Info extends React.Component<WithStyles<typeof styles> & BlockchainProps> {
+interface InfoProps {
+  propertiesList: object
+}
 
-  constructor (props: any) {
-    super(props)
-  }
+class Info extends React.Component<WithStyles<typeof styles> & InfoProps> {
 
   render() {
 
-    return (
-      <div>
-        <h2>{BlockchainStrings.heading}</h2>
-        <p><b>{BlockchainStrings.APIName}</b>{this.props.APIName}</p>
-        <p><b>{BlockchainStrings.networkName}</b>{this.props.networkName}</p>
-        <p><b>{BlockchainStrings.networkChainId}</b>{this.props.networkChainId}</p>
-        <p><b>{BlockchainStrings.ENSAddress}</b>{this.props.networkENSAddress}</p>
-        <p><b>{BlockchainStrings.networkAccount}</b>{this.props.account}</p>
-      </div>
+    //console.log(this.props)
 
+    return (
+      <PlainTextKeyedWithTitleList title={BlockchainStrings.heading} list={this.props.propertiesList} />
     )
   }
 }
 
-const mapStateToProps = (state: ApplicationState): BlockchainProps => {
-  return {
-    APIName: state.blockchain.APIName,
-    networkName: state.blockchain.networkName,
-    networkChainId: state.blockchain.networkChainId,
-    networkENSAddress: state.blockchain.networkENSAddress,
-    account: state.blockchain.account,
-    provider: state.blockchain.provider
+const mapStateToProps = (state: ApplicationState): InfoProps => {
+  const propertiesList = {
+      API: state.blockchain.APIName,
+      Network: state.blockchain.networkName,
+      ChainId: state.blockchain.networkChainId,
+      ENS: state.blockchain.networkENSAddress,
+      Account: state.blockchain.account
   }
+  const properties = {
+    propertiesList: propertiesList
+  }
+  return properties
 }
 
-export const BlockchainInfo = withTheme(withStyles(styles)(connect<BlockchainProps, void, void, ApplicationState>(
+export const BlockchainInfo = withTheme(withStyles(styles)(connect<InfoProps, void, void, ApplicationState>(
   mapStateToProps
 )(Info)))
