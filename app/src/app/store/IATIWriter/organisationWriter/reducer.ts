@@ -6,7 +6,7 @@ const initialState: OrganisationProps = {
   type: ''
 }
 
-export const organisationWriterReducer = (state: OrganisationProps = initialState, action: AddAction): OrganisationProps => {
+export const reducer = (state: OrganisationProps = initialState, action: AddAction): OrganisationProps => {
   switch (action.type) {
     case ActionTypes.ADD_ORG:
       return (<any>Object).assign({}, state, action.payload)

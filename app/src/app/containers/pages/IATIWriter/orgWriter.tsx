@@ -9,8 +9,7 @@ class Organisation extends React.Component<WithStyles<typeof styles>> {
   render() {
 
     return (
-      //<OrganisationForm pristine={true} submitting={true}/>
-      <p>blah</p>
+      <OrganisationForm pristine={true} submitting={true}/>
     )
   }
 }

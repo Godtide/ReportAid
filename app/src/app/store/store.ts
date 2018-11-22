@@ -1,6 +1,5 @@
 // import { combineReducers, Dispatch, Reducer, Action, AnyAction } from 'redux'
 import { combineReducers, Reducer, Store, createStore, applyMiddleware } from 'redux'
-import { reducer as formReducer } from 'redux-form'
 import thunkMiddleware from 'redux-thunk'
 
 import { BlockchainProps } from './blockchain/types'
@@ -12,6 +11,7 @@ import { reducer as homeReducer } from './info/home/reducer'
 import { reducer as helpReducer } from './info/help/reducer'
 import { reducer as overviewReducer } from './info/overview/reducer'
 import { reducer as IATIWriterReducer } from './info/IATIWriter/reducer'
+import { reducer as orgReducer } from './IATIWriter/organisationWriter/reducer'
 import { reducer as IATIReaderReducer } from './info/IATIReader/reducer'
 
 // The top-level state object
@@ -33,7 +33,7 @@ export const rootReducer: Reducer<ApplicationState> = combineReducers<Applicatio
   overview: overviewReducer,
   writer: IATIWriterReducer,
   reader: IATIReaderReducer,
-  form: formReducer 
+  form: orgReducer
 })
 
 export function configureStore(
