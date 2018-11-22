@@ -6,7 +6,9 @@ class Paths {
   static readonly overview='/overview'
   static readonly help='/help'
   static readonly writer='/create'
-  static readonly reader='/fetch'
+  static readonly reader='/read'
+  static readonly orgWriter='/create-organisation'
+  static readonly orgReader='/fetch-organisation'
 }
 
 class Blockchain {

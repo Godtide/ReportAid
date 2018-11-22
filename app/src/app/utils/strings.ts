@@ -1,3 +1,5 @@
+import { Paths as configPaths } from './config'
+
 class App {
 
   static readonly title='ReportAid'
@@ -15,7 +17,7 @@ class Paths {
   static readonly overview='Overview'
   static readonly help='Help'
   static readonly writer='Create Record'
-  static readonly reader='Fetch Record'
+  static readonly reader='Read Record'
 }
 
 class Blockchain {
@@ -27,7 +29,7 @@ class Home {
 
   static heading = 'Home'
 
-  static info = 'Use this application to record humanitarian aid data and to get humanitarian aid information.<br /><br />Read the [About](#/about) section to learn about the origins of **ReportAid**.<br /><br />The [Overview](#/overview) section describes a scenario where an organisation uses **ReportAid** to store information about their funding.<br /><br />The [Help](#/help) section gives brief instructions as to how to use **ReportAid** - in essence, to create a humanitarian aid record, click on the [Create Record](#/create) link and fill in all fields. To retrieve a humanitarian aid record, click on the [Fetch Record](#/fetch) link.'
+  static info = 'Use this application to record humanitarian aid data and to get humanitarian aid information.<br /><br />Read the [About](#' + configPaths.about + ') section to learn about the origins of **ReportAid**.<br /><br />The [Overview](#' + configPaths.overview + ') section describes a scenario where an organisation uses **ReportAid** to store information about their funding.<br /><br />The [Help](#' + configPaths.help + ') section gives brief instructions as to how to use **ReportAid** - in essence, to create a humanitarian aid record, click on the [Create Record](#' + configPaths.writer + ') link and fill in all fields. To retrieve a humanitarian aid record, click on the [Read Record](#' + configPaths.reader + ') link.'
 }
 
 class About {
@@ -49,21 +51,21 @@ class Help {
 
   static heading = 'ReportAid Help'
 
-  static info = '**ReportAid** allows humanitarian aid organisations to record information about funding.<br /><br />Have a read of the [About](#/about) section, which gives some background to the app\'. The [Overview](#/overview) section describes a scenario where an organisation uses **ReportAid** to store information about their funding.<br /><br />To store a humanitarian aid record, click on the [Create Record](#/create) link and fill in all fields. That will create some blockchain transactions, which can be signed in [MetaMask](https://metamask.io/). To retrieve information, click on the [Fetch Record](#/fetch) link.'
+  static info = '**ReportAid** allows humanitarian aid organisations to record information about funding.<br /><br />Have a read of the [About](#' + configPaths.about + ') section, which gives some background to the app\'. The [Overview](#' + configPaths.overview + ') section describes a scenario where an organisation uses **ReportAid** to store information about their funding.<br /><br />To store a humanitarian aid record, click on the [Create Record](#' + configPaths.writer + ') link and fill in all fields. That will create some blockchain transactions, which can be signed in [MetaMask](https://metamask.io/). To retrieve information, click on the [Read Record](#' + configPaths.reader + ') link.'
 }
 
 class IATIWriter {
 
   static heading = 'IATI Writer'
 
-  static info = 'Here, you can create IATI information.<br /><br />The [create organisation](#/create-organisation) link, lets you create a top-level record for an IATI reporting organsation.'
+  static info = 'Here, you can create IATI information.<br /><br />The [Create Organisation](#' + configPaths.orgWriter + ') link, lets you create a top-level record for an IATI reporting organsation.'
 }
 
 class IATIReader {
 
   static heading = 'IATI Reader'
 
-  static info = 'Here, you can fetch IATI information.<br /><br />The [fetch organisation](#/fetch-organisation) link, lets you read a top-level record for an IATI reporting organsation.'
+  static info = 'Here, you can read IATI information.<br /><br />The [Read Organisation](#' + configPaths.orgReader + ') link, lets you read a top-level record for an IATI reporting organsation.'
 }
 
 class Organisation {
