@@ -18,16 +18,20 @@ type AllProps = IDispatchProps
 
 class Org extends React.Component<WithStyles<typeof styles> & AllProps> {
 
-  handleSubmit () {
+  handleSubmit (values: any) {
+    console.log('this values', values)
     this.props.handleSubmit('Jeez')
   }
 
   render() {
-
-    //console.log(this.props.propertiesList)
+    // (values: any) => this.handleSubmit.bind(this, values)
 
     return (
-      <OrgForm onSubmit={this.handleSubmit.bind(this)}/>
+      <OrgForm
+        onSubmit={(values: any) => this.handleSubmit(values)}
+        onSubmitSuccess={() => console.log('submit success')}
+        onSubmitFail={() => console.log('submit fail')}
+      />
     )
   }
 }
