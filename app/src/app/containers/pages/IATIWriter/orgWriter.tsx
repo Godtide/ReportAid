@@ -1,33 +1,43 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { Dispatch, AnyAction } from 'redux'
-import { ConfigProps } from 'redux-form'
-import { ApplicationState } from '../../../store'
+/*import { ConfigProps } from 'redux-form'
+import { ApplicationState } from '../../../store'*/
 
-import { OrgForm, IFormData, IOwnProps, IDispatchProps } from '../../../components/io/organisationForm'
+import { OrgForm } from '../../../components/io/organisationForm'
 import { addOrganisation } from '../../../store/IATIWriter/organisationWriter/actions'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
 
-class Org extends React.Component<WithStyles<typeof styles>> {
+interface IDispatchProps {
+  handleSubmit: (ownProps: any) => void
+}
+
+type AllProps = IDispatchProps
+
+class Org extends React.Component<WithStyles<typeof styles> & AllProps> {
+
+  handleSubmit () {
+    this.props.handleSubmit('Jeez')
+  }
 
   render() {
 
     //console.log(this.props.propertiesList)
 
     return (
-      <OrgForm foo='foo'/>
+      <OrgForm onSubmit={this.handleSubmit.bind(this)}/>
     )
   }
 }
 
-function mapStateToProps(state: ApplicationState, props: IOwnProps): ConfigProps<IFormData, IOwnProps> {
+/*function mapStateToProps(state: ApplicationState): ConfigProps<IFormData> {
   return {
     form: "OrgForm", // Form will be handled by Redux Form using this key
     initialValues: {}
   }
-}
+}*/
 
 function mapDispatchToProps(dispatch: Dispatch<AnyAction>): IDispatchProps {
   return {
@@ -36,7 +46,7 @@ function mapDispatchToProps(dispatch: Dispatch<AnyAction>): IDispatchProps {
 }
 
 export const OrganisationForm = withTheme(withStyles(styles)(connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(Org)))
 

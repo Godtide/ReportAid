@@ -15,5 +15,5 @@ export interface OrganisationProps {
 }
 
 export const enum ActionTypes {
-  ADD_ORG = '@@blockchainActionTypes/ADD_ORG'
+  ADD_ORG = '@@OrgActionTypes/ADD_ORG'
 }

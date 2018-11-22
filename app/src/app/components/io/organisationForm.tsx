@@ -1,59 +1,53 @@
 import * as React from 'react'
 import {
-  Field as FormField,
+  Field,
   InjectedFormProps,
   reduxForm,
 } from 'redux-form'
 
 import { Organisation } from '../../utils/strings'
 
-export interface IFormData {
-  bah: string
+export interface OrgFormProps {
+  onSubmit: () => void
 }
 
-export interface IOwnProps {
-  foo: string
+type AllProps = OrgFormProps & InjectedFormProps<{}, OrgFormProps>
+
+const renderInput = (field: any) => {
+	return (
+    	<input {...field.input} type={field.type}/>
+	)
 }
-
-export interface IDispatchProps {
-  handleSubmit: (ownProps: any) => void
-}
-
-type AllProps = IOwnProps & IDispatchProps & InjectedFormProps<IFormData, IOwnProps>
-
-/*
-export interface DispatchProps {
-  onSubmit: (data: IFormData, dispatch: Dispatch<any>, props: IOwnProps) => void;
-}*/
-
 
 const Form: React.SFC<AllProps> = (props: AllProps) => {
 
+  const { handleSubmit } = props
+
   return (
-    <form onSubmit={props.handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <div>
-        <label>{Organisation.orgName}</label>
-        <FormField
+        <label htmlFor={Organisation.orgName}>{Organisation.orgName}: </label>
+        <Field
           name={Organisation.orgName}
-          component="input"
+          component={renderInput}
           type="text"
           placeholder={Organisation.orgName}
         />
       </div>
       <div>
-        <label>{Organisation.identifier}</label>
-        <FormField
+        <label htmlFor={Organisation.identifier}>{Organisation.identifier}: </label>
+        <Field
           name={Organisation.identifier}
-          component="input"
+          component={renderInput}
           type="text"
           placeholder={Organisation.identifier}
         />
       </div>
       <div>
-        <label>{Organisation.type}</label>
-        <FormField
+        <label htmlFor={Organisation.type}>{Organisation.type}: </label>
+        <Field
           name={Organisation.type}
-          component="input"
+          component={renderInput}
           type="text"
           placeholder={Organisation.type}
         />
@@ -67,6 +61,6 @@ const Form: React.SFC<AllProps> = (props: AllProps) => {
   )
 }
 
-export const OrgForm = reduxForm<IFormData, IOwnProps>({
-  form: "dummy-form"
+export const OrgForm = reduxForm<{}, OrgFormProps>({
+  form: "orgForm"
 })(Form)

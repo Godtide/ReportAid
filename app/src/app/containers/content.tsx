@@ -57,7 +57,7 @@ class AppContent extends React.Component<WithStyles<typeof styles>> {
         <Route
           name={Paths.orgWriter}
           path={PathConfig.orgWriter}
-          render={() => <OrganisationForm foo='foo' />}
+          render={() => <OrganisationForm />}
         />
       </Switch>
     )
