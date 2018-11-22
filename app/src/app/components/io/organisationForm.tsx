@@ -1,72 +1,72 @@
 import * as React from 'react'
-import { connect } from 'react-redux'
-import { Dispatch, AnyAction } from 'redux'
-import { Field } from 'redux-form'
-import { ApplicationState } from '../../store'
+import {
+  Field as FormField,
+  InjectedFormProps,
+  reduxForm,
+} from 'redux-form'
 
 import { Organisation } from '../../utils/strings'
-import { addOrganisation } from '../../store/IATIWriter/organisationWriter/actions'
 
-interface OrganisationFormProps {
-  pristine: boolean
-  submitting: boolean
+export interface IFormData {
+  bah: string
 }
 
-interface DispatchProps {
+export interface IOwnProps {
+  foo: string
+}
+
+export interface IDispatchProps {
   handleSubmit: (ownProps: any) => void
 }
 
-type AllProps = OrganisationFormProps & DispatchProps
+type AllProps = IOwnProps & IDispatchProps & InjectedFormProps<IFormData, IOwnProps>
+
+/*
+export interface DispatchProps {
+  onSubmit: (data: IFormData, dispatch: Dispatch<any>, props: IOwnProps) => void;
+}*/
+
 
 const Form: React.SFC<AllProps> = (props: AllProps) => {
 
   return (
-    <div>
-      <form onSubmit={props.handleSubmit}>
-        <div>
-          <label>{Organisation.orgName}</label>
-          <Field
-            name={Organisation.orgName}
-            component="input"
-            type="text"
-            placeholder={Organisation.orgName}
-          />
-        </div>
-        <div>
-          <label>{Organisation.identifier}</label>
-          <Field
-            name={Organisation.identifier}
-            component="input"
-            type="text"
-            placeholder={Organisation.identifier}
-          />
-        </div>
-        <div>
-          <label>{Organisation.type}</label>
-          <Field
-            name={Organisation.type}
-            component="input"
-            type="text"
-            placeholder={Organisation.type}
-          />
-        </div>
-        <div>
-          <button type="submit" disabled={props.pristine || props.submitting}>
-            Submit
-          </button>
-        </div>
-      </form>
-    </div>
+    <form onSubmit={props.handleSubmit}>
+      <div>
+        <label>{Organisation.orgName}</label>
+        <FormField
+          name={Organisation.orgName}
+          component="input"
+          type="text"
+          placeholder={Organisation.orgName}
+        />
+      </div>
+      <div>
+        <label>{Organisation.identifier}</label>
+        <FormField
+          name={Organisation.identifier}
+          component="input"
+          type="text"
+          placeholder={Organisation.identifier}
+        />
+      </div>
+      <div>
+        <label>{Organisation.type}</label>
+        <FormField
+          name={Organisation.type}
+          component="input"
+          type="text"
+          placeholder={Organisation.type}
+        />
+      </div>
+      <div>
+        <button type="submit">
+          Submit
+        </button>
+      </div>
+    </form>
   )
 }
 
-const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): DispatchProps => {
-  return ({
-    handleSubmit: (ownProps: any) => dispatch(addOrganisation(ownProps))
-  })
-}
-
-export const OrganisationForm = connect<{}, DispatchProps, {}, ApplicationState>(
-  null,
-  mapDispatchToProps
-)(Form)
+export const OrgForm = reduxForm<IFormData, IOwnProps>({
+  form: "dummy-form"
+})(Form)

@@ -3,6 +3,7 @@ import { combineReducers, Reducer, Store, createStore, applyMiddleware } from 'r
 import thunkMiddleware from 'redux-thunk'
 
 import { BlockchainProps } from './blockchain/types'
+import { OrganisationProps } from './IATIWriter/organisationWriter/types'
 import { InfoProps } from './info/types'
 
 import { reducer as blockchainReducer } from './blockchain/reducer'
@@ -23,6 +24,7 @@ export interface ApplicationState {
   overview: InfoProps
   writer: InfoProps
   reader: InfoProps
+  form: OrganisationProps
 }
 
 export const rootReducer: Reducer<ApplicationState> = combineReducers<ApplicationState>({
