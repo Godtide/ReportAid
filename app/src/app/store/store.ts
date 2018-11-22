@@ -1,6 +1,6 @@
 // import { combineReducers, Dispatch, Reducer, Action, AnyAction } from 'redux'
-import { combineReducers, Reducer } from 'redux'
-import { Store, createStore, applyMiddleware } from 'redux'
+import { combineReducers, Reducer, Store, createStore, applyMiddleware } from 'redux'
+import { reducer as formReducer } from 'redux-form'
 import thunkMiddleware from 'redux-thunk'
 
 import { BlockchainProps } from './blockchain/types'
@@ -32,7 +32,8 @@ export const rootReducer: Reducer<ApplicationState> = combineReducers<Applicatio
   help: helpReducer,
   overview: overviewReducer,
   writer: IATIWriterReducer,
-  reader: IATIReaderReducer
+  reader: IATIReaderReducer,
+  form: formReducer 
 })
 
 export function configureStore(

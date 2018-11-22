@@ -9,9 +9,10 @@ class Organisation extends React.Component<WithStyles<typeof styles>> {
   render() {
 
     return (
-      <OrganisationForm pristine={true} submitting={true}/>
+      //<OrganisationForm pristine={true} submitting={true}/>
+      <p>blah</p>
     )
   }
 }
 
-export const OrganisationWriter = withTheme(withStyles(styles)(Organisation))
+export const OrgWriter = withTheme(withStyles(styles)(Organisation))

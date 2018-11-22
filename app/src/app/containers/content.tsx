@@ -4,10 +4,11 @@ import { Switch, Route } from 'react-router-dom'
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../styles/theme'
 
-import { BlockchainInfo } from './pages/blockchain/blockchainInfo'
-
 import { Info } from './pages/info/info'
 import { InfoTypes } from './pages/info/types'
+
+import { BlockchainInfo } from './pages/blockchain/blockchainInfo'
+import { OrgWriter } from './pages/IATIWriter/orgWriter'
 
 import { Paths } from '../utils/strings'
 import { Paths as PathConfig } from '../utils/config'
@@ -52,6 +53,11 @@ class AppContent extends React.Component<WithStyles<typeof styles>> {
           name={Paths.reader}
           path={PathConfig.reader}
           render={() => <Info type={InfoTypes.IATIReader} />}
+        />
+        <Route
+          name={Paths.orgWriter}
+          path={PathConfig.orgWriter}
+          render={() => <OrgWriter />}
         />
       </Switch>
     )
