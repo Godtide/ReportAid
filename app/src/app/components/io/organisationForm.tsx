@@ -1,67 +1,68 @@
 import * as React from 'react'
-import {
-  Field,
-  InjectedFormProps,
-  reduxForm,
-} from 'redux-form'
-import TextField from '@material-ui/core/TextField'
-
+import { Formik, FormikProps, Form, Field, FieldProps } from 'formik'
 import { Organisation } from '../../utils/strings'
 
-export interface OrgFormProps {
-  onSubmit: (values: any) => any
+interface OwnProps {
+  orgName: string
+  identifier: string
+  type: string
 }
 
-type AllProps = OrgFormProps & InjectedFormProps<{}, OrgFormProps>
+export interface DispatchProps {
+  handleSubmit: (values: any) => void
+}
 
-const renderTextField = ({input}: any) => {
+//type AllProps = OrgFormProps & InjectedFormProps<{}, OrgFormProps>
 
-  console.log('here', input)
+type AllProps = OwnProps & DispatchProps
+
+export const OrgForm: React.SFC<AllProps> = (props: AllProps) => {
   return (
-    <TextField
-      {...input}
-    />
+    <div>
+      <Formik
+        initialValues={{ orgName: '', identifier: '', type: '' }}
+        onSubmit={(values: OwnProps) => props.handleSubmit(values)}
+        render={(values: FormikProps<OwnProps>) => (
+          <Form>
+            <Field
+              name={Organisation.orgName}
+              render={({ field, form }: FieldProps<OwnProps>) => (
+                <div>
+                  <input type="text" {...field} placeholder={props.orgName} />
+                  {form.touched.orgName &&
+                    form.errors.orgName &&
+                    form.errors.orgName}
+                </div>
+              )}
+            />
+            <Field
+              name={Organisation.identifier}
+              render={({ field, form }: FieldProps<OwnProps>) => (
+                <div>
+                  <input type="text" {...field} placeholder={props.identifier} />
+                  {form.touched.identifier &&
+                    form.errors.identifier &&
+                    form.errors.identifier}
+                </div>
+              )}
+            />
+            <Field
+              name={Organisation.type}
+              render={({ field, form }: FieldProps<OwnProps>) => (
+                <div>
+                  <input type="text" {...field} placeholder={props.type} />
+                  {form.touched.type &&
+                    form.errors.type &&
+                    form.errors.type}
+                </div>
+              )}
+            />
+            <button type="submit">
+              Submit
+            </button>
+          </Form>
+        )}
+      />
+    </div>
   )
 }
-
-const Form: React.SFC<AllProps> = (props: AllProps) => {
-
-  const { handleSubmit, onSubmit } = props
-
-  return (
-
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <label htmlFor={Organisation.orgName}>{Organisation.orgName}: </label>
-        <Field
-          name={Organisation.orgName}
-          component={renderTextField}
-        />
-      </div>
-      <div>
-        <label htmlFor={Organisation.identifier}>{Organisation.identifier}: </label>
-        <Field
-          name={Organisation.identifier}
-          component={renderTextField}
-        />
-      </div>
-      <div>
-        <label htmlFor={Organisation.type}>{Organisation.type}: </label>
-        <Field
-          name={Organisation.type}
-          component={renderTextField}
-        />
-      </div>
-      <div>
-        <button type="submit">
-          Submit
-        </button>
-      </div>
-    </form>
-
-  )
-}
-
-export const OrgForm = reduxForm<{}, OrgFormProps>({
-  form: "orgForm"
-})(Form)

@@ -4,25 +4,24 @@ import { Dispatch, AnyAction } from 'redux'
 /*import { ConfigProps } from 'redux-form'
 import { ApplicationState } from '../../../store'*/
 
-import { OrgForm } from '../../../components/io/organisationForm'
+import { OrgForm, DispatchProps } from '../../../components/io/organisationForm'
 import { addOrganisation } from '../../../store/IATIWriter/organisationWriter/actions'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
 
-interface IDispatchProps {
-  handleSubmit: (ownProps: any) => void
-}
 
-type AllProps = WithStyles<typeof styles> & IDispatchProps
+
+type AllProps = WithStyles<typeof styles> & DispatchProps
 
 const Org: React.SFC<AllProps> = (props: AllProps) => {
 
   return (
     <OrgForm
-      onSubmit={(values: any) => props.handleSubmit(values)}
-      onSubmitSuccess={() => console.log('submit success')}
-      onSubmitFail={() => console.log('submit fail')}
+      handleSubmit={(values: any) => props.handleSubmit(values)}
+      orgName = 'placeholder'
+      identifier = 'placeholder'
+      type = 'placeholder'
     />
   )
 }
@@ -34,7 +33,7 @@ const Org: React.SFC<AllProps> = (props: AllProps) => {
   }
 }*/
 
-function mapDispatchToProps(dispatch: Dispatch<AnyAction>): IDispatchProps {
+function mapDispatchToProps(dispatch: Dispatch<AnyAction>): DispatchProps {
   return {
     handleSubmit: (ownProps: any) => dispatch(addOrganisation(ownProps))
   }
