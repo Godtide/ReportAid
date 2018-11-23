@@ -20,15 +20,21 @@ export const OrgForm: React.SFC<AllProps> = (props: AllProps) => {
   return (
     <div>
       <Formik
-        initialValues={{ orgName: '', identifier: '', type: '' }}
+        initialValues={ {orgName: '', identifier: '', type: ''} }
         onSubmit={(values: OwnProps) => props.handleSubmit(values)}
         render={(values: FormikProps<OwnProps>) => (
           <Form>
             <Field
-              name={Organisation.orgName}
+              name='orgName'
               render={({ field, form }: FieldProps<OwnProps>) => (
                 <div>
-                  <input type="text" {...field} placeholder={props.orgName} />
+                  <span>{Organisation.orgName}: </span>
+                  <input
+                    type="text"
+                    value={props.orgName}
+                    placeholder={props.orgName}
+                    {...field}
+                  />
                   {form.touched.orgName &&
                     form.errors.orgName &&
                     form.errors.orgName}
@@ -36,10 +42,16 @@ export const OrgForm: React.SFC<AllProps> = (props: AllProps) => {
               )}
             />
             <Field
-              name={Organisation.identifier}
+              name='identifier'
               render={({ field, form }: FieldProps<OwnProps>) => (
                 <div>
-                  <input type="text" {...field} placeholder={props.identifier} />
+                  <span>{Organisation.identifier}: </span>
+                  <input
+                    type="text"
+                    value={props.identifier}
+                    placeholder={props.identifier}
+                    {...field}
+                  />
                   {form.touched.identifier &&
                     form.errors.identifier &&
                     form.errors.identifier}
@@ -47,10 +59,15 @@ export const OrgForm: React.SFC<AllProps> = (props: AllProps) => {
               )}
             />
             <Field
-              name={Organisation.type}
+              name='type'
               render={({ field, form }: FieldProps<OwnProps>) => (
                 <div>
-                  <input type="text" {...field} placeholder={props.type} />
+                  <span>{Organisation.type}: </span>
+                  <input
+                    type="text"
+                    value={props.type}
+                    placeholder={props.type}
+                    {...field}  />
                   {form.touched.type &&
                     form.errors.type &&
                     form.errors.type}
