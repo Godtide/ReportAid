@@ -14,26 +14,17 @@ interface IDispatchProps {
   handleSubmit: (ownProps: any) => void
 }
 
-type AllProps = IDispatchProps
+type AllProps = WithStyles<typeof styles> & IDispatchProps
 
-class Org extends React.Component<WithStyles<typeof styles> & AllProps> {
+const Org: React.SFC<AllProps> = (props: AllProps) => {
 
-  handleSubmit (values: any) {
-    console.log('this values', values)
-    this.props.handleSubmit('Jeez')
-  }
-
-  render() {
-    // (values: any) => this.handleSubmit.bind(this, values)
-
-    return (
-      <OrgForm
-        onSubmit={(values: any) => this.handleSubmit(values)}
-        onSubmitSuccess={() => console.log('submit success')}
-        onSubmitFail={() => console.log('submit fail')}
-      />
-    )
-  }
+  return (
+    <OrgForm
+      onSubmit={(values: any) => props.handleSubmit(values)}
+      onSubmitSuccess={() => console.log('submit success')}
+      onSubmitFail={() => console.log('submit fail')}
+    />
+  )
 }
 
 /*function mapStateToProps(state: ApplicationState): ConfigProps<IFormData> {
