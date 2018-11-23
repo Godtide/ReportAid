@@ -24,7 +24,7 @@ export interface ApplicationState {
   overview: InfoProps
   writer: InfoProps
   reader: InfoProps
-  form: OrganisationProps
+  orgForm: OrganisationProps
 }
 
 export const rootReducer: Reducer<ApplicationState> = combineReducers<ApplicationState>({
@@ -35,7 +35,7 @@ export const rootReducer: Reducer<ApplicationState> = combineReducers<Applicatio
   overview: overviewReducer,
   writer: IATIWriterReducer,
   reader: IATIReaderReducer,
-  form: orgReducer
+  orgForm: orgReducer
 })
 
 export function configureStore(

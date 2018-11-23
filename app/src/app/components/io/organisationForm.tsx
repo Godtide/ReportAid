@@ -1,66 +1,59 @@
 import * as React from 'react'
 import { Formik, FormikProps, Form, Field, FieldProps } from 'formik'
 import { Organisation } from '../../utils/strings'
-
-interface OwnProps {
-  orgName: string
-  identifier: string
-  type: string
-}
+import { OrganisationProps } from '../../store/IATIWriter/organisationWriter/types'
 
 export interface DispatchProps {
   handleSubmit: (values: any) => void
 }
 
-//type AllProps = OrgFormProps & InjectedFormProps<{}, OrgFormProps>
-
-type AllProps = OwnProps & DispatchProps
+type AllProps = OrganisationProps & DispatchProps
 
 export const OrgForm: React.SFC<AllProps> = (props: AllProps) => {
   return (
     <div>
       <Formik
-        initialValues={ {orgName: '', identifier: '', type: ''} }
-        onSubmit={(values: OwnProps) => props.handleSubmit(values)}
-        render={(values: FormikProps<OwnProps>) => (
+        initialValues={ {name: '', reference: '', type: ''} }
+        onSubmit={(values: OrganisationProps) => props.handleSubmit(values)}
+        render={(values: FormikProps<OrganisationProps>) => (
           <Form>
             <Field
-              name='orgName'
-              render={({ field, form }: FieldProps<OwnProps>) => (
+              name='name'
+              render={({ field, form }: FieldProps<OrganisationProps>) => (
                 <div>
                   <span>{Organisation.orgName}: </span>
                   <input
                     type="text"
-                    value={props.orgName}
-                    placeholder={props.orgName}
+                    value={props.name}
+                    placeholder={props.name}
                     {...field}
                   />
-                  {form.touched.orgName &&
-                    form.errors.orgName &&
-                    form.errors.orgName}
+                  {form.touched.name &&
+                    form.errors.name &&
+                    form.errors.name}
                 </div>
               )}
             />
             <Field
-              name='identifier'
-              render={({ field, form }: FieldProps<OwnProps>) => (
+              name='reference'
+              render={({ field, form }: FieldProps<OrganisationProps>) => (
                 <div>
-                  <span>{Organisation.identifier}: </span>
+                  <span>{Organisation.reference}: </span>
                   <input
                     type="text"
-                    value={props.identifier}
-                    placeholder={props.identifier}
+                    value={props.reference}
+                    placeholder={props.reference}
                     {...field}
                   />
-                  {form.touched.identifier &&
-                    form.errors.identifier &&
-                    form.errors.identifier}
+                  {form.touched.reference &&
+                    form.errors.reference &&
+                    form.errors.reference}
                 </div>
               )}
             />
             <Field
               name='type'
-              render={({ field, form }: FieldProps<OwnProps>) => (
+              render={({ field, form }: FieldProps<OrganisationProps>) => (
                 <div>
                   <span>{Organisation.type}: </span>
                   <input
