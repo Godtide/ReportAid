@@ -1,14 +1,14 @@
 import { InfoProps,
          AccountProps,
          ObjectProps,
-         ActionTypes,
+         BlockchainActionTypes,
          AddInfoAction,
          AddAccountAction,
          AddObjectAction } from './types'
 
 export const addInfo = (payload: InfoProps): AddInfoAction => {
   return {
-    type: ActionTypes.ADD_INFO,
+    type: BlockchainActionTypes.ADD_INFO,
     payload
   }
 }
@@ -16,14 +16,14 @@ export const addInfo = (payload: InfoProps): AddInfoAction => {
 export const addAccount = (payload: AccountProps): AddAccountAction => {
   //console.log('In payload', payload)
   return {
-    type: ActionTypes.ADD_ACCOUNT,
+    type: BlockchainActionTypes.ADD_ACCOUNT,
     payload
   }
 }
 
 export const addObject = (payload: ObjectProps): AddObjectAction => {
   return {
-    type: ActionTypes.ADD_OBJECT,
+    type: BlockchainActionTypes.ADD_OBJECT,
     payload
   }
 }

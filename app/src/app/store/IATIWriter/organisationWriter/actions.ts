@@ -1,8 +1,8 @@
-import { ActionTypes, AddAction, OrganisationProps } from './types'
+import { OrganisationActionTypes, OrganisationAddAction, OrganisationProps } from './types'
 
-export const addOrganisation = (payload: OrganisationProps): AddAction => {
+export const addOrganisation = (payload: OrganisationProps): OrganisationAddAction => {
   return {
-    type: ActionTypes.ADD_ORG,
+    type: OrganisationActionTypes.ADD_ORG,
     payload
   }
 }

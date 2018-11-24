@@ -12,13 +12,31 @@ export interface DispatchProps {
 
 type AllProps = OrganisationProps & DispatchProps
 
+const validate = (values: OrganisationProps): Partial<OrganisationProps> => {
+  const errors: Partial<OrganisationProps> = {}
+  if (!values.name) {
+    errors.name = 'Required'
+  }
+  if (!values.reference) {
+    errors.reference = 'Required'
+  }
+  if (!values.type) {
+    errors.type = 'Required'
+  }
+  return errors
+}
+
 export const OrgForm: React.SFC<AllProps> = (props: AllProps) => {
   return (
     <div>
       <Formik
         initialValues={ {name: props.name, reference: props.reference, type: props.type} }
-        onSubmit={(values: OrganisationProps) => props.handleSubmit(values)}
-        render={() => (
+        validate={validate}
+        onSubmit={(values: OrganisationProps, actions: any) => {
+          props.handleSubmit(values)
+          actions.setSubmitting(false)
+        }}
+        render={({isSubmitting}: FormikProps<any>) => (
           <Form>
             <Field
               name='name'
@@ -38,11 +56,13 @@ export const OrgForm: React.SFC<AllProps> = (props: AllProps) => {
               component={TextField}
             />
             <br />
+            {isSubmitting && <LinearProgress />}
             <br />
             <Button
               type='submit'
               variant="raised"
               color="primary"
+              disabled={isSubmitting}
             >
               Submit
             </Button>
