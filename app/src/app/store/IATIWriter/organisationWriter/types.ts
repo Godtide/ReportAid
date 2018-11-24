@@ -9,8 +9,8 @@ export interface AddOrgAction extends Action {
 
 // function setOrganisation(string _reference, string _name, string _type) public;
 export interface OrganisationProps {
-  reference: string
   name: string
+  reference: string
   type: string
 }
 

@@ -13,9 +13,9 @@ export const OrgForm: React.SFC<AllProps> = (props: AllProps) => {
   return (
     <div>
       <Formik
-        initialValues={ {name: '', reference: '', type: ''} }
+        initialValues={ {name: props.name, reference: props.reference, type: props.type} }
         onSubmit={(values: OrganisationProps) => props.handleSubmit(values)}
-        render={(values: FormikProps<OrganisationProps>) => (
+        render={() => (
           <Form>
             <Field
               name='name'
