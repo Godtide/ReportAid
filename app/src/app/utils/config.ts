@@ -23,7 +23,7 @@ class Blockchain {
 class OrgsContract {
 
   static organisationsABI = [
-    "event OrganisationSet(string _reference, string _name, string _type)",
+    "event SetOrganisation(string _reference, string _name, string _type)",
     "function setOrganisation(string _reference, string _name, string _type)",
     "function getOrganisationExists(string _reference)",
     "function getNumOrganisations()",

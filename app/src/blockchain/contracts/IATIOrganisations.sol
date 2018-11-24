@@ -3,8 +3,8 @@ pragma solidity ^0.4.24;
 // IATI Organisations
 // Steve Huckle
 
-import "Organisations.sol";
-import "Strings.sol";
+import "./Organisations.sol";
+import "./Strings.sol";
 
 contract IATIOrganisations is Organisations {
 
@@ -16,7 +16,7 @@ contract IATIOrganisations is Organisations {
   string[] orgReferences;
   mapping(string => Organisation) private organisations;
 
-  event OrganisationSet(string _reference, string _name, string _type);
+  event SetOrganisation(string _reference, string _name, string _type);
 
   constructor() public {
   }
@@ -26,7 +26,7 @@ contract IATIOrganisations is Organisations {
     organisations[_reference].name = _name;
     organisations[_reference].orgType = _type;
     orgReferences.push(_reference);
-    emit OrganisationSet(_reference, _name, _type);
+    emit SetOrganisation(_reference, _name, _type);
   }
 
   function getOrganisationExists(string _reference) public constant returns (bool) {

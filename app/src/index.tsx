@@ -4,6 +4,7 @@ import { HashRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import CssBaseline from '@material-ui/core/CssBaseline'
 
+import { OrganisationContract } from './app/containers/blockchain/orgsContract'
 import { setBlockchain } from './app/components/blockchain/blockchain'
 
 import { Main } from './app/containers/main'
@@ -17,6 +18,7 @@ const App = () => (
     <Provider store={store}>
       <React.Fragment>
         <CssBaseline />
+        <OrganisationContract />
         <HashRouter>
           <Main />
         </HashRouter>

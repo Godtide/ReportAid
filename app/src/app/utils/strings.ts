@@ -12,7 +12,7 @@ class App {
 class Paths {
 
   static readonly home='Home'
-  static readonly blockchain = 'Blockchain Info\''
+  static readonly blockchain = 'Blockchain Info'
   static readonly about='About'
   static readonly overview='Overview'
   static readonly help='Help'

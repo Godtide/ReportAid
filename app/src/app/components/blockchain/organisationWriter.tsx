@@ -14,11 +14,14 @@ export interface OrgDispatchProps {
 }
 
 const organisationSchema = Yup.object().shape({
-  name: Yup.string()
+  name: Yup
+    .string()
     .required('Required'),
-  reference: Yup.string()
+  reference: Yup
+    .string()
     .required('Required'),
-  type: Yup.string()
+  type: Yup
+    .string()
     .required('Required'),
 })
 
