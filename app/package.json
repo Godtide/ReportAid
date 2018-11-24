@@ -32,7 +32,8 @@
     "redux-actions": "^2.6.1",
     "redux-thunk": "^2.3.0",
     "typesafe-actions": "^2.0.4",
-    "web3": "^1.0.0-beta.36"
+    "web3": "^1.0.0-beta.36",
+    "yup": "^0.26.6"
   },
   "devDependencies": {
     "@types/material-ui": "^0.21.5",
@@ -47,6 +48,7 @@
     "@types/redux-form": "^7.4.7",
     "@types/web3": "^1.0.12",
     "@types/webpack": "^4.4.11",
+    "@types/yup": "^0.26.2",
     "ajv": "^6.5.3",
     "awesome-typescript-loader": "^5.2.0",
     "babel-core": "^6.26.3",

@@ -1,5 +1,6 @@
 import * as React from 'react'
-import { Formik, Form, Field, FormikProps } from 'formik'
+import { Formik, Form, Field, FormikProps, ErrorMessage} from 'formik'
+import * as Yup from 'yup'
 import { Organisation } from '../../utils/strings'
 import { OrganisationProps } from '../../store/IATIWriter/organisationWriter/types'
 import {LinearProgress} from '@material-ui/core'
@@ -12,28 +13,23 @@ export interface OrgDispatchProps {
   handleSubmit: (values: any) => void
 }
 
-type OrgFormProps = OrganisationProps & OrgDispatchProps
+const organisationSchema = Yup.object().shape({
+  name: Yup.string()
+    .required('Required'),
+  reference: Yup.string()
+    .required('Required'),
+  type: Yup.string()
+    .required('Required'),
+})
 
-const validate = (values: OrganisationProps): Partial<OrganisationProps> => {
-  const errors: Partial<OrganisationProps> = {}
-  if (!values.name) {
-    errors.name = 'Required'
-  }
-  if (!values.reference) {
-    errors.reference = 'Required'
-  }
-  if (!values.type) {
-    errors.type = 'Required'
-  }
-  return errors
-}
+type OrgFormProps = OrganisationProps & OrgDispatchProps
 
 const OrgForm: React.SFC<OrgFormProps> = (props: OrgFormProps) => {
   return (
     <div>
       <Formik
         initialValues={ {name: props.name, reference: props.reference, type: props.type} }
-        validate={validate}
+        validationSchema={organisationSchema}
         onSubmit={(values: OrganisationProps, actions: any) => {
           props.handleSubmit(values)
           actions.setSubmitting(false)
@@ -46,17 +42,26 @@ const OrgForm: React.SFC<OrgFormProps> = (props: OrgFormProps) => {
               label={Organisation.orgName}
               component={TextField}
             />
+            <ErrorMessage
+              name='name'
+            />
             <br />
             <Field
               name='reference'
               label={Organisation.reference}
               component={TextField}
             />
+            <ErrorMessage
+              name='reference'
+            />
             <br />
             <Field
               name='type'
               label={Organisation.type}
               component={TextField}
+            />
+            <ErrorMessage
+              name='type'
             />
             <br />
             {isSubmitting && <LinearProgress />}
