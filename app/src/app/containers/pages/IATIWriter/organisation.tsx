@@ -13,7 +13,7 @@ function mapDispatchToProps(dispatch: Dispatch<AnyAction>): OrgDispatchProps {
   }
 }
 
-export const OrganisationForm = withTheme(withStyles(styles)(connect(
+export const Organisation = withTheme(withStyles(styles)(connect(
   null,
   mapDispatchToProps
 )(OrgWriter)))

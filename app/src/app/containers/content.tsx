@@ -8,7 +8,7 @@ import { Info } from './pages/info/info'
 import { InfoTypes } from './pages/info/types'
 
 import { BlockchainInfo } from './pages/blockchain/blockchainInfo'
-import { OrganisationForm } from './pages/IATIWriter/orgWriter'
+import { Organisation } from './pages/IATIWriter/organisation'
 
 import { Paths } from '../utils/strings'
 import { Paths as PathConfig } from '../utils/config'
@@ -57,7 +57,7 @@ class AppContent extends React.Component<WithStyles<typeof styles>> {
         <Route
           name={Paths.orgWriter}
           path={PathConfig.orgWriter}
-          render={() => <OrganisationForm />}
+          render={() => <Organisation />}
         />
       </Switch>
     )

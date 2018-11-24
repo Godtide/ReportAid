@@ -37,6 +37,7 @@ const OrgForm: React.SFC<OrgFormProps> = (props: OrgFormProps) => {
         onSubmit={(values: OrganisationProps, actions: any) => {
           props.handleSubmit(values)
           actions.setSubmitting(false)
+          actions.resetForm()
         }}
         render={({isSubmitting}: FormikProps<any>) => (
           <Form>
