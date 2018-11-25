@@ -1,13 +1,12 @@
 import * as React from 'react'
 import { Formik, Form, Field, FormikProps, ErrorMessage} from 'formik'
 import * as Yup from 'yup'
+
 import { Organisation } from '../../utils/strings'
 import { OrganisationProps } from '../../store/IATIWriter/organisationWriter/types'
 import {LinearProgress} from '@material-ui/core'
 import Button from '@material-ui/core/Button'
 import {TextField} from 'formik-material-ui'
-import { WithStyles } from '@material-ui/core/styles/withStyles'
-import { styles } from '../../styles/theme'
 
 export interface OrgDispatchProps {
   handleSubmit: (values: any) => void
@@ -25,9 +24,9 @@ const organisationSchema = Yup.object().shape({
     .required('Required'),
 })
 
-type OrgFormProps = OrganisationProps & OrgDispatchProps
+type OrgWriterFormProps = OrganisationProps & OrgDispatchProps
 
-const OrgForm: React.SFC<OrgFormProps> = (props: OrgFormProps) => {
+export const OrgWriterForm: React.SFC<OrgWriterFormProps> = (props: OrgWriterFormProps) => {
   return (
     <div>
       <Formik
@@ -79,23 +78,6 @@ const OrgForm: React.SFC<OrgFormProps> = (props: OrgFormProps) => {
             </Button>
           </Form>
         )}
-      />
-    </div>
-  )
-}
-
-type OrgWriterProps = WithStyles<typeof styles> & OrgDispatchProps
-
-export const OrgWriter: React.SFC<OrgWriterProps> = (props: OrgWriterProps) => {
-
-  return (
-    <div>
-      <h2>{Organisation.headingOrgWriter}</h2>
-      <OrgForm
-        handleSubmit={(values: any) => props.handleSubmit(values)}
-        name = ''
-        reference = ''
-        type = ''
       />
     </div>
   )

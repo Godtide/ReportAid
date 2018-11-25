@@ -159,6 +159,17 @@ const styles = (theme: Theme) =>
       color: theme.typography.subheading.color,
       backgroundColor: theme.palette.primary.light,
     },
+    expansion: {
+      padding: theme.spacing.unit,
+      margin: theme.spacing.unit,
+      textAlign: 'center',
+      fontSize: theme.typography.title.fontSize,
+      fontWeight: theme.typography.subheading.fontWeight,
+      fontFamily: theme.typography.subheading.fontFamily,
+      lineHeight: theme.typography.subheading.lineHeight,
+      color: theme.typography.subheading.color,
+      backgroundColor: theme.palette.primary.light,
+    },
     caption: {
       padding: theme.spacing.unit * 2,
       margin: theme.spacing.unit,

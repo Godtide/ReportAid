@@ -4,6 +4,10 @@ import MenuList from '@material-ui/core/MenuList'
 import MenuItem from '@material-ui/core/MenuItem'
 
 import IconButton from '@material-ui/core/IconButton'
+import ExpansionPanel from '@material-ui/core/ExpansionPanel'
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
+import Typography from '@material-ui/core/Typography'
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import Home from '@material-ui/icons/Home'
 import Info from '@material-ui/icons/Info'
 import Help from '@material-ui/icons/Help'
@@ -19,7 +23,7 @@ import { Paths as PathConfig } from '../utils/config'
 
 class ApplicationMenu extends React.Component<WithStyles<typeof styles>> {
 
-  public render() {
+  render() {
 
     return (
       <div>
@@ -72,6 +76,21 @@ class ApplicationMenu extends React.Component<WithStyles<typeof styles>> {
               {Paths.writer}
             </MenuItem>
           </Link>
+          <ExpansionPanel className={this.props.classes.expansion} >
+            <ExpansionPanelSummary className={this.props.classes.expansion} expandIcon={<ExpandMoreIcon />}>
+              <Typography>{Paths.writer}</Typography>
+            </ExpansionPanelSummary>
+            <MenuList>
+              <Link to={PathConfig.orgWriter}>
+                <MenuItem>
+                  <IconButton className={this.props.classes.button} aria-label={Paths.orgWriter}>
+                    <Create />
+                  </IconButton>
+                  {Paths.orgWriter}
+                </MenuItem>
+              </Link>
+            </MenuList>
+          </ExpansionPanel>
           <Link to={PathConfig.reader}>
             <MenuItem>
               <IconButton className={this.props.classes.button} aria-label={Paths.reader}>
