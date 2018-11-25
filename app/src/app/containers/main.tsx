@@ -7,7 +7,8 @@ import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import { withTheme, styles } from '../styles/theme'
 
 // import Content from './content'
-import { AppMenu } from './appMenu'
+import { SiderMenu } from './siderMenu'
+import { ApplicationBar } from './appBar'
 import { Content } from './content'
 import { App } from '../utils/strings'
 
@@ -22,11 +23,11 @@ class MainLayout extends React.Component<WithStyles<typeof styles>> {
             <Grid container justify='center' spacing={0}>
               <Grid item xs={12} sm={2}>
                 <img className={this.props.classes.button} src={logo}/>
+                <h1>{App.title}</h1>
               </Grid>
               <Grid item xs={12} sm={10}>
                 <Paper className={this.props.classes.title}>
-                  <h1>{App.title}</h1>
-                  <h3>{App.tagline}</h3>
+                  <ApplicationBar />
                 </Paper>
               </Grid>
             </Grid>
@@ -35,7 +36,7 @@ class MainLayout extends React.Component<WithStyles<typeof styles>> {
             <Grid container spacing={0}>
               <Grid item xs={12} sm={2}>
                 <Paper className={this.props.classes.sider}>
-                  <AppMenu />
+                  <SiderMenu />
                 </Paper>
               </Grid>
               <Grid item xs={12} sm={10}>
@@ -52,7 +53,12 @@ class MainLayout extends React.Component<WithStyles<typeof styles>> {
                   <p>{App.author}</p>
                 </Paper>
               </Grid>
-              <Grid item xs={10}>
+              <Grid item xs={8}>
+              <Paper className={this.props.classes.title}>
+                <h3>{App.tagline}</h3>
+              </Paper>
+              </Grid>
+              <Grid item xs={2}>
                 <Paper className={this.props.classes.footer}>
                   <p>{App.copyright}</p>
                 </Paper>
