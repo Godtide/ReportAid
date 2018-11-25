@@ -1,10 +1,13 @@
 import { InfoProps,
          AccountProps,
          ObjectProps,
+         OrgContractProps,
          BlockchainActionTypes,
          AddInfoAction,
          AddAccountAction,
-         AddObjectAction } from './types'
+         AddObjectAction,
+         AddOrgContractAction
+       } from './types'
 
 export const addInfo = (payload: InfoProps): AddInfoAction => {
   return {
@@ -24,6 +27,13 @@ export const addAccount = (payload: AccountProps): AddAccountAction => {
 export const addObject = (payload: ObjectProps): AddObjectAction => {
   return {
     type: BlockchainActionTypes.ADD_OBJECT,
+    payload
+  }
+}
+
+export const addOrgContract = (payload: OrgContractProps): AddOrgContractAction => {
+  return {
+    type: BlockchainActionTypes.ADD_ORGCONTRACT,
     payload
   }
 }

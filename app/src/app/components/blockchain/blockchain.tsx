@@ -3,23 +3,24 @@ import Web3 from 'web3'
 import { Blockchain } from '../../utils/config'
 
 import { Web3Provider } from 'ethers/providers/web3-provider'
-import { AccountProps, InfoProps, ObjectProps } from '../../store/blockchain/types'
+import { AccountProps, InfoProps, ObjectProps, OrgContractProps } from '../../store/blockchain/types'
 
-import { addAccount, addInfo, addObject } from '../../store/blockchain/actions'
+import { addAccount, addInfo, addObject, addOrgContract } from '../../store/blockchain/actions'
 
 import { getProviders } from './blockchainProvider'
 import { getAccount } from './blockchainAccount'
+import { getOrgContract } from './blockchainContracts'
 
 interface SetBlockchainProps {
   store: Store
 }
 
-interface SetAccountProps {
+interface SetProps {
   store: Store
   provider: object
 }
 
-export const setAccount = (props: SetAccountProps) => {
+export const setAccount = (props: SetProps) => {
 
   const store = props.store
   const state = store.getState()
@@ -32,6 +33,25 @@ export const setAccount = (props: SetAccountProps) => {
       //console.log('Storing Account', account)
       accountData.account = account
       store.dispatch(addAccount(accountData))
+    }
+  })
+}
+
+export const setOrgContract = (props: SetProps) => {
+
+  //console.log('Storing OrgContract')
+
+  const store = props.store
+  const state = store.getState()
+  let orgContractData: OrgContractProps = {
+    orgContract: state.blockchain.orgContract
+  }
+
+  getOrgContract({provider: props.provider}).then((orgContract) => {
+    if ( typeof orgContract != "undefined" ) {
+      //console.log('Storing OrgContract', orgContract)
+      orgContractData.orgContract = orgContract
+      store.dispatch(addOrgContract(orgContractData))
     }
   })
 }
@@ -58,6 +78,7 @@ export const setBlockchain = async (props: SetBlockchainProps) => {
   store.dispatch(addInfo(infoData))
   store.dispatch(addObject(objectData))
 
+  setOrgContract({store: store, provider: objectData.provider})
   setInterval(() => {
     setAccount({store: store, provider: objectData.provider})
   }, Blockchain.checkAccountInterval)

@@ -15,8 +15,12 @@ export interface ObjectProps {
   provider: object
 }
 
-export type BlockchainAddAction = AddInfoAction | AddAccountAction | AddObjectAction
-export type BlockchainProps = InfoProps & AccountProps & ObjectProps
+export interface OrgContractProps {
+  orgContract: object
+}
+
+export type BlockchainAddAction = AddInfoAction | AddAccountAction | AddObjectAction | AddOrgContractAction
+export type BlockchainProps = InfoProps & AccountProps & ObjectProps & OrgContractProps
 
 export interface AddInfoAction extends Action {
     type: BlockchainActionTypes.ADD_INFO
@@ -33,8 +37,14 @@ export interface AddObjectAction extends Action {
     payload: ObjectProps
 }
 
+export interface AddOrgContractAction extends Action {
+    type: BlockchainActionTypes.ADD_ORGCONTRACT
+    payload: OrgContractProps
+}
+
 export const enum BlockchainActionTypes {
   ADD_INFO = '@@blockchainActionTypes/ADD_INFO',
   ADD_ACCOUNT = '@@blockchainActionTypes/ADD_ACCOUNT',
-  ADD_OBJECT = '@@blockchainActionTypes/ADD_OBJECT'
+  ADD_OBJECT = '@@blockchainActionTypes/ADD_OBJECT',
+  ADD_ORGCONTRACT = '@@blockchainActionTypes/ADD_ORGCONTRACT'
 }
