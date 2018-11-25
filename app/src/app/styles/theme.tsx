@@ -160,7 +160,7 @@ const styles = (theme: Theme) =>
       backgroundColor: theme.palette.primary.light,
     },
     expansion: {
-      padding: theme.spacing.unit,
+      padding: 0,
       margin: theme.spacing.unit,
       textAlign: 'center',
       fontSize: theme.typography.title.fontSize,

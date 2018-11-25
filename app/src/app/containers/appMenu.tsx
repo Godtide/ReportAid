@@ -6,7 +6,6 @@ import MenuItem from '@material-ui/core/MenuItem'
 import IconButton from '@material-ui/core/IconButton'
 import ExpansionPanel from '@material-ui/core/ExpansionPanel'
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
-import Typography from '@material-ui/core/Typography'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import Home from '@material-ui/icons/Home'
 import Info from '@material-ui/icons/Info'
@@ -78,7 +77,7 @@ class ApplicationMenu extends React.Component<WithStyles<typeof styles>> {
           </Link>
           <ExpansionPanel className={this.props.classes.expansion} >
             <ExpansionPanelSummary className={this.props.classes.expansion} expandIcon={<ExpandMoreIcon />}>
-              <Typography>{Paths.writer}</Typography>
+              <p>{Paths.writer}</p>
             </ExpansionPanelSummary>
             <MenuList>
               <Link to={PathConfig.orgWriter}>
