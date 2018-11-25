@@ -6,12 +6,12 @@ import MenuItem from '@material-ui/core/MenuItem'
 import AppBar from '@material-ui/core/AppBar'
 import IconButton from '@material-ui/core/IconButton'
 import ListAlt from '@material-ui/icons/ListAlt'
+import List from '@material-ui/icons/List'
 import Home from '@material-ui/icons/Home'
 import Info from '@material-ui/icons/Info'
 import Help from '@material-ui/icons/Help'
 import Panorama from '@material-ui/icons/Panorama'
 import Create from '@material-ui/icons/Create'
-import Report from '@material-ui/icons/Report'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../styles/theme'
@@ -78,7 +78,7 @@ class Bar extends React.Component<WithStyles<typeof styles>> {
             <Link to={PathConfig.reader}>
               <MenuItem>
                 <IconButton className={this.props.classes.button} aria-label={Paths.reader}>
-                  <Report />
+                  <List />
                 </IconButton>
                 {Paths.reader}
               </MenuItem>
