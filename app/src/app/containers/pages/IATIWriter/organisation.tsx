@@ -6,7 +6,7 @@ import { ApplicationState } from '../../../store'
 import { OrgContractProps } from '../../../store/blockchain/types'
 
 import { Organisation as OrgStrings } from '../../../utils/strings'
-import { OrgWriterForm, OrgDispatchProps } from '../../../components/blockchain/OrgWriterForm'
+import { OrgWriterForm, OrgDispatchProps } from '../../../components/blockchain/orgWriterForm'
 import { addOrganisation } from '../../../store/IATIWriter/organisationWriter/actions'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'

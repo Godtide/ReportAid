@@ -33,7 +33,7 @@ class Home {
 
   static heading = 'Home'
 
-  static info = `Use this application to record humanitarian aid data and to get humanitarian aid information.<br /><br />Read the [About](#${configPaths.about}) section to learn about the origins of **ReportAid**.<br /><br />The [Overview](#${configPaths.overview}) section describes a scenario where an organisation uses **ReportAid** to store information about their funding.<br /><br />The [Help](#${configPaths.help}) section gives brief instructions as to how to use **ReportAid** - in essence, to create a humanitarian aid record, click on the [Create Record](#${configPaths.writer}) link and fill in all fields. To retrieve a humanitarian aid record, click on the [Read Record](#${configPaths.reader}) link.`
+  static info = `Use this application to record humanitarian aid data and to get humanitarian aid information.<br /><br />Read the [Overview](#${configPaths.overview}) section to learn about the origins of **ReportAid**.<br /><br />The [Help](#${configPaths.help}) section gives brief instructions as to how to use **ReportAid** - in essence, to create a humanitarian aid record, click on the [Create Record](#${configPaths.writer}) link and fill in all fields. To retrieve a humanitarian aid record, click on the [Read Record](#${configPaths.reader}) link. You must have [MetaMask](https://metamask.io/) installed.`
 }
 
 class About {
@@ -55,7 +55,7 @@ class Help {
 
   static heading = 'ReportAid Help'
 
-  static info = `**ReportAid** allows humanitarian aid organisations to record information about funding.<br /><br />Have a read of the [About](#${configPaths.about}) section, which gives some background to the app\'. The [Overview](#${configPaths.overview}) section describes a scenario where an organisation uses **ReportAid** to store information about their funding.<br /><br />To store a humanitarian aid record, click on the [Create Records](#${configPaths.writer}) link, which will create blockchain transactions that can be signed in [MetaMask](https://metamask.io/). To retrieve information, click on the [Read Records](#${configPaths.reader}) link.`
+  static info = `**ReportAid** allows humanitarian aid organisations to record information about funding.<br /><br />Have a read of the [Overview](#${configPaths.overview}) section, which gives some background about the app\'. <br /><br />To store a humanitarian aid record, click on the [Create Records](#${configPaths.writer}) link. To retrieve information, click on the [Read Records](#${configPaths.reader}) link. This app' relies on [MetaMask](https://metamask.io/).`
 }
 
 class IATIWriter {

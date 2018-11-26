@@ -4,7 +4,7 @@ import MenuList from '@material-ui/core/MenuList'
 import MenuItem from '@material-ui/core/MenuItem'
 
 import IconButton from '@material-ui/core/IconButton'
-import Create from '@material-ui/icons/Create'
+import List from '@material-ui/icons/List'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../styles/theme'
@@ -22,7 +22,7 @@ class Sider extends React.Component<WithStyles<typeof styles>> {
           <Link to={PathConfig.orgReader}>
             <MenuItem>
               <IconButton className={this.props.classes.button} aria-label={Paths.orgReader}>
-                <Create />
+                <List />
               </IconButton>
               {Paths.orgReader}
             </MenuItem>

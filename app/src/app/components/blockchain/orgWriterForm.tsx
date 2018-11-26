@@ -4,9 +4,9 @@ import * as Yup from 'yup'
 
 import { Organisation } from '../../utils/strings'
 import { OrganisationProps } from '../../store/IATIWriter/organisationWriter/types'
-import {LinearProgress} from '@material-ui/core'
+import { LinearProgress } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
-import {TextField} from 'formik-material-ui'
+import { TextField } from 'formik-material-ui'
 
 export interface OrgDispatchProps {
   handleSubmit: (values: any) => void
