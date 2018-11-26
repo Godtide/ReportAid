@@ -11,13 +11,15 @@ class App {
 
 class Paths {
 
+  // AppBar
   static readonly home='Home'
   static readonly blockchain = 'Blockchain Info'
   static readonly about='About'
   static readonly overview='Overview'
   static readonly help='Help'
-  static readonly writer='Create Record'
-  static readonly reader='Read Record'
+  static readonly writer='Create Records'
+  static readonly reader='Read Records'
+
   static readonly orgWriter='Create Organisation'
 }
 
