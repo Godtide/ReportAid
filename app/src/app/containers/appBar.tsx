@@ -1,9 +1,10 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
-import MenuList from '@material-ui/core/MenuList'
-import MenuItem from '@material-ui/core/MenuItem'
 
 import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import MenuItem from '@material-ui/core/MenuItem'
+
 import IconButton from '@material-ui/core/IconButton'
 import ListAlt from '@material-ui/icons/ListAlt'
 import List from '@material-ui/icons/List'
@@ -25,8 +26,8 @@ class Bar extends React.Component<WithStyles<typeof styles>> {
 
     return (
       <div>
-        <AppBar position="static" color="default">
-          <MenuList>
+        <AppBar position='static'>
+          <Toolbar>
             <Link to={PathConfig.home}>
               <MenuItem>
                 <IconButton className={this.props.classes.button} aria-label={Paths.home}>
@@ -83,7 +84,7 @@ class Bar extends React.Component<WithStyles<typeof styles>> {
                 {Paths.reader}
               </MenuItem>
             </Link>
-          </MenuList>
+          </Toolbar>
         </AppBar>
       </div>
     )

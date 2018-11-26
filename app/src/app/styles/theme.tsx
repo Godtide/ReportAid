@@ -151,7 +151,7 @@ const styles = (theme: Theme) =>
     sider: {
       padding: theme.spacing.unit * 2,
       margin: theme.spacing.unit,
-      textAlign: 'center',
+      textAlign: 'left',
       fontSize: theme.typography.title.fontSize,
       fontWeight: theme.typography.subheading.fontWeight,
       fontFamily: theme.typography.subheading.fontFamily,
@@ -159,16 +159,16 @@ const styles = (theme: Theme) =>
       color: theme.typography.subheading.color,
       backgroundColor: theme.palette.primary.light,
     },
-    expansion: {
-      padding: 0,
+    appBar: {
+      padding: theme.spacing.unit * 2,
       margin: theme.spacing.unit,
-      textAlign: 'center',
+      textAlign: 'left',
       fontSize: theme.typography.title.fontSize,
       fontWeight: theme.typography.subheading.fontWeight,
       fontFamily: theme.typography.subheading.fontFamily,
       lineHeight: theme.typography.subheading.lineHeight,
       color: theme.typography.subheading.color,
-      backgroundColor: theme.palette.primary.light,
+      backgroundColor: theme.palette.primary.main,
     },
     caption: {
       padding: theme.spacing.unit * 2,

@@ -5,7 +5,7 @@ class App {
   static readonly title='ReportAid'
   static readonly tagline='Using Blockchain Technology to Add Trust to Humanitarian Aid Reporing'
   static readonly copyright='University of Sussex © 2018'
-  static readonly author='Created by Steven Huckle'
+  static readonly author='Created by [Steven Huckle](https://glowkeeper.github.io/)'
 
 }
 

@@ -1,16 +1,18 @@
 import * as React from 'react'
 import logo from '../images/logo.png'
+
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
-
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
-import { withTheme, styles } from '../styles/theme'
-
-// import Content from './content'
 import { SiderMenu } from './siderMenu'
 import { ApplicationBar } from './appBar'
 import { Content } from './content'
 import { App } from '../utils/strings'
+
+
+import { MarkdownText } from '../components/io/markdownText'
+
+import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
+import { withTheme, styles } from '../styles/theme'
 
 class MainLayout extends React.Component<WithStyles<typeof styles>> {
 
@@ -20,14 +22,18 @@ class MainLayout extends React.Component<WithStyles<typeof styles>> {
       <div>
         <Paper className={this.props.classes.root}>
           <Paper className={this.props.classes.header}>
-            <Grid container justify='center' spacing={0}>
+            <Grid container>
               <Grid item xs={12} sm={2}>
                 <img className={this.props.classes.button} src={logo}/>
-                <h1>{App.title}</h1>
               </Grid>
-              <Grid item xs={12} sm={10}>
-                <Paper className={this.props.classes.title}>
+              <Grid item xs={12} sm={8}>
+                <Paper className={this.props.classes.appBar}>
                   <ApplicationBar />
+                </Paper>
+              </Grid>
+              <Grid item xs={12} sm={2}>
+                <Paper className={this.props.classes.header}>
+                  <h1>{App.title}</h1>
                 </Paper>
               </Grid>
             </Grid>
@@ -50,7 +56,7 @@ class MainLayout extends React.Component<WithStyles<typeof styles>> {
             <Grid container spacing={0}>
               <Grid item xs={2}>
                 <Paper className={this.props.classes.footer}>
-                  <p>{App.author}</p>
+                  <MarkdownText text={App.author} />
                 </Paper>
               </Grid>
               <Grid item xs={8}>

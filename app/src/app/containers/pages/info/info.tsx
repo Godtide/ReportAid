@@ -1,7 +1,9 @@
 import * as React from 'react'
 //import { bindActionCreators, Dispatch, AnyAction } from 'redux'
 import { connect } from 'react-redux'
+
 import { ApplicationState } from '../../../store'
+
 import { MarkdownTextWithTitle } from '../../../components/io/markdownText'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
