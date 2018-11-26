@@ -19,12 +19,12 @@ class Sider extends React.Component<WithStyles<typeof styles>> {
     return (
       <div>
         <MenuList>
-          <Link to={PathConfig.orgWriter}>
+          <Link to={PathConfig.orgReader}>
             <MenuItem>
-              <IconButton className={this.props.classes.button} aria-label={Paths.orgWriter}>
+              <IconButton className={this.props.classes.button} aria-label={Paths.orgReader}>
                 <Create />
               </IconButton>
-              {Paths.orgWriter}
+              {Paths.orgReader}
             </MenuItem>
           </Link>
         </MenuList>
@@ -33,4 +33,4 @@ class Sider extends React.Component<WithStyles<typeof styles>> {
   }
 }
 
-export const SiderMenu = withTheme(withStyles(styles)(Sider))
+export const SiderReadMenu = withTheme(withStyles(styles)(Sider))

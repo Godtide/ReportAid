@@ -4,7 +4,7 @@ class App {
 
   static readonly title='ReportAid'
   static readonly tagline='Using Blockchain Technology to Add Trust to Humanitarian Aid Reporing'
-  static readonly copyright='University of Sussex © 2018'
+  static readonly copyright='[University of Sussex](https://www.sussex.ac.uk/) © 2018'
   static readonly author='Created by [Steven Huckle](https://glowkeeper.github.io/)'
 
 }
@@ -21,6 +21,7 @@ class Paths {
   static readonly reader='Read Records'
 
   static readonly orgWriter='Create Organisation'
+  static readonly orgReader='Read Organisation'
 }
 
 class Blockchain {
@@ -39,7 +40,7 @@ class About {
 
   static heading = 'About ReportAid'
 
-  static info = '**ReportAid** is the result of an academic paper titled: _Humanitarian Aid - a Blockchain Application That Adds Trust to Aid Provisioning_. The article discusses how the trust mechanisms of blockchain technology might be used to promote transparanecy in humanitarian aid provisioning. The general idea is that blockchains can add trust to the reporting of humanitarian aid funding.<br /><br />For more information about **ReportAid**, please contact s dot huckle at sussex dot ac dot uk.'
+  static info = '**ReportAid** version 0.0.2.<br /><br />Created by [Steven Huckle](https://glowkeeper.github.io/) at the [University of Sussex](https://www.sussex.ac.uk/). '
 
 }
 
@@ -47,28 +48,28 @@ class Overview {
 
   static heading = 'Overview of ReportAid'
 
-  static info = 'blah...'
+  static info = '**ReportAid** is the result of an academic paper titled: _Humanitarian Aid - a Blockchain Application That Adds Trust to Aid Provisioning_. The article discusses how the trust mechanisms of blockchain technology might be used to promote transparanecy in humanitarian aid provisioning. The general idea is that blockchains can add trust to the reporting of humanitarian aid funding.<br /><br />For more information about **ReportAid**, please contact s dot huckle at sussex dot ac dot uk.'
 }
 
 class Help {
 
   static heading = 'ReportAid Help'
 
-  static info = `**ReportAid** allows humanitarian aid organisations to record information about funding.<br /><br />Have a read of the [About](#${configPaths.about}) section, which gives some background to the app\'. The [Overview](#${configPaths.overview}) section describes a scenario where an organisation uses **ReportAid** to store information about their funding.<br /><br />To store a humanitarian aid record, click on the [Create Record](#${configPaths.writer}) link and fill in all fields. That will create some blockchain transactions, which can be signed in [MetaMask](https://metamask.io/). To retrieve information, click on the [Read Record](#${configPaths.reader}) link.`
+  static info = `**ReportAid** allows humanitarian aid organisations to record information about funding.<br /><br />Have a read of the [About](#${configPaths.about}) section, which gives some background to the app\'. The [Overview](#${configPaths.overview}) section describes a scenario where an organisation uses **ReportAid** to store information about their funding.<br /><br />To store a humanitarian aid record, click on the [Create Records](#${configPaths.writer}) link, which will create blockchain transactions that can be signed in [MetaMask](https://metamask.io/). To retrieve information, click on the [Read Records](#${configPaths.reader}) link.`
 }
 
 class IATIWriter {
 
   static heading = 'IATI Writer'
 
-  static info = `Here, you can create IATI information.<br /><br />The [Create Organisation](#${configPaths.orgWriter}) link, lets you create a top-level record for an IATI reporting organsation.`
+  static info = `The [Create Organisation](#${configPaths.orgWriter}) link, lets you create a top-level record for an IATI reporting organsation.`
 }
 
 class IATIReader {
 
   static heading = 'IATI Reader'
 
-  static info = `Here, you can read IATI information.<br /><br />The [Read Organisation](#${configPaths.orgReader}) link, lets you read a top-level record for an IATI reporting organsation.`
+  static info = `The [Read Organisation](#${configPaths.orgReader}) link, lets you read a top-level record for an IATI reporting organsation.`
 }
 
 class Organisation {

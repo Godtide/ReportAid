@@ -3,7 +3,8 @@ import logo from '../images/logo.png'
 
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
-import { SiderMenu } from './siderMenu'
+import { SiderCreateMenu } from './siderCreateMenu'
+import { SiderReadMenu } from './siderReadMenu'
 import { ApplicationBar } from './appBar'
 import { Content } from './content'
 import { App } from '../utils/strings'
@@ -42,7 +43,10 @@ class MainLayout extends React.Component<WithStyles<typeof styles>> {
             <Grid container spacing={0}>
               <Grid item xs={12} sm={2}>
                 <Paper className={this.props.classes.sider}>
-                  <SiderMenu />
+                  <SiderCreateMenu />
+                </Paper>
+                <Paper className={this.props.classes.sider}>
+                  <SiderReadMenu />
                 </Paper>
               </Grid>
               <Grid item xs={12} sm={10}>
@@ -66,7 +70,7 @@ class MainLayout extends React.Component<WithStyles<typeof styles>> {
               </Grid>
               <Grid item xs={2}>
                 <Paper className={this.props.classes.footer}>
-                  <p>{App.copyright}</p>
+                  <MarkdownText text={App.copyright} />
                 </Paper>
               </Grid>
             </Grid>
