@@ -1,7 +1,7 @@
 import { OrganisationActionTypes, OrganisationAddAction, OrganisationProps } from './types'
 
 const initialState: OrganisationProps = {
-  reference: 'blah',
+  reference: '',
   name: '',
   type: ''
 }
