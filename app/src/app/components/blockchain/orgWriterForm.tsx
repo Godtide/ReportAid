@@ -10,11 +10,15 @@ import { Organisation } from '../../utils/strings'
 
 import { ApplicationState } from '../../store'
 import { OrganisationProps } from '../../store/IATIWriter/organisationWriter/types'
+<<<<<<< HEAD
 import { addOrganisation } from '../../store/IATIWriter/organisationWriter/actions'
 
 import {LinearProgress} from '@material-ui/core'
+=======
+import { LinearProgress } from '@material-ui/core'
+>>>>>>> e097284110d9daf0defe173de1c39d2002b78245
 import Button from '@material-ui/core/Button'
-import {TextField} from 'formik-material-ui'
+import { TextField } from 'formik-material-ui'
 
 export interface OrgDispatchProps {
   handleSubmit: (values: any) => void

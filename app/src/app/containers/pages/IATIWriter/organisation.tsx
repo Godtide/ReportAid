@@ -5,9 +5,14 @@ import * as React from 'react'
 //import { ApplicationState } from '../../../store'
 
 import { Organisation as OrgStrings } from '../../../utils/strings'
+<<<<<<< HEAD
 //import { OrgWriterForm, OrgDispatchProps } from '../../../components/blockchain/OrgWriterForm'
 import { OrgWriterForm } from '../../../components/blockchain/OrgWriterForm'
 //import { addOrganisation } from '../../../store/IATIWriter/organisationWriter/actions'
+=======
+import { OrgWriterForm, OrgDispatchProps } from '../../../components/blockchain/orgWriterForm'
+import { addOrganisation } from '../../../store/IATIWriter/organisationWriter/actions'
+>>>>>>> e097284110d9daf0defe173de1c39d2002b78245
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
