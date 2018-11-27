@@ -1,9 +1,17 @@
 import * as React from 'react'
+import { connect } from 'react-redux'
+import { Dispatch, AnyAction } from 'redux'
+
 import { Formik, Form, Field, FormikProps, ErrorMessage} from 'formik'
 import * as Yup from 'yup'
 
 import { Organisation } from '../../utils/strings'
+
+
+import { ApplicationState } from '../../store'
 import { OrganisationProps } from '../../store/IATIWriter/organisationWriter/types'
+import { addOrganisation } from '../../store/IATIWriter/organisationWriter/actions'
+
 import {LinearProgress} from '@material-ui/core'
 import Button from '@material-ui/core/Button'
 import {TextField} from 'formik-material-ui'
@@ -26,7 +34,7 @@ const organisationSchema = Yup.object().shape({
 
 type OrgWriterFormProps = OrganisationProps & OrgDispatchProps
 
-export const OrgWriterForm: React.SFC<OrgWriterFormProps> = (props: OrgWriterFormProps) => {
+export const OrgForm: React.SFC<OrgWriterFormProps> = (props: OrgWriterFormProps) => {
   return (
     <div>
       <Formik
@@ -82,3 +90,22 @@ export const OrgWriterForm: React.SFC<OrgWriterFormProps> = (props: OrgWriterFor
     </div>
   )
 }
+
+const mapStateToProps = (state: ApplicationState): OrganisationProps => {
+  return {
+    name: state.orgForm.name,
+    reference: state.orgForm.reference,
+    type: state.orgForm.type
+  }
+}
+
+const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): OrgDispatchProps => {
+  return {
+    handleSubmit: (ownProps: any) => dispatch(addOrganisation(ownProps))
+  }
+}
+
+export const OrgWriterForm = connect<OrganisationProps, OrgDispatchProps, {}, ApplicationState>(
+  mapStateToProps,
+  mapDispatchToProps
+)(OrgForm)
