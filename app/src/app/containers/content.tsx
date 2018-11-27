@@ -8,7 +8,8 @@ import { Info } from './pages/info/info'
 import { InfoTypes } from './pages/info/types'
 
 import { BlockchainInfo } from './pages/blockchain/blockchainInfo'
-import { Organisation } from './pages/IATIWriter/organisation'
+import { OrganisationWriter } from './pages/IATIWriter/organisation'
+import { OrganisationReader } from './pages/IATIReader/organisation'
 
 import { Paths } from '../utils/strings'
 import { Paths as PathConfig } from '../utils/config'
@@ -57,7 +58,12 @@ class AppContent extends React.Component<WithStyles<typeof styles>> {
         <Route
           name={Paths.orgWriter}
           path={PathConfig.orgWriter}
-          render={() => <Organisation />}
+          render={() => <OrganisationWriter />}
+        />
+        <Route
+          name={Paths.orgReader}
+          path={PathConfig.orgReader}
+          render={() => <OrganisationReader />}
         />
       </Switch>
     )

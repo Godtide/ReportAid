@@ -25,11 +25,11 @@ class OrgsContract {
   static organisationsABI = [
     "event SetOrganisation(string _reference, string _name, string _type)",
     "function setOrganisation(string _reference, string _name, string _type)",
-    "function getOrganisationExists(string _reference)",
-    "function getNumOrganisations()",
-    "function getOrganisationReference(uint256 _index)",
-    "function getOrganisationName(string _reference)",
-    "function getOrganisationType(string _reference)",
+    "function getOrganisationExists(string _reference) constant returns (bool)",
+    "function getNumOrganisations() constant returns (uint256)",
+    "function getOrganisationReference(uint256 _index) constant returns (string)",
+    "function getOrganisationName(string _reference) constant returns (string)",
+    "function getOrganisationType(string _reference) constant returns (string)",
   ]
 
   /*

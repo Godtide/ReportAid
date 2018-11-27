@@ -75,6 +75,7 @@ class IATIReader {
 class Organisation {
 
   static headingOrgWriter = 'Create Organisation'
+  static headingOrgReader = 'Read Organisations'
 
   static orgName = 'Name'
   static reference = 'Identifier'
