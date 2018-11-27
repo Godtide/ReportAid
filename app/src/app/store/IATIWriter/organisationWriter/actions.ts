@@ -25,11 +25,11 @@ export const setOrganisation = (orgDetails: OrganisationProps) => {
     const orgContract = state.blockchain.orgContract as IATIOrganisations
     try {
       const tx = await orgContract.setOrganisation(orgDetails.name, orgDetails.reference, orgDetails.type)
-      console.log(tx)
+      console.log('tx: ', tx)
       dispatch(addSuccess({result: tx}))
     } catch (error) {
       console.log(error)
-      dispatch(addFailure({result: 'Fail'}))
+      dispatch(addFailure({result: {}}))
     }
   }
 }

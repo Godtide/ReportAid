@@ -1,7 +1,7 @@
 import { OrganisationActionTypes, OrgAddProps, OrgAddAction } from './types'
 
 const initialState: OrgAddProps = {
-  result: ''
+  result: {}
 }
 
 export const reducer = (state: OrgAddProps = initialState, action: OrgAddAction): OrgAddProps => {

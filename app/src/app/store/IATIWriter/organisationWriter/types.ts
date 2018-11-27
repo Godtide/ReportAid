@@ -8,7 +8,7 @@ export interface OrganisationProps {
 }
 
 export interface OrgAddProps {
-  result: string
+  result: object
 }
 
 export type OrgAddAction = OrgAddSuccessAction | OrgAddFailAction

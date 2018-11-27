@@ -68,11 +68,15 @@ export const setBlockchain = async (props: SetBlockchainProps) => {
   const chainObj: any = await (objectData.provider as Web3Provider).getNetwork()
   //console.log(chainObj)
   //console.log('First call ', 'Name: ', chainObj.name, ' ChainID: ', chainObj.chainId, 'ENS Address: ', chainObj.ensAddress)
+  let ENSAddress = ""
+  if (typeof chainObj.ensAddress != 'undefined') {
+    ENSAddress = chainObj.ensAddress
+  }
   let infoData: InfoProps = {
     API: 'web3 ' + (web3 as Web3).version,
     Name: chainObj.name,
     ChainId: chainObj.chainId,
-    ENS: chainObj.ensAddress
+    ENS: ENSAddress
   }
 
   store.dispatch(addInfo(infoData))

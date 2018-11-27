@@ -38,7 +38,7 @@ export const OrgForm: React.SFC<OrgWriterFormProps> = (props: OrgWriterFormProps
   return (
     <div>
       <Formik
-        initialValues={ {name: props.name, reference: props.reference, type: props.type} }
+        initialValues={ {name: '', reference: '', type: ''} }
         validationSchema={organisationSchema}
         onSubmit={(values: OrganisationProps, actions: any) => {
           props.handleSubmit(values)
