@@ -19,25 +19,25 @@ export interface OrgContractProps {
   orgContract: object
 }
 
-export type BlockchainAddAction = AddInfoAction | AddAccountAction | AddObjectAction | AddOrgContractAction
+export type BlockchainAction = InfoAddAction | AccountAddAction | ObjectAddAction | OrgContractAddAction
 export type BlockchainProps = InfoProps & AccountProps & ObjectProps & OrgContractProps
 
-export interface AddInfoAction extends Action {
+export interface InfoAddAction extends Action {
     type: BlockchainActionTypes.ADD_INFO
     payload: InfoProps
 }
 
-export interface AddAccountAction extends Action {
+export interface AccountAddAction extends Action {
     type: BlockchainActionTypes.ADD_ACCOUNT
     payload: AccountProps
 }
 
-export interface AddObjectAction extends Action {
+export interface ObjectAddAction extends Action {
     type: BlockchainActionTypes.ADD_OBJECT
     payload: ObjectProps
 }
 
-export interface AddOrgContractAction extends Action {
+export interface OrgContractAddAction extends Action {
     type: BlockchainActionTypes.ADD_ORGCONTRACT
     payload: OrgContractProps
 }

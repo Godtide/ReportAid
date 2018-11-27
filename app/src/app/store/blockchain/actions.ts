@@ -3,20 +3,20 @@ import { InfoProps,
          ObjectProps,
          OrgContractProps,
          BlockchainActionTypes,
-         AddInfoAction,
-         AddAccountAction,
-         AddObjectAction,
-         AddOrgContractAction
+         InfoAddAction,
+         AccountAddAction,
+         ObjectAddAction,
+         OrgContractAddAction
        } from './types'
 
-export const addInfo = (payload: InfoProps): AddInfoAction => {
+export const addInfo = (payload: InfoProps): InfoAddAction => {
   return {
     type: BlockchainActionTypes.ADD_INFO,
     payload
   }
 }
 
-export const addAccount = (payload: AccountProps): AddAccountAction => {
+export const addAccount = (payload: AccountProps): AccountAddAction => {
   //console.log('In payload', payload)
   return {
     type: BlockchainActionTypes.ADD_ACCOUNT,
@@ -24,14 +24,14 @@ export const addAccount = (payload: AccountProps): AddAccountAction => {
   }
 }
 
-export const addObject = (payload: ObjectProps): AddObjectAction => {
+export const addObject = (payload: ObjectProps): ObjectAddAction => {
   return {
     type: BlockchainActionTypes.ADD_OBJECT,
     payload
   }
 }
 
-export const addOrgContract = (payload: OrgContractProps): AddOrgContractAction => {
+export const addOrgContract = (payload: OrgContractProps): OrgContractAddAction => {
   return {
     type: BlockchainActionTypes.ADD_ORGCONTRACT,
     payload

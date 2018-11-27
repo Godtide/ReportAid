@@ -1,13 +1,13 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-import { Dispatch, AnyAction } from 'redux'
+import { ThunkDispatch } from 'redux-thunk'
 
 import { Formik, Form, Field, FormikProps, ErrorMessage} from 'formik'
 import * as Yup from 'yup'
 
 import { ApplicationState } from '../../store'
-import { OrganisationProps } from '../../store/IATIWriter/organisationWriter/types'
-import { addOrganisation } from '../../store/IATIWriter/organisationWriter/actions'
+import { OrgAddAction, OrganisationProps } from '../../store/IATIWriter/organisationWriter/types'
+import { setOrganisation } from '../../store/IATIWriter/organisationWriter/actions'
 
 import { LinearProgress } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
@@ -99,9 +99,9 @@ const mapStateToProps = (state: ApplicationState): OrganisationProps => {
   }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): OrgDispatchProps => {
+const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, OrgAddAction>): OrgDispatchProps => {
   return {
-    handleSubmit: (ownProps: any) => dispatch(addOrganisation(ownProps))
+    handleSubmit: (ownProps: any) => dispatch(setOrganisation(ownProps))
   }
 }
 

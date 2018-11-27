@@ -1,9 +1,10 @@
-// import { combineReducers, Dispatch, Reducer, Action, AnyAction } from 'redux'
+//import { Action } from 'redux'
 import { combineReducers, Reducer, Store, createStore, applyMiddleware } from 'redux'
+//import thunkMiddleware, { ThunkAction } from 'redux-thunk'
 import thunkMiddleware from 'redux-thunk'
 
-import { BlockchainProps } from './blockchain/types'
-import { OrganisationProps } from './IATIWriter/organisationWriter/types'
+import { BlockchainProps, BlockchainAction } from './blockchain/types'
+import { OrganisationProps, OrganisationAction } from './IATIWriter/organisationWriter/types'
 import { InfoProps } from './info/types'
 
 import { reducer as blockchainReducer } from './blockchain/reducer'
@@ -14,6 +15,9 @@ import { reducer as overviewReducer } from './info/overview/reducer'
 import { reducer as IATIWriterReducer } from './info/IATIWriter/reducer'
 import { reducer as orgReducer } from './IATIWriter/organisationWriter/reducer'
 import { reducer as IATIReaderReducer } from './info/IATIReader/reducer'
+
+export type StoreAction = BlockchainAction & OrganisationAction
+//export type ThunkResult<R> = ThunkAction<R, ApplicationState, null, StoreAction>
 
 // The top-level state object
 export interface ApplicationState {
@@ -27,7 +31,7 @@ export interface ApplicationState {
   orgForm: OrganisationProps
 }
 
-export const rootReducer: Reducer<ApplicationState> = combineReducers<ApplicationState>({
+export const rootReducer: Reducer<ApplicationState, StoreAction> = combineReducers<ApplicationState, StoreAction>({
   blockchain: blockchainReducer,
   about: aboutReducer,
   home: homeReducer,

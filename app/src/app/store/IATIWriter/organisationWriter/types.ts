@@ -1,19 +1,29 @@
 import { Action } from 'redux'
+//import { ThunkResult } from '../../store'
 
-// function setOrganisation(string _reference, string _name, string _type) public;
 export interface OrganisationProps {
   name: string
   reference: string
   type: string
 }
 
-export type OrganisationAddAction = AddOrgAction
+export interface OrgAddProps {
+  result: string
+}
 
-export interface AddOrgAction extends Action {
-    type: OrganisationActionTypes.ADD_ORG
-    payload: OrganisationProps
+export type OrgAddAction = OrgAddSuccessAction | OrgAddFailAction
+
+export interface OrgAddSuccessAction extends Action {
+    type: OrganisationActionTypes.ADD_SUCCESS
+    payload: OrgAddProps
+}
+
+export interface OrgAddFailAction extends Action {
+    type: OrganisationActionTypes.ADD_FAILURE
+    payload: OrgAddProps
 }
 
 export const enum OrganisationActionTypes {
-  ADD_ORG = '@@OrgActionTypes/ADD_ORG'
+  ADD_SUCCESS = '@@OrgActionTypes/ADD_SUCCESS',
+  ADD_FAILURE = '@@OrgActionTypes/ADD_FAILURE'
 }
