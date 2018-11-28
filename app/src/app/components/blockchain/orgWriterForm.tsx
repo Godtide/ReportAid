@@ -6,8 +6,9 @@ import { Formik, Form, Field, FormikProps, ErrorMessage} from 'formik'
 import * as Yup from 'yup'
 
 import { ApplicationState } from '../../store'
+import { ActionProps } from '../../store/types'
 import { OrganisationProps } from '../../store/IATI/types'
-import { OrgAddAction } from '../../store/IATI/IATIWriter/organisationWriter/types'
+
 import { setOrganisation } from '../../store/IATI/IATIWriter/organisationWriter/actions'
 
 import { LinearProgress } from '@material-ui/core'
@@ -100,7 +101,7 @@ export const OrgForm: React.SFC<OrgWriterFormProps> = (props: OrgWriterFormProps
   }
 }*/
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, OrgAddAction>): OrgDispatchProps => {
+const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgDispatchProps => {
   return {
     handleSubmit: (ownProps: any) => dispatch(setOrganisation(ownProps))
   }

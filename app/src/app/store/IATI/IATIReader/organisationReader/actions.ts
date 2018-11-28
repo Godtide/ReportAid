@@ -3,35 +3,29 @@ import { ThunkDispatch } from 'redux-thunk'
 import { ApplicationState } from '../../../store'
 import { IATIOrganisations } from '../../../../../blockchain/typechain/IATIOrganisations'
 
-import { OrgGetActionTypes, OrgGetProps, OrgGetNumSuccessAction, OrgGetNumFailureAction } from './types'
-import { OrganisationProps } from '../../types'
+import { storeAction } from '../../../actions'
+import { ActionProps } from '../../../types'
 
-export const getNumSuccess = (payload: OrgGetProps): OrgGetNumSuccessAction => {
-  return {
-    type: OrgGetActionTypes.GET_NUM_SUCCESS,
-    payload
-  }
-}
+import { OrgGetActionTypes } from './types'
 
-export const getNumFailure = (payload: OrgGetProps): OrgGetNumFailureAction => {
-  return {
-    type: OrgGetActionTypes.GET_NUM_FAILURE,
-    payload
+const get = (payload: object): Function => {
+  return (actionType: OrgGetActionTypes) => {
+    storeAction(actionType)(payload)
   }
 }
 
 export const getNumOrganisations = () => {
-  return async (dispatch: ThunkDispatch<ApplicationState, null, OrgGetNumSuccessAction | OrgGetNumFailureAction>, getState: Function) => {
+  return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
     const orgContract = state.blockchain.orgContract as IATIOrganisations
     try {
       const numOrgs = await orgContract.getNumOrganisations()
       const num = numOrgs.toString()
       console.log('Num: ', num)
-      dispatch(getNumSuccess({result: num}))
+      dispatch(get({result: num})(OrgGetActionTypes.GET_NUM_SUCCESS))
     } catch (error) {
       console.log(error)
-      dispatch(getNumFailure({result: {}}))
+      dispatch(get({result: 0})(OrgGetActionTypes.GET_NUM_FAILURE))
     }
   }
 }

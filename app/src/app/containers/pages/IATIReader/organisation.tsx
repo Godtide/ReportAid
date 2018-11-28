@@ -23,7 +23,7 @@ export class OrgReader extends React.Component<OrgReaderProps> {
 
   constructor (props: OrgReaderProps) {
     super(props)
-    this.orgContract = props.orgContract as IATIOrganisations
+    this.orgContract = props.data.orgContract as IATIOrganisations
     this.numOrgs = '0'
     this.getOrgs()
   }
@@ -47,7 +47,9 @@ export class OrgReader extends React.Component<OrgReaderProps> {
 
 const mapStateToProps = (state: ApplicationState): OrgContractProps => {
   return {
-    orgContract: state.blockchain.orgContract
+    data: {
+      orgContract: state.blockchain.data.orgContract
+    }
   }
 }
 

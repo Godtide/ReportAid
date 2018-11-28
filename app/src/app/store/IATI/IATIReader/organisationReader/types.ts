@@ -1,10 +1,12 @@
-import { Action } from 'redux'
+import { PayloadProps } from '../../../types'
 
-export interface OrgGetProps {
-  result: object
+export interface OrgGetProps extends PayloadProps {
+  data: {
+    result: object
+  }
 }
 
-export type OrgGetAction = OrgGetNumSuccessAction | OrgGetNumFailureAction
+/* export type OrgGetAction = OrgGetNumSuccessAction | OrgGetNumFailureAction
 
 export interface OrgGetNumSuccessAction extends Action {
     type: OrgGetActionTypes.GET_NUM_SUCCESS
@@ -14,7 +16,7 @@ export interface OrgGetNumSuccessAction extends Action {
 export interface OrgGetNumFailureAction extends Action {
     type: OrgGetActionTypes.GET_NUM_FAILURE
     payload: OrgGetProps
-}
+} */
 
 /*function getOrganisationExists(string _reference) constant returns (bool)",
 "function getNumOrganisations() constant returns (uint256)",

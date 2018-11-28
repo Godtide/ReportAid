@@ -1,46 +1,56 @@
-import { Action } from 'redux'
+import { PayloadProps } from '../types'
 
-export interface InfoProps {
-  API: string
-  Name: string
-  ChainId: string
-  ENS: string
+export interface InfoProps extends PayloadProps {
+  data: {
+    API: string
+    Name: string
+    ChainId: string
+    ENS: string
+  }
 }
 
-export interface AccountProps {
-  account: string
+export interface AccountProps extends PayloadProps {
+  data: {
+    account: string
+  }
 }
 
-export interface ObjectProps {
-  provider: object
+export interface ObjectProps extends PayloadProps {
+  data: {
+    provider: object
+  }
 }
 
-export interface OrgContractProps {
-  orgContract: object
+export interface OrgContractProps extends PayloadProps {
+  data: {
+    orgContract: object
+  }
 }
 
-export type BlockchainAction = InfoAddAction | AccountAddAction | ObjectAddAction | OrgContractAddAction
 export type BlockchainProps = InfoProps & AccountProps & ObjectProps & OrgContractProps
 
-export interface InfoAddAction extends Action {
+/*
+export type BlockchainAction = InfoAddAction | AccountAddAction | ObjectAddAction | OrgContractAddAction
+export interface InfoAddAction extends ActionProps {
     type: BlockchainActionTypes.ADD_INFO
     payload: InfoProps
 }
 
-export interface AccountAddAction extends Action {
+export interface AccountAddAction extends ActionProps {
     type: BlockchainActionTypes.ADD_ACCOUNT
     payload: AccountProps
 }
 
-export interface ObjectAddAction extends Action {
+export interface ObjectAddAction extends ActionProps {
     type: BlockchainActionTypes.ADD_OBJECT
     payload: ObjectProps
 }
 
-export interface OrgContractAddAction extends Action {
+export interface OrgContractAddAction extends ActionProps {
     type: BlockchainActionTypes.ADD_ORGCONTRACT
     payload: OrgContractProps
 }
+*/
 
 export const enum BlockchainActionTypes {
   ADD_INFO = '@@blockchainActionTypes/ADD_INFO',

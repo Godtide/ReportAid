@@ -1,16 +1,19 @@
-import { BlockchainActionTypes, BlockchainAction, BlockchainProps } from './types'
+import { BlockchainActionTypes, BlockchainProps } from './types'
+import { ActionProps } from '../types'
 
 const initialState: BlockchainProps = {
-  API: '',
-  Name: '',
-  ChainId: '',
-  ENS: '',
-  account: '',
-  provider: {},
-  orgContract: {}
+  data: {
+    API: '',
+    Name: '',
+    ChainId: '',
+    ENS: '',
+    account: '',
+    provider: {},
+    orgContract: {}
+  }
 }
 
-export const reducer = (state: BlockchainProps = initialState, action: BlockchainAction): BlockchainProps => {
+export const reducer = (state: BlockchainProps = initialState, action: ActionProps): BlockchainProps => {
   if ( (action.type == BlockchainActionTypes.ADD_INFO ) ||
        (action.type == BlockchainActionTypes.ADD_ACCOUNT ) ||
        (action.type == BlockchainActionTypes.ADD_OBJECT ) ||

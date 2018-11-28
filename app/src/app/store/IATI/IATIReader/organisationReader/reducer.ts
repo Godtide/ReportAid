@@ -1,13 +1,16 @@
-import { OrganisationActionTypes, OrgAddProps, OrgAddAction } from './types'
+import { OrgGetActionTypes, OrgGetProps } from './types'
+import { ActionProps } from '../../../types'
 
-const initialState: OrgAddProps = {
-  result: {}
+const initialState: OrgGetProps = {
+  data: {
+    result: {}
+  }
 }
 
-export const reducer = (state: OrgAddProps = initialState, action: OrgAddAction): OrgAddProps => {
+export const reducer = (state: OrgGetProps = initialState, action: ActionProps): OrgGetProps => {
   console.log('Boom!', action.type, action.payload)
-  if ( (action.type == OrganisationActionTypes.ADD_SUCCESS ) ||
-       (action.type == OrganisationActionTypes.ADD_FAILURE )
+  if ( (action.type == OrgGetActionTypes.GET_NUM_SUCCESS ) ||
+       (action.type == OrgGetActionTypes.GET_NUM_FAILURE )
      ) {
     return (<any>Object).assign({}, state, action.payload)
   } else {

@@ -25,13 +25,15 @@ export const setAccount = (props: SetProps) => {
   const store = props.store
   const state = store.getState()
   let accountData: AccountProps = {
-    account: state.blockchain.account
+    data: {
+      account: state.blockchain.data.account
+    }
   }
 
   getAccount({provider: props.provider}).then((account) => {
-    if ( accountData.account != account ) {
+    if ( accountData.data.account != account ) {
       //console.log('Storing Account', account)
-      accountData.account = account
+      accountData.data.account = account
       store.dispatch(addAccount(accountData))
     }
   })
@@ -44,13 +46,15 @@ export const setOrgContract = (props: SetProps) => {
   const store = props.store
   const state = store.getState()
   let orgContractData: OrgContractProps = {
-    orgContract: state.blockchain.orgContract
+    data: {
+      orgContract: state.blockchain.data.orgContract
+    }
   }
 
   getOrgContract({provider: props.provider}).then((orgContract) => {
     if ( typeof orgContract != "undefined" ) {
       //console.log('Storing OrgContract', orgContract)
-      orgContractData.orgContract = orgContract
+      orgContractData.data.orgContract = orgContract
       store.dispatch(addOrgContract(orgContractData))
     }
   })
@@ -62,10 +66,12 @@ export const setBlockchain = async (props: SetBlockchainProps) => {
   const store = props.store
   const providers = getProviders()
   let objectData: ObjectProps = {
-    provider: providers[0] as Web3Provider
+    data: {
+      provider: providers[0] as Web3Provider
+    }
   }
   const web3 = providers[1]
-  const chainObj: any = await (objectData.provider as Web3Provider).getNetwork()
+  const chainObj: any = await (objectData.data.provider as Web3Provider).getNetwork()
   //console.log(chainObj)
   //console.log('First call ', 'Name: ', chainObj.name, ' ChainID: ', chainObj.chainId, 'ENS Address: ', chainObj.ensAddress)
   let ENSAddress = ""
@@ -73,17 +79,19 @@ export const setBlockchain = async (props: SetBlockchainProps) => {
     ENSAddress = chainObj.ensAddress
   }
   let infoData: InfoProps = {
-    API: 'web3 ' + (web3 as Web3).version,
-    Name: chainObj.name,
-    ChainId: chainObj.chainId,
-    ENS: ENSAddress
+    data: {
+      API: 'web3 ' + (web3 as Web3).version,
+      Name: chainObj.name,
+      ChainId: chainObj.chainId,
+      ENS: ENSAddress
+    }
   }
 
   store.dispatch(addInfo(infoData))
   store.dispatch(addObject(objectData))
 
-  setOrgContract({store: store, provider: objectData.provider})
+  setOrgContract({store: store, provider: objectData.data.provider})
   setInterval(() => {
-    setAccount({store: store, provider: objectData.provider})
+    setAccount({store: store, provider: objectData.data.provider})
   }, Blockchain.checkAccountInterval)
 }

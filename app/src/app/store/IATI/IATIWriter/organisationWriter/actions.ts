@@ -3,34 +3,29 @@ import { ThunkDispatch } from 'redux-thunk'
 import { ApplicationState } from '../../../store'
 import { IATIOrganisations } from '../../../../../blockchain/typechain/IATIOrganisations'
 
-import { OrgWriterActionTypes, OrgAddProps, OrgAddSuccessAction, OrgAddFailureAction } from './types'
+import { storeAction } from '../../../actions'
+import { ActionProps } from '../../../types'
 import { OrganisationProps } from '../../types'
 
-export const addSuccess = (payload: OrgAddProps): OrgAddSuccessAction => {
-  return {
-    type: OrgWriterActionTypes.ADD_SUCCESS,
-    payload
-  }
-}
+import { OrgWriterActionTypes } from './types'
 
-export const addFailure = (payload: OrgAddProps): OrgAddFailureAction => {
-  return {
-    type: OrgWriterActionTypes.ADD_FAILURE,
-    payload
+const add = (payload: object): Function => {
+  return (actionType: OrgWriterActionTypes) => {
+    storeAction(actionType)(payload)
   }
 }
 
 export const setOrganisation = (orgDetails: OrganisationProps) => {
-  return async (dispatch: ThunkDispatch<ApplicationState, null, OrgAddSuccessAction | OrgAddFailureAction>, getState: Function) => {
+  return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
     const orgContract = state.blockchain.orgContract as IATIOrganisations
     try {
       const tx = await orgContract.setOrganisation(orgDetails.name, orgDetails.reference, orgDetails.type)
       console.log('tx: ', tx)
-      dispatch(addSuccess({result: tx}))
+      dispatch(add({result: tx})(OrgWriterActionTypes.ADD_SUCCESS))
     } catch (error) {
       console.log(error)
-      dispatch(addFailure({result: {}}))
+      dispatch(add({result: {}})(OrgWriterActionTypes.ADD_FAILURE))
     }
   }
 }
