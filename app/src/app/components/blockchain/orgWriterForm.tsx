@@ -32,7 +32,7 @@ const organisationSchema = Yup.object().shape({
     .required('Required'),
 })
 
-type OrgWriterFormProps = OrganisationProps & OrgDispatchProps
+type OrgWriterFormProps = OrgDispatchProps
 
 export const OrgForm: React.SFC<OrgWriterFormProps> = (props: OrgWriterFormProps) => {
   return (
@@ -91,13 +91,13 @@ export const OrgForm: React.SFC<OrgWriterFormProps> = (props: OrgWriterFormProps
   )
 }
 
-const mapStateToProps = (state: ApplicationState): OrganisationProps => {
+/*const mapStateToProps = (state: ApplicationState): OrganisationProps => {
   return {
     name: state.orgForm.name,
     reference: state.orgForm.reference,
     type: state.orgForm.type
   }
-}
+}*/
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, OrgAddAction>): OrgDispatchProps => {
   return {
@@ -105,7 +105,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, OrgAd
   }
 }
 
-export const OrgWriterForm = connect<OrganisationProps, OrgDispatchProps, {}, ApplicationState>(
-  mapStateToProps,
+export const OrgWriterForm = connect<{}, OrgDispatchProps, {}, ApplicationState>(
+  null,
   mapDispatchToProps
 )(OrgForm)

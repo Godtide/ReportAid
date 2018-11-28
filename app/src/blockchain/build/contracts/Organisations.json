@@ -119,9 +119,9 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.4.24;\n\ncontract Organisations {\n\n  function setOrganisation(string _reference, string _name, string _type) public;\n\n  function getOrganisationExists(string _reference) public constant returns (bool);\n  function getNumOrganisations() public constant returns (uint256);\n  function getOrganisationReference(uint256 _index) public constant returns (string);\n  function getOrganisationName(string _reference) public constant returns (string);\n  function getOrganisationType(string _reference) public constant returns (string);\n}\n",
-  "sourcePath": "/Users/steve/gitrepos/ReportAid/app/src/blockchain/contracts/Organisations.sol",
+  "sourcePath": "/home/s/sh/sh601/gitrepos/ReportAid/app/src/blockchain/contracts/Organisations.sol",
   "ast": {
-    "absolutePath": "/Users/steve/gitrepos/ReportAid/app/src/blockchain/contracts/Organisations.sol",
+    "absolutePath": "/home/s/sh/sh601/gitrepos/ReportAid/app/src/blockchain/contracts/Organisations.sol",
     "exportedSymbols": {
       "Organisations": [
         296
@@ -658,7 +658,7 @@
     "src": "0:543:2"
   },
   "legacyAST": {
-    "absolutePath": "/Users/steve/gitrepos/ReportAid/app/src/blockchain/contracts/Organisations.sol",
+    "absolutePath": "/home/s/sh/sh601/gitrepos/ReportAid/app/src/blockchain/contracts/Organisations.sol",
     "exportedSymbols": {
       "Organisations": [
         296
@@ -1200,5 +1200,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-11-27T16:05:35.227Z"
+  "updatedAt": "2018-11-28T08:25:31.291Z"
 }

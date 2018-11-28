@@ -22,7 +22,7 @@ export const addFailure = (payload: OrgAddProps): OrgAddFailAction => {
 export const setOrganisation = (orgDetails: OrganisationProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, OrgAddSuccessAction | OrgAddFailAction>, getState: Function) => {
     const state = getState()
-    const orgContract = state.blockchain.orgContractWrite as IATIOrganisations
+    const orgContract = state.blockchain.orgContract as IATIOrganisations
     try {
       const tx = await orgContract.setOrganisation(orgDetails.name, orgDetails.reference, orgDetails.type)
       console.log('tx: ', tx)
