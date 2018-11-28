@@ -6,5 +6,5 @@ export interface PayloadProps {
 
 export interface ActionProps extends Action {
   type: string
-  payload: object
+  payload: PayloadProps
 }

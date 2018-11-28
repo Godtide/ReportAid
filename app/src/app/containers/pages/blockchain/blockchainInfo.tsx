@@ -16,7 +16,7 @@ class Info extends React.Component<WithStyles<typeof styles> & InfoProps> {
 
   render() {
 
-    //console.log(this.props.propertiesList)
+    console.log('Properties list', this.props.propertiesList)
 
     return (
       <PlainTextKeyedWithTitleList title={Blockchain.heading} list={this.props.propertiesList} />

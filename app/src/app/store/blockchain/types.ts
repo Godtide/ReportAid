@@ -27,7 +27,7 @@ export interface OrgContractProps extends PayloadProps {
   }
 }
 
-export type BlockchainProps = InfoProps & AccountProps & ObjectProps & OrgContractProps
+//export type BlockchainProps = InfoProps & AccountProps & ObjectProps & OrgContractProps
 
 /*
 export type BlockchainAction = InfoAddAction | AccountAddAction | ObjectAddAction | OrgContractAddAction
