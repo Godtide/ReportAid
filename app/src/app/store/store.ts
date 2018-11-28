@@ -22,14 +22,14 @@ import { reducer as IATIReaderReducer } from './info/IATIReader/reducer'
 
 // The top-level state object
 export interface ApplicationState {
-  blockchain: PayloadProps
-  about: PayloadProps
-  home: PayloadProps
-  help: PayloadProps
-  overview: PayloadProps
-  writer: PayloadProps
-  reader: PayloadProps
-  orgForm: PayloadProps
+  blockchain: BlockchainProps
+  about: InfoProps
+  home: InfoProps
+  help: InfoProps
+  overview: InfoProps
+  writer: InfoProps
+  reader: InfoProps
+  orgForm: OrgWriterProps
 }
 
 export const rootReducer: Reducer<ApplicationState, ActionProps> = combineReducers<ApplicationState, ActionProps>({

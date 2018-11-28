@@ -39,7 +39,7 @@ export const setAccount = (props: SetProps) => {
   })
 }
 
-export const setOrgContract = (props: SetProps) => {
+export const setOrgContract = (props: SetProps): object => {
 
   //console.log('Storing OrgContract')
 
@@ -53,9 +53,11 @@ export const setOrgContract = (props: SetProps) => {
 
   getOrgContract({provider: props.provider}).then((orgContract) => {
     if ( typeof orgContract != "undefined" ) {
-      //console.log('Storing OrgContract', orgContract)
-      orgContractData.data.orgContract = orgContract
-      store.dispatch(addOrgContract(orgContractData))
+      if ( orgContractData.data.orgContract != orgContract ) {
+        //console.log('Storing OrgContract', orgContract)
+        orgContractData.data.orgContract = orgContract
+        store.dispatch(addOrgContract(orgContractData))
+      }
     }
   })
 }
@@ -65,11 +67,7 @@ export const setBlockchain = async (props: SetBlockchainProps) => {
   //console.log(props.store)
   const store = props.store
   const providers = getProviders()
-  let objectData: ObjectProps = {
-    data: {
-      provider: providers[0] as Web3Provider
-    }
-  }
+  const provider = providers[0] as Web3Provider
   const web3 = providers[1]
   const chainObj: any = await (objectData.data.provider as Web3Provider).getNetwork()
   //console.log(chainObj)
@@ -83,15 +81,18 @@ export const setBlockchain = async (props: SetBlockchainProps) => {
       API: 'web3 ' + (web3 as Web3).version,
       Name: chainObj.name,
       ChainId: chainObj.chainId,
-      ENS: ENSAddress
+      ENS: ENSAddress,
+      provider: provider
     }
   }
 
-  store.dispatch(addInfo(infoData))
-  store.dispatch(addObject(objectData))
-
-  setOrgContract({store: store, provider: objectData.data.provider})
   setInterval(() => {
     setAccount({store: store, provider: objectData.data.provider})
   }, Blockchain.checkAccountInterval)
+
+  setInterval(() => {
+    setOrgContract({store: store, provider: objectData.data.provider})
+  }, Blockchain.checkAccountInterval)
+
+  store.dispatch(addInfo(infoData))
 }
