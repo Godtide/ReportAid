@@ -6,8 +6,9 @@ import { Formik, Form, Field, FormikProps, ErrorMessage} from 'formik'
 import * as Yup from 'yup'
 
 import { ApplicationState } from '../../store'
-import { OrgAddAction, OrganisationProps } from '../../store/IATIWriter/organisationWriter/types'
-import { setOrganisation } from '../../store/IATIWriter/organisationWriter/actions'
+import { OrganisationProps } from '../../store/IATI/types'
+import { OrgAddAction } from '../../store/IATI/IATIWriter/organisationWriter/types'
+import { setOrganisation } from '../../store/IATI/IATIWriter/organisationWriter/actions'
 
 import { LinearProgress } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
