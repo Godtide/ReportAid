@@ -21,9 +21,6 @@ import { reducer as IATIWriterReducer } from './info/IATIWriter/reducer'
 import { reducer as orgReducer } from './IATI/IATIWriter/organisationWriter/reducer'
 import { reducer as IATIReaderReducer } from './info/IATIReader/reducer'
 
-//export type StoreAction = BlockchainAction & OrgAddAction
-//export type ThunkResult<R> = ThunkAction<R, ApplicationState, null, StoreAction>
-
 // The top-level state object
 export interface ApplicationState {
   chainInfo: BlockchainInfoProps

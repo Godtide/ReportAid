@@ -17,6 +17,7 @@ const add = (payload: PayloadProps): Function => {
 
 export const setOrganisation = (orgDetails: OrganisationProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
+    console.log('In setOrg')
     const state = getState()
     const orgContract = state.chainOrgContract.data.contract as IATIOrganisations
     try {
@@ -24,7 +25,7 @@ export const setOrganisation = (orgDetails: OrganisationProps) => {
       console.log('tx: ', tx)
       dispatch(add({data: {tx}})(OrgWriterActionTypes.ADD_SUCCESS))
     } catch (error) {
-      console.log(error)
+      console.log('IN ERROR', error)
       dispatch(add({data: {}})(OrgWriterActionTypes.ADD_FAILURE))
     }
   }
