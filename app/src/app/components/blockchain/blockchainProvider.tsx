@@ -15,7 +15,7 @@ export const getProviders = () => {
     web3 = new Web3(ethereum)
     blockchainProvider = new ethers.providers.Web3Provider(web3.currentProvider)
     ethereum.enable().then((result: any) => {
-      console.log('Ethereum enabled', result)
+      console.log('Ethereum Enable: ', result)
     }).catch((error: any) => {
       console.log(error)
     })

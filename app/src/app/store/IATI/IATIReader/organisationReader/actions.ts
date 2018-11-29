@@ -6,11 +6,12 @@ import { IATIOrganisations } from '../../../../../blockchain/typechain/IATIOrgan
 import { storeAction } from '../../../actions'
 import { ActionProps, PayloadProps } from '../../../types'
 
-import { OrgGetActionTypes } from './types'
+import { OrgGetActionTypes, OrgGetProps } from './types'
 
 const get = (payload: PayloadProps): Function => {
-  return (actionType: OrgGetActionTypes) => {
-    storeAction(actionType)(payload)
+  return (actionType: OrgGetActionTypes): OrgGetProps => {
+    const getProps = storeAction(actionType)(payload) as OrgGetProps
+    return getProps
   }
 }
 
@@ -18,14 +19,15 @@ export const getNumOrganisations = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
     const orgContract = state.chainOrgContract.data.contract as IATIOrganisations
+    let actionType = OrgGetActionTypes.GET_NUM_FAILURE
+    let getData = {result: {}}
     try {
       const numOrgs = await orgContract.getNumOrganisations()
       const num = numOrgs.toString()
       console.log('Num: ', num)
-      dispatch(get({data: {num}})(OrgGetActionTypes.GET_NUM_SUCCESS))
     } catch (error) {
       console.log(error)
-      dispatch(get({data: {}})(OrgGetActionTypes.GET_NUM_FAILURE))
     }
+    dispatch(get({data: getData})(actionType))
   }
 }

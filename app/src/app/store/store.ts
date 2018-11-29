@@ -1,7 +1,7 @@
 //import { Action } from 'redux'
 import { combineReducers, Reducer, Store, createStore, applyMiddleware } from 'redux'
 //import thunkMiddleware, { ThunkAction } from 'redux-thunk'
-import thunkMiddleware from 'redux-thunk'
+import ReduxThunk from 'redux-thunk'
 
 import { ActionProps } from './types'
 import { OrgWriterProps } from './IATI/IATIWriter/organisationWriter/types'
@@ -56,7 +56,7 @@ export function configureStore(
   const store = createStore(
     rootReducer,
     initialState,
-    applyMiddleware(thunkMiddleware)
+    applyMiddleware(ReduxThunk)
   )
 
   return store
