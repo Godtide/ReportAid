@@ -44,12 +44,20 @@ class Bar extends React.Component<WithStyles<typeof styles>> {
                 {Paths.blockchain}
               </MenuItem>
             </Link>
-            <Link to={PathConfig.about}>
+            <Link to={PathConfig.writer}>
               <MenuItem>
-                <IconButton className={this.props.classes.button} aria-label={Paths.about}>
-                  <Info />
+                <IconButton className={this.props.classes.button} aria-label={Paths.writer}>
+                  <Create />
                 </IconButton>
-                {Paths.about}
+                {Paths.writer}
+              </MenuItem>
+            </Link>
+            <Link to={PathConfig.reader}>
+              <MenuItem>
+                <IconButton className={this.props.classes.button} aria-label={Paths.reader}>
+                  <List />
+                </IconButton>
+                {Paths.reader}
               </MenuItem>
             </Link>
             <Link to={PathConfig.overview}>
@@ -68,20 +76,12 @@ class Bar extends React.Component<WithStyles<typeof styles>> {
                 {Paths.help}
               </MenuItem>
             </Link>
-            <Link to={PathConfig.writer}>
+            <Link to={PathConfig.about}>
               <MenuItem>
-                <IconButton className={this.props.classes.button} aria-label={Paths.writer}>
-                  <Create />
+                <IconButton className={this.props.classes.button} aria-label={Paths.about}>
+                  <Info />
                 </IconButton>
-                {Paths.writer}
-              </MenuItem>
-            </Link>
-            <Link to={PathConfig.reader}>
-              <MenuItem>
-                <IconButton className={this.props.classes.button} aria-label={Paths.reader}>
-                  <List />
-                </IconButton>
-                {Paths.reader}
+                {Paths.about}
               </MenuItem>
             </Link>
           </Toolbar>
