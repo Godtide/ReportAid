@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import { IATIOrganisations } from '../../../../blockchain/typechain/IATIOrganisations'
 
-import { OrgContractProps } from '../../../store/blockchain/types'
+import { OrgContractProps } from '../../../store/blockchain/contracts/types'
 import { ApplicationState } from '../../../store'
 import { Organisation as OrgStrings } from '../../../utils/strings'
 
@@ -18,18 +18,18 @@ type OrgReaderProps =  WithStyles<typeof styles> & OrgContractProps
 
 export class OrgReader extends React.Component<OrgReaderProps> {
 
-  orgContract: IATIOrganisations
+  contract: IATIOrganisations
   numOrgs: string
 
   constructor (props: OrgReaderProps) {
     super(props)
-    this.orgContract = props.data.orgContract as IATIOrganisations
+    this.contract = props.data.contract as IATIOrganisations
     this.numOrgs = '0'
     this.getOrgs()
   }
 
   getOrgs = async () => {
-    let numOrgs = await this.orgContract.getNumOrganisations()
+    let numOrgs = await this.contract.getNumOrganisations()
     this.numOrgs = numOrgs.toString()
     console.log(this.numOrgs)
   }
@@ -48,7 +48,7 @@ export class OrgReader extends React.Component<OrgReaderProps> {
 const mapStateToProps = (state: ApplicationState): OrgContractProps => {
   return {
     data: {
-      orgContract: state.blockchain.data.orgContract
+      contract: state.chainOrgContract.data.contract
     }
   }
 }

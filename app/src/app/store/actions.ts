@@ -1,6 +1,6 @@
-import { ActionProps } from './types'
+import { ActionProps, PayloadProps } from './types'
 
-export const storeAction = (type: string) => (payload: object): ActionProps => {
+export const storeAction = (type: string) => (payload: PayloadProps): ActionProps => {
   return {
     type: type,
     payload: payload

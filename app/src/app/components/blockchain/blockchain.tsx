@@ -3,9 +3,13 @@ import Web3 from 'web3'
 import { Blockchain } from '../../utils/config'
 
 import { Web3Provider } from 'ethers/providers/web3-provider'
-import { AccountProps, InfoProps, ObjectProps, OrgContractProps } from '../../store/blockchain/types'
+import { AccountProps } from '../../store/blockchain/account/types'
+import { InfoProps } from '../../store/blockchain/info/types'
+import { OrgContractProps } from '../../store/blockchain/contracts/types'
 
-import { addAccount, addInfo, addObject, addOrgContract } from '../../store/blockchain/actions'
+import { addAccount } from '../../store/blockchain/account/actions'
+import { addInfo } from '../../store/blockchain/info/actions'
+import { addOrgContract } from '../../store/blockchain/contracts/actions'
 
 import { getProviders } from './blockchainProvider'
 import { getAccount } from './blockchainAccount'
@@ -26,7 +30,7 @@ export const setAccount = (props: SetProps) => {
   const state = store.getState()
   let accountData: AccountProps = {
     data: {
-      account: state.blockchain.data.account
+      account: state.chainAccount.data.account
     }
   }
 
@@ -39,7 +43,7 @@ export const setAccount = (props: SetProps) => {
   })
 }
 
-export const setOrgContract = (props: SetProps): object => {
+export const setOrgContract = (props: SetProps) => {
 
   //console.log('Storing OrgContract')
 
@@ -47,15 +51,15 @@ export const setOrgContract = (props: SetProps): object => {
   const state = store.getState()
   let orgContractData: OrgContractProps = {
     data: {
-      orgContract: state.blockchain.data.orgContract
+      contract: state.chainOrgContract.data.contract
     }
   }
 
   getOrgContract({provider: props.provider}).then((orgContract) => {
     if ( typeof orgContract != "undefined" ) {
-      if ( orgContractData.data.orgContract != orgContract ) {
+      if ( orgContractData.data.contract != orgContract ) {
         //console.log('Storing OrgContract', orgContract)
-        orgContractData.data.orgContract = orgContract
+        orgContractData.data.contract = orgContract
         store.dispatch(addOrgContract(orgContractData))
       }
     }
@@ -69,7 +73,7 @@ export const setBlockchain = async (props: SetBlockchainProps) => {
   const providers = getProviders()
   const provider = providers[0] as Web3Provider
   const web3 = providers[1]
-  const chainObj: any = await (objectData.data.provider as Web3Provider).getNetwork()
+  const chainObj: any = await provider.getNetwork()
   //console.log(chainObj)
   //console.log('First call ', 'Name: ', chainObj.name, ' ChainID: ', chainObj.chainId, 'ENS Address: ', chainObj.ensAddress)
   let ENSAddress = ""
@@ -87,11 +91,11 @@ export const setBlockchain = async (props: SetBlockchainProps) => {
   }
 
   setInterval(() => {
-    setAccount({store: store, provider: objectData.data.provider})
+    setAccount({store: store, provider: provider})
   }, Blockchain.checkAccountInterval)
 
   setInterval(() => {
-    setOrgContract({store: store, provider: objectData.data.provider})
+    setOrgContract({store: store, provider: provider})
   }, Blockchain.checkAccountInterval)
 
   store.dispatch(addInfo(infoData))

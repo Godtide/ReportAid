@@ -26,11 +26,11 @@ class Info extends React.Component<WithStyles<typeof styles> & InfoProps> {
 
 const mapStateToProps = (state: ApplicationState): InfoProps => {
   const propertiesList = {
-      API: state.blockchain.data.API,
-      Network: state.blockchain.data.Name,
-      ChainId: state.blockchain.data.ChainId,
-      ENS: state.blockchain.data.ENS,
-      Account: state.blockchain.data.account
+      API: state.chainInfo.data.API,
+      Network: state.chainInfo.data.Name,
+      ChainId: state.chainInfo.data.ChainId,
+      ENS: state.chainInfo.data.ENS,
+      Account: state.chainAccount.data.account
   }
   const properties = {
     propertiesList: propertiesList
