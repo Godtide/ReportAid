@@ -12,7 +12,7 @@ export const reducer = (state: OrgWriterProps = initialState, action: ActionProp
   if ( (action.type == OrgWriterActionTypes.ADD_SUCCESS ) ||
        (action.type == OrgWriterActionTypes.ADD_FAILURE )
      ) {
-    console.log('Orgstate: ', state, action)
+    //console.log('Orgstate: ', state, action)
     return (<any>Object).assign({}, state, action.payload)
   } else {
     return state

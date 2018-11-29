@@ -2,7 +2,10 @@ import { PayloadProps } from '../../../types'
 
 export interface OrgGetProps extends PayloadProps {
   data: {
-    result: object
+    num: number,
+    refs: Array<string>,
+    names: Array<string>,
+    types: Array<string>
   }
 }
 

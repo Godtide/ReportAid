@@ -21,7 +21,7 @@ class Paths {
   static readonly reader='Read Records'
 
   static readonly orgWriter='Create Organisation'
-  static readonly orgReader='Read Organisation'
+  static readonly orgReader='Get Organisations'
 }
 
 class Blockchain {
@@ -75,7 +75,10 @@ class IATIReader {
 class Organisation {
 
   static headingOrgWriter = 'Create Organisation'
-  static headingOrgReader = 'Read Organisations'
+  static headingOrgReader = 'Organisations'
+  static refsHeader = "Organisation References"
+  static namesHeader = "Organisation Names"
+  static typesHeader = "Organisation Types"
 
   static orgName = 'Name'
   static reference = 'Identifier'

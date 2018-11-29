@@ -1,7 +1,7 @@
 //import { Action } from 'redux'
 import { combineReducers, Reducer, Store, createStore, applyMiddleware } from 'redux'
 //import thunkMiddleware, { ThunkAction } from 'redux-thunk'
-import ReduxThunk from 'redux-thunk'
+import ReduxThunk, { ThunkAction } from 'redux-thunk'
 
 import { ActionProps } from './types'
 import { OrgWriterProps } from './IATI/IATIWriter/organisationWriter/types'
@@ -22,6 +22,9 @@ import { reducer as IATIWriterInfoReducer } from './info/IATIWriter/reducer'
 import { reducer as IATIReaderInfoReducer } from './info/IATIReader/reducer'
 import { reducer as orgWriterReducer } from './IATI/IATIWriter/organisationWriter/reducer'
 import { reducer as orgReaderReducer } from './IATI/IATIReader/organisationReader/reducer'
+
+export type ThunkResult<R> = ThunkAction<R, ApplicationState, null, any>
+
 
 // The top-level state object
 export interface ApplicationState {
