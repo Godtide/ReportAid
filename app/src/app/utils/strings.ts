@@ -69,7 +69,7 @@ class IATIReader {
 
   static heading = 'IATI Reader'
 
-  static info = `The [Read Organisation](#${configPaths.orgReader}) link, lets you read a top-level record for an IATI reporting organsation.`
+  static info = `The [Read Organisations](#${configPaths.orgReader}) link, lets you read a top-level record for an IATI reporting organsation.`
 }
 
 class Organisation {
@@ -80,6 +80,8 @@ class Organisation {
   static orgName = 'Name'
   static reference = 'Identifier'
   static type = 'Type'
+
+  static numOrgs = 'Number of Organisations'
 }
 
 export { App, Paths, Blockchain, Home, About, Overview, Help, IATIWriter, IATIReader, Organisation }

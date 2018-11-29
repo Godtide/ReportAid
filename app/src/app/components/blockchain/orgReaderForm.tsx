@@ -17,8 +17,7 @@ import { TextField } from 'formik-material-ui'
 
 import { Organisation } from '../../utils/strings'
 
-
-export interface OrgDispatchProps {
+export interface OrgReaderDispatchProps {
   handleSubmit: (values: any) => void
 }
 
@@ -34,9 +33,9 @@ const organisationSchema = Yup.object().shape({
     .required('Required'),
 })
 
-type OrgWriterFormProps = OrgDispatchProps
+type OrgReaderFormProps = OrgReaderDispatchProps
 
-export const OrgForm: React.SFC<OrgWriterFormProps> = (props: OrgWriterFormProps) => {
+export const OrgReaderForm: React.SFC<OrgReaderFormProps> = (props: OrgReaderFormProps) => {
   return (
     <div>
       <Formik
@@ -49,18 +48,41 @@ export const OrgForm: React.SFC<OrgWriterFormProps> = (props: OrgWriterFormProps
         }}
         render={({isSubmitting}: FormikProps<any>) => (
           <Form>
-            <Field name='name' label={Organisation.orgName} component={TextField} />
-            <ErrorMessage name='name' />
+            <Field
+              name='name'
+              label={Organisation.orgName}
+              component={TextField}
+            />
+            <ErrorMessage
+              name='name'
+            />
             <br />
-            <Field name='reference' label={Organisation.reference} component={TextField} />
-            <ErrorMessage name='reference' />
+            <Field
+              name='reference'
+              label={Organisation.reference}
+              component={TextField}
+            />
+            <ErrorMessage
+              name='reference'
+            />
             <br />
-            <Field name='type' label={Organisation.type} component={TextField} />
-            <ErrorMessage name='type' />
+            <Field
+              name='type'
+              label={Organisation.type}
+              component={TextField}
+            />
+            <ErrorMessage
+              name='type'
+            />
             <br />
             {isSubmitting && <LinearProgress />}
             <br />
-            <Button type='submit' variant="raised" color="primary" disabled={isSubmitting} >
+            <Button
+              type='submit'
+              variant="raised"
+              color="primary"
+              disabled={isSubmitting}
+            >
               Submit
             </Button>
           </Form>
@@ -78,13 +100,13 @@ export const OrgForm: React.SFC<OrgWriterFormProps> = (props: OrgWriterFormProps
   }
 }*/
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgDispatchProps => {
+const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgReaderDispatchProps => {
   return {
     handleSubmit: (ownProps: any) => dispatch(setOrganisation(ownProps))
   }
 }
 
-export const OrgWriterForm = connect<{}, OrgDispatchProps, {}, ApplicationState>(
+export const OrgWriterForm = connect<{}, OrgReaderDispatchProps, {}, ApplicationState>(
   null,
   mapDispatchToProps
-)(OrgForm)
+)(OrgReaderForm)

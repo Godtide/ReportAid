@@ -11,5 +11,5 @@ export interface InfoProps extends PayloadProps {
 }
 
 export const enum ChainInfoActionTypes {
-  ADD_INFO = '@@ChainInfoActionTypes/ADD_INFO'
+  ADD_INFO = '@@ChainInfoAction/ADD_INFO'
 }

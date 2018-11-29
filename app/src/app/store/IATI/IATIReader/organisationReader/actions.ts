@@ -19,12 +19,13 @@ export const getNumOrganisations = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
     const orgContract = state.chainOrgContract.data.contract as IATIOrganisations
-    let actionType = OrgGetActionTypes.GET_NUM_FAILURE
-    let getData = {result: {}}
+    let actionType = OrgGetActionTypes.NUM_FAILURE
+    let getData = {result: 0}
     try {
       const numOrgs = await orgContract.getNumOrganisations()
       const num = numOrgs.toString()
-      console.log('Num: ', num)
+      getData = {result: num}
+      actionType = OrgGetActionTypes.NUM_SUCCESS
     } catch (error) {
       console.log(error)
     }

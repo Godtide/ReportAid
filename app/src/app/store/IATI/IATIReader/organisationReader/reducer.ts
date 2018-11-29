@@ -8,9 +8,9 @@ const initialState: OrgGetProps = {
 }
 
 export const reducer = (state: OrgGetProps = initialState, action: ActionProps): OrgGetProps => {
-  //console.log('Boom!', action.type, action.payload)
-  if ( (action.type == OrgGetActionTypes.GET_NUM_SUCCESS ) ||
-       (action.type == OrgGetActionTypes.GET_NUM_FAILURE )
+  console.log('Boom!', action.type, action.payload)
+  if ( (action.type == OrgGetActionTypes.NUM_SUCCESS ) ||
+       (action.type == OrgGetActionTypes.NUM_FAILURE )
      ) {
     return (<any>Object).assign({}, state, action.payload)
   } else {

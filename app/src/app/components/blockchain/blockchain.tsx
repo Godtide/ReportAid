@@ -38,7 +38,8 @@ export const setAccount = (props: SetProps) => {
     if ( accountData.data.account != account ) {
       //console.log('Storing Account', account)
       accountData.data.account = account
-      store.dispatch(addAccount(accountData))
+      const add = addAccount as Function
+      store.dispatch(add(accountData))
     }
   })
 }
@@ -58,7 +59,8 @@ export const setOrgContract = (props: SetProps) => {
       if ( typeof orgContract != "undefined" ) {
         //console.log('Storing OrgContract', orgContract)
         orgContractData.data.contract = orgContract
-        store.dispatch(addOrgContract(orgContractData))
+        const add = addOrgContract as Function
+        store.dispatch(add(orgContractData))
       }
     })
   }
@@ -98,5 +100,6 @@ export const setBlockchain = async (props: SetBlockchainProps) => {
     setOrgContract({store: store, provider: provider})
   }, Blockchain.checkAccountInterval)
 
-  store.dispatch(addInfo(infoData))
+  const add = addInfo as Function
+  store.dispatch(add(infoData))
 }

@@ -1,58 +1,63 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-//import { Dispatch, AnyAction } from 'redux'
+import { ThunkDispatch } from 'redux-thunk'
 
-import { IATIOrganisations } from '../../../../blockchain/typechain/IATIOrganisations'
+import { getNumOrganisations } from '../../../store/IATI/IATIReader/organisationReader/actions'
 
-import { OrgContractProps } from '../../../store/blockchain/contracts/types'
 import { ApplicationState } from '../../../store'
+import { ActionProps } from '../../../store/types'
 import { Organisation as OrgStrings } from '../../../utils/strings'
 
-import { PlainTextWithTitle } from '../../../components/io/plainText'
+//import { PlainTextWithTitle, PlainTextKeyedList } from '../../../components/io/plainText'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
 
+interface OrgProps {
+  numOrgs: object
+}
 
-type OrgReaderProps =  WithStyles<typeof styles> & OrgContractProps
+interface OrgDispatchProps {
+  handleSubmit: () => void
+}
+
+type OrgReaderProps =  WithStyles<typeof styles> & OrgProps & OrgDispatchProps
 
 export class OrgReader extends React.Component<OrgReaderProps> {
 
-  contract: IATIOrganisations
-  numOrgs: string
-
   constructor (props: OrgReaderProps) {
     super(props)
-    this.contract = props.data.contract as IATIOrganisations
-    this.numOrgs = '0'
-    this.getOrgs()
-  }
-
-  getOrgs = async () => {
-    let numOrgs = await this.contract.getNumOrganisations()
-    this.numOrgs = numOrgs.toString()
-    console.log(this.numOrgs)
+    props.handleSubmit()
   }
 
   render() {
 
+    const num = this.props.numOrgs.toString()
+
     return (
       <div>
-        <h2>{OrgStrings.headingOrgWriter}</h2>
-        <PlainTextWithTitle title='Num Orgs' text={this.numOrgs} />
+        <h2>{OrgStrings.headingOrgReader}</h2>
+        <p>
+          <b>{OrgStrings.numOrgs}</b>: {num}
+        </p>
       </div>
     )
   }
 }
 
-const mapStateToProps = (state: ApplicationState): OrgContractProps => {
+const mapStateToProps = (state: ApplicationState): OrgProps => {
   return {
-    data: {
-      contract: state.chainOrgContract.data.contract
-    }
+    numOrgs: state.orgReader.data.result
   }
 }
 
-export const OrganisationReader = withTheme(withStyles(styles)(connect<OrgContractProps, {}, {}, ApplicationState>(
-  mapStateToProps
+const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgDispatchProps => {
+  return {
+    handleSubmit: () => dispatch(getNumOrganisations())
+  }
+}
+
+export const OrganisationReader = withTheme(withStyles(styles)(connect<OrgProps, OrgDispatchProps, {}, ApplicationState>(
+  mapStateToProps,
+  mapDispatchToProps
 )(OrgReader)))

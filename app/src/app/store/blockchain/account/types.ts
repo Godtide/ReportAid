@@ -7,5 +7,5 @@ export interface AccountProps extends PayloadProps {
 }
 
 export const enum ChainAccountActionTypes {
-  ADD_ACCOUNT = '@@ChainAccountActionTypes/ADD_ACCOUNT'
+  ADD_ACCOUNT = '@@ChainAccountAction/ADD_ACCOUNT'
 }

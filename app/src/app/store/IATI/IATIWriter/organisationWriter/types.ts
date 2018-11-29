@@ -7,6 +7,6 @@ export interface OrgWriterProps extends PayloadProps {
 }
 
 export const enum OrgWriterActionTypes {
-  ADD_SUCCESS = '@@OrgWriterActionTypes/ADD_SUCCESS',
-  ADD_FAILURE = '@@OrgWriterActionTypes/ADD_FAILURE'
+  ADD_SUCCESS = '@@OrgWriterAction/ADD_SUCCESS',
+  ADD_FAILURE = '@@OrgWriterAction/ADD_FAILURE'
 }

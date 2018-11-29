@@ -5,6 +5,7 @@ import ReduxThunk from 'redux-thunk'
 
 import { ActionProps } from './types'
 import { OrgWriterProps } from './IATI/IATIWriter/organisationWriter/types'
+import { OrgGetProps } from './IATI/IATIReader/organisationReader/types'
 import { InfoProps } from './info/types'
 import { InfoProps as BlockchainInfoProps } from  './blockchain/info/types'
 import { AccountProps } from  './blockchain/account/types'
@@ -17,9 +18,10 @@ import { reducer as aboutReducer } from './info/about/reducer'
 import { reducer as homeReducer } from './info/home/reducer'
 import { reducer as helpReducer } from './info/help/reducer'
 import { reducer as overviewReducer } from './info/overview/reducer'
-import { reducer as IATIWriterReducer } from './info/IATIWriter/reducer'
-import { reducer as orgReducer } from './IATI/IATIWriter/organisationWriter/reducer'
-import { reducer as IATIReaderReducer } from './info/IATIReader/reducer'
+import { reducer as IATIWriterInfoReducer } from './info/IATIWriter/reducer'
+import { reducer as IATIReaderInfoReducer } from './info/IATIReader/reducer'
+import { reducer as orgWriterReducer } from './IATI/IATIWriter/organisationWriter/reducer'
+import { reducer as orgReaderReducer } from './IATI/IATIReader/organisationReader/reducer'
 
 // The top-level state object
 export interface ApplicationState {
@@ -33,6 +35,7 @@ export interface ApplicationState {
   writer: InfoProps
   reader: InfoProps
   orgForm: OrgWriterProps
+  orgReader: OrgGetProps
 }
 
 export const rootReducer: Reducer<ApplicationState, ActionProps> = combineReducers<ApplicationState, ActionProps>({
@@ -43,9 +46,10 @@ export const rootReducer: Reducer<ApplicationState, ActionProps> = combineReduce
   home: homeReducer,
   help: helpReducer,
   overview: overviewReducer,
-  writer: IATIWriterReducer,
-  reader: IATIReaderReducer,
-  orgForm: orgReducer
+  writer: IATIWriterInfoReducer,
+  reader: IATIReaderInfoReducer,
+  orgForm: orgWriterReducer,
+  orgReader: orgReaderReducer
 })
 
 export function configureStore(
