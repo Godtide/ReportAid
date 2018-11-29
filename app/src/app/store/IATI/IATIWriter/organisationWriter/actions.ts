@@ -18,7 +18,7 @@ const add = (payload: PayloadProps): Function => {
 export const setOrganisation = (orgDetails: OrganisationProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
-    const orgContract = state.blockchain.orgContract as IATIOrganisations
+    const orgContract = state.chainOrgContract.data.contract as IATIOrganisations
     try {
       const tx = await orgContract.setOrganisation(orgDetails.name, orgDetails.reference, orgDetails.type)
       console.log('tx: ', tx)

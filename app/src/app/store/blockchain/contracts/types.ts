@@ -7,5 +7,5 @@ export interface OrgContractProps extends PayloadProps {
 }
 
 export const enum ChainContractActionTypes {
-  ADD_ORG = '@@ChainContractActionTypes/ADD_ORG_CONTRACT'
+  ADD_ORG = '@@ChainContractActionTypes/ADD_ORG'
 }

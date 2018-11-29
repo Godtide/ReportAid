@@ -42,7 +42,7 @@ export const PlainTextKeyedList: React.SFC<PlainTextKeyedListProps> = (props: Pl
 
 export const PlainTextKeyedWithTitleList: React.SFC<PlainTextKeyedWithTitleListProps> = (props: PlainTextKeyedWithTitleListProps) => {
 
-  console.log('This blah', props.list)
+  //console.log('This blah', props.list)
 
   const keyedList = Object.entries(props.list).map(([key,value]) =>
      <span key={key}>

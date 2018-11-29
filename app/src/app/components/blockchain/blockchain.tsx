@@ -45,8 +45,6 @@ export const setAccount = (props: SetProps) => {
 
 export const setOrgContract = (props: SetProps) => {
 
-  //console.log('Storing OrgContract')
-
   const store = props.store
   const state = store.getState()
   let orgContractData: OrgContractProps = {
@@ -55,15 +53,15 @@ export const setOrgContract = (props: SetProps) => {
     }
   }
 
-  getOrgContract({provider: props.provider}).then((orgContract) => {
-    if ( typeof orgContract != "undefined" ) {
-      if ( orgContractData.data.contract != orgContract ) {
+  if ( !(orgContractData.data.contract.hasOwnProperty('getOrganisationExists')) ) {
+    getOrgContract({provider: props.provider}).then((orgContract) => {
+      if ( typeof orgContract != "undefined" ) {
         //console.log('Storing OrgContract', orgContract)
         orgContractData.data.contract = orgContract
         store.dispatch(addOrgContract(orgContractData))
       }
-    }
-  })
+    })
+  }
 }
 
 export const setBlockchain = async (props: SetBlockchainProps) => {
@@ -89,6 +87,8 @@ export const setBlockchain = async (props: SetBlockchainProps) => {
       provider: provider
     }
   }
+
+  //console.log(infoData)
 
   setInterval(() => {
     setAccount({store: store, provider: provider})
