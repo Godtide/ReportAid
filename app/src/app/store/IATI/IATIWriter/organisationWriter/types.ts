@@ -1,9 +1,11 @@
 import { PayloadProps } from '../../../types'
 
+export interface TxData {
+  [tx: string]: object
+}
+
 export interface OrgWriterProps extends PayloadProps {
-  data: {
-    tx: object
-  }
+  data: TxData
 }
 
 export const enum OrgWriterActionTypes {

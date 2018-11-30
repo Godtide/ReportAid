@@ -3,7 +3,7 @@ import { ActionProps } from '../../../types'
 
 const initialState: OrgWriterProps = {
   data: {
-    tx: {}
+    '': {}
   }
 }
 
@@ -13,7 +13,9 @@ export const reducer = (state: OrgWriterProps = initialState, action: ActionProp
        (action.type == OrgWriterActionTypes.ADD_FAILURE )
      ) {
     //console.log('Orgstate: ', state, action)
-    return (<any>Object).assign({}, state, action.payload)
+    const data: OrgWriterProps = {...state, ...action.payload.data}
+    console.log('TxData: ', data)
+    return data
   } else {
     return state
   }
