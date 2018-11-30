@@ -14,7 +14,7 @@ export const reducer = (state: OrgWriterProps = initialState, action: ActionProp
      ) {
     //console.log('Orgstate: ', state, action)
     const data: OrgWriterProps = {...state, ...action.payload.data}
-    console.log('TxData: ', data)
+    //console.log('TxData: ', data)
     return data
   } else {
     return state

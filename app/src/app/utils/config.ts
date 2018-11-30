@@ -36,7 +36,7 @@ class OrgsContract {
   organisations: 0x749f861de9e83807e0ebaadaedd88a2f645dc176
   */
 
-  static organisationsAddress = "0x4a43ac2b58d0986bc528c7a13d52c07a53d9d9b0"
+  static organisationsAddress = "0x78dbfca6d18f0f4dec22bdccd4c3f90295ff1831"
 }
 
 export { Paths, Blockchain, OrgsContract }

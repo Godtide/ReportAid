@@ -81,7 +81,7 @@ class Organisation {
   static typesHeader = "Organisation Types"
 
   static orgName = 'Name'
-  static reference = 'Identifier'
+  static reference = 'Reference'
   static type = 'Type'
 
   static numOrgs = 'Number of Organisations'

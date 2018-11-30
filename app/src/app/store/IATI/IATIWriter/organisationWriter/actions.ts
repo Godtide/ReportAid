@@ -23,14 +23,14 @@ export const setOrganisation = (orgDetails: OrganisationProps) => {
     let actionType = OrgWriterActionTypes.ADD_FAILURE
     let txData: TxData = {}
     try {
-      const tx = await orgContract.setOrganisation(orgDetails.name, orgDetails.reference, orgDetails.type)
+      const tx = await orgContract.setOrganisation(orgDetails.reference, orgDetails.name, orgDetails.type)
       const key = tx.hash
       txData[key] = tx
       actionType = OrgWriterActionTypes.ADD_SUCCESS
     } catch (error) {
       console.log('In error: ', error)
     }
-    console.log('Adding tx: ', txData, actionType)
-    dispatch(add({data: txData})(actionType))
+    //console.log('Adding tx: ', txData, actionType)
+    dispatch(add({data: {data: txData}})(actionType))
   }
 }

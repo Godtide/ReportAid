@@ -13,7 +13,7 @@ const initialState: OrgGetProps = {
 }
 
 export const reducer = (state: OrgGetProps = initialState, action: ActionProps): OrgGetProps => {
-  console.log('Boom!', action.type, action.payload)
+  //console.log('Boom!', action.type, action.payload)
   const payload = action.payload as PayloadProps
   if ( typeof payload != 'undefined' ) {
     const payloadData = payload.data as OrgGetProps
