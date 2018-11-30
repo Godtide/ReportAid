@@ -3,7 +3,7 @@ import { ActionProps } from '../../../types'
 
 const initialState: OrgWriterProps = {
   data: {
-    result: {}
+    tx: {}
   }
 }
 

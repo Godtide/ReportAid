@@ -1,12 +1,13 @@
 import { PayloadProps } from '../../../types'
+import { OrganisationProps } from '../../types'
+
+export interface OrgData {
+  [key: string]: OrganisationProps
+}
 
 export interface OrgGetProps extends PayloadProps {
-  data: {
-    num: number,
-    refs: Array<string>,
-    names: Array<string>,
-    types: Array<string>
-  }
+  num: number
+  data: OrgData
 }
 
 export const enum OrgGetActionTypes {

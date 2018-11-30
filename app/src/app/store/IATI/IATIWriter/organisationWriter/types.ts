@@ -2,7 +2,7 @@ import { PayloadProps } from '../../../types'
 
 export interface OrgWriterProps extends PayloadProps {
   data: {
-    result: object
+    tx: object
   }
 }
 

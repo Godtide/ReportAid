@@ -16,9 +16,7 @@ import { withTheme, styles } from '../../../styles/theme'
 
 interface OrgProps {
   num: number
-  refs: Array<string>
-  names: Array<string>
-  types: Array<string>
+  orgs: object
 }
 
 interface OrgDispatchProps {
@@ -37,9 +35,22 @@ export class OrgReader extends React.Component<OrgReaderProps> {
   render() {
 
     const num = this.props.num
-    const refs = this.props.refs
-    const names = this.props.names
-    const types = this.props.types
+    const orgs = this.props.orgs
+
+    console.log('Num: ', num, 'Orgs: ', orgs)
+
+    /*<div>
+      <h2>{OrgStrings.headingOrgReader}</h2>
+      <p>
+        <b>{OrgStrings.numOrgs}</b>: {num}
+      </p>
+      <hr/>
+      <PlainTextKeyedWithTitleList title={OrgStrings.refsHeader} list={refs} />
+      <hr />
+      <PlainTextKeyedWithTitleList title={OrgStrings.namesHeader} list={names} />
+      <hr />
+      <PlainTextKeyedWithTitleList title={OrgStrings.typesHeader} list={types} />
+    </div>*/
 
     return (
       <div>
@@ -47,12 +58,6 @@ export class OrgReader extends React.Component<OrgReaderProps> {
         <p>
           <b>{OrgStrings.numOrgs}</b>: {num}
         </p>
-        <hr/>
-        <PlainTextKeyedWithTitleList title={OrgStrings.refsHeader} list={refs} />
-        <hr />
-        <PlainTextKeyedWithTitleList title={OrgStrings.namesHeader} list={names} />
-        <hr />
-        <PlainTextKeyedWithTitleList title={OrgStrings.typesHeader} list={types} />
       </div>
     )
   }
@@ -61,10 +66,8 @@ export class OrgReader extends React.Component<OrgReaderProps> {
 const mapStateToProps = (state: ApplicationState): OrgProps => {
   //console.log(state.orgReader)
   return {
-    num: state.orgReader.data.num,
-    refs: state.orgReader.data.refs,
-    names: state.orgReader.data.names,
-    types: state.orgReader.data.types
+    num: state.orgReader.num,
+    orgs: state.orgReader.data
   }
 }
 
