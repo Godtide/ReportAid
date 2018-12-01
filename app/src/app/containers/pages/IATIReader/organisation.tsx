@@ -33,11 +33,10 @@ export class OrgReader extends React.Component<OrgReaderProps> {
   }
 
   getOrgs = (props: object) => {
-    Object.entries(props).forEach(([key, value]) =>
-      Object.entries(value).forEach(([thisKey, thisValue]) =>
-        console.log(`${key}`, `${thisKey}`, `${thisValue}`)
-      )
-    )
+    const blah = Object.entries(props)
+    const blah2 = blah.forEach(value => value[1])
+    console.log('Blah ', blah2)
+    return blah2
   }
 
   render() {
@@ -45,11 +44,15 @@ export class OrgReader extends React.Component<OrgReaderProps> {
     const num = this.props.num
     const orgs = this.props.orgs
 
-    //console.log('Num: ', num, 'Orgs: ', orgs)
+    const blah = this.getOrgs(orgs)
+    console.log('Num: ', blah)
 
-    this.getOrgs(orgs)
 
-    //console.log(entries)
+    //console.log('Names ', names)
+
+
+
+    //console.log(entries) {list}
 
     /*
     <div>
@@ -74,7 +77,7 @@ export class OrgReader extends React.Component<OrgReaderProps> {
           <b>{OrgStrings.numOrgs}</b>: {num}
         </p>
         <hr />
-        {entries}
+
       </div>
     )
   }
