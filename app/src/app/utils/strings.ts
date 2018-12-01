@@ -76,9 +76,8 @@ class Organisation {
 
   static headingOrgWriter = 'Create Organisation'
   static headingOrgReader = 'Organisations'
-  static refsHeader = "Organisation References"
-  static namesHeader = "Organisation Names"
-  static typesHeader = "Organisation Types"
+  static orgDetails = 'Organisation Details'
+  static orgDetailsKey = "(**Reference**, Name, Type)"
 
   static orgName = 'Name'
   static reference = 'Reference'

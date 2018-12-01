@@ -6,17 +6,18 @@ import { getOverview } from '../../../store/IATI/IATIReader/organisationReader/a
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
+import { OrgData } from '../../../store/IATI/IATIReader/organisationReader/types'
 
 import { Organisation as OrgStrings } from '../../../utils/strings'
 
-//import { PlainTextKeyedWithTitleList } from '../../../components/io/plainText'
+import { MarkdownText } from '../../../components/io/markdownText'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
 
 interface OrgProps {
   num: number
-  orgs: object
+  orgs: OrgData
 }
 
 interface OrgDispatchProps {
@@ -32,52 +33,32 @@ export class OrgReader extends React.Component<OrgReaderProps> {
     props.getOverview()
   }
 
-  getOrgs = (props: object) => {
-    const blah = Object.entries(props)
-    const blah2 = blah.forEach(value => value[1])
-    console.log('Blah ', blah2)
-    return blah2
+  getOrgs = (props: OrgData) => {
+    const orgsArray: object[] = []
+    Object.keys(props).forEach((key) => {
+      orgsArray.push(<span key={key}>
+        <p>
+          <b>{key}</b>: {props[key].name}, {props[key].type}
+        </p>
+      </span>)
+    })
+    return orgsArray
   }
 
   render() {
 
-    const num = this.props.num
-    const orgs = this.props.orgs
-
-    const blah = this.getOrgs(orgs)
-    console.log('Num: ', blah)
-
-
-    //console.log('Names ', names)
-
-
-
-    //console.log(entries) {list}
-
-    /*
-    <div>
-      <p>
-        <b>{key}</b>: {thisKey}: {thisValue}
-      </p>
-    </div>
-    */
-
-      /* <hr/>
-      <PlainTextKeyedWithTitleList title={OrgStrings.refsHeader} list={refs} />
-      <hr />
-      <PlainTextKeyedWithTitleList title={OrgStrings.namesHeader} list={names} />
-      <hr />
-      <PlainTextKeyedWithTitleList title={OrgStrings.typesHeader} list={types} />
-      */
+    const orgsArray = this.getOrgs(this.props.orgs)
 
     return (
       <div>
         <h2>{OrgStrings.headingOrgReader}</h2>
         <p>
-          <b>{OrgStrings.numOrgs}</b>: {num}
+          <b>{OrgStrings.numOrgs}</b>: {this.props.num}
         </p>
         <hr />
-
+        <h3>{OrgStrings.orgDetails}</h3>
+        <MarkdownText text={OrgStrings.orgDetailsKey} />
+        {orgsArray}
       </div>
     )
   }
