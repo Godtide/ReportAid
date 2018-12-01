@@ -9,7 +9,7 @@ import { ActionProps } from '../../../store/types'
 
 import { Organisation as OrgStrings } from '../../../utils/strings'
 
-import { PlainTextKeyedWithTitleList } from '../../../components/io/plainText'
+//import { PlainTextKeyedWithTitleList } from '../../../components/io/plainText'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
@@ -32,25 +32,40 @@ export class OrgReader extends React.Component<OrgReaderProps> {
     props.getOverview()
   }
 
+  getOrgs = (props: object) => {
+    Object.entries(props).forEach(([key, value]) =>
+      Object.entries(value).forEach(([thisKey, thisValue]) =>
+        console.log(`${key}`, `${thisKey}`, `${thisValue}`)
+      )
+    )
+  }
+
   render() {
 
     const num = this.props.num
     const orgs = this.props.orgs
 
-    console.log('Num: ', num, 'Orgs: ', orgs)
+    //console.log('Num: ', num, 'Orgs: ', orgs)
 
-    /*<div>
-      <h2>{OrgStrings.headingOrgReader}</h2>
+    this.getOrgs(orgs)
+
+    //console.log(entries)
+
+    /*
+    <div>
       <p>
-        <b>{OrgStrings.numOrgs}</b>: {num}
+        <b>{key}</b>: {thisKey}: {thisValue}
       </p>
-      <hr/>
+    </div>
+    */
+
+      /* <hr/>
       <PlainTextKeyedWithTitleList title={OrgStrings.refsHeader} list={refs} />
       <hr />
       <PlainTextKeyedWithTitleList title={OrgStrings.namesHeader} list={names} />
       <hr />
       <PlainTextKeyedWithTitleList title={OrgStrings.typesHeader} list={types} />
-    </div>*/
+      */
 
     return (
       <div>
@@ -58,6 +73,8 @@ export class OrgReader extends React.Component<OrgReaderProps> {
         <p>
           <b>{OrgStrings.numOrgs}</b>: {num}
         </p>
+        <hr />
+        {entries}
       </div>
     )
   }
