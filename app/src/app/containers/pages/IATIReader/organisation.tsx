@@ -30,7 +30,10 @@ export class OrgReader extends React.Component<OrgReaderProps> {
 
   constructor (props: OrgReaderProps) {
     super(props)
-    props.getOverview()
+  }
+
+  componentDidMount() {    
+    this.props.getOverview()
   }
 
   getOrgs = (props: OrgData) => {
