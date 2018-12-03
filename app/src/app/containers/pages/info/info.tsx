@@ -1,10 +1,9 @@
 import * as React from 'react'
 //import { bindActionCreators, Dispatch, AnyAction } from 'redux'
 import { connect } from 'react-redux'
+import Markdown from 'react-markdown'
 
 import { ApplicationState } from '../../../store'
-
-import { MarkdownTextWithTitle } from '../../../components/io/markdownText'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
@@ -24,7 +23,10 @@ class AppInfo extends React.Component<WithStyles<typeof styles> & AllProps> {
   render() {
 
     return (
-      <MarkdownTextWithTitle title={this.props.title} text={this.props.data} />
+      <div>
+        <h2>{this.props.title}</h2>
+        <Markdown escapeHtml={false} source={this.props.data} />
+      </div>
     )
   }
 }

@@ -1,6 +1,6 @@
 import * as React from 'react'
-import logo from '../images/logo.png'
 
+import Markdown from 'react-markdown'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import { SiderCreateMenu } from './siderCreateMenu'
@@ -9,8 +9,7 @@ import { ApplicationBar } from './appBar'
 import { Content } from './content'
 import { App } from '../utils/strings'
 
-
-import { MarkdownText } from '../components/io/markdownText'
+import logo from '../images/logo.png'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import { withTheme, styles } from '../styles/theme'
@@ -60,7 +59,7 @@ class MainLayout extends React.Component<WithStyles<typeof styles>> {
             <Grid container spacing={0}>
               <Grid item xs={2}>
                 <Paper className={this.props.classes.footer}>
-                  <MarkdownText text={App.author} />
+                  <Markdown escapeHtml={false} source={App.author} />
                 </Paper>
               </Grid>
               <Grid item xs={8}>
@@ -70,7 +69,7 @@ class MainLayout extends React.Component<WithStyles<typeof styles>> {
               </Grid>
               <Grid item xs={2}>
                 <Paper className={this.props.classes.footer}>
-                  <MarkdownText text={App.copyright} />
+                  <Markdown escapeHtml={false} source={App.copyright} />
                 </Paper>
               </Grid>
             </Grid>

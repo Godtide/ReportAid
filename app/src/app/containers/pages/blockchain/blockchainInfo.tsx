@@ -1,8 +1,11 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
+import Markdown from 'react-markdown'
+
 import { ApplicationState } from '../../../store'
 
-import { PlainTextKeyedWithTitleList } from '../../../components/io/plainText'
+import { getKeyedList } from '../../../components/io/list'
+
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
 
@@ -16,10 +19,13 @@ class Info extends React.Component<WithStyles<typeof styles> & InfoProps> {
 
   render() {
 
-    //console.log('Properties list', this.props.propertiesList)
+    const chainInfo = getKeyedList(this.props.propertiesList)
 
     return (
-      <PlainTextKeyedWithTitleList title={Blockchain.heading} list={this.props.propertiesList} />
+      <div>
+        <h2>{Blockchain.heading}</h2>
+        <Markdown escapeHtml={false} source={chainInfo} />
+      </div>
     )
   }
 }

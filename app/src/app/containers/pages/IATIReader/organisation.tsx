@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { ThunkDispatch } from 'redux-thunk'
+import Markdown from 'react-markdown'
 
 import { getOverview } from '../../../store/IATI/IATIReader/organisationReader/actions'
 
@@ -10,7 +11,6 @@ import { OrgData } from '../../../store/IATI/IATIReader/organisationReader/types
 
 import { Organisation as OrgStrings } from '../../../utils/strings'
 
-import { MarkdownText } from '../../../components/io/markdownText'
 import { getDictEntries } from '../../../components/io/dict'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
@@ -49,7 +49,7 @@ export class OrgReader extends React.Component<OrgReaderProps> {
         </p>
         <hr />
         <h3>{OrgStrings.orgDetails}</h3>
-        <MarkdownText text={orgs} />
+        <Markdown escapeHtml={false} source={orgs} />
       </div>
     )
   }
