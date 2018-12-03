@@ -28,7 +28,7 @@ export const setOrganisation = (orgDetails: OrganisationProps) => {
       txData[key] = tx
       actionType = OrgWriterActionTypes.ADD_SUCCESS
     } catch (error) {
-      console.log('In error: ', error)
+      console.log('setOrganisation error', error)
     }
     //console.log('Adding tx: ', txData, actionType)
     dispatch(add({data: {data: txData}})(actionType))

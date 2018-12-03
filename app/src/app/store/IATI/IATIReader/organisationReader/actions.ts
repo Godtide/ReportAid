@@ -35,7 +35,7 @@ export const getNumOrganisations = () => {
       numOrgs.num = num.toNumber()
       actionType = OrgGetActionTypes.NUM_SUCCESS
     } catch (error) {
-      console.log(error)
+      console.log('getNumOrganisations error', error)
     }
     dispatch(get({data: numOrgs})(actionType))
   }
@@ -59,7 +59,7 @@ export const getReferences = () => {
          }
          actionType = OrgGetActionTypes.REF_SUCCESS
        } catch (error) {
-         console.log(error)
+         console.log('getReferences error', error)
        }
     }
     //console.log('OrgRefs: ', orgRefs)
@@ -81,7 +81,7 @@ export const getNames = () => {
          orgs[thisKey].name = await orgContract.getOrganisationName(thisKey)
          actionType = OrgGetActionTypes.NAME_SUCCESS
        } catch (error) {
-         console.log(error)
+         console.log('getNames error', error)
        }
     }
     //console.log('New Orgs; ', orgs)
@@ -102,7 +102,7 @@ export const getTypes = () => {
          orgs[thisKey].type = await orgContract.getOrganisationType(thisKey)
          actionType = OrgGetActionTypes.TYPE_SUCCESS
        } catch (error) {
-         console.log(error)
+         console.log('getTypes error', error)
        }
     }
     //console.log('New Type; ', orgs)

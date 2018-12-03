@@ -80,6 +80,11 @@ class Organisation {
   static orgDetails = 'Organisation Details'
   static orgTXHeader = "Transaction Details"
 
+  static transactionKey = 'Transaction Receipt'
+  static transactionSummary = 'Transaction Summary'
+  static transactionSuccess = 'Successful!'
+  static transactionFail = 'Failed!'
+
 
   static orgName = 'Name'
   static reference = 'Reference'

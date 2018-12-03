@@ -47,6 +47,7 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
 
   state = {
     txKey: '',
+    txSummary: '',
     toggleSubmitting: false,
     submitFunc: (function(submit: boolean) { return submit }),
     resetFunc: (function() { return null })
@@ -59,11 +60,15 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
   componentDidUpdate(previousProps: OrgWriterFormProps) {
     //console.log(this.props.tx)
     if(previousProps.tx != this.props.tx) {
-      //console.log('Prvious ', previousProps.tx, 'New ', this.props.tx, 'SUBMITTING ', this.state.toggleSubmitting)
       const submitting = !this.state.toggleSubmitting
-      const txKey = Object.keys(this.props.tx)[0]
-      this.setState({txKey: txKey, toggleSubmitting: submitting})
-      //console.log(submitting)
+      let txKey = ''
+      let txSummary = `${Organisation.transactionFail}`
+      const txKeys = Object.keys(this.props.tx)
+      if (txKeys.length > 0 ) {
+        txKey = Object.keys(this.props.tx)[0]
+        txSummary = `${Organisation.transactionSuccess}`
+      }
+      this.setState({txKey: txKey, txSummary: txSummary, toggleSubmitting: submitting})
       this.state.submitFunc(submitting)
       this.state.resetFunc()
     }
@@ -71,7 +76,7 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
 
   handleSubmit = (values: OrganisationProps, setSubmitting: Function, reset: Function) => {
     const submitting = !this.state.toggleSubmitting
-    this.setState({txKey: '', toggleSubmitting: submitting, submitFunc: setSubmitting, resetFunc: reset})
+    this.setState({txKey: '', txSummary: '', toggleSubmitting: submitting, submitFunc: setSubmitting, resetFunc: reset})
     setSubmitting(submitting)
     this.props.handleSubmit(values)
   }
@@ -112,7 +117,8 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
         <hr />
         <h3>{Organisation.orgTXHeader}</h3>
         <p>
-          <b>Transaction Key</b>: {this.state.txKey}
+          <b>{Organisation.transactionSummary}</b>: {this.state.txSummary}<br />
+          <b>{Organisation.transactionKey}</b>: {this.state.txKey}
         </p>
       </div>
     )
