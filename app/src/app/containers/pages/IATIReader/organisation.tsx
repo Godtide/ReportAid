@@ -5,12 +5,12 @@ import { ThunkDispatch } from 'redux-thunk'
 import { getOverview } from '../../../store/IATI/IATIReader/organisationReader/actions'
 
 import { ApplicationState } from '../../../store'
-import { ActionProps, DictData } from '../../../store/types'
+import { ActionProps } from '../../../store/types'
 import { OrgData } from '../../../store/IATI/IATIReader/organisationReader/types'
 
 import { Organisation as OrgStrings } from '../../../utils/strings'
 
-//import { MarkdownText } from '../../../components/io/markdownText'
+import { getDictEntries } from '../../../components/io/dict'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
@@ -36,25 +36,9 @@ export class OrgReader extends React.Component<OrgReaderProps> {
     this.props.getOverview()
   }
 
-  getDictEntries = (props: DictData): string => {
-    let orgs: string = ``
-    Object.keys(props).forEach((key) => {
-      orgs += `<span key=${key}><p><strong>${key}: </strong>`
-      let length = 0
-      const entries = Object.entries(props[key])
-      entries.forEach((entry) => {
-        orgs += `${entry[0]} - ${entry[1]}`
-        length += 1
-        length == entries.length ? orgs: orgs += `, `
-      })
-      orgs += `</p></span>`
-    })
-    return orgs
-  }
-
   render() {
 
-    const orgs = this.getDictEntries(this.props.orgs)
+    const orgs = getDictEntries(this.props.orgs)
 
     return (
       <div>
