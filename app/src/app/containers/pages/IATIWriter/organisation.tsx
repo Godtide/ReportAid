@@ -63,7 +63,7 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
       const submitting = !this.state.toggleSubmitting
       const txKey = Object.keys(this.props.tx)[0]
       this.setState({txKey: txKey, toggleSubmitting: submitting})
-      console.log(submitting)
+      //console.log(submitting)
       this.state.submitFunc(submitting)
       this.state.resetFunc()
     }

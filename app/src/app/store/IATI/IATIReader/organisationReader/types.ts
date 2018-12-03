@@ -1,7 +1,7 @@
-import { PayloadProps } from '../../../types'
+import { PayloadProps, DictData } from '../../../types'
 import { OrganisationProps } from '../../types'
 
-export interface OrgData {
+export interface OrgData extends DictData {
   [key: string]: OrganisationProps
 }
 
