@@ -10,6 +10,7 @@ import { OrgData } from '../../../store/IATI/IATIReader/organisationReader/types
 
 import { Organisation as OrgStrings } from '../../../utils/strings'
 
+import { MarkdownText } from '../../../components/io/markdownText'
 import { getDictEntries } from '../../../components/io/dict'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
@@ -48,7 +49,7 @@ export class OrgReader extends React.Component<OrgReaderProps> {
         </p>
         <hr />
         <h3>{OrgStrings.orgDetails}</h3>
-        <div dangerouslySetInnerHTML={{__html: orgs}}></div>
+        <MarkdownText text={orgs} />
       </div>
     )
   }
