@@ -6,10 +6,7 @@ export const getList = (props: String[]): string => {
   return xs
 }
 
-export const getKeyedList = (props: Object): string => {
-  let xs: string = ``
-  Object.entries(props).forEach((entry) => {
-    xs += `**${entry[0]}**: ${entry[1]}<br />`
-  })
-  return xs
-}
+export const getKeyedList = (props: Object): string[] =>
+  Object.entries(props).map((entry) =>
+    `**${entry[0]}**: ${entry[1]}`
+  )
