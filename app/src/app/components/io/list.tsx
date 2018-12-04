@@ -1,3 +1,5 @@
+import { compose } from 'redux'
+
 export const getList = (props: String[]): string => {
   let xs: string = ``
   props.forEach((value) => {
@@ -10,3 +12,5 @@ export const getKeyedList = (props: Object): string[] =>
   Object.entries(props).map((entry) =>
     `**${entry[0]}**: ${entry[1]}`
   )
+
+  export const get = compose(getList, getKeyedList)

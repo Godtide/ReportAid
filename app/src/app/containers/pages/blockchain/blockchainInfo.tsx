@@ -4,7 +4,7 @@ import Markdown from 'react-markdown'
 
 import { ApplicationState } from '../../../store'
 
-import { getList, getKeyedList } from '../../../components/io/list'
+import { get } from '../../../components/io/list'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
@@ -19,7 +19,7 @@ class Info extends React.Component<WithStyles<typeof styles> & InfoProps> {
 
   render() {
 
-    const chainInfo = getList(getKeyedList(this.props.propertiesList))
+    const chainInfo = get(this.props.propertiesList)
 
     return (
       <div>
