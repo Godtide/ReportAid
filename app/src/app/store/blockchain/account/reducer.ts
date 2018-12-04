@@ -11,8 +11,7 @@ const initialAccountState: AccountProps = {
 export const accountReducer = (state: AccountProps = initialAccountState, action: ActionProps): AccountProps => {
   //console.log('Account info: ', action.type, action.payload)
   if ( action.type == ChainAccountActionTypes.ADD_ACCOUNT ) {
-    //console.log('Account info: ', action.type, action.payload)
-    return (<any>Object).assign({}, state, action.payload)
+    return Object.assign({}, state, action.payload)
   } else {
     return state
   }

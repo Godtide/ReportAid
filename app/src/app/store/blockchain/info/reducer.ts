@@ -15,7 +15,7 @@ export const infoReducer = (state: InfoProps = initialInfoState, action: ActionP
   //console.log('blockchain info: ', action.type, action.payload)
   if ( action.type == ChainInfoActionTypes.ADD_INFO ) {
     //console.log('Orgstate: ', state)
-    return (<any>Object).assign({}, state, action.payload)
+    return Object.assign({}, state, action.payload)
   } else {
     return state
   }

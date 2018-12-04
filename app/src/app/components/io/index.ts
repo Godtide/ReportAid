@@ -1,5 +1,2 @@
-export * from './date'
 export * from './dict'
 export * from './list'
-export * from './textAreaInput'
-export * from './textInput'

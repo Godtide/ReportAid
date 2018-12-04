@@ -86,7 +86,6 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
     return (
       <div>
         <h2>{Organisation.headingOrgWriter}</h2>
-
         <div>
           <Formik
             initialValues={ {name: '', reference: '', type: ''} }
