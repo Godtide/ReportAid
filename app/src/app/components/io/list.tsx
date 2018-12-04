@@ -1,15 +1,15 @@
 export const getList = (props: String[]): string => {
-  let list: string = ``
+  let xs: string = ``
   props.forEach((value) => {
-    list += `${value}<br />`
+    xs += `${value}<br />`
   })
-  return list
+  return xs
 }
 
 export const getKeyedList = (props: Object): string => {
-  let list: string = ``
+  let xs: string = ``
   Object.entries(props).forEach((entry) => {
-    list += `**${entry[0]}**: ${entry[1]}<br />`
+    xs += `**${entry[0]}**: ${entry[1]}<br />`
   })
-  return list
+  return xs
 }
