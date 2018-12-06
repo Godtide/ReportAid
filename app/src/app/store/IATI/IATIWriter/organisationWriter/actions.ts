@@ -1,4 +1,5 @@
 import { ThunkDispatch } from 'redux-thunk'
+import { keccak256 } from 'js-sha3'
 
 import { ApplicationState } from '../../../store'
 import { IATIOrganisations } from '../../../../../blockchain/typechain/IATIOrganisations'
@@ -19,11 +20,13 @@ const add = (payload: PayloadProps): Function => {
 export const setOrganisation = (orgDetails: OrganisationProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
+    const reference = keccak256(orgDetails.code + '-' + orgDetails.identifier)
+    console.log('Ref: ', reference)
     const orgContract = state.chainOrgContract.data.contract as IATIOrganisations
     let actionType = OrgWriterActionTypes.ADD_FAILURE
     let txData: TxData = {}
     try {
-      const tx = await orgContract.setOrganisation(orgDetails.reference, orgDetails.name)
+      const tx = await orgContract.setOrganisation(reference, orgDetails.name, orgDetails.code, orgDetails.identifier)
       const key = tx.hash
       txData[key] = tx
       actionType = OrgWriterActionTypes.ADD_SUCCESS

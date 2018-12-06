@@ -33,7 +33,10 @@ const organisationSchema = Yup.object().shape({
   name: Yup
     .string()
     .required('Required'),
-  reference: Yup
+  code: Yup
+    .string()
+    .required('Required'),
+  identifier: Yup
     .string()
     .required('Required')
 })
@@ -85,7 +88,7 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
         <h2>{Organisation.headingOrgWriter}</h2>
         <div>
           <Formik
-            initialValues={ {name: '', reference: ''} }
+            initialValues={ {name: '', code: '', identifier: ''} }
             validationSchema={organisationSchema}
             onSubmit={(values: OrganisationProps, actions: any) => {
               this.handleSubmit(values, actions.setSubmitting, actions.resetForm)
@@ -95,8 +98,11 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
                 <Field name='name' label={Organisation.orgName} component={TextField} />
                 <ErrorMessage name='name' />
                 <br />
-                <Field name='reference' label={Organisation.reference} component={TextField} />
-                <ErrorMessage name='reference' />
+                <Field name='code' label={Organisation.code} component={TextField} />
+                <ErrorMessage name='code' />
+                <br />
+                <Field name='identifier' label={Organisation.identifier} component={TextField} />
+                <ErrorMessage name='identifier' />
                 <br />
                 {formProps.isSubmitting && <LinearProgress />}
                 <br />

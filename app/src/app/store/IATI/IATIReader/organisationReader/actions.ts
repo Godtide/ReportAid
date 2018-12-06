@@ -8,6 +8,16 @@ import { ActionProps, PayloadProps } from '../../../types'
 
 import { OrgGetActionTypes, OrgGetProps, OrgData } from './types'
 
+export const getOverview = () => {
+  return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>) => {
+    await dispatch(getNumOrganisations())
+    await dispatch(getReferences())
+    await dispatch(getNames())
+    await dispatch(getCodes())
+    dispatch(getIDs())
+  }
+}
+
 const get = (payload: PayloadProps): Function => {
   return (actionType: OrgGetActionTypes): OrgGetProps => {
     const getProps = storeAction(actionType)(payload) as OrgGetProps
@@ -15,15 +25,7 @@ const get = (payload: PayloadProps): Function => {
   }
 }
 
-export const getOverview = () => {
-  return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>) => {
-    await dispatch(getNumOrganisations())
-    await dispatch(getReferences())
-    dispatch(getNames())
-  }
-}
-
-export const getNumOrganisations = () => {
+const getNumOrganisations = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
     const orgContract = state.chainOrgContract.data.contract as IATIOrganisations
@@ -40,7 +42,7 @@ export const getNumOrganisations = () => {
   }
 }
 
-export const getReferences = () => {
+const getReferences = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
     const orgContract = state.chainOrgContract.data.contract as IATIOrganisations
@@ -53,7 +55,8 @@ export const getReferences = () => {
          //console.log('Ref', ref)
          orgRefs[ref] = {
            name: '',
-           reference: ref
+           code: '',
+           identifier: ''
          }
          actionType = OrgGetActionTypes.REF_SUCCESS
        } catch (error) {
@@ -65,7 +68,7 @@ export const getReferences = () => {
   }
 }
 
-export const getNames = () => {
+const getNames = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
     const orgContract = state.chainOrgContract.data.contract as IATIOrganisations
@@ -80,6 +83,50 @@ export const getNames = () => {
          actionType = OrgGetActionTypes.NAME_SUCCESS
        } catch (error) {
          console.log('getNames error', error)
+       }
+    }
+    //console.log('New Orgs; ', orgs)
+    dispatch(get({data: {data: orgs}})(actionType))
+  }
+}
+
+const getCodes = () => {
+  return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
+    const state = getState()
+    const orgContract = state.chainOrgContract.data.contract as IATIOrganisations
+    let actionType = OrgGetActionTypes.CODE_FAILURE
+    const orgs = state.orgReader.data
+    const orgKeys = Object.keys(orgs)
+    //console.log('Orgkeys: ', orgKeys)
+    for (let i = 0; i < orgKeys.length; i++) {
+      const thisKey = orgKeys[i]
+       try {
+         orgs[thisKey].code = await orgContract.getOrganisationNamespaceCode(thisKey)
+         actionType = OrgGetActionTypes.CODE_SUCCESS
+       } catch (error) {
+         console.log('getCodes error', error)
+       }
+    }
+    //console.log('New Orgs; ', orgs)
+    dispatch(get({data: {data: orgs}})(actionType))
+  }
+}
+
+const getIDs = () => {
+  return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
+    const state = getState()
+    const orgContract = state.chainOrgContract.data.contract as IATIOrganisations
+    let actionType = OrgGetActionTypes.ID_FAILURE
+    const orgs = state.orgReader.data
+    const orgKeys = Object.keys(orgs)
+    //console.log('Orgkeys: ', orgKeys)
+    for (let i = 0; i < orgKeys.length; i++) {
+      const thisKey = orgKeys[i]
+       try {
+         orgs[thisKey].identifier = await orgContract.getOrganisationBaseIdentifier(thisKey)
+         actionType = OrgGetActionTypes.ID_SUCCESS
+       } catch (error) {
+         console.log('getCodes error', error)
        }
     }
     //console.log('New Orgs; ', orgs)

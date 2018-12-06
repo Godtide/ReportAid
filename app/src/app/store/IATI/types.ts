@@ -1,4 +1,5 @@
 export interface OrganisationProps {
   name: string
-  reference: string
+  code: string
+  identifier: string
 }
