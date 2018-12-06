@@ -1,6 +1,21 @@
 pragma solidity ^0.4.24;
 
-contract OrganisationReports {
+// IATI Organisation Reports
+// Steve Huckle
+
+import "./OrganisationReports.sol";
+import "./Strings.sol";
+
+contract IATIOrganisationReports is OrganisationReports {
+
+  string version;
+
+  string[] orgReferences;
+
+
+  function getVersion() public constant returns (string) {
+    return version;
+  }
 
   function setVersion(string _version) public;
   function setOrganisation(string _orgRef, string _name, string _defaultLang, string _defaultCurrency);
