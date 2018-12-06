@@ -8,87 +8,164 @@ import "./Strings.sol";
 
 contract IATIOrganisationReports is OrganisationReports {
 
-  string version;
+  struct Report {
+    string version;
+  }
 
   struct Organisation {
+    string orgRef;
     string defaultLang;
     string defaultCurrency;
   }
 
-  string[] orgReferences;
-  mapping(string => Organisation) private organisations;
+  struct ReportingOrganisation {
+    string reportingOrgRef;
+    string orgType;
+    bool isSecondary;
+  }
 
-  event SetOrganisation(string _reference, string _name);
+  struct Document {
+    string title;
+    string countryRef;
+    string desc;
+    string category;
+    string lang;
+    string date;
+  }
+
+  string[] reportReferences;
+  mapping(string => Report) private reports;
+  mapping(string => Organisation) private organisations;
+  mapping(string => ReportingOrganisation) private reportingOrgs;
+  mapping(string => Document) private docs;
+
+  event SetReport(string _reference, string _version);
+  event SetOrganisation(string _reference, string _orgRef, string _defaultLang, string _defaultCurrency);
+  event SetReportingOrganisation(string _reference, string _reportingOrgRef, string _orgType, bool _isSecondary);
+  event SetDocument(string _reference, string _title, string _countryRef, string _desc, string _category, string _lang, string _date);
 
   constructor() public {
   }
 
-  function setVersion(string _version) public {}
-  function setOrganisation(string _orgRef, string _defaultLang, string _defaultCurrency) public {}
-  function setReportingOrganisation(string _orgRef, string _reportingOrgRef, string _type, bool _isSecondary) public {}
-  function setTotalBudget(string _orgRef, uint256 _value, string _status, string _start, string _end) public {}
-  function setRecipientOrgBudget(string _orgRef, string _recipientOrgRef, uint256 _value, string _status, string _start, string _end) public {}
-  function setRecipientRegionBudget(string _orgRef, string _regionRef, uint256 _value, string _status, string _start, string _end) public {}
-  function setRecipientCountryBudget(string _orgRef, string _countryRef, uint256 _value, string _status, string _start, string _end) public {}
-  function setTotalExpenditure(string _orgRef, uint256 _value, string _status, string _start, string _end) public {}
-  function setDocument(string _orgRef, string _title, string _countryRef, string _desc, string _category, string _lang, string _date) public {}
+  function setReport(string _reference, string _version) public {
+    require((bytes(_reference).length > 0) && (bytes(_version).length > 0));
 
-  function getVersion() public constant returns (string) {
-    return version;
+    reports[_reference].version = _version;
+    if(!getReportExists(_reference)) {
+      reportReferences.push(_reference);
+    }
   }
 
-  function getNumOrganisations() public constant returns (uint256) {}
-  function getOrganisationReference(uint256 _index) public constant returns (string) {}
-  function getOrganisationExists(string _orgRef) public constant returns (bool) {}
-  function getOrganisationName(string _orgRef) public constant returns (string) {}
-  function getOrganisationDefaultLang(string _orgRef) public constant returns (string) {}
-  function getOrganisationDefaultCurrency(string _orgRef) public constant returns (string) {}
+  function setOrganisation(string _reference, string _orgRef, string _defaultLang, string _defaultCurrency) public {
+    require((bytes(_reference).length > 0) && (bytes(_orgRef).length > 0) && (bytes(_defaultLang).length > 0) && (bytes(_defaultCurrency).length > 0));
 
-  function getReportingOrganisation(string _orgRef) public constant returns (string) {}
-  function getReportingOrganisationType(string _orgRef) public constant returns (string) {}
-  function getIsSecondary(string _orgRef) public constant returns (bool) {}
+    organisations[_reference].orgRef = _orgRef;
+    organisations[_reference].defaultLang = _defaultLang;
+    organisations[_reference].defaultCurrency = _defaultCurrency;
 
-  function getNumBudgets(string _orgRef) public constant returns (uint256) {}
-  function getBudgetReference(string _orgRef, uint256 _index) public constant returns (string) {}
-  function getTotalBudget(string _orgRef, string _budgetRef) public constant returns (uint256) {}
-  function getTotalBudgetStatus(string _orgRef, string _budgetRef) public constant returns (uint256) {}
-  function getTotalBudgetStart(string _orgRef, string _budgetRef) public constant returns (uint256) {}
-  function getTotalBudgetEnd(string _orgRef, string _budgetRef) public constant returns (uint256) {}
+    emit SetOrganisation(_reference, _orgRef, _defaultLang, _defaultCurrency);
+  }
 
-  function getNumRecipientOrgs(string _orgRef) public constant returns (uint256) {}
-  function getRecipientOrgReference(string _orgRef, uint256 _index) public constant returns (string) {}
-  function getRecipientOrgBudget(string _orgRef, string _recipientOrgRef) public constant returns (uint256) {}
-  function getRecipientOrgBudgetStatus(string _orgRef, string _recipientOrgRef) public constant returns (uint256) {}
-  function getRecipientOrgBudgetStart(string _orgRef, string _recipientOrgRef) public constant returns (uint256) {}
-  function getRecipientOrgBudgetEnd(string _orgRef, string _recipientOrgRef) public constant returns (uint256) {}
+  function setReportingOrganisation(string _reference, string _reportingOrgRef, string _orgType, bool _isSecondary) public {
+    require((bytes(_reference).length > 0) && (bytes(_reportingOrgRef).length > 0) && (bytes(_orgType).length > 0));
 
-  function getNumRecipientRegions(string _orgRef) public constant returns (uint256) {}
-  function getRecipientRegionsReference(string _orgRef, uint256 _index) public constant returns (string) {}
-  function getRecipientRegionsBudget(string _orgRef, string _regionRef) public constant returns (uint256) {}
-  function getRecipientRegionsBudgetStatus(string _orgRef, string _regionRef) public constant returns (uint256) {}
-  function getRecipientRegionsBudgetStart(string _orgRef, string _regionRef) public constant returns (uint256) {}
-  function getRecipientRegionsBudgetEnd(string _orgRef, string _regionRef) public constant returns (uint256) {}
+    reportingOrgs[_reference].reportingOrgRef = _reportingOrgRef;
+    reportingOrgs[_reference].orgType = _orgType;
+    reportingOrgs[_reference].isSecondary = _isSecondary;
 
-  function getNumRecipientCountries(string _orgRef) public constant returns (uint256) {}
-  function getRecipientCountryReference(string _orgRef, uint256 _index) public constant returns (string) {}
-  function getRecipientCountryBudget(string _orgRef, string _countryRef) public constant returns (uint256) {}
-  function getRecipientCountryBudgetStatus(string _orgRef, string _countryRef) public constant returns (uint256) {}
-  function getRecipientCountryBudgetStart(string _orgRef, string _countryRef) public constant returns (uint256) {}
-  function getRecipientCountryBudgetEnd(string _orgRef, string _countryRef) public constant returns (uint256) {}
+    emit SetReportingOrganisation(_reference, _reportingOrgRef, _orgType, _isSecondary);
+  }
 
-  function getNumExpenditures(string _orgRef) public constant returns (uint256) {}
-  function getExpenditureReference(string _orgRef, uint256 _index) public constant returns (string) {}
-  function getTotalExpenditure(string _orgRef, string expenditureRef) public constant returns (uint256) {}
-  function getTotalExpenditureStatus(string _orgRef, string expenditureRef) public constant returns (uint256) {}
-  function getTotalExpenditureStart(string _orgRef, string expenditureRef) public constant returns (uint256) {}
-  function getTotalExpenditureEnd(string _orgRef, string expenditureRef) public constant returns (uint256) {}
+  function setDocument(string _reference, string _title, string _countryRef, string _desc, string _category, string _lang, string _date) public {
+    require((bytes(_reference).length > 0) &&
+            (bytes(_title).length > 0) &&
+            (bytes(_desc).length > 0) &&
+            (bytes(_category).length > 0)  &&
+            (bytes(_lang).length > 0)  &&
+            (bytes(_date).length > 0));
 
-  function getNumDocuments(string _orgRef) public constant returns (uint256) {}
-  function getDocumentReference(string _orgRef, uint256 _index) public constant returns (string) {}
-  function getDocumentTitle(string _orgRef, string _docRef) public constant returns (string) {}
-  function getDocumentCountry(string _orgRef, string _docRef) public constant returns (string) {}
-  function getDocumentDescription(string _orgRef, string _docRef) public constant returns (string) {}
-  function getDocumentCategory(string _orgRef, string _docRef) public constant returns (string) {}
-  function getDocumentLang(string _orgRef, string _docRef) public constant returns (string) {}
-  function getDocumentDate(string _orgRef, string _docRef) public constant returns (string) {}
+    docs[_reference].title = _title;
+    docs[_reference].countryRef = _countryRef;
+    docs[_reference].desc = _desc;
+    docs[_reference].category = _category;
+    docs[_reference].lang = _lang;
+    docs[_reference].date = _date;
+
+    emit SetDocument(_reference, _title, _countryRef, _desc, _category, _lang, _date);
+  }
+
+  function getReportExists(string _reference) public constant returns (bool) {
+    require(bytes(_reference).length > 0);
+
+    uint256 index = Strings.getIndex(_reference, reportReferences);
+    return index != reportReferences.length;
+  }
+
+  function getNumReports() public constant returns (uint256) {
+    return reportReferences.length;
+  }
+
+  function getReportReference(uint256 _index) public constant returns (string) {
+    require(_index < reportReferences.length);
+    return reportReferences[_index];
+  }
+
+  function getVersion(string _reference) public constant returns (string) {
+    return reports[_reference].version;
+  }
+
+  function getOrganisation(string _reference) public constant returns (string) {
+    require(bytes(_reference).length > 0);
+    return organisations[_reference].orgRef;
+  }
+
+  function getOrganisationDefaultLang(string _reference) public constant returns (string) {
+    require(bytes(_reference).length > 0);
+    return organisations[_reference].defaultLang;
+  }
+
+  function getOrganisationDefaultCurrency(string _reference) public constant returns (string) {
+    require(bytes(_reference).length > 0);
+    return organisations[_reference].defaultCurrency;
+  }
+
+  function getReportingOrganisation(string _reference) public constant returns (string) {
+    require(bytes(_reference).length > 0);
+    return reportingOrgs[_reference].reportingOrgRef;
+  }
+
+  function getReportingOrganisationType(string _reference) public constant returns (string) {
+    require(bytes(_reference).length > 0);
+    return reportingOrgs[_reference].orgType;
+  }
+
+  function getReportingOrganisationIsSecondary(string _reference) public constant returns (bool) {
+    require(bytes(_reference).length > 0);
+    return reportingOrgs[_reference].isSecondary;
+  }
+
+  function getDocumentTitle(string _reference) public constant returns (string) {
+    require(bytes(_reference).length > 0);
+    return docs[_reference].title;
+  }
+  function getDocumentCountry(string _reference) public constant returns (string) {
+    require(bytes(_reference).length > 0);
+    return docs[_reference].countryRef;
+  }
+  function getDocumentDescription(string _reference) public constant returns (string) {
+    require(bytes(_reference).length > 0);
+    return docs[_reference].desc;
+  }
+  function getDocumentCategory(string _reference) public constant returns (string) {
+    require(bytes(_reference).length > 0);
+    return docs[_reference].category;
+  }
+  function getDocumentLang(string _reference) public constant returns (string) {
+    require(bytes(_reference).length > 0);
+    return docs[_reference].lang;
+  }
+  function getDocumentDate(string _reference) public constant returns (string) {
+    require(bytes(_reference).length > 0);
+    return docs[_reference].date;
+  }
 }
