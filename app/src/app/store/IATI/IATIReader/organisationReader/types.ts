@@ -18,7 +18,5 @@ export const enum OrgGetActionTypes {
   REF_SUCCESS = '@@OrgGetAction/GETREFERENCE_SUCCESS',
   REF_FAILURE = '@@OrgGetAction/GETREFERENCE_FAILURE',
   NAME_SUCCESS = '@@OrgGetAction/GETNAME_SUCCESS',
-  NAME_FAILURE = '@@OrgGetAction/GETNAME_FAILURE',
-  TYPE_SUCCESS = '@@OrgGetAction/GETTYPE_SUCCESS',
-  TYPE_FAILURE = '@@OrgGetAction/GETTYPE_FAILURE'
+  NAME_FAILURE = '@@OrgGetAction/GETNAME_FAILURE'
 }

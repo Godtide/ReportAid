@@ -19,8 +19,7 @@ export const getOverview = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>) => {
     await dispatch(getNumOrganisations())
     await dispatch(getReferences())
-    await dispatch(getNames())
-    dispatch(getTypes())
+    dispatch(getNames())
   }
 }
 
@@ -54,8 +53,7 @@ export const getReferences = () => {
          //console.log('Ref', ref)
          orgRefs[ref] = {
            name: '',
-           reference: ref,
-           type: ''
+           reference: ref
          }
          actionType = OrgGetActionTypes.REF_SUCCESS
        } catch (error) {
@@ -85,27 +83,6 @@ export const getNames = () => {
        }
     }
     //console.log('New Orgs; ', orgs)
-    dispatch(get({data: {data: orgs}})(actionType))
-  }
-}
-
-export const getTypes = () => {
-  return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
-    const state = getState()
-    const orgContract = state.chainOrgContract.data.contract as IATIOrganisations
-    let actionType = OrgGetActionTypes.TYPE_FAILURE
-    const orgs = state.orgReader.data
-    const orgKeys = Object.keys(orgs)
-    for (let i = 0; i < orgKeys.length; i++) {
-      const thisKey = orgKeys[i]
-       try {
-         orgs[thisKey].type = await orgContract.getOrganisationType(thisKey)
-         actionType = OrgGetActionTypes.TYPE_SUCCESS
-       } catch (error) {
-         console.log('getTypes error', error)
-       }
-    }
-    //console.log('New Type; ', orgs)
     dispatch(get({data: {data: orgs}})(actionType))
   }
 }

@@ -8,7 +8,7 @@
     "url": "git+https://github.com/glowkeeper/HumanitarianBlockchain.git"
   },
   "scripts": {
-    "generate": "cd ./src/blockchain && rm ./build/contracts/*json && truffle compile --all && ./typechainBuild.sh",
+    "generate": "cd ./src/blockchain && touch ./build/contracts/fooBar.json && rm ./build/contracts/*json && truffle compile --all && ./typechainBuild.sh",
     "develMigrate": "cd ./src/blockchain && truffle migrate --network development",
     "rinkebyMigrate": "cd ./src/blockchain && truffle migrate --network rinkeby",
     "compile": "./node_modules/.bin/webpack --config ./webpack.dev.js --mode development",

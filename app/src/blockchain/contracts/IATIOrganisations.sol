@@ -10,23 +10,21 @@ contract IATIOrganisations is Organisations {
 
   struct Organisation {
     string name;
-    string orgType;
   }
 
   string[] orgReferences;
   mapping(string => Organisation) private organisations;
 
-  event SetOrganisation(string _reference, string _name, string _type);
+  event SetOrganisation(string _reference, string _name);
 
   constructor() public {
   }
 
-  function setOrganisation(string _reference, string _name, string _type) public {
-    require((bytes(_reference).length > 0) && (bytes(_name).length > 0) && (bytes(_type).length > 0));
+  function setOrganisation(string _reference, string _name) public {
+    require((bytes(_reference).length > 0) && (bytes(_name).length > 0));
     organisations[_reference].name = _name;
-    organisations[_reference].orgType = _type;
     orgReferences.push(_reference);
-    emit SetOrganisation(_reference, _name, _type);
+    emit SetOrganisation(_reference, _name);
   }
 
   function getOrganisationExists(string _reference) public constant returns (bool) {
@@ -47,10 +45,5 @@ contract IATIOrganisations is Organisations {
   function getOrganisationName(string _reference) public constant returns (string) {
     require(bytes(_reference).length > 0);
     return organisations[_reference].name;
-  }
-
-  function getOrganisationType(string _reference) public constant returns (string) {
-    require(bytes(_reference).length > 0);
-    return organisations[_reference].orgType;
   }
 }

@@ -6,8 +6,7 @@ const initialState: OrgGetProps = {
   data: {
     '': {
       name: '',
-      reference: '',
-      type: ''
+      reference: ''
     }
   }
 }
@@ -46,16 +45,6 @@ export const reducer = (state: OrgGetProps = initialState, action: ActionProps):
            num: state.num,
            data: {...payloadData.data}
          }
-         return data
-
-    } else if ( (action.type == OrgGetActionTypes.TYPE_SUCCESS ) ||
-         (action.type == OrgGetActionTypes.TYPE_FAILURE ) ) {
-
-         const data: OrgGetProps  = {
-           num: state.num,
-           data: {...payloadData.data}
-         }
-         //console.log('Type data: ', data)
          return data
 
     } else {
