@@ -3,14 +3,14 @@ pragma solidity ^0.4.24;
 contract OrganisationReports {
 
   function setVersion(string _version) public;
-  function setOrganisation(string _orgRef, string _name, string _defaultLang, string _defaultCurrency);
-  function setReportingOrganisation(string _orgRef, string _reportingOrgRef, string _type, bool _isSecondary);
-  function setTotalBudget(string _orgRef, uint256 _value, string _status, string _start, string _end);
-  function setRecipientOrgBudget(string _orgRef, string _recipientOrgRef, uint256 _value, string _status, string _start, string _end);
-  function setRecipientRegionBudget(string _orgRef, string _regionRef, uint256 _value, string _status, string _start, string _end);
-  function setRecipientCountryBudget(string _orgRef, string _countryRef, uint256 _value, string _status, string _start, string _end);
-  function setTotalExpenditure(string _orgRef, uint256 _value, string _status, string _start, string _end);
-  function setDocument(string _orgRef, string _title, string _countryRef, string _desc, string _category, _string _lang, string _date);
+  function setOrganisation(string _orgRef, string _defaultLang, string _defaultCurrency) public;
+  function setReportingOrganisation(string _orgRef, string _reportingOrgRef, string _type, bool _isSecondary) public;
+  function setTotalBudget(string _orgRef, uint256 _value, string _status, string _start, string _end) public;
+  function setRecipientOrgBudget(string _orgRef, string _recipientOrgRef, uint256 _value, string _status, string _start, string _end) public;
+  function setRecipientRegionBudget(string _orgRef, string _regionRef, uint256 _value, string _status, string _start, string _end) public;
+  function setRecipientCountryBudget(string _orgRef, string _countryRef, uint256 _value, string _status, string _start, string _end) public;
+  function setTotalExpenditure(string _orgRef, uint256 _value, string _status, string _start, string _end) public;
+  function setDocument(string _orgRef, string _title, string _countryRef, string _desc, string _category, string _lang, string _date) public;
 
   function getVersion() public constant returns (string);
 
