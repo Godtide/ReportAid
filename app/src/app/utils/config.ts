@@ -37,6 +37,11 @@ class Contract {
   ]
 
   static organisationReportsABI = [
+    "event SetReport(string _reference, string _version)",
+    "event SetOrganisation(string _reference, string _orgRef, string _defaultLang, string _defaultCurrency)",
+    "event SetReportingOrganisation(string _reference, string _reportingOrgRef, string _orgType, bool _isSecondary)",
+    "event SetDocument(string _reference, string _docRef)",
+
     "function setReport(string _reference, string _version) public",
     "function setOrganisation(string _reference, string _orgRef, string _defaultLang, string _defaultCurrency) public",
     "function setReportingOrganisation(string _reference, string _reportingOrgRef, string _type, bool _isSecondary) public",
