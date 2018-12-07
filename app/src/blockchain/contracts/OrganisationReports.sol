@@ -5,25 +5,31 @@ contract OrganisationReports {
   function setReport(string _reference, string _version) public;
   function setOrganisation(string _reference, string _orgRef, string _defaultLang, string _defaultCurrency) public;
   function setReportingOrganisation(string _reference, string _reportingOrgRef, string _type, bool _isSecondary) public;
-  function setDocument(string _reference, string _title, string _countryRef, string _desc, string _category, string _lang, string _date) public;
+  function setDocument(string _reference, string _docRef, bytes32[] _attributes) public;
 
-  function getReportExists(string _reference) public constant returns (bool);
-  function getNumReports() public constant returns (uint256);
-  function getReportReference(uint256 _index) public constant returns (string);
-  function getVersion(string _reference) public constant returns (string);
+  function getReportExists(string _reference) public view returns (bool);
+  function getReportDocExists(string _reference, string _docRef) public view returns (bool);
 
-  function getOrganisation(string _reference) public constant returns (string);
-  function getOrganisationDefaultLang(string _reference) public constant returns (string);
-  function getOrganisationDefaultCurrency(string _reference) public constant returns (string);
+  function getVersion(string _reference) public view returns (string);
 
-  function getReportingOrganisation(string _reference) public constant returns (string);
-  function getReportingOrganisationType(string _reference) public constant returns (string);
-  function getReportingOrganisationIsSecondary(string _reference) public constant returns (bool);
+  function getNumReports() public view returns (uint256);
+  function getNumReportDocs(string _reference) public view returns (uint256);
 
-  function getDocumentTitle(string _reference) public constant returns (string);
-  function getDocumentCountry(string _reference) public constant returns (string);
-  function getDocumentDescription(string _reference) public constant returns (string);
-  function getDocumentCategory(string _reference) public constant returns (string);
-  function getDocumentLang(string _reference) public constant returns (string);
-  function getDocumentDate(string _reference) public constant returns (string);
+  function getReportReference(uint256 _index) public view returns (string);
+  function getReportDocReference(string _reference, uint256 _index) public view returns (string);
+
+  function getOrganisation(string _reference) public view returns (string);
+  function getOrganisationDefaultLang(string _reference) public view returns (string);
+  function getOrganisationDefaultCurrency(string _reference) public view returns (string);
+
+  function getReportingOrganisation(string _reference) public view returns (string);
+  function getReportingOrganisationType(string _reference) public view returns (string);
+  function getReportingOrganisationIsSecondary(string _reference) public view returns (bool);
+
+  function getDocumentTitle(string _reference, string _docRef) public view returns (bytes32);
+  function getDocumentCountry(string _reference, string _docRef) public view returns (bytes32);
+  function getDocumentDescription(string _reference, string _docRef) public view returns (bytes32);
+  function getDocumentCategory(string _reference, string _docRef) public view returns (bytes32);
+  function getDocumentLang(string _reference, string _docRef) public view returns (bytes32);
+  function getDocumentDate(string _reference, string _docRef) public view returns (bytes32);
 }

@@ -35,36 +35,36 @@ contract IATIOrganisations is Organisations {
     emit SetOrganisation(_reference, _name, _namespaceCode, _baseIdentifier);
   }
 
-  function getOrganisationExists(string _reference) public constant returns (bool) {
+  function getOrganisationExists(string _reference) public view returns (bool) {
     require(bytes(_reference).length > 0);
 
     uint256 index = Strings.getIndex(_reference, orgReferences);
     return index != orgReferences.length;
   }
 
-  function getNumOrganisations() public constant returns (uint256) {
+  function getNumOrganisations() public view returns (uint256) {
     return orgReferences.length;
   }
 
-  function getOrganisationReference(uint256 _index) public constant returns (string) {
+  function getOrganisationReference(uint256 _index) public view returns (string) {
     require(_index < orgReferences.length);
 
     return orgReferences[_index];
   }
 
-  function getOrganisationName(string _reference) public constant returns (string) {
+  function getOrganisationName(string _reference) public view returns (string) {
     require(bytes(_reference).length > 0);
 
     return organisations[_reference].name;
   }
 
-  function getOrganisationNamespaceCode(string _reference) public constant returns (string) {
+  function getOrganisationNamespaceCode(string _reference) public view returns (string) {
     require(bytes(_reference).length > 0);
 
     return organisations[_reference].namespaceCode;
   }
 
-  function getOrganisationBaseIdentifier(string _reference) public constant returns (string) {
+  function getOrganisationBaseIdentifier(string _reference) public view returns (string) {
     require(bytes(_reference).length > 0);
 
     return organisations[_reference].baseIdentifier;

@@ -8,6 +8,19 @@ import "./Strings.sol";
 
 contract IATIOrganisationReports is OrganisationReports {
 
+  enum DocAttributes {
+    TITLE,
+    FORMAT,
+    URL,
+    CATEGORY,
+    COUNTRYCODE,
+    DESC,
+    LANG,
+    DATE
+  }
+
+  uint8 constant numDocAttributes = 8;
+
   struct Report {
     string version;
   }
@@ -25,27 +38,28 @@ contract IATIOrganisationReports is OrganisationReports {
   }
 
   struct Document {
-    string title;
-    string countryRef;
-    string desc;
-    string category;
-    string lang;
-    string date;
+    bytes32 title;
+    bytes32 format;
+    bytes32 url;
+    bytes32 category;
+    bytes32 countryCode;
+    bytes32 desc;
+    bytes32 lang;
+    bytes32 date;
   }
 
   string[] reportReferences;
   mapping(string => Report) private reports;
   mapping(string => Organisation) private organisations;
   mapping(string => ReportingOrganisation) private reportingOrgs;
-  mapping(string => Document) private docs;
+
+  mapping(string => string[]) private reportDocReferences;
+  mapping(string => mapping(string => Document)) private docs;
 
   event SetReport(string _reference, string _version);
   event SetOrganisation(string _reference, string _orgRef, string _defaultLang, string _defaultCurrency);
   event SetReportingOrganisation(string _reference, string _reportingOrgRef, string _orgType, bool _isSecondary);
-  event SetDocument(string _reference, string _title, string _countryRef, string _desc, string _category, string _lang, string _date);
-
-  constructor() public {
-  }
+  event SetDocument(string _reference, string _docRef);
 
   function setReport(string _reference, string _version) public {
     require((bytes(_reference).length > 0) && (bytes(_version).length > 0));
@@ -76,96 +90,130 @@ contract IATIOrganisationReports is OrganisationReports {
     emit SetReportingOrganisation(_reference, _reportingOrgRef, _orgType, _isSecondary);
   }
 
-  function setDocument(string _reference, string _title, string _countryRef, string _desc, string _category, string _lang, string _date) public {
+  function setDocument(string _reference, string _docRef, bytes32[] _attributes) public {
     require((bytes(_reference).length > 0) &&
-            (bytes(_title).length > 0) &&
-            (bytes(_desc).length > 0) &&
-            (bytes(_category).length > 0)  &&
-            (bytes(_lang).length > 0)  &&
-            (bytes(_date).length > 0));
+            (bytes(_docRef).length > 0) &&
+            (_attributes.length == numDocAttributes));
 
-    docs[_reference].title = _title;
-    docs[_reference].countryRef = _countryRef;
-    docs[_reference].desc = _desc;
-    docs[_reference].category = _category;
-    docs[_reference].lang = _lang;
-    docs[_reference].date = _date;
+    docs[_reference][_docRef].title = _attributes[uint256(DocAttributes.TITLE)];
+    docs[_reference][_docRef].format = _attributes[uint256(DocAttributes.FORMAT)];
+    docs[_reference][_docRef].url = _attributes[uint256(DocAttributes.URL)];
+    docs[_reference][_docRef].category = _attributes[uint256(DocAttributes.CATEGORY)];
+    docs[_reference][_docRef].countryCode = _attributes[uint256(DocAttributes.COUNTRYCODE)];
+    docs[_reference][_docRef].desc = _attributes[uint256(DocAttributes.DESC)];
+    docs[_reference][_docRef].lang = _attributes[uint256(DocAttributes.LANG)];
+    docs[_reference][_docRef].date = _attributes[uint256(DocAttributes.DATE)];
 
-    emit SetDocument(_reference, _title, _countryRef, _desc, _category, _lang, _date);
+    if(!getReportDocExists(_reference, _docRef)) {
+      reportDocReferences[_reference].push(_docRef);
+    }
+
+    emit SetDocument(_reference, _docRef);
   }
 
-  function getReportExists(string _reference) public constant returns (bool) {
+  function getReportExists(string _reference) public view returns (bool) {
     require(bytes(_reference).length > 0);
 
     uint256 index = Strings.getIndex(_reference, reportReferences);
     return index != reportReferences.length;
   }
 
-  function getNumReports() public constant returns (uint256) {
+  function getReportDocExists(string _reference, string _docRef) public view returns (bool) {
+    require(bytes(_reference).length > 0);
+
+    uint256 index = Strings.getIndex(_docRef, reportDocReferences[_reference]);
+    return index != reportDocReferences[_reference].length;
+  }
+
+  function getVersion(string _reference) public view returns (string) {
+    return reports[_reference].version;
+  }
+
+  function getNumReports() public view returns (uint256) {
     return reportReferences.length;
   }
 
-  function getReportReference(uint256 _index) public constant returns (string) {
+  function getNumReportDocs(string _reference) public view returns (uint256) {
+    return reportDocReferences[_reference].length;
+  }
+
+  function getReportReference(uint256 _index) public view returns (string) {
     require(_index < reportReferences.length);
     return reportReferences[_index];
   }
 
-  function getVersion(string _reference) public constant returns (string) {
-    return reports[_reference].version;
+  function getReportDocReference(string _reference, uint256 _index) public view returns (string) {
+    require(_index < reportReferences.length);
+    return reportDocReferences[_reference][_index];
   }
 
-  function getOrganisation(string _reference) public constant returns (string) {
+  function getOrganisation(string _reference) public view returns (string) {
     require(bytes(_reference).length > 0);
     return organisations[_reference].orgRef;
   }
 
-  function getOrganisationDefaultLang(string _reference) public constant returns (string) {
+  function getOrganisationDefaultLang(string _reference) public view returns (string) {
     require(bytes(_reference).length > 0);
     return organisations[_reference].defaultLang;
   }
 
-  function getOrganisationDefaultCurrency(string _reference) public constant returns (string) {
+  function getOrganisationDefaultCurrency(string _reference) public view returns (string) {
     require(bytes(_reference).length > 0);
     return organisations[_reference].defaultCurrency;
   }
 
-  function getReportingOrganisation(string _reference) public constant returns (string) {
+  function getReportingOrganisation(string _reference) public view returns (string) {
     require(bytes(_reference).length > 0);
     return reportingOrgs[_reference].reportingOrgRef;
   }
 
-  function getReportingOrganisationType(string _reference) public constant returns (string) {
+  function getReportingOrganisationType(string _reference) public view returns (string) {
     require(bytes(_reference).length > 0);
     return reportingOrgs[_reference].orgType;
   }
 
-  function getReportingOrganisationIsSecondary(string _reference) public constant returns (bool) {
+  function getReportingOrganisationIsSecondary(string _reference) public view returns (bool) {
     require(bytes(_reference).length > 0);
     return reportingOrgs[_reference].isSecondary;
   }
 
-  function getDocumentTitle(string _reference) public constant returns (string) {
+  function getDocumentTitle(string _reference, string _docRef) public view returns (bytes32) {
     require(bytes(_reference).length > 0);
-    return docs[_reference].title;
+    return docs[_reference][_docRef].title;
   }
-  function getDocumentCountry(string _reference) public constant returns (string) {
+
+  function getDocumentFormat(string _reference, string _docRef) public view returns (bytes32) {
     require(bytes(_reference).length > 0);
-    return docs[_reference].countryRef;
+    return docs[_reference][_docRef].format;
   }
-  function getDocumentDescription(string _reference) public constant returns (string) {
+
+  function getDocumentURL(string _reference, string _docRef) public view returns (bytes32){
     require(bytes(_reference).length > 0);
-    return docs[_reference].desc;
+    return docs[_reference][_docRef].url;
   }
-  function getDocumentCategory(string _reference) public constant returns (string) {
+
+  function getDocumentCategory(string _reference, string _docRef) public view returns (bytes32) {
     require(bytes(_reference).length > 0);
-    return docs[_reference].category;
+    return docs[_reference][_docRef].category;
   }
-  function getDocumentLang(string _reference) public constant returns (string) {
+
+  function getDocumentCountry(string _reference, string _docRef) public view returns (bytes32) {
     require(bytes(_reference).length > 0);
-    return docs[_reference].lang;
+    return docs[_reference][_docRef].countryCode;
   }
-  function getDocumentDate(string _reference) public constant returns (string) {
+
+  function getDocumentDescription(string _reference, string _docRef) public view returns (bytes32) {
     require(bytes(_reference).length > 0);
-    return docs[_reference].date;
+    return docs[_reference][_docRef].desc;
+  }
+
+  function getDocumentLang(string _reference, string _docRef) public view returns (bytes32) {
+    require(bytes(_reference).length > 0);
+    return docs[_reference][_docRef].lang;
+  }
+
+  function getDocumentDate(string _reference, string _docRef) public view returns (bytes32) {
+    require(bytes(_reference).length > 0);
+    return docs[_reference][_docRef].date;
   }
 }
