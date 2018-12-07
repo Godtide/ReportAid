@@ -20,23 +20,20 @@ export const reducer = (state: OrgGetProps = initialState, action: ActionProps):
     if ( (action.type == OrgGetActionTypes.NUM_SUCCESS ) ||
          (action.type == OrgGetActionTypes.NUM_SUCCESS ) ) {
 
-        const data: OrgGetProps = {
+      const data: OrgGetProps = {
         num: payloadData.num,
         data: { ...state.data }
       }
-      //console.log('Num data: ', data)
       return {...data}
 
     } else if ( (action.type == OrgGetActionTypes.REF_SUCCESS ) ||
          (action.type == OrgGetActionTypes.REF_FAILURE ) ) {
 
-       //console.log ('Payload!: ', payloadData)
        const data: OrgGetProps  = {
          num: state.num,
          data: payloadData.data
        }
 
-       //console.log('This OrgRefs: ', data)
        return data
 
     } else if ( (action.type == OrgGetActionTypes.NAME_SUCCESS ) ||
@@ -46,11 +43,11 @@ export const reducer = (state: OrgGetProps = initialState, action: ActionProps):
          (action.type == OrgGetActionTypes.ID_SUCCESS ) ||
          (action.type == OrgGetActionTypes.ID_FAILURE ) ) {
 
-         const data: OrgGetProps  = {
-           num: state.num,
-           data: {...payloadData.data}
-         }
-         return data
+       const data: OrgGetProps  = {
+         num: state.num,
+         data: {...payloadData.data}
+       }
+       return data
 
     } else {
       return state

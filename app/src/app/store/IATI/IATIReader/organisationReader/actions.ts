@@ -28,7 +28,7 @@ const get = (payload: PayloadProps): Function => {
 const getNumOrganisations = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
-    const orgContract = state.chainOrgContract.data.contract as IATIOrganisations
+    const orgContract = state.chainContracts.data.contracts.orgContract as IATIOrganisations
     let actionType = OrgGetActionTypes.NUM_FAILURE
     let numOrgs = { num: 0 }
     try {
@@ -45,7 +45,7 @@ const getNumOrganisations = () => {
 const getReferences = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
-    const orgContract = state.chainOrgContract.data.contract as IATIOrganisations
+    const orgContract = state.chainContracts.data.contracts.orgContract as IATIOrganisations
     const numOrgs = state.orgReader.num
     let orgRefs: OrgData = {}
     let actionType = OrgGetActionTypes.REF_FAILURE
@@ -71,7 +71,7 @@ const getReferences = () => {
 const getNames = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
-    const orgContract = state.chainOrgContract.data.contract as IATIOrganisations
+    const orgContract = state.chainContracts.data.contracts.orgContract as IATIOrganisations
     let actionType = OrgGetActionTypes.NAME_FAILURE
     const orgs = state.orgReader.data
     const orgKeys = Object.keys(orgs)
@@ -93,7 +93,7 @@ const getNames = () => {
 const getCodes = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
-    const orgContract = state.chainOrgContract.data.contract as IATIOrganisations
+    const orgContract = state.chainContracts.data.contracts.orgContract as IATIOrganisations
     let actionType = OrgGetActionTypes.CODE_FAILURE
     const orgs = state.orgReader.data
     const orgKeys = Object.keys(orgs)
@@ -115,7 +115,7 @@ const getCodes = () => {
 const getIDs = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
-    const orgContract = state.chainOrgContract.data.contract as IATIOrganisations
+    const orgContract = state.chainContracts.data.contracts.orgContract as IATIOrganisations
     let actionType = OrgGetActionTypes.ID_FAILURE
     const orgs = state.orgReader.data
     const orgKeys = Object.keys(orgs)

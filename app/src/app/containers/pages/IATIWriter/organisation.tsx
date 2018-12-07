@@ -6,9 +6,8 @@ import { Formik, Form, Field, FormikProps, ErrorMessage} from 'formik'
 import * as Yup from 'yup'
 
 import { ApplicationState } from '../../../store'
-import { ActionProps } from '../../../store/types'
+import { ActionProps, TxData } from '../../../store/types'
 import { OrganisationProps } from '../../../store/IATI/types'
-import { TxData } from '../../../store/IATI/IATIWriter/organisationWriter/types'
 
 import { setOrganisation } from '../../../store/IATI/IATIWriter/organisationWriter/actions'
 

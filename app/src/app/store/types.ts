@@ -1,5 +1,9 @@
 import { Action } from 'redux'
 
+export interface TxData {
+  [tx: string]: object
+}
+
 export interface DictData {
   [key: string]: object
 }

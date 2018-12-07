@@ -1,11 +1,15 @@
 import { PayloadProps } from '../../types'
 
-export interface OrgContractProps extends PayloadProps {
+export interface ContractProps extends PayloadProps {
   data: {
-    contract: object
+    contracts: {
+      orgContract: {},
+      orgReportsContract: {}
+    }
   }
 }
 
 export const enum ChainContractActionTypes {
-  ADD_ORG = '@@ChainContractAction/ADD_ORG'
+  ADD_ORG = '@@ChainContractAction/ADD_ORG',
+  ADD_REPORTS = '@@ChainContractAction/ADD_ORGREPORTS'
 }

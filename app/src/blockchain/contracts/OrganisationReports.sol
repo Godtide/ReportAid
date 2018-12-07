@@ -27,9 +27,11 @@ contract OrganisationReports {
   function getReportingOrganisationIsSecondary(string _reference) public view returns (bool);
 
   function getDocumentTitle(string _reference, string _docRef) public view returns (bytes32);
+  function getDocumentFormat(string _reference, string _docRef) public view returns (bytes32);
+  function getDocumentURL(string _reference, string _docRef) public view returns (bytes32);
+  function getDocumentCategory(string _reference, string _docRef) public view returns (bytes32);
   function getDocumentCountry(string _reference, string _docRef) public view returns (bytes32);
   function getDocumentDescription(string _reference, string _docRef) public view returns (bytes32);
-  function getDocumentCategory(string _reference, string _docRef) public view returns (bytes32);
   function getDocumentLang(string _reference, string _docRef) public view returns (bytes32);
   function getDocumentDate(string _reference, string _docRef) public view returns (bytes32);
 }
