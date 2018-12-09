@@ -30,6 +30,7 @@ contract IATIOrganisationReports is OrganisationReports {
     string orgRef;
     string defaultLang;
     string defaultCurrency;
+    ReportingOrganisation reportingOrgRef;
   }
 
   struct ReportingOrganisation {
@@ -58,7 +59,7 @@ contract IATIOrganisationReports is OrganisationReports {
   mapping(string => mapping(string => Document)) private docs;
 
   event SetReport(string _reference, string _version, string _generatedTime);
-  event SetOrganisation(string _reference, string _orgRef, string _defaultLang, string _defaultCurrency);
+  event SetOrganisation(string _reference, string _orgRef, );
   event SetReportingOrganisation(string _reference, string _reportingOrgRef, string _orgType, bool _isSecondary);
   event SetDocument(string _reference, string _docRef);
 
@@ -66,6 +67,16 @@ contract IATIOrganisationReports is OrganisationReports {
     require((bytes(_reference).length > 0) && (bytes(_version).length > 0) && (bytes(_generatedTime).length > 0));
 
     reports[_reference].version = _version;
+    reports[_reference].generatedTime = _generatedTime;
+    if(!getReportExists(_reference)) {
+      reportReferences.push(_reference);
+    }
+  }
+
+  function setReportDefaults(string _reference, string _orgRef, string _defaultLang, string _defaultCurrency) public {
+    require((bytes(_reference).length > 0) && (bytes(_defaultLang).length > 0) && (bytes(_defaultCurrency).length > 0));
+
+    reports[_reference].version = _defaultLang;
     reports[_reference].generatedTime = _generatedTime;
     if(!getReportExists(_reference)) {
       reportReferences.push(_reference);
