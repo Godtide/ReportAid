@@ -2,7 +2,7 @@ pragma solidity ^0.4.24;
 
 contract OrganisationReports {
 
-  function setReport(string _reference, string _version) public;
+  function setReport(string _reference, string _version, string _generatedTime) public;
   function setOrganisation(string _reference, string _orgRef, string _defaultLang, string _defaultCurrency) public;
   function setReportingOrganisation(string _reference, string _reportingOrgRef, string _type, bool _isSecondary) public;
   function setDocument(string _reference, string _docRef, bytes32[] _attributes) public;
