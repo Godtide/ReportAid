@@ -9,6 +9,7 @@ import { InfoTypes } from './pages/info/types'
 
 import { BlockchainInfo } from './pages/blockchain/blockchainInfo'
 import { OrganisationWriter } from './pages/IATIWriter/organisation'
+import { OrgReportWriter } from './pages/IATIWriter/organisationReport'
 import { OrganisationReader } from './pages/IATIReader/organisation'
 
 import { Paths } from '../utils/strings'
@@ -28,6 +29,7 @@ class AppContent extends React.Component<WithStyles<typeof styles>> {
         <Route name={Paths.writer} path={PathConfig.writer} render={() => <Info type={InfoTypes.IATIWriter} />} />
         <Route name={Paths.reader} path={PathConfig.reader} render={() => <Info type={InfoTypes.IATIReader} />} />
         <Route name={Paths.orgWriter} path={PathConfig.orgWriter} render={() => <OrganisationWriter />} />
+        <Route name={Paths.orgReportWriter} path={PathConfig.orgReportWriter} render={() => <OrgReportWriter />} />
         <Route name={Paths.orgReader} path={PathConfig.orgReader} render={() => <OrganisationReader />} />
       </Switch>
     )

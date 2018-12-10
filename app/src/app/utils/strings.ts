@@ -18,10 +18,12 @@ class Paths {
   static readonly overview='Overview'
   static readonly help='Help'
   static readonly writer='Create Records'
-  static readonly reader='Read Records'
+  static readonly reader='Read Records'  
 
   static readonly orgWriter='Create Organisation'
+  static readonly orgReportWriter='Create Organisation Report'
   static readonly orgReader='Get Organisations'
+  static readonly orgReportReader='Read Organisation Report'
 }
 
 class Blockchain {

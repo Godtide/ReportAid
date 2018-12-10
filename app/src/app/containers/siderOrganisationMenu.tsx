@@ -30,6 +30,14 @@ class Sider extends React.Component<WithStyles<typeof styles>> {
               {Paths.orgWriter}
             </MenuItem>
           </Link>
+          <Link to={PathConfig.orgReportWriter}>
+            <MenuItem>
+              <IconButton className={this.props.classes.button} aria-label={Paths.orgReportWriter}>
+                <Create />
+              </IconButton>
+              {Paths.orgReportWriter}
+            </MenuItem>
+          </Link>
         </MenuList>
 
         <hr />
