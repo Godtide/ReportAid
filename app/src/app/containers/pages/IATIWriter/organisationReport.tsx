@@ -12,6 +12,8 @@ import { OrganisationProps } from '../../../store/IATI/types'
 import { getOrgs } from '../../../store/IATI/IATIReader/organisationReader/actions'
 import { OrgData } from '../../../store/IATI/IATIReader/organisationReader/types'
 
+import { getDictEntries } from './dict'
+
 import { setOrganisation } from '../../../store/IATI/IATIWriter/organisationWriter/actions'
 
 import { LinearProgress } from '@material-ui/core'
@@ -90,6 +92,9 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
   }
 
   render() {
+
+    const orgs = getDictEntries(this.props.orgs)
+    console.log('Blah orgs ', orgs)
 
     return (
       <div>
