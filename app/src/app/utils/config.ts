@@ -25,17 +25,16 @@ class Blockchain {
 class Contract {
 
   static organisationsABI = [
-    "event SetOrganisation(string _reference, string _name, string _namespaceCode, string _baseIdentifier)",
+    "event SetOrganisation(string _reference, string _name, string _identifier)",
 
-    "function setOrganisation(string _reference, string _name, string _namespaceCode, string _baseIdentifier)",
+    "function setOrganisation(string _reference, string _name, string _identifier)",
     "function getOrganisationExists(string _reference) view returns (bool)",
 
     "function getNumOrganisations() view returns (uint256)",
 
     "function getOrganisationReference(uint256 _index) view returns (string)",
     "function getOrganisationName(string _reference) view returns (string)",
-    "function getOrganisationNamespaceCode(string _reference) view returns (string)",
-    "function getOrganisationBaseIdentifier(string _reference) view returns (string)"
+    "function getOrganisationIdentifier(string _reference) view returns (string)"
   ]
 
   static organisationReportsABI = [
@@ -82,8 +81,8 @@ class Contract {
   ]
 
 
-  static organisationsAddress = "0xc8bf68ddc0608e30a498b910357e1cebc8acc6a4"
-  static organisationReportsAddress = "0x7938f4894434fe063b9ad5cf27731727065e2697"
+  static organisationsAddress = "0x471fa063bb993606c5c2b8ddc9b9634a886d8552"
+  static organisationReportsAddress = "0x5c1b81c17af0570a0621b967aa3dc02bda3d9a5c"
 }
 
 export { Paths, Blockchain, Contract }

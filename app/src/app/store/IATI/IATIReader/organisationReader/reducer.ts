@@ -6,7 +6,6 @@ const initialState: OrgGetProps = {
   data: {
     '': {
       name: '',
-      code: '',
       identifier: ''
     }
   }
@@ -38,8 +37,6 @@ export const reducer = (state: OrgGetProps = initialState, action: ActionProps):
 
     } else if ( (action.type == OrgGetActionTypes.NAME_SUCCESS ) ||
          (action.type == OrgGetActionTypes.NAME_FAILURE ) ||
-         (action.type == OrgGetActionTypes.CODE_SUCCESS ) ||
-         (action.type == OrgGetActionTypes.CODE_FAILURE ) ||
          (action.type == OrgGetActionTypes.ID_SUCCESS ) ||
          (action.type == OrgGetActionTypes.ID_FAILURE ) ) {
 

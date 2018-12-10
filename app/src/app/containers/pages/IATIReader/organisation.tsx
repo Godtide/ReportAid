@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { ThunkDispatch } from 'redux-thunk'
 import Markdown from 'react-markdown'
 
-import { getOverview } from '../../../store/IATI/IATIReader/organisationReader/actions'
+import { getOrgs } from '../../../store/IATI/IATIReader/organisationReader/actions'
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
@@ -22,7 +22,7 @@ interface OrgProps {
 }
 
 interface OrgDispatchProps {
-  getOverview: () => void
+  getOrgs: () => void
 }
 
 type OrgReaderProps =  WithStyles<typeof styles> & OrgProps & OrgDispatchProps
@@ -34,7 +34,7 @@ export class OrgReader extends React.Component<OrgReaderProps> {
   }
 
   componentDidMount() {
-    this.props.getOverview()
+    this.props.getOrgs()
   }
 
   render() {
@@ -65,7 +65,7 @@ const mapStateToProps = (state: ApplicationState): OrgProps => {
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgDispatchProps => {
   return {
-    getOverview: () => dispatch(getOverview())
+    getOrgs: () => dispatch(getOrgs())
   }
 }
 

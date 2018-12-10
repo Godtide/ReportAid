@@ -1,8 +1,8 @@
 import { PayloadProps, DictData } from '../../../types'
-import { OrganisationProps } from '../../types'
+import { IATIOrgProps } from '../../types'
 
 export interface OrgData extends DictData {
-  [key: string]: OrganisationProps
+  [key: string]: IATIOrgProps
 }
 
 export interface OrgGetProps extends PayloadProps {
@@ -19,8 +19,6 @@ export const enum OrgGetActionTypes {
   REF_FAILURE = '@@OrgGetAction/GETREFERENCE_FAILURE',
   NAME_SUCCESS = '@@OrgGetAction/GETNAME_SUCCESS',
   NAME_FAILURE = '@@OrgGetAction/GETNAME_FAILURE',
-  CODE_SUCCESS = '@@OrgGetAction/GETCODE_SUCCESS',
-  CODE_FAILURE = '@@OrgGetAction/GETCODE_FAILURE',
   ID_SUCCESS = '@@OrgGetAction/GETID_SUCCESS',
   ID_FAILURE = '@@OrgGetAction/GETID_FAILURE'
 }

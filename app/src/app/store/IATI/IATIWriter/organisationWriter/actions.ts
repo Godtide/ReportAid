@@ -20,13 +20,14 @@ const add = (payload: PayloadProps): Function => {
 export const setOrganisation = (orgDetails: OrganisationProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
-    const reference = keccak256(orgDetails.code + '-' + orgDetails.identifier)
-    console.log('Ref: ', reference)
+    const identifier = orgDetails.code + '-' + orgDetails.identifier
+    const reference = keccak256(identifier)
+    //console.log('Ref: ', reference)
     const orgContract = state.chainContracts.data.contracts.orgContract as IATIOrganisations
     let actionType = OrgActionTypes.ADD_FAILURE
     let txData: TxData = {}
     try {
-      const tx = await orgContract.setOrganisation(reference, orgDetails.name, orgDetails.code, orgDetails.identifier)
+      const tx = await orgContract.setOrganisation(reference, orgDetails.name, identifier)
       const key = tx.hash
       txData[key] = tx
       actionType = OrgActionTypes.ADD_SUCCESS

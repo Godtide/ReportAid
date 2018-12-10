@@ -8,12 +8,11 @@ import { ActionProps, PayloadProps } from '../../../types'
 
 import { OrgGetActionTypes, OrgGetProps, OrgData } from './types'
 
-export const getOverview = () => {
+export const getOrgs = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>) => {
     await dispatch(getNumOrganisations())
     await dispatch(getReferences())
     await dispatch(getNames())
-    await dispatch(getCodes())
     dispatch(getIDs())
   }
 }
@@ -55,7 +54,6 @@ const getReferences = () => {
          //console.log('Ref', ref)
          orgRefs[ref] = {
            name: '',
-           code: '',
            identifier: ''
          }
          actionType = OrgGetActionTypes.REF_SUCCESS
@@ -90,28 +88,6 @@ const getNames = () => {
   }
 }
 
-const getCodes = () => {
-  return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
-    const state = getState()
-    const orgContract = state.chainContracts.data.contracts.orgContract as IATIOrganisations
-    let actionType = OrgGetActionTypes.CODE_FAILURE
-    const orgs = state.orgReader.data
-    const orgKeys = Object.keys(orgs)
-    //console.log('Orgkeys: ', orgKeys)
-    for (let i = 0; i < orgKeys.length; i++) {
-      const thisKey = orgKeys[i]
-       try {
-         orgs[thisKey].code = await orgContract.getOrganisationNamespaceCode(thisKey)
-         actionType = OrgGetActionTypes.CODE_SUCCESS
-       } catch (error) {
-         console.log('getCodes error', error)
-       }
-    }
-    //console.log('New Orgs; ', orgs)
-    dispatch(get({data: {data: orgs}})(actionType))
-  }
-}
-
 const getIDs = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
@@ -123,10 +99,10 @@ const getIDs = () => {
     for (let i = 0; i < orgKeys.length; i++) {
       const thisKey = orgKeys[i]
        try {
-         orgs[thisKey].identifier = await orgContract.getOrganisationBaseIdentifier(thisKey)
+         orgs[thisKey].identifier = await orgContract.getOrganisationIdentifier(thisKey)
          actionType = OrgGetActionTypes.ID_SUCCESS
        } catch (error) {
-         console.log('getCodes error', error)
+         console.log('getIDs error', error)
        }
     }
     //console.log('New Orgs; ', orgs)
