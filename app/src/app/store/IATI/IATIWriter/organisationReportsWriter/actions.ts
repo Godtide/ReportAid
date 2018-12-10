@@ -21,7 +21,7 @@ export const setOrganisationReport = (orgDetails: OrganisationProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
     const reference = keccak256(orgDetails.code + '-' + orgDetails.identifier)
-    console.log('Ref: ', reference)
+    //console.log('Ref: ', reference)
     const orgReportsContract = state.chainContracts.data.contracts.orgReportsContract as IATIOrganisationReports
     let actionType = OrgReportsActionTypes.ADD_FAILURE
     let txData: TxData = {}
