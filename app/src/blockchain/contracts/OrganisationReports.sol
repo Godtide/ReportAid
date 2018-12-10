@@ -13,7 +13,7 @@ contract OrganisationReports {
 
   function getNumReports() public view returns (uint256);
   function getNumReportOrgs(string _reference) public view returns (uint256);
-  function getNumReportingDocs(string _reference) public view returns (uint256);
+  function getNumReportDocs(string _reference) public view returns (uint256);
 
   function getReportReference(uint256 _index) public view returns (string);
   function getReportOrgReference(string _reference, uint256 _index) public view returns (string);

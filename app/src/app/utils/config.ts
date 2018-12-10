@@ -37,34 +37,37 @@ class Contract {
   ]
 
   static organisationReportsABI = [
-    "event SetReport(string _reference, string _version)",
-    "event SetOrganisation(string _reference, string _orgRef, string _defaultLang, string _defaultCurrency)",
-    "event SetReportingOrganisation(string _reference, string _reportingOrgRef, string _orgType, bool _isSecondary)",
-    "event SetDocument(string _reference, string _docRef)",
+    "event SetReport(string _reference, string _orgRef, string _reportingOrgRef, string _version, string _generatedTime)",
+    "event SetDefaults(string _reference, string _orgRef, string _defaultLang, string _defaultCurrency)",
+    "event SetReportingOrgType(string _reference, string _orgRef, string _reportingOrgRef, uint8 _type, bool _isSecondary)",
+    "event SetAssociatedDocument(string _reference, string _docRef)",
 
-    "function setReport(string _reference, string _version) public",
-    "function setOrganisation(string _reference, string _orgRef, string _defaultLang, string _defaultCurrency) public",
-    "function setReportingOrganisation(string _reference, string _reportingOrgRef, string _type, bool _isSecondary) public",
-    "function setDocument(string _reference, string _docRef, bytes32[] _attributes) public",
+    "function setReport(string _reference, string _orgRef, string _reportingOrgRef, string _version, string _generatedTime) public",
+    "function setDefaults(string _reference, string _orgRef, string _defaultLang, string _defaultCurrency) public",
+    "function setReportingOrgType(string _reference, string _orgRef, string _reportingOrgRef, uint8 _type, bool _isSecondary) public",
+    "function setAssociatedDocument(string _reference, string _docRef, bytes32[] _attributes) public",
 
     "function getReportExists(string _reference) public view returns (bool)",
+    "function getReportOrgExists(string _reference, string _orgRef) public view returns (bool)",
     "function getReportDocExists(string _reference, string _docRef) public view returns (bool)",
 
-    "function getVersion(string _reference) public view returns (string)",
-
     "function getNumReports() public view returns (uint256)",
+    "function getNumReportOrgs(string _reference) public view returns (uint256)",
     "function getNumReportDocs(string _reference) public view returns (uint256)",
 
     "function getReportReference(uint256 _index) public view returns (string)",
+    "function getReportOrgReference(string _reference, uint256 _index) public view returns (string)",
     "function getReportDocReference(string _reference, uint256 _index) public view returns (string)",
 
-    "function getOrganisation(string _reference) public view returns (string)",
-    "function getOrganisationDefaultLang(string _reference) public view returns (string)",
-    "function getOrganisationDefaultCurrency(string _reference) public view returns (string)",
+    "function getReportingOrg(string _reference, string _orgRef) public view returns (string)",
+    "function getLang(string _reference, string _orgRef) public view returns (string)",
+    "function getCurrency(string _reference,  string _orgRef) public view returns (string)",
+    "function getVersion(string _reference,  string _orgRef) public view returns (string)",
+    "function getGeneratedTime(string _reference,  string _orgRef) public view returns (string)",
+    "function getLastUpdatedTime(string _reference,  string _orgRef) public view returns (string)",
 
-    "function getReportingOrganisation(string _reference) public view returns (string)",
-    "function getReportingOrganisationType(string _reference) public view returns (string)",
-    "function getReportingOrganisationIsSecondary(string _reference) public view returns (bool)",
+    "function getReportingOrgType(string _reference, string _orgRef) public view returns (uint8)",
+    "function getReportingOrgIsSecondary(string _reference, string _orgRef) public view returns (bool)",
 
     "function getDocumentTitle(string _reference, string _docRef) public view returns (bytes32)",
     "function getDocumentFormat(string _reference, string _docRef) public view returns (bytes32)",
@@ -76,12 +79,9 @@ class Contract {
     "function getDocumentDate(string _reference, string _docRef) public view returns (bytes32)"
   ]
 
-  /*
-  organisations: 0x749f861de9e83807e0ebaadaedd88a2f645dc176
-  */
 
-  static organisationsAddress = "0xbc3bc6b7e02fdef11017d6b2ca1d63ec841f0ae6"
-  static organisationReportsAddress = "0xc5fd6b07e25f3c33868cef0e36a0c1992ac3c254"
+  static organisationsAddress = "0xc8bf68ddc0608e30a498b910357e1cebc8acc6a4"
+  static organisationReportsAddress = "0x7938f4894434fe063b9ad5cf27731727065e2697"
 }
 
 export { Paths, Blockchain, Contract }
