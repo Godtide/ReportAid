@@ -20,22 +20,23 @@ contract IATIOrganisationReports is OrganisationReports {
   }
 
   uint8 constant numDocAttributes = 8;
+  string constant defaultCurrency = 'GBP';
+  string constant defaultLang = 'en-gb';
+  uint8 constant defaultOrgType = 10;
+  string constant defaultIsSecondary = false;
 
   struct Report {
+    string reportingOrgRef;
+    mapping(string => ReportingOrganisation) reportingOrg;
     string version;
+    string lang;
+    string currency;
     string generatedTime;
-  }
-
-  struct Organisation {
-    string orgRef;
-    string defaultLang;
-    string defaultCurrency;
-    ReportingOrganisation reportingOrgRef;
+    string lastUpdatedTime;
   }
 
   struct ReportingOrganisation {
-    string reportingOrgRef;
-    string orgType;
+    uint8 orgType;
     bool isSecondary;
   }
 
@@ -51,59 +52,65 @@ contract IATIOrganisationReports is OrganisationReports {
   }
 
   string[] reportReferences;
-  mapping(string => Report) private reports;
-  mapping(string => Organisation) private organisations;
-  mapping(string => ReportingOrganisation) private reportingOrgs;
+  mapping(string => string[]) private orgReferences;
+  mapping(string => mapping(string => Report)) private organisationReports;
 
   mapping(string => string[]) private reportDocReferences;
   mapping(string => mapping(string => Document)) private docs;
 
-  event SetReport(string _reference, string _version, string _generatedTime);
-  event SetOrganisation(string _reference, string _orgRef, );
-  event SetReportingOrganisation(string _reference, string _reportingOrgRef, string _orgType, bool _isSecondary);
-  event SetDocument(string _reference, string _docRef);
+  event SetReport(string _reference, string _orgRef, string _reportingOrgRef, string _version, string _generatedTime);
+  event SetDefaults(string _reference, string _defaultLang, string _defaultCurrency);
+  event SetReportingOrgType(string _reference, string _orgRef, string _reportingOrgRef, string _type, bool _isSecondary);
+  event SetAssociatedDocument(string _reference, string _docRef);
 
-  function setReport(string _reference, string _version, string _generatedTime) public {
-    require((bytes(_reference).length > 0) && (bytes(_version).length > 0) && (bytes(_generatedTime).length > 0));
+  function setReport(string _reference, string _orgRef, string _reportingOrgRef, string _version, string _generatedTime) public {
+    require((bytes(_reference).length > 0) &&
+            (bytes(_orgRef).length > 0) &&
+            (bytes(_reportingOrgRef).length > 0) &&
+            (bytes(_version).length > 0) &&
+            (bytes(_generatedTime).length > 0));
 
-    reports[_reference].version = _version;
-    reports[_reference].generatedTime = _generatedTime;
+    organisationReports[reference][_orgRef].version = _version;
+    organisationReports[reference][_orgRef].lang = defaultLang;
+    organisationReports[reference][_orgRef].currency = defaultCurrency;
+    organisationReports[reference][_orgRef].generatedTime = _generatedTime;
+    organisationReports[reference][_orgRef].lastUpdatedTime = _generatedTime;
+    organisationReports[reference][_orgRef].reportingOrgRef = _reportingOrgRef;
+    organisationReports[reference][_orgRef][_reportingOrgRef].orgType = defaultOrgType;
+    organisationReports[reference][_orgRef][_reportingOrgRef].isSecondary = defaultIsSecondary;
+
     if(!getReportExists(_reference)) {
       reportReferences.push(_reference);
     }
+    if(!getReportOrgExists(_reference, _orgRef)) {
+      orgReferences[_reference].push(_orgRef);
+    }
+
+    emit SetReport(_reference, _orgRef, _reportingOrgRef, _version, __generatedTime);
   }
 
-  function setReportDefaults(string _reference, string _orgRef, string _defaultLang, string _defaultCurrency) public {
+  function setDefaults(string _reference, string _orgRef, string _defaultLang, string _defaultCurrency) public {
     require((bytes(_reference).length > 0) && (bytes(_defaultLang).length > 0) && (bytes(_defaultCurrency).length > 0));
 
-    reports[_reference].version = _defaultLang;
-    reports[_reference].generatedTime = _generatedTime;
-    if(!getReportExists(_reference)) {
-      reportReferences.push(_reference);
-    }
+    organisationReports[_reference][_orgRef].lang = _defaultLang;
+    organisationReports[_reference][_orgRef].currency = _defaultCurrency;
+
+    emit SetDefaults(_reference, _orgRef, _defaultLang, _defaultCurrency);
   }
 
-  function setOrganisation(string _reference, string _orgRef, string _defaultLang, string _defaultCurrency) public {
-    require((bytes(_reference).length > 0) && (bytes(_orgRef).length > 0) && (bytes(_defaultLang).length > 0) && (bytes(_defaultCurrency).length > 0));
+  function setReportingOrgType(string _reference, string _orgRef, string _reportingOrgRef, string _type, bool _isSecondary) public {
+    require((bytes(_reference).length > 0) &&
+            (bytes(_orgRef).length > 0) &&
+            (bytes(_reportingOrgRef).length > 0) &&
+            (organisationReports[_reference][_orgRef].reportingOrgRef == _reportingOrgRef));
 
-    organisations[_reference].orgRef = _orgRef;
-    organisations[_reference].defaultLang = _defaultLang;
-    organisations[_reference].defaultCurrency = _defaultCurrency;
+    organisationReports[_reference][_orgRef][_reportingOrgRef].orgType = _type;
+    organisationReports[_reference][_orgRef][_reportingOrgRef].isSecondary = _isSecondary;
 
-    emit SetOrganisation(_reference, _orgRef, _defaultLang, _defaultCurrency);
+    emit SetReportingOrgType(_reference, _orgRef, _reportingOrgRef, _type, _isSecondary);
   }
 
-  function setReportingOrganisation(string _reference, string _reportingOrgRef, string _orgType, bool _isSecondary) public {
-    require((bytes(_reference).length > 0) && (bytes(_reportingOrgRef).length > 0) && (bytes(_orgType).length > 0));
-
-    reportingOrgs[_reference].reportingOrgRef = _reportingOrgRef;
-    reportingOrgs[_reference].orgType = _orgType;
-    reportingOrgs[_reference].isSecondary = _isSecondary;
-
-    emit SetReportingOrganisation(_reference, _reportingOrgRef, _orgType, _isSecondary);
-  }
-
-  function setDocument(string _reference, string _docRef, bytes32[] _attributes) public {
+  function setAssociatedDocument(string _reference, string _docRef, bytes32[] _attributes) public {
     require((bytes(_reference).length > 0) &&
             (bytes(_docRef).length > 0) &&
             (_attributes.length == numDocAttributes));
@@ -121,7 +128,7 @@ contract IATIOrganisationReports is OrganisationReports {
       reportDocReferences[_reference].push(_docRef);
     }
 
-    emit SetDocument(_reference, _docRef);
+    emit SetAssociatedDocument(_reference, _docRef);
   }
 
   function getReportExists(string _reference) public view returns (bool) {
@@ -131,6 +138,14 @@ contract IATIOrganisationReports is OrganisationReports {
     return index != reportReferences.length;
   }
 
+  function getReportOrgExists(string _reference, string _orgRef) public view returns (bool) {
+    require((bytes(_reference).length > 0) &&
+            (bytes(_orgRef).length > 0));
+
+    uint256 index = Strings.getIndex(_orgRef, orgReferences[_reference]);
+    return index != orgReferences[_reference].length;
+  }
+
   function getReportDocExists(string _reference, string _docRef) public view returns (bool) {
     require(bytes(_reference).length > 0);
 
@@ -138,12 +153,13 @@ contract IATIOrganisationReports is OrganisationReports {
     return index != reportDocReferences[_reference].length;
   }
 
-  function getVersion(string _reference) public view returns (string) {
-    return reports[_reference].version;
-  }
-
   function getNumReports() public view returns (uint256) {
     return reportReferences.length;
+  }
+
+  function getNumReportOrgs(string _reference) public view returns (uint256) {
+    require(bytes(_reference).length > 0);
+    return orgReferences[_reference].length;
   }
 
   function getNumReportDocs(string _reference) public view returns (uint256) {
@@ -155,39 +171,67 @@ contract IATIOrganisationReports is OrganisationReports {
     return reportReferences[_index];
   }
 
+
+  function getReportOrgReference(string _reference, uint256 _index) public view returns (string) {
+    require((bytes(_reference).length > 0) &&
+            (_index < orgReferences[_reference].length));
+    return orgReferences[_reference][_index];
+  }
+
   function getReportDocReference(string _reference, uint256 _index) public view returns (string) {
-    require(_index < reportReferences.length);
+    require((bytes(_reference).length > 0) &&
+            (_index < reportReferences.length));
     return reportDocReferences[_reference][_index];
   }
 
-  function getOrganisation(string _reference) public view returns (string) {
-    require(bytes(_reference).length > 0);
-    return organisations[_reference].orgRef;
+  function getReportingOrg(string _reference, string _orgRef) public view returns (string) {
+    require((bytes(_reference).length > 0) &&
+            (bytes(_orgRef).length > 0));
+    return organisationReports[_reference][_orgRef].reportingOrgRef;
   }
 
-  function getOrganisationDefaultLang(string _reference) public view returns (string) {
-    require(bytes(_reference).length > 0);
-    return organisations[_reference].defaultLang;
+  function getLang(string _reference, string _orgRef) public view returns (string) {
+    require((bytes(_reference).length > 0) &&
+            (bytes(_orgRef).length > 0));
+    return organisationReports[_reference][_orgRef].defaultLang;
   }
 
-  function getOrganisationDefaultCurrency(string _reference) public view returns (string) {
-    require(bytes(_reference).length > 0);
-    return organisations[_reference].defaultCurrency;
+  function getCurrency(string _reference,  string _orgRef) public view returns (string) {
+    require((bytes(_reference).length > 0) &&
+            (bytes(_orgRef).length > 0));
+    return organisationReports[_reference][_orgRef].defaultCurrency;
   }
 
-  function getReportingOrganisation(string _reference) public view returns (string) {
-    require(bytes(_reference).length > 0);
-    return reportingOrgs[_reference].reportingOrgRef;
+  function getVersion(string _reference,  string _orgRef) public view returns (string) {
+    require((bytes(_reference).length > 0) &&
+            (bytes(_orgRef).length > 0));
+    return organisationReports[_reference][_orgRef].version;
   }
 
-  function getReportingOrganisationType(string _reference) public view returns (string) {
-    require(bytes(_reference).length > 0);
-    return reportingOrgs[_reference].orgType;
+  function getGeneratedTime(string _reference,  string _orgRef) public view returns (string) {
+    require((bytes(_reference).length > 0) &&
+            (bytes(_orgRef).length > 0));
+    return organisationReports[_reference][_orgRef].generatedTime;
   }
 
-  function getReportingOrganisationIsSecondary(string _reference) public view returns (bool) {
-    require(bytes(_reference).length > 0);
-    return reportingOrgs[_reference].isSecondary;
+  function getLastUpdatedTime(string _reference,  string _orgRef) public view returns (string) {
+    require((bytes(_reference).length > 0) &&
+            (bytes(_orgRef).length > 0));
+    return organisationReports[_reference][_orgRef].lastUpdatedTime;
+  }
+
+  function getReportingOrgType(string _reference,  string _orgRef) public view returns (string) {
+    require((bytes(_reference).length > 0) &&
+            (bytes(_orgRef).length > 0));
+    string memory reportingOrgRef = organisationReports[_reference][_orgRef].reportingOrgRef;
+    return organisationReports[_reference][_orgRef][reportingOrgRef].orgType;
+  }
+
+  function getReportingOrganisationIsSecondary(string _reference,  string _orgRef) public view returns (string) {
+    require((bytes(_reference).length > 0) &&
+            (bytes(_orgRef).length > 0));
+    string memory reportingOrgRef = organisationReports[_reference][_orgRef].reportingOrgRef;
+    return organisationReports[_reference][_orgRef][reportingOrgRef].isSecondary;
   }
 
   function getDocumentTitle(string _reference, string _docRef) public view returns (bytes32) {
