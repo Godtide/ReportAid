@@ -3,8 +3,7 @@ import * as React from 'react'
 import Markdown from 'react-markdown'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
-import { SiderCreateMenu } from './siderCreateMenu'
-import { SiderReadMenu } from './siderReadMenu'
+import { SiderOrganisationMenu } from './siderOrganisationMenu'
 import { ApplicationBar } from './appBar'
 import { Content } from './content'
 import { App } from '../utils/strings'
@@ -42,10 +41,7 @@ class MainLayout extends React.Component<WithStyles<typeof styles>> {
             <Grid container spacing={0}>
               <Grid item xs={12} sm={2}>
                 <Paper className={this.props.classes.sider}>
-                  <SiderCreateMenu />
-                </Paper>
-                <Paper className={this.props.classes.sider}>
-                  <SiderReadMenu />
+                  <SiderOrganisationMenu />
                 </Paper>
               </Grid>
               <Grid item xs={12} sm={10}>
