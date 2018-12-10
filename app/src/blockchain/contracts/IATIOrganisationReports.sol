@@ -23,11 +23,10 @@ contract IATIOrganisationReports is OrganisationReports {
   string constant defaultCurrency = 'GBP';
   string constant defaultLang = 'en-gb';
   uint8 constant defaultOrgType = 10;
-  string constant defaultIsSecondary = false;
+  bool constant defaultIsSecondary = false;
 
   struct Report {
-    string reportingOrgRef;
-    mapping(string => ReportingOrganisation) reportingOrg;
+    ReportingOrganisation reportingOrg;
     string version;
     string lang;
     string currency;
@@ -36,6 +35,7 @@ contract IATIOrganisationReports is OrganisationReports {
   }
 
   struct ReportingOrganisation {
+    string orgRef;
     uint8 orgType;
     bool isSecondary;
   }
@@ -59,8 +59,8 @@ contract IATIOrganisationReports is OrganisationReports {
   mapping(string => mapping(string => Document)) private docs;
 
   event SetReport(string _reference, string _orgRef, string _reportingOrgRef, string _version, string _generatedTime);
-  event SetDefaults(string _reference, string _defaultLang, string _defaultCurrency);
-  event SetReportingOrgType(string _reference, string _orgRef, string _reportingOrgRef, string _type, bool _isSecondary);
+  event SetDefaults(string _reference, string _orgRef, string _defaultLang, string _defaultCurrency);
+  event SetReportingOrgType(string _reference, string _orgRef, string _reportingOrgRef, uint8 _type, bool _isSecondary);
   event SetAssociatedDocument(string _reference, string _docRef);
 
   function setReport(string _reference, string _orgRef, string _reportingOrgRef, string _version, string _generatedTime) public {
@@ -70,14 +70,14 @@ contract IATIOrganisationReports is OrganisationReports {
             (bytes(_version).length > 0) &&
             (bytes(_generatedTime).length > 0));
 
-    organisationReports[reference][_orgRef].version = _version;
-    organisationReports[reference][_orgRef].lang = defaultLang;
-    organisationReports[reference][_orgRef].currency = defaultCurrency;
-    organisationReports[reference][_orgRef].generatedTime = _generatedTime;
-    organisationReports[reference][_orgRef].lastUpdatedTime = _generatedTime;
-    organisationReports[reference][_orgRef].reportingOrgRef = _reportingOrgRef;
-    organisationReports[reference][_orgRef][_reportingOrgRef].orgType = defaultOrgType;
-    organisationReports[reference][_orgRef][_reportingOrgRef].isSecondary = defaultIsSecondary;
+    organisationReports[_reference][_orgRef].version = _version;
+    organisationReports[_reference][_orgRef].lang = defaultLang;
+    organisationReports[_reference][_orgRef].currency = defaultCurrency;
+    organisationReports[_reference][_orgRef].generatedTime = _generatedTime;
+    organisationReports[_reference][_orgRef].lastUpdatedTime = _generatedTime;
+    organisationReports[_reference][_orgRef].reportingOrg.orgRef = _reportingOrgRef;
+    organisationReports[_reference][_orgRef].reportingOrg.orgType = defaultOrgType;
+    organisationReports[_reference][_orgRef].reportingOrg.isSecondary = defaultIsSecondary;
 
     if(!getReportExists(_reference)) {
       reportReferences.push(_reference);
@@ -86,7 +86,7 @@ contract IATIOrganisationReports is OrganisationReports {
       orgReferences[_reference].push(_orgRef);
     }
 
-    emit SetReport(_reference, _orgRef, _reportingOrgRef, _version, __generatedTime);
+    emit SetReport(_reference, _orgRef, _reportingOrgRef, _version, _generatedTime);
   }
 
   function setDefaults(string _reference, string _orgRef, string _defaultLang, string _defaultCurrency) public {
@@ -98,14 +98,14 @@ contract IATIOrganisationReports is OrganisationReports {
     emit SetDefaults(_reference, _orgRef, _defaultLang, _defaultCurrency);
   }
 
-  function setReportingOrgType(string _reference, string _orgRef, string _reportingOrgRef, string _type, bool _isSecondary) public {
+  function setReportingOrgType(string _reference, string _orgRef, string _reportingOrgRef, uint8 _type, bool _isSecondary) public {
     require((bytes(_reference).length > 0) &&
             (bytes(_orgRef).length > 0) &&
             (bytes(_reportingOrgRef).length > 0) &&
-            (organisationReports[_reference][_orgRef].reportingOrgRef == _reportingOrgRef));
+            (Strings.equal(organisationReports[_reference][_orgRef].reportingOrg.orgRef, _reportingOrgRef)));
 
-    organisationReports[_reference][_orgRef][_reportingOrgRef].orgType = _type;
-    organisationReports[_reference][_orgRef][_reportingOrgRef].isSecondary = _isSecondary;
+    organisationReports[_reference][_orgRef].reportingOrg.orgType = _type;
+    organisationReports[_reference][_orgRef].reportingOrg.isSecondary = _isSecondary;
 
     emit SetReportingOrgType(_reference, _orgRef, _reportingOrgRef, _type, _isSecondary);
   }
@@ -171,7 +171,6 @@ contract IATIOrganisationReports is OrganisationReports {
     return reportReferences[_index];
   }
 
-
   function getReportOrgReference(string _reference, uint256 _index) public view returns (string) {
     require((bytes(_reference).length > 0) &&
             (_index < orgReferences[_reference].length));
@@ -187,19 +186,19 @@ contract IATIOrganisationReports is OrganisationReports {
   function getReportingOrg(string _reference, string _orgRef) public view returns (string) {
     require((bytes(_reference).length > 0) &&
             (bytes(_orgRef).length > 0));
-    return organisationReports[_reference][_orgRef].reportingOrgRef;
+    return organisationReports[_reference][_orgRef].reportingOrg.orgRef;
   }
 
   function getLang(string _reference, string _orgRef) public view returns (string) {
     require((bytes(_reference).length > 0) &&
             (bytes(_orgRef).length > 0));
-    return organisationReports[_reference][_orgRef].defaultLang;
+    return organisationReports[_reference][_orgRef].lang;
   }
 
   function getCurrency(string _reference,  string _orgRef) public view returns (string) {
     require((bytes(_reference).length > 0) &&
             (bytes(_orgRef).length > 0));
-    return organisationReports[_reference][_orgRef].defaultCurrency;
+    return organisationReports[_reference][_orgRef].currency;
   }
 
   function getVersion(string _reference,  string _orgRef) public view returns (string) {
@@ -220,18 +219,16 @@ contract IATIOrganisationReports is OrganisationReports {
     return organisationReports[_reference][_orgRef].lastUpdatedTime;
   }
 
-  function getReportingOrgType(string _reference,  string _orgRef) public view returns (string) {
+  function getReportingOrgType(string _reference,  string _orgRef) public view returns (uint8) {
     require((bytes(_reference).length > 0) &&
             (bytes(_orgRef).length > 0));
-    string memory reportingOrgRef = organisationReports[_reference][_orgRef].reportingOrgRef;
-    return organisationReports[_reference][_orgRef][reportingOrgRef].orgType;
+    return organisationReports[_reference][_orgRef].reportingOrg.orgType;
   }
 
-  function getReportingOrganisationIsSecondary(string _reference,  string _orgRef) public view returns (string) {
+  function getReportingOrgIsSecondary(string _reference,  string _orgRef) public view returns (bool) {
     require((bytes(_reference).length > 0) &&
             (bytes(_orgRef).length > 0));
-    string memory reportingOrgRef = organisationReports[_reference][_orgRef].reportingOrgRef;
-    return organisationReports[_reference][_orgRef][reportingOrgRef].isSecondary;
+    return organisationReports[_reference][_orgRef].reportingOrg.isSecondary;
   }
 
   function getDocumentTitle(string _reference, string _docRef) public view returns (bytes32) {
