@@ -2,7 +2,7 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { ThunkDispatch } from 'redux-thunk'
 
-import { Formik, Form, Field, FormikProps, FieldArray, ErrorMessage} from 'formik'
+import { Formik, Form, Field, FieldProps, FormikProps, FieldArray, ErrorMessage} from 'formik'
 import * as Yup from 'yup'
 
 import { ApplicationState } from '../../../store'
@@ -110,7 +110,7 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
     })
 
     const fields = {orgs: xs}
-    console.log('field ', fields)
+    //console.log('field ', fields)
 
     return (
       <div>
@@ -122,14 +122,14 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
             onSubmit={(values: FormProps, actions: any) => {
               this.handleSubmit(values, actions.setSubmitting, actions.resetForm)
             }}
-            render={ (values: FormikProps<FormProps>) => (
+            render={ (formProps: FormikProps<FormProps>) => (
               <Form>
                 <FieldArray
-                  name="org"
-                  render={ (helpers) => (
-                      {values.org && values.orgs.length > 0 ? (
-                        values.org.map((value: any, index: any) => (
-                          <div key={value}>
+                  name="orgs"
+                  render={ () => (
+                    {formProps.orgs && formProps.orgs.length > 0 ? (
+                        formProps.orgs.map((value: any, index: any) => (
+                          <div>
                             <Field component={Select} name={`orgs.${index}`}>
                               <option value={value}>{value}</option>
                             </Field>
