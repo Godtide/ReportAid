@@ -81,8 +81,8 @@ class Contract {
   ]
 
 
-  static organisationsAddress = "0x471fa063bb993606c5c2b8ddc9b9634a886d8552"
-  static organisationReportsAddress = "0x5c1b81c17af0570a0621b967aa3dc02bda3d9a5c"
+  static organisationsAddress = "0x78dbfca6d18f0f4dec22bdccd4c3f90295ff1831"
+  static organisationReportsAddress = "0x00ac4b12eb39de040860ddae3cbba3f5e7145c5f"
 }
 
 export { Paths, Blockchain, Contract }

@@ -1,4 +1,4 @@
-import { DictData } from '../../../store/types'
+import { DictData } from '../store/types'
 
 export const getDictEntries = (props: DictData): object[] => {
   let xs: object[] = [{}]

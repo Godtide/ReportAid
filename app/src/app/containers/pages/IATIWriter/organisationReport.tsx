@@ -2,28 +2,36 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { ThunkDispatch } from 'redux-thunk'
 
-import { Formik, Form, Field, FormikProps, ErrorMessage} from 'formik'
+import { Formik, Form, Field, FormikProps, FieldArray, ErrorMessage} from 'formik'
 import * as Yup from 'yup'
 
 import { ApplicationState } from '../../../store'
 import { ActionProps, TxData } from '../../../store/types'
-import { OrganisationProps } from '../../../store/IATI/types'
+import { IATIOrgProps } from '../../../store/IATI/types'
 
 import { getOrgs } from '../../../store/IATI/IATIReader/organisationReader/actions'
 import { OrgData } from '../../../store/IATI/IATIReader/organisationReader/types'
 
-import { getDictEntries } from './dict'
+import { getDictEntries } from '../../../utils/dict'
 
 import { setOrganisation } from '../../../store/IATI/IATIWriter/organisationWriter/actions'
 
 import { LinearProgress } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
-import { TextField } from 'formik-material-ui'
+import { Select } from 'formik-material-ui'
 
 import { Organisation } from '../../../utils/strings'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
+
+interface id {
+  identifier: string
+}
+
+interface FormProps {
+  orgs: Array<id>
+}
 
 interface OrgReportProps {
   tx: TxData,
@@ -84,7 +92,7 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
     }
   }
 
-  handleSubmit = (values: OrganisationProps, setSubmitting: Function, reset: Function) => {
+  handleSubmit = (values: FormProps, setSubmitting: Function, reset: Function) => {
     const submitting = !this.state.toggleSubmitting
     this.setState({txKey: '', txSummary: '', toggleSubmitting: submitting, submitFunc: setSubmitting, resetFunc: reset})
     setSubmitting(submitting)
@@ -93,33 +101,53 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
 
   render() {
 
-    const orgs = getDictEntries(this.props.orgs)
-    console.log('Blah orgs ', orgs)
+    const orgs = getDictEntries(this.props.orgs) as IATIOrgProps[]
+    //console.log('Blah orgs ', orgs)
+    const xs = orgs.map((value: IATIOrgProps) => {
+      return (
+        {identifier: `${value.identifier}`}
+      )
+    })
+
+    const fields = {orgs: xs}
+    console.log('field ', fields)
 
     return (
       <div>
         <h2>{Organisation.headingOrgWriter}</h2>
         <div>
           <Formik
-            initialValues={ {name: '', code: '', identifier: ''} }
-            validationSchema={organisationSchema}
-            onSubmit={(values: OrganisationProps, actions: any) => {
+            initialValues={ fields }
+            validationSchema={ organisationSchema }
+            onSubmit={(values: FormProps, actions: any) => {
               this.handleSubmit(values, actions.setSubmitting, actions.resetForm)
             }}
-            render={(formProps: FormikProps<any>) => (
+            render={ (values: FormikProps<FormProps>) => (
               <Form>
-                <Field name='name' label={Organisation.orgName} component={TextField} />
-                <ErrorMessage name='name' />
+                <FieldArray
+                  name="org"
+                  render={ (helpers) => (
+                      {values.org && values.orgs.length > 0 ? (
+                        values.org.map((value: any, index: any) => (
+                          <div key={value}>
+                            <Field component={Select} name={`orgs.${index}`}>
+                              <option value={value}>{value}</option>
+                            </Field>
+                          </div>
+                        ))
+                      ): (
+                        <div>
+                          <Field component={Select} name=''>
+                            <option value=''>''</option>
+                          </Field>
+                        </div>
+                      )}
+                  )}
+                />
                 <br />
-                <Field name='code' label={Organisation.code} component={TextField} />
-                <ErrorMessage name='code' />
+                {values.isSubmitting && <LinearProgress />}
                 <br />
-                <Field name='identifier' label={Organisation.identifier} component={TextField} />
-                <ErrorMessage name='identifier' />
-                <br />
-                {formProps.isSubmitting && <LinearProgress />}
-                <br />
-                <Button type='submit' variant="raised" color="primary" disabled={formProps.isSubmitting}>
+                <Button type='submit' variant="raised" color="primary" disabled={values.isSubmitting}>
                   Submit
                 </Button>
               </Form>
