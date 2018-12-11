@@ -110,7 +110,7 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
     })
 
     const fields = {orgs: xs}
-    //console.log('field ', fields)
+    console.log('field ', fields)
 
     return (
       <div>
@@ -122,17 +122,16 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
             onSubmit={(values: FormProps, actions: any) => {
               this.handleSubmit(values, actions.setSubmitting, actions.resetForm)
             }}
-            render={ (formProps: FormikProps<FormProps>) => (
+            render={ ({ values }: FormikProps<any>) => (
               <Form>
                 <FieldArray
                   name="orgs"
                   render={ () => (
-                    {formProps.orgs && formProps.orgs.length > 0 ? (
-                        formProps.orgs.map((value: any, index: any) => (
+                    <React.Fragment>
+                      {values.orgs && values.orgs.length > 0 ? (
+                        values.orgs.map((value: any, index: any) => (
                           <div>
-                            <Field component={Select} name={`orgs.${index}`}>
-                              <option value={value}>{value}</option>
-                            </Field>
+                            <Field component={Select} name={`value.${index}.identifier`}/>
                           </div>
                         ))
                       ): (
@@ -142,6 +141,7 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
                           </Field>
                         </div>
                       )}
+                    </React.Fragment>
                   )}
                 />
                 <br />
