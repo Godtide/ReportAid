@@ -2,7 +2,7 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { ThunkDispatch } from 'redux-thunk'
 
-import { Formik, Form, Field, FieldProps, FormikProps, ErrorMessage} from 'formik'
+import { Formik, Form, Field, FormikProps, ErrorMessage} from 'formik'
 import * as Yup from 'yup'
 
 import { ApplicationState } from '../../../store'
@@ -18,7 +18,7 @@ import { setOrganisation } from '../../../store/IATI/IATIWriter/organisationWrit
 
 import { LinearProgress } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
-import { Select } from 'formik-material-ui'
+//import { Select } from 'formik-material-ui'
 
 import { Organisation } from '../../../utils/strings'
 
@@ -40,14 +40,11 @@ export interface OrgDispatchProps {
 }
 
 const organisationSchema = Yup.object().shape({
-  name: Yup
-    .string()
-    .required('Required'),
-  code: Yup
-    .string()
-    .required('Required'),
-  identifier: Yup
-    .string()
+  org: Yup.string()
+    .matches(/^.*[^-].*$/, {
+        message: 'Please select an organisation identifier',
+        excludeEmptyString: true
+    })
     .required('Required')
 })
 
@@ -90,7 +87,7 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
   }
 
   handleSelectChange = (event: any) => {
-    console.log('Bloody hell ', event.target.value)
+    //console.log('Bloody hell ', event.target.value)
     const thisState = event.target.value
     this.setState({ selectValue: thisState })
   }
@@ -123,13 +120,14 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
             }}
             render={ (values: FormikProps<any>) => (
               <Form>
+                <label htmlFor='org'>{Organisation.identifier}: </label>
                 <Field
-                  name='orgs'
-                  label={Organisation.identifier}
+                  name='org'
                   render={ (props: any) => {
                     //console.log('Props ', props)
+                    const defaultOption = <option key='' value=''>Please Select:</option>
                     const options = fields.orgs.map((value: any, index: any) => <option key={index} value={value}>{value}</option> )
-                    const selectOptions = [...options]
+                    const selectOptions = [defaultOption, ...options]
                     return (
                       <div>
                         <select
@@ -145,6 +143,8 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
                     )
                   }}
                 />
+                <ErrorMessage name='org' />
+                <br />
                 {values.isSubmitting && <LinearProgress />}
                 <br />
                 <Button type='submit' variant="raised" color="primary" disabled={values.isSubmitting}>
