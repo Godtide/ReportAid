@@ -2,7 +2,7 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { ThunkDispatch } from 'redux-thunk'
 
-import { Formik, Form, Field, FieldProps, FormikProps, FieldArray, ErrorMessage} from 'formik'
+import { Formik, Form, Field, FieldProps, FormikProps, ErrorMessage} from 'formik'
 import * as Yup from 'yup'
 
 import { ApplicationState } from '../../../store'
@@ -90,6 +90,7 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
   }
 
   handleSelectChange = (event: any) => {
+    console.log('Bloody hell ', event.target.value)
     const thisState = event.target.value
     this.setState({ selectValue: thisState })
   }
@@ -108,10 +109,7 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
     const iDs = orgs.map((value: any) => (
       value.identifier
     ))
-
     const fields = {orgs: iDs}
-    console.log('field ', fields)
-
 
     return (
       <div>
@@ -123,23 +121,27 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
             onSubmit={(values: FormProps, actions: any) => {
               this.handleSubmit(values, actions.setSubmitting, actions.resetForm)
             }}
-            render={({values}: FormikProps<any>) => (
+            render={ (values: FormikProps<any>) => (
               <Form>
-              <Field
+                <Field
                   name='orgs'
-                  render={() => {
-                    const defaultOption = <option key='default' value='Please Select'>Please Select</option>
-                    const options = values.orgs.map((value: any, index: any) => <option key={index} value={value}> {value} </option> )
-                    const selectOptions = [defaultOption, ...options]
+                  label={Organisation.identifier}
+                  render={ (props: any) => {
+                    //console.log('Props ', props)
+                    const options = fields.orgs.map((value: any, index: any) => <option key={index} value={value}>{value}</option> )
+                    const selectOptions = [...options]
                     return (
-                      <select
-                        value={this.state.selectValue}
-                        onChange={this.handleSelectChange}
-                      >
-                        {
-                          selectOptions
-                        }
-                      </select>
+                      <div>
+                        <select
+                          value={this.state.selectValue}
+                          onChange={this.handleSelectChange}
+                          {...props}
+                        >
+                          {
+                            selectOptions
+                          }
+                        </select>
+                      </div>
                     )
                   }}
                 />
