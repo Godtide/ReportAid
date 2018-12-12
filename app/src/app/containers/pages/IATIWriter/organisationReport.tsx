@@ -25,12 +25,8 @@ import { Organisation } from '../../../utils/strings'
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
 
-interface id {
-  identifier: string
-}
-
 interface FormProps {
-  orgs: Array<id>
+  orgs: Array<string>
 }
 
 interface OrgReportProps {
@@ -62,6 +58,7 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
   state = {
     txKey: '',
     txSummary: '',
+    selectValue: '',
     toggleSubmitting: false,
     submitFunc: (function(submit: boolean) { return submit }),
     resetFunc: (function() { return null })
@@ -92,6 +89,11 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
     }
   }
 
+  handleSelectChange = (event: any) => {
+    const thisState = event.target.value
+    this.setState({ selectValue: thisState })
+  }
+
   handleSubmit = (values: FormProps, setSubmitting: Function, reset: Function) => {
     const submitting = !this.state.toggleSubmitting
     this.setState({txKey: '', txSummary: '', toggleSubmitting: submitting, submitFunc: setSubmitting, resetFunc: reset})
@@ -103,14 +105,13 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
 
     const orgs = getDictEntries(this.props.orgs) as IATIOrgProps[]
     //console.log('Blah orgs ', orgs)
-    const xs = orgs.map((value: IATIOrgProps) => {
-      return (
-        {identifier: `${value.identifier}`}
-      )
-    })
+    const iDs = orgs.map((value: any) => (
+      value.identifier
+    ))
 
-    const fields = {orgs: xs}
+    const fields = {orgs: iDs}
     console.log('field ', fields)
+
 
     return (
       <div>
@@ -118,33 +119,30 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
         <div>
           <Formik
             initialValues={ fields }
-            validationSchema={ organisationSchema }
+            validationSchema={organisationSchema}
             onSubmit={(values: FormProps, actions: any) => {
               this.handleSubmit(values, actions.setSubmitting, actions.resetForm)
             }}
-            render={ ({ values }: FormikProps<any>) => (
+            render={({values}: FormikProps<any>) => (
               <Form>
-                <FieldArray
-                  name="orgs"
-                  render={ () => (
-                    <React.Fragment>
-                      <div>
-                        {values.orgs && values.orgs.length > 0 ? (
-                          values.orgs.map((value: any, index: any) => (
-                            <Field component="select" name={index}>
-                              <option value={value.identifier}>{value.identifier}</option>
-                            </Field>
-                          ))
-                        ): (
-                          <Field component="select" name=''>
-                            <option value=''>''</option>
-                          </Field>
-                        )}
-                      </div>
-                    </React.Fragment>
-                  )}
+              <Field
+                  name='orgs'
+                  render={() => {
+                    const defaultOption = <option key='default' value='Please Select'>Please Select</option>
+                    const options = values.orgs.map((value: any, index: any) => <option key={index} value={value}> {value} </option> )
+                    const selectOptions = [defaultOption, ...options]
+                    return (
+                      <select
+                        value={this.state.selectValue}
+                        onChange={this.handleSelectChange}
+                      >
+                        {
+                          selectOptions
+                        }
+                      </select>
+                    )
+                  }}
                 />
-                <br />
                 {values.isSubmitting && <LinearProgress />}
                 <br />
                 <Button type='submit' variant="raised" color="primary" disabled={values.isSubmitting}>
