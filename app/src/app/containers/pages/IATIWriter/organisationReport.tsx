@@ -128,19 +128,19 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
                   name="orgs"
                   render={ () => (
                     <React.Fragment>
-                      {values.orgs && values.orgs.length > 0 ? (
-                        values.orgs.map((value: any, index: any) => (
-                          <div>
-                            <Field component={Select} name={`value.${index}.identifier`}/>
-                          </div>
-                        ))
-                      ): (
-                        <div>
-                          <Field component={Select} name=''>
+                      <div>
+                        {values.orgs && values.orgs.length > 0 ? (
+                          values.orgs.map((value: any, index: any) => (
+                            <Field component="select" name={index}>
+                              <option value={value.identifier}>{value.identifier}</option>
+                            </Field>
+                          ))
+                        ): (
+                          <Field component="select" name=''>
                             <option value=''>''</option>
                           </Field>
-                        </div>
-                      )}
+                        )}
+                      </div>
                     </React.Fragment>
                   )}
                 />
