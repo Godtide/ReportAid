@@ -136,7 +136,7 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
               console.log('Submitting!')
               this.handleSubmit(values, actions.setSubmitting, actions.resetForm)
             }}
-            render={ (values: FormikProps<OrgReportProps>) => (
+            render={ (values: FormikProps<any>) => (
               <Form>
                 <label htmlFor='orgIdentifier'>{OrganisationReport.orgIdentifier}: </label>
                 <Field
@@ -149,8 +149,8 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
                     return (
                       <div>
                         <select
-                          value={this.state.orgIdentifier}
-                          onChange={this.handleOrgChange}
+                          value={values.values.orgIdentifier}
+                          onChange={(value) => values.setFieldValue('orgIdentifier', value)}
                           {...props}
                         >
                           {
