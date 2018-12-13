@@ -15,7 +15,7 @@ import { LinearProgress } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
 import { TextField } from 'formik-material-ui'
 
-import { Organisation } from '../../../utils/strings'
+import { Organisation, Transaction } from '../../../utils/strings'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
@@ -61,11 +61,11 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
     if(previousProps.tx != this.props.tx) {
       const submitting = !this.state.toggleSubmitting
       let txKey = ''
-      let txSummary = `${Organisation.transactionFail}`
+      let txSummary = `${Transaction.fail}`
       const txKeys = Object.keys(this.props.tx)
       if (txKeys.length > 0 ) {
         txKey = Object.keys(this.props.tx)[0]
-        txSummary = `${Organisation.transactionSuccess}`
+        txSummary = `${Transaction.success}`
       }
       this.setState({txKey: txKey, txSummary: txSummary, toggleSubmitting: submitting})
       this.state.submitFunc(submitting)
@@ -113,10 +113,10 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
           />
         </div>
         <hr />
-        <h3>{Organisation.orgTXHeader}</h3>
+        <h3>{Transaction.header}</h3>
         <p>
-          <b>{Organisation.transactionSummary}</b>: {this.state.txSummary}<br />
-          <b>{Organisation.transactionKey}</b>: {this.state.txKey}
+          <b>{Transaction.summary}</b>: {this.state.txSummary}<br />
+          <b>{Transaction.key}</b>: {this.state.txKey}
         </p>
       </div>
     )

@@ -20,7 +20,7 @@ import { LinearProgress } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
 //import { Select } from 'formik-material-ui'
 
-import { Organisation } from '../../../utils/strings'
+import { OrganisationReport, Transaction } from '../../../utils/strings'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
@@ -55,7 +55,8 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
   state = {
     txKey: '',
     txSummary: '',
-    selectValue: '',
+    org: '',
+    reportingOrg: '',
     toggleSubmitting: false,
     submitFunc: (function(submit: boolean) { return submit }),
     resetFunc: (function() { return null })
@@ -74,11 +75,11 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
     if(previousProps.tx != this.props.tx) {
       const submitting = !this.state.toggleSubmitting
       let txKey = ''
-      let txSummary = `${Organisation.transactionFail}`
+      let txSummary = `${Transaction.fail}`
       const txKeys = Object.keys(this.props.tx)
       if (txKeys.length > 0 ) {
         txKey = Object.keys(this.props.tx)[0]
-        txSummary = `${Organisation.transactionSuccess}`
+        txSummary = `${Transaction.success}`
       }
       this.setState({txKey: txKey, txSummary: txSummary, toggleSubmitting: submitting})
       this.state.submitFunc(submitting)
@@ -86,10 +87,16 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
     }
   }
 
-  handleSelectChange = (event: any) => {
-    //console.log('Bloody hell ', event.target.value)
+  handleOrgChange = (event: any) => {
+    console.log('Org hell ', event.target.value)
     const thisState = event.target.value
-    this.setState({ selectValue: thisState })
+    this.setState({ org: thisState })
+  }
+
+  handleReportingOrgChange = (event: any) => {
+    console.log('reporting hell ', event.target.value)
+    const thisState = event.target.value
+    this.setState({ reportingOrg: thisState })
   }
 
   handleSubmit = (values: FormProps, setSubmitting: Function, reset: Function) => {
@@ -110,7 +117,7 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
 
     return (
       <div>
-        <h2>{Organisation.headingOrgWriter}</h2>
+        <h2>{OrganisationReport.headingOrgReportWriter}</h2>
         <div>
           <Formik
             initialValues={ fields }
@@ -120,7 +127,7 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
             }}
             render={ (values: FormikProps<any>) => (
               <Form>
-                <label htmlFor='org'>{Organisation.identifier}: </label>
+                <label htmlFor='org'>{OrganisationReport.orgIdentifier}: </label>
                 <Field
                   name='org'
                   render={ (props: any) => {
@@ -131,8 +138,8 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
                     return (
                       <div>
                         <select
-                          value={this.state.selectValue}
-                          onChange={this.handleSelectChange}
+                          value={this.state.org}
+                          onChange={this.handleOrgChange}
                           {...props}
                         >
                           {
@@ -145,6 +152,31 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
                 />
                 <ErrorMessage name='org' />
                 <br />
+                <label htmlFor='reportingOrg'>{OrganisationReport.reportingOrgIdentifier}: </label>
+                <Field
+                  name='reportingOrg'
+                  render={ (props: any) => {
+                    //console.log('Props ', props)
+                    const defaultOption = <option key='' value=''>Please Select:</option>
+                    const options = fields.orgs.map((value: any, index: any) => <option key={index} value={value}>{value}</option> )
+                    const selectOptions = [defaultOption, ...options]
+                    return (
+                      <div>
+                        <select
+                          value={this.state.reportingOrg}
+                          onChange={this.handleReportingOrgChange}
+                          {...props}
+                        >
+                          {
+                            selectOptions
+                          }
+                        </select>
+                      </div>
+                    )
+                  }}
+                />
+                <ErrorMessage name='reportingOrg' />
+                <br />
                 {values.isSubmitting && <LinearProgress />}
                 <br />
                 <Button type='submit' variant="raised" color="primary" disabled={values.isSubmitting}>
@@ -155,10 +187,10 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
           />
         </div>
         <hr />
-        <h3>{Organisation.orgTXHeader}</h3>
+        <h3>{Transaction.heading}</h3>
         <p>
-          <b>{Organisation.transactionSummary}</b>: {this.state.txSummary}<br />
-          <b>{Organisation.transactionKey}</b>: {this.state.txKey}
+          <b>{Transaction.summary}</b>: {this.state.txSummary}<br />
+          <b>{Transaction.key}</b>: {this.state.txKey}
         </p>
       </div>
     )

@@ -18,7 +18,7 @@ class Paths {
   static readonly overview='Overview'
   static readonly help='Help'
   static readonly writer='Create Records'
-  static readonly reader='Read Records'  
+  static readonly reader='Read Records'
 
   static readonly orgWriter='Create Organisation'
   static readonly orgReportWriter='Create Organisation Report'
@@ -74,18 +74,23 @@ class IATIReader {
   static info = `The [Read Organisations](#${configPaths.orgReader}) link, lets you read a top-level record for an IATI reporting organsation.`
 }
 
+class Transaction {
+
+  static heading = "Transaction Details"
+
+  static key = 'Transaction Receipt'
+  static summary = 'Transaction Summary'
+  static success = 'Successful!'
+  static fail = 'Failed!'
+
+}
+
 class Organisation {
 
   static headingOrgWriter = 'Create Organisation Records'
   static headingOrgReader = 'Read Organisation Records'
 
   static orgDetails = 'Organisation Details'
-  static orgTXHeader = "Transaction Details"
-
-  static transactionKey = 'Transaction Receipt'
-  static transactionSummary = 'Transaction Summary'
-  static transactionSuccess = 'Successful!'
-  static transactionFail = 'Failed!'
 
 
   static orgName = 'Name'
@@ -97,4 +102,17 @@ class Organisation {
   static numOrgs = 'Number of Organisations'
 }
 
-export { App, Paths, Blockchain, Home, About, Overview, Help, IATIWriter, IATIReader, Organisation }
+class OrganisationReport {
+
+  static headingOrgReportWriter = 'Create Organisation Report'
+  static headingOrgReportReader = 'Read Organisation Report'
+
+  static orgIdentifier = 'Org\' Identifier'
+  static reportingOrgIdentifier = 'Reporting Org\' Identifier'
+  //static reference = 'Reference'
+  //static type = 'Type'
+
+  static numOrgs = 'Number of Organisations'
+}
+
+export { App, Paths, Blockchain, Home, About, Overview, Help, IATIWriter, IATIReader, Transaction, Organisation, OrganisationReport }
