@@ -8,3 +8,9 @@ export interface OrganisationProps {
   code: string
   identifier: string
 }
+
+export interface OrgReportProps {
+  orgIdentifier: string
+  reportingOrgIdentifier: string
+  version: string
+}

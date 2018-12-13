@@ -7,14 +7,14 @@ import * as Yup from 'yup'
 
 import { ApplicationState } from '../../../store'
 import { ActionProps, TxData } from '../../../store/types'
-import { IATIOrgProps } from '../../../store/IATI/types'
+import { IATIOrgProps, OrgReportProps } from '../../../store/IATI/types'
 
 import { getOrgs } from '../../../store/IATI/IATIReader/organisationReader/actions'
 import { OrgData } from '../../../store/IATI/IATIReader/organisationReader/types'
 
 import { getDictEntries } from '../../../utils/dict'
 
-import { setOrganisation } from '../../../store/IATI/IATIWriter/organisationWriter/actions'
+import { setOrganisationReport } from '../../../store/IATI/IATIWriter/organisationReportsWriter/actions'
 
 import { LinearProgress } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
@@ -25,11 +25,7 @@ import { OrganisationReport, Transaction } from '../../../utils/strings'
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
 
-interface FormProps {
-  orgs: Array<string>
-}
-
-interface OrgReportProps {
+interface OrgProps {
   tx: TxData,
   orgs: OrgData
 }
@@ -39,24 +35,32 @@ export interface OrgDispatchProps {
   getOrgs: () => void
 }
 
-const organisationSchema = Yup.object().shape({
-  org: Yup.string()
-    .matches(/^.*[^-].*$/, {
+const orgReportSchema = Yup.object().shape({
+  orgIdentifier: Yup
+    .string()
+    /*.matches(/^.*[^-].*$/, {
         message: 'Please select an organisation identifier',
         excludeEmptyString: true
-    })
+    })*/
+    .required('Required'),
+  reportingOrgIdentifier: Yup
+    .string()
+    /*.matches(/^.*[^-].*$/, {
+        message: 'Please select an organisation identifier',
+        excludeEmptyString: true
+    })*/
     .required('Required')
 })
 
-type OrgReportWriterFormProps = WithStyles<typeof styles> & OrgReportProps & OrgDispatchProps
+type OrgReportWriterFormProps = WithStyles<typeof styles> & OrgProps & OrgDispatchProps
 
 export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
 
   state = {
     txKey: '',
     txSummary: '',
-    org: '',
-    reportingOrg: '',
+    orgIdentifier: '',
+    reportingOrgIdentifier: '',
     toggleSubmitting: false,
     submitFunc: (function(submit: boolean) { return submit }),
     resetFunc: (function() { return null })
@@ -90,20 +94,26 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
   handleOrgChange = (event: any) => {
     console.log('Org hell ', event.target.value)
     const thisState = event.target.value
-    this.setState({ org: thisState })
+    this.setState({ orgIdentifier: thisState })
   }
 
   handleReportingOrgChange = (event: any) => {
     console.log('reporting hell ', event.target.value)
     const thisState = event.target.value
-    this.setState({ reportingOrg: thisState })
+    this.setState({ reportingOrgIdentifier: thisState })
   }
 
-  handleSubmit = (values: FormProps, setSubmitting: Function, reset: Function) => {
+  handleSubmit = (values: any, setSubmitting: Function, reset: Function) => {
     const submitting = !this.state.toggleSubmitting
     this.setState({txKey: '', txSummary: '', toggleSubmitting: submitting, submitFunc: setSubmitting, resetFunc: reset})
     setSubmitting(submitting)
-    this.props.handleSubmit(values)
+    const orgReportDetails: OrgReportProps = {
+      orgIdentifier: values.org,
+      reportingOrgIdentifier: values.reportingOrg,
+      version: '2.03'
+    }
+    console.log('Org report ', orgReportDetails)
+    this.props.handleSubmit(orgReportDetails)
   }
 
   render() {
@@ -120,25 +130,26 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
         <h2>{OrganisationReport.headingOrgReportWriter}</h2>
         <div>
           <Formik
-            initialValues={ fields }
-            validationSchema={organisationSchema}
-            onSubmit={(values: FormProps, actions: any) => {
+            initialValues={ {orgIdentifier: '', reportingOrgIdentifier: '', version: '' } }
+            validationSchema={orgReportSchema}
+            onSubmit={(values: OrgReportProps, actions: any) => {
+              console.log('Submitting!')
               this.handleSubmit(values, actions.setSubmitting, actions.resetForm)
             }}
-            render={ (values: FormikProps<any>) => (
+            render={ (values: FormikProps<OrgReportProps>) => (
               <Form>
-                <label htmlFor='org'>{OrganisationReport.orgIdentifier}: </label>
+                <label htmlFor='orgIdentifier'>{OrganisationReport.orgIdentifier}: </label>
                 <Field
-                  name='org'
+                  name='orgIdentifier'
                   render={ (props: any) => {
-                    //console.log('Props ', props)
+                    console.log('Values ', values)
                     const defaultOption = <option key='' value=''>Please Select:</option>
                     const options = fields.orgs.map((value: any, index: any) => <option key={index} value={value}>{value}</option> )
                     const selectOptions = [defaultOption, ...options]
                     return (
                       <div>
                         <select
-                          value={this.state.org}
+                          value={this.state.orgIdentifier}
                           onChange={this.handleOrgChange}
                           {...props}
                         >
@@ -150,11 +161,11 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
                     )
                   }}
                 />
-                <ErrorMessage name='org' />
+                <ErrorMessage name='orgIdentifier' />
                 <br />
-                <label htmlFor='reportingOrg'>{OrganisationReport.reportingOrgIdentifier}: </label>
+                <label htmlFor='reportingOrgIdentifier'>{OrganisationReport.reportingOrgIdentifier}: </label>
                 <Field
-                  name='reportingOrg'
+                  name='reportingOrgIdentifier'
                   render={ (props: any) => {
                     //console.log('Props ', props)
                     const defaultOption = <option key='' value=''>Please Select:</option>
@@ -163,7 +174,7 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
                     return (
                       <div>
                         <select
-                          value={this.state.reportingOrg}
+                          value={this.state.reportingOrgIdentifier}
                           onChange={this.handleReportingOrgChange}
                           {...props}
                         >
@@ -175,7 +186,7 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
                     )
                   }}
                 />
-                <ErrorMessage name='reportingOrg' />
+                <ErrorMessage name='reportingOrgIdentifier' />
                 <br />
                 {values.isSubmitting && <LinearProgress />}
                 <br />
@@ -197,7 +208,7 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
   }
 }
 
-const mapStateToProps = (state: ApplicationState): OrgReportProps => {
+const mapStateToProps = (state: ApplicationState): OrgProps => {
   //console.log(state.orgReader)
   return {
     tx: state.orgReportsForm.data,
@@ -207,12 +218,12 @@ const mapStateToProps = (state: ApplicationState): OrgReportProps => {
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgDispatchProps => {
   return {
-    handleSubmit: (ownProps: any) => dispatch(setOrganisation(ownProps)),
+    handleSubmit: (ownProps: any) => dispatch(setOrganisationReport(ownProps)),
     getOrgs: () => dispatch(getOrgs())
   }
 }
 
-export const OrgReportWriter = withTheme(withStyles(styles)(connect<OrgReportProps, OrgDispatchProps, {}, ApplicationState>(
+export const OrgReportWriter = withTheme(withStyles(styles)(connect<OrgProps, OrgDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
 )(OrgReportForm)))

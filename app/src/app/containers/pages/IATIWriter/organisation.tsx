@@ -92,7 +92,7 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
             onSubmit={(values: OrganisationProps, actions: any) => {
               this.handleSubmit(values, actions.setSubmitting, actions.resetForm)
             }}
-            render={(formProps: FormikProps<any>) => (
+            render={(formProps: FormikProps<OrganisationProps>) => (
               <Form>
                 <Field name='name' label={Organisation.orgName} component={TextField} />
                 <ErrorMessage name='name' />
@@ -113,7 +113,7 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
           />
         </div>
         <hr />
-        <h3>{Transaction.header}</h3>
+        <h3>{Transaction.heading}</h3>
         <p>
           <b>{Transaction.summary}</b>: {this.state.txSummary}<br />
           <b>{Transaction.key}</b>: {this.state.txKey}
