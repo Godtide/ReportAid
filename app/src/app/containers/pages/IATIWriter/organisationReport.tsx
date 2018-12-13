@@ -2,7 +2,7 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { ThunkDispatch } from 'redux-thunk'
 
-import { Formik, Form, Field, FormikProps, ErrorMessage} from 'formik'
+import { withFormik, Formik, Form, Field, FormikProps, ErrorMessage} from 'formik'
 import * as Yup from 'yup'
 
 import { ApplicationState } from '../../../store'
@@ -53,6 +53,86 @@ const orgReportSchema = Yup.object().shape({
 })
 
 type OrgReportWriterFormProps = WithStyles<typeof styles> & OrgProps & OrgDispatchProps
+
+
+/*const InnerForm = (
+    props: any,
+    values: OrgReportProps,
+    errors: any,
+    touched: any,
+    setFieldTouched: any,
+    setFieldValue: any,
+    isSubmitting: any,
+    handleSubmit: any
+  ) => {
+
+    const orgs = getDictEntries(this.props.orgs) as IATIOrgProps[]
+    //console.log('Blah orgs ', orgs)
+    const iDs = orgs.map((value: any) => (
+      value.identifier
+    ))
+    const fields = {orgs: iDs}
+
+    return (
+      <Form onSubmit={handleSubmit}>
+        <label htmlFor='orgIdentifier'>{OrganisationReport.orgIdentifier}: </label>
+        <Field
+          name='orgIdentifier'
+          render={ (props: any) => {
+            console.log('Values ', values)
+            const defaultOption = <option key='' value=''>Please Select:</option>
+            const options = fields.orgs.map((value: any, index: any) => <option key={index} value={value}>{value}</option> )
+            const selectOptions = [defaultOption, ...options]
+            return (
+              <div>
+                <select
+                  value={values.orgIdentifier}
+                  onChange={(value) => setFieldValue('orgIdentifier', value)}
+                  {...props}
+                >
+                  {
+                    selectOptions
+                  }
+                </select>
+              </div>
+            )
+          }}
+        />
+        <ErrorMessage name='orgIdentifier' />
+        <br />
+        <label htmlFor='reportingOrgIdentifier'>{OrganisationReport.reportingOrgIdentifier}: </label>
+        <Field
+          name='reportingOrgIdentifier'
+          render={ (props: any) => {
+            //console.log('Props ', props)
+            const defaultOption = <option key='' value=''>Please Select:</option>
+            const options = fields.orgs.map((value: any, index: any) => <option key={index} value={value}>{value}</option> )
+            const selectOptions = [defaultOption, ...options]
+            return (
+              <div>
+                <select
+                  value={this.state.reportingOrgIdentifier}
+                  onChange={this.handleReportingOrgChange}
+                  {...props}
+                >
+                  {
+                    selectOptions
+                  }
+                </select>
+              </div>
+            )
+          }}
+        />
+        <ErrorMessage name='reportingOrgIdentifier' />
+        <br />
+        {isSubmitting && <LinearProgress />}
+        <br />
+        <Button type='submit' variant="raised" color="primary" disabled={isSubmitting}>
+          Submit
+        </Button>
+      </Form>
+    )
+}*/
 
 export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
 
@@ -133,10 +213,9 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
             initialValues={ {orgIdentifier: '', reportingOrgIdentifier: '', version: '' } }
             validationSchema={orgReportSchema}
             onSubmit={(values: OrgReportProps, actions: any) => {
-              console.log('Submitting!')
               this.handleSubmit(values, actions.setSubmitting, actions.resetForm)
             }}
-            render={ (values: FormikProps<any>) => (
+            render={ ({values, errors, handleSubmit, handleChange, isSubmitting, setFieldValue}: any) => (
               <Form>
                 <label htmlFor='orgIdentifier'>{OrganisationReport.orgIdentifier}: </label>
                 <Field
@@ -149,8 +228,8 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
                     return (
                       <div>
                         <select
-                          value={values.values.orgIdentifier}
-                          onChange={(value) => values.setFieldValue('orgIdentifier', value)}
+                          value={values.orgIdentifier}
+                          onChange={(value) => setFieldValue('orgIdentifier', value)}
                           {...props}
                         >
                           {
@@ -174,8 +253,8 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
                     return (
                       <div>
                         <select
-                          value={this.state.reportingOrgIdentifier}
-                          onChange={this.handleReportingOrgChange}
+                          value={values.reportingOrgIdentifier}
+                          onChange={(value) => setFieldValue('reportingOrgIdentifier', value)}
                           {...props}
                         >
                           {
@@ -188,9 +267,9 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
                 />
                 <ErrorMessage name='reportingOrgIdentifier' />
                 <br />
-                {values.isSubmitting && <LinearProgress />}
+                {isSubmitting && <LinearProgress />}
                 <br />
-                <Button type='submit' variant="raised" color="primary" disabled={values.isSubmitting}>
+                <Button type='submit' variant="raised" color="primary" disabled={isSubmitting}>
                   Submit
                 </Button>
               </Form>
