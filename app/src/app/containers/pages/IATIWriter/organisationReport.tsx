@@ -35,19 +35,6 @@ export interface OrgDispatchProps {
   getOrgs: () => void
 }
 
-const orgReportSchema = Yup.object().shape({
-  orgIdentifier: Yup
-    .string()
-    /*.matches(/^.*[^-].*$/, {\
-  reportingOrgIdentifier: Yup
-    .string()
-    /*.matches(/^.*[^-].*$/, {
-        message: 'Please select an organisation identifier',
-        excludeEmptyString: true
-    })*/
-    .required('Required')
-})
-
 type OrgReportWriterFormProps = WithStyles<typeof styles> & OrgProps & OrgDispatchProps
 
 const MyForm = (props: any) => {
@@ -147,7 +134,7 @@ class MySelect extends React.Component<SelectProps> {
 
   render() {
 
-    const { fields } = {...this.props}
+    const { fields }: any = {...this.props}
     return (
       <div>
         <label htmlFor={this.props.name}>{this.props.label}</label>
