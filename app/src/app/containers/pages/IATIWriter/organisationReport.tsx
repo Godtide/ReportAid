@@ -201,16 +201,16 @@ export class OrgReport extends React.Component<OrgReportWriterFormProps> {
     }
   }
 
-  handleSubmit = (values: any, setSubmitting: Function, reset: Function) => {
+  handleSubmit = (values: OrgFormProps, setSubmitting: Function, reset: Function) => {
     const submitting = !this.state.toggleSubmitting
     this.setState({txKey: '', txSummary: '', toggleSubmitting: submitting, submitFunc: setSubmitting, resetFunc: reset})
     setSubmitting(submitting)
     const orgReportDetails: OrgReportProps = {
-      orgIdentifier: values.org,
-      reportingOrgIdentifier: values.reportingOrg,
-      version: '2.03'
+      orgIdentifier: values.orgIdentifier,
+      reportingOrgIdentifier: values.reportingOrgIdentifier,
+      version: values.version
     }
-    console.log('Org report ', orgReportDetails)
+    console.log('Submit Org report ', orgReportDetails)
     this.props.handleSubmit(orgReportDetails)
   }
 
