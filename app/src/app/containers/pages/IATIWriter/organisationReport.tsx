@@ -2,7 +2,7 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { ThunkDispatch } from 'redux-thunk'
 
-import { withFormik, Formik, Form, Field, FormikProps, ErrorMessage} from 'formik'
+import { withFormik, ErrorMessage} from 'formik'
 import * as Yup from 'yup'
 
 import { ApplicationState } from '../../../store'
@@ -79,7 +79,16 @@ const MyForm = (props: any) => {
   )
 }
 
-const formikEnhancer = withFormik({
+interface OrgFormProps {
+  orgIdentifier: string,
+  reportingOrgIdentifier: string,
+  version: string,
+  options: object
+  handleSubmit: (values: any, setSubmitting: Function, setReset: Function) => void
+}
+
+
+const orgForm = withFormik({
   validationSchema: Yup.object().shape({
     orgIdentifier: Yup
       .string()
@@ -96,10 +105,11 @@ const formikEnhancer = withFormik({
       })
       .required('Required')
   }),
-  mapPropsToValues: (props: any) => ({
-    orgIdentifier: '',
-    reportingOrgIdentifier: '',
-    version: ''
+  mapPropsToValues: (props: OrgFormProps) => ({
+    orgIdentifier: props.orgIdentifier,
+    reportingOrgIdentifier: props.reportingOrgIdentifier,
+    version: props.version,
+    options: props.options
   }),
   handleSubmit: (values: any, {setSubmitting, setReset}: any) => {
     this.props.handleSubmit(values, setSubmitting, setReset)
@@ -152,7 +162,7 @@ class MySelect extends React.Component<SelectProps> {
   }
 }
 
-const MyEnhancedForm = formikEnhancer(MyForm)
+const MyEnhancedForm = orgForm(MyForm)
 
 export class OrgReport extends React.Component<OrgReportWriterFormProps> {
 
@@ -215,7 +225,12 @@ export class OrgReport extends React.Component<OrgReportWriterFormProps> {
 
     return (
       <div>
-        <MyEnhancedForm handleSubmit={this.handleSubmit.bind(this)}/>
+        <MyEnhancedForm
+          orgIdentifier=''
+          reportingOrgIdentifier=''
+          version='2.03'
+          options={ fields }
+          handleSubmit={this.handleSubmit.bind(this)}/>
         <hr />
         <h3>{Transaction.heading}</h3>
         <p>
