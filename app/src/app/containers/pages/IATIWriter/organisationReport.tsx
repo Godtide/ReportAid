@@ -18,7 +18,7 @@ import { setOrganisationReport } from '../../../store/IATI/IATIWriter/organisati
 
 import { LinearProgress } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
-//import { Select } from 'formik-material-ui'
+import { Select } from 'formik-material-ui'
 
 import { OrganisationReport, Transaction } from '../../../utils/strings'
 
@@ -38,11 +38,7 @@ export interface OrgDispatchProps {
 const orgReportSchema = Yup.object().shape({
   orgIdentifier: Yup
     .string()
-    /*.matches(/^.*[^-].*$/, {
-        message: 'Please select an organisation identifier',
-        excludeEmptyString: true
-    })*/
-    .required('Required'),
+    /*.matches(/^.*[^-].*$/, {\
   reportingOrgIdentifier: Yup
     .string()
     /*.matches(/^.*[^-].*$/, {
@@ -54,87 +50,124 @@ const orgReportSchema = Yup.object().shape({
 
 type OrgReportWriterFormProps = WithStyles<typeof styles> & OrgProps & OrgDispatchProps
 
+const MyForm = (props: any) => {
+  const {
+    values,
+    touched,
+    dirty,
+    errors,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    handleReset,
+    setFieldValue,
+    setFieldTouched,
+    isSubmitting
+  } = props
+  return (
+    <form onSubmit={handleSubmit} onReset={handleReset}>
+      <MySelect
+        label={`${OrganisationReport.orgIdentifier}:`}
+        name='orgIdentifier'
+        value={values.orgIdentifier}
+        onChange={setFieldValue}
+        onBlur={setFieldTouched}
+        options={{blah: 'blah'}}
+      />
+      <MySelect
+        label={`${OrganisationReport.reportingOrgIdentifier}:`}
+        name='orgIdentifier'
+        value={values.reportingOrgIdentifier}
+        onChange={setFieldValue}
+        onBlur={setFieldTouched}
+        options={{blah: 'blah'}}
+      />
+      <br />
+      {isSubmitting && <LinearProgress />}
+      <br />
+      <Button type='submit' variant="raised" color="primary" disabled={isSubmitting}>
+        Submit
+      </Button>
+    </form>
+  )
+}
 
-/*const InnerForm = (
-    props: any,
-    values: OrgReportProps,
-    errors: any,
-    touched: any,
-    setFieldTouched: any,
-    setFieldValue: any,
-    isSubmitting: any,
-    handleSubmit: any
-  ) => {
+const formikEnhancer = withFormik({
+  validationSchema: Yup.object().shape({
+    orgIdentifier: Yup
+      .string()
+      .matches(/^.*[^-].*$/, {
+          message: 'Please select an organisation identifier',
+          excludeEmptyString: true
+      })
+      .required('Required'),
+    reportingOrgIdentifier: Yup
+      .string()
+      .matches(/^.*[^-].*$/, {
+          message: 'Please select an organisation identifier',
+          excludeEmptyString: true
+      })
+      .required('Required')
+  }),
+  mapPropsToValues: (props: any) => ({
+    orgIdentifier: '',
+    reportingOrgIdentifier: '',
+    version: ''
+  }),
+  handleSubmit: (values: any, {setSubmitting, setReset}: any) => {
+    this.props.handleSubmit(values, setSubmitting, setReset)
+  },
+  displayName: "MyForm"
+})
 
-    const orgs = getDictEntries(this.props.orgs) as IATIOrgProps[]
-    //console.log('Blah orgs ', orgs)
-    const iDs = orgs.map((value: any) => (
-      value.identifier
-    ))
-    const fields = {orgs: iDs}
+interface SelectProps {
+  label: string,
+  name: string,
+  options: object,
+  value: any,
+  onChange: (name: string, value: any) => void,
+  onBlur: (name: string, value: boolean) => void
+}
 
+class MySelect extends React.Component<SelectProps> {
+
+  constructor (props: SelectProps) {
+   super(props)
+  }
+
+  handleChange = (value: any) => {
+    // this is going to call setFieldValue and manually update values.topcis
+    this.props.onChange(this.props.name, value)
+  };
+
+  handleBlur = () => {
+    // this is going to call setFieldTouched and manually update touched.topcis
+    this.props.onBlur(this.props.name, true);
+  };
+
+  render() {
+
+    const { fields } = {...this.props}
     return (
-      <Form onSubmit={handleSubmit}>
-        <label htmlFor='orgIdentifier'>{OrganisationReport.orgIdentifier}: </label>
-        <Field
-          name='orgIdentifier'
-          render={ (props: any) => {
-            console.log('Values ', values)
-            const defaultOption = <option key='' value=''>Please Select:</option>
-            const options = fields.orgs.map((value: any, index: any) => <option key={index} value={value}>{value}</option> )
-            const selectOptions = [defaultOption, ...options]
-            return (
-              <div>
-                <select
-                  value={values.orgIdentifier}
-                  onChange={(value) => setFieldValue('orgIdentifier', value)}
-                  {...props}
-                >
-                  {
-                    selectOptions
-                  }
-                </select>
-              </div>
-            )
-          }}
+      <div>
+        <label htmlFor={this.props.name}>{this.props.label}</label>
+        <Select
+          id={this.props.name}
+          options={this.props.options}
+          onChange={this.handleChange}
+          onBlur={this.handleBlur}
+          value={this.props.value}
+          {...fields}
         />
-        <ErrorMessage name='orgIdentifier' />
-        <br />
-        <label htmlFor='reportingOrgIdentifier'>{OrganisationReport.reportingOrgIdentifier}: </label>
-        <Field
-          name='reportingOrgIdentifier'
-          render={ (props: any) => {
-            //console.log('Props ', props)
-            const defaultOption = <option key='' value=''>Please Select:</option>
-            const options = fields.orgs.map((value: any, index: any) => <option key={index} value={value}>{value}</option> )
-            const selectOptions = [defaultOption, ...options]
-            return (
-              <div>
-                <select
-                  value={this.state.reportingOrgIdentifier}
-                  onChange={this.handleReportingOrgChange}
-                  {...props}
-                >
-                  {
-                    selectOptions
-                  }
-                </select>
-              </div>
-            )
-          }}
-        />
-        <ErrorMessage name='reportingOrgIdentifier' />
-        <br />
-        {isSubmitting && <LinearProgress />}
-        <br />
-        <Button type='submit' variant="raised" color="primary" disabled={isSubmitting}>
-          Submit
-        </Button>
-      </Form>
-    )
-}*/
+        <ErrorMessage name={this.props.name} />
+      </div>
+    );
+  }
+}
 
-export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
+const MyEnhancedForm = formikEnhancer(MyForm)
+
+export class OrgReport extends React.Component<OrgReportWriterFormProps> {
 
   state = {
     txKey: '',
@@ -171,18 +204,6 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
     }
   }
 
-  handleOrgChange = (event: any) => {
-    console.log('Org hell ', event.target.value)
-    const thisState = event.target.value
-    this.setState({ orgIdentifier: thisState })
-  }
-
-  handleReportingOrgChange = (event: any) => {
-    console.log('reporting hell ', event.target.value)
-    const thisState = event.target.value
-    this.setState({ reportingOrgIdentifier: thisState })
-  }
-
   handleSubmit = (values: any, setSubmitting: Function, reset: Function) => {
     const submitting = !this.state.toggleSubmitting
     this.setState({txKey: '', txSummary: '', toggleSubmitting: submitting, submitFunc: setSubmitting, resetFunc: reset})
@@ -207,75 +228,7 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
 
     return (
       <div>
-        <h2>{OrganisationReport.headingOrgReportWriter}</h2>
-        <div>
-          <Formik
-            initialValues={ {orgIdentifier: '', reportingOrgIdentifier: '', version: '' } }
-            validationSchema={orgReportSchema}
-            onSubmit={(values: OrgReportProps, actions: any) => {
-              this.handleSubmit(values, actions.setSubmitting, actions.resetForm)
-            }}
-            render={ ({values, errors, handleSubmit, handleChange, isSubmitting, setFieldValue}: any) => (
-              <Form>
-                <label htmlFor='orgIdentifier'>{OrganisationReport.orgIdentifier}: </label>
-                <Field
-                  name='orgIdentifier'
-                  render={ (props: any) => {
-                    console.log('Values ', values)
-                    const defaultOption = <option key='' value=''>Please Select:</option>
-                    const options = fields.orgs.map((value: any, index: any) => <option key={index} value={value}>{value}</option> )
-                    const selectOptions = [defaultOption, ...options]
-                    return (
-                      <div>
-                        <select
-                          value={values.orgIdentifier}
-                          onChange={(value) => setFieldValue('orgIdentifier', value)}
-                          {...props}
-                        >
-                          {
-                            selectOptions
-                          }
-                        </select>
-                      </div>
-                    )
-                  }}
-                />
-                <ErrorMessage name='orgIdentifier' />
-                <br />
-                <label htmlFor='reportingOrgIdentifier'>{OrganisationReport.reportingOrgIdentifier}: </label>
-                <Field
-                  name='reportingOrgIdentifier'
-                  render={ (props: any) => {
-                    //console.log('Props ', props)
-                    const defaultOption = <option key='' value=''>Please Select:</option>
-                    const options = fields.orgs.map((value: any, index: any) => <option key={index} value={value}>{value}</option> )
-                    const selectOptions = [defaultOption, ...options]
-                    return (
-                      <div>
-                        <select
-                          value={values.reportingOrgIdentifier}
-                          onChange={(value) => setFieldValue('reportingOrgIdentifier', value)}
-                          {...props}
-                        >
-                          {
-                            selectOptions
-                          }
-                        </select>
-                      </div>
-                    )
-                  }}
-                />
-                <ErrorMessage name='reportingOrgIdentifier' />
-                <br />
-                {isSubmitting && <LinearProgress />}
-                <br />
-                <Button type='submit' variant="raised" color="primary" disabled={isSubmitting}>
-                  Submit
-                </Button>
-              </Form>
-            )}
-          />
-        </div>
+        <MyEnhancedForm handleSubmit={this.handleSubmit.bind(this)}/>
         <hr />
         <h3>{Transaction.heading}</h3>
         <p>
@@ -305,4 +258,4 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
 export const OrgReportWriter = withTheme(withStyles(styles)(connect<OrgProps, OrgDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(OrgReportForm)))
+)(OrgReport)))
