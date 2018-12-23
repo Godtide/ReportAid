@@ -1,4 +1,4 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.0;
 
 // IATI Organisation Reports
 // Steve Huckle
@@ -20,22 +20,22 @@ contract IATIOrganisationReports is OrganisationReports {
   }
 
   uint8 constant numDocAttributes = 8;
-  string constant defaultCurrency = 'GBP';
-  string constant defaultLang = 'en-gb';
+  bytes32 constant defaultCurrency = 'GBP';
+  bytes32 constant defaultLang = 'en-GB';
   uint8 constant defaultOrgType = 10;
   bool constant defaultIsSecondary = false;
 
   struct Report {
     ReportingOrganisation reportingOrg;
-    string version;
-    string lang;
-    string currency;
-    string generatedTime;
-    string lastUpdatedTime;
+    bytes32 version;
+    bytes32 lang;
+    bytes32 currency;
+    bytes32 generatedTime;
+    bytes32 lastUpdatedTime;
   }
 
   struct ReportingOrganisation {
-    string orgRef;
+    bytes32 orgRef;
     uint8 orgType;
     bool isSecondary;
   }
@@ -46,29 +46,29 @@ contract IATIOrganisationReports is OrganisationReports {
     bytes32 url;
     bytes32 category;
     bytes32 countryCode;
-    bytes32 desc;
+    string desc;
     bytes32 lang;
     bytes32 date;
   }
 
-  string[] reportReferences;
-  mapping(string => string[]) private orgReferences;
-  mapping(string => mapping(string => Report)) private organisationReports;
+  bytes32[] reportReferences;
+  mapping(bytes32 => bytes32[]) private orgReferences;
+  mapping(bytes32 => mapping(bytes32 => Report)) private organisationReports;
 
-  mapping(string => string[]) private reportDocReferences;
-  mapping(string => mapping(string => Document)) private docs;
+  mapping(bytes32 => bytes32[]) private reportDocReferences;
+  mapping(bytes32 => mapping(bytes32 => Document)) private docs;
 
-  event SetReport(string _reference, string _orgRef, string _reportingOrgRef, string _version, string _generatedTime);
-  event SetDefaults(string _reference, string _orgRef, string _defaultLang, string _defaultCurrency);
-  event SetReportingOrgType(string _reference, string _orgRef, string _reportingOrgRef, uint8 _type, bool _isSecondary);
-  event SetAssociatedDocument(string _reference, string _docRef);
+  event SetReport(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, bytes32 _version, bytes32 _generatedTime);
+  event SetDefaults(bytes32 _reference, bytes32 _orgRef, bytes32 _defaultLang, bytes32 _defaultCurrency);
+  event SetReportingOrgType(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, uint8 _type, bool _isSecondary);
+  event SetAssociatedDocument(bytes32 _reference, bytes32 _docRef);
 
-  function setReport(string _reference, string _orgRef, string _reportingOrgRef, string _version, string _generatedTime) public {
-    require((bytes(_reference).length > 0) &&
-            (bytes(_orgRef).length > 0) &&
-            (bytes(_reportingOrgRef).length > 0) &&
-            (bytes(_version).length > 0) &&
-            (bytes(_generatedTime).length > 0));
+  function setReport(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, bytes32 _version, bytes32 _generatedTime) public {
+    require (_reference[0] != 0 &&
+            _orgRef[0] != 0 &&
+            _reportingOrgRef[0] != 0 &&
+            _version[0] != 0 &&
+            _generatedTime[0] != 0);
 
     organisationReports[_reference][_orgRef].version = _version;
     organisationReports[_reference][_orgRef].lang = defaultLang;
@@ -79,7 +79,7 @@ contract IATIOrganisationReports is OrganisationReports {
     organisationReports[_reference][_orgRef].reportingOrg.orgType = defaultOrgType;
     organisationReports[_reference][_orgRef].reportingOrg.isSecondary = defaultIsSecondary;
 
-    if(!getReportExists(_reference)) {
+    if (!getReportExists(_reference)) {
       reportReferences.push(_reference);
     }
     if(!getReportOrgExists(_reference, _orgRef)) {
@@ -89,8 +89,8 @@ contract IATIOrganisationReports is OrganisationReports {
     emit SetReport(_reference, _orgRef, _reportingOrgRef, _version, _generatedTime);
   }
 
-  function setDefaults(string _reference, string _orgRef, string _defaultLang, string _defaultCurrency) public {
-    require((bytes(_reference).length > 0) && (bytes(_defaultLang).length > 0) && (bytes(_defaultCurrency).length > 0));
+  function setDefaults(bytes32 _reference, bytes32 _orgRef, bytes32 _defaultLang, bytes32 _defaultCurrency) public {
+    require (_reference[0] != 0 && _defaultLang[0] != 0 && _defaultCurrency[0] != 0);
 
     organisationReports[_reference][_orgRef].lang = _defaultLang;
     organisationReports[_reference][_orgRef].currency = _defaultCurrency;
@@ -98,11 +98,11 @@ contract IATIOrganisationReports is OrganisationReports {
     emit SetDefaults(_reference, _orgRef, _defaultLang, _defaultCurrency);
   }
 
-  function setReportingOrgType(string _reference, string _orgRef, string _reportingOrgRef, uint8 _type, bool _isSecondary) public {
-    require((bytes(_reference).length > 0) &&
-            (bytes(_orgRef).length > 0) &&
-            (bytes(_reportingOrgRef).length > 0) &&
-            (Strings.equal(organisationReports[_reference][_orgRef].reportingOrg.orgRef, _reportingOrgRef)));
+  function setReportingOrgType(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, uint8 _type, bool _isSecondary) public {
+    require (_reference[0] != 0 &&
+            _orgRef[0] != 0 &&
+            _reportingOrgRef[0] != 0 &&
+            Strings.equal(organisationReports[_reference][_orgRef].reportingOrg.orgRef, _reportingOrgRef));
 
     organisationReports[_reference][_orgRef].reportingOrg.orgType = _type;
     organisationReports[_reference][_orgRef].reportingOrg.isSecondary = _isSecondary;
@@ -110,10 +110,8 @@ contract IATIOrganisationReports is OrganisationReports {
     emit SetReportingOrgType(_reference, _orgRef, _reportingOrgRef, _type, _isSecondary);
   }
 
-  function setAssociatedDocument(string _reference, string _docRef, bytes32[] _attributes) public {
-    require((bytes(_reference).length > 0) &&
-            (bytes(_docRef).length > 0) &&
-            (_attributes.length == numDocAttributes));
+  function setAssociatedDocument(bytes32 _reference, bytes32 _docRef, bytes32[] memory _attributes) public {
+    require (_reference[0] != 0 && _docRef[0] != 0 && _attributes.length == numDocAttributes);
 
     docs[_reference][_docRef].title = _attributes[uint256(DocAttributes.TITLE)];
     docs[_reference][_docRef].format = _attributes[uint256(DocAttributes.FORMAT)];
@@ -131,23 +129,22 @@ contract IATIOrganisationReports is OrganisationReports {
     emit SetAssociatedDocument(_reference, _docRef);
   }
 
-  function getReportExists(string _reference) public view returns (bool) {
-    require(bytes(_reference).length > 0);
+  function getReportExists(bytes32 _reference) public view returns (bool) {
+    require (_reference[0] != 0);
 
     uint256 index = Strings.getIndex(_reference, reportReferences);
     return index != reportReferences.length;
   }
 
-  function getReportOrgExists(string _reference, string _orgRef) public view returns (bool) {
-    require((bytes(_reference).length > 0) &&
-            (bytes(_orgRef).length > 0));
+  function getReportOrgExists(bytes32 _reference, bytes32 _orgRef) public view returns (bool) {
+    require (_reference[0] != 0 && _orgRef[0] != 0);
 
     uint256 index = Strings.getIndex(_orgRef, orgReferences[_reference]);
     return index != orgReferences[_reference].length;
   }
 
-  function getReportDocExists(string _reference, string _docRef) public view returns (bool) {
-    require(bytes(_reference).length > 0);
+  function getReportDocExists(bytes32 _reference, bytes32 _docRef) public view returns (bool) {
+    require (_reference[0] != 0);
 
     uint256 index = Strings.getIndex(_docRef, reportDocReferences[_reference]);
     return index != reportDocReferences[_reference].length;
@@ -157,117 +154,126 @@ contract IATIOrganisationReports is OrganisationReports {
     return reportReferences.length;
   }
 
-  function getNumReportOrgs(string _reference) public view returns (uint256) {
-    require(bytes(_reference).length > 0);
+  function getNumReportOrgs(bytes32 _reference) public view returns (uint256) {
+    require (_reference[0] != 0);
     return orgReferences[_reference].length;
   }
 
-  function getNumReportDocs(string _reference) public view returns (uint256) {
+  function getNumReportDocs(bytes32 _reference) public view returns (uint256) {
+    require (_reference[0] != 0);
     return reportDocReferences[_reference].length;
   }
 
-  function getReportReference(uint256 _index) public view returns (string) {
-    require(_index < reportReferences.length);
+  function getReportReference(uint256 _index) public view returns (bytes32) {
+    require (_index < reportReferences.length);
     return reportReferences[_index];
   }
 
-  function getReportOrgReference(string _reference, uint256 _index) public view returns (string) {
-    require((bytes(_reference).length > 0) &&
-            (_index < orgReferences[_reference].length));
+  function getReportOrgReference(bytes32 _reference, uint256 _index) public view returns (bytes32) {
+    require (_reference[0] != 0 &&
+            _index < orgReferences[_reference].length);
     return orgReferences[_reference][_index];
   }
 
-  function getReportDocReference(string _reference, uint256 _index) public view returns (string) {
-    require((bytes(_reference).length > 0) &&
-            (_index < reportReferences.length));
+  function getReportDocReference(bytes32 _reference, uint256 _index) public view returns (bytes32) {
+    require (_reference[0] != 0 &&
+            _index < reportReferences.length);
     return reportDocReferences[_reference][_index];
   }
 
-  function getReportingOrg(string _reference, string _orgRef) public view returns (string) {
-    require((bytes(_reference).length > 0) &&
-            (bytes(_orgRef).length > 0));
+  function getReportingOrg(bytes32 _reference, bytes32 _orgRef) public view returns (bytes32) {
+    require (_reference[0] != 0 &&
+            _orgRef[0] != 0);
     return organisationReports[_reference][_orgRef].reportingOrg.orgRef;
   }
 
-  function getLang(string _reference, string _orgRef) public view returns (string) {
-    require((bytes(_reference).length > 0) &&
-            (bytes(_orgRef).length > 0));
+  function getLang(bytes32 _reference, bytes32 _orgRef) public view returns (bytes32) {
+    require (_reference[0] != 0 &&
+            _orgRef[0] != 0);
     return organisationReports[_reference][_orgRef].lang;
   }
 
-  function getCurrency(string _reference,  string _orgRef) public view returns (string) {
-    require((bytes(_reference).length > 0) &&
-            (bytes(_orgRef).length > 0));
+  function getCurrency(bytes32 _reference,  bytes32 _orgRef) public view returns (bytes32) {
+    require (_reference[0] != 0 &&
+            _orgRef[0] != 0);
     return organisationReports[_reference][_orgRef].currency;
   }
 
-  function getVersion(string _reference,  string _orgRef) public view returns (string) {
-    require((bytes(_reference).length > 0) &&
-            (bytes(_orgRef).length > 0));
+  function getVersion(bytes32 _reference,  bytes32 _orgRef) public view returns (bytes32) {
+    require (_reference[0] != 0 &&
+            _orgRef[0] != 0);
     return organisationReports[_reference][_orgRef].version;
   }
 
-  function getGeneratedTime(string _reference,  string _orgRef) public view returns (string) {
-    require((bytes(_reference).length > 0) &&
-            (bytes(_orgRef).length > 0));
+  function getGeneratedTime(bytes32 _reference,  bytes32 _orgRef) public view returns (bytes32) {
+    require (_reference[0] != 0 &&
+            _orgRef[0] != 0);
     return organisationReports[_reference][_orgRef].generatedTime;
   }
 
-  function getLastUpdatedTime(string _reference,  string _orgRef) public view returns (string) {
-    require((bytes(_reference).length > 0) &&
-            (bytes(_orgRef).length > 0));
+  function getLastUpdatedTime(bytes32 _reference,  bytes32 _orgRef) public view returns (bytes32) {
+    require (_reference[0] != 0 &&
+            _orgRef[0] != 0);
     return organisationReports[_reference][_orgRef].lastUpdatedTime;
   }
 
-  function getReportingOrgType(string _reference,  string _orgRef) public view returns (uint8) {
-    require((bytes(_reference).length > 0) &&
-            (bytes(_orgRef).length > 0));
+  function getReportingOrgType(bytes32 _reference,  bytes32 _orgRef) public view returns (uint8) {
+    require (_reference[0] != 0 &&
+            _orgRef[0] != 0);
     return organisationReports[_reference][_orgRef].reportingOrg.orgType;
   }
 
-  function getReportingOrgIsSecondary(string _reference,  string _orgRef) public view returns (bool) {
-    require((bytes(_reference).length > 0) &&
-            (bytes(_orgRef).length > 0));
+  function getReportingOrgIsSecondary(bytes32 _reference,  bytes32 _orgRef) public view returns (bool) {
+    require (_reference[0] != 0 &&
+            _orgRef[0] != 0);
     return organisationReports[_reference][_orgRef].reportingOrg.isSecondary;
   }
 
-  function getDocumentTitle(string _reference, string _docRef) public view returns (bytes32) {
-    require(bytes(_reference).length > 0);
+  function getDocumentTitle(bytes32 _reference, bytes32 _docRef) public view returns (bytes32) {
+    require (_reference[0] != 0 &&
+            _docRef[0] != 0);
     return docs[_reference][_docRef].title;
   }
 
-  function getDocumentFormat(string _reference, string _docRef) public view returns (bytes32) {
-    require(bytes(_reference).length > 0);
+  function getDocumentFormat(bytes32 _reference, bytes32 _docRef) public view returns (bytes32) {
+    require (_reference[0] != 0 &&
+            _docRef[0] != 0);
     return docs[_reference][_docRef].format;
   }
 
-  function getDocumentURL(string _reference, string _docRef) public view returns (bytes32){
-    require(bytes(_reference).length > 0);
+  function getDocumentURL(bytes32 _reference, bytes32 _docRef) public view returns (bytes32){
+    require (_reference[0] != 0 &&
+            _docRef[0] != 0);
     return docs[_reference][_docRef].url;
   }
 
-  function getDocumentCategory(string _reference, string _docRef) public view returns (bytes32) {
-    require(bytes(_reference).length > 0);
+  function getDocumentCategory(bytes32 _reference, bytes32 _docRef) public view returns (bytes32) {
+    require (_reference[0] != 0 &&
+            _docRef[0] != 0);
     return docs[_reference][_docRef].category;
   }
 
-  function getDocumentCountry(string _reference, string _docRef) public view returns (bytes32) {
-    require(bytes(_reference).length > 0);
+  function getDocumentCountry(bytes32 _reference, bytes32 _docRef) public view returns (bytes32) {
+    require (_reference[0] != 0 &&
+            _docRef[0] != 0);
     return docs[_reference][_docRef].countryCode;
   }
 
-  function getDocumentDescription(string _reference, string _docRef) public view returns (bytes32) {
-    require(bytes(_reference).length > 0);
+  function getDocumentDescription(bytes32 _reference, bytes32 _docRef) public view returns (string memory) {
+    require (_reference[0] != 0 &&
+            _docRef[0] != 0);
     return docs[_reference][_docRef].desc;
   }
 
-  function getDocumentLang(string _reference, string _docRef) public view returns (bytes32) {
-    require(bytes(_reference).length > 0);
+  function getDocumentLang(bytes32 _reference, bytes32 _docRef) public view returns (bytes32) {
+    require (_reference[0] != 0 &&
+            _docRef[0] != 0);
     return docs[_reference][_docRef].lang;
   }
 
-  function getDocumentDate(string _reference, string _docRef) public view returns (bytes32) {
-    require(bytes(_reference).length > 0);
+  function getDocumentDate(bytes32 _reference, bytes32 _docRef) public view returns (bytes32) {
+    require (_reference[0] != 0 &&
+            _docRef[0] != 0);
     return docs[_reference][_docRef].date;
   }
 }

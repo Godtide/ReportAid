@@ -28,7 +28,7 @@ export const setOrganisationReport = (reportDetails: OrgReportProps) => {
     let actionType = OrgReportsActionTypes.ADD_FAILURE
     let txData: TxData = {}
     try {
-      // setReport(string _reference, string _orgRef, string _reportingOrgRef, string _version, string _generatedTime)
+      // setReport(string memory _reference, string memory _orgRef, string memory _reportingOrgRef, string memory _version, string memory _generatedTime)
       const tx = await orgReportsContract.setReport(reference, reportDetails.orgIdentifier, reportDetails.reportingOrgIdentifier, reportDetails.version, dateTime )
       const key = tx.hash
       txData[key] = tx
