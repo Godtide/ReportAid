@@ -62,6 +62,7 @@ contract IATIOrganisationReports is OrganisationReports {
   event SetDefaults(bytes32 _reference, bytes32 _orgRef, bytes32 _defaultLang, bytes32 _defaultCurrency);
   event SetReportingOrgType(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, uint8 _type, bool _isSecondary);
   event SetAssociatedDocument(bytes32 _reference, bytes32 _docRef);
+  event SetDocumentDescription(bytes32 _reference, bytes32 _docRef);
 
   function setReport(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, bytes32 _version, bytes32 _generatedTime) public {
     require (_reference[0] != 0 &&
@@ -111,14 +112,13 @@ contract IATIOrganisationReports is OrganisationReports {
   }
 
   function setAssociatedDocument(bytes32 _reference, bytes32 _docRef, bytes32[] memory _attributes) public {
-    require (_reference[0] != 0 && _docRef[0] != 0 && _attributes.length == numDocAttributes);
+    require (_reference[0] != 0 && _docRef[0] != 0 && _attributes.length == numDocAttributes - 1);
 
     docs[_reference][_docRef].title = _attributes[uint256(DocAttributes.TITLE)];
     docs[_reference][_docRef].format = _attributes[uint256(DocAttributes.FORMAT)];
     docs[_reference][_docRef].url = _attributes[uint256(DocAttributes.URL)];
     docs[_reference][_docRef].category = _attributes[uint256(DocAttributes.CATEGORY)];
     docs[_reference][_docRef].countryCode = _attributes[uint256(DocAttributes.COUNTRYCODE)];
-    docs[_reference][_docRef].desc = _attributes[uint256(DocAttributes.DESC)];
     docs[_reference][_docRef].lang = _attributes[uint256(DocAttributes.LANG)];
     docs[_reference][_docRef].date = _attributes[uint256(DocAttributes.DATE)];
 
@@ -128,6 +128,21 @@ contract IATIOrganisationReports is OrganisationReports {
 
     emit SetAssociatedDocument(_reference, _docRef);
   }
+
+
+  function setDocumentDescription(bytes32 _reference, bytes32 _docRef, string memory _description) public  {
+    require (_reference[0] != 0 && _docRef[0] != 0);
+
+    docs[_reference][_docRef].desc = _description;
+
+    if(!getReportDocExists(_reference, _docRef)) {
+      reportDocReferences[_reference].push(_docRef);
+    }
+
+    emit SetDocumentDescription(_reference, _docRef);
+  }
+
+
 
   function getReportExists(bytes32 _reference) public view returns (bool) {
     require (_reference[0] != 0);

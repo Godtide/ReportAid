@@ -25,59 +25,59 @@ class Blockchain {
 class Contract {
 
   static organisationsABI = [
-    "event SetOrganisation(string memory _reference, string memory _name, string memory _identifier)",
+    "event SetOrganisation(bytes32 _reference, bytes32 _name, bytes32 _identifier)",
 
-    "function setOrganisation(string memory _reference, string memory _name, string memory _identifier)",
-    "function getOrganisationExists(string memory _reference) view returns (bool)",
+    "function setOrganisation(bytes32 _reference, bytes32 _name, bytes32 _identifier)",
+    "function getOrganisationExists(bytes32 _reference) view returns (bool)",
 
     "function getNumOrganisations() view returns (uint256)",
 
-    "function getOrganisationReference(uint256 _index) view returns (string memory)",
-    "function getOrganisationName(string memory _reference) view returns (string memory)",
-    "function getOrganisationIdentifier(string memory _reference) view returns (string memory)"
+    "function getOrganisationReference(uint256 _index) view returns (bytes32)",
+    "function getOrganisationName(bytes32 _reference) view returns (bytes32)",
+    "function getOrganisationIdentifier(bytes32 _reference) view returns (bytes32)"
   ]
 
   static organisationReportsABI = [
-    "event SetReport(string memory _reference, string memory _orgRef, string memory _reportingOrgRef, string memory _version, string memory _generatedTime)",
-    "event SetDefaults(string memory _reference, string memory _orgRef, string memory _defaultLang, string memory _defaultCurrency)",
-    "event SetReportingOrgType(string memory _reference, string memory _orgRef, string memory _reportingOrgRef, uint8 _type, bool _isSecondary)",
-    "event SetAssociatedDocument(string memory _reference, string memory _docRef)",
+    "event SetReport(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, bytes32 _version, bytes32 _generatedTime)",
+    "event SetDefaults(bytes32 _reference, bytes32 _orgRef, bytes32 _defaultLang, bytes32 _defaultCurrency)",
+    "event SetReportingOrgType(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, uint8 _type, bool _isSecondary)",
+    "event SetAssociatedDocument(bytes32 _reference, bytes32 _docRef)",
 
-    "function setReport(string memory _reference, string memory _orgRef, string memory _reportingOrgRef, string memory _version, string memory _generatedTime) public",
-    "function setDefaults(string memory _reference, string memory _orgRef, string memory _defaultLang, string memory _defaultCurrency) public",
-    "function setReportingOrgType(string memory _reference, string memory _orgRef, string memory _reportingOrgRef, uint8 _type, bool _isSecondary) public",
-    "function setAssociatedDocument(string memory _reference, string memory _docRef, bytes32[] _attributes) public",
+    "function setReport(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, bytes32 _version, bytes32 _generatedTime) public",
+    "function setDefaults(bytes32 _reference, bytes32 _orgRef, bytes32 _defaultLang, bytes32 _defaultCurrency) public",
+    "function setReportingOrgType(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, uint8 _type, bool _isSecondary) public",
+    "function setAssociatedDocument(bytes32 _reference, bytes32 _docRef, bytes32[] _attributes) public",
 
-    "function getReportExists(string memory _reference) public view returns (bool)",
-    "function getReportOrgExists(string memory _reference, string memory _orgRef) public view returns (bool)",
-    "function getReportDocExists(string memory _reference, string memory _docRef) public view returns (bool)",
+    "function getReportExists(bytes32 _reference) public view returns (bool)",
+    "function getReportOrgExists(bytes32 _reference, bytes32 _orgRef) public view returns (bool)",
+    "function getReportDocExists(bytes32 _reference, bytes32 _docRef) public view returns (bool)",
 
     "function getNumReports() public view returns (uint256)",
-    "function getNumReportOrgs(string memory _reference) public view returns (uint256)",
-    "function getNumReportDocs(string memory _reference) public view returns (uint256)",
+    "function getNumReportOrgs(bytes32 _reference) public view returns (uint256)",
+    "function getNumReportDocs(bytes32 _reference) public view returns (uint256)",
 
-    "function getReportReference(uint256 _index) public view returns (string memory)",
-    "function getReportOrgReference(string memory _reference, uint256 _index) public view returns (string memory)",
-    "function getReportDocReference(string memory _reference, uint256 _index) public view returns (string memory)",
+    "function getReportReference(uint256 _index) public view returns (bytes32)",
+    "function getReportOrgReference(bytes32 _reference, uint256 _index) public view returns (bytes32)",
+    "function getReportDocReference(bytes32 _reference, uint256 _index) public view returns (bytes32)",
 
-    "function getReportingOrg(string memory _reference, string memory _orgRef) public view returns (string memory)",
-    "function getLang(string memory _reference, string memory _orgRef) public view returns (string memory)",
-    "function getCurrency(string memory _reference,  string memory _orgRef) public view returns (string memory)",
-    "function getVersion(string memory _reference,  string memory _orgRef) public view returns (string memory)",
-    "function getGeneratedTime(string memory _reference,  string memory _orgRef) public view returns (string memory)",
-    "function getLastUpdatedTime(string memory _reference,  string memory _orgRef) public view returns (string memory)",
+    "function getReportingOrg(bytes32 _reference, bytes32 _orgRef) public view returns (bytes32)",
+    "function getLang(bytes32 _reference, bytes32 _orgRef) public view returns (bytes32)",
+    "function getCurrency(bytes32 _reference,  bytes32 _orgRef) public view returns (bytes32)",
+    "function getVersion(bytes32 _reference,  bytes32 _orgRef) public view returns (bytes32)",
+    "function getGeneratedTime(bytes32 _reference,  bytes32 _orgRef) public view returns (bytes32)",
+    "function getLastUpdatedTime(bytes32 _reference,  bytes32 _orgRef) public view returns (bytes32)",
 
-    "function getReportingOrgType(string memory _reference, string memory _orgRef) public view returns (uint8)",
-    "function getReportingOrgIsSecondary(string memory _reference, string memory _orgRef) public view returns (bool)",
+    "function getReportingOrgType(bytes32 _reference, bytes32 _orgRef) public view returns (uint8)",
+    "function getReportingOrgIsSecondary(bytes32 _reference, bytes32 _orgRef) public view returns (bool)",
 
-    "function getDocumentTitle(string memory _reference, string memory _docRef) public view returns (bytes32)",
-    "function getDocumentFormat(string memory _reference, string memory _docRef) public view returns (bytes32)",
-    "function getDocumentURL(string memory _reference, string memory _docRef) public view returns (bytes32)",
-    "function getDocumentCategory(string memory _reference, string memory _docRef) public view returns (bytes32)",
-    "function getDocumentCountry(string memory _reference, string memory _docRef) public view returns (bytes32)",
-    "function getDocumentDescription(string memory _reference, string memory _docRef) public view returns (bytes32)",
-    "function getDocumentLang(string memory _reference, string memory _docRef) public view returns (bytes32)",
-    "function getDocumentDate(string memory _reference, string memory _docRef) public view returns (bytes32)"
+    "function getDocumentTitle(bytes32 _reference, bytes32 _docRef) public view returns (bytes32)",
+    "function getDocumentFormat(bytes32 _reference, bytes32 _docRef) public view returns (bytes32)",
+    "function getDocumentURL(bytes32 _reference, bytes32 _docRef) public view returns (bytes32)",
+    "function getDocumentCategory(bytes32 _reference, bytes32 _docRef) public view returns (bytes32)",
+    "function getDocumentCountry(bytes32 _reference, bytes32 _docRef) public view returns (bytes32)",
+    "function getDocumentDescription(bytes32 _reference, bytes32 _docRef) public view returns (bytes32)",
+    "function getDocumentLang(bytes32 _reference, bytes32 _docRef) public view returns (bytes32)",
+    "function getDocumentDate(bytes32 _reference, bytes32 _docRef) public view returns (bytes32)"
   ]
 
 

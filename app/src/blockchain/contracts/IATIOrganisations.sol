@@ -9,20 +9,20 @@ import "./Strings.sol";
 contract IATIOrganisations is Organisations {
 
   struct Organisation {
-    string name;
-    string identifier;
+    bytes32 name;
+    bytes32 identifier;
   }
 
-  string[] orgReferences;
-  mapping(string => Organisation) private organisations;
+  bytes32[] orgReferences;
+  mapping(bytes32 => Organisation) private organisations;
 
-  event SetOrganisation(string _reference, string _name, string _identifier);
+  event SetOrganisation(bytes32 _reference, bytes32 _name, bytes32 _identifier);
 
   constructor() public {
   }
 
-  function setOrganisation(string memory _reference, string memory _name, string memory _identifier) public {
-    require((bytes(_reference).length > 0) && (bytes(_name).length > 0)  && (bytes(_identifier).length > 0));
+  function setOrganisation(bytes32 _reference, bytes32 _name, bytes32 _identifier) public {
+    require(_reference[0] != 0 && _name[0] != 0 && _identifier[0] != 0);
 
     organisations[_reference].name = _name;
     organisations[_reference].identifier = _identifier;
@@ -33,8 +33,8 @@ contract IATIOrganisations is Organisations {
     emit SetOrganisation(_reference, _name, _identifier);
   }
 
-  function getOrganisationExists(string memory _reference) public view returns (bool) {
-    require(bytes(_reference).length > 0);
+  function getOrganisationExists(bytes32 _reference) public view returns (bool) {
+    require (_reference[0] != 0);
 
     uint256 index = Strings.getIndex(_reference, orgReferences);
     return index != orgReferences.length;
@@ -44,20 +44,20 @@ contract IATIOrganisations is Organisations {
     return orgReferences.length;
   }
 
-  function getOrganisationReference(uint256 _index) public view returns (string memory) {
-    require(_index < orgReferences.length);
+  function getOrganisationReference(uint256 _index) public view returns (bytes32) {
+    require (_index < orgReferences.length);
 
     return orgReferences[_index];
   }
 
-  function getOrganisationName(string memory _reference) public view returns (string memory) {
-    require(bytes(_reference).length > 0);
+  function getOrganisationName(bytes32 _reference) public view returns (bytes32) {
+    require (_reference[0] != 0);
 
     return organisations[_reference].name;
   }
 
-  function getOrganisationIdentifier(string memory _reference) public view returns (string memory) {
-    require(bytes(_reference).length > 0);
+  function getOrganisationIdentifier(bytes32 _reference) public view returns (bytes32) {
+    require (_reference[0] != 0);
 
     return organisations[_reference].identifier;
   }

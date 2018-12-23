@@ -6,6 +6,7 @@ contract OrganisationReports {
   function setDefaults(bytes32 _reference, bytes32 _orgRef, bytes32 _defaultLang, bytes32 _defaultCurrency) public;
   function setReportingOrgType(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, uint8 _type, bool _isSecondary) public;
   function setAssociatedDocument(bytes32 _reference, bytes32 _docRef, bytes32[] memory _attributes) public;
+  function setDocumentDescription(bytes32 _reference, bytes32 _docRef, string memory _description) public;
 
   function getReportExists(bytes32 _reference) public view returns (bool);
   function getReportOrgExists(bytes32 _reference, bytes32 _orgRef) public view returns (bool);

@@ -4,9 +4,9 @@ library Strings {
     /// @dev Does a byte-by-byte lexicographical comparison of two strings.
     /// @return a negative number if `_a` is smaller, zero if they are equal
     /// and a positive numbe if `_b` is smaller.
-    function compare(string memory _a, string memory _b) public pure returns (int) {
-        bytes memory a = bytes(_a);
-        bytes memory b = bytes(_b);
+    function compare(bytes32 _a, bytes32 _b) public pure returns (int) {
+        bytes memory a = abi.encodePacked(_a);
+        bytes memory b = abi.encodePacked(_b);
         uint minLength = a.length;
         if (b.length < minLength) minLength = b.length;
         //@todo unroll the loop into increments of 32 and do full 32 byte comparisons
@@ -23,14 +23,14 @@ library Strings {
             return 0;
     }
     /// @dev Compares two strings and returns true if they are equal.
-    function equal(string memory _a, string memory _b) public pure returns (bool) {
+    function equal(bytes32 _a, bytes32 _b) public pure returns (bool) {
         return compare(_a, _b) == 0;
     }
     /// @dev Finds the index of the first occurrence of _needle in _haystack
-    function indexOf(string memory _haystack, string memory _needle) public pure returns (int)
+    function indexOf(bytes32 _haystack, bytes32 _needle) public pure returns (int)
     {
-    	bytes memory h = bytes(_haystack);
-    	bytes memory n = bytes(_needle);
+    	bytes memory h = abi.encodePacked(_haystack);
+    	bytes memory n = abi.encodePacked(_needle);
     	if(h.length < 1 || n.length < 1 || (n.length > h.length))
     		return -1;
     	else if(h.length > (2**128 -1)) // since we have to be able to return -1 (if the char isn't found or input error), this function must return an "int" type with a max length of (2^128 - 1)
@@ -56,7 +56,7 @@ library Strings {
     }
 
     // S.Huckle - extra hack to find the index of a string in a string storage array
-    function getIndex(string memory _id, string[] storage _store) public view returns (uint256) {
+    function getIndex(bytes32 _id, bytes32[] memory _store) public view returns (uint256) {
       uint256 index = _store.length;
       for (uint256 x = 0; x < _store.length; x++)
       {
