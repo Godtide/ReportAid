@@ -1,70 +1,39 @@
 pragma solidity ^0.5.0;
 
 library Strings {
-    /// @dev Does a byte-by-byte lexicographical comparison of two strings.
-    /// @return a negative number if `_a` is smaller, zero if they are equal
-    /// and a positive numbe if `_b` is smaller.
-    function compare(bytes32 _a, bytes32 _b) public pure returns (int) {
-        bytes memory a = abi.encodePacked(_a);
-        bytes memory b = abi.encodePacked(_b);
-        uint minLength = a.length;
-        if (b.length < minLength) minLength = b.length;
-        //@todo unroll the loop into increments of 32 and do full 32 byte comparisons
-        for (uint i = 0; i < minLength; i ++)
-            if (a[i] < b[i])
-                return -1;
-            else if (a[i] > b[i])
-                return 1;
-        if (a.length < b.length)
-            return -1;
-        else if (a.length > b.length)
-            return 1;
-        else
-            return 0;
-    }
-    /// @dev Compares two strings and returns true if they are equal.
-    function equal(bytes32 _a, bytes32 _b) public pure returns (bool) {
-        return compare(_a, _b) == 0;
-    }
-    /// @dev Finds the index of the first occurrence of _needle in _haystack
-    function indexOf(bytes32 _haystack, bytes32 _needle) public pure returns (int)
-    {
-    	bytes memory h = abi.encodePacked(_haystack);
-    	bytes memory n = abi.encodePacked(_needle);
-    	if(h.length < 1 || n.length < 1 || (n.length > h.length))
-    		return -1;
-    	else if(h.length > (2**128 -1)) // since we have to be able to return -1 (if the char isn't found or input error), this function must return an "int" type with a max length of (2^128 - 1)
-    		return -1;
-    	else
-    	{
-    		uint subindex = 0;
-    		for (uint i = 0; i < h.length; i ++)
-    		{
-    			if (h[i] == n[0]) // found the first char of b
-    			{
-    				subindex = 1;
-    				while(subindex < n.length && (i + subindex) < h.length && h[i + subindex] == n[subindex]) // search until the chars don't match or until we reach the end of a or b
-    				{
-    					subindex++;
-    				}
-    				if(subindex == n.length)
-    					return int(i);
-    			}
-    		}
-    		return -1;
-    	}
-    }
 
-    // S.Huckle - extra hack to find the index of a string in a string storage array
-    function getIndex(bytes32 _id, bytes32[] memory _store) public view returns (uint256) {
-      uint256 index = _store.length;
-      for (uint256 x = 0; x < _store.length; x++)
-      {
-        if (equal(_id, _store[x])) {
-          index = x;
-          break;
-        }
-      }
-      return index;
+  function compare(string memory _a, string memory _b) public pure returns (bool) {
+
+    bytes memory a = bytes(_a);
+    bytes memory b = bytes(_b);
+    if(bytes(a).length != bytes(b).length) {
+        return false;
+    } else {
+        return keccak256(a) == keccak256(b);
     }
+  }
+
+  function bytes32ToStr(bytes32 _bytes32) public constant returns (string memory) {
+
+    bytes memory bytesArray = new bytes(32);
+    for (uint256 i; i < 32; i++) {
+      bytesArray[i] = _bytes32[i];
+    }
+    return string(bytesArray);
+  }
+
+  // S.Huckle - extra hack to find the index of a string in a string storage array
+  function getIndex(string memory _a, bytes32[] memory _store) public view returns (uint256) {
+
+    uint256 index = _store.length;
+    for (uint256 i = 0; i < _store.length; i++)
+    {
+      string memory _b = bytes32ToStr(_store[i]);
+      if (compare(_a, _b)) {
+        index = i;
+        break;
+      }
+    }
+    return index;
+  }
 }
