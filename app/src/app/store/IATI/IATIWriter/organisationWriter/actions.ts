@@ -21,16 +21,13 @@ const add = (payload: PayloadProps): Function => {
 export const setOrganisation = (orgDetails: OrganisationProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
-    const stringIdentifier =  ethers.utils.formatBytes32String(orgDetails.code + '-' + orgDetails.identifier)
-    const reference = ethers.utils.soliditySha256('string', stringIdentifier) as string
-    const identifier = ethers.utils.formatBytes32String(stringIdentifier)
-    const name = ethers.utils.formatBytes32String(orgDetails.name)
-    console.log('Ref: ', reference, 'name: ', name, 'ident: ', identifier)
+    const identifier =  orgDetails.code + '-' + orgDetails.identifier
+    const reference = keccak256(identifier)
     const orgContract = state.chainContracts.data.contracts.orgContract as IATIOrganisations
     let actionType = OrgActionTypes.ADD_FAILURE
     let txData: TxData = {}
     try {
-      const tx = await orgContract.setOrganisation(reference, name, identifier)
+      const tx = await orgContract.setOrganisation(reference, orgDetails.name, identifier)
       const key = tx.hash
       txData[key] = tx
       actionType = OrgActionTypes.ADD_SUCCESS
