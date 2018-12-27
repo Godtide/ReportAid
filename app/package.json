@@ -35,6 +35,7 @@
     "react-router-dom": "^4.3.1",
     "redux-actions": "^2.6.1",
     "redux-thunk": "^2.3.0",
+    "shortid": "^2.2.14",
     "typesafe-actions": "^2.0.4",
     "web3": "^1.0.0-beta.36",
     "yup": "^0.26.6"
