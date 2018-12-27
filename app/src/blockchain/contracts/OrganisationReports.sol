@@ -31,7 +31,7 @@ contract OrganisationReports {
   }
 
   struct Document {
-    bytes32 _reportRef;
+    bytes32 reportRef;
     bytes32 docRef;
     string title;
     bytes32 format;
