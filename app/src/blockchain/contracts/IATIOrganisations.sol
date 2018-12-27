@@ -1,39 +1,32 @@
 pragma solidity ^0.5.0;
-
-// IATI Organisations
-// Steve Huckle
+pragma experimental ABIEncoderV2;
 
 import "./Organisations.sol";
 import "./Strings.sol";
 
 contract IATIOrganisations is Organisations {
 
-  struct Organisation {
-    string name;
-    string identifier;
-  }
+  bytes32[] orgReferences;
+  mapping(bytes32 => Organisation) private organisations;
 
-  string[] orgReferences;
-  mapping(string => Organisation) private organisations;
-
-  event SetOrganisation(string _reference, string _name, string _identifier);
+  event SetOrganisation(bytes32 _reference, Organisation _org);
 
   constructor() public {
   }
 
-  function setOrganisation(string memory _reference, string memory _name, string memory _identifier) public {
-    require(_reference[0] != 0 && _name[0] != 0 && _identifier[0] != 0);
+  function setOrganisation(Organisation _org) public {
+    require (_org.reference[0] != 0 && bytes(_org.name).length > 0 && bytes(_org.identifier).length > 0);
 
-    organisations[_reference].name = _name;
-    organisations[_reference].identifier = _identifier;
-    if(!getOrganisationExists(_reference)) {
-      orgReferences.push(_reference);
+    organisations[_org.reference].name = _org.name;
+    organisations[_org.reference].identifier = _org.identifier;
+    if(!getOrganisationExists(_org.reference)) {
+      orgReferences.push(_org.reference);
     }
 
-    emit SetOrganisation(_reference, _name, _identifier);
+    emit SetOrganisation(_org.reference, _org);
   }
 
-  function getOrganisationExists(string memory _reference) public view returns (bool) {
+  function getOrganisationExists(bytes32 _reference) public view returns (bool) {
     require (_reference[0] != 0);
 
     uint256 index = Strings.getIndex(_reference, orgReferences);
@@ -44,19 +37,26 @@ contract IATIOrganisations is Organisations {
     return orgReferences.length;
   }
 
-  function getOrganisationReference(string memory _index) public view returns (string memory) {
+  function getOrganisationReference(uint256 _index) public view returns (bytes32) {
     require (_index < orgReferences.length);
 
     return orgReferences[_index];
   }
 
-  function getOrganisationName(string memory _reference) public view returns (string memory) {
+
+  function getOrganisation(bytes32 _reference) public view returns (Organisation) {
+    require (_reference[0] != 0);
+
+    return organisations[_reference];
+  }
+
+  function getOrganisationName(bytes32 _reference) public view returns (string memory) {
     require (_reference[0] != 0);
 
     return organisations[_reference].name;
   }
 
-  function getOrganisationIdentifier(string memory _reference) public view returns (string memory) {
+  function getOrganisationIdentifier(bytes32 _reference) public view returns (string memory) {
     require (_reference[0] != 0);
 
     return organisations[_reference].identifier;

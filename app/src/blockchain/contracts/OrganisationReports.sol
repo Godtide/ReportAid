@@ -1,12 +1,50 @@
 pragma solidity ^0.5.0;
+pragma experimental ABIEncoderV2;
 
 contract OrganisationReports {
 
-  function setReport(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, bytes32 _version, bytes32 _generatedTime) public;
-  function setDefaults(bytes32 _reference, bytes32 _orgRef, bytes32 _defaultLang, bytes32 _defaultCurrency) public;
-  function setReportingOrgType(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, uint8 _type, bool _isSecondary) public;
-  function setAssociatedDocument(bytes32 _reference, bytes32 _docRef, bytes32[] memory _attributes) public;
-  function setDocumentDescription(bytes32 _reference, bytes32 _docRef, string memory _description) public;
+  enum DocAttributes {
+    TITLE,
+    FORMAT,
+    URL,
+    CATEGORY,
+    COUNTRYCODE,
+    DESC,
+    LANG,
+    DATE
+  }
+
+  struct ReportingOrganisation {
+    bytes32 orgRef;
+    uint8 orgType;
+    bool isSecondary;
+  }
+
+  struct Report {
+    bytes32 _reference;
+    ReportingOrganisation reportingOrg;
+    bytes32 version;
+    bytes32 lang;
+    bytes32 currency;
+    bytes32 generatedTime;
+    bytes32 lastUpdatedTime;
+  }
+
+  struct Document {
+    bytes32 _reportRef;
+    bytes32 docRef;
+    string title;
+    bytes32 format;
+    string url;
+    bytes32 category;
+    bytes32 countryCode;
+    string desc;
+    bytes32 lang;
+    bytes32 date;
+  }
+
+  function setReport(Report _report) public;
+  function setDocument(Document _document) public;
 
   function getReportExists(bytes32 _reference) public view returns (bool);
   function getReportOrgExists(bytes32 _reference, bytes32 _orgRef) public view returns (bool);
