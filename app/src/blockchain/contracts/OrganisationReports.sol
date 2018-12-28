@@ -21,8 +21,9 @@ contract OrganisationReports {
   }
 
   struct Report {
-    bytes32 _reference;
+    bytes32 reference;
     ReportingOrganisation reportingOrg;
+    bytes32 issuingOrgRef;
     bytes32 version;
     bytes32 lang;
     bytes32 currency;
@@ -47,7 +48,7 @@ contract OrganisationReports {
   function setDocument(Document _document) public;
 
   function getReportExists(bytes32 _reference) public view returns (bool);
-  function getReportOrgExists(bytes32 _reference, bytes32 _orgRef) public view returns (bool);
+  function getIssuingOrgExists(bytes32 _reference, bytes32 _orgRef) public view returns (bool);
   function getReportDocExists(bytes32 _reference, bytes32 _docRef) public view returns (bool);
 
   function getNumReports() public view returns (uint256);
@@ -57,6 +58,8 @@ contract OrganisationReports {
   function getReportReference(uint256 _index) public view returns (bytes32);
   function getReportOrgReference(bytes32 _reference, uint256 _index) public view returns (bytes32);
   function getReportDocReference(bytes32 _reference, uint256 _index) public view returns (bytes32);
+
+  function getReport(bytes32 _reference) public view returns (Report);
 
   function getReportingOrg(bytes32 _reference, bytes32 _orgRef) public view returns (bytes32);
   function getLang(bytes32 _reference, bytes32 _orgRef) public view returns (bytes32);

@@ -16,13 +16,13 @@ contract IATIOrganisationReports is OrganisationReports {
   bool constant defaultIsSecondary = false;
 
   bytes32[] reportReferences;
-  mapping(bytes32 => bytes32[]) private orgReferences;
-  mapping(bytes32 => mapping(bytes32 => Report)) private organisationReports;
+  mapping(bytes32 => bytes32[]) private issuingOrgReferences;
+  mapping(bytes32 =>  mapping(bytes32 => Report)) private organisationReports;
 
   mapping(bytes32 => bytes32[]) private reportDocReferences;
   mapping(bytes32 => mapping(bytes32 => Document)) private docs;
 
-  event SetReport(bytes32 _reference,  Report _report);
+  event SetReport(bytes32 _reference, bytes32 _issuingOrgRef, Report _report);
   event SetDocument(bytes32 _reportRef, bytes32 _docRef, Document _document);
 
   function setReport(Report _report) public {
@@ -35,16 +35,16 @@ contract IATIOrganisationReports is OrganisationReports {
              _report.generatedTime[0] != 0 &&
              _report.lastUpdatedTime[0] != 0 );
 
-    organisationReports[_report._reference][_report.reportingOrg.orgRef] = _report;
+    organisationReports[_report.reference][_report.issuingOrgRef] = _report;
 
-    if (!getReportExists(_report._reference)) {
-      reportReferences.push(_report._reference);
+    if (!getReportExists(_report.reference)) {
+      reportReferences.push(_report.reference);
     }
-    if(!getReportOrgExists(_report._reference, _report.reportingOrg.orgRef)) {
-      orgReferences[_report._reference].push(_report.reportingOrg.orgRef);
+    if(!getIssuingOrgExists(_report.reference, _report.issuingOrgRef)) {
+      issuingOrgReferences[_report.reference].push(_report.issuingOrgRef);
     }
 
-    emit SetReport(_report.reference, _report);
+    emit SetReport(_report.reference, _report.issuingOrgRef, _report);
   }
 
   function setDocument(Document _document) public {
@@ -75,11 +75,11 @@ contract IATIOrganisationReports is OrganisationReports {
     return index != reportReferences.length;
   }
 
-  function getReportOrgExists(bytes32 _reference, bytes32 _orgRef) public view returns (bool) {
+  function getIssuingOrgExists(bytes32 _reference, bytes32 _orgRef) public view returns (bool) {
     require (_reference[0] != 0 && _orgRef[0] != 0);
 
-    uint256 index = Strings.getIndex(_orgRef, orgReferences[_reference]);
-    return index != orgReferences[_reference].length;
+    uint256 index = Strings.getIndex(_orgRef, issuingOrgReferences);
+    return index != issuingOrgReferences[_reference].length;
   }
 
   function getReportDocExists(bytes32 _reference, bytes32 _docRef) public view returns (bool) {
