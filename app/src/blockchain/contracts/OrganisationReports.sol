@@ -21,7 +21,7 @@ contract OrganisationReports {
   }
 
   struct Report {
-    bytes32 reference;
+    bytes32 reportRef;
     ReportingOrganisation reportingOrg;
     bytes32 issuingOrgRef;
     bytes32 version;
@@ -44,8 +44,8 @@ contract OrganisationReports {
     bytes32 date;
   }
 
-  function setReport(Report _report) public;
-  function setDocument(Document _document) public;
+  function setReport(Report memory _report) public;
+  function setDocument(Document memory _document) public;
 
   function getReportExists(bytes32 _reference) public view returns (bool);
   function getIssuingOrgExists(bytes32 _reference, bytes32 _orgRef) public view returns (bool);
@@ -59,7 +59,7 @@ contract OrganisationReports {
   function getReportOrgReference(bytes32 _reference, uint256 _index) public view returns (bytes32);
   function getReportDocReference(bytes32 _reference, uint256 _index) public view returns (bytes32);
 
-  function getReport(bytes32 _reference) public view returns (Report);
+  function getReport(bytes32 _reference, bytes32 _orgRef) public view returns (Report memory);
 
   function getReportingOrg(bytes32 _reference, bytes32 _orgRef) public view returns (bytes32);
   function getLang(bytes32 _reference, bytes32 _orgRef) public view returns (bytes32);
@@ -68,12 +68,13 @@ contract OrganisationReports {
   function getGeneratedTime(bytes32 _reference,  bytes32 _orgRef) public view returns (bytes32);
   function getLastUpdatedTime(bytes32 _reference,  bytes32 _orgRef) public view returns (bytes32);
 
-  function getReportingOrgType(bytes32 _reference, bytes32 _orgRef) public view returns (uint8);
-  function getReportingOrgIsSecondary(bytes32 _reference, bytes32 _orgRef) public view returns (bool);
+  function getReportingOrgType(bytes32 _reference, bytes32 _reportingOrgRef) public view returns (uint8);
+  function getReportingOrgIsSecondary(bytes32 _reference, bytes32 _reportingOrgRef) public view returns (bool);
 
-  function getDocumentTitle(bytes32 _reference, bytes32 _docRef) public view returns (bytes32);
+  function getDocument(bytes32 _reference, bytes32 _docRef) public view returns (Document memory);
+  function getDocumentTitle(bytes32 _reference, bytes32 _docRef) public view returns (string memory);
   function getDocumentFormat(bytes32 _reference, bytes32 _docRef) public view returns (bytes32);
-  function getDocumentURL(bytes32 _reference, bytes32 _docRef) public view returns (bytes32);
+  function getDocumentURL(bytes32 _reference, bytes32 _docRef) public view returns (string memory);
   function getDocumentCategory(bytes32 _reference, bytes32 _docRef) public view returns (bytes32);
   function getDocumentCountry(bytes32 _reference, bytes32 _docRef) public view returns (bytes32);
   function getDocumentDescription(bytes32 _reference, bytes32 _docRef) public view returns (string memory);

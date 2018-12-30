@@ -1,9 +1,6 @@
 pragma solidity ^0.5.0;
 pragma experimental ABIEncoderV2;
 
-// IATI Organisation Reports
-// Steve Huckle
-
 import "./OrganisationReports.sol";
 import "./Strings.sol";
 
@@ -22,11 +19,11 @@ contract IATIOrganisationReports is OrganisationReports {
   mapping(bytes32 => bytes32[]) private reportDocReferences;
   mapping(bytes32 => mapping(bytes32 => Document)) private docs;
 
-  event SetReport(bytes32 _reference, bytes32 _issuingOrgRef, Report _report);
+  event SetReport(bytes32 _reportRef, bytes32 _issuingOrgRef, Report _report);
   event SetDocument(bytes32 _reportRef, bytes32 _docRef, Document _document);
 
-  function setReport(Report _report) public {
-    require (_report.reference[0] != 0 &&
+  function setReport(Report memory _report) public {
+    require (_report.reportRef[0] != 0 &&
              _report.reportingOrg.orgRef[0] != 0 &&
              _report.reportingOrg.orgType > 0 &&
              _report.version[0] != 0 &&
@@ -35,19 +32,20 @@ contract IATIOrganisationReports is OrganisationReports {
              _report.generatedTime[0] != 0 &&
              _report.lastUpdatedTime[0] != 0 );
 
-    organisationReports[_report.reference][_report.issuingOrgRef] = _report;
+    organisationReports[_report.reportRef][_report.issuingOrgRef] = _report;
 
-    if (!getReportExists(_report.reference)) {
-      reportReferences.push(_report.reference);
-    }
-    if(!getIssuingOrgExists(_report.reference, _report.issuingOrgRef)) {
-      issuingOrgReferences[_report.reference].push(_report.issuingOrgRef);
+    if (!getReportExists(_report.reportRef)) {
+      reportReferences.push(_report.reportRef);
     }
 
-    emit SetReport(_report.reference, _report.issuingOrgRef, _report);
+    if(!getIssuingOrgExists(_report.reportRef, _report.issuingOrgRef)) {
+      issuingOrgReferences[_report.reportRef].push(_report.issuingOrgRef);
+    }
+
+    emit SetReport(_report.reportRef, _report.issuingOrgRef, _report);
   }
 
-  function setDocument(Document _document) public {
+  function setDocument(Document memory _document) public {
     require (_document.reportRef[0] != 0 &&
              _document.docRef[0] != 0 &&
              bytes(_document.title).length > 0 &&
@@ -57,7 +55,7 @@ contract IATIOrganisationReports is OrganisationReports {
              _document.countryCode[0] != 0 &&
              bytes(_document.desc).length > 0 &&
              _document.lang[0] != 0 &&
-             bytes(_document.date).length > 0);
+             _document.date[0] != 0);
 
     docs[_document.reportRef][_document.docRef] = _document;
 
@@ -68,39 +66,40 @@ contract IATIOrganisationReports is OrganisationReports {
     emit SetDocument(_document.reportRef, _document.docRef, _document);
   }
 
-  function getReportExists(bytes32 _reference) public view returns (bool) {
-    require (_reference[0] != 0);
+  function getReportExists(bytes32 _reportRef) public view returns (bool) {
+    require (_reportRef[0] != 0);
 
-    uint256 index = Strings.getIndex(_reference, reportReferences);
+    uint256 index = Strings.getIndex(_reportRef, reportReferences);
     return index != reportReferences.length;
   }
 
-  function getIssuingOrgExists(bytes32 _reference, bytes32 _orgRef) public view returns (bool) {
-    require (_reference[0] != 0 && _orgRef[0] != 0);
+  function getIssuingOrgExists(bytes32 _reportRef, bytes32 _orgRef) public view returns (bool) {
+    require (_reportRef[0] != 0 && _orgRef[0] != 0);
 
-    uint256 index = Strings.getIndex(_orgRef, issuingOrgReferences);
-    return index != issuingOrgReferences[_reference].length;
+    bytes32[] memory orgRefs = issuingOrgReferences[_reportRef];
+    uint256 index = Strings.getIndex(_orgRef, orgRefs);
+    return index != issuingOrgReferences[_reportRef].length;
   }
 
-  function getReportDocExists(bytes32 _reference, bytes32 _docRef) public view returns (bool) {
-    require (_reference[0] != 0);
+  function getReportDocExists(bytes32 _reportRef, bytes32 _docRef) public view returns (bool) {
+    require (_reportRef[0] != 0);
 
-    uint256 index = Strings.getIndex(_docRef, reportDocReferences[_reference]);
-    return index != reportDocReferences[_reference].length;
+    uint256 index = Strings.getIndex(_docRef, reportDocReferences[_reportRef]);
+    return index != reportDocReferences[_reportRef].length;
   }
 
   function getNumReports() public view returns (uint256) {
     return reportReferences.length;
   }
 
-  function getNumReportOrgs(bytes32 _reference) public view returns (uint256) {
-    require (_reference[0] != 0);
-    return orgReferences[_reference].length;
+  function getNumReportOrgs(bytes32 _reportRef) public view returns (uint256) {
+    require (_reportRef[0] != 0);
+    return issuingOrgReferences[_reportRef].length;
   }
 
-  function getNumReportDocs(bytes32 _reference) public view returns (uint256) {
-    require (_reference[0] != 0);
-    return reportDocReferences[_reference].length;
+  function getNumReportDocs(bytes32 _reportRef) public view returns (uint256) {
+    require (_reportRef[0] != 0);
+    return reportDocReferences[_reportRef].length;
   }
 
   function getReportReference(uint256 _index) public view returns (bytes32) {
@@ -108,111 +107,124 @@ contract IATIOrganisationReports is OrganisationReports {
     return reportReferences[_index];
   }
 
-  function getReportOrgReference(bytes32 _reference, uint256 _index) public view returns (bytes32) {
-    require (_reference[0] != 0 &&
-            _index < orgReferences[_reference].length);
-    return orgReferences[_reference][_index];
+  function getReportOrgReference(bytes32 _reportRef, uint256 _index) public view returns (bytes32) {
+    require (_reportRef[0] != 0 && _index < issuingOrgReferences[_reportRef].length);
+
+    return issuingOrgReferences[_reportRef][_index];
   }
 
-  function getReportDocReference(bytes32 _reference, uint256 _index) public view returns (bytes32) {
-    require (_reference[0] != 0 &&
-            _index < reportReferences.length);
-    return reportDocReferences[_reference][_index];
+  function getReportDocReference(bytes32 _reportRef, uint256 _index) public view returns (bytes32) {
+    require (_reportRef[0] != 0 && _index < reportReferences.length);
+
+    return reportDocReferences[_reportRef][_index];
   }
 
-  function getReportingOrg(bytes32 _reference, bytes32 _orgRef) public view returns (bytes32) {
-    require (_reference[0] != 0 &&
+  function getReport(bytes32 _reportRef, bytes32 _orgRef) public view returns (Report memory) {
+    require (_reportRef[0] != 0 && _orgRef[0] != 0);
+
+    return organisationReports[_reportRef][_orgRef];
+  }
+
+  function getReportingOrg(bytes32 _reportRef, bytes32 _orgRef) public view returns (bytes32) {
+    require (_reportRef[0] != 0 &&
             _orgRef[0] != 0);
-    return organisationReports[_reference][_orgRef].reportingOrg.orgRef;
+    return organisationReports[_reportRef][_orgRef].reportingOrg.orgRef;
   }
 
-  function getLang(bytes32 _reference, bytes32 _orgRef) public view returns (bytes32) {
-    require (_reference[0] != 0 &&
+  function getLang(bytes32 _reportRef, bytes32 _orgRef) public view returns (bytes32) {
+    require (_reportRef[0] != 0 &&
             _orgRef[0] != 0);
-    return organisationReports[_reference][_orgRef].lang;
+    return organisationReports[_reportRef][_orgRef].lang;
   }
 
-  function getCurrency(bytes32 _reference,  bytes32 _orgRef) public view returns (bytes32) {
-    require (_reference[0] != 0 &&
+  function getCurrency(bytes32 _reportRef,  bytes32 _orgRef) public view returns (bytes32) {
+    require (_reportRef[0] != 0 &&
             _orgRef[0] != 0);
-    return organisationReports[_reference][_orgRef].currency;
+    return organisationReports[_reportRef][_orgRef].currency;
   }
 
-  function getVersion(bytes32 _reference,  bytes32 _orgRef) public view returns (bytes32) {
-    require (_reference[0] != 0 &&
+  function getVersion(bytes32 _reportRef,  bytes32 _orgRef) public view returns (bytes32) {
+    require (_reportRef[0] != 0 &&
             _orgRef[0] != 0);
-    return organisationReports[_reference][_orgRef].version;
+    return organisationReports[_reportRef][_orgRef].version;
   }
 
-  function getGeneratedTime(bytes32 _reference,  bytes32 _orgRef) public view returns (bytes32) {
-    require (_reference[0] != 0 &&
+  function getGeneratedTime(bytes32 _reportRef,  bytes32 _orgRef) public view returns (bytes32) {
+    require (_reportRef[0] != 0 &&
             _orgRef[0] != 0);
-    return organisationReports[_reference][_orgRef].generatedTime;
+    return organisationReports[_reportRef][_orgRef].generatedTime;
   }
 
-  function getLastUpdatedTime(bytes32 _reference,  bytes32 _orgRef) public view returns (bytes32) {
-    require (_reference[0] != 0 &&
+  function getLastUpdatedTime(bytes32 _reportRef,  bytes32 _orgRef) public view returns (bytes32) {
+    require (_reportRef[0] != 0 &&
             _orgRef[0] != 0);
-    return organisationReports[_reference][_orgRef].lastUpdatedTime;
+    return organisationReports[_reportRef][_orgRef].lastUpdatedTime;
   }
 
-  function getReportingOrgType(bytes32 _reference,  bytes32 _orgRef) public view returns (uint8) {
-    require (_reference[0] != 0 &&
+  function getReportingOrgType(bytes32 _reportRef,  bytes32 _orgRef) public view returns (uint8) {
+    require (_reportRef[0] != 0 &&
             _orgRef[0] != 0);
-    return organisationReports[_reference][_orgRef].reportingOrg.orgType;
+    return organisationReports[_reportRef][_orgRef].reportingOrg.orgType;
   }
 
-  function getReportingOrgIsSecondary(bytes32 _reference,  bytes32 _orgRef) public view returns (bool) {
-    require (_reference[0] != 0 &&
+  function getReportingOrgIsSecondary(bytes32 _reportRef,  bytes32 _orgRef) public view returns (bool) {
+    require (_reportRef[0] != 0 &&
             _orgRef[0] != 0);
-    return organisationReports[_reference][_orgRef].reportingOrg.isSecondary;
+    return organisationReports[_reportRef][_orgRef].reportingOrg.isSecondary;
   }
 
-  function getDocumentTitle(bytes32 _reference, bytes32 _docRef) public view returns (bytes32) {
-    require (_reference[0] != 0 &&
+  function getDocument(bytes32 _reportRef, bytes32 _docRef) public view returns (Document memory) {
+    require (_reportRef[0] != 0 &&
             _docRef[0] != 0);
-    return docs[_reference][_docRef].title;
+
+    return docs[_reportRef][_docRef];
   }
 
-  function getDocumentFormat(bytes32 _reference, bytes32 _docRef) public view returns (bytes32) {
-    require (_reference[0] != 0 &&
+  function getDocumentTitle(bytes32 _reportRef, bytes32 _docRef) public view returns (string memory) {
+    require (_reportRef[0] != 0 &&
             _docRef[0] != 0);
-    return docs[_reference][_docRef].format;
+    return docs[_reportRef][_docRef].title;
   }
 
-  function getDocumentURL(bytes32 _reference, bytes32 _docRef) public view returns (bytes32){
-    require (_reference[0] != 0 &&
+  function getDocumentFormat(bytes32 _reportRef, bytes32 _docRef) public view returns (bytes32) {
+    require (_reportRef[0] != 0 &&
             _docRef[0] != 0);
-    return docs[_reference][_docRef].url;
+    return docs[_reportRef][_docRef].format;
   }
 
-  function getDocumentCategory(bytes32 _reference, bytes32 _docRef) public view returns (bytes32) {
-    require (_reference[0] != 0 &&
+  function getDocumentURL(bytes32 _reportRef, bytes32 _docRef) public view returns (string memory){
+    require (_reportRef[0] != 0 &&
             _docRef[0] != 0);
-    return docs[_reference][_docRef].category;
+    return docs[_reportRef][_docRef].url;
   }
 
-  function getDocumentCountry(bytes32 _reference, bytes32 _docRef) public view returns (bytes32) {
-    require (_reference[0] != 0 &&
+  function getDocumentCategory(bytes32 _reportRef, bytes32 _docRef) public view returns (bytes32) {
+    require (_reportRef[0] != 0 &&
             _docRef[0] != 0);
-    return docs[_reference][_docRef].countryCode;
+    return docs[_reportRef][_docRef].category;
   }
 
-  function getDocumentDescription(bytes32 _reference, bytes32 _docRef) public view returns (string memory) {
-    require (_reference[0] != 0 &&
+  function getDocumentCountry(bytes32 _reportRef, bytes32 _docRef) public view returns (bytes32) {
+    require (_reportRef[0] != 0 &&
             _docRef[0] != 0);
-    return docs[_reference][_docRef].desc;
+    return docs[_reportRef][_docRef].countryCode;
   }
 
-  function getDocumentLang(bytes32 _reference, bytes32 _docRef) public view returns (bytes32) {
-    require (_reference[0] != 0 &&
+  function getDocumentDescription(bytes32 _reportRef, bytes32 _docRef) public view returns (string memory) {
+    require (_reportRef[0] != 0 &&
             _docRef[0] != 0);
-    return docs[_reference][_docRef].lang;
+    return docs[_reportRef][_docRef].desc;
   }
 
-  function getDocumentDate(bytes32 _reference, bytes32 _docRef) public view returns (bytes32) {
-    require (_reference[0] != 0 &&
+  function getDocumentLang(bytes32 _reportRef, bytes32 _docRef) public view returns (bytes32) {
+    require (_reportRef[0] != 0 &&
             _docRef[0] != 0);
-    return docs[_reference][_docRef].date;
+    return docs[_reportRef][_docRef].lang;
+  }
+
+  function getDocumentDate(bytes32 _reportRef, bytes32 _docRef) public view returns (bytes32) {
+    require (_reportRef[0] != 0 &&
+            _docRef[0] != 0);
+    return docs[_reportRef][_docRef].date;
   }
 }

@@ -9,27 +9,27 @@ contract IATIOrganisations is Organisations {
   bytes32[] orgReferences;
   mapping(bytes32 => Organisation) private organisations;
 
-  event SetOrganisation(bytes32 _reference, Organisation _org);
+  event SetOrganisation(bytes32 _orgRef, Organisation _org);
 
   constructor() public {
   }
 
-  function setOrganisation(Organisation _org) public {
-    require (_org.reference[0] != 0 && bytes(_org.name).length > 0 && bytes(_org.identifier).length > 0);
+  function setOrganisation(Organisation memory _org) public {
+    require (_org.orgRef[0] != 0 && bytes(_org.name).length > 0 && bytes(_org.identifier).length > 0);
 
-    organisations[_org.reference].name = _org.name;
-    organisations[_org.reference].identifier = _org.identifier;
-    if(!getOrganisationExists(_org.reference)) {
-      orgReferences.push(_org.reference);
+    organisations[_org.orgRef].name = _org.name;
+    organisations[_org.orgRef].identifier = _org.identifier;
+    if(!getOrganisationExists(_org.orgRef)) {
+      orgReferences.push(_org.orgRef);
     }
 
-    emit SetOrganisation(_org.reference, _org);
+    emit SetOrganisation(_org.orgRef, _org);
   }
 
-  function getOrganisationExists(bytes32 _reference) public view returns (bool) {
-    require (_reference[0] != 0);
+  function getOrganisationExists(bytes32 _orgRef) public view returns (bool) {
+    require (_orgRef[0] != 0);
 
-    uint256 index = Strings.getIndex(_reference, orgReferences);
+    uint256 index = Strings.getIndex(_orgRef, orgReferences);
     return index != orgReferences.length;
   }
 
@@ -44,21 +44,21 @@ contract IATIOrganisations is Organisations {
   }
 
 
-  function getOrganisation(bytes32 _reference) public view returns (Organisation) {
-    require (_reference[0] != 0);
+  function getOrganisation(bytes32 _orgRef) public view returns (Organisation memory) {
+    require (_orgRef[0] != 0);
 
-    return organisations[_reference];
+    return organisations[_orgRef];
   }
 
-  function getOrganisationName(bytes32 _reference) public view returns (string memory) {
-    require (_reference[0] != 0);
+  function getOrganisationName(bytes32 _orgRef) public view returns (string memory) {
+    require (_orgRef[0] != 0);
 
-    return organisations[_reference].name;
+    return organisations[_orgRef].name;
   }
 
-  function getOrganisationIdentifier(bytes32 _reference) public view returns (string memory) {
-    require (_reference[0] != 0);
+  function getOrganisationIdentifier(bytes32 _orgRef) public view returns (string memory) {
+    require (_orgRef[0] != 0);
 
-    return organisations[_reference].identifier;
+    return organisations[_orgRef].identifier;
   }
 }

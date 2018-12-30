@@ -21,7 +21,7 @@ library Strings {
     return _a == _b;
   }
 
-  function bytes32ToStr(bytes32 _x) public constant returns (string memory) {
+  function bytes32ToStr(bytes32 _x) public view returns (string memory) {
 
     bytes memory bytesArray = new bytes(32);
     for (uint256 i; i < 32; i++) {
@@ -46,7 +46,7 @@ library Strings {
     return index;
   }
 
-  function getIndex(bytes32 _x, bytes32[] _xs) public view returns (uint256) {
+  function getIndex(bytes32 _x, bytes32[] memory _xs) public view returns (uint256) {
     require (_x[0] != 0 && _xs.length > 0 );
 
     uint256 index = _xs.length;
