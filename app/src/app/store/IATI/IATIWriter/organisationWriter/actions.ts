@@ -30,7 +30,7 @@ export const setOrganisation = (orgDetails: OrganisationProps) => {
         name: orgDetails.name,
         identifier: orgDetails.code + '-' + orgDetails.identifier
     }
-    console.log('Org: ', org)
+    //console.log('Org: ', org)
     const orgContract = state.chainContracts.data.contracts.orgContract as IATIOrganisations
     let actionType = OrgActionTypes.ADD_FAILURE
     let txData: TxData = {}
