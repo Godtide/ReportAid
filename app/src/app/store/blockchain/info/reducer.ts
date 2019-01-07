@@ -3,7 +3,6 @@ import { ActionProps } from '../../types'
 
 const initialInfoState: InfoProps = {
   data: {
-    API: '',
     Name: '',
     ChainId: '',
     ENS: '',

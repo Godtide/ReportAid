@@ -1,5 +1,6 @@
 import { ThunkDispatch } from 'redux-thunk'
-import { keccak256 } from 'js-sha3'
+import shortid from 'shortid'
+
 import { ethers } from 'ethers'
 
 import { ApplicationState } from '../../../store'
@@ -22,12 +23,19 @@ export const setOrganisation = (orgDetails: OrganisationProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
     const identifier =  orgDetails.code + '-' + orgDetails.identifier
-    const reference = keccak256(identifier)
+    const reference = shortid.generate()
+    let orgReference = ethers.utils.formatBytes32String(reference)
+    const org = {
+        orgRef: orgReference,
+        name: orgDetails.name,
+        identifier: orgDetails.code + '-' + orgDetails.identifier
+    }
+    console.log('Org: ', org)
     const orgContract = state.chainContracts.data.contracts.orgContract as IATIOrganisations
     let actionType = OrgActionTypes.ADD_FAILURE
     let txData: TxData = {}
     try {
-      const tx = await orgContract.setOrganisation(reference, orgDetails.name, identifier)
+      const tx = await orgContract.setOrganisation(org)
       const key = tx.hash
       txData[key] = tx
       actionType = OrgActionTypes.ADD_SUCCESS

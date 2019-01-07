@@ -32,7 +32,6 @@ class Info extends React.Component<WithStyles<typeof styles> & InfoProps> {
 
 const mapStateToProps = (state: ApplicationState): InfoProps => {
   const propertiesList = {
-      API: state.chainInfo.data.API,
       Network: state.chainInfo.data.Name,
       ChainId: state.chainInfo.data.ChainId,
       ENS: state.chainInfo.data.ENS,

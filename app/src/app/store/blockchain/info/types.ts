@@ -2,7 +2,6 @@ import { PayloadProps } from '../../types'
 
 export interface InfoProps extends PayloadProps {
   data: {
-    API: string
     Name: string
     ChainId: string
     ENS: string

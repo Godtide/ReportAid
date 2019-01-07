@@ -17,6 +17,7 @@ contract IATIOrganisations is Organisations {
   function setOrganisation(Organisation memory _org) public {
     require (_org.orgRef[0] != 0 && bytes(_org.name).length > 0 && bytes(_org.identifier).length > 0);
 
+    organisations[_org.orgRef].orgRef = _org.orgRef;
     organisations[_org.orgRef].name = _org.name;
     organisations[_org.orgRef].identifier = _org.identifier;
     if(!getOrganisationExists(_org.orgRef)) {
