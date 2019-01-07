@@ -36,7 +36,7 @@ export const setAccount = (props: SetProps) => {
 
   getAccount({provider: props.provider}).then((account) => {
     if ( accountData.data.account != account ) {
-      console.log('Storing Account', account)
+      //console.log('Storing Account', account)
       accountData.data.account = account
       const add = addAccount as Function
       store.dispatch(add(accountData))
@@ -100,8 +100,8 @@ export const setBlockchain = async (props: SetBlockchainProps) => {
   const store = props.store
   const provider = getProvider()
   const chainObj: any = await provider.getNetwork()
-  console.log(chainObj)
-  console.log('First call ', 'Name: ', chainObj.name, ' ChainID: ', chainObj.chainId, 'ENS Address: ', chainObj.ensAddress)
+  //console.log(chainObj)
+  //console.log('First call ', 'Name: ', chainObj.name, ' ChainID: ', chainObj.chainId, 'ENS Address: ', chainObj.ensAddress)
 
   let ENSAddress = ""
   if (typeof chainObj.ensAddress != 'undefined') {
