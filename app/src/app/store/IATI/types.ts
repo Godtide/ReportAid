@@ -1,4 +1,5 @@
 export interface IATIOrgProps {
+  orgRef: string
   name: string
   identifier: string
 }

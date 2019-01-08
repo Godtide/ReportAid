@@ -30,8 +30,12 @@ contract IATIOrganisations is Organisations {
   function getOrganisationExists(bytes32 _orgRef) public view returns (bool) {
     require (_orgRef[0] != 0);
 
-    uint256 index = Strings.getIndex(_orgRef, orgReferences);
-    return index != orgReferences.length;
+    bool exists = false;
+    if ( !(orgReferences.length == 0) ) {
+      uint256 index = Strings.getIndex(_orgRef, orgReferences);
+      exists = (index != orgReferences.length);
+    }
+    return exists;
   }
 
   function getNumOrganisations() public view returns (uint256) {

@@ -8,7 +8,7 @@ import { IATIOrganisations } from '../../../../../blockchain/typechain/IATIOrgan
 
 import { storeAction } from '../../../actions'
 import { ActionProps, PayloadProps, TxData } from '../../../types'
-import { OrganisationProps } from '../../types'
+import { OrganisationProps, IATIOrgProps } from '../../types'
 
 import { OrgActionTypes, OrgProps } from './types'
 
@@ -25,7 +25,7 @@ export const setOrganisation = (orgDetails: OrganisationProps) => {
     const identifier =  orgDetails.code + '-' + orgDetails.identifier
     const reference = shortid.generate()
     let orgReference = ethers.utils.formatBytes32String(reference)
-    const org = {
+    const org: IATIOrgProps = {
         orgRef: orgReference,
         name: orgDetails.name,
         identifier: orgDetails.code + '-' + orgDetails.identifier
@@ -35,7 +35,8 @@ export const setOrganisation = (orgDetails: OrganisationProps) => {
     let actionType = OrgActionTypes.ADD_FAILURE
     let txData: TxData = {}
 
-    const gasLimit = await state.chainInfo.data.provider.estimateGas(setOrganisation)
+    let gasLimit = await state.chainInfo.data.provider.estimateGas(setOrganisation)
+    gasLimit *= 4
     console.log('Gaslimit: ', gasLimit)
     try {
       const tx = await orgContract.setOrganisation(org, {gasLimit: gasLimit})

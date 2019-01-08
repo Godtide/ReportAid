@@ -82,12 +82,12 @@ class Contract {
   ]
 
   /* Ropsten addresses
-  static organisationsAddress = "0x4A7cB305792eda1b7110d5484E15326ac7876398"
-  static organisationReportsAddress = "0x0Cd0274C0FAa1b77fCc634313b499EFE5E457113"
+  static organisationsAddress = "0x2C757C6390D9186F7e35C0796256B17d650df017"
+  static organisationReportsAddress = "0x81759e5B8BCB38B05A678C2b98Eb17eaf4Ae9D71"
   */
 
-  static organisationsAddress = "0x4A7cB305792eda1b7110d5484E15326ac7876398"
-  static organisationReportsAddress = "0x0Cd0274C0FAa1b77fCc634313b499EFE5E457113"
+  static organisationsAddress = "0x2C757C6390D9186F7e35C0796256B17d650df017"
+  static organisationReportsAddress = "0x81759e5B8BCB38B05A678C2b98Eb17eaf4Ae9D71"
 }
 
 export { Paths, Blockchain, Contract }
