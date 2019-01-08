@@ -35,14 +35,17 @@ export const setOrganisation = (orgDetails: OrganisationProps) => {
     let actionType = OrgActionTypes.ADD_FAILURE
     let txData: TxData = {}
 
+    const gasLimit = await state.chainInfo.data.provider.estimateGas(setOrganisation)
+    console.log('Gaslimit: ', gasLimit)
     try {
-      const tx = await orgContract.setOrganisation(org, {gasPrice: '0x1000000', gasLimit: ethers.utils.bigNumberify("20000000000")})
+      const tx = await orgContract.setOrganisation(org, {gasLimit: gasLimit})
       const key = tx.hash
       txData[key] = tx
       actionType = OrgActionTypes.ADD_SUCCESS
     } catch (error) {
       console.log('setOrganisation error', error)
     }
+
     //console.log('Adding tx: ', txData, actionType)
     dispatch(add({data: {data: txData}})(actionType))
   }
