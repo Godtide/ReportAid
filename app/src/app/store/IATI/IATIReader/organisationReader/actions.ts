@@ -32,7 +32,7 @@ const getNumOrganisations = () => {
     let numOrgs = { num: 0 }
     try {
       const num = await orgContract.getNumOrganisations()
-      //console.log('Num orgs: ', num)
+      console.log('Num orgs: ', num)
       numOrgs.num = num.toNumber()
       actionType = OrgGetActionTypes.NUM_SUCCESS
     } catch (error) {
@@ -79,7 +79,7 @@ const getNames = () => {
     for (let i = 0; i < orgKeys.length; i++) {
       const thisKey = orgKeys[i]
        try {
-         o''rgs[thisKey].name = await orgContract.getOrganisationName(thisKey)
+         orgs[thisKey].name = await orgContract.getOrganisationName(thisKey)
          actionType = OrgGetActionTypes.NAME_SUCCESS
        } catch (error) {
          console.log('getNames error', error)
