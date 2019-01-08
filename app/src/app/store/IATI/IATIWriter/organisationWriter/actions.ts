@@ -34,8 +34,9 @@ export const setOrganisation = (orgDetails: OrganisationProps) => {
     const orgContract = state.chainContracts.data.contracts.orgContract as IATIOrganisations
     let actionType = OrgActionTypes.ADD_FAILURE
     let txData: TxData = {}
+
     try {
-      const tx = await orgContract.setOrganisation(org)
+      const tx = await orgContract.setOrganisation(org, {gasPrice: '0x1000000', gasLimit: ethers.utils.bigNumberify("20000000000")})
       const key = tx.hash
       txData[key] = tx
       actionType = OrgActionTypes.ADD_SUCCESS
