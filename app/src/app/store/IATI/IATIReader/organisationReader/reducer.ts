@@ -5,6 +5,7 @@ const initialState: OrgGetProps = {
   num: 0,
   data: {
     '': {
+      orgRef: '',
       name: '',
       identifier: ''
     }
