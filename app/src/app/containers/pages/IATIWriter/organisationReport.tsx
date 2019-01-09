@@ -18,6 +18,9 @@ import { setOrganisationReport } from '../../../store/IATI/IATIWriter/organisati
 
 import { LinearProgress } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
+import MenuItem from '@material-ui/core/MenuItem'
+import InputLabel from '@material-ui/core/InputLabel'
+import FormControl from '@material-ui/core/FormControl'
 import { Select } from 'formik-material-ui'
 
 import { OrganisationReport, Transaction } from '../../../utils/strings'
@@ -55,6 +58,7 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
 
   constructor (props: OrgReportWriterFormProps) {
    super(props)
+   console.log(props.orgs)
   }
 
   componentDidUpdate(previousProps: OrgReportWriterFormProps) {
@@ -75,6 +79,7 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
   }
 
   handleSubmit = (values: OrgReportProps, setSubmitting: Function, reset: Function) => {
+    console.log('Values: ', values)
     const submitting = !this.state.toggleSubmitting
     this.setState({txKey: '', txSummary: '', toggleSubmitting: submitting, submitFunc: setSubmitting, resetFunc: reset})
     setSubmitting(submitting)
@@ -95,11 +100,23 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
             }}
             render={(formProps: FormikProps<OrgReportProps>) => (
               <Form>
-                <Field
-                  name='orgIdentifier'
-                  label={OrganisationReport.orgIdentifier}
-                  component={Select}
-                />
+                <FormControl>
+                //<InputLabel htmlFor="orgIdentifier">Org Identifier</InputLabel>
+                  <Field
+                    label={OrganisationReport.orgIdentifier}
+                    component={Select}
+                    inputProps={{
+                      name: 'orgIdentifier',
+                      id: 'orgIdentifier',
+                    }}
+
+                  >
+                    <MenuItem value="dogs">Dogs</MenuItem>
+                    <MenuItem value="cats">Cats</MenuItem>
+                    <MenuItem value="rats">Rats</MenuItem>
+                    <MenuItem value="snakes">Snakes</MenuItem>
+                  </Field>
+                </FormControl>
                 <ErrorMessage name='orgIdentifier' />
                 <br />
                 {formProps.isSubmitting && <LinearProgress />}
