@@ -32,7 +32,7 @@ const getNumOrganisations = () => {
     let numOrgs = { num: 0 }
     try {
       const num = await orgContract.getNumOrganisations()
-      console.log('Num orgs: ', num)
+      //console.log('Num orgs: ', num)
       numOrgs.num = num.toNumber()
       actionType = OrgGetActionTypes.NUM_SUCCESS
     } catch (error) {
