@@ -13,7 +13,8 @@ import { setOrganisation } from '../../../store/IATI/IATIWriter/organisationWrit
 
 import { LinearProgress } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
-import { TextField } from 'formik-material-ui'
+//import { TextField } from 'formik-material-ui'
+import { TextField } from "material-ui-formik-components"
 
 import { Organisation, Transaction } from '../../../utils/strings'
 

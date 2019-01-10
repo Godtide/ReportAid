@@ -30,16 +30,17 @@ export const setOrganisation = (orgDetails: OrganisationProps) => {
         name: orgDetails.name,
         identifier: orgDetails.code + '-' + orgDetails.identifier
     }
-    console.log('Org: ', org)
+    //console.log('Org: ', org)
     const orgContract = state.chainContracts.data.contracts.orgContract as IATIOrganisations
     let actionType = OrgActionTypes.ADD_FAILURE
     let txData: TxData = {}
 
-    let gasLimit = await state.chainInfo.data.provider.estimateGas(setOrganisation)
+    /*let gasLimit = await state.chainInfo.data.provider.estimateGas(setOrganisation)
     gasLimit *= 4
-    console.log('Gaslimit: ', gasLimit)
+    console.log('Gaslimit: ', gasLimit)*/
     try {
-      const tx = await orgContract.setOrganisation(org, {gasLimit: gasLimit})
+      //const tx = await orgContract.setOrganisation(org, {gasLimit: gasLimit})
+      const tx = await orgContract.setOrganisation(org)
       const key = tx.hash
       txData[key] = tx
       actionType = OrgActionTypes.ADD_SUCCESS

@@ -10,8 +10,31 @@ export interface OrganisationProps {
   identifier: string
 }
 
-export interface OrgReportProps {
+export interface ReportingOrgProps {
   orgIdentifier: string
-  reportingOrgIdentifier: string
+  orgType: number
+  isSecondary: boolean
+}
+
+export interface ReportProps {
+  reportRef: string
+  reportingOrg: ReportingOrgProps
+  issuingOrgRef: string
   version: string
+  lang: string
+  currency: string
+  generatedTime: string
+  lastUpdatedTime: string
+}
+
+export interface OrgReportProps {
+  reportingOrgIdentifier: string
+  reportingOrgType: number
+  reportingOrgIsSecondary: boolean
+  issuingOrgRef: string
+  version: string
+  lang: string
+  currency: string
+  generatedTime: string
+  lastUpdatedTime: string
 }

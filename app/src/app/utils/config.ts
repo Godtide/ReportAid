@@ -28,7 +28,7 @@ class Contract {
   static organisationsABI = [
     "event SetOrganisation(bytes32 _orgRef, tuple(bytes32 orgRef, string name, string identifier) _org)",
 
-    "function setOrganisation(tuple(bytes32 orgRef, string name, string identifier) _org)",
+    "function setOrganisation(tuple(bytes32 orgRef, string name, string identifier) _org)@150000",
 
     "function getOrganisationExists(bytes32 _orgRef) view returns (bool)",
     "function getNumOrganisations() view returns (uint256)",
