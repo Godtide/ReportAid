@@ -1,6 +1,8 @@
 import { ThunkDispatch } from 'redux-thunk'
 import shortid from 'shortid'
 
+import { ethers } from 'ethers'
+
 import { ApplicationState } from '../../../store'
 import { IATIOrganisationReports } from '../../../../../blockchain/typechain/IATIOrganisationReports'
 
@@ -22,22 +24,23 @@ export const setOrganisationReport = (reportDetails: OrgReportProps) => {
     const state = getState()
     const date = new Date()
     const dateTime = date.toISOString()
-    const reportReference = shortid.generate()
 
     const orgReport: ReportProps = {
-      reportRef: reportReference,
+      reportRef:  ethers.utils.formatBytes32String(shortid.generate()),
       reportingOrg: {
-        orgIdentifier: reportDetails.reportingOrgIdentifier,
+        orgRef: reportDetails.reportingOrgIdentifier,
         orgType: reportDetails.reportingOrgType,
         isSecondary: reportDetails.reportingOrgIsSecondary
       },
       issuingOrgRef: reportDetails.issuingOrgRef,
-      version: reportDetails.version,
-      lang: reportDetails.lang,
-      currency: reportDetails.currency,
-      generatedTime: dateTime,
-      lastUpdatedTime: dateTime
+      version: ethers.utils.formatBytes32String(reportDetails.version),
+      lang: ethers.utils.formatBytes32String(reportDetails.lang),
+      currency: ethers.utils.formatBytes32String(reportDetails.currency),
+      generatedTime: ethers.utils.formatBytes32String(dateTime),
+      lastUpdatedTime: ethers.utils.formatBytes32String(dateTime)
     }
+
+    console.log('OrgReport: ', orgReport)
 
     const orgReportsContract = state.chainContracts.data.contracts.orgReportsContract as IATIOrganisationReports
     let actionType = OrgReportsActionTypes.ADD_FAILURE

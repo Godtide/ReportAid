@@ -11,7 +11,7 @@ export interface OrganisationProps {
 }
 
 export interface ReportingOrgProps {
-  orgIdentifier: string
+  orgRef: string
   orgType: number
   isSecondary: boolean
 }

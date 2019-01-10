@@ -42,7 +42,7 @@ class Contract {
     "event SetReport(bytes32 _reportRef, bytes32 _issuingOrgRef, tuple(bytes32 reportRef, tuple(bytes32 orgRef, uint8 orgType, bool isSecondary), bytes32 issuingOrgRef, bytes32 version, bytes32 lang, bytes32 currency, bytes32 generatedTime, bytes32 lastUpdatedTime) _report)",
     "event SetDocument(bytes32 _reportRef, bytes32 _docRef, tuple(bytes32 reportRef, bytes32 docRef, string title, bytes32 format, string url, bytes32 category, bytes32 countryCode, string desc, bytes32 lang, bytes32 date) _doc)",
 
-    "function setReport(tuple(bytes32 reportRef, tuple(bytes32 orgRef, uint8 orgType, bool isSecondary), bytes32 issuingOrgRef, bytes32 version, bytes32 lang, bytes32 currency, bytes32 generatedTime, bytes32 lastUpdatedTime) _report)",
+    "function setReport(tuple(bytes32 reportRef, tuple(bytes32 orgRef, uint8 orgType, bool isSecondary) reportingOrg, bytes32 issuingOrgRef, bytes32 version, bytes32 lang, bytes32 currency, bytes32 generatedTime, bytes32 lastUpdatedTime) _report)@500000",
 
     "function setDocument(tuple(bytes32 reportRef, bytes32 docRef, string title, bytes32 format, string url, bytes32 category, bytes32 countryCode, string desc, bytes32 lang, bytes32 date) _doc)",
 
@@ -114,6 +114,8 @@ class Helpers {
     {code: 80, type: "Academic, Training and Research"},
     {code: 90, type: "Other"}
   ]
+
+  static reportVersions = [ "2.03" ]
 }
 
 export { Paths, Blockchain, Contract, Helpers }

@@ -124,8 +124,8 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
     })
 
     let isSecondary = [
-      { value: 1, label: 'Yes' },
-      { value: 0, label: 'No' }
+      { value: 0, label: 'No' },
+      { value: 1, label: 'Yes' }
     ]
 
     let orgCodes: any = []
@@ -134,29 +134,37 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
       orgCodes.push({ value: value.code, label: value.type })
     })
 
-    /*
-    static reportingOrgIdentifier = 'Reporting Organisation Identifier'
-    static reportingOrgType = "Reporting Organisation Type"
-    static reportingOrgIsSecondary = "Is Reporting Organisation Secondary?"
-    static issuingOrgIdentifier = "Issuing Organisation"
-    static version = "Report Version"
-    static language = "Report Language"
-    static currency = "Report Currency"
-    */
+    let versions: any = []
+    Helpers.reportVersions.forEach( (value: any) => {
+      //console.log(value, value.code)
+      versions.push({ value: value, label: value })
+    })
+
+    let countries: any = []
+    Helpers.countryCodes.forEach( (value: any) => {
+      //console.log(value, value.code)
+      countries.push({ value: value, label: value })
+    })
+
+    let currencies: any = []
+    Helpers.currencyCodes.forEach( (value: any) => {
+      //console.log(value, value.code)
+      currencies.push({ value: value, label: value })
+    })
 
     return (
       <div>
         <h2>{OrganisationReport.headingOrgReportWriter}</h2>
         <div>
           <Formik
-            initialValues={ {reportingOrgIdentifier: orgRefs[0].label,
-                             reportingOrgType: orgCodes[0].label,
+            initialValues={ {reportingOrgIdentifier: orgRefs[0].value,
+                             reportingOrgType: orgCodes[0].value,
                              reportingOrgIsSecondary: isSecondary[0].value,
-                             issuingOrgRef: '',
-                             version: '',
-                             lang: '',
-                             currency: ''}
-                           }
+                             issuingOrgRef: orgRefs[0].value,
+                             version: versions[0].value,
+                             lang: countries[0].value,
+                             currency: currencies[0].value
+                            }}
             validationSchema={reportSchema}
             onSubmit={(values: OrgReportProps, actions: any) => {
               this.handleSubmit(values, actions.setSubmitting, actions.resetForm)
@@ -194,6 +202,30 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
                   options={orgRefs}
                 />
                 <ErrorMessage name='issuingOrgRef' />
+                <br />
+                <Field
+                  name="version"
+                  label={OrganisationReport.version}
+                  component={Select}
+                  options={versions}
+                />
+                <ErrorMessage name='version' />
+                <br />
+                <Field
+                  name="lang"
+                  label={OrganisationReport.language}
+                  component={Select}
+                  options={countries}
+                />
+                <ErrorMessage name='lang' />
+                <br />
+                <Field
+                  name="currency"
+                  label={OrganisationReport.currency}
+                  component={Select}
+                  options={currencies}
+                />
+                <ErrorMessage name='currency' />
                 <br />
                 {formProps.isSubmitting && <LinearProgress />}
                 <br />
