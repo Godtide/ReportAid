@@ -21,7 +21,8 @@ import Button from '@material-ui/core/Button'
 import MenuItem from '@material-ui/core/MenuItem'
 import InputLabel from '@material-ui/core/InputLabel'
 import FormControl from '@material-ui/core/FormControl'
-import { Select } from 'formik-material-ui'
+//import { Select } from 'formik-material-ui'
+import { Select } from "material-ui-formik-components"
 
 import { OrganisationReport, Transaction } from '../../../utils/strings'
 
@@ -100,23 +101,17 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
             }}
             render={(formProps: FormikProps<OrgReportProps>) => (
               <Form>
-                <FormControl>
-                //<InputLabel htmlFor="orgIdentifier">Org Identifier</InputLabel>
-                  <Field
-                    label={OrganisationReport.orgIdentifier}
-                    component={Select}
-                    inputProps={{
-                      name: 'orgIdentifier',
-                      id: 'orgIdentifier',
-                    }}
-
-                  >
-                    <MenuItem value="dogs">Dogs</MenuItem>
-                    <MenuItem value="cats">Cats</MenuItem>
-                    <MenuItem value="rats">Rats</MenuItem>
-                    <MenuItem value="snakes">Snakes</MenuItem>
-                  </Field>
-                </FormControl>
+                <Field
+                  required
+                  name="orgIdentifier"
+                  label={OrganisationReport.orgIdentifier}
+                  component={Select}
+                  options={[
+                    { value: "Male", label: "Male" },
+                    { value: "Female", label: "Female" },
+                    { value: "Other", label: "Other" }
+                  ]}
+                />
                 <ErrorMessage name='orgIdentifier' />
                 <br />
                 {formProps.isSubmitting && <LinearProgress />}
