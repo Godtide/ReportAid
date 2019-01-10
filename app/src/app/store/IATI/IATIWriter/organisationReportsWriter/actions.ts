@@ -34,7 +34,7 @@ export const setOrganisationReport = (reportDetails: OrgReportProps) => {
       txData[key] = tx
       actionType = OrgReportsActionTypes.ADD_SUCCESS
     } catch (error) {
-      console.log('setOrgReports error', error)
+      console.log('setReport error', error)
     }
     //console.log('Adding tx: ', txData, actionType)
     dispatch(add({data: {data: txData}})(actionType))
