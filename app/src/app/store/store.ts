@@ -5,7 +5,7 @@ import ReduxThunk, { ThunkAction } from 'redux-thunk'
 
 import { ActionProps } from './types'
 import { OrgProps } from './IATI/IATIWriter/organisationWriter/types'
-import { OrgReportsProps } from './IATI/IATIWriter/organisationReportsWriter/types'
+import { ReportWriterProps } from './IATI/IATIWriter/organisationReportsWriter/types'
 import { OrgGetProps } from './IATI/IATIReader/organisationReader/types'
 import { InfoProps } from './info/types'
 import { InfoProps as BlockchainInfoProps } from  './blockchain/info/types'
@@ -40,7 +40,7 @@ export interface ApplicationState {
   writer: InfoProps
   reader: InfoProps
   orgForm: OrgProps
-  orgReportsForm: OrgReportsProps
+  orgReportsForm: ReportWriterProps
   orgReader: OrgGetProps
 }
 

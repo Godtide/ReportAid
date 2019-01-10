@@ -1,6 +1,6 @@
 import { PayloadProps, TxData } from '../../../types'
 
-export interface OrgReportsProps extends PayloadProps {
+export interface ReportWriterProps extends PayloadProps {
   data: TxData
 }
 

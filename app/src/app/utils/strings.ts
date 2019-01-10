@@ -103,8 +103,25 @@ class Organisation {
   static orgName = 'Name'
   static code = 'Code'
   static identifier = 'Identifier'
-  //static reference = 'Reference'
-  //static type = 'Type'
+
+  static orgCodes = [
+    {code: "10", type: "Government"},
+    {code: "11", type: "Local Government"},
+    {code: "15", type: "Other Public Sector"},
+    {code: "21", type: "International NGO"},
+    {code: "22", type: "National NGO"},
+    {code: "23", type: "Regional NGO"},
+    {code: "24", type: "Partner Country based NGO"},
+    {code: "30", type: "Public Private Partnership"},
+    {code: "40", type: "Multilateral"},
+    {code: "60", type: "Foundation"},
+    {code: "70", type: "Private Sector"},
+    {code: "71", type: "Private Sector in Provider Country"},
+    {code: "72", type: "Private Sector in Aid Recipient Country"},
+    {code: "73", type: "Private Sector in Third Country"},
+    {code: "80", type: "Academic, Training and Research"},
+    {code: "90", type: "Other"}
+  ]
 
   static numOrgs = 'Number of Organisations'
 }
@@ -114,9 +131,8 @@ class OrganisationReport {
   static headingOrgReportWriter = 'Create Organisation Report'
   static headingOrgReportReader = 'Read Organisation Report'
 
-  static reportingOrgIdentifier = 'Reporting Org\' Identifier'
-  //static reference = 'Reference'
-  //static type = 'Type'
+  static reportingOrgIdentifier = 'Reporting Organisation Identifier'
+  static reportingOrgType = "Reporting Organisation Type"
 
   static numOrgs = 'Number of Organisations'
 }

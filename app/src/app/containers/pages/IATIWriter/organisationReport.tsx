@@ -18,13 +18,10 @@ import { setOrganisationReport } from '../../../store/IATI/IATIWriter/organisati
 
 import { LinearProgress } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
-import MenuItem from '@material-ui/core/MenuItem'
-import InputLabel from '@material-ui/core/InputLabel'
-import FormControl from '@material-ui/core/FormControl'
 //import { Select } from 'formik-material-ui'
 import { Select } from "material-ui-formik-components"
 
-import { Helpers, OrganisationReport, Transaction } from '../../../utils/strings'
+import { Helpers, Organisation, OrganisationReport, Transaction } from '../../../utils/strings'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
@@ -39,10 +36,37 @@ export interface OrgDispatchProps {
   getOrgs: () => void
 }
 
-const organisationSchema = Yup.object().shape({
-  orgIdentifier: Yup
+/* reportingOrgIdentifier: '',
+                 reportingOrgType: 0,
+                 reportingOrgIsSecondary: false,
+                 issuingOrgRef: '',
+                 version: 'reportingOrgType',
+                 lang: '',
+                 currency: ''}
+                 */
+
+const reportSchema = Yup.object().shape({
+  reportingOrgIdentifier: Yup
     .string()
-    .required('Required')
+    .required('Required'),
+  reportingOrgType: Yup
+    .string()
+    .required('Required'),
+  reportingOrgIsSecondary: Yup
+    .string()
+    .required('Required'),
+  issuingOrgRef: Yup
+    .string()
+    .required('Required'),
+  version: Yup
+    .string()
+    .required('Required'),
+  lang: Yup
+    .string()
+    .required('Required'),
+  currency: Yup
+    .string()
+    .required('Required'),
 })
 
 type OrgReportWriterFormProps = WithStyles<typeof styles> & OrgProps & OrgDispatchProps
@@ -59,7 +83,7 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
 
   constructor (props: OrgReportWriterFormProps) {
    super(props)
-   console.log(props.orgs)
+   //console.log(props.orgs)
   }
 
   componentDidMount() {
@@ -99,6 +123,12 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
       orgRefs.push({ value: key, label: this.props.orgs[key].name })
     })
 
+    let orgCodes: any = []
+    Organisation.orgCodes.forEach( value => {
+      //console.log(value, value.code)
+      orgCodes.push({ value: value.code, label: value.type })
+    })
+
     /*
     function setReport(tuple(bytes32 reportRef,
                         tuple(bytes32 orgRef, uint8 orgType, bool isSecondary),
@@ -110,7 +140,6 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
                         bytes32 lastUpdatedTime) _report)",
 
                         export interface OrgReportProps {
-                          reportRef: string
                           reportingOrgIdentifier: string
                           reportingOrgType: number
                           reportingOrgisSecondary: boolean
@@ -118,11 +147,8 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
                           version: string
                           lang: string
                           currency: string
-                          generatedTime: string
-                          lastUpdatedTime: string
                         }
                         */
-
 
     return (
       <div>
@@ -133,26 +159,31 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
                              reportingOrgType: 0,
                              reportingOrgIsSecondary: false,
                              issuingOrgRef: '',
-                             version: '',
+                             version: 'reportingOrgType',
                              lang: '',
-                             currency: '',
-                             generatedTime: '',
-                             lastUpdatedTime: ''}
+                             currency: ''}
                            }
-            validationSchema={organisationSchema}
+            validationSchema={reportSchema}
             onSubmit={(values: OrgReportProps, actions: any) => {
               this.handleSubmit(values, actions.setSubmitting, actions.resetForm)
             }}
             render={(formProps: FormikProps<OrgReportProps>) => (
               <Form>
                 <Field
-                  required
                   name="reportingOrgIdentifier"
                   label={OrganisationReport.reportingOrgIdentifier}
                   component={Select}
                   options={orgRefs}
                 />
-                <ErrorMessage name='orgIdentifier' />
+                <ErrorMessage name='reportingOrgIdentifier' />
+                <br />
+                <Field
+                  name="reportingOrgType"
+                  label={OrganisationReport.reportingOrgType}
+                  component={Select}
+                  options={orgCodes}
+                />
+                <ErrorMessage name='reportingOrgType' />
                 <br />
                 {formProps.isSubmitting && <LinearProgress />}
                 <br />

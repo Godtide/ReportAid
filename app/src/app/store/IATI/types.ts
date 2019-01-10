@@ -35,6 +35,4 @@ export interface OrgReportProps {
   version: string
   lang: string
   currency: string
-  generatedTime: string
-  lastUpdatedTime: string
 }
