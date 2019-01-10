@@ -21,7 +21,8 @@ import Button from '@material-ui/core/Button'
 //import { Select } from 'formik-material-ui'
 import { Select } from "material-ui-formik-components"
 
-import { Helpers, Organisation, OrganisationReport, Transaction } from '../../../utils/strings'
+import { Organisation, OrganisationReport, Transaction } from '../../../utils/strings'
+import { Helpers } from '../../../utils/config'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
@@ -83,7 +84,6 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
 
   constructor (props: OrgReportWriterFormProps) {
    super(props)
-   //console.log(props.orgs)
   }
 
   componentDidMount() {
@@ -123,43 +123,37 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
       orgRefs.push({ value: key, label: this.props.orgs[key].name })
     })
 
+    let isSecondary = [
+      { value: 1, label: 'Yes' },
+      { value: 0, label: 'No' }
+    ]
+
     let orgCodes: any = []
-    Organisation.orgCodes.forEach( value => {
+    Helpers.organisationCodes.forEach( (value: any) => {
       //console.log(value, value.code)
       orgCodes.push({ value: value.code, label: value.type })
     })
 
     /*
-    function setReport(tuple(bytes32 reportRef,
-                        tuple(bytes32 orgRef, uint8 orgType, bool isSecondary),
-                        bytes32 issuingOrgRef,
-                        bytes32 version,
-                        bytes32 lang,
-                        bytes32 currency,
-                        bytes32 generatedTime,
-                        bytes32 lastUpdatedTime) _report)",
-
-                        export interface OrgReportProps {
-                          reportingOrgIdentifier: string
-                          reportingOrgType: number
-                          reportingOrgisSecondary: boolean
-                          issuingOrgRef: string
-                          version: string
-                          lang: string
-                          currency: string
-                        }
-                        */
+    static reportingOrgIdentifier = 'Reporting Organisation Identifier'
+    static reportingOrgType = "Reporting Organisation Type"
+    static reportingOrgIsSecondary = "Is Reporting Organisation Secondary?"
+    static issuingOrgIdentifier = "Issuing Organisation"
+    static version = "Report Version"
+    static language = "Report Language"
+    static currency = "Report Currency"
+    */
 
     return (
       <div>
         <h2>{OrganisationReport.headingOrgReportWriter}</h2>
         <div>
           <Formik
-            initialValues={ {reportingOrgIdentifier: '',
-                             reportingOrgType: 0,
-                             reportingOrgIsSecondary: false,
+            initialValues={ {reportingOrgIdentifier: orgRefs[0].label,
+                             reportingOrgType: orgCodes[0].label,
+                             reportingOrgIsSecondary: isSecondary[0].value,
                              issuingOrgRef: '',
-                             version: 'reportingOrgType',
+                             version: '',
                              lang: '',
                              currency: ''}
                            }
@@ -184,6 +178,22 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
                   options={orgCodes}
                 />
                 <ErrorMessage name='reportingOrgType' />
+                <br />
+                <Field
+                  name="reportingOrgIsSecondary"
+                  label={OrganisationReport.reportingOrgIsSecondary}
+                  component={Select}
+                  options={isSecondary}
+                />
+                <ErrorMessage name='reportingOrgIsSecondary' />
+                <br />
+                <Field
+                  name="issuingOrgRef"
+                  label={OrganisationReport.issuingOrgIdentifier}
+                  component={Select}
+                  options={orgRefs}
+                />
+                <ErrorMessage name='issuingOrgRef' />
                 <br />
                 {formProps.isSubmitting && <LinearProgress />}
                 <br />
