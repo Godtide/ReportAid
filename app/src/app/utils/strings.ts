@@ -113,7 +113,7 @@ class OrganisationReport {
   static language = "Report Language"
   static currency = "Report Currency"
 
-  static numOrgs = 'Number of Organisations'
+  static numOrgReportss = 'Number of Organisation Reports'
 }
 
 export { App, Paths, Blockchain, Home, About, Overview, Help, IATIWriter, IATIReader, Transaction, Organisation, OrganisationReport }

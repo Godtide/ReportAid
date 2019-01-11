@@ -8,7 +8,7 @@ import { IATIOrganisationReports } from '../../../../../blockchain/typechain/IAT
 
 import { storeAction } from '../../../actions'
 import { ActionProps, PayloadProps, TxData } from '../../../types'
-import { OrgReportProps, ReportProps } from '../../types'
+import { OrgReportProps, IATIOrgReportProps } from '../../types'
 
 import { OrgReportsActionTypes, ReportWriterProps } from './types'
 
@@ -25,7 +25,7 @@ export const setOrganisationReport = (reportDetails: OrgReportProps) => {
     const date = new Date()
     const dateTime = date.toISOString()
 
-    const orgReport: ReportProps = {
+    const orgReport: IATIOrgReportProps = {
       version: ethers.utils.formatBytes32String(reportDetails.version),
       orgRef: reportDetails.orgRef,
       reportRef:  ethers.utils.formatBytes32String(shortid.generate()),
