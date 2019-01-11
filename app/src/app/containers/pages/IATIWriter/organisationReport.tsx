@@ -127,8 +127,8 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
     })
 
     let isSecondary = [
-      { value: 0, label: 'No' },
-      { value: 1, label: 'Yes' }
+      { value: false, label: 'No' },
+      { value: true, label: 'Yes' }
     ]
 
     let countries: any = []

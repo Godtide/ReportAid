@@ -103,6 +103,10 @@ contract IATIOrganisationReports is OrganisationReports {
     return orgReferences.length;
   }
 
+  function getOrganisationReference(uint256 _index) view returns (bytes32) {
+    return orgReferences[_index];
+  }
+
   function getNumReports(bytes32 _orgRef) public view returns (uint256) {
     require (_orgRef[0] != 0);
 

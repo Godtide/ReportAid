@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { ThunkDispatch } from 'redux-thunk'
 import Markdown from 'react-markdown'
 
-import { getOrgReports } from '../../../store/IATI/IATIReader/organisationReader/actions'
+import { getOrgReports } from '../../../store/IATI/IATIReader/organisationReportReader/actions'
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
@@ -48,7 +48,7 @@ export class OrgReportReader extends React.Component<OrgReportReaderProps> {
           <b>{OrgReportStrings.numOrgReports}</b>: {this.props.num}
         </p>
         <hr />
-        <h3>{OrgReportStrings.orgDetails}</h3>
+        <h3>{OrgReportStrings.orgReportDetails}</h3>
         <Markdown escapeHtml={false} source={orgs} />
       </div>
     )
@@ -58,8 +58,8 @@ export class OrgReportReader extends React.Component<OrgReportReaderProps> {
 const mapStateToProps = (state: ApplicationState): OrgReportProps => {
   //console.log(state.orgReader)
   return {
-    num: state.orgReader.num,
-    orgs: state.orgReader.data
+    num: state.orgReportsReader.num,
+    orgReports: state.orgReportsReader.data
   }
 }
 

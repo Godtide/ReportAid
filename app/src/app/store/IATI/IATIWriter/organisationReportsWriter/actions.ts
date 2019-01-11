@@ -10,11 +10,11 @@ import { storeAction } from '../../../actions'
 import { ActionProps, PayloadProps, TxData } from '../../../types'
 import { OrgReportProps, IATIOrgReportProps } from '../../types'
 
-import { OrgReportsActionTypes, ReportWriterProps } from './types'
+import { OrgReportsWriterActionTypes, OrgReportWriterProps } from './types'
 
 const add = (payload: PayloadProps): Function => {
-  return (actionType: OrgReportsActionTypes): ReportWriterProps => {
-    const writerProps = storeAction(actionType)(payload) as ReportWriterProps
+  return (actionType: OrgReportsWriterActionTypes): OrgReportWriterProps => {
+    const writerProps = storeAction(actionType)(payload) as OrgReportWriterProps
     return writerProps
   }
 }
@@ -42,14 +42,14 @@ export const setOrganisationReport = (reportDetails: OrgReportProps) => {
     //console.log('OrgReport: ', orgReport)
 
     const orgReportsContract = state.chainContracts.data.contracts.orgReportsContract as IATIOrganisationReports
-    let actionType = OrgReportsActionTypes.ADD_FAILURE
+    let actionType = OrgReportsWriterActionTypes.ADD_FAILURE
     let txData: TxData = {}
     try {
       // setReport(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, bytes32 _version, bytes32 _generatedTime)
       const tx = await orgReportsContract.setReport(orgReport)
       const key = tx.hash
       txData[key] = tx
-      actionType = OrgReportsActionTypes.ADD_SUCCESS
+      actionType = OrgReportsWriterActionTypes.ADD_SUCCESS
     } catch (error) {
       console.log('setReport error', error)
     }

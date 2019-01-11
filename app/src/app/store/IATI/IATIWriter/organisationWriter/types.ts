@@ -1,10 +1,10 @@
 import { PayloadProps, TxData } from '../../../types'
 
-export interface OrgProps extends PayloadProps {
+export interface OrgWriterProps extends PayloadProps {
   data: TxData
 }
 
-export const enum OrgActionTypes {
+export const enum OrgWriterActionTypes {
   ADD_SUCCESS = '@@OrgWriterAction/ADD_SUCCESS',
   ADD_FAILURE = '@@OrgWriterAction/ADD_FAILURE'
 }

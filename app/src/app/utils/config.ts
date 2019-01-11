@@ -50,6 +50,7 @@ class Contract {
     "function getReportDocExists(bytes32 reportRef, bytes32 docRef)  view returns (bool)",
 
     "function getNumOrgs()  view returns (uint256)",
+    "function getOrganisationReference(uint256 _index) view returns (bytes32)",
     "function getNumReports(bytes32 orgRef)  view returns (uint256)",
     "function getNumReportDocs(bytes32 reportRef)  view returns (uint256)",
 

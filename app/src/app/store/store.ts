@@ -4,9 +4,10 @@ import { combineReducers, Reducer, Store, createStore, applyMiddleware } from 'r
 import ReduxThunk, { ThunkAction } from 'redux-thunk'
 
 import { ActionProps } from './types'
-import { OrgProps } from './IATI/IATIWriter/organisationWriter/types'
-import { ReportWriterProps } from './IATI/IATIWriter/organisationReportsWriter/types'
-import { OrgGetProps } from './IATI/IATIReader/organisationReader/types'
+import { OrgWriterProps } from './IATI/IATIWriter/organisationWriter/types'
+import { OrgReportWriterProps } from './IATI/IATIWriter/organisationReportsWriter/types'
+import { OrgReaderProps } from './IATI/IATIReader/organisationReader/types'
+import { OrgReportReaderProps } from './IATI/IATIReader/organisationReportReader/types'
 import { InfoProps } from './info/types'
 import { InfoProps as BlockchainInfoProps } from  './blockchain/info/types'
 import { AccountProps } from  './blockchain/account/types'
@@ -24,6 +25,7 @@ import { reducer as IATIReaderInfoReducer } from './info/IATIReader/reducer'
 import { reducer as orgWriterReducer } from './IATI/IATIWriter/organisationWriter/reducer'
 import { reducer as orgReportsWriterReducer } from './IATI/IATIWriter/organisationReportsWriter/reducer'
 import { reducer as orgReaderReducer } from './IATI/IATIReader/organisationReader/reducer'
+import { reducer as orgReportsReaderReducer } from './IATI/IATIReader/organisationReportReader/reducer'
 
 export type ThunkResult<R> = ThunkAction<R, ApplicationState, null, any>
 
@@ -39,9 +41,10 @@ export interface ApplicationState {
   overview: InfoProps
   writer: InfoProps
   reader: InfoProps
-  orgForm: OrgProps
-  orgReportsForm: ReportWriterProps
-  orgReader: OrgGetProps
+  orgForm: OrgWriterProps
+  orgReportsForm: OrgReportWriterProps
+  orgReader: OrgReaderProps
+  orgReportsReader: OrgReportReaderProps
 }
 
 export const rootReducer: Reducer<ApplicationState, ActionProps> = combineReducers<ApplicationState, ActionProps>({
@@ -56,7 +59,8 @@ export const rootReducer: Reducer<ApplicationState, ActionProps> = combineReduce
   reader: IATIReaderInfoReducer,
   orgForm: orgWriterReducer,
   orgReportsForm: orgReportsWriterReducer,
-  orgReader: orgReaderReducer
+  orgReader: orgReaderReducer,
+  orgReportsReader: orgReportsReaderReducer
 })
 
 export function configureStore(

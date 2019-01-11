@@ -10,11 +10,11 @@ import { storeAction } from '../../../actions'
 import { ActionProps, PayloadProps, TxData } from '../../../types'
 import { OrganisationProps, IATIOrgProps } from '../../types'
 
-import { OrgActionTypes, OrgProps } from './types'
+import { OrgWriterActionTypes, OrgWriterProps } from './types'
 
 const add = (payload: PayloadProps): Function => {
-  return (actionType: OrgActionTypes): OrgProps => {
-    const writerProps = storeAction(actionType)(payload) as OrgProps
+  return (actionType: OrgWriterActionTypes): OrgWriterProps => {
+    const writerProps = storeAction(actionType)(payload) as OrgWriterProps
     return writerProps
   }
 }
@@ -32,7 +32,7 @@ export const setOrganisation = (orgDetails: OrganisationProps) => {
     }
     //console.log('Org: ', org)
     const orgContract = state.chainContracts.data.contracts.orgContract as IATIOrganisations
-    let actionType = OrgActionTypes.ADD_FAILURE
+    let actionType = OrgWriterActionTypes.ADD_FAILURE
     let txData: TxData = {}
 
     /*let gasLimit = await state.chainInfo.data.provider.estimateGas(setOrganisation)
@@ -43,7 +43,7 @@ export const setOrganisation = (orgDetails: OrganisationProps) => {
       const tx = await orgContract.setOrganisation(org)
       const key = tx.hash
       txData[key] = tx
-      actionType = OrgActionTypes.ADD_SUCCESS
+      actionType = OrgWriterActionTypes.ADD_SUCCESS
     } catch (error) {
       console.log('setOrganisation error', error)
     }

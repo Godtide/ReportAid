@@ -6,7 +6,7 @@ import { IATIOrganisations } from '../../../../../blockchain/typechain/IATIOrgan
 import { storeAction } from '../../../actions'
 import { ActionProps, PayloadProps } from '../../../types'
 
-import { OrgGetActionTypes, OrgGetProps, OrgData } from './types'
+import { OrgReaderActionTypes, OrgReaderProps, OrgData } from './types'
 
 export const getOrgs = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>) => {
@@ -19,8 +19,8 @@ export const getOrgs = () => {
 }
 
 const get = (payload: PayloadProps): Function => {
-  return (actionType: OrgGetActionTypes): OrgGetProps => {
-    const getProps = storeAction(actionType)(payload) as OrgGetProps
+  return (actionType: OrgReaderActionTypes): OrgReaderProps => {
+    const getProps = storeAction(actionType)(payload) as OrgReaderProps
     return getProps
   }
 }
@@ -29,13 +29,13 @@ const getNumOrganisations = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
     const orgContract = state.chainContracts.data.contracts.orgContract as IATIOrganisations
-    let actionType = OrgGetActionTypes.NUM_FAILURE
+    let actionType = OrgReaderActionTypes.NUM_FAILURE
     let numOrgs = { num: 0 }
     try {
       const num = await orgContract.getNumOrganisations()
       //console.log('Num orgs: ', num)
       numOrgs.num = num.toNumber()
-      actionType = OrgGetActionTypes.NUM_SUCCESS
+      actionType = OrgReaderActionTypes.NUM_SUCCESS
     } catch (error) {
       console.log('getNumOrganisations error', error)
     }
@@ -49,7 +49,7 @@ const getReferences = () => {
     const orgContract = state.chainContracts.data.contracts.orgContract as IATIOrganisations
     const numOrgs = state.orgReader.num
     let orgRefs: OrgData = {}
-    let actionType = OrgGetActionTypes.REF_FAILURE
+    let actionType = OrgReaderActionTypes.REF_FAILURE
     for (let i = 0; i < numOrgs; i++) {
        try {
          const ref = await orgContract.getOrganisationReference(i.toString())
@@ -59,7 +59,7 @@ const getReferences = () => {
            name: '',
            identifier: ''
          }
-         actionType = OrgGetActionTypes.REF_SUCCESS
+         actionType = OrgReaderActionTypes.REF_SUCCESS
        } catch (error) {
          console.log('getReferences error', error)
        }
@@ -73,7 +73,7 @@ const getOrgData = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
     const orgContract = state.chainContracts.data.contracts.orgContract as IATIOrganisations
-    let actionType = OrgGetActionTypes.ORG_FAILURE
+    let actionType = OrgReaderActionTypes.ORG_FAILURE
     const orgs = state.orgReader.data
     const orgKeys = Object.keys(orgs)
     //console.log('Orgkeys: ', orgKeys)
@@ -84,7 +84,7 @@ const getOrgData = () => {
          //console.log ('Org stuff: ', data)
          orgs[thisKey].name = data[1]
          orgs[thisKey].identifier = data[2]
-         actionType = OrgGetActionTypes.ORG_SUCCESS
+         actionType = OrgReaderActionTypes.ORG_SUCCESS
        } catch (error) {
          console.log('getOrgs error', error)
        }
@@ -98,7 +98,7 @@ const getNames = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
     const orgContract = state.chainContracts.data.contracts.orgContract as IATIOrganisations
-    let actionType = OrgGetActionTypes.NAME_FAILURE
+    let actionType = OrgReaderActionTypes.NAME_FAILURE
     const orgs = state.orgReader.data
     const orgKeys = Object.keys(orgs)
     //console.log('Orgkeys: ', orgKeys)
@@ -106,7 +106,7 @@ const getNames = () => {
       const thisKey = orgKeys[i]
        try {
          orgs[thisKey].name = await orgContract.getOrganisationName(thisKey)
-         actionType = OrgGetActionTypes.NAME_SUCCESS
+         actionType = OrgReaderActionTypes.NAME_SUCCESS
        } catch (error) {
          console.log('getNames error', error)
        }
@@ -120,7 +120,7 @@ const getIDs = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
     const orgContract = state.chainContracts.data.contracts.orgContract as IATIOrganisations
-    let actionType = OrgGetActionTypes.ID_FAILURE
+    let actionType = OrgReaderActionTypes.ID_FAILURE
     const orgs = state.orgReader.data
     const orgKeys = Object.keys(orgs)
     //console.log('Orgkeys: ', orgKeys)
@@ -128,7 +128,7 @@ const getIDs = () => {
       const thisKey = orgKeys[i]
        try {
          orgs[thisKey].identifier = await orgContract.getOrganisationIdentifier(thisKey)
-         actionType = OrgGetActionTypes.ID_SUCCESS
+         actionType = OrgReaderActionTypes.ID_SUCCESS
        } catch (error) {
          console.log('getIDs error', error)
        }

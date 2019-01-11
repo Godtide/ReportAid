@@ -1,15 +1,15 @@
-import { OrgReportsActionTypes, ReportWriterProps  } from './types'
+import { OrgReportsWriterActionTypes, OrgReportWriterProps  } from './types'
 import { ActionProps, TxData } from '../../../types'
 
-const initialState: ReportWriterProps = {
+const initialState: OrgReportWriterProps = {
   data: {
     '': {}
   }
 }
 
-export const reducer = (state: ReportWriterProps = initialState, action: ActionProps): ReportWriterProps => {
-  if ( (action.type == OrgReportsActionTypes.ADD_SUCCESS ) ||
-       (action.type == OrgReportsActionTypes.ADD_FAILURE )
+export const reducer = (state: OrgReportWriterProps = initialState, action: ActionProps): OrgReportWriterProps => {
+  if ( (action.type == OrgReportsWriterActionTypes.ADD_SUCCESS ) ||
+       (action.type == OrgReportsWriterActionTypes.ADD_FAILURE )
      ) {
     //console.log('Orgstate: ', state, action)
     //const data: OrgWriterProps = {...state, ...action.payload.data}

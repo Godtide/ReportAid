@@ -4,6 +4,12 @@ export interface IATIOrgProps {
   identifier: string
 }
 
+export interface ReportingOrgProps {
+  orgRef: string
+  orgType: number
+  isSecondary: boolean
+}
+
 export interface IATIOrgReportProps {
   version: string
   orgRef: string
@@ -18,12 +24,6 @@ export interface OrganisationProps {
   name: string
   code: string
   identifier: string
-}
-
-export interface ReportingOrgProps {
-  orgRef: string
-  orgType: number
-  isSecondary: boolean
 }
 
 export interface OrgReportProps {
