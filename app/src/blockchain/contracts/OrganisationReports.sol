@@ -51,7 +51,7 @@ contract OrganisationReports {
   function getReportDocExists(bytes32 _reportRef, bytes32 _docRef) public view returns (bool);
 
   function getNumOrgs() public view returns (uint256);
-  function getOrganisationReference(uint256 _index) view returns (bytes32)
+  function getOrganisationReference(uint256 _index) public view returns (bytes32);
   function getNumReports(bytes32 _orgRef) public view returns (uint256);
   function getNumReportDocs(bytes32 _reportRef) public view returns (uint256);
 
