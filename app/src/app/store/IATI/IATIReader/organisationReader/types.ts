@@ -17,6 +17,8 @@ export const enum OrgGetActionTypes {
   EXISTS_FAILURE = '@@OrgGetAction/GETEXISTS_FAILURE',
   REF_SUCCESS = '@@OrgGetAction/GETREFERENCE_SUCCESS',
   REF_FAILURE = '@@OrgGetAction/GETREFERENCE_FAILURE',
+  ORG_SUCCESS = '@@OrgGetAction/GETORG_SUCCESS',
+  ORG_FAILURE = '@@OrgGetAction/GETORG_FAILURE',
   NAME_SUCCESS = '@@OrgGetAction/GETNAME_SUCCESS',
   NAME_FAILURE = '@@OrgGetAction/GETNAME_FAILURE',
   ID_SUCCESS = '@@OrgGetAction/GETID_SUCCESS',

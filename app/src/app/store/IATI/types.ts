@@ -27,10 +27,10 @@ export interface ReportProps {
 }
 
 export interface OrgReportProps {
-  reportingOrgIdentifier: string
+  reportingOrgRef: string
   reportingOrgType: number
   reportingOrgIsSecondary: boolean
-  issuingOrgRef: string
+  orgRef: string
   version: string
   lang: string
   currency: string

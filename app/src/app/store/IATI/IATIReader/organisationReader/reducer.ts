@@ -36,7 +36,9 @@ export const reducer = (state: OrgGetProps = initialState, action: ActionProps):
 
        return data
 
-    } else if ( (action.type == OrgGetActionTypes.NAME_SUCCESS ) ||
+    } else if ( (action.type == OrgGetActionTypes.ORG_SUCCESS ) ||
+         (action.type == OrgGetActionTypes.ORG_FAILURE ) ||
+         (action.type == OrgGetActionTypes.NAME_SUCCESS ) ||
          (action.type == OrgGetActionTypes.NAME_FAILURE ) ||
          (action.type == OrgGetActionTypes.ID_SUCCESS ) ||
          (action.type == OrgGetActionTypes.ID_FAILURE ) ) {

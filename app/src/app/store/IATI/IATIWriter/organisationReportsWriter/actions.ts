@@ -39,7 +39,7 @@ export const setOrganisationReport = (reportDetails: OrgReportProps) => {
       lastUpdatedTime: ethers.utils.formatBytes32String(dateTime)
     }
 
-    console.log('OrgReport: ', orgReport)
+    //console.log('OrgReport: ', orgReport)
 
     const orgReportsContract = state.chainContracts.data.contracts.orgReportsContract as IATIOrganisationReports
     let actionType = OrgReportsActionTypes.ADD_FAILURE
