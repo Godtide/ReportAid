@@ -39,46 +39,42 @@ class Contract {
   ]
 
   static organisationReportsABI = [
-    "event SetReport(bytes32 _reportRef, bytes32 _issuingOrgRef, tuple(bytes32 reportRef, tuple(bytes32 orgRef, uint8 orgType, bool isSecondary), bytes32 issuingOrgRef, bytes32 version, bytes32 lang, bytes32 currency, bytes32 generatedTime, bytes32 lastUpdatedTime) _report)",
-    "event SetDocument(bytes32 _reportRef, bytes32 _docRef, tuple(bytes32 reportRef, bytes32 docRef, string title, bytes32 format, string url, bytes32 category, bytes32 countryCode, string desc, bytes32 lang, bytes32 date) _doc)",
+    "event SetReport(bytes32 orgRef, bytes32 reportRef, tuple(bytes32 version, bytes32 orgRef, bytes32 reportRef, tuple(bytes32 orgRef, uint8 orgType, bool isSecondary), bytes32 lang, bytes32 currency, bytes32 lastUpdatedTime) report)",
+    "event SetDocument(bytes32 reportRef, bytes32 docRef, tuple(bytes32 reportRef, bytes32 docRef, string title, bytes32 format, string url, bytes32 category, bytes32 countryCode, string desc, bytes32 lang, bytes32 date) doc)",
 
-    "function setReport(tuple(bytes32 reportRef, tuple(bytes32 orgRef, uint8 orgType, bool isSecondary) reportingOrg, bytes32 issuingOrgRef, bytes32 version, bytes32 lang, bytes32 currency, bytes32 generatedTime, bytes32 lastUpdatedTime) _report)@500000",
+    "function setReport(tuple(bytes32 version, bytes32 orgRef, bytes32 reportRef, tuple(bytes32 orgRef, uint8 orgType, bool isSecondary) reportingOrg, bytes32 lang, bytes32 currency, bytes32 lastUpdatedTime) report)@500000",
+    "function setDocument(tuple(bytes32 reportRef, bytes32 docRef, string title, bytes32 format, string url, bytes32 category, bytes32 countryCode, string desc, bytes32 lang, bytes32 date) doc)",
 
-    "function setDocument(tuple(bytes32 reportRef, bytes32 docRef, string title, bytes32 format, string url, bytes32 category, bytes32 countryCode, string desc, bytes32 lang, bytes32 date) _doc)",
+    "function getOrgExists(bytes32 orgRef)  view returns (bool)",
+    "function getReportExists(bytes32 orgRef, bytes32 reportRef)  view returns (bool)",
+    "function getReportDocExists(bytes32 reportRef, bytes32 docRef)  view returns (bool)",
 
-    "function getReportExists(bytes32 _reference) view returns (bool)",
-    "function getIssuingOrgExists(bytes32 _reference, bytes32 _orgRef) view returns (bool)",
-    "function getReportDocExists(bytes32 _reference, bytes32 _docRef) view returns (bool)",
+    "function getNumOrgs()  view returns (uint256)",
+    "function getNumReports(bytes32 orgRef)  view returns (uint256)",
+    "function getNumReportDocs(bytes32 reportRef)  view returns (uint256)",
 
-    "function getNumReports() view returns (uint256)",
-    "function getNumReportOrgs(bytes32 _reference) view returns (uint256)",
-    "function getNumReportDocs(bytes32 _reference) view returns (uint256)",
+    "function getReportReference(bytes32 orgRef, uint256 index)  view returns (bytes32)",
+    "function getReportDocReference(bytes32 docRef, uint256 index)  view returns (bytes32)",
 
-    "function getReportReference(uint256 _index) view returns (bytes32)",
-    "function getReportOrgReference(bytes32 _reference, uint256 _index) view returns (bytes32)",
-    "function getReportDocReference(bytes32 _reference, uint256 _index) view returns (bytes32)",
+    "function getReport(bytes32 orgRef, bytes32 reportRef)  view returns (Report memory)",
 
-    "function getReport(bytes32 _reference, bytes32 _orgRef) view returns (tuple(bytes32 reportRef, tuple (bytes32 orgRef, uint8 orgType, bool isSecondary), bytes32 issuingOrgRef, bytes32 version, bytes32 lang, bytes32 currency, bytes32 generatedTime, bytes32 lastUpdatedTime) _report)",
+    "function getLang(bytes32 orgRef, bytes32 reportRef)  view returns (bytes32)",
+    "function getCurrency(bytes32 orgRef, bytes32 reportRef)  view returns (bytes32)",
+    "function getVersion(bytes32 orgRef, bytes32 reportRef)  view returns (bytes32)",
+    "function getLastUpdatedTime(bytes32 orgRef, bytes32 reportRef)  view returns (bytes32)",
+    "function getReportingOrg(bytes32 orgRef, bytes32 reportRef)  view returns (bytes32)",
+    "function getReportingOrgType(bytes32 orgRef, bytes32 reportRef)  view returns (uint8)",
+    "function getReportingOrgIsSecondary(bytes32 orgRef, bytes32 reportRef)  view returns (bool)",
 
-    "function getReportingOrg(bytes32 _reference, bytes32 _orgRef) view returns (bytes32)",
-    "function getLang(bytes32 _reference, bytes32 _orgRef) view returns (bytes32)",
-    "function getCurrency(bytes32 _reference,  bytes32 _orgRef) view returns (bytes32)",
-    "function getVersion(bytes32 _reference,  bytes32 _orgRef) view returns (bytes32)",
-    "function getGeneratedTime(bytes32 _reference,  bytes32 _orgRef) view returns (bytes32)",
-    "function getLastUpdatedTime(bytes32 _reference,  bytes32 _orgRef) view returns (bytes32)",
-
-    "function getReportingOrgType(bytes32 _reference, bytes32 _reportingOrgRef) view returns (uint8)",
-    "function getReportingOrgIsSecondary(bytes32 _reference, bytes32 _reportingOrgRef) view returns (bool)",
-
-    "function getDocument(bytes32 _reference, bytes32 _docRef) view returns (tuple(bytes32 reportRef, bytes32 docRef, string title, bytes32 format, string url, bytes32 category, bytes32 countryCode, string desc, bytes32 lang, bytes32 date) _doc)",
-    "function getDocumentTitle(bytes32 _reference, bytes32 _docRef) view returns (string)",
-    "function getDocumentFormat(bytes32 _reference, bytes32 _docRef) view returns (bytes32)",
-    "function getDocumentURL(bytes32 _reference, bytes32 _docRef) view returns (string)",
-    "function getDocumentCategory(bytes32 _reference, bytes32 _docRef) view returns (bytes32)",
-    "function getDocumentCountry(bytes32 _reference, bytes32 _docRef) view returns (bytes32)",
-    "function getDocumentDescription(bytes32 _reference, bytes32 _docRef) view returns (string)",
-    "function getDocumentLang(bytes32 _reference, bytes32 _docRef) view returns (bytes32)",
-    "function getDocumentDate(bytes32 _reference, bytes32 _docRef) view returns (bytes32)",
+    "function getDocument(bytes32 reportRef, bytes32 docRef)  view returns (Document)",
+    "function getDocumentTitle(bytes32 reportRef, bytes32 docRef)  view returns (string)",
+    "function getDocumentFormat(bytes32 reportRef, bytes32 docRef)  view returns (bytes32)",
+    "function getDocumentURL(bytes32 reportRef, bytes32 docRef)  view returns (string memory)",
+    "function getDocumentCategory(bytes32 reportRef, bytes32 docRef)  view returns (bytes32)",
+    "function getDocumentCountry(bytes32 reportRef, bytes32 docRef)  view returns (bytes32)",
+    "function getDocumentDescription(bytes32 reportRef, bytes32 docRef)  view returns (string)",
+    "function getDocumentLang(bytes32 reportRef, bytes32 docRef)  view returns (bytes32)",
+    "function getDocumentDate(bytes32 reportRef, bytes32 docRef)  view returns (bytes32)"
   ]
 
   /* Ropsten addresses
@@ -86,8 +82,8 @@ class Contract {
   static organisationReportsAddress = "0x81759e5B8BCB38B05A678C2b98Eb17eaf4Ae9D71"
   */
 
-  static organisationsAddress = "0x2C757C6390D9186F7e35C0796256B17d650df017"
-  static organisationReportsAddress = "0x81759e5B8BCB38B05A678C2b98Eb17eaf4Ae9D71"
+  static organisationsAddress = "0x667CD537e1079044119438B0c8a62d59D557B55A"
+  static organisationReportsAddress = "0xcA5784A7c10A7CFC6480072FB46f0C54dFbFB989"
 }
 
 class Helpers {

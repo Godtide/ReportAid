@@ -17,13 +17,12 @@ export interface ReportingOrgProps {
 }
 
 export interface ReportProps {
+  version: string
+  orgRef: string
   reportRef: string
   reportingOrg: ReportingOrgProps
-  issuingOrgRef: string
-  version: string
   lang: string
   currency: string
-  generatedTime: string
   lastUpdatedTime: string
 }
 

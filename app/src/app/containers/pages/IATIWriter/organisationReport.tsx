@@ -37,29 +37,20 @@ export interface OrgDispatchProps {
   getOrgs: () => void
 }
 
-/* reportingOrgIdentifier: '',
-                 reportingOrgType: 0,
-                 reportingOrgIsSecondary: false,
-                 issuingOrgRef: '',
-                 version: 'reportingOrgType',
-                 lang: '',
-                 currency: ''}
-                 */
-
 const reportSchema = Yup.object().shape({
-  reportingOrgIdentifier: Yup
+  version: Yup
+    .string()
+    .required('Required'),
+  orgRef: Yup
+    .string()
+    .required('Required'),
+  reportingOrgRef: Yup
     .string()
     .required('Required'),
   reportingOrgType: Yup
     .string()
     .required('Required'),
   reportingOrgIsSecondary: Yup
-    .string()
-    .required('Required'),
-  issuingOrgRef: Yup
-    .string()
-    .required('Required'),
-  version: Yup
     .string()
     .required('Required'),
   lang: Yup
@@ -117,16 +108,17 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
 
   render() {
 
+    let versions: any = []
+    Helpers.reportVersions.forEach( (value: any) => {
+      //console.log(value, value.code)
+      versions.push({ value: value, label: value })
+    })
+
     //console.log('Props orgs: ', this.props.orgs)
     let orgRefs: any = []
     Object.keys(this.props.orgs).forEach((key) => {
       orgRefs.push({ value: key, label: this.props.orgs[key].name })
     })
-
-    let isSecondary = [
-      { value: 0, label: 'No' },
-      { value: 1, label: 'Yes' }
-    ]
 
     let orgCodes: any = []
     Helpers.organisationCodes.forEach( (value: any) => {
@@ -134,11 +126,10 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
       orgCodes.push({ value: value.code, label: value.type })
     })
 
-    let versions: any = []
-    Helpers.reportVersions.forEach( (value: any) => {
-      //console.log(value, value.code)
-      versions.push({ value: value, label: value })
-    })
+    let isSecondary = [
+      { value: 0, label: 'No' },
+      { value: 1, label: 'Yes' }
+    ]
 
     let countries: any = []
     Helpers.countryCodes.forEach( (value: any) => {
@@ -157,11 +148,11 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
         <h2>{OrganisationReport.headingOrgReportWriter}</h2>
         <div>
           <Formik
-            initialValues={ {reportingOrgIdentifier: orgRefs[0].value,
+            initialValues={ {version: versions[0].value,
+                             orgRef: orgRefs[0].value,
+                             reportingOrgRef: orgRefs[0].value,
                              reportingOrgType: orgCodes[0].value,
                              reportingOrgIsSecondary: isSecondary[0].value,
-                             issuingOrgRef: orgRefs[0].value,
-                             version: versions[0].value,
                              lang: countries[0].value,
                              currency: currencies[0].value
                             }}
@@ -172,12 +163,28 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
             render={(formProps: FormikProps<OrgReportProps>) => (
               <Form>
                 <Field
-                  name="reportingOrgIdentifier"
-                  label={OrganisationReport.reportingOrgIdentifier}
+                  name="version"
+                  label={OrganisationReport.version}
+                  component={Select}
+                  options={versions}
+                />
+                <ErrorMessage name='version' />
+                <br />
+                <Field
+                  name="orgRef"
+                  label={OrganisationReport.orgIdentifier}
                   component={Select}
                   options={orgRefs}
                 />
-                <ErrorMessage name='reportingOrgIdentifier' />
+                <ErrorMessage name='orgRef' />
+                <br />
+                <Field
+                  name="reportingOrgRef"
+                  label={OrganisationReport.reportingOrgRef}
+                  component={Select}
+                  options={orgRefs}
+                />
+                <ErrorMessage name='reportingOrgRef' />
                 <br />
                 <Field
                   name="reportingOrgType"
@@ -194,22 +201,6 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
                   options={isSecondary}
                 />
                 <ErrorMessage name='reportingOrgIsSecondary' />
-                <br />
-                <Field
-                  name="issuingOrgRef"
-                  label={OrganisationReport.issuingOrgIdentifier}
-                  component={Select}
-                  options={orgRefs}
-                />
-                <ErrorMessage name='issuingOrgRef' />
-                <br />
-                <Field
-                  name="version"
-                  label={OrganisationReport.version}
-                  component={Select}
-                  options={versions}
-                />
-                <ErrorMessage name='version' />
                 <br />
                 <Field
                   name="lang"

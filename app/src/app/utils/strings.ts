@@ -105,11 +105,11 @@ class OrganisationReport {
   static headingOrgReportWriter = 'Create Organisation Report'
   static headingOrgReportReader = 'Read Organisation Report'
 
-  static reportingOrgIdentifier = 'Reporting Organisation Identifier'
+  static version = "Report Version"
+  static orgIdentifier = "Report for Organisation"
+  static reportingOrgRef = 'Reporting Organisation Identifier'
   static reportingOrgType = "Reporting Organisation Type"
   static reportingOrgIsSecondary = "Is Reporting Organisation Secondary?"
-  static issuingOrgIdentifier = "Issuing Organisation"
-  static version = "Report Version"
   static language = "Report Language"
   static currency = "Report Currency"
 

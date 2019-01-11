@@ -26,17 +26,16 @@ export const setOrganisationReport = (reportDetails: OrgReportProps) => {
     const dateTime = date.toISOString()
 
     const orgReport: ReportProps = {
+      version: ethers.utils.formatBytes32String(reportDetails.version),
+      orgRef: reportDetails.orgRef,
       reportRef:  ethers.utils.formatBytes32String(shortid.generate()),
       reportingOrg: {
-        orgRef: reportDetails.reportingOrgIdentifier,
+        orgRef: reportDetails.reportingOrgRef,
         orgType: reportDetails.reportingOrgType,
         isSecondary: reportDetails.reportingOrgIsSecondary
       },
-      issuingOrgRef: reportDetails.issuingOrgRef,
-      version: ethers.utils.formatBytes32String(reportDetails.version),
       lang: ethers.utils.formatBytes32String(reportDetails.lang),
       currency: ethers.utils.formatBytes32String(reportDetails.currency),
-      generatedTime: ethers.utils.formatBytes32String(dateTime),
       lastUpdatedTime: ethers.utils.formatBytes32String(dateTime)
     }
 
