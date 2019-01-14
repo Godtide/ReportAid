@@ -18,7 +18,7 @@ export const reducer = (state: OrgReaderProps = initialState, action: ActionProp
   if ( typeof payload != 'undefined' ) {
     const payloadData = payload.data as OrgReaderProps
     if ( (action.type == OrgReaderActionTypes.NUM_SUCCESS ) ||
-         (action.type == OrgReaderActionTypes.NUM_SUCCESS ) ) {
+         (action.type == OrgReaderActionTypes.NUM_FAILURE ) ) {
 
       const data: OrgReaderProps = {
         num: payloadData.num,
@@ -37,11 +37,11 @@ export const reducer = (state: OrgReaderProps = initialState, action: ActionProp
        return data
 
     } else if ( (action.type == OrgReaderActionTypes.ORG_SUCCESS ) ||
-         (action.type == OrgReaderActionTypes.ORG_FAILURE ) ||
-         (action.type == OrgReaderActionTypes.NAME_SUCCESS ) ||
-         (action.type == OrgReaderActionTypes.NAME_FAILURE ) ||
-         (action.type == OrgReaderActionTypes.ID_SUCCESS ) ||
-         (action.type == OrgReaderActionTypes.ID_FAILURE ) ) {
+                (action.type == OrgReaderActionTypes.ORG_FAILURE ) ||
+                (action.type == OrgReaderActionTypes.NAME_SUCCESS ) ||
+                (action.type == OrgReaderActionTypes.NAME_FAILURE ) ||
+                (action.type == OrgReaderActionTypes.ID_SUCCESS ) ||
+                (action.type == OrgReaderActionTypes.ID_FAILURE ) ) {
 
        const data: OrgReaderProps  = {
          num: state.num,

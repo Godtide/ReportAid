@@ -39,6 +39,7 @@ var config = {
       {
         test: /\.js$/,
         use: ["source-map-loader"],
+        exclude: /node_modules/,
         enforce: "pre"
       },
       {
@@ -54,6 +55,7 @@ var config = {
       },
       {
         test: /\.(png|jpg|gif)$/i,
+        exclude: /node_modules/,
         use: [
           {
             loader: 'url-loader',

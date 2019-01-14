@@ -1,8 +1,13 @@
 import { PayloadProps, DictData } from '../../../types'
 import { IATIOrgReportProps } from '../../types'
 
-export interface ReportData extends DictData {
+export interface Report {
   [key: string]: IATIOrgReportProps
+}
+
+export interface ReportData {
+  num: number
+  data: Report
 }
 
 export interface OrgReportData extends DictData {
@@ -21,6 +26,10 @@ export const enum OrgReportReaderActionTypes {
   EXISTS_FAILURE = '@@OrgReportReaderAction/GETEXISTS_FAILURE',
   REF_SUCCESS = '@@OrgReportReaderAction/GETREFERENCE_SUCCESS',
   REF_FAILURE = '@@OrgReportReaderAction/GETREFERENCE_FAILURE',
-  REPORT_SUCCESS = '@@OrgReportReaderAction/GETORG_SUCCESS',
-  REPORT_FAILURE = '@@OrgReportReaderAction/GETORG_FAILURE'
+  NUMREP_SUCCESS = '@@OrgReportReaderAction/GETNUMREP_SUCCESS',
+  NUMREP_FAILURE = '@@OrgReportReaderAction/GETNUMREP_FAILURE',
+  REPORTREF_SUCCESS = '@@OrgReportReaderAction/GETREPORTREF_SUCCESS',
+  REPORTREF_FAILURE = '@@OrgReportReaderAction/GETREPORTREF_FAILURE',
+  REPORT_SUCCESS = '@@OrgReportReaderAction/GETREPORT_SUCCESS',
+  REPORT_FAILURE = '@@OrgReportReaderAction/GETREPORT_FAILURE'
 }

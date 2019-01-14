@@ -5,18 +5,21 @@ const initialState: OrgReportReaderProps = {
   num: 0,
   data: {
     '': {
-      '': {
-        version: '',
-        orgRef: '',
-        reportRef: '',
-        reportingOrg: {
+      num: 0,
+      data: {
+        '': {
+          version: '',
           orgRef: '',
-          orgType: 0,
-          isSecondary: false
-        },
-        lang: '',
-        currency: '',
-        lastUpdatedTime: ''
+          reportRef: '',
+          reportingOrg: {
+            orgRef: '',
+            orgType: 0,
+            isSecondary: false
+          },
+          lang: '',
+          currency: '',
+          lastUpdatedTime: ''
+        }
       }
     }
   }
@@ -46,8 +49,10 @@ export const reducer = (state: OrgReportReaderProps = initialState, action: Acti
 
        return data
 
-    } else if ( (action.type == OrgReportReaderActionTypes.REPORT_SUCCESS ) ||
-         (action.type == OrgReportReaderActionTypes.REPORT_FAILURE )  ) {
+    } else if ( (action.type == OrgReportReaderActionTypes.NUMREP_SUCCESS ) ||
+                (action.type == OrgReportReaderActionTypes.NUMREP_FAILURE ) ||
+                (action.type == OrgReportReaderActionTypes.REPORT_SUCCESS ) ||
+                (action.type == OrgReportReaderActionTypes.REPORT_FAILURE ) ) {
 
        const data: OrgReportReaderProps  = {
          num: state.num,
