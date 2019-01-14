@@ -147,9 +147,10 @@ const getOrgReportData = () => {
       const orgReportRefKeys = Object.keys(orgs[orgKey].data)
       for (let j = 0; j < orgReportRefKeys.length; j++) {
        const reportRefKey = orgReportRefKeys[j]
-        console.log('Report Data for org ', orgKey, ' ref key ', reportRefKey)
+       console.log('Report Data for org ', orgKey, ' ref key ', reportRefKey)
        try {
           const reportData = await orgReportsContract.getReport(orgKey, reportRefKey)
+          //const reportData = await orgReportsContract.getCurrency(orgKey, reportRefKey)
           console.log('Report Data for org ', orgKey, ' ref key ', reportRefKey, ' is data ', reportData)
           orgs[orgKey].data[reportRefKey] = reportData
           actionType = OrgReportReaderActionTypes.REPORT_SUCCESS

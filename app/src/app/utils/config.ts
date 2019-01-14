@@ -57,7 +57,7 @@ class Contract {
     "function getReportReference(bytes32 orgRef, uint256 index)  view returns (bytes32)",
     "function getReportDocReference(bytes32 docRef, uint256 index)  view returns (bytes32)",
 
-    "function getReport(bytes32 orgRef, bytes32 reportRef)  view returns (Report memory)",
+    "function getReport(bytes32 orgRef, bytes32 reportRef)  view returns (tuple(bytes32 version, bytes32 orgRef, bytes32 reportRef, tuple(bytes32 orgRef, uint8 orgType, bool isSecondary) reportingOrg, bytes32 lang, bytes32 currency, bytes32 lastUpdatedTime) report)",
 
     "function getLang(bytes32 orgRef, bytes32 reportRef)  view returns (bytes32)",
     "function getCurrency(bytes32 orgRef, bytes32 reportRef)  view returns (bytes32)",
@@ -67,10 +67,10 @@ class Contract {
     "function getReportingOrgType(bytes32 orgRef, bytes32 reportRef)  view returns (uint8)",
     "function getReportingOrgIsSecondary(bytes32 orgRef, bytes32 reportRef)  view returns (bool)",
 
-    "function getDocument(bytes32 reportRef, bytes32 docRef)  view returns (Document)",
+    "function getDocument(bytes32 reportRef, bytes32 docRef)  view returns (tuple(bytes32 reportRef, bytes32 docRef, string title, bytes32 format, string url, bytes32 category, bytes32 countryCode, string desc, bytes32 lang, bytes32 date) doc)",
     "function getDocumentTitle(bytes32 reportRef, bytes32 docRef)  view returns (string)",
     "function getDocumentFormat(bytes32 reportRef, bytes32 docRef)  view returns (bytes32)",
-    "function getDocumentURL(bytes32 reportRef, bytes32 docRef)  view returns (string memory)",
+    "function getDocumentURL(bytes32 reportRef, bytes32 docRef)  view returns (string)",
     "function getDocumentCategory(bytes32 reportRef, bytes32 docRef)  view returns (bytes32)",
     "function getDocumentCountry(bytes32 reportRef, bytes32 docRef)  view returns (bytes32)",
     "function getDocumentDescription(bytes32 reportRef, bytes32 docRef)  view returns (string)",
