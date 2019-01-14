@@ -113,7 +113,7 @@ class OrganisationReport {
   static language = "Report Language"
   static currency = "Report Currency"
 
-  static numOrgReports = 'Number of Organisation Reports'
+  static numOrgReports = 'Number of Organisations Reporting'
   static orgReportDetails = 'Organisation Report Details'
 }
 

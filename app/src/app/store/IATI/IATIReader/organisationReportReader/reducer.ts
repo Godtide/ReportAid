@@ -58,6 +58,8 @@ export const reducer = (state: OrgReportReaderProps = initialState, action: Acti
          num: state.num,
          data: {...payloadData.data}
        }
+
+       //console.log ('Report data: ', data)
        return data
 
     } else {

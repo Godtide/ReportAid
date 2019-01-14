@@ -39,7 +39,27 @@ export class OrgReportReader extends React.Component<OrgReportReaderProps> {
 
   render() {
 
-    const orgs = getDictEntries(this.props.orgReports)
+    let xs = ""
+    Object.keys(this.props.orgReports).forEach((key) => {
+      xs += `**Organisation Key**: ${key}, `
+      const values = Object.values(this.props.orgReports[key])
+      //console.log('Values: ', values)
+      xs += `**Num reports**: ${values[0]} <br /><br />`
+      Object.keys(values[1]).forEach((thisKey) => {
+        //console.log('Blah', values[1][thisKey])
+        xs+= `**Report Key**: ${thisKey} <br />`
+        xs+= `**Report Version**:  ${values[1][thisKey].version} <br />`
+        xs+= `**Report Organisation Reference**:  ${values[1][thisKey].orgRef} <br />`
+        xs+= `**Report Reference**:  ${values[1][thisKey].reportRef} <br />`
+        xs+= `**Report Reporting Organisation Reference**:  ${values[1][thisKey].reportingOrg.orgRef} <br />`
+        xs+= `**Report Reporting Organisation Type**:  ${values[1][thisKey].reportingOrg.orgType} <br />`
+        xs+= `**Report Reporting Organisation is Secondary?**:  ${values[1][thisKey].reportingOrg.isSecondary} <br />`
+        xs+= `**Report Language**:  ${values[1][thisKey].lang} <br />`
+        xs+= `**Report Currency**:  ${values[1][thisKey].currency} <br />`
+        xs+= `**Report Last Updated**:  ${values[1][thisKey].lastUpdatedTime} <br /><br />`
+      })
+    })
+    //console.log('Org Reports: ', orgReports)
 
     return (
       <div>
@@ -49,7 +69,7 @@ export class OrgReportReader extends React.Component<OrgReportReaderProps> {
         </p>
         <hr />
         <h3>{OrgReportStrings.orgReportDetails}</h3>
-        <Markdown escapeHtml={false} source={orgs} />
+        <Markdown escapeHtml={false} source={xs} />
       </div>
     )
   }
