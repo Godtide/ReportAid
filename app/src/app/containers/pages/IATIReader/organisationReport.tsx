@@ -1,6 +1,8 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { ThunkDispatch } from 'redux-thunk'
+
+import { ethers } from 'ethers'
 import Markdown from 'react-markdown'
 
 import { getOrgReports } from '../../../store/IATI/IATIReader/organisationReportReader/actions'
@@ -46,17 +48,23 @@ export class OrgReportReader extends React.Component<OrgReportReaderProps> {
       //console.log('Values: ', values)
       xs += `**Num reports**: ${values[0]} <br /><br />`
       Object.keys(values[1]).forEach((thisKey) => {
-        //console.log('Blah', values[1][thisKey])
-        xs+= `**Report Key**: ${thisKey} <br />`
-        xs+= `**Report Version**:  ${values[1][thisKey].version} <br />`
-        xs+= `**Report Organisation Reference**:  ${values[1][thisKey].orgRef} <br />`
-        xs+= `**Report Reference**:  ${values[1][thisKey].reportRef} <br />`
-        xs+= `**Report Reporting Organisation Reference**:  ${values[1][thisKey].reportingOrg.orgRef} <br />`
-        xs+= `**Report Reporting Organisation Type**:  ${values[1][thisKey].reportingOrg.orgType} <br />`
-        xs+= `**Report Reporting Organisation is Secondary?**:  ${values[1][thisKey].reportingOrg.isSecondary} <br />`
-        xs+= `**Report Language**:  ${values[1][thisKey].lang} <br />`
-        xs+= `**Report Currency**:  ${values[1][thisKey].currency} <br />`
-        xs+= `**Report Last Updated**:  ${values[1][thisKey].lastUpdatedTime} <br /><br />`
+        //const version = ethers.utils.parseBytes32String(values[1][thisKey].version)
+        if ( values[1][thisKey].version != "" ) {
+          const version = ethers.utils.parseBytes32String(values[1][thisKey].version)
+          const language =  ethers.utils.parseBytes32String(values[1][thisKey].lang)
+          const currency =  ethers.utils.parseBytes32String(values[1][thisKey].currency)
+          const lastUpdated =  ethers.utils.parseBytes32String(values[1][thisKey].lastUpdatedTime)
+          xs+= `**Report Key**: ${thisKey} <br />`
+          xs+= `**Report Version**:  ${version} <br />`
+          xs+= `**Report Organisation Reference**:  ${values[1][thisKey].orgRef} <br />`
+          xs+= `**Report Reference**:  ${values[1][thisKey].reportRef} <br />`
+          xs+= `**Report Reporting Organisation Reference**:  ${values[1][thisKey].reportingOrg.orgRef} <br />`
+          xs+= `**Report Reporting Organisation Type**:  ${values[1][thisKey].reportingOrg.orgType} <br />`
+          xs+= `**Report Reporting Organisation is Secondary?**:  ${values[1][thisKey].reportingOrg.isSecondary} <br />`
+          xs+= `**Report Language**:  ${language} <br />`
+          xs+= `**Report Currency**:  ${currency} <br />`
+          xs+= `**Report Last Updated**:  ${lastUpdated} <br /><br />`
+        }
       })
     })
     //console.log('Org Reports: ', orgReports)
