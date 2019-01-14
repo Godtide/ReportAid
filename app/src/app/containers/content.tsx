@@ -11,6 +11,7 @@ import { BlockchainInfo } from './pages/blockchain/blockchainInfo'
 import { OrganisationWriter } from './pages/IATIWriter/organisation'
 import { OrgReportWriter } from './pages/IATIWriter/organisationReport'
 import { OrganisationReader } from './pages/IATIReader/organisation'
+import { OrganisationReportReader } from './pages/IATIReader/organisationReport'
 
 import { Paths } from '../utils/strings'
 import { Paths as PathConfig } from '../utils/config'
@@ -31,6 +32,7 @@ class AppContent extends React.Component<WithStyles<typeof styles>> {
         <Route name={Paths.orgWriter} path={PathConfig.orgWriter} render={() => <OrganisationWriter />} />
         <Route name={Paths.orgReportWriter} path={PathConfig.orgReportWriter} render={() => <OrgReportWriter />} />
         <Route name={Paths.orgReader} path={PathConfig.orgReader} render={() => <OrganisationReader />} />
+        <Route name={Paths.orgReportReader} path={PathConfig.orgReportReader} render={() => <OrganisationReportReader />} />
       </Switch>
     )
   }

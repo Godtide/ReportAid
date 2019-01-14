@@ -10,7 +10,7 @@ class Paths {
   static readonly orgWriter='/create-organisation'
   static readonly orgReportWriter='/create-organisation-report'
   static readonly orgReader='/read-organisations'
-  static readonly orgReportReader='/read-organisation-report'
+  static readonly orgReportReader='/read-organisation-reports'
 }
 
 class Blockchain {
@@ -83,8 +83,8 @@ class Contract {
   static organisationReportsAddress = "0x81759e5B8BCB38B05A678C2b98Eb17eaf4Ae9D71"
   */
 
-  static organisationsAddress = "0x667CD537e1079044119438B0c8a62d59D557B55A"
-  static organisationReportsAddress = "0xcA5784A7c10A7CFC6480072FB46f0C54dFbFB989"
+  static organisationsAddress = "0x5fd0bf6818576c58E067749821F1C41aAf97B16A"
+  static organisationReportsAddress = "0x1dF54fB0bE96038017A1C0563477FabeaEf4A9E3"
 }
 
 class Helpers {
