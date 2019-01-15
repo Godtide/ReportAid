@@ -78,13 +78,37 @@ class Contract {
     "function getDocumentDate(bytes32 reportRef, bytes32 docRef)  view returns (bytes32)"
   ]
 
+  static organisationReportDocsABI = [
+    "event SetDocument(bytes32 reportRef, bytes32 docRef, tuple(bytes32 reportRef, bytes32 docRef, string title, bytes32 format, string url, bytes32 category, bytes32 countryCode, string desc, bytes32 lang, bytes32 date) doc)",
+
+    "function setDocument(tuple(bytes32 reportRef, bytes32 docRef, string title, bytes32 format, string url, bytes32 category, bytes32 countryCode, string desc, bytes32 lang, bytes32 date) doc)",
+
+    "function getReportDocExists(bytes32 reportRef, bytes32 docRef)  view returns (bool)",
+
+    "function getNumReportDocs(bytes32 reportRef)  view returns (uint256)",
+
+    "function getReportDocReference(bytes32 docRef, uint256 index)  view returns (bytes32)",
+
+    "function getDocument(bytes32 reportRef, bytes32 docRef)  view returns (tuple(bytes32 reportRef, bytes32 docRef, string title, bytes32 format, string url, bytes32 category, bytes32 countryCode, string desc, bytes32 lang, bytes32 date) doc)",
+
+    "function getDocumentTitle(bytes32 reportRef, bytes32 docRef)  view returns (string)",
+    "function getDocumentFormat(bytes32 reportRef, bytes32 docRef)  view returns (bytes32)",
+    "function getDocumentURL(bytes32 reportRef, bytes32 docRef)  view returns (string)",
+    "function getDocumentCategory(bytes32 reportRef, bytes32 docRef)  view returns (bytes32)",
+    "function getDocumentCountry(bytes32 reportRef, bytes32 docRef)  view returns (bytes32)",
+    "function getDocumentDescription(bytes32 reportRef, bytes32 docRef)  view returns (string)",
+    "function getDocumentLang(bytes32 reportRef, bytes32 docRef)  view returns (bytes32)",
+    "function getDocumentDate(bytes32 reportRef, bytes32 docRef)  view returns (bytes32)"
+  ]
+
   /* Ropsten addresses
   static organisationsAddress = "0x2C757C6390D9186F7e35C0796256B17d650df017"
   static organisationReportsAddress = "0x81759e5B8BCB38B05A678C2b98Eb17eaf4Ae9D71"
   */
 
-  static organisationsAddress = "0x5fd0bf6818576c58E067749821F1C41aAf97B16A"
-  static organisationReportsAddress = "0x1dF54fB0bE96038017A1C0563477FabeaEf4A9E3"
+  static organisationsAddress = "0x379abC7EDF25A9D0aA8401713657207f56CbEe13"
+  static organisationReportsAddress = "0x65038dCf7547ed3a288DBB0c36061c92365E1d80"
+  static organisationReportDocsAddress = "0xDb65296eA3bf2aFd42b644169C0FdaD046393bd8"
 }
 
 class Helpers {
