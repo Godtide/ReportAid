@@ -19,6 +19,7 @@ contract OrganisationReports {
     bytes32 lastUpdatedTime;
   }
 
+  function setReport(Report memory _report) public;
 
   function getOrgExists(bytes32 _orgRef) public view returns (bool);
   function getReportExists(bytes32 _orgRef, bytes32 _reportRef) public view returns (bool);
