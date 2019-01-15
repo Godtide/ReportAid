@@ -39,7 +39,13 @@ export class OrgReader extends React.Component<OrgReaderProps> {
 
   render() {
 
-    const orgs = getDictEntries(this.props.orgs)
+    let xs: string = ""
+    //console.log('Orgs props: ', this.props.orgs)
+    Object.keys(this.props.orgs).forEach((key) => {
+      xs += `**${OrgStrings.orgIdentifier}**: ${key}, `
+      xs += `**${OrgStrings.orgName}**: ${this.props.orgs[key].name}, `
+      xs += `**${OrgStrings.identifier}**: ${this.props.orgs[key].identifier}<br />`
+    })
 
     return (
       <div>
@@ -49,7 +55,7 @@ export class OrgReader extends React.Component<OrgReaderProps> {
         </p>
         <hr />
         <h3>{OrgStrings.orgDetails}</h3>
-        <Markdown escapeHtml={false} source={orgs} />
+        <Markdown escapeHtml={false} source={xs} />
       </div>
     )
   }

@@ -48,10 +48,10 @@ const reportSchema = Yup.object().shape({
     .string()
     .required('Required'),
   reportingOrgType: Yup
-    .string()
+    .number()
     .required('Required'),
   reportingOrgIsSecondary: Yup
-    .string()
+    .boolean()
     .required('Required'),
   lang: Yup
     .string()

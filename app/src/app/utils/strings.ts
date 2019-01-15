@@ -88,10 +88,10 @@ class Transaction {
 class Organisation {
 
   static headingOrgWriter = 'Create Organisation Records'
-  static headingOrgReader = 'Read Organisation Records'
+  static headingOrgReader = 'Organisation Records'
 
   static orgDetails = 'Organisation Details'
-
+  static orgIdentifier = "Organisation Reference"
 
   static orgName = 'Name'
   static code = 'Code'
@@ -103,18 +103,22 @@ class Organisation {
 class OrganisationReport {
 
   static headingOrgReportWriter = 'Create Organisation Report'
-  static headingOrgReportReader = 'Read Organisation Report'
+  static headingOrgReportReader = 'Organisation Reports'
 
+  static numOrgReports = "Number of reports"
   static version = "Report Version"
   static orgIdentifier = "Report for Organisation"
-  static reportingOrgRef = 'Reporting Organisation Identifier'
+  static reportKey = "Report Key"
+  static reportingOrgRef = 'Reporting Organisation Reference'
   static reportingOrgType = "Reporting Organisation Type"
   static reportingOrgIsSecondary = "Is Reporting Organisation Secondary?"
   static language = "Report Language"
   static currency = "Report Currency"
+  static lastUpdated = "Report Last Updated"
 
-  static numOrgReports = 'Number of Organisations Reporting'
-  static orgReportDetails = 'Organisation Report Details'
+
+  static numOrganisations = 'Number of Organisations Reporting'
+  static orgReportDetails = 'Report Details'
 }
 
 export { App, Paths, Blockchain, Home, About, Overview, Help, IATIWriter, IATIReader, Transaction, Organisation, OrganisationReport }

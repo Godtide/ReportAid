@@ -41,39 +41,43 @@ export class OrgReportReader extends React.Component<OrgReportReaderProps> {
 
   render() {
 
+    const orgsData = Object.keys(this.props.orgReports)
     let xs = ""
-    Object.keys(this.props.orgReports).forEach((key) => {
-      xs += `**Organisation Key**: ${key}, `
-      const values = Object.values(this.props.orgReports[key])
-      //console.log('Values: ', values)
-      xs += `**Num reports**: ${values[0]} <br /><br />`
-      Object.keys(values[1]).forEach((thisKey) => {
-        //const version = ethers.utils.parseBytes32String(values[1][thisKey].version)
-        if ( values[1][thisKey].version != "" ) {
-          const version = ethers.utils.parseBytes32String(values[1][thisKey].version)
-          const language =  ethers.utils.parseBytes32String(values[1][thisKey].lang)
-          const currency =  ethers.utils.parseBytes32String(values[1][thisKey].currency)
-          const lastUpdated =  ethers.utils.parseBytes32String(values[1][thisKey].lastUpdatedTime)
-          xs+= `**Report Key**: ${thisKey} <br />`
-          xs+= `**Report Version**:  ${version} <br />`
-          xs+= `**Report Organisation Reference**:  ${values[1][thisKey].orgRef} <br />`
-          xs+= `**Report Reference**:  ${values[1][thisKey].reportRef} <br />`
-          xs+= `**Report Reporting Organisation Reference**:  ${values[1][thisKey].reportingOrg.orgRef} <br />`
-          xs+= `**Report Reporting Organisation Type**:  ${values[1][thisKey].reportingOrg.orgType} <br />`
-          xs+= `**Report Reporting Organisation is Secondary?**:  ${values[1][thisKey].reportingOrg.isSecondary} <br />`
-          xs+= `**Report Language**:  ${language} <br />`
-          xs+= `**Report Currency**:  ${currency} <br />`
-          xs+= `**Report Last Updated**:  ${lastUpdated} <br /><br />`
-        }
+    if ( orgsData.length > 0 ) {
+      let length = 0
+      //console.log ("Orgsdata: ", orgsData, " length ", orgsData.length )
+      orgsData.forEach((key) => {
+        xs += `**${OrgReportStrings.orgIdentifier}**: ${key}<br />`
+        const values = Object.values(this.props.orgReports[key])
+        //console.log('Values: ', values)
+        xs += `**${OrgReportStrings.numOrgReports}**: ${values[0]} <br /><br />`
+        Object.keys(values[1]).forEach((thisKey) => {
+          //const version = ethers.utils.parseBytes32String(values[1][thisKey].version)
+          if ( values[1][thisKey].version != "" ) {
+            const version = ethers.utils.parseBytes32String(values[1][thisKey].version)
+            const language =  ethers.utils.parseBytes32String(values[1][thisKey].lang)
+            const currency =  ethers.utils.parseBytes32String(values[1][thisKey].currency)
+            const lastUpdated =  ethers.utils.parseBytes32String(values[1][thisKey].lastUpdatedTime)
+            xs+= `**${OrgReportStrings.reportKey}**: ${thisKey} <br />`
+            xs+= `**${OrgReportStrings.version}**:  ${version} <br />`
+            xs+= `**${OrgReportStrings.reportingOrgRef}**:  ${values[1][thisKey].reportingOrg.orgRef} <br />`
+            xs+= `**${OrgReportStrings.reportingOrgType}**:  ${values[1][thisKey].reportingOrg.orgType} <br />`
+            xs+= `**${OrgReportStrings.reportingOrgIsSecondary}**:  ${values[1][thisKey].reportingOrg.isSecondary} <br />`
+            xs+= `**${OrgReportStrings.language}**:  ${language} <br />`
+            xs+= `**${OrgReportStrings.currency}**:  ${currency} <br />`
+            xs+= `**${OrgReportStrings.lastUpdated}**:  ${lastUpdated} <br /><br />`
+          }
+        })
+        length += 1
+        length == orgsData.length ? xs += "" : xs += "---<br /><br />"
       })
-    })
-    //console.log('Org Reports: ', orgReports)
+    }
 
     return (
       <div>
         <h2>{OrgReportStrings.headingOrgReportReader}</h2>
         <p>
-          <b>{OrgReportStrings.numOrgReports}</b>: {this.props.num}
+          <b>{OrgReportStrings.numOrganisations}</b>: {this.props.num}
         </p>
         <hr />
         <h3>{OrgReportStrings.orgReportDetails}</h3>
