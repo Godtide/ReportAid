@@ -10,8 +10,12 @@ import "./Strings.sol";
 contract IATIOrganisationReportBudgets is OrganisationReportBudgets {
 
   bytes32[] reportReferences;
-  mapping(bytes32 => Budget) private reportBudgets;
-  mapping(bytes32 => Expenditure) private reportExpenditure;
+
+  mapping(bytes32 => bytes32[]) private budgetReferences;
+  mapping(bytes32 => mapping(bytes32 => Budget)) private reportBudgets;
+
+  mapping(bytes32 => bytes32[]) private expenditureReferences;
+  mapping(bytes32 => mapping(bytes32 => Expenditure)) private reportExpenditure;
 
   mapping(bytes32 => bytes32[]) private reportOrgRecipientReferences;
   mapping(bytes32 => mapping(bytes32 => RecipientBudget)) private orgRecipientBudget;
@@ -22,17 +26,17 @@ contract IATIOrganisationReportBudgets is OrganisationReportBudgets {
   mapping(bytes32 => bytes32[]) private reportOrgCountryReferences;
   mapping(bytes32 => mapping(bytes32 => CountryBudget)) private orgCountryBudget;
 
-  event SetTotalBudget(bytes32 _reportRef, uint256 _value, bytes32 _status, bytes32 _start, bytes32 _end);
-  event SetRecipientOrgBudget(bytes32 _reportRef, bytes32 _recipientOrgRef, uint256 _value, bytes32 _status, bytes32 _start, bytes32 _end);
-  event SetRegionBudget(bytes32 _reportRef, bytes32 _regionRef, uint256 _value, bytes32 _status, bytes32 _start, bytes32 _end);
-  event SetCountryBudget(bytes32 _reportRef, bytes32 _countryRef, uint256 _value, bytes32 _status, bytes32 _start, bytes32 _end);
-  event SetTotalExpenditure(bytes32 _reportRef, uint256 _value, bytes32 _status, bytes32 _start, bytes32 _end);
+  event SetTotalBudget(bytes32 _reportRef, Budget _budget);
+  event SetTotalExpenditure(bytes32 _reportRef, Expenditure _expenditure);
+  event SetRecipientOrgBudget(bytes32 _reportRef, RecipientBudget _budget);
+  event SetRegionBudget(bytes32 _reportRef, RegionBudget _budget);
+  event SetCountryBudget(bytes32 _reportRef, CountryBudget _budget);
 
-  function setTotalBudget(bytes32 _reportRef, uint256 _value, bytes32 _status, bytes32 _start, bytes32 _end) public {}
-  function setRecipientOrgBudget(bytes32 _reportRef, bytes32 _recipientOrgRef, uint256 _value, bytes32 _status, bytes32 _start, bytes32 _end) public {}
-  function setRegionBudget(bytes32 _reportRef, bytes32 _regionRef, uint256 _value, bytes32 _status, bytes32 _start, bytes32 _end) public {}
-  function setCountryBudget(bytes32 _reportRef, bytes32 _countryRef, uint256 _value, bytes32 _status, bytes32 _start, bytes32 _end) public {}
-  function setTotalExpenditure(bytes32 _reportRef, uint256 _value, bytes32 _status, bytes32 _start, bytes32 _end) public {}
+  function setTotalBudget(Budget memory _budget) public {}
+  function setTotalExpenditure(Expenditure memory _expenditure) public {}
+  function setRecipientOrgBudget(RecipientBudget memory _budget) public {}
+  function setRegionBudget(RegionBudget memory _budget) public {}
+  function setCountryBudget(CountryBudget memory _budget) public {}
 
   function getNumOrganisations() public view returns (uint256) {}
   function getOrganisationReference(uint256 _index) public view returns (bytes32) {}

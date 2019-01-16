@@ -11,18 +11,21 @@ contract OrganisationReportBudgets {
   }
 
   struct Budget {
+    bytes32 reportRef;
     bytes32 budgetRef;
     bytes32 budgetLine;
     Finance finance;
   }
 
   struct Expenditure {
+    bytes32 reportRef;
     bytes32 expenditureRef;
     bytes32 expenseLine;
     Finance finance;
   }
 
   struct RecipientBudget {
+    bytes32 reportRef;
     bytes32 budgetRef;
     bytes32 orgRef;
     bytes32 budgetLine;
@@ -30,6 +33,7 @@ contract OrganisationReportBudgets {
   }
 
   struct RegionBudget {
+    bytes32 reportRef;
     bytes32 budgetRef;
     bytes32 regionRef;
     bytes32 budgetLine;
@@ -37,17 +41,21 @@ contract OrganisationReportBudgets {
   }
 
   struct CountryBudget {
+    bytes32 reportRef;
     bytes32 budgetRef;
     bytes32 countryRef;
     bytes32 budgetLine;
     Finance finance;
   }
 
-  function setTotalBudget(bytes32 _reportRef, Budget memory _budget) public;
-  function setTotalExpenditure(bytes32 _reportRef, Expenditure memory _expenditure) public;
-  function setRecipientOrgBudget(bytes32 _reportRef, RecipientBudget memory _budget) public;
-  function setRegionBudget(bytes32 _reportRef, RegionBudget memory _budget) public;
-  function setCountryBudget(bytes32 _reportRef, CountryBudget memory _budget) public;
+  function setTotalBudget(Budget memory _budget) public;
+  function setTotalExpenditure(Expenditure memory _expenditure) public;
+  function setRecipientOrgBudget(RecipientBudget memory _budget) public;
+  function setRegionBudget(RegionBudget memory _budget) public;
+  function setCountryBudget(CountryBudget memory _budget) public;
+
+
+
 
   function getNumReports() public view returns (uint256);
   function getReportReference(uint256 _index) public view returns (bytes32);
