@@ -11,9 +11,6 @@ contract IATIOrganisations is Organisations {
 
   event SetOrganisation(bytes32 _orgRef, Organisation _org);
 
-  constructor() public {
-  }
-
   function setOrganisation(Organisation memory _org) public {
     require (_org.orgRef[0] != 0 && bytes(_org.name).length > 0 && bytes(_org.identifier).length > 0);
 
@@ -48,7 +45,6 @@ contract IATIOrganisations is Organisations {
 
     return orgReferences[_index];
   }
-
 
   function getOrganisation(bytes32 _orgRef) public view returns (Organisation memory) {
     require (_orgRef[0] != 0);

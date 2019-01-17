@@ -8,17 +8,19 @@ const initialState: OrgReportReaderProps = {
       num: 0,
       data: {
         '': {
-          version: '',
-          orgRef: '',
-          reportRef: '',
-          reportingOrg: {
+          Report: {
+            version: '',
             orgRef: '',
-            orgType: 0,
-            isSecondary: false
-          },
-          lang: '',
-          currency: '',
-          lastUpdatedTime: ''
+            reportRef: '',
+            reportingOrg: {
+              orgRef: '',
+              orgType: 0,
+              isSecondary: false
+            },
+            lang: '',
+            currency: '',
+            lastUpdatedTime: ''
+          }
         }
       }
     }

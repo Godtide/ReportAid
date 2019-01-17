@@ -1,11 +1,9 @@
 import { ThunkDispatch } from 'redux-thunk'
 
 import { ApplicationState } from '../../../store'
-import { IATIOrganisations } from '../../../../../blockchain/typechain/IATIOrganisations'
-
 import { storeAction } from '../../../actions'
-import { ActionProps, PayloadProps } from '../../../types'
 
+import { ActionProps, PayloadProps } from '../../../types'
 import { OrgReaderActionTypes, OrgReaderProps, OrgData } from './types'
 
 export const getOrgs = () => {
@@ -28,17 +26,17 @@ const get = (payload: PayloadProps): Function => {
 const getNumOrganisations = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
-    const orgContract = state.chainContracts.data.contracts.orgContract as IATIOrganisations
+    const orgContract = state.chainContracts.data.contracts.orgContract
     let actionType = OrgReaderActionTypes.NUM_FAILURE
     let numOrgs = { num: 0 }
     try {
       const num = await orgContract.getNumOrganisations()
-      //console.log('Num orgs: ', num)
       numOrgs.num = num.toNumber()
       actionType = OrgReaderActionTypes.NUM_SUCCESS
     } catch (error) {
       console.log('getNumOrganisations error', error)
     }
+
     dispatch(get({data: numOrgs})(actionType))
   }
 }
@@ -46,7 +44,7 @@ const getNumOrganisations = () => {
 const getReferences = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
-    const orgContract = state.chainContracts.data.contracts.orgContract as IATIOrganisations
+    const orgContract = state.chainContracts.data.contracts.orgContract
     const numOrgs = state.orgReader.num
     let orgRefs: OrgData = {}
     let actionType = OrgReaderActionTypes.REF_FAILURE
@@ -64,7 +62,7 @@ const getReferences = () => {
          console.log('getReferences error', error)
        }
     }
-    //console.log('OrgRefs: ', orgRefs)
+
     dispatch(get({data: {data: orgRefs}})(actionType))
   }
 }
@@ -72,7 +70,7 @@ const getReferences = () => {
 const getOrgData = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
-    const orgContract = state.chainContracts.data.contracts.orgContract as IATIOrganisations
+    const orgContract = state.chainContracts.data.contracts.orgContract
     let actionType = OrgReaderActionTypes.ORG_FAILURE
     const orgs = state.orgReader.data
     const orgKeys = Object.keys(orgs)
@@ -89,7 +87,7 @@ const getOrgData = () => {
          console.log('getOrgs error', error)
        }
     }
-    //console.log('New Orgs; ', orgs)
+
     dispatch(get({data: {data: orgs}})(actionType))
   }
 }
@@ -97,7 +95,7 @@ const getOrgData = () => {
 const getNames = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
-    const orgContract = state.chainContracts.data.contracts.orgContract as IATIOrganisations
+    const orgContract = state.chainContracts.data.contracts.orgContract
     let actionType = OrgReaderActionTypes.NAME_FAILURE
     const orgs = state.orgReader.data
     const orgKeys = Object.keys(orgs)
@@ -111,7 +109,7 @@ const getNames = () => {
          console.log('getNames error', error)
        }
     }
-    //console.log('New Orgs; ', orgs)
+
     dispatch(get({data: {data: orgs}})(actionType))
   }
 }
@@ -119,7 +117,7 @@ const getNames = () => {
 const getIDs = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
-    const orgContract = state.chainContracts.data.contracts.orgContract as IATIOrganisations
+    const orgContract = state.chainContracts.data.contracts.orgContract
     let actionType = OrgReaderActionTypes.ID_FAILURE
     const orgs = state.orgReader.data
     const orgKeys = Object.keys(orgs)
@@ -133,7 +131,7 @@ const getIDs = () => {
          console.log('getIDs error', error)
        }
     }
-    //console.log('New Orgs; ', orgs)
+
     dispatch(get({data: {data: orgs}})(actionType))
   }
 }

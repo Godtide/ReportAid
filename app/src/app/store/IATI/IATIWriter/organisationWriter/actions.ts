@@ -1,15 +1,13 @@
 import { ThunkDispatch } from 'redux-thunk'
-import shortid from 'shortid'
 
+import shortid from 'shortid'
 import { ethers } from 'ethers'
 
 import { ApplicationState } from '../../../store'
-import { IATIOrganisations } from '../../../../../blockchain/typechain/IATIOrganisations'
-
 import { storeAction } from '../../../actions'
+
 import { ActionProps, PayloadProps, TxData } from '../../../types'
 import { OrganisationProps, IATIOrgProps } from '../../types'
-
 import { OrgWriterActionTypes, OrgWriterProps } from './types'
 
 const add = (payload: PayloadProps): Function => {
@@ -31,7 +29,7 @@ export const setOrganisation = (orgDetails: OrganisationProps) => {
         identifier: orgDetails.code + '-' + orgDetails.identifier
     }
     //console.log('Org: ', org)
-    const orgContract = state.chainContracts.data.contracts.orgContract as IATIOrganisations
+    const orgContract = state.chainContracts.data.contracts.orgContract
     let actionType = OrgWriterActionTypes.ADD_FAILURE
     let txData: TxData = {}
 
@@ -48,7 +46,6 @@ export const setOrganisation = (orgDetails: OrganisationProps) => {
       console.log('setOrganisation error', error)
     }
 
-    //console.log('Adding tx: ', txData, actionType)
     dispatch(add({data: {data: txData}})(actionType))
   }
 }

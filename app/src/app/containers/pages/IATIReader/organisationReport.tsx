@@ -52,17 +52,18 @@ export class OrgReportReader extends React.Component<OrgReportReaderProps> {
         //console.log('Values: ', values)
         xs += `**${OrgReportStrings.numOrgReports}**: ${values[0]} <br /><br />`
         Object.keys(values[1]).forEach((thisKey) => {
+          //console.log('Report: ', values[1][thisKey])
           //const version = ethers.utils.parseBytes32String(values[1][thisKey].version)
-          if ( values[1][thisKey].version != "" ) {
-            const version = ethers.utils.parseBytes32String(values[1][thisKey].version)
-            const language =  ethers.utils.parseBytes32String(values[1][thisKey].lang)
-            const currency =  ethers.utils.parseBytes32String(values[1][thisKey].currency)
-            const lastUpdated =  ethers.utils.parseBytes32String(values[1][thisKey].lastUpdatedTime)
+          if ( values[1][thisKey].Report.version != "" ) {
+            const version = ethers.utils.parseBytes32String(values[1][thisKey].Report.version)
+            const language =  ethers.utils.parseBytes32String(values[1][thisKey].Report.lang)
+            const currency =  ethers.utils.parseBytes32String(values[1][thisKey].Report.currency)
+            const lastUpdated =  ethers.utils.parseBytes32String(values[1][thisKey].Report.lastUpdatedTime)
             xs+= `**${OrgReportStrings.reportKey}**: ${thisKey} <br />`
             xs+= `**${OrgReportStrings.version}**:  ${version} <br />`
-            xs+= `**${OrgReportStrings.reportingOrgRef}**:  ${values[1][thisKey].reportingOrg.orgRef} <br />`
-            xs+= `**${OrgReportStrings.reportingOrgType}**:  ${values[1][thisKey].reportingOrg.orgType} <br />`
-            xs+= `**${OrgReportStrings.reportingOrgIsSecondary}**:  ${values[1][thisKey].reportingOrg.isSecondary} <br />`
+            xs+= `**${OrgReportStrings.reportingOrgRef}**:  ${values[1][thisKey].Report.reportingOrg.orgRef} <br />`
+            xs+= `**${OrgReportStrings.reportingOrgType}**:  ${values[1][thisKey].Report.reportingOrg.orgType} <br />`
+            xs+= `**${OrgReportStrings.reportingOrgIsSecondary}**:  ${values[1][thisKey].Report.reportingOrg.isSecondary} <br />`
             xs+= `**${OrgReportStrings.language}**:  ${language} <br />`
             xs+= `**${OrgReportStrings.currency}**:  ${currency} <br />`
             xs+= `**${OrgReportStrings.lastUpdated}**:  ${lastUpdated} <br /><br />`
