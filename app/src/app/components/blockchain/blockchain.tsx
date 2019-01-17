@@ -51,7 +51,14 @@ export const setOrgContract = (props: SetProps) => {
   let orgContractData: ContractProps = {
     data: {
       contracts: {
-        orgContract: state.chainContracts.data.contracts.orgContract
+        orgContract: state.chainContracts.data.contracts.orgContract,
+        orgReportsContract: {},
+        orgReportDocsContract: {},
+        orgReportBudgetsContract: {},
+        orgReportExpenditureContract: {},
+        orgReportRecipientBudgetsContract: {},
+        orgReportRegionBudgetsContract: {},
+        orgReportCountryBudgetsContract: {}
       }
     }
   }
@@ -77,6 +84,12 @@ export const setOrgReportsContract = (props: SetProps) => {
       contracts: {
         orgContract: {},
         orgReportsContract:  state.chainContracts.data.contracts.orgReportsContract,
+        orgReportDocsContract: {},
+        orgReportBudgetsContract: {},
+        orgReportExpenditureContract: {},
+        orgReportRecipientBudgetsContract: {},
+        orgReportRegionBudgetsContract: {},
+        orgReportCountryBudgetsContract: {}
       }
     }
   }
