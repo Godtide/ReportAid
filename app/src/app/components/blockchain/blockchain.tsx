@@ -79,7 +79,7 @@ export const setOrgContract = (props: SetProps) => {
   if ( !(orgContractData.data.contracts.orgContract.hasOwnProperty('getOrganisationExists')) ) {
     getOrgContract({provider: props.provider}).then((orgContract) => {
       if ( typeof orgContract != "undefined" ) {
-        //console.log, web3]('Storing OrgContract', orgContract)
+        //console.log('Storing orgContract', orgContract)
         orgContractData.data.contracts.orgContract = orgContract
         const add = addOrgContract as Function
         store.dispatch(add(orgContractData))
@@ -110,7 +110,7 @@ export const setOrgReportsContract = (props: SetProps) => {
   if ( !(orgReportsContractData.data.contracts.orgReportsContract.hasOwnProperty('getReportExists')) ) {
     getOrgReportsContract({provider: props.provider}).then((orgReportsContract) => {
       if ( typeof orgReportsContract != "undefined" ) {
-        //console.log('Storing OrgContract', orgReportsContract)
+        //console.log('Storing orgReportsContract', orgReportsContract)
         orgReportsContractData.data.contracts.orgReportsContract = orgReportsContract
         const add = addOrgReportsContract as Function
         store.dispatch(add(orgReportsContractData))
@@ -141,7 +141,7 @@ export const setOrgReportDocsContract = (props: SetProps) => {
   if ( !(orgReportDocsContractData.data.contracts.orgReportDocsContract.hasOwnProperty('getReportExists')) ) {
     getOrgReportDocsContract({provider: props.provider}).then((orgReportDocsContract) => {
       if ( typeof orgReportDocsContract != "undefined" ) {
-        //console.log('Storing OrgContract', orgReportsContract)
+        //console.log('Storing orgReportDocsContract', orgReportDocsContract)
         orgReportDocsContractData.data.contracts.orgReportDocsContract = orgReportDocsContract
         const add = addOrgReportDocsContract as Function
         store.dispatch(add(orgReportDocsContractData))
@@ -172,7 +172,7 @@ export const setOrgReportBudgetsContract = (props: SetProps) => {
   if ( !(orgReportBudgetsContractData.data.contracts.orgReportBudgetsContract.hasOwnProperty('getReportExists')) ) {
     getOrgReportBudgetsContract({provider: props.provider}).then((orgReportBudgetsContract) => {
       if ( typeof orgReportBudgetsContract != "undefined" ) {
-        //console.log('Storing OrgContract', orgReportsContract)
+        //console.log('Storing orgReportBudgetsContract', orgReportBudgetsContract)
         orgReportBudgetsContractData.data.contracts.orgReportBudgetsContract = orgReportBudgetsContract
         const add = addOrgReportBudgetsContract as Function
         store.dispatch(add(orgReportBudgetsContractData))
@@ -203,7 +203,7 @@ export const setOrgReportExpenditureContract = (props: SetProps) => {
   if ( !(orgReportExpenditureContractData.data.contracts.orgReportExpenditureContract.hasOwnProperty('getReportExists')) ) {
     getOrgReportExpenditureContract({provider: props.provider}).then((orgReportExpenditureContract) => {
       if ( typeof orgReportExpenditureContract != "undefined" ) {
-        //console.log('Storing OrgContract', orgReportsContract)
+        //console.log('Storing orgReportExpenditureContract', orgReportExpenditureContract)
         orgReportExpenditureContractData.data.contracts.orgReportExpenditureContract = orgReportExpenditureContract
         const add = addOrgReportExpenditureContract as Function
         store.dispatch(add(orgReportExpenditureContractData))
@@ -234,7 +234,7 @@ export const setOrgReportRecipientBudgetsContract = (props: SetProps) => {
   if ( !(orgReportRecipientBudgetsContractData.data.contracts.orgReportRecipientBudgetsContract.hasOwnProperty('getReportExists')) ) {
     getOrgReportRecipientBudgetsContract({provider: props.provider}).then((orgReportRecipientBudgetsContract) => {
       if ( typeof orgReportRecipientBudgetsContract != "undefined" ) {
-        //console.log('Storing OrgContract', orgReportsContract)
+        //console.log('Storing orgReportRecipientBudgetsContract', orgReportRecipientBudgetsContract)
         orgReportRecipientBudgetsContractData.data.contracts.orgReportExpenditureContract = orgReportRecipientBudgetsContract
         const add = addOrgReportRecipientBudgetsContract as Function
         store.dispatch(add(orgReportRecipientBudgetsContractData))
@@ -265,7 +265,7 @@ export const setOrgReportRegionBudgetsContract = (props: SetProps) => {
   if ( !(orgReportRegionBudgetsContractData.data.contracts.orgReportRegionBudgetsContract.hasOwnProperty('getReportExists')) ) {
     getOrgReportRegionBudgetsContract({provider: props.provider}).then((orgReportRegionBudgetsContract) => {
       if ( typeof orgReportRegionBudgetsContract != "undefined" ) {
-        //console.log('Storing OrgContract', orgReportsContract)
+        //console.log('Storing orgReportRegionBudgetsContract', orgReportRegionBudgetsContract)
         orgReportRegionBudgetsContractData.data.contracts.orgReportRegionBudgetsContract = orgReportRegionBudgetsContract
         const add = addOrgReportRegionBudgetsContract as Function
         store.dispatch(add(orgReportRegionBudgetsContractData))
@@ -296,7 +296,7 @@ export const setOrgReportCountryBudgetsContract = (props: SetProps) => {
   if ( !(orgReportCountryBudgetsContractData.data.contracts.orgReportCountryBudgetsContract.hasOwnProperty('getReportExists')) ) {
     getOrgReportCountryBudgetsContract({provider: props.provider}).then((orgReportCountryBudgetsContract) => {
       if ( typeof orgReportCountryBudgetsContract != "undefined" ) {
-        //console.log('Storing OrgContract', orgReportsContract)
+        //console.log('Storing orgReportCountryBudgetsContract', orgReportCountryBudgetsContract)
         orgReportCountryBudgetsContractData.data.contracts.orgReportCountryBudgetsContract = orgReportCountryBudgetsContract
         const add = addOrgReportCountryBudgetsContract as Function
         store.dispatch(add(orgReportCountryBudgetsContractData))
