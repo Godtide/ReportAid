@@ -1,10 +1,19 @@
 import Web3 from 'web3'
 import { ethers } from 'ethers'
 
+import { Store } from 'redux'
+
 import { Provider } from 'ethers/providers/abstract-provider'
 import { Blockchain } from '../../utils/config'
 
-export const getProvider = () => {
+import { InfoProps } from '../../store/blockchain/info/types'
+import { addInfo } from '../../store/blockchain/info/actions'
+
+interface ChainProps {
+  store: Store
+}
+
+export const setProvider = async (props: ChainProps) => {
 
   let blockchainProvider: Provider
   let ethereum = (window as any).ethereum
@@ -30,5 +39,20 @@ export const getProvider = () => {
     blockchainProvider = new ethers.providers.JsonRpcProvider(provider, network)
   }
 
-  return blockchainProvider
+  const chainObj: any = await blockchainProvider.getNetwork()
+  let ENSAddress = ""
+  if (typeof chainObj.ensAddress != 'undefined') {
+    ENSAddress = chainObj.ensAddress
+  }
+  const infoData: InfoProps = {
+    data: {
+      Name: chainObj.name,
+      ChainId: chainObj.chainId,
+      ENS: ENSAddress,
+      provider: blockchainProvider
+    }
+  }
+
+  const add = addInfo as Function
+  props.store.dispatch(add(infoData))
 }

@@ -14,7 +14,7 @@ import { AccountProps } from  './blockchain/account/types'
 import { ContractProps } from  './blockchain/contracts/types'
 
 import { infoReducer } from './blockchain/info/reducer'
-import { accountReducer } from './blockchain/account/reducer'
+import { reducer as accountReducer } from './blockchain/account/reducer'
 import { reducer as contractReducer } from './blockchain/contracts/reducer'
 import { reducer as aboutReducer } from './info/about/reducer'
 import { reducer as homeReducer } from './info/home/reducer'
