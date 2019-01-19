@@ -61,8 +61,7 @@ export const setContracts = (props: ChainProps) => {
           }
         }
       }
-      console.log('Setting contracts ', contractData)
-
+      //console.log('Setting contracts ', contractData)
       const add = addContracts as Function
       store.dispatch(add(contractData))
     }

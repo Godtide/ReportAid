@@ -20,7 +20,7 @@ class Blockchain {
   static readonly port = '8545'
   static readonly network = 'ropsten'
 
-  static readonly checkAccountInterval = 3000
+  static readonly checkInterval = 3000
 }
 
 class Contract {

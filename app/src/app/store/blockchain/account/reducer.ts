@@ -4,7 +4,7 @@ import { ActionProps } from '../../types'
 
 const initialAccountState: AccountProps = {
    data: {
-     account: ''
+     account: ""
    }
  }
 

@@ -13,7 +13,7 @@ export const setAccount = async (props: ChainProps) => {
   const store = props.store
   const state = store.getState()
   const provider = state.chainInfo.data.provider
-  console.log('Provider ', provider)
+  //console.log('Provider ', provider)
   if ( provider.hasOwnProperty('connection') ) {
 
     const signer = provider.getSigner()
@@ -23,7 +23,7 @@ export const setAccount = async (props: ChainProps) => {
         account: account
       }
     }
-    console.log('Adding account ', account)
+    //console.log('Adding account ', account)
     const add = addAccount as Function
     store.dispatch(add(accountData))
   }
