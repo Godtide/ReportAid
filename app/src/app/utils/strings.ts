@@ -22,6 +22,7 @@ class Paths {
 
   static readonly orgWriter='Create Organisation'
   static readonly orgReportWriter='Create Organisation Report'
+  static readonly orgReportBudgetsWriter = "Create Organisation Report Budget"
   static readonly orgReader='Read Organisations'
   static readonly orgReportReader='Read Organisation Reports'
 }

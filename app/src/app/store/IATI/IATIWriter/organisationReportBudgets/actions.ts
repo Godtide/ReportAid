@@ -30,8 +30,8 @@ export const setOrganisationReportBudget = (reportDetails: OrgReportBudgetProps)
       finance: {
         value: reportDetails.value,
         status: ethers.utils.formatBytes32String(reportDetails.status),
-        start: reportDetails.start,
-        end: reportDetails.end
+        start: ethers.utils.formatBytes32String(reportDetails.start),
+        end: ethers.utils.formatBytes32String(reportDetails.end)
       }
     }
 
