@@ -9,12 +9,12 @@ import { ApplicationState } from '../../../store'
 import { ActionProps, TxData } from '../../../store/types'
 import { IATIOrgProps, OrgReportProps } from '../../../store/IATI/types'
 
-import { getOrgs } from '../../../store/IATI/IATIReader/organisationReader/actions'
-import { OrgData } from '../../../store/IATI/IATIReader/organisationReader/types'
+import { getOrgs } from '../../../store/IATI/IATIReader/organisation/actions'
+import { OrgData } from '../../../store/IATI/IATIReader/organisation/types'
 
 //import { getDictEntries } from '../../../utils/dict'
 
-import { setOrganisationReport } from '../../../store/IATI/IATIWriter/organisationReportsWriter/actions'
+import { setOrganisationReport } from '../../../store/IATI/IATIWriter/organisationReports/actions'
 
 import { LinearProgress } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
@@ -26,16 +26,6 @@ import { Helpers } from '../../../utils/config'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
-
-interface OrgProps {
-  tx: TxData,
-  orgs: OrgData
-}
-
-export interface OrgDispatchProps {
-  handleSubmit: (values: any) => void
-  getOrgs: () => void
-}
 
 const reportSchema = Yup.object().shape({
   version: Yup
@@ -61,9 +51,19 @@ const reportSchema = Yup.object().shape({
     .required('Required'),
 })
 
-type OrgReportWriterFormProps = WithStyles<typeof styles> & OrgProps & OrgDispatchProps
+interface OrgProps {
+  tx: TxData,
+  orgs: OrgData
+}
 
-export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
+export interface OrgReportsDispatchProps {
+  handleSubmit: (values: any) => void
+  getOrgs: () => void
+}
+
+type OrgReportsFormProps = WithStyles<typeof styles> & OrgProps & OrgReportsDispatchProps
+
+export class OrgReportsForm extends React.Component<OrgReportsFormProps> {
 
   state = {
     txKey: '',
@@ -73,7 +73,7 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
     resetFunc: (function() { return null })
   }
 
-  constructor (props: OrgReportWriterFormProps) {
+  constructor (props: OrgReportsFormProps) {
    super(props)
   }
 
@@ -81,7 +81,7 @@ export class OrgReportForm extends React.Component<OrgReportWriterFormProps> {
     this.props.getOrgs()
   }
 
-  componentDidUpdate(previousProps: OrgReportWriterFormProps) {
+  componentDidUpdate(previousProps: OrgReportsFormProps) {
     //console.log(this.props.tx)
     if(previousProps.tx != this.props.tx) {
       const submitting = !this.state.toggleSubmitting
@@ -246,14 +246,14 @@ const mapStateToProps = (state: ApplicationState): OrgProps => {
   }
 }
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgDispatchProps => {
+const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgReportsDispatchProps => {
   return {
     handleSubmit: (ownProps: any) => dispatch(setOrganisationReport(ownProps)),
     getOrgs: () => dispatch(getOrgs())
   }
 }
 
-export const OrgReportWriter = withTheme(withStyles(styles)(connect<OrgProps, OrgDispatchProps, {}, ApplicationState>(
+export const OrganisationReports = withTheme(withStyles(styles)(connect<OrgProps, OrgReportsDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(OrgReportForm)))
+)(OrgReportsForm)))

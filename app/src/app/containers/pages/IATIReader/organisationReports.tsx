@@ -5,11 +5,11 @@ import { ThunkDispatch } from 'redux-thunk'
 import { ethers } from 'ethers'
 import Markdown from 'react-markdown'
 
-import { getOrgReports } from '../../../store/IATI/IATIReader/organisationReportReader/actions'
+import { getOrgReports } from '../../../store/IATI/IATIReader/organisationReports/actions'
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { OrgReportData } from '../../../store/IATI/IATIReader/organisationReportReader/types'
+import { OrgReportData } from '../../../store/IATI/IATIReader/organisationReports/types'
 
 import { OrganisationReport as OrgReportStrings } from '../../../utils/strings'
 
@@ -29,7 +29,7 @@ interface OrgReportDispatchProps {
 
 type OrgReportReaderProps =  WithStyles<typeof styles> & OrgReportProps & OrgReportDispatchProps
 
-export class OrgReportReader extends React.Component<OrgReportReaderProps> {
+export class OrgReports extends React.Component<OrgReportReaderProps> {
 
   constructor (props: OrgReportReaderProps) {
     super(props)
@@ -102,7 +102,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   }
 }
 
-export const OrganisationReportReader = withTheme(withStyles(styles)(connect<OrgReportProps, OrgReportDispatchProps, {}, ApplicationState>(
+export const OrganisationReports = withTheme(withStyles(styles)(connect<OrgReportProps, OrgReportDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(OrgReportReader)))
+)(OrgReports)))

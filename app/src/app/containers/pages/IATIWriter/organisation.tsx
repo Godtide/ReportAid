@@ -9,7 +9,7 @@ import { ApplicationState } from '../../../store'
 import { ActionProps, TxData } from '../../../store/types'
 import { OrganisationProps } from '../../../store/IATI/types'
 
-import { setOrganisation } from '../../../store/IATI/IATIWriter/organisationWriter/actions'
+import { setOrganisation } from '../../../store/IATI/IATIWriter/organisation/actions'
 
 import { LinearProgress } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
@@ -20,14 +20,6 @@ import { Organisation, Transaction } from '../../../utils/strings'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
-
-interface OrgTXProps {
-  tx: TxData
-}
-
-export interface OrgDispatchProps {
-  handleSubmit: (values: any) => void
-}
 
 const organisationSchema = Yup.object().shape({
   name: Yup
@@ -40,6 +32,14 @@ const organisationSchema = Yup.object().shape({
     .string()
     .required('Required')
 })
+
+interface OrgTXProps {
+  tx: TxData
+}
+
+export interface OrgDispatchProps {
+  handleSubmit: (values: any) => void
+}
 
 type OrgWriterFormProps = WithStyles<typeof styles> & OrgTXProps & OrgDispatchProps
 
@@ -136,7 +136,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   }
 }
 
-export const OrganisationWriter = withTheme(withStyles(styles)(connect<OrgTXProps, OrgDispatchProps, {}, ApplicationState>(
+export const Organisations = withTheme(withStyles(styles)(connect<OrgTXProps, OrgDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
 )(OrgForm)))
