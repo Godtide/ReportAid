@@ -3,9 +3,7 @@ import { combineReducers, Reducer, Store, createStore, applyMiddleware } from 'r
 //import thunkMiddleware, { ThunkAction } from 'redux-thunk'
 import ReduxThunk, { ThunkAction } from 'redux-thunk'
 
-import { ActionProps } from './types'
-import { OrgWriterProps } from './IATI/IATIWriter/organisation/types'
-import { OrgReportWriterProps } from './IATI/IATIWriter/organisationReports/types'
+import { ActionProps, TxProps } from './types'
 import { OrgReaderProps } from './IATI/IATIReader/organisation/types'
 import { OrgReportReaderProps } from './IATI/IATIReader/organisationReports/types'
 import { InfoProps } from './info/types'
@@ -41,8 +39,8 @@ export interface ApplicationState {
   overview: InfoProps
   writer: InfoProps
   reader: InfoProps
-  orgForm: OrgWriterProps
-  orgReportsForm: OrgReportWriterProps
+  orgForm: TxProps
+  orgReportsForm: TxProps
   orgReader: OrgReaderProps
   orgReportsReader: OrgReportReaderProps
 }

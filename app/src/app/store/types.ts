@@ -8,6 +8,10 @@ export interface DictData {
   [key: string]: object
 }
 
+export interface TxProps extends PayloadProps {
+  data: TxData
+}
+
 export interface PayloadProps {
   data: object
 }

@@ -20,6 +20,20 @@ export interface IATIOrgReportProps {
   lastUpdatedTime: string
 }
 
+export interface FinanceProps {
+  value: number
+  status: string
+  start: string
+  end: string
+}
+
+export interface IATIOrgReportBudgetProps {
+  reportRef: string
+  budgetRef: string
+  budgetLine: string
+  finance: FinanceProps
+}
+
 export interface OrganisationProps {
   name: string
   code: string
@@ -34,4 +48,13 @@ export interface OrgReportProps {
   version: string
   lang: string
   currency: string
+}
+
+export interface OrgReportBudgetProps {
+  budgetRef: string
+  budgetLine: string
+  value: number
+  status: string
+  start: string
+  end: string
 }

@@ -6,13 +6,13 @@ import { ethers } from 'ethers'
 import { ApplicationState } from '../../../store'
 import { storeAction } from '../../../actions'
 
-import { ActionProps, PayloadProps, TxData } from '../../../types'
+import { ActionProps, PayloadProps, TxProps, TxData } from '../../../types'
 import { OrgReportProps, IATIOrgReportProps } from '../../types'
-import { OrgReportsWriterActionTypes, OrgReportWriterProps } from './types'
+import { OrgReportsWriterActionTypes } from './types'
 
 const add = (payload: PayloadProps): Function => {
-  return (actionType: OrgReportsWriterActionTypes): OrgReportWriterProps => {
-    const writerProps = storeAction(actionType)(payload) as OrgReportWriterProps
+  return (actionType: OrgReportsWriterActionTypes): TxProps => {
+    const writerProps = storeAction(actionType)(payload) as TxProps
     return writerProps
   }
 }
