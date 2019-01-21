@@ -51,7 +51,7 @@ const reportSchema = Yup.object().shape({
     .required('Required'),
 })
 
-interface OrgProps {
+interface ReportProps {
   tx: TxData,
   orgs: OrgData
 }
@@ -61,7 +61,7 @@ export interface OrgReportsDispatchProps {
   getOrgs: () => void
 }
 
-type OrgReportsFormProps = WithStyles<typeof styles> & OrgProps & OrgReportsDispatchProps
+type OrgReportsFormProps = WithStyles<typeof styles> & ReportProps & OrgReportsDispatchProps
 
 export class OrgReportsForm extends React.Component<OrgReportsFormProps> {
 
@@ -238,7 +238,7 @@ export class OrgReportsForm extends React.Component<OrgReportsFormProps> {
   }
 }
 
-const mapStateToProps = (state: ApplicationState): OrgProps => {
+const mapStateToProps = (state: ApplicationState): ReportProps => {
   //console.log(state.orgReader)
   return {
     tx: state.orgReportsForm.data,
@@ -253,7 +253,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   }
 }
 
-export const OrganisationReports = withTheme(withStyles(styles)(connect<OrgProps, OrgReportsDispatchProps, {}, ApplicationState>(
+export const OrganisationReports = withTheme(withStyles(styles)(connect<ReportProps, OrgReportsDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
 )(OrgReportsForm)))

@@ -22,6 +22,7 @@ import { reducer as IATIWriterInfoReducer } from './info/IATIWriter/reducer'
 import { reducer as IATIReaderInfoReducer } from './info/IATIReader/reducer'
 import { reducer as orgWriterReducer } from './IATI/IATIWriter/organisation/reducer'
 import { reducer as orgReportsWriterReducer } from './IATI/IATIWriter/organisationReports/reducer'
+import { reducer as orgReportBudgetsWriterReducer } from './IATI/IATIWriter/organisationReportBudgets/reducer'
 import { reducer as orgReaderReducer } from './IATI/IATIReader/organisation/reducer'
 import { reducer as orgReportsReaderReducer } from './IATI/IATIReader/organisationReports/reducer'
 
@@ -41,6 +42,7 @@ export interface ApplicationState {
   reader: InfoProps
   orgForm: TxProps
   orgReportsForm: TxProps
+  orgReportBudgetsForm: TxProps
   orgReader: OrgReaderProps
   orgReportsReader: OrgReportReaderProps
 }
@@ -57,6 +59,7 @@ export const rootReducer: Reducer<ApplicationState, ActionProps> = combineReduce
   reader: IATIReaderInfoReducer,
   orgForm: orgWriterReducer,
   orgReportsForm: orgReportsWriterReducer,
+  orgReportBudgetsForm: orgReportBudgetsWriterReducer,
   orgReader: orgReaderReducer,
   orgReportsReader: orgReportsReaderReducer
 })

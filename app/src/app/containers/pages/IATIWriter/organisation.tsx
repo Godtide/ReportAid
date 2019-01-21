@@ -33,7 +33,7 @@ const organisationSchema = Yup.object().shape({
     .required('Required')
 })
 
-interface OrgTXProps {
+interface OrgProps {
   tx: TxData
 }
 
@@ -41,7 +41,7 @@ export interface OrgDispatchProps {
   handleSubmit: (values: any) => void
 }
 
-type OrgWriterFormProps = WithStyles<typeof styles> & OrgTXProps & OrgDispatchProps
+type OrgWriterFormProps = WithStyles<typeof styles> & OrgProps & OrgDispatchProps
 
 export class OrgForm extends React.Component<OrgWriterFormProps> {
 
@@ -124,7 +124,7 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
   }
 }
 
-const mapStateToProps = (state: ApplicationState): OrgTXProps => {
+const mapStateToProps = (state: ApplicationState): OrgProps => {
   return {
     tx: state.orgForm.data
   }
@@ -136,7 +136,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   }
 }
 
-export const Organisations = withTheme(withStyles(styles)(connect<OrgTXProps, OrgDispatchProps, {}, ApplicationState>(
+export const Organisations = withTheme(withStyles(styles)(connect<OrgProps, OrgDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
 )(OrgForm)))

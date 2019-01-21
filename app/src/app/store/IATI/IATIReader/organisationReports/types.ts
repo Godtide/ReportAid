@@ -1,17 +1,17 @@
 import { PayloadProps, DictData } from '../../../types'
 import { IATIOrgReportProps } from '../../types'
 
-export interface Report {
+export interface ReportData {
   [key: string]: IATIOrgReportProps
 }
 
-export interface ReportData {
+export interface Reports {
   num: number
-  data: Report
+  data: ReportData
 }
 
 export interface OrgReportData extends DictData {
-  [key: string]: ReportData
+  [key: string]: Reports
 }
 
 export interface OrgReportReaderProps extends PayloadProps {

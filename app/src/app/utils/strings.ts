@@ -121,4 +121,18 @@ class OrganisationReport {
   static orgReportDetails = 'Report Details'
 }
 
-export { App, Paths, Blockchain, Home, About, Overview, Help, IATIWriter, IATIReader, Transaction, Organisation, OrganisationReport }
+class OrganisationReportBudget {
+
+  static headingOrgReportBudgetWriter = 'Create Organisation Report Budget'
+  static headingOrgReportBudgetReader = 'Organisation Report Budgets'
+
+  static reportReference = "Report Reference"
+  static budgetLine = "Budget Line"
+  static value = "Value"
+  static status = "Status"
+  static budgetStart = "Start Date"
+  static budgetEnd = "End Date"
+}
+
+
+export { App, Paths, Blockchain, Home, About, Overview, Help, IATIWriter, IATIReader, Transaction, Organisation, OrganisationReport, OrganisationReportBudget }

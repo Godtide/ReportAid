@@ -51,7 +51,7 @@ export interface OrgReportProps {
 }
 
 export interface OrgReportBudgetProps {
-  budgetRef: string
+  reportRef: string
   budgetLine: string
   value: number
   status: string

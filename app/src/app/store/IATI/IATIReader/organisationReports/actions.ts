@@ -5,7 +5,7 @@ import { ApplicationState } from '../../../store'
 import { storeAction } from '../../../actions'
 
 import { ActionProps, PayloadProps } from '../../../types'
-import { OrgReportReaderActionTypes, OrgReportReaderProps, OrgReportData, ReportData, Report } from './types'
+import { OrgReportReaderActionTypes, OrgReportReaderProps, OrgReportData } from './types'
 
 export const getOrgReports = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>) => {
