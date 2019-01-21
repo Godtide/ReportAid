@@ -20,8 +20,6 @@ const add = (payload: PayloadProps): Function => {
 export const setOrganisationReportBudget = (reportDetails: OrgReportBudgetProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
-    const date = new Date()
-    const dateTime = date.toISOString()
 
     const orgBudget: IATIOrgReportBudgetProps = {
       reportRef: reportDetails.reportRef,
