@@ -47,6 +47,9 @@ export class Orgs extends React.Component<OrgReaderProps> {
       xs += `**${OrgStrings.identifier}**: ${this.props.orgs[key].identifier}<br />`
     })
 
+    const date = new Date('12/31/2009')
+    console.log('Date is, ', date.toISOString())
+
     return (
       <div>
         <h2>{OrgStrings.headingOrgReader}</h2>
