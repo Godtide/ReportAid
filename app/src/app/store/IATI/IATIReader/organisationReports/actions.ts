@@ -107,22 +107,20 @@ const getOrgReportRefs = () => {
       const numReports = orgs[orgKey].num
       for (let j = 0; j < numReports; j++) {
          try {
-            const ref  = await orgReportsContract.getReportReference(orgKey, j)
+            const ref = await orgReportsContract.getReportReference(orgKey, j)
             //console.log ('Report ref: ', ref)
             orgs[orgKey].data[ref] = {
-              Report: {
-                version: '',
+              version: '',
+              orgRef: '',
+              reportRef: ref,
+              reportingOrg: {
                 orgRef: '',
-                reportRef: ref,
-                reportingOrg: {
-                  orgRef: '',
-                  orgType: 0,
-                  isSecondary: false
-                },
-                lang: '',
-                currency: '',
-                lastUpdatedTime: ''
-              }
+                orgType: 0,
+                isSecondary: false
+              },
+              lang: '',
+              currency: '',
+              lastUpdatedTime: ''
             }
             actionType = OrgReportReaderActionTypes.REPORTREF_SUCCESS
           } catch (error) {
@@ -154,7 +152,7 @@ const getOrgReportData = () => {
           const reportData = await orgReportsContract.getReport(orgKey, reportRefKey)
           //const reportData = await orgReportsContract.getCurrency(orgKey, reportRefKey)
           //console.log('Report Data for org ', orgKey, ' ref key ', reportRefKey, ' is data ', reportData)
-          orgs[orgKey].data[reportRefKey].Report = reportData
+          orgs[orgKey].data[reportRefKey] = reportData
           actionType = OrgReportReaderActionTypes.REPORT_SUCCESS
         } catch (error) {
           console.log('getOrgReportData error', error)
