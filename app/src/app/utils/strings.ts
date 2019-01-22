@@ -111,7 +111,7 @@ class OrganisationReport {
   static version = "Report Version"
   static orgIdentifier = "Report for Organisation"
   static reportKey = "Report Key"
-  static reportingOrgRef = 'Reporting Organisation Reference'
+  static reportingOrgRef = 'Reporting Organisation'
   static reportingOrgType = "Reporting Organisation Type"
   static reportingOrgIsSecondary = "Is Reporting Organisation Secondary?"
   static language = "Report Language"

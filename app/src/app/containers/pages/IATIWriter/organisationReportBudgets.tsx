@@ -126,9 +126,9 @@ export class OrgReportBudgetsForm extends React.Component<OrgReportBudgetsFormPr
       })
     })
 
-    let status: any[] = [{ value: 0, label: "" }]
+    let status: any[] = []
     Helpers.budgetStatus.forEach( (value: any) => {
-      //console.log(value, value.code)
+      //console.log(value)
       status.push({ value: value.code, label: value.name })
     })
 
@@ -163,7 +163,7 @@ export class OrgReportBudgetsForm extends React.Component<OrgReportBudgetsFormPr
             initialValues={ {reportRef: reportRefs[0].value,
                              budgetLine: "",
                              value: 0,
-                             status: status[0].values,
+                             status: status[0].value,
                              startDay: dayRefs[0].value,
                              startMonth: monthRefs[0].value,
                              startYear: yearRefs[0].value,

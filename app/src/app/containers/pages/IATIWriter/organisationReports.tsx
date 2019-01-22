@@ -108,7 +108,7 @@ export class OrgReportsForm extends React.Component<OrgReportsFormProps> {
 
   render() {
 
-    let versions: any[] = [{ value: "", label: "" }]
+    let versions: any[] = []
     Helpers.reportVersions.forEach( (value: any) => {
       //console.log(value, value.code)
       versions.push({ value: value, label: value })
@@ -119,13 +119,13 @@ export class OrgReportsForm extends React.Component<OrgReportsFormProps> {
       orgRefs.push({ value: key, label: this.props.orgs[key].name })
     })
 
-    let orgCodes: any[] = [{ value: 0, label: "" }]
+    let orgCodes: any[] = []
     Helpers.organisationCodes.forEach( (value: any) => {
       //console.log(value, value.code)
       orgCodes.push({ value: value.code, label: value.type })
     })
 
-    let isSecondary = [
+    const isSecondary = [
       { value: false, label: 'No' },
       { value: true, label: 'Yes' }
     ]
