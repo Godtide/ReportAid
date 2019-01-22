@@ -80,7 +80,7 @@ const getNumReportBudgets = () => {
     for (let i = 0; i < reportKeys.length; i++) {
       const reportKey = reportKeys[i]
        try {
-         console.log('Report key: ', reportKey)
+         //console.log('Report key: ', reportKey)
          const num = await orgReportBudgetsContract.getNumTotalBudgets(reportKey)
          reports[reportKey].num = num.toNumber()
          //console.log( 'Num reports for ', thisKey, ' ; ', orgs[thisKey].num)

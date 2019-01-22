@@ -50,7 +50,7 @@ export class OrgReportBudgets extends React.Component<OrgReportBudgetsReaderProp
         //console.log('Values: ', values)
         xs += `**${OrgReportBudgetStrings.numReportBudgets}**: ${values[0]} <br /><br />`
         Object.keys(values[1]).forEach((budgetKey) => {
-          console.log('Report: ', values[1][budgetKey])
+          //console.log('Report: ', values[1][budgetKey])
           //const version = ethers.utils.parseBytes32String(values[1][thisKey].version)
           if ( values[1][budgetKey].budgetLine != "" ) {
             const budgetLine = ethers.utils.parseBytes32String(values[1][budgetKey].budgetLine)
@@ -60,9 +60,9 @@ export class OrgReportBudgets extends React.Component<OrgReportBudgetsReaderProp
             xs+= `**${OrgReportBudgetStrings.budgetReference}**: ${budgetKey} <br />`
             xs+= `**${OrgReportBudgetStrings.budgetLine}**: ${budgetLine} <br />`
             xs+= `**${OrgReportBudgetStrings.value}**: ${values[1][budgetKey].finance.value} <br />`
-            xs+= `**${OrgReportBudgetStrings.status}**: ${values[1][budgetKey].finance.status} <br />`
-            xs+= `**${OrgReportBudgetStrings.budgetStart}**: ${values[1][budgetKey].finance.start} <br />`
-            xs+= `**${OrgReportBudgetStrings.budgetEnd}**: ${values[1][budgetKey].finance.end} <br /><br />`
+            xs+= `**${OrgReportBudgetStrings.status}**: ${status} <br />`
+            xs+= `**${OrgReportBudgetStrings.budgetStart}**: ${start} <br />`
+            xs+= `**${OrgReportBudgetStrings.budgetEnd}**: ${end} <br /><br />`
           }
         })
         length += 1
