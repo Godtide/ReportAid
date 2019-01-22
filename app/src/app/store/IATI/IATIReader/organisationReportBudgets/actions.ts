@@ -7,7 +7,7 @@ import { storeAction } from '../../../actions'
 import { ActionProps, PayloadProps } from '../../../types'
 import { OrgReportBudgetsReaderActionTypes, OrgReportBudgetsReaderProps, OrgReportBudgetsData } from './types'
 
-export const getOrgReports = () => {
+export const getReportBudgets = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>) => {
     await dispatch(getNumReports())
     await dispatch(getReportReferences())

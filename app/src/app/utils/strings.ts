@@ -125,19 +125,27 @@ class OrganisationReport {
 
 class OrganisationReportBudget {
 
-  static headingOrgReportBudgetWriter = 'Create Organisation Report Budget'
-  static headingOrgReportBudgetReader = 'Organisation Report Budgets'
+  static headingOrgReportBudgetWriter = 'Create Report Budget'
+  static headingOrgReportBudgetReader = 'Report Budgets'
 
+  static numReports = "Number of Reports"
+
+  static budgetReference = "Budget Reference"
   static reportReference = "Report Reference"
   static budgetLine = "Budget Line"
   static value = "Value"
   static status = "Status"
+  static budgetStart = "Start Date"
   static budgetStartDay = "Start Day"
   static budgetStartMonth = "Start Month"
   static budgetStartYear = "Start Year"
+  static budgetEnd = "End Date"
   static budgetEndDay = "End Day"
   static budgetEndMonth = "End Month"
   static budgetEndYear = "End Year"
+
+  static numReportBudgets = "Number of Budgets"
+  static reportBudgetDetails = 'Budget Details'
 }
 
 
