@@ -115,11 +115,18 @@ export class OrgReportBudgetsForm extends React.Component<OrgReportBudgetsFormPr
 
   render() {
 
-    //console.log('Props orgs: ', this.props.orgs)
-    let orgReportsRefs: any[] = []
-    Object.keys(this.props.orgReports).forEach((key) => {
-      orgReportsRefs.push({ value: key, label: key })
+    let reportRefs: any[] = [{ value: "", label: "" }]
+    Object.keys(this.props.orgReports).forEach((orgKey) => {
+      //console.log(orgKey)
+      const values = Object.values(this.props.orgReports[orgKey])
+      console.log(values)
+      Object.keys(values[1]).forEach((reportKey) => {
+        //console.log('Key: ', reportKey)
+        reportRefs.push({ value: reportKey, label: reportKey })
+      })
     })
+
+    //console.log(reportRefs)
 
     let dayRefs: any[] = []
     Array.from({ length: 31 }, (v: number, i: number) => {
@@ -147,7 +154,7 @@ export class OrgReportBudgetsForm extends React.Component<OrgReportBudgetsFormPr
         <h2>{OrganisationReportBudget.headingOrgReportBudgetWriter}</h2>
         <div>
           <Formik
-            initialValues={ {reportRef: orgReportsRefs[0].value,
+            initialValues={ {reportRef: reportRefs[0].value,
                              budgetLine: "",
                              value: 0,
                              status: "",
@@ -168,7 +175,7 @@ export class OrgReportBudgetsForm extends React.Component<OrgReportBudgetsFormPr
                   name="reportRef"
                   label={OrganisationReportBudget.reportReference}
                   component={Select}
-                  options={orgReportsRefs}
+                  options={reportRefs}
                 />
                 <ErrorMessage name='reportRef' />
                 <br />

@@ -108,19 +108,18 @@ export class OrgReportsForm extends React.Component<OrgReportsFormProps> {
 
   render() {
 
-    let versions: any = []
+    let versions: any[] = [{ value: "", label: "" }]
     Helpers.reportVersions.forEach( (value: any) => {
       //console.log(value, value.code)
       versions.push({ value: value, label: value })
     })
 
-    //console.log('Props orgs: ', this.props.orgs)
-    let orgRefs: any = []
+    let orgRefs: any[] = [{ value: "", label: "" }]
     Object.keys(this.props.orgs).forEach((key) => {
       orgRefs.push({ value: key, label: this.props.orgs[key].name })
     })
 
-    let orgCodes: any = []
+    let orgCodes: any[] = [{ value: 0, label: "" }]
     Helpers.organisationCodes.forEach( (value: any) => {
       //console.log(value, value.code)
       orgCodes.push({ value: value.code, label: value.type })
@@ -131,13 +130,13 @@ export class OrgReportsForm extends React.Component<OrgReportsFormProps> {
       { value: true, label: 'Yes' }
     ]
 
-    let countries: any = []
+    let countries: any[] = [{ value: "", label: "" }]
     Helpers.countryCodes.forEach( (value: any) => {
       //console.log(value, value.code)
       countries.push({ value: value, label: value })
     })
 
-    let currencies: any = []
+    let currencies: any[] = [{ value: "", label: "" }]
     Helpers.currencyCodes.forEach( (value: any) => {
       //console.log(value, value.code)
       currencies.push({ value: value, label: value })
