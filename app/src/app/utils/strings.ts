@@ -20,11 +20,12 @@ class Paths {
   static readonly writer='Create Records'
   static readonly reader='Read Records'
 
-  static readonly orgWriter='Create Organisation'
-  static readonly orgReportWriter='Create Organisation Report'
-  static readonly orgReportBudgetsWriter = "Create Organisation Report Budget"
-  static readonly orgReader='Read Organisations'
-  static readonly orgReportReader='Read Organisation Reports'
+  static readonly orgWriter='Organisation'
+  static readonly orgReportWriter='Report'
+  static readonly orgReportBudgetsWriter = "Report Budget"
+  static readonly orgReader='Organisations'
+  static readonly orgReportReader='Reports'
+  static readonly orgReportBudgetsReader='Report Budgets'
 }
 
 class Blockchain {
@@ -89,7 +90,7 @@ class Transaction {
 class Organisation {
 
   static headingOrgWriter = 'Create Organisation Records'
-  static headingOrgReader = 'Organisation Records'
+  static headingOrgReader = 'Read Organisation Records'
 
   static orgDetails = 'Organisation Details'
   static orgIdentifier = "Organisation Reference"

@@ -12,6 +12,7 @@ class Paths {
   static readonly orgReportBudgetsWriter = '/create-organisation-report-budget'
   static readonly orgReader='/read-organisations'
   static readonly orgReportReader='/read-organisation-reports'
+  static readonly orgReportBudgetsReader = '/read-organisation-report-budgets'
 }
 
 class Blockchain {
