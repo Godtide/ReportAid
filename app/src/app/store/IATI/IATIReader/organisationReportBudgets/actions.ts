@@ -74,12 +74,13 @@ const getNumReportBudgets = () => {
     const orgReportBudgetsContract = state.chainContracts.data.contracts.orgReportBudgetsContract
     let actionType = OrgReportBudgetsReaderActionTypes.NUMBUDGET_FAILURE
 
-    const reports = state.orgReportsReader.data as OrgReportBudgetsData
+    const reports = state.orgReportBudgetsReader.data as OrgReportBudgetsData
     const reportKeys = Object.keys(reports)
 
     for (let i = 0; i < reportKeys.length; i++) {
       const reportKey = reportKeys[i]
        try {
+         console.log('Report key: ', reportKey)
          const num = await orgReportBudgetsContract.getNumTotalBudgets(reportKey)
          reports[reportKey].num = num.toNumber()
          //console.log( 'Num reports for ', thisKey, ' ; ', orgs[thisKey].num)
@@ -99,7 +100,7 @@ const getReportBudgetRefs = () => {
     const orgReportBudgetsContract = state.chainContracts.data.contracts.orgReportBudgetsContract
     let actionType = OrgReportBudgetsReaderActionTypes.BUDGETREF_FAILURE
 
-    const reports = state.orgReportsReader.data as OrgReportBudgetsData
+    const reports = state.orgReportBudgetsReader.data as OrgReportBudgetsData
     const reportKeys = Object.keys(reports)
 
     for (let i = 0; i < reportKeys.length; i++) {
@@ -137,7 +138,7 @@ const getReportBudgetData = () => {
     const orgReportBudgetsContract = state.chainContracts.data.contracts.orgReportBudgetsContract
     let actionType = OrgReportBudgetsReaderActionTypes.BUDGET_FAILURE
 
-    const reports = state.orgReportsReader.data as OrgReportBudgetsData
+    const reports = state.orgReportBudgetsReader.data as OrgReportBudgetsData
     const reportKeys = Object.keys(reports)
 
     for (let i = 0; i < reportKeys.length; i++) {
