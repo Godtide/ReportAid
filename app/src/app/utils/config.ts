@@ -248,6 +248,11 @@ class Helpers {
   ]
 
   static reportVersions = [ "2.03" ]
+
+  static budgetStatus = [
+    {code: 1, name:	"Indicative"},
+    {code: 2, name:	"Committed"},
+  ]
 }
 
 export { Paths, Blockchain, Contract, Helpers }

@@ -36,7 +36,7 @@ const reportSchema = Yup.object().shape({
     .number()
     .required('Required'),
   status: Yup
-    .string()
+    .number()
     .required('Required'),
   startDay: Yup
     .number()
@@ -126,6 +126,12 @@ export class OrgReportBudgetsForm extends React.Component<OrgReportBudgetsFormPr
       })
     })
 
+    let status: any[] = [{ value: 0, label: "" }]
+    Helpers.budgetStatus.forEach( (value: any) => {
+      //console.log(value, value.code)
+      status.push({ value: value.code, label: value.name })
+    })
+
     //console.log(reportRefs)
 
     let dayRefs: any[] = []
@@ -157,7 +163,7 @@ export class OrgReportBudgetsForm extends React.Component<OrgReportBudgetsFormPr
             initialValues={ {reportRef: reportRefs[0].value,
                              budgetLine: "",
                              value: 0,
-                             status: "",
+                             status: status[0].values,
                              startDay: dayRefs[0].value,
                              startMonth: monthRefs[0].value,
                              startYear: yearRefs[0].value,
@@ -195,7 +201,8 @@ export class OrgReportBudgetsForm extends React.Component<OrgReportBudgetsFormPr
                 <Field
                   name='status'
                   label={OrganisationReportBudget.status}
-                  component={TextField}
+                  component={Select}
+                  options={status}
                 />
                 <ErrorMessage name='status' />
                 <Field
