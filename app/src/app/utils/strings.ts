@@ -131,8 +131,12 @@ class OrganisationReportBudget {
   static budgetLine = "Budget Line"
   static value = "Value"
   static status = "Status"
-  static budgetStart = "Start Date"
-  static budgetEnd = "End Date"
+  static budgetStartDay = "Start Day"
+  static budgetStartMonth = "Start Month"
+  static budgetStartYear = "Start Year"
+  static budgetEndDay = "End Day"
+  static budgetEndMonth = "End Month"
+  static budgetEndYear = "End Year"
 }
 
 

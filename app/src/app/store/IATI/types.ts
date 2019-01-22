@@ -55,6 +55,10 @@ export interface OrgReportBudgetProps {
   budgetLine: string
   value: number
   status: string
-  start: string
-  end: string
+  startDay: number
+  startMonth: number
+  startYear: number
+  endDay: number
+  endMonth: number
+  endYear: number
 }

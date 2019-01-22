@@ -38,11 +38,23 @@ const reportSchema = Yup.object().shape({
   status: Yup
     .string()
     .required('Required'),
-  start: Yup
-    .string()
+  startDay: Yup
+    .number()
     .required('Required'),
-  end: Yup
-    .string()
+  startMonth: Yup
+    .number()
+    .required('Required'),
+  startYear: Yup
+    .number()
+    .required('Required'),
+  endDay: Yup
+    .number()
+    .required('Required'),
+  endMonth: Yup
+    .number()
+    .required('Required'),
+  endYear: Yup
+    .number()
     .required('Required'),
 })
 
@@ -87,7 +99,7 @@ export class OrgReportBudgetsForm extends React.Component<OrgReportBudgetsFormPr
         txKey = Object.keys(this.props.tx)[0]
         txSummary = `${Transaction.success}`
       }
-      this.setState({txKey: txKey, orgReportBudgetsFormtxSummary: txSummary, toggleSubmitting: submitting})
+      this.setState({txKey: txKey, txSummary: txSummary, toggleSubmitting: submitting})
       this.state.submitFunc(submitting)
       this.state.resetFunc()
     }
@@ -104,9 +116,30 @@ export class OrgReportBudgetsForm extends React.Component<OrgReportBudgetsFormPr
   render() {
 
     //console.log('Props orgs: ', this.props.orgs)
-    let orgReportsRefs: any = []
+    let orgReportsRefs: any[] = []
     Object.keys(this.props.orgReports).forEach((key) => {
       orgReportsRefs.push({ value: key, label: key })
+    })
+
+    let dayRefs: any[] = []
+    Array.from({ length: 31 }, (v: number, i: number) => {
+      const value = ++i
+      dayRefs.push({ value: value, label: value.toString() })
+    })
+
+    let monthRefs: any[] = []
+    Array.from({ length: 12 }, (v: number, i: number) => {
+      const value = ++i
+      monthRefs.push({ value: value, label: value.toString() })
+    })
+
+    const startYear = 1990
+    const stopYear = 2030
+    const step = 1
+    let yearRefs: any[] = []
+    Array.from({ length: (stopYear - startYear) / step }, (_, i: number) => {
+      const year = startYear + (i * step)
+      yearRefs.push({ value: year, label: year.toString() })
     })
 
     return (
@@ -118,8 +151,12 @@ export class OrgReportBudgetsForm extends React.Component<OrgReportBudgetsFormPr
                              budgetLine: "",
                              value: 0,
                              status: "",
-                             start: "",
-                             end: ""
+                             startDay: dayRefs[0].value,
+                             startMonth: monthRefs[0].value,
+                             startYear: yearRefs[0].value,
+                             endDay: dayRefs[0].value,
+                             endMonth: monthRefs[0].value,
+                             endYear: yearRefs[0].value,
                             }}
             validationSchema={reportSchema}
             onSubmit={(values: OrgReportBudgetProps, actions: any) => {
@@ -155,18 +192,48 @@ export class OrgReportBudgetsForm extends React.Component<OrgReportBudgetsFormPr
                 />
                 <ErrorMessage name='status' />
                 <Field
-                  name='start'
-                  label={OrganisationReportBudget.budgetStart}
-                  component={TextField}
+                  name='startDay'
+                  label={OrganisationReportBudget.budgetStartDay}
+                  component={Select}
+                  options={dayRefs}
                 />
-                <ErrorMessage name='start' />
+                <ErrorMessage name='startDay' />
+                <Field
+                  name='startMonth'
+                  label={OrganisationReportBudget.budgetStartMonth}
+                  component={Select}
+                  options={monthRefs}
+                />
+                <ErrorMessage name='startMonth' />
+                <Field
+                  name='startYear'
+                  label={OrganisationReportBudget.budgetStartYear}
+                  component={Select}
+                  options={yearRefs}
+                />
+                <ErrorMessage name='startYear' />
                 <br />
                 <Field
-                  name='end'
-                  label={OrganisationReportBudget.budgetEnd}
-                  component={TextField}
+                  name='endDay'
+                  label={OrganisationReportBudget.budgetEndDay}
+                  component={Select}
+                  options={dayRefs}
                 />
-                <ErrorMessage name='end' />
+                <ErrorMessage name='endDay' />
+                <Field
+                  name='endMonth'
+                  label={OrganisationReportBudget.budgetEndMonth}
+                  component={Select}
+                  options={monthRefs}
+                />
+                <ErrorMessage name='endMonth' />
+                <Field
+                  name='endYear'
+                  label={OrganisationReportBudget.budgetEndYear}
+                  component={Select}
+                  options={yearRefs}
+                />
+                <ErrorMessage name='endYear' />
                 <br />
                 {formProps.isSubmitting && <LinearProgress />}
                 <br />

@@ -17,19 +17,25 @@ const add = (payload: PayloadProps): Function => {
   }
 }
 
-export const setOrganisationReportBudget = (reportDetails: OrgReportBudgetProps) => {
+export const setOrganisationReportBudget = (budgetDetails: OrgReportBudgetProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
 
+    const start = new Date(budgetDetails.startYear + '/' + budgetDetails.startMonth + '/' + budgetDetails.startDay)
+    const startDate = start.toISOString()
+    const end = new Date(budgetDetails.endYear + '/' + budgetDetails.endMonth + '/' + budgetDetails.endDay)
+    const endDate = end.toISOString()
+    //console.log('Start: ', startDate, ' End: ', endDate)
+
     const orgBudget: IATIOrgReportBudgetProps = {
-      reportRef: reportDetails.reportRef,
+      reportRef: budgetDetails.reportRef,
       budgetRef: ethers.utils.formatBytes32String(shortid.generate()),
-      budgetLine: ethers.utils.formatBytes32String(reportDetails.budgetLine),
+      budgetLine: ethers.utils.formatBytes32String(budgetDetails.budgetLine),
       finance: {
-        value: reportDetails.value,
-        status: ethers.utils.formatBytes32String(reportDetails.status),
-        start: ethers.utils.formatBytes32String(reportDetails.start),
-        end: ethers.utils.formatBytes32String(reportDetails.end)
+        value: budgetDetails.value,
+        status: ethers.utils.formatBytes32String(budgetDetails.status),
+        start: ethers.utils.formatBytes32String(startDate),
+        end: ethers.utils.formatBytes32String(endDate)
       }
     }
 
