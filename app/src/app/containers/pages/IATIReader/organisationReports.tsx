@@ -60,13 +60,13 @@ export class OrgReports extends React.Component<OrgReportReaderProps> {
             const currency =  ethers.utils.parseBytes32String(values[1][thisKey].currency)
             const lastUpdated =  ethers.utils.parseBytes32String(values[1][thisKey].lastUpdatedTime)
             xs+= `**${OrgReportStrings.reportKey}**: ${thisKey} <br />`
-            xs+= `**${OrgReportStrings.version}**:  ${version} <br />`
-            xs+= `**${OrgReportStrings.reportingOrgRef}**:  ${values[1][thisKey].reportingOrg.orgRef} <br />`
-            xs+= `**${OrgReportStrings.reportingOrgType}**:  ${values[1][thisKey].reportingOrg.orgType} <br />`
-            xs+= `**${OrgReportStrings.reportingOrgIsSecondary}**:  ${values[1][thisKey].reportingOrg.isSecondary} <br />`
-            xs+= `**${OrgReportStrings.language}**:  ${language} <br />`
-            xs+= `**${OrgReportStrings.currency}**:  ${currency} <br />`
-            xs+= `**${OrgReportStrings.lastUpdated}**:  ${lastUpdated} <br /><br />`
+            xs+= `**${OrgReportStrings.version}**: ${version} <br />`
+            xs+= `**${OrgReportStrings.reportingOrgRef}**: ${values[1][thisKey].reportingOrg.orgRef} <br />`
+            xs+= `**${OrgReportStrings.reportingOrgType}**: ${values[1][thisKey].reportingOrg.orgType} <br />`
+            xs+= `**${OrgReportStrings.reportingOrgIsSecondary}**: ${values[1][thisKey].reportingOrg.isSecondary} <br />`
+            xs+= `**${OrgReportStrings.language}**: ${language} <br />`
+            xs+= `**${OrgReportStrings.currency}**: ${currency} <br />`
+            xs+= `**${OrgReportStrings.lastUpdated}**: ${lastUpdated} <br /><br />`
           }
         })
         length += 1

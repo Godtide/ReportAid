@@ -6,6 +6,7 @@ import ReduxThunk, { ThunkAction } from 'redux-thunk'
 import { ActionProps, TxProps } from './types'
 import { OrgReaderProps } from './IATI/IATIReader/organisation/types'
 import { OrgReportReaderProps } from './IATI/IATIReader/organisationReports/types'
+import { OrgReportBudgetsReaderProps } from './IATI/IATIReader/organisationReportBudgets/types'
 import { InfoProps } from './info/types'
 import { InfoProps as BlockchainInfoProps } from  './blockchain/info/types'
 import { AccountProps } from  './blockchain/account/types'
@@ -25,6 +26,7 @@ import { reducer as orgReportsWriterReducer } from './IATI/IATIWriter/organisati
 import { reducer as orgReportBudgetsWriterReducer } from './IATI/IATIWriter/organisationReportBudgets/reducer'
 import { reducer as orgReaderReducer } from './IATI/IATIReader/organisation/reducer'
 import { reducer as orgReportsReaderReducer } from './IATI/IATIReader/organisationReports/reducer'
+import { reducer as orgReportBudgetsReaderReducer } from './IATI/IATIReader/organisationReportBudgets/reducer'
 
 export type ThunkResult<R> = ThunkAction<R, ApplicationState, null, any>
 
@@ -45,6 +47,7 @@ export interface ApplicationState {
   orgReportBudgetsForm: TxProps
   orgReader: OrgReaderProps
   orgReportsReader: OrgReportReaderProps
+  orgReportBudgetsReader: OrgReportBudgetsReaderProps
 }
 
 export const rootReducer: Reducer<ApplicationState, ActionProps> = combineReducers<ApplicationState, ActionProps>({
@@ -61,7 +64,8 @@ export const rootReducer: Reducer<ApplicationState, ActionProps> = combineReduce
   orgReportsForm: orgReportsWriterReducer,
   orgReportBudgetsForm: orgReportBudgetsWriterReducer,
   orgReader: orgReaderReducer,
-  orgReportsReader: orgReportsReaderReducer
+  orgReportsReader: orgReportsReaderReducer,
+  orgReportBudgetsReader: orgReportBudgetsReaderReducer
 })
 
 export function configureStore(
