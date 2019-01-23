@@ -7,6 +7,7 @@ import { ActionProps, TxProps } from './types'
 import { OrgReaderProps } from './IATI/IATIReader/organisation/types'
 import { OrgReportReaderProps } from './IATI/IATIReader/organisationReports/types'
 import { OrgReportBudgetsReaderProps } from './IATI/IATIReader/organisationReportBudgets/types'
+import { OrgReportExpenditureReaderProps } from './IATI/IATIReader/organisationReportExpenditure/types'
 import { InfoProps } from './info/types'
 import { InfoProps as BlockchainInfoProps } from  './blockchain/info/types'
 import { AccountProps } from  './blockchain/account/types'
@@ -24,12 +25,13 @@ import { reducer as IATIReaderInfoReducer } from './info/IATIReader/reducer'
 import { reducer as orgWriterReducer } from './IATI/IATIWriter/organisation/reducer'
 import { reducer as orgReportsWriterReducer } from './IATI/IATIWriter/organisationReports/reducer'
 import { reducer as orgReportBudgetsWriterReducer } from './IATI/IATIWriter/organisationReportBudgets/reducer'
+import { reducer as orgReportExpenditureWriterReducer } from './IATI/IATIWriter/organisationReportExpenditure/reducer'
 import { reducer as orgReaderReducer } from './IATI/IATIReader/organisation/reducer'
 import { reducer as orgReportsReaderReducer } from './IATI/IATIReader/organisationReports/reducer'
 import { reducer as orgReportBudgetsReaderReducer } from './IATI/IATIReader/organisationReportBudgets/reducer'
+import { reducer as orgReportExpenditureReaderReducer } from './IATI/IATIReader/organisationReportExpenditure/reducer'
 
 export type ThunkResult<R> = ThunkAction<R, ApplicationState, null, any>
-
 
 // The top-level state object
 export interface ApplicationState {
@@ -45,9 +47,11 @@ export interface ApplicationState {
   orgForm: TxProps
   orgReportsForm: TxProps
   orgReportBudgetsForm: TxProps
+  orgReportExpenditureForm: TxProps
   orgReader: OrgReaderProps
   orgReportsReader: OrgReportReaderProps
   orgReportBudgetsReader: OrgReportBudgetsReaderProps
+  orgReportExpenditureReader: OrgReportExpenditureReaderProps
 }
 
 export const rootReducer: Reducer<ApplicationState, ActionProps> = combineReducers<ApplicationState, ActionProps>({
@@ -63,9 +67,11 @@ export const rootReducer: Reducer<ApplicationState, ActionProps> = combineReduce
   orgForm: orgWriterReducer,
   orgReportsForm: orgReportsWriterReducer,
   orgReportBudgetsForm: orgReportBudgetsWriterReducer,
+  orgReportExpenditureForm: orgReportExpenditureWriterReducer,
   orgReader: orgReaderReducer,
   orgReportsReader: orgReportsReaderReducer,
-  orgReportBudgetsReader: orgReportBudgetsReaderReducer
+  orgReportBudgetsReader: orgReportBudgetsReaderReducer,
+  orgReportExpenditureReader: orgReportExpenditureReaderReducer
 })
 
 export function configureStore(
