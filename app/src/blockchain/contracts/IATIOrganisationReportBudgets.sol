@@ -19,7 +19,7 @@ contract IATIOrganisationReportBudgets is OrganisationReportBudgets {
     require (_budget.reportRef[0] != 0 &&
              _budget.budgetRef[0] != 0 &&
              _budget.budgetLine[0] != 0 &&
-             _budget.finance.status[0] != 0 &&
+             _budget.finance.status > 0 &&
              _budget.finance.start[0] != 0 &&
              _budget.finance.end[0] != 0 );
 
@@ -98,7 +98,7 @@ contract IATIOrganisationReportBudgets is OrganisationReportBudgets {
     return budgets[_reportRef][_budgetRef].finance.value;
   }
 
-  function getTotalBudgetStatus(bytes32 _reportRef, bytes32 _budgetRef) public view returns (bytes32) {
+  function getTotalBudgetStatus(bytes32 _reportRef, bytes32 _budgetRef) public view returns (uint8) {
     require (_reportRef[0] != 0 && _budgetRef[0] != 0);
 
     return budgets[_reportRef][_budgetRef].finance.status;

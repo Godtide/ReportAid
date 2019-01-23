@@ -54,13 +54,12 @@ export class OrgReportBudgets extends React.Component<OrgReportBudgetsReaderProp
           //const version = ethers.utils.parseBytes32String(values[1][thisKey].version)
           if ( values[1][budgetKey].budgetLine != "" ) {
             const budgetLine = ethers.utils.parseBytes32String(values[1][budgetKey].budgetLine)
-            const status = ethers.utils.parseBytes32String(values[1][budgetKey].finance.status)
             const start = ethers.utils.parseBytes32String(values[1][budgetKey].finance.start)
             const end = ethers.utils.parseBytes32String(values[1][budgetKey].finance.end)
             xs+= `**${OrgReportBudgetStrings.budgetReference}**: ${budgetKey} <br />`
             xs+= `**${OrgReportBudgetStrings.budgetLine}**: ${budgetLine} <br />`
             xs+= `**${OrgReportBudgetStrings.value}**: ${values[1][budgetKey].finance.value} <br />`
-            xs+= `**${OrgReportBudgetStrings.status}**: ${status} <br />`
+            xs+= `**${OrgReportBudgetStrings.status}**: ${values[1][budgetKey].finance.status} <br />`
             xs+= `**${OrgReportBudgetStrings.budgetStart}**: ${start} <br />`
             xs+= `**${OrgReportBudgetStrings.budgetEnd}**: ${end} <br /><br />`
           }

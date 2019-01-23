@@ -5,7 +5,7 @@ contract OrganisationReportBudgets {
 
   struct Finance {
     uint256 value;
-    bytes32 status;
+    uint8 status;
     bytes32 start;
     bytes32 end;
   }
@@ -31,7 +31,7 @@ contract OrganisationReportBudgets {
   function getTotalBudget(bytes32 _reportRef, bytes32 _budgetRef) public view returns (Budget memory);
   function getTotalBudgetLine(bytes32 _reportRef, bytes32 _budgetRef) public view returns (bytes32);
   function getTotalBudgetValue(bytes32 _reportRef, bytes32 _budgetRef) public view returns (uint256);
-  function getTotalBudgetStatus(bytes32 _reportRef, bytes32 _budgetRef) public view returns (bytes32);
+  function getTotalBudgetStatus(bytes32 _reportRef, bytes32 _budgetRef) public view returns (uint8);
   function getTotalBudgetStart(bytes32 _reportRef, bytes32 _budgetRef) public view returns (bytes32);
   function getTotalBudgetEnd(bytes32 _reportRef, bytes32 _budgetRef) public view returns (bytes32);
 }

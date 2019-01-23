@@ -33,13 +33,14 @@ export const setOrganisationReportBudget = (budgetDetails: OrgReportBudgetProps)
       budgetLine: ethers.utils.formatBytes32String(budgetDetails.budgetLine),
       finance: {
         value: budgetDetails.value,
-        status: ethers.utils.formatBytes32String(budgetDetails.status),
+        status: budgetDetails.status,
         start: ethers.utils.formatBytes32String(startDate),
         end: ethers.utils.formatBytes32String(endDate)
       }
     }
 
     const orgReportBudgetsContract = state.chainContracts.data.contracts.orgReportBudgetsContract
+    //console.log('Budget: ', orgBudget, ' Contract ', orgReportBudgetsContract)
     let actionType = OrgReportBudgetsWriterActionTypes.ADD_FAILURE
     let txData: TxData = {}
     try {
