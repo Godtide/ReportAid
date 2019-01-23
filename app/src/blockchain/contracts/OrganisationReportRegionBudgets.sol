@@ -5,7 +5,7 @@ contract OrganisationReportRegionBudgets {
 
   struct Finance {
     uint256 value;
-    bytes32 status;
+    uint8 status;
     bytes32 start;
     bytes32 end;
   }
@@ -32,7 +32,7 @@ contract OrganisationReportRegionBudgets {
   function getRegionsBudget(bytes32 _reportRef, bytes32 _regionRef) public view returns (RegionBudget memory);
   function getRegionsBudgetLine(bytes32 _reportRef, bytes32 _budgetRef) public view returns (bytes32);
   function getRegionsBudgetValue(bytes32 _reportRef, bytes32 _regionRef) public view returns (uint256);
-  function getRegionsBudgetStatus(bytes32 _reportRef, bytes32 _regionRef) public view returns (bytes32);
+  function getRegionsBudgetStatus(bytes32 _reportRef, bytes32 _regionRef) public view returns (uint8);
   function getRegionsBudgetStart(bytes32 _reportRef, bytes32 _regionRef) public view returns (bytes32);
   function getRegionsBudgetEnd(bytes32 _reportRef, bytes32 _regionRef) public view returns (bytes32);
 }

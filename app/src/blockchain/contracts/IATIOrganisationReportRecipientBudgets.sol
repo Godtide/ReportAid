@@ -20,7 +20,7 @@ contract IATIOrganisationReportRecipientBudgets is OrganisationReportRecipientBu
              _budget.budgetRef[0] != 0 &&
              _budget.orgRef[0] != 0 &&
              _budget.budgetLine[0] != 0 &&
-             _budget.finance.status[0] != 0 &&
+             _budget.finance.status > 0 &&
              _budget.finance.start[0] != 0 &&
              _budget.finance.end[0] != 0 );
 
@@ -99,7 +99,7 @@ contract IATIOrganisationReportRecipientBudgets is OrganisationReportRecipientBu
     return recipientOrgBudgets[_reportRef][_recipientOrgRef].finance.value;
   }
 
-  function getRecipientOrgBudgetStatus(bytes32 _reportRef, bytes32 _recipientOrgRef) public view returns (bytes32) {
+  function getRecipientOrgBudgetStatus(bytes32 _reportRef, bytes32 _recipientOrgRef) public view returns (uint8) {
     require (_reportRef[0] != 0 && _recipientOrgRef[0] != 0);
 
     return recipientOrgBudgets[_reportRef][_recipientOrgRef].finance.status;

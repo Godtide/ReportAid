@@ -19,7 +19,7 @@ contract IATIOrganisationReportExpenditure is OrganisationReportExpenditure {
     require (_expenditure.reportRef[0] != 0 &&
              _expenditure.expenditureRef[0] != 0 &&
              _expenditure.expenditureLine[0] != 0 &&
-             _expenditure.finance.status[0] != 0 &&
+             _expenditure.finance.status > 0 &&
              _expenditure.finance.start[0] != 0 &&
              _expenditure.finance.end[0] != 0 );
 
@@ -98,7 +98,7 @@ contract IATIOrganisationReportExpenditure is OrganisationReportExpenditure {
     return expenditures[_reportRef][_expenditureRef].finance.value;
   }
 
-  function getExpenditureStatus(bytes32 _reportRef, bytes32 _expenditureRef) public view returns (bytes32) {
+  function getExpenditureStatus(bytes32 _reportRef, bytes32 _expenditureRef) public view returns (uint8) {
     require (_reportRef[0] != 0 && _expenditureRef[0] != 0);
 
     return expenditures[_reportRef][_expenditureRef].finance.status;

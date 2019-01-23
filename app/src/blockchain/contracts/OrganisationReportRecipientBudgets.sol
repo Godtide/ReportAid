@@ -5,7 +5,7 @@ contract OrganisationReportRecipientBudgets {
 
   struct Finance {
     uint256 value;
-    bytes32 status;
+    uint8 status;
     bytes32 start;
     bytes32 end;
   }
@@ -32,7 +32,7 @@ contract OrganisationReportRecipientBudgets {
   function getRecipientOrgBudget(bytes32 _reportRef, bytes32 _recipientOrgRef) public view returns (RecipientBudget memory);
   function getRecipientOrgBudgetLine(bytes32 _reportRef, bytes32 _budgetRef) public view returns (bytes32);
   function getRecipientOrgBudgetValue(bytes32 _reportRef, bytes32 _recipientOrgRef) public view returns (uint256);
-  function getRecipientOrgBudgetStatus(bytes32 _reportRef, bytes32 _recipientOrgRef) public view returns (bytes32);
+  function getRecipientOrgBudgetStatus(bytes32 _reportRef, bytes32 _recipientOrgRef) public view returns (uint8);
   function getRecipientOrgBudgetStart(bytes32 _reportRef, bytes32 _recipientOrgRef) public view returns (bytes32);
   function getRecipientOrgBudgetEnd(bytes32 _reportRef, bytes32 _recipientOrgRef) public view returns (bytes32);
 }

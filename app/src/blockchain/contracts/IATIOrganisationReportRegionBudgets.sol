@@ -20,7 +20,7 @@ contract IATIOrganisationReportRegionBudgets is OrganisationReportRegionBudgets 
              _budget.budgetRef[0] != 0 &&
              _budget.regionRef[0] != 0 &&
              _budget.budgetLine[0] != 0 &&
-             _budget.finance.status[0] != 0 &&
+             _budget.finance.status > 0 &&
              _budget.finance.start[0] != 0 &&
              _budget.finance.end[0] != 0 );
 
@@ -98,7 +98,7 @@ contract IATIOrganisationReportRegionBudgets is OrganisationReportRegionBudgets 
     return regionBudgets[_reportRef][_regionRef].finance.value;
   }
 
-  function getRegionsBudgetStatus(bytes32 _reportRef, bytes32 _regionRef) public view returns (bytes32) {
+  function getRegionsBudgetStatus(bytes32 _reportRef, bytes32 _regionRef) public view returns (uint8) {
     require (_reportRef[0] != 0 && _regionRef[0] != 0);
 
     return regionBudgets[_reportRef][_regionRef].finance.status;

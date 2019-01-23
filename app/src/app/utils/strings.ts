@@ -128,7 +128,7 @@ class OrganisationReportBudget {
   static headingOrgReportBudgetWriter = 'Create Report Budget'
   static headingOrgReportBudgetReader = 'Report Budgets'
 
-  static numReports = "Number of Reports"
+  static numReports = "Number of Organisations Reporting"
 
   static budgetReference = "Budget Reference"
   static reportReference = "Report Reference"
