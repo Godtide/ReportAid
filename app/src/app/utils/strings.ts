@@ -172,7 +172,7 @@ class OrganisationReportExpenditure {
   static expenditureEndYear = "End Year"
 
   static numReportExpenditure = "Number of Expenditure"
-  static reportExpendituretDetails = 'Expenditure Details'
+  static reportExpenditureDetails = 'Expenditure Details'
 }
 
 
