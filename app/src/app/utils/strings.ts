@@ -23,9 +23,11 @@ class Paths {
   static readonly orgWriter='Organisation'
   static readonly orgReportWriter='Report'
   static readonly orgReportBudgetsWriter = "Report Budget"
+  static readonly orgReportExpenditureWriter = "Report Expenditure"
   static readonly orgReader='Organisations'
   static readonly orgReportReader='Reports'
   static readonly orgReportBudgetsReader='Report Budgets'
+  static readonly orgReportExpenditureReader='Report Expenditure'
 }
 
 class Blockchain {
@@ -148,5 +150,44 @@ class OrganisationReportBudget {
   static reportBudgetDetails = 'Budget Details'
 }
 
+class OrganisationReportExpenditure {
 
-export { App, Paths, Blockchain, Home, About, Overview, Help, IATIWriter, IATIReader, Transaction, Organisation, OrganisationReport, OrganisationReportBudget }
+  static headingOrgReportExpenditureWriter = 'Create Report Expenditure'
+  static headingOrgReportExpenditureReader = 'Report Expenditure'
+
+  static numReports = "Number of Organisations Reporting"
+
+  static expenditureReference = "Expenditure Reference"
+  static reportReference = "Report Reference"
+  static expenditureLine = "Expenditure Line"
+  static value = "Value"
+  static status = "Status"
+  static expenditureStart = "Start Date"
+  static expenditureStartDay = "Start Day"
+  static expenditureStartMonth = "Start Month"
+  static expenditureStartYear = "Start Year"
+  static expenditureEnd = "End Date"
+  static expenditureEndDay = "End Day"
+  static expenditureEndMonth = "End Month"
+  static expenditureEndYear = "End Year"
+
+  static numReportExpenditure = "Number of Expenditure"
+  static reportExpendituretDetails = 'Expenditure Details'
+}
+
+
+export { App,
+         Paths,
+         Blockchain,
+         Home,
+         About,
+         Overview,
+         Help,
+         IATIWriter,
+         IATIReader,
+         Transaction,
+         Organisation,
+         OrganisationReport,
+         OrganisationReportBudget,
+         OrganisationReportExpenditure
+       }

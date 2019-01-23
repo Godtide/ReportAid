@@ -10,9 +10,11 @@ class Paths {
   static readonly orgWriter='/create-organisation'
   static readonly orgReportWriter='/create-organisation-report'
   static readonly orgReportBudgetsWriter = '/create-organisation-report-budget'
+  static readonly orgReportExpenditureWriter = '/create-organisation-report-expenditure'
   static readonly orgReader='/read-organisations'
   static readonly orgReportReader='/read-organisation-reports'
   static readonly orgReportBudgetsReader = '/read-organisation-report-budgets'
+  static readonly orgReportExpenditureReader = '/read-organisation-report-expenditure'
 }
 
 class Blockchain {
@@ -400,7 +402,7 @@ class Helpers {
 
   static reportVersions = [ "2.03" ]
 
-  static budgetStatus = [
+  static financeStatus = [
     {code: 1, name:	"Indicative"},
     {code: 2, name:	"Committed"},
   ]

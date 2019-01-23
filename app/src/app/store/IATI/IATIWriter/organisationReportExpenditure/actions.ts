@@ -17,7 +17,7 @@ const add = (payload: PayloadProps): Function => {
   }
 }
 
-export const setOrganisationReportBudget = (expenditureDetails: OrgReportExpenditureProps) => {
+export const setOrganisationReportExpenditure = (expenditureDetails: OrgReportExpenditureProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
 

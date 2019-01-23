@@ -11,6 +11,7 @@ import { BlockchainInfo } from './pages/blockchain/blockchainInfo'
 import { Organisations as OrgWriter } from './pages/IATIWriter/organisation'
 import { OrganisationReports as OrgReportsWriter } from './pages/IATIWriter/organisationReports'
 import { OrganisationReportBudgets as OrgReportBudgetsWriter } from './pages/IATIWriter/organisationReportBudgets'
+import { OrganisationReportExpenditure as OrgReportExpenditureWriter } from './pages/IATIWriter/organisationReportExpenditure'
 import { Organisations as OrgReader } from './pages/IATIReader/organisation'
 import { OrganisationReports as OrgReportsReader } from './pages/IATIReader/organisationReports'
 import { OrganisationReportBudgets as OrgReportBudgetsReader } from './pages/IATIReader/organisationReportBudgets'
@@ -34,6 +35,7 @@ class AppContent extends React.Component<WithStyles<typeof styles>> {
         <Route name={Paths.orgWriter} path={PathConfig.orgWriter} render={() => <OrgWriter />} />
         <Route name={Paths.orgReportWriter} path={PathConfig.orgReportWriter} render={() => <OrgReportsWriter />} />
         <Route name={Paths.orgReportBudgetsWriter} path={PathConfig.orgReportBudgetsWriter} render={() => <OrgReportBudgetsWriter />} />
+        <Route name={Paths.orgReportExpenditureWriter} path={PathConfig.orgReportExpenditureWriter} render={() => <OrgReportExpenditureWriter />} />
         <Route name={Paths.orgReader} path={PathConfig.orgReader} render={() => <OrgReader />} />
         <Route name={Paths.orgReportReader} path={PathConfig.orgReportReader} render={() => <OrgReportsReader />} />
         <Route name={Paths.orgReportBudgetsReader} path={PathConfig.orgReportBudgetsReader} render={() => <OrgReportBudgetsReader />} />

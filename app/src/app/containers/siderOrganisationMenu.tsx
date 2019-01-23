@@ -37,12 +37,21 @@ class Sider extends React.Component<WithStyles<typeof styles>> {
               </IconButton>
               {Paths.orgReportWriter}
             </MenuItem>
-          </Link><Link to={PathConfig.orgReportBudgetsWriter}>
+          </Link>
+          <Link to={PathConfig.orgReportBudgetsWriter}>
             <MenuItem>
               <IconButton className={this.props.classes.button} aria-label={Paths.orgReportBudgetsWriter}>
                 <Create />
               </IconButton>
               {Paths.orgReportBudgetsWriter}
+            </MenuItem>
+          </Link>
+          <Link to={PathConfig.orgReportExpenditureWriter}>
+            <MenuItem>
+              <IconButton className={this.props.classes.button} aria-label={Paths.orgReportExpenditureWriter}>
+                <Create />
+              </IconButton>
+              {Paths.orgReportExpenditureWriter}
             </MenuItem>
           </Link>
         </MenuList>

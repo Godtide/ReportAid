@@ -7,19 +7,19 @@ import * as Yup from 'yup'
 
 import { ApplicationState } from '../../../store'
 import { ActionProps, TxData } from '../../../store/types'
-import { IATIOrgReportBudgetProps, OrgReportBudgetProps} from '../../../store/IATI/types'
+import { IATIOrgReportExpenditureProps, OrgReportExpenditureProps} from '../../../store/IATI/types'
 
 import { getOrgReports } from '../../../store/IATI/IATIReader/organisationReports/actions'
 import { OrgReportData } from '../../../store/IATI/IATIReader/organisationReports/types'
 
-import { setOrganisationReportBudget } from '../../../store/IATI/IATIWriter/organisationReportBudgets/actions'
+import { setOrganisationReportExpenditure } from '../../../store/IATI/IATIWriter/organisationReportExpenditure/actions'
 
 import { LinearProgress } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
 import { Select, TextField } from "material-ui-formik-components"
 //import { Date } from 'formik-material-ui'
 
-import { OrganisationReportBudget, Transaction } from '../../../utils/strings'
+import { OrganisationReportExpenditure as OrgReportExpenditure, Transaction } from '../../../utils/strings'
 import { Helpers } from '../../../utils/config'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
@@ -29,7 +29,7 @@ const reportSchema = Yup.object().shape({
   reportRef: Yup
     .string()
     .required('Required'),
-  budgetLine: Yup
+  expenditureLine: Yup
     .string()
     .required('Required'),
   value: Yup
@@ -58,19 +58,19 @@ const reportSchema = Yup.object().shape({
     .required('Required'),
 })
 
-interface BudgetProps {
+interface ExpenditureProps {
   tx: TxData,
   orgReports: OrgReportData
 }
 
-export interface OrgReportBudgetsDispatchProps {
+export interface OrgReportExpenditureDispatchProps {
   handleSubmit: (values: any) => void
   getOrgReports: () => void
 }
 
-type OrgReportBudgetsFormProps = WithStyles<typeof styles> & BudgetProps & OrgReportBudgetsDispatchProps
+type OrgReportExpenditureFormProps = WithStyles<typeof styles> & ExpenditureProps & OrgReportExpenditureDispatchProps
 
-export class OrgReportBudgetsForm extends React.Component<OrgReportBudgetsFormProps> {
+export class OrgReportExpenditureForm extends React.Component<OrgReportExpenditureFormProps> {
 
   state = {
     txKey: '',
@@ -80,7 +80,7 @@ export class OrgReportBudgetsForm extends React.Component<OrgReportBudgetsFormPr
     resetFunc: (function() { return null })
   }
 
-  constructor (props: OrgReportBudgetsFormProps) {
+  constructor (props: OrgReportExpenditureFormProps) {
    super(props)
   }
 
@@ -88,7 +88,7 @@ export class OrgReportBudgetsForm extends React.Component<OrgReportBudgetsFormPr
     this.props.getOrgReports()
   }
 
-  componentDidUpdate(previousProps: OrgReportBudgetsFormProps) {
+  componentDidUpdate(previousProps: OrgReportExpenditureFormProps) {
     //console.log(this.props.tx)
     if(previousProps.tx != this.props.tx) {
       const submitting = !this.state.toggleSubmitting
@@ -105,7 +105,7 @@ export class OrgReportBudgetsForm extends React.Component<OrgReportBudgetsFormPr
     }
   }
 
-  handleSubmit = (values: OrgReportBudgetProps, setSubmitting: Function, reset: Function) => {
+  handleSubmit = (values: OrgReportExpenditureProps, setSubmitting: Function, reset: Function) => {
     //console.log('Values: ', values)
     const submitting = !this.state.toggleSubmitting
     this.setState({txKey: '', txSummary: '', toggleSubmitting: submitting, submitFunc: setSubmitting, resetFunc: reset})
@@ -157,11 +157,11 @@ export class OrgReportBudgetsForm extends React.Component<OrgReportBudgetsFormPr
 
     return (
       <div>
-        <h2>{OrganisationReportBudget.headingOrgReportBudgetWriter}</h2>
+        <h2>{OrgReportExpenditure.headingOrgReportExpenditureWriter}</h2>
         <div>
           <Formik
             initialValues={ {reportRef: reportRefs[0].value,
-                             budgetLine: "",
+                             expenditureLine: "",
                              value: 0,
                              status: status[0].value,
                              startDay: dayRefs[0].value,
@@ -172,56 +172,56 @@ export class OrgReportBudgetsForm extends React.Component<OrgReportBudgetsFormPr
                              endYear: yearRefs[0].value,
                             }}
             validationSchema={reportSchema}
-            onSubmit={(values: OrgReportBudgetProps, actions: any) => {
+            onSubmit={(values: OrgReportExpenditureProps, actions: any) => {
               this.handleSubmit(values, actions.setSubmitting, actions.resetForm)
             }}
-            render={(formProps: FormikProps<OrgReportBudgetProps>) => (
+            render={(formProps: FormikProps<OrgReportExpenditureProps>) => (
               <Form>
                 <Field
                   name="reportRef"
-                  label={OrganisationReportBudget.reportReference}
+                  label={OrgReportExpenditure.reportReference}
                   component={Select}
                   options={reportRefs}
                 />
                 <ErrorMessage name='reportRef' />
                 <br />
                 <Field
-                  name='budgetLine'
-                  label={OrganisationReportBudget.budgetLine}
+                  name='expenditureLine'
+                  label={OrgReportExpenditure.expenditureLine}
                   component={TextField}
                 />
-                <ErrorMessage name='budgetLine' />
+                <ErrorMessage name='expenditureLine' />
                 <br />
                 <Field
                   name='value'
-                  label={OrganisationReportBudget.value}
+                  label={OrgReportExpenditure.value}
                   component={TextField}
                 />
                 <ErrorMessage name='value' />
                 <Field
                   name='status'
-                  label={OrganisationReportBudget.status}
+                  label={OrgReportExpenditure.status}
                   component={Select}
                   options={status}
                 />
                 <ErrorMessage name='status' />
                 <Field
                   name='startDay'
-                  label={OrganisationReportBudget.budgetStartDay}
+                  label={OrgReportExpenditure.expenditureStartDay}
                   component={Select}
                   options={dayRefs}
                 />
                 <ErrorMessage name='startDay' />
                 <Field
                   name='startMonth'
-                  label={OrganisationReportBudget.budgetStartMonth}
+                  label={OrgReportExpenditure.expenditureStartMonth}
                   component={Select}
                   options={monthRefs}
                 />
                 <ErrorMessage name='startMonth' />
                 <Field
                   name='startYear'
-                  label={OrganisationReportBudget.budgetStartYear}
+                  label={OrgReportExpenditure.expenditureStartYear}
                   component={Select}
                   options={yearRefs}
                 />
@@ -229,21 +229,21 @@ export class OrgReportBudgetsForm extends React.Component<OrgReportBudgetsFormPr
                 <br />
                 <Field
                   name='endDay'
-                  label={OrganisationReportBudget.budgetEndDay}
+                  label={OrgReportExpenditure.expenditureEndDay}
                   component={Select}
                   options={dayRefs}
                 />
                 <ErrorMessage name='endDay' />
                 <Field
                   name='endMonth'
-                  label={OrganisationReportBudget.budgetEndMonth}
+                  label={OrgReportExpenditure.expenditureEndMonth}
                   component={Select}
                   options={monthRefs}
                 />
                 <ErrorMessage name='endMonth' />
                 <Field
                   name='endYear'
-                  label={OrganisationReportBudget.budgetEndYear}
+                  label={OrgReportExpenditure.expenditureEndYear}
                   component={Select}
                   options={yearRefs}
                 />
@@ -269,22 +269,22 @@ export class OrgReportBudgetsForm extends React.Component<OrgReportBudgetsFormPr
   }
 }
 
-const mapStateToProps = (state: ApplicationState): BudgetProps => {
+const mapStateToProps = (state: ApplicationState): ExpenditureProps => {
   //console.log(state.orgReader)
   return {
-    tx: state.orgReportBudgetsForm.data,
+    tx: state.orgReportExpenditureForm.data,
     orgReports: state.orgReportsReader.data
   }
 }
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgReportBudgetsDispatchProps => {
+const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgReportExpenditureDispatchProps => {
   return {
-    handleSubmit: (ownProps: any) => dispatch(setOrganisationReportBudget(ownProps)),
+    handleSubmit: (ownProps: any) => dispatch(setOrganisationReportExpenditure(ownProps)),
     getOrgReports: () => dispatch(getOrgReports())
   }
 }
 
-export const OrganisationReportBudgets = withTheme(withStyles(styles)(connect<BudgetProps, OrgReportBudgetsDispatchProps, {}, ApplicationState>(
+export const OrganisationReportExpenditure = withTheme(withStyles(styles)(connect<ExpenditureProps, OrgReportExpenditureDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(OrgReportBudgetsForm)))
+)(OrgReportExpenditureForm)))
