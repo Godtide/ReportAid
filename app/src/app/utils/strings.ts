@@ -184,9 +184,9 @@ class OrganisationReportRecipientBudget {
 
   static numReports = "Number of Organisations Reporting"
 
-  static budgetReference = "Recipient Budget Reference"
+  static budgetReference = "Budget Reference"
   static reportReference = "Report Reference"
-  static orgReference = "Organisation Reference"
+  static orgReference = "Recipient Organisation Reference"
   static budgetLine = "Budget Line"
   static value = "Value"
   static status = "Status"

@@ -9,6 +9,8 @@ import { ApplicationState } from '../../../store'
 import { ActionProps, TxData } from '../../../store/types'
 import { IATIOrgReportRecipientBudgetProps, OrgReportRecipientBudgetProps} from '../../../store/IATI/types'
 
+import { getOrgs } from '../../../store/IATI/IATIReader/organisation/actions'
+import { OrgData } from '../../../store/IATI/IATIReader/organisation/types'
 import { getOrgReports } from '../../../store/IATI/IATIReader/organisationReports/actions'
 import { OrgReportData } from '../../../store/IATI/IATIReader/organisationReports/types'
 
@@ -63,11 +65,13 @@ const reportSchema = Yup.object().shape({
 
 interface RecipientBudgetProps {
   tx: TxData,
+  orgs: OrgData,
   orgReports: OrgReportData
 }
 
 export interface OrgReportRecipientBudgetsDispatchProps {
   handleSubmit: (values: any) => void
+  getOrgs: () => void
   getOrgReports: () => void
 }
 
@@ -88,6 +92,7 @@ export class OrgReportRecipientBudgetsForm extends React.Component<OrgReportReci
   }
 
   componentDidMount() {
+    this.props.getOrgs()
     this.props.getOrgReports()
   }
 
@@ -118,14 +123,13 @@ export class OrgReportRecipientBudgetsForm extends React.Component<OrgReportReci
 
   render() {
 
-    const orgKeys = Object.keys(this.props.orgReports)
     let orgRefs : any[] = [{ value: "", label: "" }]
-    orgKeys.forEach((orgKey) => {
+    Object.keys(this.props.orgs).forEach((orgKey) => {
       orgRefs.push({ value: orgKey, label: orgKey })
     })
 
     let reportRefs: any[] = [{ value: "", label: "" }]
-    orgKeys.forEach((orgKey) => {
+     Object.keys(this.props.orgReports).forEach((orgKey) => {
       //console.log(orgKey)
       const values = Object.values(this.props.orgReports[orgKey])
       //console.log(values)
@@ -291,6 +295,7 @@ const mapStateToProps = (state: ApplicationState): RecipientBudgetProps => {
   //console.log(state.orgReader)
   return {
     tx: state.orgReportRecipientBudgetsForm.data,
+    orgs: state.orgReader.data,
     orgReports: state.orgReportsReader.data
   }
 }
@@ -298,6 +303,7 @@ const mapStateToProps = (state: ApplicationState): RecipientBudgetProps => {
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgReportRecipientBudgetsDispatchProps => {
   return {
     handleSubmit: (ownProps: any) => dispatch(setRecipientBudget(ownProps)),
+    getOrgs: () => dispatch(getOrgs()),
     getOrgReports: () => dispatch(getOrgReports())
   }
 }
