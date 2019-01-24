@@ -24,10 +24,12 @@ class Paths {
   static readonly orgReportWriter='Report'
   static readonly orgReportBudgetsWriter = "Report Budget"
   static readonly orgReportExpenditureWriter = "Report Expenditure"
+  static readonly orgReportRecipientBudgetsWriter = "Report Recipient Budget"
   static readonly orgReader='Organisations'
   static readonly orgReportReader='Reports'
   static readonly orgReportBudgetsReader='Report Budgets'
   static readonly orgReportExpenditureReader='Report Expenditure'
+  static readonly orgReportRecipientBudgetsReader='Report Recipient Budgets'
 }
 
 class Blockchain {
@@ -175,6 +177,32 @@ class OrganisationReportExpenditure {
   static reportExpenditureDetails = 'Expenditure Details'
 }
 
+class OrganisationReportRecipientBudget {
+
+  static headingOrgReportRecipientBudgetWriter = 'Create Report Recipient Budget'
+  static headingOrgReportRecipientBudgetReader = 'Report Recipient Budgets'
+
+  static numReports = "Number of Organisations Reporting"
+
+  static budgetReference = "Recipient Budget Reference"
+  static reportReference = "Report Reference"
+  static orgReference = "Organisation Reference"
+  static budgetLine = "Budget Line"
+  static value = "Value"
+  static status = "Status"
+  static budgetStart = "Start Date"
+  static budgetStartDay = "Start Day"
+  static budgetStartMonth = "Start Month"
+  static budgetStartYear = "Start Year"
+  static budgetEnd = "End Date"
+  static budgetEndDay = "End Day"
+  static budgetEndMonth = "End Month"
+  static budgetEndYear = "End Year"
+
+  static numReportBudgets = "Number of Recipient Budgets"
+  static reportBudgetDetails = 'Recipient Budget Details'
+}
+
 
 export { App,
          Paths,
@@ -189,5 +217,6 @@ export { App,
          Organisation,
          OrganisationReport,
          OrganisationReportBudget,
-         OrganisationReportExpenditure
+         OrganisationReportExpenditure,
+         OrganisationReportRecipientBudget
        }
