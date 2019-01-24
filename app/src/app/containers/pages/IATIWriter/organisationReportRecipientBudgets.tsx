@@ -18,6 +18,8 @@ import { setRecipientBudget } from '../../../store/IATI/IATIWriter/organisationR
 
 import { LinearProgress } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
+import Grid from '@material-ui/core/Grid'
+import FormControl from '@material-ui/core/FormControl'
 import { Select, TextField } from "material-ui-formik-components"
 //import { Date } from 'formik-material-ui'
 
@@ -191,91 +193,110 @@ export class OrgReportRecipientBudgetsForm extends React.Component<OrgReportReci
             }}
             render={(formProps: FormikProps<OrgReportRecipientBudgetProps>) => (
               <Form>
-                <Field
-                  name="reportRef"
-                  label={OrganisationReportRecipientBudget.reportReference}
-                  component={Select}
-                  options={reportRefs}
-                />
-                <ErrorMessage name='reportRef' />
-                <br />
+                <FormControl fullWidth={false}>
                   <Field
-                    name="orgRef"
-                    label={OrganisationReportRecipientBudget.orgReference}
+                    name="reportRef"
+                    label={OrganisationReportRecipientBudget.reportReference}
                     component={Select}
-                    options={orgRefs}
+                    options={reportRefs}
                   />
-                  <ErrorMessage name='orgRef' />
+                  <ErrorMessage name='reportRef' />
+                    <Field
+                      name="orgRef"
+                      label={OrganisationReportRecipientBudget.orgReference}
+                      component={Select}
+                      options={orgRefs}
+                    />
+                    <ErrorMessage name='orgRef' />
+                  <Field
+                    name='budgetLine'
+                    label={OrganisationReportRecipientBudget.budgetLine}
+                    component={TextField}
+                  />
+                  <ErrorMessage name='budgetLine' />
+                  <Field
+                    name='value'
+                    label={OrganisationReportRecipientBudget.value}
+                    component={TextField}
+                  />
+                  <ErrorMessage name='value' />
+                  <Field
+                    name='status'
+                    label={OrganisationReportRecipientBudget.status}
+                    component={Select}
+                    options={status}
+                  />
+                  <ErrorMessage name='status' />
+                  <Grid container>
+                    <Grid item xs={12} sm={3}>
+                      <Field
+                        name='startDay'
+                        label={OrganisationReportRecipientBudget.budgetStartDay}
+                        //style={{ width: '10%' }}
+                        component={Select}
+                        options={dayRefs}
+                      />
+                      <ErrorMessage name='startDay' />
+                    </Grid>
+                    <Grid item xs={12} sm={3}>
+                      <Field
+                        name='startMonth'
+                        label={OrganisationReportRecipientBudget.budgetStartMonth}
+                        //style={{ width: '10%' }}
+                        component={Select}
+                        options={monthRefs}
+                      />
+                      <ErrorMessage name='startMonth' />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <Field
+                        name='startYear'
+                        label={OrganisationReportRecipientBudget.budgetStartYear}
+                        //style={{ width: '10%' }}
+                        component={Select}
+                        options={yearRefs}
+                      />
+                      <ErrorMessage name='startYear' />
+                    </Grid>
+                  </Grid>
+                  <Grid container>
+                    <Grid item xs={12} sm={3}>
+                      <Field
+                        name='endDay'
+                        label={OrganisationReportRecipientBudget.budgetEndDay}
+                        //style={{ width: '10%' }}
+                        component={Select}
+                        options={dayRefs}
+                      />
+                      <ErrorMessage name='endDay' />
+                    </Grid>
+                    <Grid item xs={12} sm={3}>
+                      <Field
+                        name='endMonth'
+                        label={OrganisationReportRecipientBudget.budgetEndMonth}
+                        //style={{ width: '10%' }}
+                        component={Select}
+                        options={monthRefs}
+                      />
+                      <ErrorMessage name='endMonth' />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <Field
+                        name='endYear'
+                        label={OrganisationReportRecipientBudget.budgetEndYear}
+                        //style={{ width: '10%' }}
+                        component={Select}
+                        options={yearRefs}
+                      />
+                      <ErrorMessage name='endYear' />
+                    </Grid>
+                  </Grid>
+                  {formProps.isSubmitting && <LinearProgress />}
                   <br />
-                <Field
-                  name='budgetLine'
-                  label={OrganisationReportRecipientBudget.budgetLine}
-                  component={TextField}
-                />
-                <ErrorMessage name='budgetLine' />
-                <br />
-                <Field
-                  name='value'
-                  label={OrganisationReportRecipientBudget.value}
-                  component={TextField}
-                />
-                <ErrorMessage name='value' />
-                <Field
-                  name='status'
-                  label={OrganisationReportRecipientBudget.status}
-                  component={Select}
-                  options={status}
-                />
-                <ErrorMessage name='status' />
-                <Field
-                  name='startDay'
-                  label={OrganisationReportRecipientBudget.budgetStartDay}
-                  component={Select}
-                  options={dayRefs}
-                />
-                <ErrorMessage name='startDay' />
-                <Field
-                  name='startMonth'
-                  label={OrganisationReportRecipientBudget.budgetStartMonth}
-                  component={Select}
-                  options={monthRefs}
-                />
-                <ErrorMessage name='startMonth' />
-                <Field
-                  name='startYear'
-                  label={OrganisationReportRecipientBudget.budgetStartYear}
-                  component={Select}
-                  options={yearRefs}
-                />
-                <ErrorMessage name='startYear' />
-                <br />
-                <Field
-                  name='endDay'
-                  label={OrganisationReportRecipientBudget.budgetEndDay}
-                  component={Select}
-                  options={dayRefs}
-                />
-                <ErrorMessage name='endDay' />
-                <Field
-                  name='endMonth'
-                  label={OrganisationReportRecipientBudget.budgetEndMonth}
-                  component={Select}
-                  options={monthRefs}
-                />
-                <ErrorMessage name='endMonth' />
-                <Field
-                  name='endYear'
-                  label={OrganisationReportRecipientBudget.budgetEndYear}
-                  component={Select}
-                  options={yearRefs}
-                />
-                <ErrorMessage name='endYear' />
-                <br />
-                {formProps.isSubmitting && <LinearProgress />}
-                <br />
-                <Button type='submit' variant="raised" color="primary" disabled={formProps.isSubmitting}>
-                  Submit
-                </Button>
+                  <Button type='submit' variant="raised" color="primary" disabled={formProps.isSubmitting}>
+                    Submit
+                  </Button>
+                </FormControl>
               </Form>
             )}
           />

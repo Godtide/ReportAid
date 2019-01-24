@@ -16,6 +16,8 @@ import { setOrganisationReportExpenditure } from '../../../store/IATI/IATIWriter
 
 import { LinearProgress } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
+import Grid from '@material-ui/core/Grid'
+import FormControl from '@material-ui/core/FormControl'
 import { Select, TextField } from "material-ui-formik-components"
 //import { Date } from 'formik-material-ui'
 
@@ -177,83 +179,103 @@ export class OrgReportExpenditureForm extends React.Component<OrgReportExpenditu
             }}
             render={(formProps: FormikProps<OrgReportExpenditureProps>) => (
               <Form>
-                <Field
-                  name="reportRef"
-                  label={OrgReportExpenditure.reportReference}
-                  component={Select}
-                  options={reportRefs}
-                />
-                <ErrorMessage name='reportRef' />
-                <br />
-                <Field
-                  name='expenditureLine'
-                  label={OrgReportExpenditure.expenditureLine}
-                  component={TextField}
-                />
-                <ErrorMessage name='expenditureLine' />
-                <br />
-                <Field
-                  name='value'
-                  label={OrgReportExpenditure.value}
-                  component={TextField}
-                />
-                <ErrorMessage name='value' />
-                <Field
-                  name='status'
-                  label={OrgReportExpenditure.status}
-                  component={Select}
-                  options={status}
-                />
-                <ErrorMessage name='status' />
-                <Field
-                  name='startDay'
-                  label={OrgReportExpenditure.expenditureStartDay}
-                  component={Select}
-                  options={dayRefs}
-                />
-                <ErrorMessage name='startDay' />
-                <Field
-                  name='startMonth'
-                  label={OrgReportExpenditure.expenditureStartMonth}
-                  component={Select}
-                  options={monthRefs}
-                />
-                <ErrorMessage name='startMonth' />
-                <Field
-                  name='startYear'
-                  label={OrgReportExpenditure.expenditureStartYear}
-                  component={Select}
-                  options={yearRefs}
-                />
-                <ErrorMessage name='startYear' />
-                <br />
-                <Field
-                  name='endDay'
-                  label={OrgReportExpenditure.expenditureEndDay}
-                  component={Select}
-                  options={dayRefs}
-                />
-                <ErrorMessage name='endDay' />
-                <Field
-                  name='endMonth'
-                  label={OrgReportExpenditure.expenditureEndMonth}
-                  component={Select}
-                  options={monthRefs}
-                />
-                <ErrorMessage name='endMonth' />
-                <Field
-                  name='endYear'
-                  label={OrgReportExpenditure.expenditureEndYear}
-                  component={Select}
-                  options={yearRefs}
-                />
-                <ErrorMessage name='endYear' />
-                <br />
-                {formProps.isSubmitting && <LinearProgress />}
-                <br />
-                <Button type='submit' variant="raised" color="primary" disabled={formProps.isSubmitting}>
-                  Submit
-                </Button>
+                <FormControl fullWidth={false}>
+                  <Field
+                    name="reportRef"
+                    label={OrgReportExpenditure.reportReference}
+                    component={Select}
+                    options={reportRefs}
+                  />
+                  <ErrorMessage name='reportRef' />
+                  <Field
+                    name='expenditureLine'
+                    label={OrgReportExpenditure.expenditureLine}
+                    component={TextField}
+                  />
+                  <ErrorMessage name='expenditureLine' />
+                  <Field
+                    name='value'
+                    label={OrgReportExpenditure.value}
+                    component={TextField}
+                  />
+                  <ErrorMessage name='value' />
+                  <Field
+                    name='status'
+                    label={OrgReportExpenditure.status}
+                    component={Select}
+                    options={status}
+                  />
+                  <ErrorMessage name='status' />
+                  <Grid container>
+                    <Grid item xs={12} sm={3}>
+                      <Field
+                        name='startDay'
+                        label={OrgReportExpenditure.expenditureStartDay}
+                        //style={{ width: '10%' }}
+                        component={Select}
+                        options={dayRefs}
+                      />
+                      <ErrorMessage name='startDay' />
+                    </Grid>
+                    <Grid item xs={12} sm={3}>
+                      <Field
+                        name='startMonth'
+                        label={OrgReportExpenditure.expenditureStartMonth}
+                        //style={{ width: '10%' }}
+                        component={Select}
+                        options={monthRefs}
+                      />
+                      <ErrorMessage name='startMonth' />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <Field
+                        name='startYear'
+                        label={OrgReportExpenditure.expenditureStartYear}
+                        //style={{ width: '10%' }}
+                        component={Select}
+                        options={yearRefs}
+                      />
+                      <ErrorMessage name='startYear' />
+                    </Grid>
+                  </Grid>
+                  <Grid container>
+                    <Grid item xs={12} sm={3}>
+                      <Field
+                        name='endDay'
+                        label={OrgReportExpenditure.expenditureEndDay}
+                        //style={{ width: '10%' }}
+                        component={Select}
+                        options={dayRefs}
+                      />
+                      <ErrorMessage name='endDay' />
+                    </Grid>
+                    <Grid item xs={12} sm={3}>
+                      <Field
+                        name='endMonth'
+                        label={OrgReportExpenditure.expenditureEndMonth}
+                        //style={{ width: '10%' }}
+                        component={Select}
+                        options={monthRefs}
+                      />
+                      <ErrorMessage name='endMonth' />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <Field
+                        name='endYear'
+                        label={OrgReportExpenditure.expenditureEndYear}
+                        //style={{ width: '10%' }}
+                        component={Select}
+                        options={yearRefs}
+                      />
+                      <ErrorMessage name='endYear' />
+                    </Grid>
+                  </Grid>
+                  {formProps.isSubmitting && <LinearProgress />}
+                  <br />
+                  <Button type='submit' variant="raised" color="primary" disabled={formProps.isSubmitting}>
+                    Submit
+                  </Button>
+                </FormControl>
               </Form>
             )}
           />
