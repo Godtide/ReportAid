@@ -41,6 +41,14 @@ export interface IATIOrgReportExpenditureProps {
   finance: FinanceProps
 }
 
+export interface IATIOrgReportRecipientBudgetProps {
+  reportRef: string
+  budgetRef: string
+  orgRef: string
+  budgetLine: string
+  finance: FinanceProps
+}
+
 export interface OrganisationProps {
   name: string
   code: string
@@ -73,6 +81,20 @@ export interface OrgReportBudgetProps {
 export interface OrgReportExpenditureProps {
   reportRef: string
   expenditureLine: string
+  value: number
+  status: string
+  startDay: number
+  startMonth: number
+  startYear: number
+  endDay: number
+  endMonth: number
+  endYear: number
+}
+
+export interface OrgReportRecipientBudgetProps {
+  reportRef: string
+  orgRef: string
+  budgetLine: string
   value: number
   status: string
   startDay: number

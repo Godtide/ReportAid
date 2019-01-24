@@ -18,21 +18,22 @@ contract OrganisationReportRecipientBudgets {
     Finance finance;
   }
 
-  function setRecipientOrgBudget(RecipientBudget memory _budget) public;
+  function setRecipientBudget(RecipientBudget memory _budget) public;
 
   function getReportExists(bytes32 _reportRef) public view returns (bool);
-  function getRecipientOrgBudgetExists(bytes32 _reportRef, bytes32 _budgetRef) public view returns (bool);
+  function getRecipientBudgetExists(bytes32 _reportRef, bytes32 _budgetRef) public view returns (bool);
 
   function getNumReports() public view returns (uint256);
-  function getNumRecipientOrgBudgets(bytes32 _reportRef) public view returns (uint256);
+  function getNumRecipientBudgets(bytes32 _reportRef) public view returns (uint256);
 
   function getReportReference(uint256 _index) public view returns (bytes32);
-  function getRecipientOrgReference(bytes32 _reportRef, uint256 _index) public view returns (bytes32);
+  function getRecipientBudgetReference(bytes32 _reportRef, uint256 _index) public view returns (bytes32);
 
-  function getRecipientOrgBudget(bytes32 _reportRef, bytes32 _recipientOrgRef) public view returns (RecipientBudget memory);
-  function getRecipientOrgBudgetLine(bytes32 _reportRef, bytes32 _budgetRef) public view returns (bytes32);
-  function getRecipientOrgBudgetValue(bytes32 _reportRef, bytes32 _recipientOrgRef) public view returns (uint256);
-  function getRecipientOrgBudgetStatus(bytes32 _reportRef, bytes32 _recipientOrgRef) public view returns (uint8);
-  function getRecipientOrgBudgetStart(bytes32 _reportRef, bytes32 _recipientOrgRef) public view returns (bytes32);
-  function getRecipientOrgBudgetEnd(bytes32 _reportRef, bytes32 _recipientOrgRef) public view returns (bytes32);
+  function getRecipientBudget(bytes32 _reportRef, bytes32 _recipientBudgetRef) public view returns (RecipientBudget memory);
+  function getRecipientBudgetOrg(bytes32 _reportRef, bytes32 _recipientBudgetRef) public view returns (bytes32);
+  function getRecipientBudgetLine(bytes32 _reportRef, bytes32 _recipientBudgetRef) public view returns (bytes32);
+  function getRecipientBudgetValue(bytes32 _reportRef, bytes32 _recipientBudgetRef) public view returns (uint256);
+  function getRecipientBudgetStatus(bytes32 _reportRef, bytes32 _recipientBudgetRef) public view returns (uint8);
+  function getRecipientBudgetStart(bytes32 _reportRef, bytes32 _recipientBudgetRef) public view returns (bytes32);
+  function getRecipientBudgetEnd(bytes32 _reportRef, bytes32 _recipientBudgetRef) public view returns (bytes32);
 }
