@@ -4,16 +4,6 @@ import { ThunkDispatch } from 'redux-thunk'
 
 import { Formik, Form, Field, FormikProps, ErrorMessage} from 'formik'
 import * as Yup from 'yup'
-
-import { ApplicationState } from '../../../store'
-import { ActionProps, TxData } from '../../../store/types'
-import { IATIOrgReportExpenditureProps, OrgReportExpenditureProps} from '../../../store/IATI/types'
-
-import { getOrgReports } from '../../../store/IATI/IATIReader/organisationReports/actions'
-import { OrgReportData } from '../../../store/IATI/IATIReader/organisationReports/types'
-
-import { setOrganisationReportExpenditure } from '../../../store/IATI/IATIWriter/organisationReportExpenditure/actions'
-
 import { LinearProgress } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
@@ -21,8 +11,19 @@ import FormControl from '@material-ui/core/FormControl'
 import { Select, TextField } from "material-ui-formik-components"
 //import { Date } from 'formik-material-ui'
 
-import { OrganisationReportExpenditure as OrgReportExpenditure, Transaction } from '../../../utils/strings'
-import { Helpers } from '../../../utils/config'
+import { ApplicationState } from '../../../store'
+import { ActionProps, TxData } from '../../../store/types'
+import { IATIOrgReportExpenditureProps, OrgReportExpenditureProps} from '../../../store/IATI/types'
+
+import { setOrganisationReportExpenditure } from '../../../store/IATI/IATIWriter/organisationReportExpenditure/actions'
+
+import { FormikDatePicker } from '../../../components/io/datePicker'
+import { OrganisationPicker } from '../../../components/io/orgPicker'
+import { FormikStatusPicker } from '../../../components/io/statusPicker'
+import { OrgReportPicker } from '../../../components/io/reportPicker'
+import { TransactionHelper, TransactionTypes } from '../../io/transactionHelper'
+
+import { OrganisationReportExpenditure as OrgReportExpenditure } from '../../../utils/strings'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
@@ -60,24 +61,45 @@ const reportSchema = Yup.object().shape({
     .required('Required'),
 })
 
-interface ExpenditureProps {
-  tx: TxData,
-  orgReports: OrgReportData
+const StartDatePickerProps = {
+  day: {
+    name: 'startDay',
+    label: OrgReportExpenditure.expenditureStartDay
+  },
+  month: {
+    name: 'startMonth',
+    label: OrgReportExpenditure.expenditureStartMonth
+  },
+  year: {
+    name: 'startYear',
+    label: OrgReportExpenditure.expenditureStartYear
+  }
+}
+
+const EndDatePickerProps = {
+  day: {
+    name: 'endDay',
+    label: OrgReportExpenditure.expenditureEndDay
+  },
+  month: {
+    name: 'endMonth',
+    label: OrgReportExpenditure.expenditureEndMonth
+  },
+  year: {
+    name: 'endYear',
+    label: OrgReportExpenditure.expenditureEndYear
+  }
 }
 
 export interface OrgReportExpenditureDispatchProps {
   handleSubmit: (values: any) => void
-  getOrgReports: () => void
 }
 
-type OrgReportExpenditureFormProps = WithStyles<typeof styles> & ExpenditureProps & OrgReportExpenditureDispatchProps
+type OrgReportExpenditureFormProps = WithStyles<typeof styles> & OrgReportExpenditureDispatchProps
 
 export class OrgReportExpenditureForm extends React.Component<OrgReportExpenditureFormProps> {
 
   state = {
-    txKey: '',
-    txSummary: '',
-    toggleSubmitting: false,
     submitFunc: (function(submit: boolean) { return submit }),
     resetFunc: (function() { return null })
   }
@@ -86,92 +108,28 @@ export class OrgReportExpenditureForm extends React.Component<OrgReportExpenditu
    super(props)
   }
 
-  componentDidMount() {
-    this.props.getOrgReports()
-  }
-
-  componentDidUpdate(previousProps: OrgReportExpenditureFormProps) {
-    //console.log(this.props.tx)
-    if(previousProps.tx != this.props.tx) {
-      const submitting = !this.state.toggleSubmitting
-      let txKey = ''
-      let txSummary = `${Transaction.fail}`
-      const txKeys = Object.keys(this.props.tx)
-      if (txKeys.length > 0 ) {
-        txKey = Object.keys(this.props.tx)[0]
-        txSummary = `${Transaction.success}`
-      }
-      this.setState({txKey: txKey, txSummary: txSummary, toggleSubmitting: submitting})
-      this.state.submitFunc(submitting)
-      this.state.resetFunc()
-    }
-  }
-
   handleSubmit = (values: OrgReportExpenditureProps, setSubmitting: Function, reset: Function) => {
-    //console.log('Values: ', values)
-    const submitting = !this.state.toggleSubmitting
-    this.setState({txKey: '', txSummary: '', toggleSubmitting: submitting, submitFunc: setSubmitting, resetFunc: reset})
-    setSubmitting(submitting)
+    this.setState({submitFunc: setSubmitting, resetFunc: reset})
     this.props.handleSubmit(values)
   }
 
   render() {
-
-    let reportRefs: any[] = [{ value: "", label: "" }]
-    Object.keys(this.props.orgReports).forEach((orgKey) => {
-      //console.log(orgKey)
-      const values = Object.values(this.props.orgReports[orgKey])
-      //console.log(values)
-      Object.keys(values[1]).forEach((reportKey) => {
-        //console.log('Key: ', reportKey)
-        reportRefs.push({ value: reportKey, label: reportKey })
-      })
-    })
-
-    let status: any[] = []
-    Helpers.financeStatus.forEach( (value: any) => {
-      //console.log(value)
-      status.push({ value: value.code, label: value.name })
-    })
-
-    //console.log(reportRefs)
-
-    let dayRefs: any[] = []
-    Array.from({ length: 31 }, (v: number, i: number) => {
-      const value = ++i
-      dayRefs.push({ value: value, label: value.toString() })
-    })
-
-    let monthRefs: any[] = []
-    Array.from({ length: 12 }, (v: number, i: number) => {
-      const value = ++i
-      monthRefs.push({ value: value, label: value.toString() })
-    })
-
-    const startYear = 1990
-    const stopYear = 2030
-    const step = 1
-    let yearRefs: any[] = []
-    Array.from({ length: (stopYear - startYear) / step }, (_, i: number) => {
-      const year = startYear + (i * step)
-      yearRefs.push({ value: year, label: year.toString() })
-    })
 
     return (
       <div>
         <h2>{OrgReportExpenditure.headingOrgReportExpenditureWriter}</h2>
         <div>
           <Formik
-            initialValues={ {reportRef: reportRefs[0].value,
+            initialValues={ {reportRef: "",
                              expenditureLine: "",
                              value: 0,
-                             status: status[0].value,
-                             startDay: dayRefs[0].value,
-                             startMonth: monthRefs[0].value,
-                             startYear: yearRefs[0].value,
-                             endDay: dayRefs[0].value,
-                             endMonth: monthRefs[0].value,
-                             endYear: yearRefs[0].value,
+                             status: 1,
+                             startDay: 1,
+                             startMonth: 1,
+                             startYear: 1990,
+                             endDay: 1,
+                             endMonth: 1,
+                             endYear: 1990
                             }}
             validationSchema={reportSchema}
             onSubmit={(values: OrgReportExpenditureProps, actions: any) => {
@@ -180,13 +138,7 @@ export class OrgReportExpenditureForm extends React.Component<OrgReportExpenditu
             render={(formProps: FormikProps<OrgReportExpenditureProps>) => (
               <Form>
                 <FormControl fullWidth={false}>
-                  <Field
-                    name="reportRef"
-                    label={OrgReportExpenditure.reportReference}
-                    component={Select}
-                    options={reportRefs}
-                  />
-                  <ErrorMessage name='reportRef' />
+                  <OrgReportPicker name='reportRef' label={OrgReportExpenditure.reportReference} />
                   <Field
                     name='expenditureLine'
                     label={OrgReportExpenditure.expenditureLine}
@@ -199,77 +151,10 @@ export class OrgReportExpenditureForm extends React.Component<OrgReportExpenditu
                     component={TextField}
                   />
                   <ErrorMessage name='value' />
-                  <Field
-                    name='status'
-                    label={OrgReportExpenditure.status}
-                    component={Select}
-                    options={status}
-                  />
-                  <ErrorMessage name='status' />
-                  <Grid container>
-                    <Grid item xs={12} sm={3}>
-                      <Field
-                        name='startDay'
-                        label={OrgReportExpenditure.expenditureStartDay}
-                        //style={{ width: '10%' }}
-                        component={Select}
-                        options={dayRefs}
-                      />
-                      <ErrorMessage name='startDay' />
-                    </Grid>
-                    <Grid item xs={12} sm={3}>
-                      <Field
-                        name='startMonth'
-                        label={OrgReportExpenditure.expenditureStartMonth}
-                        //style={{ width: '10%' }}
-                        component={Select}
-                        options={monthRefs}
-                      />
-                      <ErrorMessage name='startMonth' />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <Field
-                        name='startYear'
-                        label={OrgReportExpenditure.expenditureStartYear}
-                        //style={{ width: '10%' }}
-                        component={Select}
-                        options={yearRefs}
-                      />
-                      <ErrorMessage name='startYear' />
-                    </Grid>
-                  </Grid>
-                  <Grid container>
-                    <Grid item xs={12} sm={3}>
-                      <Field
-                        name='endDay'
-                        label={OrgReportExpenditure.expenditureEndDay}
-                        //style={{ width: '10%' }}
-                        component={Select}
-                        options={dayRefs}
-                      />
-                      <ErrorMessage name='endDay' />
-                    </Grid>
-                    <Grid item xs={12} sm={3}>
-                      <Field
-                        name='endMonth'
-                        label={OrgReportExpenditure.expenditureEndMonth}
-                        //style={{ width: '10%' }}
-                        component={Select}
-                        options={monthRefs}
-                      />
-                      <ErrorMessage name='endMonth' />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <Field
-                        name='endYear'
-                        label={OrgReportExpenditure.expenditureEndYear}
-                        //style={{ width: '10%' }}
-                        component={Select}
-                        options={yearRefs}
-                      />
-                      <ErrorMessage name='endYear' />
-                    </Grid>
-                  </Grid>
+                  <FormikStatusPicker name='status' label={OrgReportExpenditure.status} />
+                  <FormikDatePicker dates={StartDatePickerProps} />
+                  <FormikDatePicker dates={EndDatePickerProps} />
+                  <br />
                   {formProps.isSubmitting && <LinearProgress />}
                   <br />
                   <Button type='submit' variant="raised" color="primary" disabled={formProps.isSubmitting}>
@@ -280,33 +165,23 @@ export class OrgReportExpenditureForm extends React.Component<OrgReportExpenditu
             )}
           />
         </div>
-        <hr />
-        <h3>{Transaction.heading}</h3>
-        <p>
-          <b>{Transaction.summary}</b>: {this.state.txSummary}<br />
-          <b>{Transaction.key}</b>: {this.state.txKey}
-        </p>
+        <TransactionHelper
+          type={TransactionTypes.ORGREPORTEXPENDITURE}
+          submitFunc={this.state.submitFunc}
+          resetFunc={this.state.resetFunc}
+        />
       </div>
     )
   }
 }
 
-const mapStateToProps = (state: ApplicationState): ExpenditureProps => {
-  //console.log(state.orgReader)
-  return {
-    tx: state.orgReportExpenditureForm.data,
-    orgReports: state.orgReportsReader.data
-  }
-}
-
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgReportExpenditureDispatchProps => {
   return {
-    handleSubmit: (ownProps: any) => dispatch(setOrganisationReportExpenditure(ownProps)),
-    getOrgReports: () => dispatch(getOrgReports())
+    handleSubmit: (ownProps: any) => dispatch(setOrganisationReportExpenditure(ownProps))
   }
 }
 
-export const OrganisationReportExpenditure = withTheme(withStyles(styles)(connect<ExpenditureProps, OrgReportExpenditureDispatchProps, {}, ApplicationState>(
-  mapStateToProps,
+export const OrganisationReportExpenditure = withTheme(withStyles(styles)(connect<void, OrgReportExpenditureDispatchProps, {}, ApplicationState>(
+  null,
   mapDispatchToProps
 )(OrgReportExpenditureForm)))

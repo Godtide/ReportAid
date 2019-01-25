@@ -167,6 +167,7 @@ export class OrgReportBudgetsForm extends React.Component<OrgReportBudgetsFormPr
                   <FormikStatusPicker name='status' label={OrganisationReportBudget.status} />
                   <FormikDatePicker dates={StartDatePickerProps} />
                   <FormikDatePicker dates={EndDatePickerProps} />
+                  <br />
                   {formProps.isSubmitting && <LinearProgress />}
                   <br />
                   <Button type='submit' variant="raised" color="primary" disabled={formProps.isSubmitting}>
