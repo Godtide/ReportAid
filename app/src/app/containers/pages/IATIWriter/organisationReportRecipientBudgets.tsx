@@ -18,6 +18,7 @@ import { Select, TextField } from "material-ui-formik-components"
 
 import { FormikDatePicker } from '../../../components/io/datePicker'
 import { OrganisationPicker } from '../../../components/io/orgPicker'
+import { FormikStatusPicker } from '../../../components/io/statusPicker'
 import { OrgReportPicker } from '../../../components/io/reportPicker'
 
 import { OrganisationReportRecipientBudget, Transaction } from '../../../utils/strings'
@@ -61,6 +62,36 @@ const reportSchema = Yup.object().shape({
     .number()
     .required('Required'),
 })
+
+const StartDatePickerProps = {
+  day: {
+    name: 'startDay',
+    label: OrganisationReportRecipientBudget.budgetStartDay
+  },
+  month: {
+    name: 'startMonth',
+    label: OrganisationReportRecipientBudget.budgetStartMonth
+  },
+  year: {
+    name: 'startYear',
+    label: OrganisationReportRecipientBudget.budgetStartYear
+  }
+}
+
+const EndDatePickerProps = {
+  day: {
+    name: 'endDay',
+    label: OrganisationReportRecipientBudget.budgetEndDay
+  },
+  month: {
+    name: 'endMonth',
+    label: OrganisationReportRecipientBudget.budgetEndMonth
+  },
+  year: {
+    name: 'endYear',
+    label: OrganisationReportRecipientBudget.budgetEndYear
+  }
+}
 
 interface RecipientBudgetProps {
   tx: TxData
@@ -113,49 +144,6 @@ export class OrgReportRecipientBudgetsForm extends React.Component<OrgReportReci
 
   render() {
 
-    let status: any[] = []
-    Helpers.financeStatus.forEach( (value: any) => {
-      //console.log(value)
-      status.push({ value: value.code, label: value.name })
-    })
-
-    //console.log(reportRefs)
-
-    const StartDatePickerProps = {
-      day: {
-        name: 'startDay',
-        label: OrganisationReportRecipientBudget.budgetStartDay
-      },
-      month: {
-        name: 'startMonth',
-        label: OrganisationReportRecipientBudget.budgetStartMonth
-      },
-      year: {
-        name: 'startYear',
-        label: OrganisationReportRecipientBudget.budgetStartYear
-      }
-    }
-
-    const EndDatePickerProps = {
-      day: {
-        name: 'endDay',
-        label: OrganisationReportRecipientBudget.budgetEndDay
-      },
-      month: {
-        name: 'endMonth',
-        label: OrganisationReportRecipientBudget.budgetEndMonth
-      },
-      year: {
-        name: 'endYear',
-        label: OrganisationReportRecipientBudget.budgetEndYear
-      }
-    }
-
-    /*const OrgPickerProps = {
-      name: 'orgRef',
-      label: OrganisationReportRecipientBudget.orgReference
-    }*/
-
     return (
       <div>
         <h2>{OrganisationReportRecipientBudget.headingOrgReportRecipientBudgetWriter}</h2>
@@ -165,7 +153,7 @@ export class OrgReportRecipientBudgetsForm extends React.Component<OrgReportReci
                              orgRef: "",
                              budgetLine: "",
                              value: 0,
-                             status: status[0].value,
+                             status: 1,
                              startDay: 1,
                              startMonth: 1,
                              startYear: 1990,
@@ -194,15 +182,10 @@ export class OrgReportRecipientBudgetsForm extends React.Component<OrgReportReci
                     component={TextField}
                   />
                   <ErrorMessage name='value' />
-                  <Field
-                    name='status'
-                    label={OrganisationReportRecipientBudget.status}
-                    component={Select}
-                    options={status}
-                  />
-                  <ErrorMessage name='status' />
+                  <FormikStatusPicker name='status' label={OrganisationReportRecipientBudget.status} />
                   <FormikDatePicker dates={StartDatePickerProps} />
                   <FormikDatePicker dates={EndDatePickerProps} />
+                  <br />
                   {formProps.isSubmitting && <LinearProgress />}
                   <br />
                   <Button type='submit' variant="raised" color="primary" disabled={formProps.isSubmitting}>

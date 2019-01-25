@@ -22,7 +22,7 @@ export interface IATIOrgReportProps {
 
 export interface FinanceProps {
   value: number
-  status: string
+  status: number
   start: string
   end: string
 }
@@ -69,7 +69,7 @@ export interface OrgReportBudgetProps {
   reportRef: string
   budgetLine: string
   value: number
-  status: string
+  status: number
   startDay: number
   startMonth: number
   startYear: number
@@ -82,7 +82,7 @@ export interface OrgReportExpenditureProps {
   reportRef: string
   expenditureLine: string
   value: number
-  status: string
+  status: number
   startDay: number
   startMonth: number
   startYear: number
@@ -96,7 +96,7 @@ export interface OrgReportRecipientBudgetProps {
   orgRef: string
   budgetLine: string
   value: number
-  status: string
+  status: number
   startDay: number
   startMonth: number
   startYear: number
