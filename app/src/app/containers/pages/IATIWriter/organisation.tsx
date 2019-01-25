@@ -4,17 +4,18 @@ import { ThunkDispatch } from 'redux-thunk'
 
 import { Formik, Form, Field, FormikProps, ErrorMessage} from 'formik'
 import * as Yup from 'yup'
-
-import { ApplicationState } from '../../../store'
-import { ActionProps, TxData } from '../../../store/types'
-import { OrganisationProps } from '../../../store/IATI/types'
-
-import { setOrganisation } from '../../../store/IATI/IATIWriter/organisation/actions'
-
 import { LinearProgress } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
 //import { TextField } from 'formik-material-ui'
 import { TextField } from "material-ui-formik-components"
+
+import { ApplicationState } from '../../../store'
+import { ActionProps } from '../../../store/types'
+import { OrganisationProps } from '../../../store/IATI/types'
+
+import { setOrganisation } from '../../../store/IATI/IATIWriter/organisation/actions'
+
+import { TransactionHelper, TransactionTypes } from '../../io/transactionHelper'
 
 import { Organisation, Transaction } from '../../../utils/strings'
 
@@ -33,22 +34,15 @@ const organisationSchema = Yup.object().shape({
     .required('Required')
 })
 
-interface OrgProps {
-  tx: TxData
-}
-
-export interface OrgDispatchProps {
+interface OrgDispatchProps {
   handleSubmit: (values: any) => void
 }
 
-type OrgWriterFormProps = WithStyles<typeof styles> & OrgProps & OrgDispatchProps
+type OrgWriterFormProps = WithStyles<typeof styles> & OrgDispatchProps
 
 export class OrgForm extends React.Component<OrgWriterFormProps> {
 
   state = {
-    txKey: '',
-    txSummary: '',
-    toggleSubmitting: false,
     submitFunc: (function(submit: boolean) { return submit }),
     resetFunc: (function() { return null })
   }
@@ -57,27 +51,8 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
    super(props)
   }
 
-  componentDidUpdate(previousProps: OrgWriterFormProps) {
-    //console.log(this.props.tx)
-    if(previousProps.tx != this.props.tx) {
-      const submitting = !this.state.toggleSubmitting
-      let txKey = ''
-      let txSummary = `${Transaction.fail}`
-      const txKeys = Object.keys(this.props.tx)
-      if (txKeys.length > 0 ) {
-        txKey = Object.keys(this.props.tx)[0]
-        txSummary = `${Transaction.success}`
-      }
-      this.setState({txKey: txKey, txSummary: txSummary, toggleSubmitting: submitting})
-      this.state.submitFunc(submitting)
-      this.state.resetFunc()
-    }
-  }
-
   handleSubmit = (values: OrganisationProps, setSubmitting: Function, reset: Function) => {
-    const submitting = !this.state.toggleSubmitting
-    this.setState({txKey: '', txSummary: '', toggleSubmitting: submitting, submitFunc: setSubmitting, resetFunc: reset})
-    setSubmitting(submitting)
+    this.setState({submitFunc: setSubmitting, resetFunc: reset})
     this.props.handleSubmit(values)
   }
 
@@ -113,20 +88,13 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
             )}
           />
         </div>
-        <hr />
-        <h3>{Transaction.heading}</h3>
-        <p>
-          <b>{Transaction.summary}</b>: {this.state.txSummary}<br />
-          <b>{Transaction.key}</b>: {this.state.txKey}
-        </p>
+        <TransactionHelper
+          type={TransactionTypes.ORG}
+          submitFunc={this.state.submitFunc}
+          resetFunc={this.state.resetFunc}
+        />
       </div>
     )
-  }
-}
-
-const mapStateToProps = (state: ApplicationState): OrgProps => {
-  return {
-    tx: state.orgForm.data
   }
 }
 
@@ -136,7 +104,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   }
 }
 
-export const Organisations = withTheme(withStyles(styles)(connect<OrgProps, OrgDispatchProps, {}, ApplicationState>(
-  mapStateToProps,
+export const Organisations = withTheme(withStyles(styles)(connect<void, OrgDispatchProps, {}, ApplicationState>(
+  null,
   mapDispatchToProps
 )(OrgForm)))
