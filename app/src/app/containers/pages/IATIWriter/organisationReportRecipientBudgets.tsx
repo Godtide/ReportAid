@@ -131,7 +131,7 @@ export class OrgReportRecipientBudgetsForm extends React.Component<OrgReportReci
                              startYear: 1990,
                              endDay: 1,
                              endMonth: 1,
-                             endYear: 1990,
+                             endYear: 1990
                             }}
             validationSchema={reportSchema}
             onSubmit={(values: OrgReportRecipientBudgetProps, actions: any) => {
