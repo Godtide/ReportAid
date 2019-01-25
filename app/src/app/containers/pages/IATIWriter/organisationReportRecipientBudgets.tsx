@@ -9,20 +9,16 @@ import { ApplicationState } from '../../../store'
 import { ActionProps, TxData } from '../../../store/types'
 import { IATIOrgReportRecipientBudgetProps, OrgReportRecipientBudgetProps} from '../../../store/IATI/types'
 
-import { getOrgs } from '../../../store/IATI/IATIReader/organisation/actions'
-import { OrgData } from '../../../store/IATI/IATIReader/organisation/types'
-import { getOrgReports } from '../../../store/IATI/IATIReader/organisationReports/actions'
-import { OrgReportData } from '../../../store/IATI/IATIReader/organisationReports/types'
-
 import { setRecipientBudget } from '../../../store/IATI/IATIWriter/organisationReportRecipientBudgets/actions'
 
 import { LinearProgress } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
-import Grid from '@material-ui/core/Grid'
 import FormControl from '@material-ui/core/FormControl'
 import { Select, TextField } from "material-ui-formik-components"
 
 import { FormikDatePicker } from '../../../components/io/datePicker'
+import { OrganisationPicker } from '../../../components/io/orgPicker'
+import { OrgReportPicker } from '../../../components/io/reportPicker'
 
 import { OrganisationReportRecipientBudget, Transaction } from '../../../utils/strings'
 import { Helpers } from '../../../utils/config'
@@ -66,18 +62,12 @@ const reportSchema = Yup.object().shape({
     .required('Required'),
 })
 
-
-
 interface RecipientBudgetProps {
-  tx: TxData,
-  orgs: OrgData,
-  orgReports: OrgReportData
+  tx: TxData
 }
 
 export interface OrgReportRecipientBudgetsDispatchProps {
   handleSubmit: (values: any) => void
-  getOrgs: () => void
-  getOrgReports: () => void
 }
 
 type OrgReportRecipientBudgetsFormProps = WithStyles<typeof styles> & RecipientBudgetProps & OrgReportRecipientBudgetsDispatchProps
@@ -94,11 +84,6 @@ export class OrgReportRecipientBudgetsForm extends React.Component<OrgReportReci
 
   constructor (props: OrgReportRecipientBudgetsFormProps) {
    super(props)
-  }
-
-  componentDidMount() {
-    this.props.getOrgs()
-    this.props.getOrgReports()
   }
 
   componentDidUpdate(previousProps: OrgReportRecipientBudgetsFormProps) {
@@ -127,22 +112,6 @@ export class OrgReportRecipientBudgetsForm extends React.Component<OrgReportReci
   }
 
   render() {
-
-    let orgRefs : any[] = [{ value: "", label: "" }]
-    Object.keys(this.props.orgs).forEach((orgKey) => {
-      orgRefs.push({ value: orgKey, label: orgKey })
-    })
-
-    let reportRefs: any[] = [{ value: "", label: "" }]
-     Object.keys(this.props.orgReports).forEach((orgKey) => {
-      //console.log(orgKey)
-      const values = Object.values(this.props.orgReports[orgKey])
-      //console.log(values)
-      Object.keys(values[1]).forEach((reportKey) => {
-        //console.log('Key: ', reportKey)
-        reportRefs.push({ value: reportKey, label: reportKey })
-      })
-    })
 
     let status: any[] = []
     Helpers.financeStatus.forEach( (value: any) => {
@@ -182,13 +151,18 @@ export class OrgReportRecipientBudgetsForm extends React.Component<OrgReportReci
       }
     }
 
+    /*const OrgPickerProps = {
+      name: 'orgRef',
+      label: OrganisationReportRecipientBudget.orgReference
+    }*/
+
     return (
       <div>
         <h2>{OrganisationReportRecipientBudget.headingOrgReportRecipientBudgetWriter}</h2>
         <div>
           <Formik
-            initialValues={ {reportRef: reportRefs[0].value,
-                             orgRef: orgRefs[0].value,
+            initialValues={ {reportRef: "",
+                             orgRef: "",
                              budgetLine: "",
                              value: 0,
                              status: status[0].value,
@@ -206,20 +180,8 @@ export class OrgReportRecipientBudgetsForm extends React.Component<OrgReportReci
             render={(formProps: FormikProps<OrgReportRecipientBudgetProps>) => (
               <Form>
                 <FormControl fullWidth={false}>
-                  <Field
-                    name="reportRef"
-                    label={OrganisationReportRecipientBudget.reportReference}
-                    component={Select}
-                    options={reportRefs}
-                  />
-                  <ErrorMessage name='reportRef' />
-                    <Field
-                      name="orgRef"
-                      label={OrganisationReportRecipientBudget.orgReference}
-                      component={Select}
-                      options={orgRefs}
-                    />
-                    <ErrorMessage name='orgRef' />
+                  <OrgReportPicker name='reportRef' label={OrganisationReportRecipientBudget.reportReference} />
+                  <OrganisationPicker name='orgRef' label={OrganisationReportRecipientBudget.orgReference} />
                   <Field
                     name='budgetLine'
                     label={OrganisationReportRecipientBudget.budgetLine}
@@ -265,17 +227,13 @@ export class OrgReportRecipientBudgetsForm extends React.Component<OrgReportReci
 const mapStateToProps = (state: ApplicationState): RecipientBudgetProps => {
   //console.log(state.orgReader)
   return {
-    tx: state.orgReportRecipientBudgetsForm.data,
-    orgs: state.orgReader.data,
-    orgReports: state.orgReportsReader.data
+    tx: state.orgReportRecipientBudgetsForm.data
   }
 }
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgReportRecipientBudgetsDispatchProps => {
   return {
-    handleSubmit: (ownProps: any) => dispatch(setRecipientBudget(ownProps)),
-    getOrgs: () => dispatch(getOrgs()),
-    getOrgReports: () => dispatch(getOrgReports())
+    handleSubmit: (ownProps: any) => dispatch(setRecipientBudget(ownProps))
   }
 }
 
