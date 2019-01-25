@@ -20,6 +20,8 @@ import { FormikDatePicker } from '../../../components/io/datePicker'
 import { OrganisationPicker } from '../../../components/io/orgPicker'
 import { FormikStatusPicker } from '../../../components/io/statusPicker'
 import { OrgReportPicker } from '../../../components/io/reportPicker'
+import { TransactionHelper, TransactionTypes } from '../../io/transactionHelper'
+
 
 import { OrganisationReportRecipientBudget, Transaction } from '../../../utils/strings'
 import { Helpers } from '../../../utils/config'
@@ -105,19 +107,19 @@ type OrgReportRecipientBudgetsFormProps = WithStyles<typeof styles> & RecipientB
 
 export class OrgReportRecipientBudgetsForm extends React.Component<OrgReportRecipientBudgetsFormProps> {
 
-  state = {
+  /*state = {
     txKey: '',
     txSummary: '',
     toggleSubmitting: false,
     submitFunc: (function(submit: boolean) { return submit }),
     resetFunc: (function() { return null })
-  }
+  }*/
 
   constructor (props: OrgReportRecipientBudgetsFormProps) {
    super(props)
   }
 
-  componentDidUpdate(previousProps: OrgReportRecipientBudgetsFormProps) {
+  /* componentDidUpdate(previousProps: OrgReportRecipientBudgetsFormProps) {
     //console.log(this.props.tx)
     if(previousProps.tx != this.props.tx) {
       const submitting = !this.state.toggleSubmitting
@@ -133,12 +135,14 @@ export class OrgReportRecipientBudgetsForm extends React.Component<OrgReportReci
       this.state.resetFunc()
     }
   }
+  */
 
   handleSubmit = (values: OrgReportRecipientBudgetProps, setSubmitting: Function, reset: Function) => {
     //console.log('Values: ', values)
-    const submitting = !this.state.toggleSubmitting
+    /* const submitting = !this.state.toggleSubmitting
     this.setState({txKey: '', txSummary: '', toggleSubmitting: submitting, submitFunc: setSubmitting, resetFunc: reset})
-    setSubmitting(submitting)
+    setSubmitting(submitting) */
+    TransactionHelper.handleSubmit(setSubmitting, reset)
     this.props.handleSubmit(values)
   }
 
@@ -198,10 +202,7 @@ export class OrgReportRecipientBudgetsForm extends React.Component<OrgReportReci
         </div>
         <hr />
         <h3>{Transaction.heading}</h3>
-        <p>
-          <b>{Transaction.summary}</b>: {this.state.txSummary}<br />
-          <b>{Transaction.key}</b>: {this.state.txKey}
-        </p>
+        <TransactionHelper type={TransactionTypes.ORGREPORTRECIPIENTBUDGET} />
       </div>
     )
   }

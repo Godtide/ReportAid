@@ -116,7 +116,7 @@ const getReportBudgetRefs = () => {
               budgetLine: '',
               finance: {
                 value: 0,
-                status: '',
+                status: 0,
                 start: '',
                 end: ''
               }
