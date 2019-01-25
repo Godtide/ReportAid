@@ -21,7 +21,8 @@ import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import FormControl from '@material-ui/core/FormControl'
 import { Select, TextField } from "material-ui-formik-components"
-//import { Date } from 'formik-material-ui'
+
+import { FormikDatePicker } from '../../../components/io/datePicker'
 
 import { OrganisationReportRecipientBudget, Transaction } from '../../../utils/strings'
 import { Helpers } from '../../../utils/config'
@@ -64,6 +65,8 @@ const reportSchema = Yup.object().shape({
     .number()
     .required('Required'),
 })
+
+
 
 interface RecipientBudgetProps {
   tx: TxData,
@@ -149,26 +152,35 @@ export class OrgReportRecipientBudgetsForm extends React.Component<OrgReportReci
 
     //console.log(reportRefs)
 
-    let dayRefs: any[] = []
-    Array.from({ length: 31 }, (v: number, i: number) => {
-      const value = ++i
-      dayRefs.push({ value: value, label: value.toString() })
-    })
+    const StartDatePickerProps = {
+      day: {
+        name: 'startDay',
+        label: OrganisationReportRecipientBudget.budgetStartDay
+      },
+      month: {
+        name: 'startMonth',
+        label: OrganisationReportRecipientBudget.budgetStartMonth
+      },
+      year: {
+        name: 'startYear',
+        label: OrganisationReportRecipientBudget.budgetStartYear
+      }
+    }
 
-    let monthRefs: any[] = []
-    Array.from({ length: 12 }, (v: number, i: number) => {
-      const value = ++i
-      monthRefs.push({ value: value, label: value.toString() })
-    })
-
-    const startYear = 1990
-    const stopYear = 2030
-    const step = 1
-    let yearRefs: any[] = []
-    Array.from({ length: (stopYear - startYear) / step }, (_, i: number) => {
-      const year = startYear + (i * step)
-      yearRefs.push({ value: year, label: year.toString() })
-    })
+    const EndDatePickerProps = {
+      day: {
+        name: 'endDay',
+        label: OrganisationReportRecipientBudget.budgetEndDay
+      },
+      month: {
+        name: 'endMonth',
+        label: OrganisationReportRecipientBudget.budgetEndMonth
+      },
+      year: {
+        name: 'endYear',
+        label: OrganisationReportRecipientBudget.budgetEndYear
+      }
+    }
 
     return (
       <div>
@@ -180,12 +192,12 @@ export class OrgReportRecipientBudgetsForm extends React.Component<OrgReportReci
                              budgetLine: "",
                              value: 0,
                              status: status[0].value,
-                             startDay: dayRefs[0].value,
-                             startMonth: monthRefs[0].value,
-                             startYear: yearRefs[0].value,
-                             endDay: dayRefs[0].value,
-                             endMonth: monthRefs[0].value,
-                             endYear: yearRefs[0].value,
+                             startDay: 1,
+                             startMonth: 1,
+                             startYear: 1990,
+                             endDay: 1,
+                             endMonth: 1,
+                             endYear: 1990,
                             }}
             validationSchema={reportSchema}
             onSubmit={(values: OrgReportRecipientBudgetProps, actions: any) => {
@@ -227,70 +239,8 @@ export class OrgReportRecipientBudgetsForm extends React.Component<OrgReportReci
                     options={status}
                   />
                   <ErrorMessage name='status' />
-                  <Grid container>
-                    <Grid item xs={12} sm={3}>
-                      <Field
-                        name='startDay'
-                        label={OrganisationReportRecipientBudget.budgetStartDay}
-                        //style={{ width: '10%' }}
-                        component={Select}
-                        options={dayRefs}
-                      />
-                      <ErrorMessage name='startDay' />
-                    </Grid>
-                    <Grid item xs={12} sm={3}>
-                      <Field
-                        name='startMonth'
-                        label={OrganisationReportRecipientBudget.budgetStartMonth}
-                        //style={{ width: '10%' }}
-                        component={Select}
-                        options={monthRefs}
-                      />
-                      <ErrorMessage name='startMonth' />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <Field
-                        name='startYear'
-                        label={OrganisationReportRecipientBudget.budgetStartYear}
-                        //style={{ width: '10%' }}
-                        component={Select}
-                        options={yearRefs}
-                      />
-                      <ErrorMessage name='startYear' />
-                    </Grid>
-                  </Grid>
-                  <Grid container>
-                    <Grid item xs={12} sm={3}>
-                      <Field
-                        name='endDay'
-                        label={OrganisationReportRecipientBudget.budgetEndDay}
-                        //style={{ width: '10%' }}
-                        component={Select}
-                        options={dayRefs}
-                      />
-                      <ErrorMessage name='endDay' />
-                    </Grid>
-                    <Grid item xs={12} sm={3}>
-                      <Field
-                        name='endMonth'
-                        label={OrganisationReportRecipientBudget.budgetEndMonth}
-                        //style={{ width: '10%' }}
-                        component={Select}
-                        options={monthRefs}
-                      />
-                      <ErrorMessage name='endMonth' />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <Field
-                        name='endYear'
-                        label={OrganisationReportRecipientBudget.budgetEndYear}
-                        //style={{ width: '10%' }}
-                        component={Select}
-                        options={yearRefs}
-                      />
-                      <ErrorMessage name='endYear' />
-                    </Grid>
-                  </Grid>
+                  <FormikDatePicker dates={StartDatePickerProps} />
+                  <FormikDatePicker dates={EndDatePickerProps} />
                   {formProps.isSubmitting && <LinearProgress />}
                   <br />
                   <Button type='submit' variant="raised" color="primary" disabled={formProps.isSubmitting}>
