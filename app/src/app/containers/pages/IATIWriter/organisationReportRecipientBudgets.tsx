@@ -95,54 +95,25 @@ const EndDatePickerProps = {
   }
 }
 
-interface RecipientBudgetProps {
-  tx: TxData
-}
-
 export interface OrgReportRecipientBudgetsDispatchProps {
   handleSubmit: (values: any) => void
 }
 
-type OrgReportRecipientBudgetsFormProps = WithStyles<typeof styles> & RecipientBudgetProps & OrgReportRecipientBudgetsDispatchProps
+type OrgReportRecipientBudgetsFormProps = WithStyles<typeof styles> & OrgReportRecipientBudgetsDispatchProps
 
 export class OrgReportRecipientBudgetsForm extends React.Component<OrgReportRecipientBudgetsFormProps> {
 
-  /*state = {
-    txKey: '',
-    txSummary: '',
-    toggleSubmitting: false,
+  state = {
     submitFunc: (function(submit: boolean) { return submit }),
     resetFunc: (function() { return null })
-  }*/
+  }
 
   constructor (props: OrgReportRecipientBudgetsFormProps) {
    super(props)
   }
 
-  /* componentDidUpdate(previousProps: OrgReportRecipientBudgetsFormProps) {
-    //console.log(this.props.tx)
-    if(previousProps.tx != this.props.tx) {
-      const submitting = !this.state.toggleSubmitting
-      let txKey = ''
-      let txSummary = `${Transaction.fail}`
-      const txKeys = Object.keys(this.props.tx)
-      if (txKeys.length > 0 ) {
-        txKey = Object.keys(this.props.tx)[0]
-        txSummary = `${Transaction.success}`
-      }
-      this.setState({txKey: txKey, txSummary: txSummary, toggleSubmitting: submitting})
-      this.state.submitFunc(submitting)
-      this.state.resetFunc()
-    }
-  }
-  */
-
   handleSubmit = (values: OrgReportRecipientBudgetProps, setSubmitting: Function, reset: Function) => {
-    //console.log('Values: ', values)
-    /* const submitting = !this.state.toggleSubmitting
-    this.setState({txKey: '', txSummary: '', toggleSubmitting: submitting, submitFunc: setSubmitting, resetFunc: reset})
-    setSubmitting(submitting) */
-    TransactionHelper.handleSubmit(setSubmitting, reset)
+    this.setState({submitFunc: setSubmitting, resetFunc: reset})
     this.props.handleSubmit(values)
   }
 
@@ -200,18 +171,13 @@ export class OrgReportRecipientBudgetsForm extends React.Component<OrgReportReci
             )}
           />
         </div>
-        <hr />
-        <h3>{Transaction.heading}</h3>
-        <TransactionHelper type={TransactionTypes.ORGREPORTRECIPIENTBUDGET} />
+        <TransactionHelper
+          type={TransactionTypes.ORGREPORTRECIPIENTBUDGET}
+          submitFunc={this.state.submitFunc}
+          resetFunc={this.state.resetFunc}
+        />
       </div>
     )
-  }
-}
-
-const mapStateToProps = (state: ApplicationState): RecipientBudgetProps => {
-  //console.log(state.orgReader)
-  return {
-    tx: state.orgReportRecipientBudgetsForm.data
   }
 }
 
@@ -221,7 +187,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   }
 }
 
-export const OrganisationReportRecipientBudgets = withTheme(withStyles(styles)(connect<RecipientBudgetProps, OrgReportRecipientBudgetsDispatchProps, {}, ApplicationState>(
-  mapStateToProps,
+export const OrganisationReportRecipientBudgets = withTheme(withStyles(styles)(connect<void, OrgReportRecipientBudgetsDispatchProps, {}, ApplicationState>(
+  null,
   mapDispatchToProps
 )(OrgReportRecipientBudgetsForm)))

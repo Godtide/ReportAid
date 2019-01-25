@@ -18,6 +18,8 @@ export const enum TransactionTypes {
 
 export interface TransactionType {
   type: TransactionTypes
+  submitFunc: (submit: boolean) => boolean
+  resetFunc: () => void
 }
 
 interface TransactionProps {
@@ -31,9 +33,7 @@ export class TX extends React.Component<TxProps> {
   state = {
     txKey: '',
     txSummary: '',
-    toggleSubmitting: false,
-    submitFunc: (function(submit: boolean) { return submit }),
-    resetFunc: (function() { return null })
+    toggleSubmitting: false
   }
 
   constructor (props: TxProps) {
@@ -52,8 +52,8 @@ export class TX extends React.Component<TxProps> {
         txSummary = `${Transaction.success}`
       }
       this.setState({txKey: txKey, txSummary: txSummary, toggleSubmitting: submitting})
-      this.state.submitFunc(submitting)
-      this.state.resetFunc()
+      this.props.submitFunc(submitting)
+      this.props.resetFunc()
     }
   }
 
