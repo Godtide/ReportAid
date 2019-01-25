@@ -4,24 +4,23 @@ import { ThunkDispatch } from 'redux-thunk'
 
 import { Formik, Form, Field, FormikProps, ErrorMessage} from 'formik'
 import * as Yup from 'yup'
-
-import { ApplicationState } from '../../../store'
-import { ActionProps, TxData } from '../../../store/types'
-import { IATIOrgProps, OrgReportProps } from '../../../store/IATI/types'
-
-import { getOrgs } from '../../../store/IATI/IATIReader/organisation/actions'
-import { OrgData } from '../../../store/IATI/IATIReader/organisation/types'
-
-//import { getDictEntries } from '../../../utils/dict'
-
-import { setOrganisationReport } from '../../../store/IATI/IATIWriter/organisationReports/actions'
-
 import { LinearProgress } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
 //import { Select } from 'formik-material-ui'
 import { Select } from "material-ui-formik-components"
 
-import { Organisation, OrganisationReport, Transaction } from '../../../utils/strings'
+import { ApplicationState } from '../../../store'
+import { ActionProps } from '../../../store/types'
+import { IATIOrgProps, OrgReportProps } from '../../../store/IATI/types'
+
+//import { getDictEntries } from '../../../utils/dict'
+
+import { setOrganisationReport } from '../../../store/IATI/IATIWriter/organisationReports/actions'
+
+import { OrganisationPicker } from '../../../components/io/orgPicker'
+import { TransactionHelper, TransactionTypes } from '../../io/transactionHelper'
+
+import { Organisation, OrganisationReport } from '../../../utils/strings'
 import { Helpers } from '../../../utils/config'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
@@ -51,24 +50,15 @@ const reportSchema = Yup.object().shape({
     .required('Required'),
 })
 
-interface ReportProps {
-  tx: TxData,
-  orgs: OrgData
-}
-
 export interface OrgReportsDispatchProps {
   handleSubmit: (values: any) => void
-  getOrgs: () => void
 }
 
-type OrgReportsFormProps = WithStyles<typeof styles> & ReportProps & OrgReportsDispatchProps
+type OrgReportsFormProps = WithStyles<typeof styles> & OrgReportsDispatchProps
 
 export class OrgReportsForm extends React.Component<OrgReportsFormProps> {
 
   state = {
-    txKey: '',
-    txSummary: '',
-    toggleSubmitting: false,
     submitFunc: (function(submit: boolean) { return submit }),
     resetFunc: (function() { return null })
   }
@@ -77,32 +67,8 @@ export class OrgReportsForm extends React.Component<OrgReportsFormProps> {
    super(props)
   }
 
-  componentDidMount() {
-    this.props.getOrgs()
-  }
-
-  componentDidUpdate(previousProps: OrgReportsFormProps) {
-    //console.log(this.props.tx)
-    if(previousProps.tx != this.props.tx) {
-      const submitting = !this.state.toggleSubmitting
-      let txKey = ''
-      let txSummary = `${Transaction.fail}`
-      const txKeys = Object.keys(this.props.tx)
-      if (txKeys.length > 0 ) {
-        txKey = Object.keys(this.props.tx)[0]
-        txSummary = `${Transaction.success}`
-      }
-      this.setState({txKey: txKey, txSummary: txSummary, toggleSubmitting: submitting})
-      this.state.submitFunc(submitting)
-      this.state.resetFunc()
-    }
-  }
-
   handleSubmit = (values: OrgReportProps, setSubmitting: Function, reset: Function) => {
-    //console.log('Values: ', values)
-    const submitting = !this.state.toggleSubmitting
-    this.setState({txKey: '', txSummary: '', toggleSubmitting: submitting, submitFunc: setSubmitting, resetFunc: reset})
-    setSubmitting(submitting)
+    this.setState({submitFunc: setSubmitting, resetFunc: reset})
     this.props.handleSubmit(values)
   }
 
@@ -112,11 +78,6 @@ export class OrgReportsForm extends React.Component<OrgReportsFormProps> {
     Helpers.reportVersions.forEach( (value: any) => {
       //console.log(value, value.code)
       versions.push({ value: value, label: value })
-    })
-
-    let orgRefs: any[] = [{ value: "", label: "" }]
-    Object.keys(this.props.orgs).forEach((key) => {
-      orgRefs.push({ value: key, label: this.props.orgs[key].name })
     })
 
     let orgCodes: any[] = []
@@ -148,8 +109,8 @@ export class OrgReportsForm extends React.Component<OrgReportsFormProps> {
         <div>
           <Formik
             initialValues={ {version: versions[0].value,
-                             orgRef: orgRefs[0].value,
-                             reportingOrgRef: orgRefs[0].value,
+                             orgRef: "",
+                             reportingOrgRef: "",
                              reportingOrgType: orgCodes[0].value,
                              reportingOrgIsSecondary: isSecondary[0].value,
                              lang: countries[0].value,
@@ -168,23 +129,8 @@ export class OrgReportsForm extends React.Component<OrgReportsFormProps> {
                   options={versions}
                 />
                 <ErrorMessage name='version' />
-                <br />
-                <Field
-                  name="orgRef"
-                  label={OrganisationReport.orgIdentifier}
-                  component={Select}
-                  options={orgRefs}
-                />
-                <ErrorMessage name='orgRef' />
-                <br />
-                <Field
-                  name="reportingOrgRef"
-                  label={OrganisationReport.reportingOrgRef}
-                  component={Select}
-                  options={orgRefs}
-                />
-                <ErrorMessage name='reportingOrgRef' />
-                <br />
+                <OrganisationPicker name='orgRef' label={OrganisationReport.orgIdentifier} />
+                <OrganisationPicker name='reportingOrgRef' label={OrganisationReport.reportingOrgRef} />
                 <Field
                   name="reportingOrgType"
                   label={OrganisationReport.reportingOrgType}
@@ -192,7 +138,6 @@ export class OrgReportsForm extends React.Component<OrgReportsFormProps> {
                   options={orgCodes}
                 />
                 <ErrorMessage name='reportingOrgType' />
-                <br />
                 <Field
                   name="reportingOrgIsSecondary"
                   label={OrganisationReport.reportingOrgIsSecondary}
@@ -200,7 +145,6 @@ export class OrgReportsForm extends React.Component<OrgReportsFormProps> {
                   options={isSecondary}
                 />
                 <ErrorMessage name='reportingOrgIsSecondary' />
-                <br />
                 <Field
                   name="lang"
                   label={OrganisationReport.language}
@@ -208,7 +152,6 @@ export class OrgReportsForm extends React.Component<OrgReportsFormProps> {
                   options={countries}
                 />
                 <ErrorMessage name='lang' />
-                <br />
                 <Field
                   name="currency"
                   label={OrganisationReport.currency}
@@ -226,33 +169,23 @@ export class OrgReportsForm extends React.Component<OrgReportsFormProps> {
             )}
           />
         </div>
-        <hr />
-        <h3>{Transaction.heading}</h3>
-        <p>
-          <b>{Transaction.summary}</b>: {this.state.txSummary}<br />
-          <b>{Transaction.key}</b>: {this.state.txKey}
-        </p>
+        <TransactionHelper
+          type={TransactionTypes.ORGREPORT}
+          submitFunc={this.state.submitFunc}
+          resetFunc={this.state.resetFunc}
+        />
       </div>
     )
   }
 }
 
-const mapStateToProps = (state: ApplicationState): ReportProps => {
-  //console.log(state.orgReader)
-  return {
-    tx: state.orgReportsForm.data,
-    orgs: state.orgReader.data
-  }
-}
-
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgReportsDispatchProps => {
   return {
-    handleSubmit: (ownProps: any) => dispatch(setOrganisationReport(ownProps)),
-    getOrgs: () => dispatch(getOrgs())
+    handleSubmit: (ownProps: any) => dispatch(setOrganisationReport(ownProps))
   }
 }
 
-export const OrganisationReports = withTheme(withStyles(styles)(connect<ReportProps, OrgReportsDispatchProps, {}, ApplicationState>(
-  mapStateToProps,
+export const OrganisationReports = withTheme(withStyles(styles)(connect<void, OrgReportsDispatchProps, {}, ApplicationState>(
+  null,
   mapDispatchToProps
 )(OrgReportsForm)))
