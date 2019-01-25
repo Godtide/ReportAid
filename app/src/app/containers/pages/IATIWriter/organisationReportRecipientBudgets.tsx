@@ -95,7 +95,7 @@ const EndDatePickerProps = {
   }
 }
 
-export interface OrgReportRecipientBudgetsDispatchProps {
+interface OrgReportRecipientBudgetsDispatchProps {
   handleSubmit: (values: any) => void
 }
 

@@ -28,7 +28,7 @@ interface TransactionProps {
 
 type TxProps = TransactionType & TransactionProps
 
-export class TX extends React.Component<TxProps> {
+class TX extends React.Component<TxProps> {
 
   state = {
     txKey: '',
@@ -55,13 +55,6 @@ export class TX extends React.Component<TxProps> {
       this.props.submitFunc(submitting)
       this.props.resetFunc()
     }
-  }
-
-  handleSubmit = (setSubmitting: Function, reset: Function) => {
-    //console.log('Values: ', values)
-    const submitting = !this.state.toggleSubmitting
-    this.setState({txKey: '', txSummary: '', toggleSubmitting: submitting, submitFunc: setSubmitting, resetFunc: reset})
-    setSubmitting(submitting)
   }
 
   render() {
