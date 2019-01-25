@@ -4,17 +4,16 @@ import { ThunkDispatch } from 'redux-thunk'
 
 import { Formik, Form, Field, FormikProps, ErrorMessage} from 'formik'
 import * as Yup from 'yup'
-
-import { ApplicationState } from '../../../store'
-import { ActionProps, TxData } from '../../../store/types'
-import { IATIOrgReportRecipientBudgetProps, OrgReportRecipientBudgetProps} from '../../../store/IATI/types'
-
-import { setRecipientBudget } from '../../../store/IATI/IATIWriter/organisationReportRecipientBudgets/actions'
-
 import { LinearProgress } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
 import FormControl from '@material-ui/core/FormControl'
 import { Select, TextField } from "material-ui-formik-components"
+
+import { ApplicationState } from '../../../store'
+import { ActionProps } from '../../../store/types'
+import { IATIOrgReportRecipientBudgetProps, OrgReportRecipientBudgetProps} from '../../../store/IATI/types'
+
+import { setRecipientBudget } from '../../../store/IATI/IATIWriter/organisationReportRecipientBudgets/actions'
 
 import { FormikDatePicker } from '../../../components/io/datePicker'
 import { OrganisationPicker } from '../../../components/io/orgPicker'
@@ -22,9 +21,7 @@ import { FormikStatusPicker } from '../../../components/io/statusPicker'
 import { OrgReportPicker } from '../../../components/io/reportPicker'
 import { TransactionHelper, TransactionTypes } from '../../io/transactionHelper'
 
-
-import { OrganisationReportRecipientBudget, Transaction } from '../../../utils/strings'
-import { Helpers } from '../../../utils/config'
+import { OrganisationReportRecipientBudget } from '../../../utils/strings'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
