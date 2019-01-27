@@ -17,7 +17,7 @@ import { setOrganisation } from '../../../store/IATI/IATIWriter/organisation/act
 
 import { TransactionHelper, TransactionTypes } from '../../io/transactionHelper'
 
-import { Organisation, Transaction } from '../../../utils/strings'
+import { Organisation } from '../../../utils/strings'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
@@ -70,20 +70,22 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
             }}
             render={(formProps: FormikProps<OrganisationProps>) => (
               <Form>
-                <Field name='name' label={Organisation.orgName} component={TextField} />
-                <ErrorMessage name='name' />
-                <br />
-                <Field name='code' label={Organisation.code} component={TextField} />
-                <ErrorMessage name='code' />
-                <br />
-                <Field name='identifier' label={Organisation.identifier} component={TextField} />
-                <ErrorMessage name='identifier' />
-                <br />
-                {formProps.isSubmitting && <LinearProgress />}
-                <br />
-                <Button type='submit' variant="raised" color="primary" disabled={formProps.isSubmitting}>
-                  Submit
-                </Button>
+                <FormControl fullWidth={true}>
+                  <Field name='name' label={Organisation.orgName} component={TextField} />
+                  <ErrorMessage name='name' />
+                  <br />
+                  <Field name='code' label={Organisation.code} component={TextField} />
+                  <ErrorMessage name='code' />
+                  <br />
+                  <Field name='identifier' label={Organisation.identifier} component={TextField} />
+                  <ErrorMessage name='identifier' />
+                  <br />
+                  {formProps.isSubmitting && <LinearProgress />}
+                  <br />
+                  <Button type='submit' variant="raised" color="primary" disabled={formProps.isSubmitting}>
+                    Submit
+                  </Button>
+                </FormControl>
               </Form>
             )}
           />

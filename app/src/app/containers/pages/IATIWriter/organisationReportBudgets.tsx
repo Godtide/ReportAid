@@ -24,6 +24,7 @@ import { OrgReportPicker } from '../../../components/io/reportPicker'
 import { TransactionHelper, TransactionTypes } from '../../io/transactionHelper'
 
 import { OrganisationReportBudget } from '../../../utils/strings'
+import { Helpers } from '../../../utils/config'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
@@ -139,10 +140,10 @@ export class OrgReportBudgetsForm extends React.Component<OrgReportBudgetsFormPr
                              status: 1,
                              startDay: 1,
                              startMonth: 1,
-                             startYear: 1990,
+                             startYear: 2000,
                              endDay: 1,
                              endMonth: 1,
-                             endYear: 1990
+                             endYear: 2000
                             }}
             validationSchema={reportSchema}
             onSubmit={(values: OrgReportBudgetProps, actions: any) => {
@@ -150,7 +151,7 @@ export class OrgReportBudgetsForm extends React.Component<OrgReportBudgetsFormPr
             }}
             render={(formProps: FormikProps<OrgReportBudgetProps>) => (
               <Form>
-                <FormControl fullWidth={false}>
+                <FormControl fullWidth={true}>
                   <OrgReportPicker name='reportRef' label={OrganisationReportBudget.reportReference} />
                   <Field
                     name='budgetLine'
@@ -164,7 +165,13 @@ export class OrgReportBudgetsForm extends React.Component<OrgReportBudgetsFormPr
                     component={TextField}
                   />
                   <ErrorMessage name='value' />
-                  <FormikStatusPicker name='status' label={OrganisationReportBudget.status} />
+                  <Field
+                    name="status"
+                    label={OrganisationReportBudget.status}
+                    component={Select}
+                    options={Helpers.financeStatus}
+                  />
+                  <ErrorMessage name='status' />
                   <FormikDatePicker dates={StartDatePickerProps} />
                   <FormikDatePicker dates={EndDatePickerProps} />
                   <br />

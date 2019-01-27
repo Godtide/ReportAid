@@ -3,6 +3,8 @@ import { Field, ErrorMessage} from 'formik'
 import Grid from '@material-ui/core/Grid'
 import { Select } from "material-ui-formik-components"
 
+import { Helpers } from '../../utils/config'
+
 interface DatePickerProps {
   dates: {
     day: {
@@ -22,7 +24,7 @@ interface DatePickerProps {
 
 export const FormikDatePicker = (props: DatePickerProps) => {
 
-  let dayRefs: any[] = []
+  /*let dayRefs: any[] = []
   Array.from({ length: 31 }, (v: number, i: number) => {
     const value = ++i
     dayRefs.push({ value: value, label: value.toString() })
@@ -34,14 +36,14 @@ export const FormikDatePicker = (props: DatePickerProps) => {
     monthRefs.push({ value: value, label: value.toString() })
   })
 
-  const startYear = 1990
-  const stopYear = 2030
+  const startYear = 2000
+  const stopYear = 2040
   const step = 1
   let yearRefs: any[] = []
   Array.from({ length: (stopYear - startYear) / step }, (_, i: number) => {
     const year = startYear + (i * step)
     yearRefs.push({ value: year, label: year.toString() })
-  })
+  })*/
 
   return (
     <Grid container>
@@ -51,7 +53,7 @@ export const FormikDatePicker = (props: DatePickerProps) => {
           label={props.dates.day.label}
           //style={{ width: '10%' }}
           component={Select}
-          options={dayRefs}
+          options={Helpers.days}
         />
         <ErrorMessage name={props.dates.day.name} />
       </Grid>
@@ -61,7 +63,7 @@ export const FormikDatePicker = (props: DatePickerProps) => {
           label={props.dates.month.label}
           //style={{ width: '10%' }}
           component={Select}
-          options={monthRefs}
+          options={Helpers.months}
         />
         <ErrorMessage name={props.dates.month.name} />
       </Grid>
@@ -71,7 +73,7 @@ export const FormikDatePicker = (props: DatePickerProps) => {
           label={props.dates.year.label}
           //style={{ width: '10%' }}
           component={Select}
-          options={yearRefs}
+          options={Helpers.years}
         />
         <ErrorMessage name={props.dates.year.name} />
       </Grid>

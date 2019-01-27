@@ -74,7 +74,7 @@ export class OrgReportsForm extends React.Component<OrgReportsFormProps> {
 
   render() {
 
-    let versions: any[] = []
+    /*let versions: any[] = []
     Helpers.reportVersions.forEach( (value: any) => {
       //console.log(value, value.code)
       versions.push({ value: value, label: value })
@@ -101,20 +101,20 @@ export class OrgReportsForm extends React.Component<OrgReportsFormProps> {
     Helpers.currencyCodes.forEach( (value: any) => {
       //console.log(value, value.code)
       currencies.push({ value: value, label: value })
-    })
+    })*/
 
     return (
       <div>
         <h2>{OrganisationReport.headingOrgReportWriter}</h2>
         <div>
           <Formik
-            initialValues={ {version: versions[0].value,
+            initialValues={ {version: "",
                              orgRef: "",
                              reportingOrgRef: "",
-                             reportingOrgType: orgCodes[0].value,
-                             reportingOrgIsSecondary: isSecondary[0].value,
-                             lang: countries[0].value,
-                             currency: currencies[0].value
+                             reportingOrgType: 0,
+                             reportingOrgIsSecondary: false,
+                             lang: "",
+                             currency: ""
                             }}
             validationSchema={reportSchema}
             onSubmit={(values: OrgReportProps, actions: any) => {
@@ -122,49 +122,51 @@ export class OrgReportsForm extends React.Component<OrgReportsFormProps> {
             }}
             render={(formProps: FormikProps<OrgReportProps>) => (
               <Form>
-                <Field
-                  name="version"
-                  label={OrganisationReport.version}
-                  component={Select}
-                  options={versions}
-                />
-                <ErrorMessage name='version' />
-                <OrganisationPicker name='orgRef' label={OrganisationReport.orgIdentifier} />
-                <OrganisationPicker name='reportingOrgRef' label={OrganisationReport.reportingOrgRef} />
-                <Field
-                  name="reportingOrgType"
-                  label={OrganisationReport.reportingOrgType}
-                  component={Select}
-                  options={orgCodes}
-                />
-                <ErrorMessage name='reportingOrgType' />
-                <Field
-                  name="reportingOrgIsSecondary"
-                  label={OrganisationReport.reportingOrgIsSecondary}
-                  component={Select}
-                  options={isSecondary}
-                />
-                <ErrorMessage name='reportingOrgIsSecondary' />
-                <Field
-                  name="lang"
-                  label={OrganisationReport.language}
-                  component={Select}
-                  options={countries}
-                />
-                <ErrorMessage name='lang' />
-                <Field
-                  name="currency"
-                  label={OrganisationReport.currency}
-                  component={Select}
-                  options={currencies}
-                />
-                <ErrorMessage name='currency' />
-                <br />
-                {formProps.isSubmitting && <LinearProgress />}
-                <br />
-                <Button type='submit' variant="raised" color="primary" disabled={formProps.isSubmitting}>
-                  Submit
-                </Button>
+                <FormControl fullWidth={true}>
+                  <Field
+                    name="version"
+                    label={OrganisationReport.version}
+                    component={Select}
+                    options={Helpers.reportVersions}
+                  />
+                  <ErrorMessage name='version' />
+                  <OrganisationPicker name='orgRef' label={OrganisationReport.orgIdentifier} />
+                  <OrganisationPicker name='reportingOrgRef' label={OrganisationReport.reportingOrgRef} />
+                  <Field
+                    name="reportingOrgType"
+                    label={OrganisationReport.reportingOrgType}
+                    component={Select}
+                    options={Helpers.organisationCodes}
+                  />
+                  <ErrorMessage name='reportingOrgType' />
+                  <Field
+                    name="reportingOrgIsSecondary"
+                    label={OrganisationReport.reportingOrgIsSecondary}
+                    component={Select}
+                    options={Helpers.isSecondary}
+                  />
+                  <ErrorMessage name='reportingOrgIsSecondary' />
+                  <Field
+                    name="lang"
+                    label={OrganisationReport.language}
+                    component={Select}
+                    options={Helpers.countryCodes}
+                  />
+                  <ErrorMessage name='lang' />
+                  <Field
+                    name="currency"
+                    label={OrganisationReport.currency}
+                    component={Select}
+                    options={Helpers.currencyCodes}
+                  />
+                  <ErrorMessage name='currency' />
+                  <br />
+                  {formProps.isSubmitting && <LinearProgress />}
+                  <br />
+                  <Button type='submit' variant="raised" color="primary" disabled={formProps.isSubmitting}>
+                    Submit
+                  </Button>
+                </FormControl>
               </Form>
             )}
           />
