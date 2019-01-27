@@ -6,6 +6,7 @@ import { Formik, Form, Field, FormikProps, ErrorMessage} from 'formik'
 import * as Yup from 'yup'
 import { LinearProgress } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
+import FormControl from '@material-ui/core/FormControl'
 //import { Select } from 'formik-material-ui'
 import { Select } from "material-ui-formik-components"
 
@@ -73,35 +74,6 @@ export class OrgReportsForm extends React.Component<OrgReportsFormProps> {
   }
 
   render() {
-
-    /*let versions: any[] = []
-    Helpers.reportVersions.forEach( (value: any) => {
-      //console.log(value, value.code)
-      versions.push({ value: value, label: value })
-    })
-
-    let orgCodes: any[] = []
-    Helpers.organisationCodes.forEach( (value: any) => {
-      //console.log(value, value.code)
-      orgCodes.push({ value: value.code, label: value.type })
-    })
-
-    const isSecondary = [
-      { value: false, label: 'No' },
-      { value: true, label: 'Yes' }
-    ]
-
-    let countries: any[] = [{ value: "", label: "" }]
-    Helpers.countryCodes.forEach( (value: any) => {
-      //console.log(value, value.code)
-      countries.push({ value: value, label: value })
-    })
-
-    let currencies: any[] = [{ value: "", label: "" }]
-    Helpers.currencyCodes.forEach( (value: any) => {
-      //console.log(value, value.code)
-      currencies.push({ value: value, label: value })
-    })*/
 
     return (
       <div>
