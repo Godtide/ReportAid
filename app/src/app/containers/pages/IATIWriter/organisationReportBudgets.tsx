@@ -18,7 +18,6 @@ import { setOrganisationReportBudget } from '../../../store/IATI/IATIWriter/orga
 
 import { FormikDatePicker } from '../../../components/io/datePicker'
 import { OrganisationPicker } from '../../../components/io/orgPicker'
-import { FormikStatusPicker } from '../../../components/io/statusPicker'
 import { OrgReportPicker } from '../../../components/io/reportPicker'
 import { TransactionHelper, TransactionTypes } from '../../io/transactionHelper'
 
