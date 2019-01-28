@@ -74,17 +74,20 @@ class Contract {
   ]
 
   static organisationReportDocsABI = [
-    "event SetDocument(bytes32 reportRef, bytes32 docRef, tuple(bytes32 reportRef, bytes32 docRef, string title, string format, string url, bytes32 category, bytes32 countryCode, string desc, bytes32 lang, bytes32 date) doc)",
+    "event SetDocument(bytes32 reportRef, bytes32 docRef, tuple(bytes32 reportRef, bytes32 docRef, string title, string format, string url, bytes32 category, bytes32 countryRef, string desc, bytes32 lang, bytes32 date) doc)",
 
-    "function setDocument(tuple(bytes32 reportRef, bytes32 docRef, string title, string format, string url, bytes32 category, bytes32 countryCode, string desc, bytes32 lang, bytes32 date) doc)@500000",
+    "function setDocument(tuple(bytes32 reportRef, bytes32 docRef, string title, string format, string url, bytes32 category, bytes32 countryRef, string desc, bytes32 lang, bytes32 date) doc)@500000",
 
+    "function getReportExists(bytes32 _reportRef) view returns (bool)",
     "function getReportDocExists(bytes32 reportRef, bytes32 docRef) view returns (bool)",
 
+    "function getNumReports() view returns (uint256)",
     "function getNumReportDocs(bytes32 reportRef) view returns (uint256)",
 
+    "function getReportReference(uint256 _index) view returns (bytes32)",
     "function getReportDocReference(bytes32 docRef, uint256 index) view returns (bytes32)",
 
-    "function getDocument(bytes32 reportRef, bytes32 docRef) view returns (tuple(bytes32 reportRef, bytes32 docRef, string title, string format, string url, bytes32 category, bytes32 countryCode, string desc, bytes32 lang, bytes32 date) doc)",
+    "function getDocument(bytes32 reportRef, bytes32 docRef) view returns (tuple(bytes32 reportRef, bytes32 docRef, string title, string format, string url, bytes32 category, bytes32 countryRef, string desc, bytes32 lang, bytes32 date) doc)",
 
     "function getDocumentTitle(bytes32 reportRef, bytes32 docRef) view returns (string)",
     "function getDocumentFormat(bytes32 reportRef, bytes32 docRef) view returns (string)",
@@ -223,14 +226,14 @@ class Contract {
   static organisationReportRegionBudgetsAddress = "0xc414e8AAbbe4753faBCf5180BD8438F99adb3016"
   static organisationReportCountryBudgetsAddress = "0xD63A6e29cc37e2A45ad723220c41dDB1AfC31Ec3"*/
 
-  static organisationsAddress = "0xf5f1BF6e0B3978636f3CDC8A55Cdfa869A8c87Df"
-  static organisationReportsAddress = "0xD0106bd4b595e2e1D146c569C83DF440c88E5F16"
-  static organisationReportDocsAddress = "0xF1955FB1d7f33d7cb6B88c3f65e68E06e56298A4"
-  static organisationReportBudgetsAddress = "0x0c4743d306b5D3977aA706a76e3Fe16e64Ac20fb"
-  static organisationReportExpenditureAddress = "0xf32Acd268D689cc200EF560c9A451E2216B6219d"
-  static organisationReportRecipientBudgetsAddress = "0xE094b19643a98dF71407ae0ceB386AA620658316"
-  static organisationReportRegionBudgetsAddress = "0x9eBc3136d7C2fa7634d4fC4652FD5aeBaE677581"
-  static organisationReportCountryBudgetsAddress = "0x98369E0cE619E8C69f59f4c1Fb55E1E8D11177b4"
+  static organisationsAddress = "0x564611f79C71adC76fD737101366364F11920493"
+  static organisationReportsAddress = "0xfafB0A06b0BB0C5c17a8C6FA6871F10F55Dd7d20"
+  static organisationReportDocsAddress = "0x401cAc842cE14601043cf742fA900aACb6F78905"
+  static organisationReportBudgetsAddress = "0x31746026c24fcF9E3EeF5C1892aFFd5bc60fC76c"
+  static organisationReportExpenditureAddress = "0x216C3d23C7A1245FcAD84B7386fc588b15734779"
+  static organisationReportRecipientBudgetsAddress = "0xA0297ec459D93bcb85C47061b946708EaFf39192"
+  static organisationReportRegionBudgetsAddress = "0x2A315743d54C79F7D4AcD21db43445Fe1ACBfC9e"
+  static organisationReportCountryBudgetsAddress = "0x0C5Ba4ddCa895743033a86CA631D519dD029Ed04"
 }
 
 class Helpers {

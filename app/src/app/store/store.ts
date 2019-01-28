@@ -6,6 +6,7 @@ import ReduxThunk, { ThunkAction } from 'redux-thunk'
 import { ActionProps, TxProps } from './types'
 import { OrgReaderProps } from './IATI/IATIReader/organisation/types'
 import { OrgReportReaderProps } from './IATI/IATIReader/organisationReports/types'
+import { OrgReportDocsReaderProps } from './IATI/IATIReader/organisationReportDocs/types'
 import { OrgReportBudgetsReaderProps } from './IATI/IATIReader/organisationReportBudgets/types'
 import { OrgReportExpenditureReaderProps } from './IATI/IATIReader/organisationReportExpenditure/types'
 import { OrgReportRecipientBudgetsReaderProps } from './IATI/IATIReader/organisationReportRecipientBudgets/types'
@@ -28,6 +29,7 @@ import { reducer as IATIReaderInfoReducer } from './info/IATIReader/reducer'
 
 import { reducer as orgReaderReducer } from './IATI/IATIReader/organisation/reducer'
 import { reducer as orgReportsReaderReducer } from './IATI/IATIReader/organisationReports/reducer'
+import { reducer as orgReportDocsReaderReducer } from './IATI/IATIReader/organisationReportDocs/reducer'
 import { reducer as orgReportBudgetsReaderReducer } from './IATI/IATIReader/organisationReportBudgets/reducer'
 import { reducer as orgReportExpenditureReaderReducer } from './IATI/IATIReader/organisationReportExpenditure/reducer'
 import { reducer as orgReportRecipientBudgetsReaderReducer } from './IATI/IATIReader/organisationReportRecipientBudgets/reducer'
@@ -36,6 +38,7 @@ import { reducer as orgReportCountryBudgetsReaderReducer } from './IATI/IATIRead
 
 import { reducer as orgWriterReducer } from './IATI/IATIWriter/organisation/reducer'
 import { reducer as orgReportsWriterReducer } from './IATI/IATIWriter/organisationReports/reducer'
+import { reducer as orgReportDocsWriterReducer } from './IATI/IATIWriter/organisationReportDocs/reducer'
 import { reducer as orgReportBudgetsWriterReducer } from './IATI/IATIWriter/organisationReportBudgets/reducer'
 import { reducer as orgReportExpenditureWriterReducer } from './IATI/IATIWriter/organisationReportExpenditure/reducer'
 import { reducer as orgReportRecipientBudgetsWriterReducer } from './IATI/IATIWriter/organisationReportRecipientBudgets/reducer'
@@ -57,6 +60,7 @@ export interface ApplicationState {
   reader: InfoProps
   orgForm: TxProps
   orgReportsForm: TxProps
+  orgReportDocsForm: TxProps
   orgReportBudgetsForm: TxProps
   orgReportExpenditureForm: TxProps
   orgReportRecipientBudgetsForm: TxProps
@@ -64,6 +68,7 @@ export interface ApplicationState {
   orgReportCountryBudgetsForm: TxProps
   orgReader: OrgReaderProps
   orgReportsReader: OrgReportReaderProps
+  orgReportDocsReader: OrgReportDocsReaderProps
   orgReportBudgetsReader: OrgReportBudgetsReaderProps
   orgReportExpenditureReader: OrgReportExpenditureReaderProps
   orgReportRecipientBudgetsReader: OrgReportRecipientBudgetsReaderProps
@@ -83,6 +88,7 @@ export const rootReducer: Reducer<ApplicationState, ActionProps> = combineReduce
   reader: IATIReaderInfoReducer,
   orgForm: orgWriterReducer,
   orgReportsForm: orgReportsWriterReducer,
+  orgReportDocsForm: orgReportDocsWriterReducer,
   orgReportBudgetsForm: orgReportBudgetsWriterReducer,
   orgReportExpenditureForm: orgReportExpenditureWriterReducer,
   orgReportRecipientBudgetsForm: orgReportRecipientBudgetsWriterReducer,
@@ -90,6 +96,7 @@ export const rootReducer: Reducer<ApplicationState, ActionProps> = combineReduce
   orgReportCountryBudgetsForm: orgReportCountryBudgetsWriterReducer,
   orgReader: orgReaderReducer,
   orgReportsReader: orgReportsReaderReducer,
+  orgReportDocsReader: orgReportDocsReaderReducer,
   orgReportBudgetsReader: orgReportBudgetsReaderReducer,
   orgReportExpenditureReader: orgReportExpenditureReaderReducer,
   orgReportRecipientBudgetsReader: orgReportRecipientBudgetsReaderReducer,

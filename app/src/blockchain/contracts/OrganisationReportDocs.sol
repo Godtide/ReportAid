@@ -21,7 +21,7 @@ contract OrganisationReports {
     string format;
     string url;
     bytes32 category;
-    bytes32 countryCode;
+    bytes32 countryRef;
     string desc;
     bytes32 lang;
     bytes32 date;
@@ -29,10 +29,13 @@ contract OrganisationReports {
 
   function setDocument(Document memory _document) public;
 
+  function getReportExists(bytes32 _reportRef) public view returns (bool);
   function getReportDocExists(bytes32 _reportRef, bytes32 _docRef) public view returns (bool);
 
+  function getNumReports() public view returns (uint256);
   function getNumReportDocs(bytes32 _reportRef) public view returns (uint256);
 
+  function getReportReference(uint256 _index) public view returns (bytes32);
   function getReportDocReference(bytes32 _docRef, uint256 _index) public view returns (bytes32);
 
   function getDocument(bytes32 _reportRef, bytes32 _docRef) public view returns (Document memory);

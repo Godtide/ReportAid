@@ -6,6 +6,7 @@ import "./Strings.sol";
 
 contract IATIOrganisationReportDocs is OrganisationReports {
 
+  bytes32[] reportReferences;
   mapping(bytes32 => bytes32[]) private reportDocReferences;
   mapping(bytes32 => mapping(bytes32 => Document)) private docs;
 
@@ -18,18 +19,33 @@ contract IATIOrganisationReportDocs is OrganisationReports {
              bytes(_document.format).length > 0 &&
              bytes(_document.url).length > 0 &&
              _document.category[0] != 0 &&
-             _document.countryCode[0] != 0 &&
+             _document.countryRef[0] != 0 &&
              bytes(_document.desc).length > 0 &&
              _document.lang[0] != 0 &&
              _document.date[0] != 0);
 
     docs[_document.reportRef][_document.docRef] = _document;
 
+    if (!getReportExists(_document.reportRef)) {
+      reportReferences.push(_document.reportRef);
+    }
+
     if(!getReportDocExists(_document.reportRef, _document.docRef)) {
       reportDocReferences[_document.reportRef].push(_document.docRef);
     }
 
     emit SetDocument(_document.reportRef, _document.docRef, _document);
+  }
+
+  function getReportExists(bytes32 _reportRef) public view returns (bool) {
+    require (_reportRef[0] != 0);
+
+    bool exists = false;
+    if ( !(reportReferences.length == 0) ) {
+      uint256 index = Strings.getIndex(_reportRef, reportReferences);
+      exists = (index != reportReferences.length);
+    }
+    return exists;
   }
 
   function getReportDocExists(bytes32 _reportRef, bytes32 _docRef) public view returns (bool) {
@@ -43,10 +59,20 @@ contract IATIOrganisationReportDocs is OrganisationReports {
     return exists;
   }
 
+  function getNumReports() public view returns (uint256) {
+    return reportReferences.length;
+  }
+
   function getNumReportDocs(bytes32 _reportRef) public view returns (uint256) {
     require (_reportRef[0] != 0);
 
     return reportDocReferences[_reportRef].length;
+  }
+
+  function getReportReference(uint256 _index) public view returns (bytes32) {
+    require (_index < reportReferences.length);
+
+    return reportReferences[_index];
   }
 
   function getReportDocReference(bytes32 _reportRef, uint256 _index) public view returns (bytes32) {
@@ -88,7 +114,7 @@ contract IATIOrganisationReportDocs is OrganisationReports {
   function getDocumentCountry(bytes32 _reportRef, bytes32 _docRef) public view returns (bytes32) {
     require (_reportRef[0] != 0 && _docRef[0] != 0);
 
-    return docs[_reportRef][_docRef].countryCode;
+    return docs[_reportRef][_docRef].countryRef;
   }
 
   function getDocumentDescription(bytes32 _reportRef, bytes32 _docRef) public view returns (string memory) {
