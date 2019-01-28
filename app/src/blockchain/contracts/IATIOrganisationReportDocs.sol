@@ -15,7 +15,7 @@ contract IATIOrganisationReportDocs is OrganisationReports {
     require (_document.reportRef[0] != 0 &&
              _document.docRef[0] != 0 &&
              bytes(_document.title).length > 0 &&
-             _document.format[0] != 0 &&
+             bytes(_document.format).length > 0 &&
              bytes(_document.url).length > 0 &&
              _document.category[0] != 0 &&
              _document.countryCode[0] != 0 &&
@@ -67,7 +67,7 @@ contract IATIOrganisationReportDocs is OrganisationReports {
     return docs[_reportRef][_docRef].title;
   }
 
-  function getDocumentFormat(bytes32 _reportRef, bytes32 _docRef) public view returns (bytes32) {
+  function getDocumentFormat(bytes32 _reportRef, bytes32 _docRef) public view returns (string memory) {
     require (_reportRef[0] != 0 && _docRef[0] != 0);
 
     return docs[_reportRef][_docRef].format;

@@ -18,7 +18,7 @@ contract OrganisationReports {
     bytes32 reportRef;
     bytes32 docRef;
     string title;
-    bytes32 format;
+    string format;
     string url;
     bytes32 category;
     bytes32 countryCode;
@@ -38,7 +38,7 @@ contract OrganisationReports {
   function getDocument(bytes32 _reportRef, bytes32 _docRef) public view returns (Document memory);
 
   function getDocumentTitle(bytes32 _reportRef, bytes32 _docRef) public view returns (string memory);
-  function getDocumentFormat(bytes32 _reportRef, bytes32 _docRef) public view returns (bytes32);
+  function getDocumentFormat(bytes32 _reportRef, bytes32 _docRef) public view returns (string memory);
   function getDocumentURL(bytes32 _reportRef, bytes32 _docRef) public view returns (string memory);
   function getDocumentCategory(bytes32 _reportRef, bytes32 _docRef) public view returns (bytes32);
   function getDocumentCountry(bytes32 _reportRef, bytes32 _docRef) public view returns (bytes32);
