@@ -10,11 +10,13 @@ import { InfoTypes } from './pages/info/types'
 import { BlockchainInfo } from './pages/blockchain/blockchainInfo'
 import { Organisations as OrgWriter } from './pages/IATIWriter/organisation'
 import { OrganisationReports as OrgReportsWriter } from './pages/IATIWriter/organisationReports'
+import { OrganisationReportDocs as OrgReportDocsWriter } from './pages/IATIWriter/organisationReportDocs'
 import { OrganisationReportBudgets as OrgReportBudgetsWriter } from './pages/IATIWriter/organisationReportBudgets'
 import { OrganisationReportExpenditure as OrgReportExpenditureWriter } from './pages/IATIWriter/organisationReportExpenditure'
 import { OrganisationReportRecipientBudgets as OrgReportRecipientBudgetsWriter } from './pages/IATIWriter/organisationReportRecipientBudgets'
 import { OrganisationReportRegionBudgets as OrgReportRegionBudgetsWriter } from './pages/IATIWriter/organisationReportRegionBudgets'
 import { OrganisationReportCountryBudgets as OrgReportCountryBudgetsWriter } from './pages/IATIWriter/organisationReportCountryBudgets'
+
 import { Organisations as OrgReader } from './pages/IATIReader/organisation'
 import { OrganisationReports as OrgReportsReader } from './pages/IATIReader/organisationReports'
 import { OrganisationReportBudgets as OrgReportBudgetsReader } from './pages/IATIReader/organisationReportBudgets'
@@ -41,6 +43,7 @@ class AppContent extends React.Component<WithStyles<typeof styles>> {
         <Route name={Paths.reader} path={PathConfig.reader} render={() => <Info type={InfoTypes.IATIReader} />} />
         <Route name={Paths.orgWriter} path={PathConfig.orgWriter} render={() => <OrgWriter />} />
         <Route name={Paths.orgReportWriter} path={PathConfig.orgReportWriter} render={() => <OrgReportsWriter />} />
+        <Route name={Paths.orgReportDocsWriter} path={PathConfig.orgReportDocsWriter} render={() => <OrgReportDocsWriter />} />
         <Route name={Paths.orgReportBudgetsWriter} path={PathConfig.orgReportBudgetsWriter} render={() => <OrgReportBudgetsWriter />} />
         <Route name={Paths.orgReportExpenditureWriter} path={PathConfig.orgReportExpenditureWriter} render={() => <OrgReportExpenditureWriter />} />
         <Route name={Paths.orgReportRecipientBudgetsWriter} path={PathConfig.orgReportRecipientBudgetsWriter} render={() => <OrgReportRecipientBudgetsWriter />} />

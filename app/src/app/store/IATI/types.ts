@@ -96,7 +96,6 @@ export interface OrgReportProps {
 
 export interface OrgReportDocProps {
   reportRef: string
-  docRef: string
   title: string
   format: string
   url: string

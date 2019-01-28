@@ -84,6 +84,8 @@ const mapStateToProps = (state: ApplicationState, ownProps: TransactionType): Tr
       return { tx: state.orgForm.data }
     case TransactionTypes.ORGREPORT:
       return { tx: state.orgReportsForm.data }
+    case TransactionTypes.ORGREPORTDOC:
+      return { tx: state.orgReportDocsForm.data }
     case TransactionTypes.ORGREPORTBUDGET:
       return { tx: state.orgReportBudgetsForm.data }
     case TransactionTypes.ORGREPORTEXPENDITURE:
@@ -93,7 +95,7 @@ const mapStateToProps = (state: ApplicationState, ownProps: TransactionType): Tr
     case TransactionTypes.ORGREPORTREGIONBUDGET:
       return { tx: state.orgReportRegionBudgetsForm.data }
     case TransactionTypes.ORGREPORTCOUNTRYBUDGET:
-      return { tx: state.orgReportCountryBudgetsForm.data }      
+      return { tx: state.orgReportCountryBudgetsForm.data }
     default:
       return { tx: {} }
   }

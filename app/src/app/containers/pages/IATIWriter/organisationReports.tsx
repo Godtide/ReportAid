@@ -122,7 +122,7 @@ export class OrgReportsForm extends React.Component<OrgReportsFormProps> {
                     name="lang"
                     label={OrganisationReport.language}
                     component={Select}
-                    options={Helpers.countryCodes}
+                    options={Helpers.languageCodes}
                   />
                   <ErrorMessage name='lang' />
                   <Field

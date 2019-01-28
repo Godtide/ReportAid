@@ -22,13 +22,15 @@ class Paths {
 
   static readonly orgWriter='Organisation'
   static readonly orgReportWriter='Report'
-  static readonly orgReportBudgetsWriter = "Report Budget"
+  static readonly orgReportDocsWriter='Report Documents'
+  static readonly orgReportBudgetsWriter="Report Budget"
   static readonly orgReportExpenditureWriter = "Report Expenditure"
   static readonly orgReportRecipientBudgetsWriter = "Report Recipient Budget"
   static readonly orgReportRegionBudgetsWriter='Report Region Budgets'
   static readonly orgReportCountryBudgetsWriter='Report Country Budgets'
   static readonly orgReader='Organisations'
   static readonly orgReportReader='Reports'
+  static readonly orgReportDocsReader='Report Documents'
   static readonly orgReportBudgetsReader='Report Budgets'
   static readonly orgReportExpenditureReader='Report Expenditure'
   static readonly orgReportRecipientBudgetsReader='Report Recipient Budgets'
@@ -129,6 +131,30 @@ class OrganisationReport {
 
   static numOrganisations = 'Number of Organisations Reporting'
   static orgReportDetails = 'Report Details'
+}
+
+class OrganisationReportDoc {
+
+  static headingOrgReportDocWriter = 'Create Report Document'
+  static headingOrgReportDocReader = 'Report Documents'
+
+  static numReports = "Number of Organisations Reporting"
+
+  static reportReference = "Report Reference"
+  static documentReference = "Document Reference"
+  static documentTitle = "Document Title"
+  static documentFormat = "Format"
+  static documentURL = "URL"
+  static documentCategory = "Category"
+  static documentCountryRef = "Country Reference"
+  static documentDesc = "Description"
+  static documentLang = "Language"
+  static documentDay = "Day"
+  static documentMonth = "Month"
+  static documentYear = "Year"
+
+  static numReportDocuments = "Number of Documents"
+  static reporDocumentDetails = 'Document Details'
 }
 
 class OrganisationReportBudget {
@@ -272,6 +298,7 @@ export { App,
          Transaction,
          Organisation,
          OrganisationReport,
+         OrganisationReportDoc,
          OrganisationReportBudget,
          OrganisationReportExpenditure,
          OrganisationReportRecipientBudget,
