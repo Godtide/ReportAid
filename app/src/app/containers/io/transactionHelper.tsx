@@ -52,7 +52,7 @@ class TX extends React.Component<TxProps> {
       const txKeys = Object.keys(this.props.tx)
       if (txKeys.length > 0 ) {
         txKey = Object.keys(this.props.tx)[0]
-        if (txKey != -1 ) {
+        if (txKey != "-1" ) {
           txSummary = `${Transaction.success}`
         }
       }

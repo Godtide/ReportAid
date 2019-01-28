@@ -88,8 +88,8 @@ class Transaction {
 
   static key = 'Transaction Receipt'
   static summary = 'Transaction Summary'
-  static success = 'Successful!'
-  static fail = 'Failed!'
+  static success = 'Submitted Successfully!'
+  static fail = 'Submission Failed!'
 
 }
 
