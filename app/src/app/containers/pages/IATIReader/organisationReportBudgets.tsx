@@ -50,7 +50,7 @@ export class OrgReportBudgets extends React.Component<OrgReportBudgetsReaderProp
         //console.log('Values: ', values)
         xs += `**${OrgReportBudgetStrings.numReportBudgets}**: ${values[0]} <br /><br />`
         Object.keys(values[1]).forEach((budgetKey) => {
-          //console.log('Report: ', values[1][budgetKey])
+          //console.log('Budget: ', values[1][budgetKey])
           //const version = ethers.utils.parseBytes32String(values[1][thisKey].version)
           if ( values[1][budgetKey].budgetLine != "" ) {
             const budgetLine = ethers.utils.parseBytes32String(values[1][budgetKey].budgetLine)

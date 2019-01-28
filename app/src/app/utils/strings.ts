@@ -22,17 +22,17 @@ class Paths {
 
   static readonly orgWriter='Organisation'
   static readonly orgReportWriter='Report'
-  static readonly orgReportDocsWriter='Report Documents'
+  static readonly orgReportDocsWriter='Report Document'
   static readonly orgReportBudgetsWriter="Report Budget"
   static readonly orgReportExpenditureWriter = "Report Expenditure"
   static readonly orgReportRecipientBudgetsWriter = "Report Recipient Budget"
-  static readonly orgReportRegionBudgetsWriter='Report Region Budgets'
-  static readonly orgReportCountryBudgetsWriter='Report Country Budgets'
+  static readonly orgReportRegionBudgetsWriter='Report Region Budget'
+  static readonly orgReportCountryBudgetsWriter='Report Country Budget'
   static readonly orgReader='Organisations'
   static readonly orgReportReader='Reports'
   static readonly orgReportDocsReader='Report Documents'
   static readonly orgReportBudgetsReader='Report Budgets'
-  static readonly orgReportExpenditureReader='Report Expenditure'
+  static readonly orgReportExpenditureReader='Report Expenditures'
   static readonly orgReportRecipientBudgetsReader='Report Recipient Budgets'
   static readonly orgReportRegionBudgetsReader='Report Region Budgets'
   static readonly orgReportCountryBudgetsReader='Report Country Budgets'
@@ -217,7 +217,7 @@ class OrganisationReportRecipientBudget {
 
   static budgetReference = "Budget Reference"
   static reportReference = "Report Reference"
-  static orgReference = "ReciRecipientpient Reference"
+  static orgReference = "Recipient Reference"
   static budgetLine = "Budget Line"
   static value = "Value"
   static status = "Status"

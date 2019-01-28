@@ -180,7 +180,7 @@ class Contract {
     "function getNumRegionBudgets(bytes32 _reportRef) view returns (uint256)",
 
     "function getReportReference(uint256 _index) view returns (bytes32)",
-    "function getRegionBudgestringtReference(bytes32 _reportRef, uint256 _index) view returns (bytes32)",
+    "function getRegionBudgetReference(bytes32 _reportRef, uint256 _index) view returns (bytes32)",
 
     "function getRegionsBudget(bytes32 _reportRef, bytes32 _regionBudgetRef) view returns (tuple(bytes32 reportRef, bytes32 budgetRef, uint256 regionRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)",
     "function getRegionsBudgetRegion(bytes32 _reportRef, bytes32 _regionBudgetRef) public view returns (uint256)",
