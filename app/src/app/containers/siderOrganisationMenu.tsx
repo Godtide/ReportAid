@@ -108,6 +108,14 @@ class Sider extends React.Component<WithStyles<typeof styles>> {
               {Paths.orgReportReader}
             </MenuItem>
           </Link>
+          <Link to={PathConfig.orgReportDocsReader}>
+            <MenuItem>
+              <IconButton className={this.props.classes.button} aria-label={Paths.orgReportDocsReader}>
+                <List />
+              </IconButton>
+              {Paths.orgReportDocsReader}
+            </MenuItem>
+          </Link>
           <Link to={PathConfig.orgReportBudgetsReader}>
             <MenuItem>
               <IconButton className={this.props.classes.button} aria-label={Paths.orgReportBudgetsReader}>

@@ -141,7 +141,7 @@ class OrganisationReportDoc {
   static numReports = "Number of Organisations Reporting"
 
   static reportReference = "Report Reference"
-  static documentReference = "Document Reference"
+  static docReference = "Document Reference"
   static documentTitle = "Document Title"
   static documentFormat = "Format"
   static documentURL = "URL"
@@ -152,9 +152,10 @@ class OrganisationReportDoc {
   static documentDay = "Day"
   static documentMonth = "Month"
   static documentYear = "Year"
+  static documentDate = "Date"
 
-  static numReportDocuments = "Number of Documents"
-  static reporDocumentDetails = 'Document Details'
+  static numReportDocs = "Number of Documents"
+  static reportDocDetails = 'Document Details'
 }
 
 class OrganisationReportBudget {

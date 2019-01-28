@@ -149,7 +149,7 @@ const getReportDocsData = () => {
        const docRefKey = docRefKeys[j]
        //console.log('Report Data for org ', orgKey, ' ref key ', reportRefKey)
        try {
-          const docData = await orgReportDocsContract.getTotalDoc(reportKey, docRefKey)
+          const docData = await orgReportDocsContract.getDocument(reportKey, docRefKey)
           //const reportData = await orgReportsContract.getCurrency(orgKey, reportRefKey)
           //console.log('Report Data for org ', orgKey, ' ref key ', reportRefKey, ' is data ', reportData)
           reports[reportKey].data[docRefKey] = docData
