@@ -70,6 +70,14 @@ class Sider extends React.Component<WithStyles<typeof styles>> {
               {Paths.orgReportRegionBudgetsWriter}
             </MenuItem>
           </Link>
+          <Link to={PathConfig.orgReportCountryBudgetsWriter}>
+            <MenuItem>
+              <IconButton className={this.props.classes.button} aria-label={Paths.orgReportCountryBudgetsWriter}>
+                <Create />
+              </IconButton>
+              {Paths.orgReportCountryBudgetsWriter}
+            </MenuItem>
+          </Link>
         </MenuList>
 
         <hr />
@@ -122,6 +130,14 @@ class Sider extends React.Component<WithStyles<typeof styles>> {
                 <List />
               </IconButton>
               {Paths.orgReportRegionBudgetsReader}
+            </MenuItem>
+          </Link>
+          <Link to={PathConfig.orgReportCountryBudgetsReader}>
+            <MenuItem>
+              <IconButton className={this.props.classes.button} aria-label={Paths.orgReportCountryBudgetsReader}>
+                <List />
+              </IconButton>
+              {Paths.orgReportCountryBudgetsReader}
             </MenuItem>
           </Link>
         </MenuList>

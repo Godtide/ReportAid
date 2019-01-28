@@ -10,6 +10,7 @@ import { OrgReportBudgetsReaderProps } from './IATI/IATIReader/organisationRepor
 import { OrgReportExpenditureReaderProps } from './IATI/IATIReader/organisationReportExpenditure/types'
 import { OrgReportRecipientBudgetsReaderProps } from './IATI/IATIReader/organisationReportRecipientBudgets/types'
 import { OrgReportRegionBudgetsReaderProps } from './IATI/IATIReader/organisationReportRegionBudgets/types'
+import { OrgReportCountryBudgetsReaderProps } from './IATI/IATIReader/organisationReportCountryBudgets/types'
 import { InfoProps } from './info/types'
 import { InfoProps as BlockchainInfoProps } from  './blockchain/info/types'
 import { AccountProps } from  './blockchain/account/types'
@@ -24,18 +25,22 @@ import { reducer as helpReducer } from './info/help/reducer'
 import { reducer as overviewReducer } from './info/overview/reducer'
 import { reducer as IATIWriterInfoReducer } from './info/IATIWriter/reducer'
 import { reducer as IATIReaderInfoReducer } from './info/IATIReader/reducer'
-import { reducer as orgWriterReducer } from './IATI/IATIWriter/organisation/reducer'
-import { reducer as orgReportsWriterReducer } from './IATI/IATIWriter/organisationReports/reducer'
-import { reducer as orgReportBudgetsWriterReducer } from './IATI/IATIWriter/organisationReportBudgets/reducer'
-import { reducer as orgReportExpenditureWriterReducer } from './IATI/IATIWriter/organisationReportExpenditure/reducer'
-import { reducer as orgReportRecipientBudgetsWriterReducer } from './IATI/IATIWriter/organisationReportRecipientBudgets/reducer'
-import { reducer as orgReportRegionBudgetsWriterReducer } from './IATI/IATIWriter/organisationReportRegionBudgets/reducer'
+
 import { reducer as orgReaderReducer } from './IATI/IATIReader/organisation/reducer'
 import { reducer as orgReportsReaderReducer } from './IATI/IATIReader/organisationReports/reducer'
 import { reducer as orgReportBudgetsReaderReducer } from './IATI/IATIReader/organisationReportBudgets/reducer'
 import { reducer as orgReportExpenditureReaderReducer } from './IATI/IATIReader/organisationReportExpenditure/reducer'
 import { reducer as orgReportRecipientBudgetsReaderReducer } from './IATI/IATIReader/organisationReportRecipientBudgets/reducer'
 import { reducer as orgReportRegionBudgetsReaderReducer } from './IATI/IATIReader/organisationReportRegionBudgets/reducer'
+import { reducer as orgReportCountryBudgetsReaderReducer } from './IATI/IATIReader/organisationReportCountryBudgets/reducer'
+
+import { reducer as orgWriterReducer } from './IATI/IATIWriter/organisation/reducer'
+import { reducer as orgReportsWriterReducer } from './IATI/IATIWriter/organisationReports/reducer'
+import { reducer as orgReportBudgetsWriterReducer } from './IATI/IATIWriter/organisationReportBudgets/reducer'
+import { reducer as orgReportExpenditureWriterReducer } from './IATI/IATIWriter/organisationReportExpenditure/reducer'
+import { reducer as orgReportRecipientBudgetsWriterReducer } from './IATI/IATIWriter/organisationReportRecipientBudgets/reducer'
+import { reducer as orgReportRegionBudgetsWriterReducer } from './IATI/IATIWriter/organisationReportRegionBudgets/reducer'
+import { reducer as orgReportCountryBudgetsWriterReducer } from './IATI/IATIWriter/organisationReportCountryBudgets/reducer'
 
 export type ThunkResult<R> = ThunkAction<R, ApplicationState, null, any>
 
@@ -56,12 +61,14 @@ export interface ApplicationState {
   orgReportExpenditureForm: TxProps
   orgReportRecipientBudgetsForm: TxProps
   orgReportRegionBudgetsForm: TxProps
+  orgReportCountryBudgetsForm: TxProps
   orgReader: OrgReaderProps
   orgReportsReader: OrgReportReaderProps
   orgReportBudgetsReader: OrgReportBudgetsReaderProps
   orgReportExpenditureReader: OrgReportExpenditureReaderProps
   orgReportRecipientBudgetsReader: OrgReportRecipientBudgetsReaderProps
   orgReportRegionBudgetsReader: OrgReportRegionBudgetsReaderProps
+  orgReportCountryBudgetsReader: OrgReportCountryBudgetsReaderProps
 }
 
 export const rootReducer: Reducer<ApplicationState, ActionProps> = combineReducers<ApplicationState, ActionProps>({
@@ -80,12 +87,14 @@ export const rootReducer: Reducer<ApplicationState, ActionProps> = combineReduce
   orgReportExpenditureForm: orgReportExpenditureWriterReducer,
   orgReportRecipientBudgetsForm: orgReportRecipientBudgetsWriterReducer,
   orgReportRegionBudgetsForm: orgReportRegionBudgetsWriterReducer,
+  orgReportCountryBudgetsForm: orgReportCountryBudgetsWriterReducer,
   orgReader: orgReaderReducer,
   orgReportsReader: orgReportsReaderReducer,
   orgReportBudgetsReader: orgReportBudgetsReaderReducer,
   orgReportExpenditureReader: orgReportExpenditureReaderReducer,
   orgReportRecipientBudgetsReader: orgReportRecipientBudgetsReaderReducer,
   orgReportRegionBudgetsReader: orgReportRegionBudgetsReaderReducer,
+  orgReportCountryBudgetsReader: orgReportCountryBudgetsReaderReducer,
 })
 
 export function configureStore(

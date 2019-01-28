@@ -14,12 +14,14 @@ import { OrganisationReportBudgets as OrgReportBudgetsWriter } from './pages/IAT
 import { OrganisationReportExpenditure as OrgReportExpenditureWriter } from './pages/IATIWriter/organisationReportExpenditure'
 import { OrganisationReportRecipientBudgets as OrgReportRecipientBudgetsWriter } from './pages/IATIWriter/organisationReportRecipientBudgets'
 import { OrganisationReportRegionBudgets as OrgReportRegionBudgetsWriter } from './pages/IATIWriter/organisationReportRegionBudgets'
+import { OrganisationReportCountryBudgets as OrgReportCountryBudgetsWriter } from './pages/IATIWriter/organisationReportCountryBudgets'
 import { Organisations as OrgReader } from './pages/IATIReader/organisation'
 import { OrganisationReports as OrgReportsReader } from './pages/IATIReader/organisationReports'
 import { OrganisationReportBudgets as OrgReportBudgetsReader } from './pages/IATIReader/organisationReportBudgets'
 import { OrganisationReportExpenditure as OrgReportExpenditureReader } from './pages/IATIReader/organisationReportExpenditure'
 import { OrganisationReportRecipientBudgets as OrgReportRecipientBudgetsReader } from './pages/IATIReader/organisationReportRecipientBudgets'
 import { OrganisationReportRegionBudgets as OrgReportRegionBudgetsReader } from './pages/IATIReader/organisationReportRegionBudgets'
+import { OrganisationReportCountryBudgets as OrgReportCountryBudgetsReader } from './pages/IATIReader/organisationReportCountryBudgets'
 
 import { Paths } from '../utils/strings'
 import { Paths as PathConfig } from '../utils/config'
@@ -43,12 +45,14 @@ class AppContent extends React.Component<WithStyles<typeof styles>> {
         <Route name={Paths.orgReportExpenditureWriter} path={PathConfig.orgReportExpenditureWriter} render={() => <OrgReportExpenditureWriter />} />
         <Route name={Paths.orgReportRecipientBudgetsWriter} path={PathConfig.orgReportRecipientBudgetsWriter} render={() => <OrgReportRecipientBudgetsWriter />} />
         <Route name={Paths.orgReportRegionBudgetsWriter} path={PathConfig.orgReportRegionBudgetsWriter} render={() => <OrgReportRegionBudgetsWriter />} />
+        <Route name={Paths.orgReportCountryBudgetsWriter} path={PathConfig.orgReportCountryBudgetsWriter} render={() => <OrgReportCountryBudgetsWriter />} />
         <Route name={Paths.orgReader} path={PathConfig.orgReader} render={() => <OrgReader />} />
         <Route name={Paths.orgReportReader} path={PathConfig.orgReportReader} render={() => <OrgReportsReader />} />
         <Route name={Paths.orgReportBudgetsReader} path={PathConfig.orgReportBudgetsReader} render={() => <OrgReportBudgetsReader />} />
         <Route name={Paths.orgReportExpenditureReader} path={PathConfig.orgReportExpenditureReader} render={() => <OrgReportExpenditureReader />} />
         <Route name={Paths.orgReportRecipientBudgetsReader} path={PathConfig.orgReportRecipientBudgetsReader} render={() => <OrgReportRecipientBudgetsReader />} />
         <Route name={Paths.orgReportRegionBudgetsReader} path={PathConfig.orgReportRegionBudgetsReader} render={() => <OrgReportRegionBudgetsReader />} />
+        <Route name={Paths.orgReportCountryBudgetsReader} path={PathConfig.orgReportCountryBudgetsReader} render={() => <OrgReportCountryBudgetsReader />} />
       </Switch>
     )
   }

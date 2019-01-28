@@ -26,12 +26,14 @@ class Paths {
   static readonly orgReportExpenditureWriter = "Report Expenditure"
   static readonly orgReportRecipientBudgetsWriter = "Report Recipient Budget"
   static readonly orgReportRegionBudgetsWriter='Report Region Budgets'
+  static readonly orgReportCountryBudgetsWriter='Report Country Budgets'
   static readonly orgReader='Organisations'
   static readonly orgReportReader='Reports'
   static readonly orgReportBudgetsReader='Report Budgets'
   static readonly orgReportExpenditureReader='Report Expenditure'
   static readonly orgReportRecipientBudgetsReader='Report Recipient Budgets'
   static readonly orgReportRegionBudgetsReader='Report Region Budgets'
+  static readonly orgReportCountryBudgetsReader='Report Country Budgets'
 }
 
 class Blockchain {
@@ -229,7 +231,32 @@ class OrganisationReportRegionBudget {
 
   static numReportBudgets = "Number of Region Budgets"
   static reportBudgetDetails = 'Region Budget Details'
+}
 
+class OrganisationReportCountryBudget {
+
+  static headingOrgReportCountryBudgetWriter = 'Create Report Country Budget'
+  static headingOrgReportCountryBudgetReader = 'Report Country Budgets'
+
+  static numReports = "Number of Organisations Reporting"
+
+  static budgetReference = "Budget Reference"
+  static reportReference = "Report Reference"
+  static countryReference = "Country Reference"
+  static budgetLine = "Budget Line"
+  static value = "Value"
+  static status = "Status"
+  static budgetStart = "Start Date"
+  static budgetStartDay = "Start Day"
+  static budgetStartMonth = "Start Month"
+  static budgetStartYear = "Start Year"
+  static budgetEnd = "End Date"
+  static budgetEndDay = "End Day"
+  static budgetEndMonth = "End Month"
+  static budgetEndYear = "End Year"
+
+  static numReportBudgets = "Number of Country Budgets"
+  static reportBudgetDetails = 'Country Budget Details'
 }
 
 
@@ -248,5 +275,6 @@ export { App,
          OrganisationReportBudget,
          OrganisationReportExpenditure,
          OrganisationReportRecipientBudget,
-         OrganisationReportRegionBudget
+         OrganisationReportRegionBudget,
+         OrganisationReportCountryBudget
        }
