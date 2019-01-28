@@ -29,10 +29,11 @@ contract OrganisationReportCountryBudgets {
   function getReportReference(uint256 _index) public view returns (bytes32);
   function getCountryBudgetReference(bytes32 _reportRef, uint256 _index) public view returns (bytes32);
 
-  function getCountryBudget(bytes32 _reportRef, bytes32 _countryRef) public view returns (CountryBudget memory);
-  function getCountryBudgetLine(bytes32 _reportRef, bytes32 _budgetRef) public view returns (bytes32);
-  function getCountryBudgetValue(bytes32 _reportRef, bytes32 _countryRef) public view returns (uint256);
-  function getCountryBudgetStatus(bytes32 _reportRef, bytes32 _countryRef) public view returns (uint8);
-  function getCountryBudgetStart(bytes32 _reportRef, bytes32 _countryRef) public view returns (bytes32);
-  function getCountryBudgetEnd(bytes32 _reportRef, bytes32 _countryRef) public view returns (bytes32);
+  function getCountryBudget(bytes32 _reportRef, bytes32 _countryBudgetRef) public view returns (CountryBudget memory);
+  function getCountryBudgetCountry(bytes32 _reportRef, bytes32 _countryBudgetRef) public view returns (bytes32);
+  function getCountryBudgetLine(bytes32 _reportRef, bytes32 _countryBudgetRef) public view returns (bytes32);
+  function getCountryBudgetValue(bytes32 _reportRef, bytes32 _countryBudgetRef) public view returns (uint256);
+  function getCountryBudgetStatus(bytes32 _reportRef, bytes32 _countryBudgetRef) public view returns (uint8);
+  function getCountryBudgetStart(bytes32 _reportRef, bytes32 _countryBudgetRef) public view returns (bytes32);
+  function getCountryBudgetEnd(bytes32 _reportRef, bytes32 _countryBudgetRef) public view returns (bytes32);
 }

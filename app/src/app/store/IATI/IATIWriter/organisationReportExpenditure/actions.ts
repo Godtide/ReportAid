@@ -50,6 +50,7 @@ export const setOrganisationReportExpenditure = (expenditureDetails: OrgReportEx
       txData[key] = tx
       actionType = OrgReportExpenditureWriterActionTypes.ADD_SUCCESS
     } catch (error) {
+      txData[-1] = txData
       console.log('setBudget error', error)
     }
 

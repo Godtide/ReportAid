@@ -12,11 +12,13 @@ class Paths {
   static readonly orgReportBudgetsWriter = '/create-organisation-report-budget'
   static readonly orgReportExpenditureWriter = '/create-organisation-report-expenditure'
   static readonly orgReportRecipientBudgetsWriter = '/create-organisation-report-recipient-budget'
+  static readonly orgReportRegionBudgetsWriter = '/create-organisation-report-region-budget'
   static readonly orgReader='/read-organisations'
   static readonly orgReportReader='/read-organisation-reports'
   static readonly orgReportBudgetsReader = '/read-organisation-report-budgets'
   static readonly orgReportExpenditureReader = '/read-organisation-report-expenditure'
   static readonly orgReportRecipientBudgetsReader = '/read-organisation-report-recipient-budgets'
+  static readonly orgReportRegionBudgetsReader = '/read-organisation-report-region-budgets'
 }
 
 class Blockchain {
@@ -152,7 +154,7 @@ class Contract {
 
     "function getRecipientBudget(bytes32 _reportRef, bytes32 _recipientBudgetRef) view returns (tuple(bytes32 reportRef, bytes32 budgetRef, bytes32 orgRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)",
     "function getRecipientBudgetOrg(bytes32 _reportRef, bytes32 _recipientBudgetRef) public view returns (bytes32)",
-    "function getRecipientBudgetLine(bytes32 _reportRef, bytes32 _budgetRef) view returns (bytes32)",
+    "function getRecipientBudgetLine(bytes32 _reportRef, bytes32 _recipientBudgetRef) view returns (bytes32)",
     "function getRecipientBudgetValue(bytes32 _reportRef, bytes32 _recipientBudgetRef) view returns (uint256)",
     "function getRecipientBudgetStatus(bytes32 _reportRef, bytes32 _recipientBudgetRef) view returns (uint8)",
     "function getRecipientBudgetStart(bytes32 _reportRef, bytes32 _recipientBudgetRef) view returns (bytes32)",
@@ -160,12 +162,12 @@ class Contract {
   ]
 
   static organisationReportRegionBudgetsABI = [
-    "event SetRegionBudget(bytes32 _reportRef, bytes32 _budgetRef, tuple(bytes32 reportRef, bytes32 budgetRef, bytes32 regionRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)",
+    "event SetRegionBudget(bytes32 _reportRef, bytes32 _budgetRef, tuple(bytes32 reportRef, bytes32 budgetRef, uint256 regionRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)",
 
-    "function setRegionBudget(tuple(bytes32 reportRef, bytes32 budgetRef, bytes32 regionRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)@500000",
+    "function setRegionBudget(tuple(bytes32 reportRef, bytes32 budgetRef, uint256 regionRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)@500000",
 
     "function getReportExists(bytes32 _reportRef) view returns (bool)",
-    "function getRegionBudgetExists(bytes32 _reportRef, bytes32 _budgetRef) view returns (bool)",
+    "function getRegionBudgetExists(bytes32 _reportRef, bytes32 _regionBudgetRef) view returns (bool)",
 
     "function getNumReports() view returns (uint256)",
     "function getNumRegionBudgets(bytes32 _reportRef) view returns (uint256)",
@@ -173,12 +175,13 @@ class Contract {
     "function getReportReference(uint256 _index) view returns (bytes32)",
     "function getRegionBudgetReference(bytes32 _reportRef, uint256 _index) view returns (bytes32)",
 
-    "function getRegionsBudget(bytes32 _reportRef, bytes32 _regionRef) view returns (tuple(bytes32 reportRef, bytes32 budgetRef, bytes32 regionRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)",
-    "function getRegionsBudgetLine(bytes32 _reportRef, bytes32 _budgetRef) view returns (bytes32)",
-    "function getRegionsBudgetValue(bytes32 _reportRef, bytes32 _regionRef) view returns (uint256)",
-    "function getRegionsBudgetStatus(bytes32 _reportRef, bytes32 _regionRef) view returns (uint8)",
-    "function getRegionsBudgetStart(bytes32 _reportRef, bytes32 _regionRef) view returns (bytes32)",
-    "function getRegionsBudgetEnd(bytes32 _reportRef, bytes32 _regionRef) view returns (bytes32)"
+    "function getRegionsBudget(bytes32 _reportRef, bytes32 _regionBudgetRef) view returns (tuple(bytes32 reportRef, bytes32 budgetRef, uint256 regionRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)",
+    "function getRegionsBudgetRegion(bytes32 _reportRef, bytes32 _regionBudgetRef) public view returns (uint256)",
+    "function getRegionsBudgetLine(bytes32 _reportRef, uint256 _regionBudgetRef) view returns (bytes32)",
+    "function getRegionsBudgetValue(bytes32 _reportRef, bytes32 _regionBudgetRef) view returns (uint256)",
+    "function getRegionsBudgetStatus(bytes32 _reportRef, bytes32 _regionBudgetRef) view returns (uint8)",
+    "function getRegionsBudgetStart(bytes32 _reportRef, bytes32 _regionBudgetRef) view returns (bytes32)",
+    "function getRegionsBudgetEnd(bytes32 _reportRef, bytes32 _regionBudgetRef) view returns (bytes32)"
   ]
 
   static organisationReportCountryBudgetsABI = [
@@ -195,12 +198,13 @@ class Contract {
     "function getReportReference(uint256 _index) view returns (bytes32)",
     "function getCountryBudgetReference(bytes32 _reportRef, uint256 _index) view returns (bytes32)",
 
-    "function getCountryBudget(bytes32 _reportRef, bytes32 _countryRef) view returns (tuple(bytes32 reportRef, bytes32 budgetRef, bytes32 countryRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)",
-    "function getCountryBudgetLine(bytes32 _reportRef, bytes32 _budgetRef) view returns (bytes32)",
-    "function getCountryBudgetValue(bytes32 _reportRef, bytes32 _countryRef) view returns (uint256)",
-    "function getCountryBudgetStatus(bytes32 _reportRef, bytes32 _countryRef) view returns (uint8)",
-    "function getCountryBudgetStart(bytes32 _reportRef, bytes32 _countryRef) view returns (bytes32)",
-    "function getCountryBudgetEnd(bytes32 _reportRef, bytes32 _countryRef) view returns (bytes32)"
+    "function getCountryBudget(bytes32 _reportRef, bytes32 _countryBudgetRef) view returns (tuple(bytes32 reportRef, bytes32 budgetRef, bytes32 countryRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)",
+    "function getCountryBudgetCountry(bytes32 _reportRef, bytes32 _countryBudgetRef) view returns (bytes32)",
+    "function getCountryBudgetLine(bytes32 _reportRef, bytes32 _countryBudgetRef) view returns (bytes32)",
+    "function getCountryBudgetValue(bytes32 _reportRef, bytes32 _countryBudgetRef) view returns (uint256)",
+    "function getCountryBudgetStatus(bytes32 _reportRef, bytes32 _countryBudgetRef) view returns (uint8)",
+    "function getCountryBudgetStart(bytes32 _reportRef, bytes32 _countryBudgetRef) view returns (bytes32)",
+    "function getCountryBudgetEnd(bytes32 _reportRef, bytes32 _countryBudgetRef) view returns (bytes32)"
   ]
 
   /* Ropsten addresses
@@ -217,14 +221,14 @@ class Contract {
   static organisationReportRegionBudgetsAddress = "0xc414e8AAbbe4753faBCf5180BD8438F99adb3016"
   static organisationReportCountryBudgetsAddress = "0xD63A6e29cc37e2A45ad723220c41dDB1AfC31Ec3"*/
 
-  static organisationsAddress = "0x667CD537e1079044119438B0c8a62d59D557B55A"
-  static organisationReportsAddress = "0xcA5784A7c10A7CFC6480072FB46f0C54dFbFB989"
-  static organisationReportDocsAddress = "0x2C433289b8A829AA3F34287039083309F542C8C4"
-  static organisationReportBudgetsAddress = "0x0A1E2F79698149724A6f02B549C9FCB216c3845C"
-  static organisationReportExpenditureAddress = "0x0aD0Fb44357c3274Fbd6F47Cc60Ca60444354390"
-  static organisationReportRecipientBudgetsAddress = "0x2FB258596E6359b9342E1e4d6617c72c54C893d9"
-  static organisationReportRegionBudgetsAddress = "0xd3Fa22746d7d71f3386718A3F48f7b6a88073a4D"
-  static organisationReportCountryBudgetsAddress = "0xe97b1Cb304DD13e64AA833061d276F3C40453325"
+  static organisationsAddress = "0x834ffE2EcA00e40C70f4242e41bdA0B0941a75d7"
+  static organisationReportsAddress = "0x91283F4A2d54823B922fA7cF8c65017D7f5EdC13"
+  static organisationReportDocsAddress = "0xadbc684Dbb5D931B72cED71C312EBcf3b56635B8"
+  static organisationReportBudgetsAddress = "0x0b3EC01Dc3e538e32f444709E0725df09573a2f5"
+  static organisationReportExpenditureAddress = "0xaC68282F256a82a5c50478F94364132cF3D0a3D8"
+  static organisationReportRecipientBudgetsAddress = "0xAb14DDa441294c3679eAe7f051ca4751bc046bFF"
+  static organisationReportRegionBudgetsAddress = "0xA651F65E1557E27b0a23Bd289171DC0c949F73Bc"
+  static organisationReportCountryBudgetsAddress = "0x0Cf8AeA5B70FbD4DD18A11b8D381377FAc6F39FB"
 }
 
 class Helpers {

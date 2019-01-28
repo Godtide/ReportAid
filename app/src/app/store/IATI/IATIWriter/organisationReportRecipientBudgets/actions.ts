@@ -51,6 +51,7 @@ export const setRecipientBudget = (budgetDetails: OrgReportRecipientBudgetProps)
       txData[key] = tx
       actionType = OrgReportRecipientBudgetsWriterActionTypes.ADD_SUCCESS
     } catch (error) {
+      txData[-1] = txData
       console.log('setRecipientBudget error', error)
     }
 

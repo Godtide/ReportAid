@@ -38,6 +38,7 @@ export const setOrganisation = (orgDetails: OrganisationProps) => {
       txData[key] = tx
       actionType = OrgWriterActionTypes.ADD_SUCCESS
     } catch (error) {
+      txData[-1] = txData
       console.log('setOrganisation error', error)
     }
 

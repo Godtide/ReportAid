@@ -25,11 +25,13 @@ class Paths {
   static readonly orgReportBudgetsWriter = "Report Budget"
   static readonly orgReportExpenditureWriter = "Report Expenditure"
   static readonly orgReportRecipientBudgetsWriter = "Report Recipient Budget"
+  static readonly orgReportRegionBudgetsWriter='Report Region Budgets'
   static readonly orgReader='Organisations'
   static readonly orgReportReader='Reports'
   static readonly orgReportBudgetsReader='Report Budgets'
   static readonly orgReportExpenditureReader='Report Expenditure'
   static readonly orgReportRecipientBudgetsReader='Report Recipient Budgets'
+  static readonly orgReportRegionBudgetsReader='Report Region Budgets'
 }
 
 class Blockchain {
@@ -186,7 +188,7 @@ class OrganisationReportRecipientBudget {
 
   static budgetReference = "Budget Reference"
   static reportReference = "Report Reference"
-  static orgReference = "Recipient Reference"
+  static orgReference = "ReciRecipientpient Reference"
   static budgetLine = "Budget Line"
   static value = "Value"
   static status = "Status"
@@ -201,6 +203,33 @@ class OrganisationReportRecipientBudget {
 
   static numReportBudgets = "Number of Recipient Budgets"
   static reportBudgetDetails = 'Recipient Budget Details'
+}
+
+class OrganisationReportRegionBudget {
+
+  static headingOrgReportRegionBudgetWriter = 'Create Report Region Budget'
+  static headingOrgReportRegionBudgetReader = 'Report Region Budgets'
+
+  static numReports = "Number of Organisations Reporting"
+
+  static budgetReference = "Budget Reference"
+  static reportReference = "Report Reference"
+  static regionReference = "Region Reference"
+  static budgetLine = "Budget Line"
+  static value = "Value"
+  static status = "Status"
+  static budgetStart = "Start Date"
+  static budgetStartDay = "Start Day"
+  static budgetStartMonth = "Start Month"
+  static budgetStartYear = "Start Year"
+  static budgetEnd = "End Date"
+  static budgetEndDay = "End Day"
+  static budgetEndMonth = "End Month"
+  static budgetEndYear = "End Year"
+
+  static numReportBudgets = "Number of Region Budgets"
+  static reportBudgetDetails = 'Region Budget Details'
+
 }
 
 
@@ -218,5 +247,6 @@ export { App,
          OrganisationReport,
          OrganisationReportBudget,
          OrganisationReportExpenditure,
-         OrganisationReportRecipientBudget
+         OrganisationReportRecipientBudget,
+         OrganisationReportRegionBudget
        }

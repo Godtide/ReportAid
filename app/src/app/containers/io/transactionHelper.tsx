@@ -11,9 +11,12 @@ import { Helpers } from '../../utils/config'
 export const enum TransactionTypes {
   ORG = 'org',
   ORGREPORT = 'orgReport',
+  ORGREPORTDOC = 'orgReportDoc',
   ORGREPORTBUDGET = 'orgReportBudget',
   ORGREPORTEXPENDITURE = 'orgReportExpenditure',
-  ORGREPORTRECIPIENTBUDGET = 'orgReportRecipientBudget'
+  ORGREPORTRECIPIENTBUDGET = 'orgReportRecipientBudget',
+  ORGREPORTREGIONBUDGET = 'orgReportRegionBudget',
+  ORGREPORTCOUNTRYBUDGET = 'orgReportCountryBudget'
 }
 
 export interface TransactionType {
@@ -49,7 +52,9 @@ class TX extends React.Component<TxProps> {
       const txKeys = Object.keys(this.props.tx)
       if (txKeys.length > 0 ) {
         txKey = Object.keys(this.props.tx)[0]
-        txSummary = `${Transaction.success}`
+        if (txKey != -1 ) {
+          txSummary = `${Transaction.success}`
+        }
       }
       this.setState({txKey: txKey, txSummary: txSummary, toggleSubmitting: submitting})
       this.props.submitFunc(submitting)
@@ -85,6 +90,8 @@ const mapStateToProps = (state: ApplicationState, ownProps: TransactionType): Tr
       return { tx: state.orgReportExpenditureForm.data }
     case TransactionTypes.ORGREPORTRECIPIENTBUDGET:
       return { tx: state.orgReportRecipientBudgetsForm.data }
+    case TransactionTypes.ORGREPORTREGIONBUDGET:
+      return { tx: state.orgReportRegionBudgetsForm.data }
     default:
       return { tx: {} }
   }
