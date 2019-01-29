@@ -52,7 +52,7 @@ export class OrgReportRecipientBudgets extends React.Component<OrgReportRecipien
         Object.keys(values[1]).forEach((budgetKey) => {
           //console.log('Report: ', values[1][budgetKey])
           //const version = ethers.utils.parseBytes32String(values[1][thisKey].version)
-          if ( values[1][budgetKey].budgetLine != "" ) {
+          if ( values[1][budgetKey].hasOwnProperty('budgetLine') && values[1][budgetKey].budgetLine != "" ) {
             const budgetLine = ethers.utils.parseBytes32String(values[1][budgetKey].budgetLine)
             const start = ethers.utils.parseBytes32String(values[1][budgetKey].finance.start)
             const end = ethers.utils.parseBytes32String(values[1][budgetKey].finance.end)

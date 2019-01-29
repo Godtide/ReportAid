@@ -52,7 +52,7 @@ export class OrgReportExpenditure extends React.Component<OrgReportExpenditureRe
         Object.keys(values[1]).forEach((expenditureKey) => {
           //console.log('Report: ', values[1][expenditureKey])
           //const version = ethers.utils.parseBytes32String(values[1][thisKey].version)
-          if ( values[1][expenditureKey].expenditureLine != "" ) {
+          if ( values[1][expenditureKey].hasOwnProperty('expenditureLine') && values[1][expenditureKey].expenditureLine != "" ) {
             const expenditureLine = ethers.utils.parseBytes32String(values[1][expenditureKey].expenditureLine)
             const start = ethers.utils.parseBytes32String(values[1][expenditureKey].finance.start)
             const end = ethers.utils.parseBytes32String(values[1][expenditureKey].finance.end)

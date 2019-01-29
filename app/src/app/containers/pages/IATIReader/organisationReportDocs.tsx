@@ -50,9 +50,9 @@ export class OrgReportDocs extends React.Component<OrgReportDocsReaderProps> {
         //console.log('Values: ', values)
         xs += `**${OrgReportDocStrings.numReportDocs}**: ${values[0]} <br /><br />`
         Object.keys(values[1]).forEach((docKey) => {
-          console.log('Doc: ', values[1][docKey])
+          //console.log('Doc: ', values[1][docKey])
           //const version = ethers.utils.parseBytes32String(values[1][thisKey].version)
-          if ( values[1][docKey].category != "" ) {
+          if ( values[1][docKey].hasOwnProperty('category') && values[1][docKey].category != "" ) {
             const category = ethers.utils.parseBytes32String(values[1][docKey].category)
             const countryRef = ethers.utils.parseBytes32String(values[1][docKey].countryRef)
             const lang = ethers.utils.parseBytes32String(values[1][docKey].lang)

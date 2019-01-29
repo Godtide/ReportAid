@@ -215,7 +215,7 @@ class Contract {
   static organisationReportsAddress = "0xfc96dEc707D291D648D7f38C3c9b9496Ae0559e6"
   static organisationReportDocsAddress = "0xC6D447a9D25a345d085a4D8291eaFe6Ac24d5aA3"
   static organisationReportBudgetsAddress = "0xdA0D9123432d6365e029Cf2119a8504dDab1aE8D"
-  static organisationReportExpenditureAddress = "0xgetTotalBudgetReportingOrg564611f79C71adC76fD737101366364F11920493"
+  static organisationReportExpenditureAddress = "0x564611f79C71adC76fD737101366364F11920493"
   static organisationReportRecipientBudgetsAddress = "0xfafB0A06b0BB0C5c17a8C6FA6871F10F55Dd7d20"
   static organisationReportRegionBudgetsAddress = "0x401cAc842cE14601043cf742fA900aACb6F78905"
   static organisationReportCountryBudgetsAddress = "0x31746026c24fcF9E3EeF5C1892aFFd5bc60fC76c"

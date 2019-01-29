@@ -54,7 +54,7 @@ export class OrgReports extends React.Component<OrgReportReaderProps> {
         Object.keys(values[1]).forEach((thisKey) => {
           //console.log('Report: ', values[1][thisKey])
           //const version = ethers.utils.parseBytes32String(values[1][thisKey].version)
-          if ( values[1][thisKey].version != "" ) {
+          if ( values[1][thisKey].hasOwnProperty('version') && values[1][thisKey].version != "" ) {
             const version = ethers.utils.parseBytes32String(values[1][thisKey].version)
             const language =  ethers.utils.parseBytes32String(values[1][thisKey].lang)
             const currency =  ethers.utils.parseBytes32String(values[1][thisKey].currency)
