@@ -62,7 +62,7 @@ class ReportPicker extends React.Component<ReportPickerProps> {
       })
     })
 
-    console.log('Refs: ', reportRefs)
+    //console.log('Refs: ', reportRefs)
 
     return (
       <React.Fragment>

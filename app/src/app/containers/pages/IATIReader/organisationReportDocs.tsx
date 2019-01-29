@@ -57,6 +57,7 @@ export class OrgReportDocs extends React.Component<OrgReportDocsReaderProps> {
             const countryRef = ethers.utils.parseBytes32String(values[1][docKey].countryRef)
             const lang = ethers.utils.parseBytes32String(values[1][docKey].lang)
             const date = ethers.utils.parseBytes32String(values[1][docKey].date)
+            xs+= `**${OrgReportDocStrings.reportingOrgRef}**: ${values[1][docKey].report.orgRef} <br />`
             xs+= `**${OrgReportDocStrings.docReference}**: ${docKey} <br />`
             xs+= `**${OrgReportDocStrings.documentTitle}**: ${values[1][docKey].title} <br />`
             xs+= `**${OrgReportDocStrings.documentFormat}**: ${values[1][docKey].format} <br />`

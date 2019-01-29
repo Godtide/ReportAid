@@ -26,8 +26,8 @@ import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
 
 const reportSchema = Yup.object().shape({
-  reportRef: Yup
-    .string()
+  report: Yup
+    .object()
     .required('Required'),
   regionRef: Yup
     .number()
@@ -139,7 +139,7 @@ export class OrgReportRegionBudgetsForm extends React.Component<OrgReportRegionB
             render={(formProps: FormikProps<OrgReportRegionBudgetProps>) => (
               <Form>
                 <FormControl fullWidth={true}>
-                  <OrgReportPicker name='reportRef' label={OrganisationReportRegionBudget.reportReference} />
+                  <OrgReportPicker name='report' label={OrganisationReportRegionBudget.reportReference} />
                   <Field
                     name='budgetLine'
                     label={OrganisationReportRegionBudget.budgetLine}

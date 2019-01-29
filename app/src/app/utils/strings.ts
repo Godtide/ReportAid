@@ -141,6 +141,7 @@ class OrganisationReportDoc {
   static numReports = "Number of Organisations Reporting"
 
   static reportReference = "Report Reference"
+  static reportingOrgRef = 'Reporting Organisation'
   static docReference = "Document Reference"
   static documentTitle = "Document Title"
   static documentFormat = "Format"
@@ -165,6 +166,7 @@ class OrganisationReportBudget {
 
   static numReports = "Number of Organisations Reporting"
 
+  static reportingOrgRef = 'Reporting Organisation'
   static budgetReference = "Budget Reference"
   static reportReference = "Report Reference"
   static budgetLine = "Budget Line"
@@ -190,6 +192,7 @@ class OrganisationReportExpenditure {
 
   static numReports = "Number of Organisations Reporting"
 
+  static reportingOrgRef = 'Reporting Organisation'
   static expenditureReference = "Expenditure Reference"
   static reportReference = "Report Reference"
   static expenditureLine = "Expenditure Line"
@@ -215,6 +218,7 @@ class OrganisationReportRecipientBudget {
 
   static numReports = "Number of Organisations Reporting"
 
+  static reportingOrgRef = 'Reporting Organisation'
   static budgetReference = "Budget Reference"
   static reportReference = "Report Reference"
   static orgReference = "Recipient Reference"
@@ -241,6 +245,7 @@ class OrganisationReportRegionBudget {
 
   static numReports = "Number of Organisations Reporting"
 
+  static reportingOrgRef = 'Reporting Organisation'
   static budgetReference = "Budget Reference"
   static reportReference = "Report Reference"
   static regionReference = "Region Reference"
@@ -267,6 +272,7 @@ class OrganisationReportCountryBudget {
 
   static numReports = "Number of Organisations Reporting"
 
+  static reportingOrgRef = 'Reporting Organisation'
   static budgetReference = "Budget Reference"
   static reportReference = "Report Reference"
   static countryReference = "Country Reference"

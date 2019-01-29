@@ -179,7 +179,7 @@ class Contract {
   static organisationReportCountryBudgetsABI = [
     "event SetCountryBudget(tuple(tuple(bytes32 orgRef, bytes32 reportRef) report, bytes32 budgetRef, bytes32 regionRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)",
 
-    "function setCountryBudget(tuple(bytes32 reportRef, bytes32 budgetRef, bytes32 countryRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)@500000",
+    "function setCountryBudget(tuple(tuple(bytes32 orgRef, bytes32 reportRef) report, bytes32 budgetRef, bytes32 countryRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)@500000",
 
     "function getReportExists(bytes32 _reportRef) view returns (bool)",
     "function getCountryBudgetExists(bytes32 _reportRef, bytes32 _budgetRef) view returns (bool)",

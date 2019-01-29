@@ -43,7 +43,7 @@ export const setOrganisationReportBudget = (budgetDetails: OrgReportBudgetProps)
     }
 
     const orgReportBudgetsContract = state.chainContracts.data.contracts.orgReportBudgetsContract
-    console.log('Budget: ', orgBudget, ' Contract ', orgReportBudgetsContract)
+    //console.log('Budget: ', orgBudget, ' Contract ', orgReportBudgetsContract)
     let actionType = OrgReportBudgetsWriterActionTypes.ADD_FAILURE
     let txData: TxData = {}
     try {

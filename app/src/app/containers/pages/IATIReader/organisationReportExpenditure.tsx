@@ -56,6 +56,7 @@ export class OrgReportExpenditure extends React.Component<OrgReportExpenditureRe
             const expenditureLine = ethers.utils.parseBytes32String(values[1][expenditureKey].expenditureLine)
             const start = ethers.utils.parseBytes32String(values[1][expenditureKey].finance.start)
             const end = ethers.utils.parseBytes32String(values[1][expenditureKey].finance.end)
+            xs+= `**${OrgReportExpenditureStrings.reportingOrgRef}**: ${values[1][expenditureKey].report.orgRef} <br />`
             xs+= `**${OrgReportExpenditureStrings.expenditureReference}**: ${expenditureKey} <br />`
             xs+= `**${OrgReportExpenditureStrings.expenditureLine}**: ${expenditureLine} <br />`
             xs+= `**${OrgReportExpenditureStrings.value}**: ${values[1][expenditureKey].finance.value} <br />`

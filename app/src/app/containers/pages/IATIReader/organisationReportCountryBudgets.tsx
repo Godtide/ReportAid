@@ -57,6 +57,7 @@ export class OrgReportCountryBudgets extends React.Component<OrgReportCountryBud
             const budgetLine = ethers.utils.parseBytes32String(values[1][budgetKey].budgetLine)
             const start = ethers.utils.parseBytes32String(values[1][budgetKey].finance.start)
             const end = ethers.utils.parseBytes32String(values[1][budgetKey].finance.end)
+            xs+= `**${OrgReportCountryBudgetStrings.reportingOrgRef}**: ${values[1][budgetKey].report.orgRef} <br />`
             xs+= `**${OrgReportCountryBudgetStrings.budgetReference}**: ${budgetKey} <br />`
             xs+= `**${OrgReportCountryBudgetStrings.countryReference}**: ${countryRef} <br />`
             xs+= `**${OrgReportCountryBudgetStrings.budgetLine}**: ${budgetLine} <br />`

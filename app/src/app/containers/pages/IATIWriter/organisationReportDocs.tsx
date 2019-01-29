@@ -40,8 +40,8 @@ import { withTheme, styles } from '../../../styles/theme'
 })(Select);*/
 
 const docSchema = Yup.object().shape({
-  reportRef: Yup
-    .string()
+  report: Yup
+    .object()
     .required('Required'),
   title: Yup
     .string()
@@ -138,7 +138,7 @@ export class OrgReportDocsForm extends React.Component<OrgReportDocsFormProps> {
             render={(formProps: FormikProps<OrgReportDocProps>) => (
               <Form>
                 <FormControl fullWidth={true}>
-                  <OrgReportPicker name='reportRef' label={OrganisationReportDoc.reportReference} />
+                  <OrgReportPicker name='report' label={OrganisationReportDoc.reportReference} />
                   <Field
                     name='title'
                     label={OrganisationReportDoc.documentTitle}
