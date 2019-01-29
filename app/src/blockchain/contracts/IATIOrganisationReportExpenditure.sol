@@ -13,27 +13,28 @@ contract IATIOrganisationReportExpenditure is OrganisationReportExpenditure {
   mapping(bytes32 => bytes32[]) private expenditureReferences;
   mapping(bytes32 => mapping(bytes32 => Expenditure)) private expenditures;
 
-  event SetExpenditure(bytes32 _reportRef, bytes32 _expenditureRef, Expenditure _expenditure);
+  event SetExpenditure(Expenditure _expenditure);
 
   function setExpenditure(Expenditure memory _expenditure) public {
-    require (_expenditure.reportRef[0] != 0 &&
+    require (_expenditure.report.reportRef[0] != 0 &&
+             _expenditure.report.orgRef[0] != 0 &&
              _expenditure.expenditureRef[0] != 0 &&
              _expenditure.expenditureLine[0] != 0 &&
              _expenditure.finance.status > 0 &&
              _expenditure.finance.start[0] != 0 &&
              _expenditure.finance.end[0] != 0 );
 
-    expenditures[_expenditure.reportRef][_expenditure.expenditureRef] = _expenditure;
+    expenditures[_expenditure.report.reportRef][_expenditure.expenditureRef] = _expenditure;
 
-    if (!getReportExists(_expenditure.reportRef)) {
-      reportReferences.push(_expenditure.reportRef);
+    if (!getReportExists(_expenditure.report.reportRef)) {
+      reportReferences.push(_expenditure.report.reportRef);
     }
 
-    if (!getExpenditureExists(_expenditure.reportRef, _expenditure.expenditureRef)) {
-    expenditureReferences[_expenditure.reportRef].push(_expenditure.expenditureRef);
+    if (!getExpenditureExists(_expenditure.report.reportRef, _expenditure.expenditureRef)) {
+    expenditureReferences[_expenditure.report.reportRef].push(_expenditure.expenditureRef);
     }
 
-    emit SetExpenditure(_expenditure.reportRef, _expenditure.expenditureRef, _expenditure);
+    emit SetExpenditure(_expenditure);
   }
 
   function getReportExists(bytes32 _reportRef) public view returns (bool) {
@@ -84,6 +85,12 @@ contract IATIOrganisationReportExpenditure is OrganisationReportExpenditure {
     require (_reportRef[0] != 0 && _expenditureRef[0] != 0);
 
     return expenditures[_reportRef][_expenditureRef];
+  }
+
+  function getExpenditureReportingOrg(bytes32 _reportRef, bytes32 _expenditureRef) public view returns (bytes32) {
+    require (_reportRef[0] != 0 && _expenditureRef[0] != 0);
+
+    return expenditures[_reportRef][_expenditureRef].report.orgRef;
   }
 
   function getExpenditureLine(bytes32 _reportRef, bytes32 _expenditureRef) public view returns (bytes32) {

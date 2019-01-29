@@ -3,6 +3,11 @@ pragma experimental ABIEncoderV2;
 
 contract OrganisationReports {
 
+  struct Report {
+    bytes32 orgRef;
+    bytes32 reportRef;
+  }
+
   enum DocAttributes {
     TITLE,
     FORMAT,
@@ -15,7 +20,7 @@ contract OrganisationReports {
   }
 
   struct Document {
-    bytes32 reportRef;
+    Report report;
     bytes32 docRef;
     string title;
     string format;
@@ -39,7 +44,7 @@ contract OrganisationReports {
   function getReportDocReference(bytes32 _docRef, uint256 _index) public view returns (bytes32);
 
   function getDocument(bytes32 _reportRef, bytes32 _docRef) public view returns (Document memory);
-
+  function getDocumentReportingOrg(bytes32 _reportRef, bytes32 _docRef) public view returns (bytes32);
   function getDocumentTitle(bytes32 _reportRef, bytes32 _docRef) public view returns (string memory);
   function getDocumentFormat(bytes32 _reportRef, bytes32 _docRef) public view returns (string memory);
   function getDocumentURL(bytes32 _reportRef, bytes32 _docRef) public view returns (string memory);

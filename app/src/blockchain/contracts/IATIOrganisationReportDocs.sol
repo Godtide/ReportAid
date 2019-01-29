@@ -10,10 +10,11 @@ contract IATIOrganisationReportDocs is OrganisationReports {
   mapping(bytes32 => bytes32[]) private reportDocReferences;
   mapping(bytes32 => mapping(bytes32 => Document)) private docs;
 
-  event SetDocument(bytes32 _reportRef, bytes32 _docRef, Document _document);
+  event SetDocument(Document _document);
 
   function setDocument(Document memory _document) public {
-    require (_document.reportRef[0] != 0 &&
+    require (_document.report.reportRef[0] != 0 &&
+             _document.report.orgRef[0] != 0 &&
              _document.docRef[0] != 0 &&
              bytes(_document.title).length > 0 &&
              bytes(_document.format).length > 0 &&
@@ -24,17 +25,17 @@ contract IATIOrganisationReportDocs is OrganisationReports {
              _document.lang[0] != 0 &&
              _document.date[0] != 0);
 
-    docs[_document.reportRef][_document.docRef] = _document;
+    docs[_document.report.reportRef][_document.docRef] = _document;
 
-    if (!getReportExists(_document.reportRef)) {
-      reportReferences.push(_document.reportRef);
+    if (!getReportExists(_document.report.reportRef)) {
+      reportReferences.push(_document.report.reportRef);
     }
 
-    if(!getReportDocExists(_document.reportRef, _document.docRef)) {
-      reportDocReferences[_document.reportRef].push(_document.docRef);
+    if(!getReportDocExists(_document.report.reportRef, _document.docRef)) {
+      reportDocReferences[_document.report.reportRef].push(_document.docRef);
     }
 
-    emit SetDocument(_document.reportRef, _document.docRef, _document);
+    emit SetDocument(_document);
   }
 
   function getReportExists(bytes32 _reportRef) public view returns (bool) {
@@ -85,6 +86,12 @@ contract IATIOrganisationReportDocs is OrganisationReports {
     require (_reportRef[0] != 0 && _docRef[0] != 0);
 
     return docs[_reportRef][_docRef];
+  }
+
+  function getDocumentReportingOrg(bytes32 _reportRef, bytes32 _docRef) public view returns (bytes32) {
+    require (_reportRef[0] != 0 && _docRef[0] != 0);
+
+    return docs[_reportRef][_docRef].report.orgRef;
   }
 
   function getDocumentTitle(bytes32 _reportRef, bytes32 _docRef) public view returns (string memory) {

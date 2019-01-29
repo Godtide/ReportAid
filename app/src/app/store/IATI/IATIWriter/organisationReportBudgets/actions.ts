@@ -28,7 +28,10 @@ export const setOrganisationReportBudget = (budgetDetails: OrgReportBudgetProps)
     //console.log('Start: ', startDate, ' End: ', endDate)
 
     const orgBudget: IATIOrgReportBudgetProps = {
-      reportRef: budgetDetails.reportRef,
+      report: {
+        reportRef: budgetDetails.report.reportRef,
+        orgRef: budgetDetails.report.orgRef
+      },
       budgetRef: ethers.utils.formatBytes32String(shortid.generate()),
       budgetLine: ethers.utils.formatBytes32String(budgetDetails.budgetLine),
       finance: {
@@ -40,7 +43,7 @@ export const setOrganisationReportBudget = (budgetDetails: OrgReportBudgetProps)
     }
 
     const orgReportBudgetsContract = state.chainContracts.data.contracts.orgReportBudgetsContract
-    //console.log('Budget: ', orgBudget, ' Contract ', orgReportBudgetsContract)
+    console.log('Budget: ', orgBudget, ' Contract ', orgReportBudgetsContract)
     let actionType = OrgReportBudgetsWriterActionTypes.ADD_FAILURE
     let txData: TxData = {}
     try {

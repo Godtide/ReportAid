@@ -25,8 +25,10 @@ export const setOrganisationReport = (reportDetails: OrgReportProps) => {
 
     const orgReport: IATIOrgReportProps = {
       version: ethers.utils.formatBytes32String(reportDetails.version),
-      orgRef: reportDetails.orgRef,
-      reportRef:  ethers.utils.formatBytes32String(shortid.generate()),
+      report: {
+        reportRef: ethers.utils.formatBytes32String(shortid.generate()),
+        orgRef: reportDetails.orgRef
+      },
       reportingOrg: {
         orgRef: reportDetails.reportingOrgRef,
         orgType: reportDetails.reportingOrgType,

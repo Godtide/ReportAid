@@ -8,31 +8,31 @@ contract IATIOrganisationReports is OrganisationReports {
 
   bytes32[] orgReferences;
   mapping(bytes32 => bytes32[]) private reportReferences;
-  mapping(bytes32 =>  mapping(bytes32 => Report)) private organisationReports;
+  mapping(bytes32 =>  mapping(bytes32 => OrgReport)) private organisationReports;
 
-  event SetReport(bytes32 _orgRef, bytes32 _reportRef, Report _report);
+  event SetReport(OrgReport _report);
 
-  function setReport(Report memory _report) public {
-    require (_report.version[0] != 0 &&
-             _report.orgRef[0] != 0 &&
-             _report.reportRef[0] != 0 &&
+  function setReport(OrgReport memory _report) public {
+    require (_report.report.orgRef[0] != 0 &&
+             _report.report.reportRef[0] != 0 &&
              _report.reportingOrg.orgRef[0] != 0 &&
              _report.reportingOrg.orgType > 0 &&
+             _report.version[0] != 0 &&
              _report.lang[0] != 0 &&
              _report.currency[0] != 0 &&
              _report.lastUpdatedTime[0] != 0 );
 
-    organisationReports[_report.orgRef][_report.reportRef] = _report;
+    organisationReports[_report.report.orgRef][_report.report.reportRef] = _report;
 
-    if (!getOrgExists(_report.orgRef)) {
-      orgReferences.push(_report.orgRef);
+    if (!getOrgExists(_report.report.orgRef)) {
+      orgReferences.push(_report.report.orgRef);
     }
 
-    if(!getReportExists(_report.orgRef, _report.reportRef)) {
-      reportReferences[_report.orgRef].push(_report.reportRef);
+    if(!getReportExists(_report.report.orgRef, _report.report.reportRef)) {
+      reportReferences[_report.report.orgRef].push(_report.report.reportRef);
     }
 
-    emit SetReport(_report.orgRef, _report.reportRef, _report);
+    emit SetReport(_report);
   }
 
   function getOrgExists(bytes32 _orgRef) public view returns (bool) {
@@ -79,7 +79,7 @@ contract IATIOrganisationReports is OrganisationReports {
     return reportReferences[_orgRef][_index];
   }
 
-  function getReport(bytes32 _orgRef, bytes32 _reportRef) public view returns (Report memory) {
+  function getReport(bytes32 _orgRef, bytes32 _reportRef) public view returns (OrgReport memory) {
     require (_orgRef[0] != 0 && _reportRef[0] != 0);
 
     return organisationReports[_orgRef][_reportRef];

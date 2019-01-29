@@ -8,7 +8,10 @@ const initialState: OrgReportRegionBudgetsReaderProps = {
       num: 0,
       data: {
         '': {
-          reportRef: '',
+          report: {
+            reportRef: '',
+            orgRef: ''
+          },
           budgetRef: '',
           regionRef: 0,
           budgetLine: '',

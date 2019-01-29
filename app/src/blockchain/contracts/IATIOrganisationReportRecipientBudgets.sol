@@ -13,28 +13,29 @@ contract IATIOrganisationReportRecipientBudgets is OrganisationReportRecipientBu
   mapping(bytes32 => bytes32[]) private recipientBudgetReferences;
   mapping(bytes32 => mapping(bytes32 => RecipientBudget)) private recipientBudgets;
 
-  event SetRecipientBudget(bytes32 _reportRef, bytes32 _budgetRef, RecipientBudget _budget);
+  event SetRecipientBudget(RecipientBudget _budget);
 
   function setRecipientBudget(RecipientBudget memory _budget) public {
-    require (_budget.reportRef[0] != 0 &&
+    require (_budget.report.reportRef[0] != 0 &&
+             _budget.report.orgRef[0] != 0 &&
              _budget.budgetRef[0] != 0 &&
-             _budget.orgRef[0] != 0 &&
+             _budget.recipientOrgRef[0] != 0 &&
              _budget.budgetLine[0] != 0 &&
              _budget.finance.status > 0 &&
              _budget.finance.start[0] != 0 &&
              _budget.finance.end[0] != 0 );
 
-    recipientBudgets[_budget.reportRef][_budget.budgetRef] = _budget;
+    recipientBudgets[_budget.report.reportRef][_budget.budgetRef] = _budget;
 
-    if (!getReportExists(_budget.reportRef)) {
-      reportReferences.push(_budget.reportRef);
+    if (!getReportExists(_budget.report.reportRef)) {
+      reportReferences.push(_budget.report.reportRef);
     }
 
-    if (!getRecipientBudgetExists(_budget.reportRef, _budget.budgetRef)) {
-      recipientBudgetReferences[_budget.reportRef].push(_budget.budgetRef);
+    if (!getRecipientBudgetExists(_budget.report.reportRef, _budget.budgetRef)) {
+      recipientBudgetReferences[_budget.report.reportRef].push(_budget.budgetRef);
     }
 
-    emit SetRecipientBudget(_budget.reportRef, _budget.budgetRef, _budget);
+    emit SetRecipientBudget(_budget);
   }
 
   function getReportExists(bytes32 _reportRef) public view returns (bool) {
@@ -87,10 +88,16 @@ contract IATIOrganisationReportRecipientBudgets is OrganisationReportRecipientBu
     return recipientBudgets[_reportRef][_recipientBudgetRef];
   }
 
+  function getRecipientBudgetReportingOrg(bytes32 _reportRef, bytes32 _recipientBudgetRef) public view returns (bytes32) {
+    require (_reportRef[0] != 0 && _recipientBudgetRef[0] != 0);
+
+    return recipientBudgets[_reportRef][_recipientBudgetRef].report.orgRef;
+  }
+
   function getRecipientBudgetOrg(bytes32 _reportRef, bytes32 _recipientBudgetRef) public view returns (bytes32) {
     require (_reportRef[0] != 0 && _recipientBudgetRef[0] != 0);
 
-    return recipientBudgets[_reportRef][_recipientBudgetRef].orgRef;
+    return recipientBudgets[_reportRef][_recipientBudgetRef].recipientOrgRef;
   }
 
   function getRecipientBudgetLine(bytes32 _reportRef, bytes32 _recipientBudgetRef) public view returns (bytes32) {

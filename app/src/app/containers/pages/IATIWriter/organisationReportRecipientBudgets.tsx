@@ -11,7 +11,7 @@ import { Select, TextField } from "material-ui-formik-components"
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { IATIOrgReportRecipientBudgetProps, OrgReportRecipientBudgetProps} from '../../../store/IATI/types'
+import { IATIOrgReportRecipientBudgetProps, OrgReportRecipientBudgetProps, ReportProps } from '../../../store/IATI/types'
 
 import { setRecipientBudget } from '../../../store/IATI/IATIWriter/organisationReportRecipientBudgets/actions'
 
@@ -121,8 +121,8 @@ export class OrgReportRecipientBudgetsForm extends React.Component<OrgReportReci
         <h2>{OrganisationReportRecipientBudget.headingOrgReportRecipientBudgetWriter}</h2>
         <div>
           <Formik
-            initialValues={ {reportRef: "",
-                             orgRef: "",
+            initialValues={ {report: {} as ReportProps,
+                             recipientOrgRef: "",
                              budgetLine: "",
                              value: 0,
                              status: 1,
@@ -141,7 +141,7 @@ export class OrgReportRecipientBudgetsForm extends React.Component<OrgReportReci
               <Form>
                 <FormControl fullWidth={true}>
                   <OrgReportPicker name='reportRef' label={OrganisationReportRecipientBudget.reportReference} />
-                  <OrganisationPicker name='orgRef' label={OrganisationReportRecipientBudget.orgReference} />
+                  <OrganisationPicker name='recipientOrgRef' label={OrganisationReportRecipientBudget.orgReference} />
                   <Field
                     name='budgetLine'
                     label={OrganisationReportRecipientBudget.budgetLine}

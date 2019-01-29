@@ -24,8 +24,13 @@ export const setOrganisationReportDoc = (reportDocDetails: OrgReportDocProps) =>
     const docDate = new Date(reportDocDetails.year + '/' + reportDocDetails.month + '/' + reportDocDetails.day)
     const reportDocDate = docDate.toISOString()
 
+    //console.log('ReportRef: ', reportDocDetails.reportRef)
+
     const orgReportDoc: IATIOrgReportDocProps = {
-      reportRef: reportDocDetails.reportRef,
+      report: {
+        reportRef: reportDocDetails.report.reportRef,
+        orgRef: reportDocDetails.report.orgRef
+      },
       docRef: ethers.utils.formatBytes32String(shortid.generate()),
       title: reportDocDetails.title,
       format: reportDocDetails.format,

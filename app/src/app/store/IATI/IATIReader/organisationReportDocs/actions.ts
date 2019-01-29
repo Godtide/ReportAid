@@ -111,7 +111,10 @@ const getReportDocRefs = () => {
             const ref = await orgReportDocsContract.getReportDocReference(reportKey, j)
             //console.log ('Report ref: ', ref)
             reports[reportKey].data[ref] = {
-              reportRef: '',
+              report: {
+                reportRef: '',
+                orgRef: ''
+              },
               docRef: ref,
               title: '',
               format: '',

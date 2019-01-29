@@ -13,10 +13,11 @@ contract IATIOrganisationReportRegionBudgets is OrganisationReportRegionBudgets 
   mapping(bytes32 => bytes32[]) private regionBudgetReferences;
   mapping(bytes32 => mapping(bytes32 => RegionBudget)) private regionBudgets;
 
-  event SetRegionBudget(bytes32 _reportRef, bytes32 _budgetRef, RegionBudget _budget);
+  event SetRegionBudget(RegionBudget _budget);
 
   function setRegionBudget(RegionBudget memory _budget) public {
-    require (_budget.reportRef[0] != 0 &&
+    require (_budget.report.reportRef[0] != 0 &&
+             _budget.report.orgRef[0] != 0 &&
              _budget.budgetRef[0] != 0 &&
              _budget.regionRef > 0 &&
              _budget.budgetLine[0] != 0 &&
@@ -24,17 +25,17 @@ contract IATIOrganisationReportRegionBudgets is OrganisationReportRegionBudgets 
              _budget.finance.start[0] != 0 &&
              _budget.finance.end[0] != 0 );
 
-    regionBudgets[_budget.reportRef][_budget.budgetRef] = _budget;
+    regionBudgets[_budget.report.reportRef][_budget.budgetRef] = _budget;
 
-    if (!getReportExists(_budget.reportRef)) {
-      reportReferences.push(_budget.reportRef);
+    if (!getReportExists(_budget.report.reportRef)) {
+      reportReferences.push(_budget.report.reportRef);
     }
 
-    if (!getRegionBudgetExists(_budget.reportRef, _budget.budgetRef)) {
-      regionBudgetReferences[_budget.reportRef].push(_budget.budgetRef);
+    if (!getRegionBudgetExists(_budget.report.reportRef, _budget.budgetRef)) {
+      regionBudgetReferences[_budget.report.reportRef].push(_budget.budgetRef);
     }
 
-    emit SetRegionBudget(_budget.reportRef, _budget.budgetRef, _budget);
+    emit SetRegionBudget(_budget);
   }
 
   function getReportExists(bytes32 _reportRef) public view returns (bool) {
@@ -85,6 +86,12 @@ contract IATIOrganisationReportRegionBudgets is OrganisationReportRegionBudgets 
     require (_reportRef[0] != 0 && _regionBudgetRef[0] != 0);
 
     return regionBudgets[_reportRef][_regionBudgetRef];
+  }
+
+  function getRegionsBudgetReportingOrg(bytes32 _reportRef, bytes32 _regionBudgetRef) public view returns (bytes32) {
+    require (_reportRef[0] != 0 && _regionBudgetRef[0] != 0);
+
+    return regionBudgets[_reportRef][_regionBudgetRef].report.orgRef;
   }
 
   function getRegionsBudgetRegion(bytes32 _reportRef, bytes32 _regionBudgetRef) public view returns (uint256) {

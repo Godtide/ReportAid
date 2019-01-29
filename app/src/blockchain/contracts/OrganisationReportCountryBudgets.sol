@@ -3,6 +3,11 @@ pragma experimental ABIEncoderV2;
 
 contract OrganisationReportCountryBudgets {
 
+  struct Report {
+    bytes32 orgRef;
+    bytes32 reportRef;
+  }
+
   struct Finance {
     uint256 value;
     uint8 status;
@@ -11,7 +16,7 @@ contract OrganisationReportCountryBudgets {
   }
 
   struct CountryBudget {
-    bytes32 reportRef;
+    Report report;
     bytes32 budgetRef;
     bytes32 countryRef;
     bytes32 budgetLine;
@@ -30,6 +35,7 @@ contract OrganisationReportCountryBudgets {
   function getCountryBudgetReference(bytes32 _reportRef, uint256 _index) public view returns (bytes32);
 
   function getCountryBudget(bytes32 _reportRef, bytes32 _countryBudgetRef) public view returns (CountryBudget memory);
+  function getCountryBudgetReportingOrg(bytes32 _reportRef, bytes32 _countryBudgetRef) public view returns (bytes32);
   function getCountryBudgetCountry(bytes32 _reportRef, bytes32 _countryBudgetRef) public view returns (bytes32);
   function getCountryBudgetLine(bytes32 _reportRef, bytes32 _countryBudgetRef) public view returns (bytes32);
   function getCountryBudgetValue(bytes32 _reportRef, bytes32 _countryBudgetRef) public view returns (uint256);

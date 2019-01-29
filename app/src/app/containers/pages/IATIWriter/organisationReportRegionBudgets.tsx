@@ -11,7 +11,7 @@ import { Select, TextField } from "material-ui-formik-components"
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { IATIOrgReportRegionBudgetProps, OrgReportRegionBudgetProps} from '../../../store/IATI/types'
+import { IATIOrgReportRegionBudgetProps, OrgReportRegionBudgetProps, ReportProps } from '../../../store/IATI/types'
 
 import { setRegionBudget } from '../../../store/IATI/IATIWriter/organisationReportRegionBudgets/actions'
 
@@ -120,7 +120,7 @@ export class OrgReportRegionBudgetsForm extends React.Component<OrgReportRegionB
         <h2>{OrganisationReportRegionBudget.headingOrgReportRegionBudgetWriter}</h2>
         <div>
           <Formik
-            initialValues={ {reportRef: "",
+            initialValues={ {report: {} as ReportProps,
                              regionRef: 1,
                              budgetLine: "",
                              value: 0,

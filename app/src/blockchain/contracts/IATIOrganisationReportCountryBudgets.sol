@@ -13,10 +13,11 @@ contract IATIOrganisationReportCountryBudgets is OrganisationReportCountryBudget
   mapping(bytes32 => bytes32[]) private countryBudgetReferences;
   mapping(bytes32 => mapping(bytes32 => CountryBudget)) private countryBudgets;
 
-  event SetCountryBudget(bytes32 _reportRef, bytes32 _budgetRef, CountryBudget _budget);
+  event SetCountryBudget(CountryBudget _budget);
 
   function setCountryBudget(CountryBudget memory _budget) public {
-    require (_budget.reportRef[0] != 0 &&
+    require (_budget.report.reportRef[0] != 0 &&
+             _budget.report.orgRef[0] != 0 &&
              _budget.budgetRef[0] != 0 &&
              _budget.countryRef[0] != 0 &&
              _budget.budgetLine[0] != 0 &&
@@ -24,17 +25,17 @@ contract IATIOrganisationReportCountryBudgets is OrganisationReportCountryBudget
              _budget.finance.start[0] != 0 &&
              _budget.finance.end[0] != 0 );
 
-    countryBudgets[_budget.reportRef][_budget.budgetRef] = _budget;
+    countryBudgets[_budget.report.reportRef][_budget.budgetRef] = _budget;
 
-    if (!getReportExists(_budget.reportRef)) {
-      reportReferences.push(_budget.reportRef);
+    if (!getReportExists(_budget.report.reportRef)) {
+      reportReferences.push(_budget.report.reportRef);
     }
 
-    if (!getCountryBudgetExists(_budget.reportRef, _budget.budgetRef)) {
-      countryBudgetReferences[_budget.reportRef].push(_budget.budgetRef);
+    if (!getCountryBudgetExists(_budget.report.reportRef, _budget.budgetRef)) {
+      countryBudgetReferences[_budget.report.reportRef].push(_budget.budgetRef);
     }
 
-    emit SetCountryBudget(_budget.reportRef, _budget.budgetRef, _budget);
+    emit SetCountryBudget(_budget);
   }
 
   function getReportExists(bytes32 _reportRef) public view returns (bool) {
@@ -87,6 +88,11 @@ contract IATIOrganisationReportCountryBudgets is OrganisationReportCountryBudget
     return countryBudgets[_reportRef][_countryBudgetRef];
   }
 
+  function getCountryBudgetReportingOrg(bytes32 _reportRef, bytes32 _countryBudgetRef) public view returns (bytes32) {
+    require (_reportRef[0] != 0 && _countryBudgetRef[0] != 0);
+
+    return countryBudgets[_reportRef][_countryBudgetRef].report.orgRef;
+  }
 
   function getCountryBudgetCountry(bytes32 _reportRef, bytes32 _countryBudgetRef) public view returns (bytes32) {
     require (_reportRef[0] != 0 && _countryBudgetRef[0] != 0);

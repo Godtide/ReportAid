@@ -4,6 +4,11 @@ export interface IATIOrgProps {
   identifier: string
 }
 
+export interface ReportProps {
+  orgRef: string
+  reportRef: string
+}
+
 export interface ReportingOrgProps {
   orgRef: string
   orgType: number
@@ -12,8 +17,7 @@ export interface ReportingOrgProps {
 
 export interface IATIOrgReportProps {
   version: string
-  orgRef: string
-  reportRef: string
+  report: ReportProps
   reportingOrg: ReportingOrgProps
   lang: string
   currency: string
@@ -21,7 +25,7 @@ export interface IATIOrgReportProps {
 }
 
 export interface IATIOrgReportDocProps {
-  reportRef: string
+  report: ReportProps
   docRef: string
   title: string
   format: string
@@ -41,21 +45,21 @@ export interface FinanceProps {
 }
 
 export interface IATIOrgReportBudgetProps {
-  reportRef: string
+  report: ReportProps
   budgetRef: string
   budgetLine: string
   finance: FinanceProps
 }
 
 export interface IATIOrgReportExpenditureProps {
-  reportRef: string
+  report: ReportProps
   expenditureRef: string
   expenditureLine: string
   finance: FinanceProps
 }
 
 export interface IATIOrgReportRecipientBudgetProps {
-  reportRef: string
+  report: ReportProps
   budgetRef: string
   orgRef: string
   budgetLine: string
@@ -63,7 +67,7 @@ export interface IATIOrgReportRecipientBudgetProps {
 }
 
 export interface IATIOrgReportRegionBudgetProps {
-  reportRef: string
+  report: ReportProps
   budgetRef: string
   regionRef: number
   budgetLine: string
@@ -71,7 +75,7 @@ export interface IATIOrgReportRegionBudgetProps {
 }
 
 export interface IATIOrgReportCountryBudgetProps {
-  reportRef: string
+  report: ReportProps
   budgetRef: string
   countryRef: string
   budgetLine: string
@@ -84,6 +88,8 @@ export interface OrganisationProps {
   identifier: string
 }
 
+
+
 export interface OrgReportProps {
   reportingOrgRef: string
   reportingOrgType: number
@@ -95,7 +101,7 @@ export interface OrgReportProps {
 }
 
 export interface OrgReportDocProps {
-  reportRef: string
+  report: ReportProps
   title: string
   format: string
   url: string
@@ -109,7 +115,7 @@ export interface OrgReportDocProps {
 }
 
 export interface OrgReportBudgetProps {
-  reportRef: string
+  report: ReportProps
   budgetLine: string
   value: number
   status: number
@@ -122,7 +128,7 @@ export interface OrgReportBudgetProps {
 }
 
 export interface OrgReportExpenditureProps {
-  reportRef: string
+  report: ReportProps
   expenditureLine: string
   value: number
   status: number
@@ -135,8 +141,8 @@ export interface OrgReportExpenditureProps {
 }
 
 export interface OrgReportRecipientBudgetProps {
-  reportRef: string
-  orgRef: string
+  report: ReportProps
+  recipientOrgRef: string
   budgetLine: string
   value: number
   status: number
@@ -149,7 +155,7 @@ export interface OrgReportRecipientBudgetProps {
 }
 
 export interface OrgReportRegionBudgetProps {
-  reportRef: string
+  report: ReportProps
   regionRef: number
   budgetLine: string
   value: number
@@ -163,7 +169,7 @@ export interface OrgReportRegionBudgetProps {
 }
 
 export interface OrgReportCountryBudgetProps {
-  reportRef: string
+  report: ReportProps
   countryRef: string
   budgetLine: string
   value: number

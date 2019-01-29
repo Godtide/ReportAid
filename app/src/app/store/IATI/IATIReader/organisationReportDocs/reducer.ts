@@ -8,7 +8,10 @@ const initialState: OrgReportDocsReaderProps = {
       num: 0,
       data: {
         '': {
-          reportRef: '',
+          report: {
+            reportRef: '',
+            orgRef: ''
+          },
           docRef: '',
           title: '',
           format: '',

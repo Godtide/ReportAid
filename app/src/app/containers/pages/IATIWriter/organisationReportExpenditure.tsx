@@ -12,7 +12,7 @@ import { Select, TextField } from "material-ui-formik-components"
 
 import { ApplicationState } from '../../../store'
 import { ActionProps, TxData } from '../../../store/types'
-import { IATIOrgReportExpenditureProps, OrgReportExpenditureProps} from '../../../store/IATI/types'
+import { IATIOrgReportExpenditureProps, OrgReportExpenditureProps, ReportProps } from '../../../store/IATI/types'
 
 import { setOrganisationReportExpenditure } from '../../../store/IATI/IATIWriter/organisationReportExpenditure/actions'
 
@@ -119,7 +119,7 @@ export class OrgReportExpenditureForm extends React.Component<OrgReportExpenditu
         <h2>{OrgReportExpenditure.headingOrgReportExpenditureWriter}</h2>
         <div>
           <Formik
-            initialValues={ {reportRef: "",
+            initialValues={ {report: {} as ReportProps,
                              expenditureLine: "",
                              value: 0,
                              status: 1,

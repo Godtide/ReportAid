@@ -28,7 +28,10 @@ export const setOrganisationReportExpenditure = (expenditureDetails: OrgReportEx
     //console.log('Start: ', startDate, ' End: ', endDate)
 
     const orgExpenditure: IATIOrgReportExpenditureProps = {
-      reportRef: expenditureDetails.reportRef,
+      report: {
+        reportRef: expenditureDetails.report.reportRef,
+        orgRef: expenditureDetails.report.orgRef
+      },
       expenditureRef: ethers.utils.formatBytes32String(shortid.generate()),
       expenditureLine: ethers.utils.formatBytes32String(expenditureDetails.expenditureLine),
       finance: {

@@ -28,7 +28,10 @@ export const setCountryBudget = (budgetDetails: OrgReportCountryBudgetProps) => 
     //console.log('Start: ', startDate, ' End: ', endDate)
 
     const countryBudget: IATIOrgReportCountryBudgetProps = {
-      reportRef: budgetDetails.reportRef,
+      report: {
+        reportRef: budgetDetails.report.reportRef,
+        orgRef: budgetDetails.report.orgRef
+      },
       budgetRef: ethers.utils.formatBytes32String(shortid.generate()),
       countryRef: ethers.utils.formatBytes32String(budgetDetails.countryRef),
       budgetLine: ethers.utils.formatBytes32String(budgetDetails.budgetLine),

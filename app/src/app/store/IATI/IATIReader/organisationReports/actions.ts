@@ -111,8 +111,10 @@ const getOrgReportRefs = () => {
             //console.log ('Report ref: ', ref)
             orgs[orgKey].data[ref] = {
               version: '',
-              orgRef: '',
-              reportRef: ref,
+              report: {
+                reportRef: ref,
+                orgRef: ''
+              },
               reportingOrg: {
                 orgRef: '',
                 orgType: 0,

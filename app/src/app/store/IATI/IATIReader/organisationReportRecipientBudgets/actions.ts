@@ -111,7 +111,10 @@ const getReportRecipientBudgetRefs = () => {
             const ref = await orgReportRecipientBudgetsContract.getRecipientBudgetReference(reportKey, j)
             //console.log ('Report ref: ', ref)
             reports[reportKey].data[ref] = {
-              reportRef: '',
+              report: {
+                reportRef: '',
+                orgRef: ''
+              },
               budgetRef: ref,
               orgRef: '',
               budgetLine: '',

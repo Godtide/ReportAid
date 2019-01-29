@@ -13,27 +13,28 @@ contract IATIOrganisationReportBudgets is OrganisationReportBudgets {
   mapping(bytes32 => bytes32[]) private budgetReferences;
   mapping(bytes32 => mapping(bytes32 => Budget)) private budgets;
 
-  event SetTotalBudget(bytes32 _reportRef, bytes32 _budgetRef, Budget _budget);
+  event SetTotalBudget(Budget _budget);
 
   function setTotalBudget(Budget memory _budget) public {
-    require (_budget.reportRef[0] != 0 &&
+    require (_budget.report.reportRef[0] != 0 &&
+             _budget.report.orgRef[0] != 0 &&
              _budget.budgetRef[0] != 0 &&
              _budget.budgetLine[0] != 0 &&
              _budget.finance.status > 0 &&
              _budget.finance.start[0] != 0 &&
              _budget.finance.end[0] != 0 );
 
-    budgets[_budget.reportRef][_budget.budgetRef] = _budget;
+    budgets[_budget.report.reportRef][_budget.budgetRef] = _budget;
 
-    if (!getReportExists(_budget.reportRef)) {
-      reportReferences.push(_budget.reportRef);
+    if (!getReportExists(_budget.report.reportRef)) {
+      reportReferences.push(_budget.report.reportRef);
     }
 
-    if (!getTotalBudgetExists(_budget.reportRef, _budget.budgetRef)) {
-      budgetReferences[_budget.reportRef].push(_budget.budgetRef);
+    if (!getTotalBudgetExists(_budget.report.reportRef, _budget.budgetRef)) {
+      budgetReferences[_budget.report.reportRef].push(_budget.budgetRef);
     }
 
-    emit SetTotalBudget(_budget.reportRef, _budget.budgetRef, _budget);
+    emit SetTotalBudget(_budget);
   }
 
   function getReportExists(bytes32 _reportRef) public view returns (bool) {
@@ -84,6 +85,12 @@ contract IATIOrganisationReportBudgets is OrganisationReportBudgets {
     require (_reportRef[0] != 0 && _budgetRef[0] != 0);
 
     return budgets[_reportRef][_budgetRef];
+  }
+
+  function getTotalBudgetReportingOrg(bytes32 _reportRef, bytes32 _budgetRef) public view returns (bytes32) {
+    require (_reportRef[0] != 0 && _budgetRef[0] != 0);
+
+    return budgets[_reportRef][_budgetRef].report.orgRef;
   }
 
   function getTotalBudgetLine(bytes32 _reportRef, bytes32 _budgetRef) public view returns (bytes32) {

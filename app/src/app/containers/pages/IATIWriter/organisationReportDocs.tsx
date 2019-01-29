@@ -12,7 +12,7 @@ import { Select, TextField } from "material-ui-formik-components"
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { IATIOrgReportDocProps, OrgReportDocProps} from '../../../store/IATI/types'
+import { IATIOrgReportDocProps, OrgReportDocProps, ReportProps} from '../../../store/IATI/types'
 
 import { setOrganisationReportDoc } from '../../../store/IATI/IATIWriter/organisationReportDocs/actions'
 
@@ -119,7 +119,7 @@ export class OrgReportDocsForm extends React.Component<OrgReportDocsFormProps> {
         <h2>{OrganisationReportDoc.headingOrgReportDocWriter}</h2>
         <div>
           <Formik
-            initialValues={ {reportRef: '',
+            initialValues={ {report: {} as ReportProps,
                              title: '',
                              format: '',
                              url: '',
