@@ -84,7 +84,7 @@ class Contract {
     "function getReportDocReference(bytes32 docRef, uint256 index) view returns (bytes32)",
     "function getDocument(bytes32 reportRef, bytes32 docRef) view returns (tuple(tuple(bytes32 orgRef, bytes32 reportRef) report, bytes32 docRef, string title, string format, string url, bytes32 category, bytes32 countryRef, string desc, bytes32 lang, bytes32 date) doc)",
     "function getDocumentTitle(bytes32 reportRef, bytes32 docRef) view returns (string)",
-    "function getDocumentReportingOrg(bytes32 _reportRef, bytes32 _docRef) public view returns (bytes32)",
+    "function getDocumentReportingOrg(bytes32 reportRef, bytes32 docRef) public view returns (bytes32)",
     "function getDocumentFormat(bytes32 reportRef, bytes32 docRef) view returns (string)",
     "function getDocumentURL(bytes32 reportRef, bytes32 docRef) view returns (string)",
     "function getDocumentCategory(bytes32 reportRef, bytes32 docRef) view returns (bytes32)",
@@ -211,14 +211,14 @@ class Contract {
   static organisationReportRegionBudgetsAddress = "0xc414e8AAbbe4753faBCf5180BD8438F99adb3016"
   static organisationReportCountryBudgetsAddress = "0xD63A6e29cc37e2A45ad723220c41dDB1AfC31Ec3"*/
 
-  static organisationsAddress = "0xA651F65E1557E27b0a23Bd289171DC0c949F73Bc"
-  static organisationReportsAddress = "0x0Cf8AeA5B70FbD4DD18A11b8D381377FAc6F39FB"
-  static organisationReportDocsAddress = "0x145f725Fdc8B64e573Dc551DA1BcB6121a757cCb"
-  static organisationReportBudgetsAddress = "0x40D96FA2919585143ee1Da9D2375c5167dF38834"
-  static organisationReportExpenditureAddress = "0x13Cb6C06A7864E4fa64F594da220ff5Ebf978217"
-  static organisationReportRecipientBudgetsAddress = "0x3d0C38752a5f08e681760c0763EaD82CBC6c1F7d"
-  static organisationReportRegionBudgetsAddress = "0x013D44EE8241E7E18DFa60AD009175f790aFDDA1"
-  static organisationReportCountryBudgetsAddress = "0xE2e5B6f127b9bfF8c26dDc878edBec3083Fa96F9"
+  static organisationsAddress = "0x5126965356e3059c2533db04c0d52c31889825e1"
+  static organisationReportsAddress = "0xfc96dEc707D291D648D7f38C3c9b9496Ae0559e6"
+  static organisationReportDocsAddress = "0xC6D447a9D25a345d085a4D8291eaFe6Ac24d5aA3"
+  static organisationReportBudgetsAddress = "0xdA0D9123432d6365e029Cf2119a8504dDab1aE8D"
+  static organisationReportExpenditureAddress = "0xgetTotalBudgetReportingOrg564611f79C71adC76fD737101366364F11920493"
+  static organisationReportRecipientBudgetsAddress = "0xfafB0A06b0BB0C5c17a8C6FA6871F10F55Dd7d20"
+  static organisationReportRegionBudgetsAddress = "0x401cAc842cE14601043cf742fA900aACb6F78905"
+  static organisationReportCountryBudgetsAddress = "0x31746026c24fcF9E3EeF5C1892aFFd5bc60fC76c"
 }
 
 class Helpers {

@@ -30,7 +30,7 @@ const reportSchema = Yup.object().shape({
   report: Yup
     .object()
     .required('Required'),
-  orgRef: Yup
+  recipientOrgRef: Yup
     .string()
     .required('Required'),
   budgetLine: Yup
