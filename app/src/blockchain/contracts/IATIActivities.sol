@@ -4,54 +4,109 @@ pragma experimental ABIEncoderV2;
 import "./Activities.sol";
 import "./Strings.sol";
 
-contract IATIActivitys is Activities {
+contract IATIActivities is Activities {
 
-  bytes32[] activityReferences;
-  mapping(bytes32 => Activity) private activities;
+  bytes32[] activitiesReferences;
+  mapping(bytes32 => bytes32[]) private activityReferences;
+  mapping(bytes32 =>  mapping(bytes32 => Activity)) private activities
 
-  event SetActivity(Activity _activity);
+  event SetActivities(OrgActivities memory _activities);
+  event setActivity(bytes32 _activitiesRef, Activity memory _activity);
 
-  function setActivity(Activity memory _activity) public {
-    require (_activity.activityRef[0] != 0 && bytes(_activity.identifier).length > 0);
-
-    activities[_activity.activityRef] = _activity;
-    if(!getActivityExists(_activity.activityRef)) {
-      activityReferences.push(_activity.activityRef);
-    }
-
-    emit SetActivity(_activity);
+  function setActivities(OrgActivities memory _activities) public {
+   return null;
   }
 
-  function getActivityExists(bytes32 _activityRef) public view returns (bool) {
-    require (_activityRef[0] != 0);
-
-    bool exists = false;
-    if ( !(activityReferences.length == 0) ) {
-      uint256 index = Strings.getIndex(_activityRef, activityReferences);
-      exists = (index != activityReferences.length);
-    }
-    return exists;
+  function setActivity(bytes32 _activitiesRef, Activity memory _activity) public {
+   return null;
   }
 
-  function getNumActivitys() public view returns (uint256) {
-    return activityReferences.length;
+
+  function getActivitiesExists(bytes32 _activitiesRef) public view returns (bool) {
+   return null;
   }
 
-  function getActivityReference(uint256 _index) public view returns (bytes32) {
-    require (_index < activityReferences.length);
-
-    return activityReferences[_index];
+  function getActivityExists(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bool) {
+   return null;
   }
 
-  function getActivity(bytes32 _activityRef) public view returns (Activity memory) {
-    require (_activityRef[0] != 0);
-
-    return activities[_activityRef];
+  function getNumActivities() public view returns (uint256) {
+   return null;
   }
 
-  function getActivityIdentifier(bytes32 _activityRef) public view returns (string memory) {
-    require (_activityRef[0] != 0);
+  function getNumActivity(bytes32 _activitiesRef) public view returns (uint256) {
+   return null;
+  }
 
-    return activities[_activityRef].identifier;
+  function getActivitiesReference(uint256 _index) public view returns (bytes32) {
+   return null;
+  }
+
+  function getActivityReference(bytes32 _activitiesRef, uint256 _index) public view returns (bytes32) {
+   return null;
+  }
+
+  function getActivities(bytes32 _activitiesRef) public view returns (OrgActivities memory) {
+   return null;
+  }
+
+  function getVersion(bytes32 _activitiesRef) public view returns (bytes32) {
+   return null;
+  }
+
+  function getGeneratedTime(bytes32 _activitiesRef) public view returns (bytes32) {
+   return null;
+  }
+
+  function getLinkedData(bytes32 _activitiesRef) public view returns (bytes32) {
+   return null;
+  }
+
+  function getReportingOrg(bytes32 _activitiesRef) public view returns (bytes32) {
+   return null;
+  }
+
+  function getReportingOrgType(bytes32 _activitiesRef) public view returns (uint8) {
+   return null;
+  }
+
+  function getReportingOrgIsSecondary(bytes32 _activitiesRef) public view returns (bool) {
+   return null;
+  }
+
+  function getActivity(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (Activity memory) {
+   return null;
+  }
+
+  function getActivityIdentifier(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (string memory) {
+   return null;
+  }
+
+  function getLastUpdatedTime(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32) {
+   return null;
+  }
+
+  function getLang(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32) {
+   return null;
+  }
+
+  function getCurrency(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32) {
+   return null;
+  }
+
+  function getHumanitarian(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (boolean) {
+   return null;
+  }
+
+  function getHierarchy(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8) {
+   return null;
+  }
+
+  function getLinkedData(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32) {
+   return null;
+  }
+
+  function getBudgetProvided(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8) {
+   return null;
   }
 }
