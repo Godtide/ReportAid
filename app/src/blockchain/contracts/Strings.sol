@@ -59,4 +59,15 @@ library Strings {
     }
     return index;
   }
+
+  function getExists(bytes32 _x, bytes32[] memory _xs) public view returns (bool) {
+    require (_x[0] != 0);
+
+    bool exists = false;
+    if ( !(_xs.length == 0) ) {
+      uint256 index = getIndex(_activitiesRef, activitiesReferences);
+      exists = (index != _xs.length);
+    }
+    return exists;
+  }
 }

@@ -15,7 +15,7 @@ contract Activities {
     uint8 budgetProvided;
   }
 
-  struct ReportingOrganisation {
+  struct ReportingOrg {
     bytes32 orgRef;
     uint8 orgType;
     bool isSecondary;
@@ -23,7 +23,7 @@ contract Activities {
 
   struct OrgActivities {
     Activity activity;
-    ReportingOrganisation reportingOrg;
+    ReportingOrg reportingOrg;
     bytes32 activitiesRef;
     bytes32 version;
     bytes32 generatedTime;
@@ -32,6 +32,10 @@ contract Activities {
 
   function setActivities(OrgActivities memory _activities) public;
   function setActivity(bytes32 _activitiesRef, Activity memory _activity) public;
+  function setReportingOrg(bytes32 _activitiesRef, bytes32 _activityRef, ReportingOrg memory _reportingOrg) public;
+  function setVersion(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _version) public;
+  function setGeneratedTime(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _generatedTime) public;
+  function setLinkedData(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _linkedData) public;
 
   function getActivitiesExists(bytes32 _activitiesRef) public view returns (bool);
   function getActivityExists(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bool);
