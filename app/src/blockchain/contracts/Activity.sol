@@ -6,6 +6,8 @@ contract Activity {
   struct Activity {
     bytes32 activityRef;
     string identifier;
+    string title;
+    string description;
     bytes32 lastUpdated;
     bytes32 lang;
     bytes32 currency;
@@ -13,6 +15,9 @@ contract Activity {
     uint8 hierarchy;
     bytes32 linkedData;
     uint8 budgetProvided;
+    unint8 status;
+    bytes32 date;
+    uint8 scope;
   }
 
   function setActivity(bytes32 _activitiesRef, Activity memory _activity) public;
