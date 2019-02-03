@@ -7,23 +7,19 @@ import "./Strings.sol";
 contract IATIActivities is Activities {
 
   bytes32[] activitiesRefs;
-  mapping(bytes32 =>  Activities) private activities;
+  mapping(bytes32 =>  OrgActivities) private activities;
 
-  event SetActivities(OrgActivities memory _activities);
+  event SetActivities(OrgActivities _activities);
 
-  function setActivities(Activities memory _activities) public {
-    require (_activities.activitiesRef[0] != 0
+  function setActivities(OrgActivities memory _activities) public {
+    require (_activities.activitiesRef[0] != 0  &&
              _activities.version[0] != 0 &&
              _activities.generatedTime[0] != 0);
 
     activities[_activities.activitiesRef] = _activities;
 
-    if (!getExists(_activities.activitiesRef, activitiesRefs)) {
+    if (!Strings.getExists(_activities.activitiesRef, activitiesRefs)) {
       activitiesRefs.push(_activities.activitiesRef);
-    }
-
-    if(!getExists(_activities.activity.activityRef, orgActivities[_activities.activitiesRef])) {
-      activityRefs[_activities.activitiesRef].push(_activities.activity.activityRef);
     }
 
     emit SetActivities(_activities);
@@ -39,16 +35,10 @@ contract IATIActivities is Activities {
     return activitiesRefs[_index];
   }
 
-  function getActivities(bytes32 _activitiesRef) public view returns (Activities memory) {
+  function getActivities(bytes32 _activitiesRef) public view returns (OrgActivities memory) {
   	require (_activitiesRef[0] != 0);
 
   	return activities[_activitiesRef];
-  }
-
-  function getReportingOrg(bytes32 _activitiesRef) public view returns (ReportingOrg memory) {
-  	require (_activitiesRef[0] != 0);
-
-  	return activities[_activitiesRef].reportingOrg;
   }
 
   function getVersion(bytes32 _activitiesRef) public view returns (bytes32) {

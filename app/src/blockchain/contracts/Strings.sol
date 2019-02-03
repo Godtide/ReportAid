@@ -65,7 +65,7 @@ library Strings {
 
     bool exists = false;
     if ( !(_xs.length == 0) ) {
-      uint256 index = getIndex(_activitiesRef, activitiesReferences);
+      uint256 index = getIndex(_x, _xs);
       exists = (index != _xs.length);
     }
     return exists;

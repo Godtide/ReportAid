@@ -8,11 +8,11 @@ contract IATIActivity is Activity {
 
   bytes32[] activitiesRefs;
   mapping(bytes32 => bytes32[]) private activityRefs;
-  mapping(bytes32 =>  mapping(bytes32 => Activity)) private activities;
+  mapping(bytes32 =>  mapping(bytes32 => OrgActivity)) private activities;
 
-  event SetActivity(bytes32 _activitiesRef, Activity memory _activity);
+  event SetActivity(bytes32 _activitiesRef, OrgActivity _activity);
 
-  function setActivity(bytes32 _activitiesRef, Activity memory _activity) public {
+  function setActivity(bytes32 _activitiesRef, OrgActivity memory _activity) public {
     require (_activitiesRef[0] != 0 &&
              _activity.activityRef[0] != 0 &&
              bytes(_activity.identifier).length > 0 &&
@@ -23,23 +23,23 @@ contract IATIActivity is Activity {
              _activity.lastUpdated[0] != 0 &&
              _activity.lang[0]  != 0 &&
              _activity.currency[0] != 0 &&
-             _activity.hierarchy > Hierarchy.NONE &&
-             _activity.hierarchy < Hierarchy.MAX &&
-             _activity.budgetNotProvided >= budgetNotProvided.NONE &&
-             _activity.budgetNotProvided < budgetNotProvided.MAX &&
-             _activity.status > Status.NONE &&
-             _activity.status < Status.MAX &&
+             _activity.hierarchy > uint8(Hierarchy.NONE) &&
+             _activity.hierarchy < uint8(Hierarchy.MAX) &&
+             _activity.budgetNotProvided >= uint8(BudgetNotProvided.NONE) &&
+             _activity.budgetNotProvided < uint8(BudgetNotProvided.MAX) &&
+             _activity.status > uint8(Status.NONE) &&
+             _activity.status < uint8(Status.MAX) &&
              _activity.date[0] != 0 &&
-             _activity.scope >= Scope.NONE &&
-             _activity.scope < Scope.MAX);
+             _activity.scope >= uint8(Scope.NONE) &&
+             _activity.scope < uint8(Scope.MAX));
 
-    activities[_activitiesRef][_activity.activityRef].activity = _activity;
+    activities[_activitiesRef][_activity.activityRef] = _activity;
 
-    if (!getExists(_activitiesRef, activitiesRefs)) {
+    if (!Strings.getExists(_activitiesRef, activitiesRefs)) {
       activitiesRefs.push(_activitiesRef);
     }
 
-    if(!getExists(_activity.activityRef, activityRefs[_activitiesRef])) {
+    if(!Strings.getExists(_activity.activityRef, activityRefs[_activitiesRef])) {
       activityRefs[_activitiesRef].push(_activity.activityRef);
     }
 
@@ -58,7 +58,7 @@ contract IATIActivity is Activity {
     return activityRefs[_activitiesRef][_index];
   }
 
-  function getActivity(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (Activity memory) {
+  function getActivity(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (OrgActivity memory) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
 
     return activities[_activitiesRef][_activityRef];
@@ -70,7 +70,7 @@ contract IATIActivity is Activity {
   	return activities[_activitiesRef][_activityRef].identifier;
   }
 
-  function getReportingOrg(bytes32 _activitiesRef, , bytes32 _activityRef) public view returns (ReportingOrg memory) {
+  function getReportingOrg(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (ReportingOrg memory) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
 
   	return activities[_activitiesRef][_activityRef].reportingOrg;
@@ -106,7 +106,7 @@ contract IATIActivity is Activity {
   	return activities[_activitiesRef][_activityRef].currency;
   }
 
-  function getHumanitarian(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (boolean) {
+  function getHumanitarian(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bool) {
   	require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
 
   	return activities[_activitiesRef][_activityRef].humanitarian;
@@ -124,10 +124,10 @@ contract IATIActivity is Activity {
   	return activities[_activitiesRef][_activityRef].linkedData;
   }
 
-  function getBudgetProvided(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8) {
+  function getBudgetNotProvided(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8) {
   	require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
 
-  	return activities[_activitiesRef][_activityRef].budgetProvided;
+  	return activities[_activitiesRef][_activityRef].budgetNotProvided;
   }
 
   function getStatus(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8) {

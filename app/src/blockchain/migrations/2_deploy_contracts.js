@@ -1,12 +1,15 @@
-var StringsLib = artifacts.require("./Strings.sol");
-var IATIOrganisations = artifacts.require("./IATIOrganisations.sol");
-var IATIOrganisationReports = artifacts.require("./IATIOrganisationReports.sol");
-var IATIOrganisationReportDocs = artifacts.require("./IATIOrganisationReportDocs.sol");
-var IATIOrganisationReportBudgets = artifacts.require("./IATIOrganisationReportBudgets.sol");
-var IATIOrganisationReportExpenditure = artifacts.require("./IATIOrganisationReportExpenditure.sol");
-var IATIOrganisationReportRecipientBudgets = artifacts.require("./IATIOrganisationReportRecipientBudgets.sol");
-var IATIOrganisationReportRegionBudgets = artifacts.require("./IATIOrganisationReportRegionBudgets.sol");
-var IATIOrganisationReportCountryBudgets = artifacts.require("./IATIOrganisationReportCountryBudgets.sol");
+const StringsLib = artifacts.require("./Strings.sol");
+const IATIOrganisations = artifacts.require("./IATIOrganisations.sol");
+const IATIOrganisationReports = artifacts.require("./IATIOrganisationReports.sol");
+const IATIOrganisationReportDocs = artifacts.require("./IATIOrganisationReportDocs.sol");
+const IATIOrganisationReportBudgets = artifacts.require("./IATIOrganisationReportBudgets.sol");
+const IATIOrganisationReportExpenditure = artifacts.require("./IATIOrganisationReportExpenditure.sol");
+const IATIOrganisationReportRecipientBudgets = artifacts.require("./IATIOrganisationReportRecipientBudgets.sol");
+const IATIOrganisationReportRegionBudgets = artifacts.require("./IATIOrganisationReportRegionBudgets.sol");
+const IATIOrganisationReportCountryBudgets = artifacts.require("./IATIOrganisationReportCountryBudgets.sol");
+
+const IATIActivities = artifacts.require("./IATIActivities.sol");
+const IATIActivity = artifacts.require("./IATIActivity.sol");
 
 module.exports = function(deployer) {
   deployer.deploy(StringsLib);
@@ -18,6 +21,8 @@ module.exports = function(deployer) {
   deployer.link(StringsLib, IATIOrganisationReportRecipientBudgets);
   deployer.link(StringsLib, IATIOrganisationReportRegionBudgets);
   deployer.link(StringsLib, IATIOrganisationReportCountryBudgets);
+  deployer.link(StringsLib, IATIActivities);
+  deployer.link(StringsLib, IATIActivity);
   deployer.deploy(IATIOrganisations);
   deployer.deploy(IATIOrganisationReports);
   deployer.deploy(IATIOrganisationReportDocs);
@@ -26,4 +31,6 @@ module.exports = function(deployer) {
   deployer.deploy(IATIOrganisationReportRecipientBudgets);
   deployer.deploy(IATIOrganisationReportRegionBudgets);
   deployer.deploy(IATIOrganisationReportCountryBudgets);
+  deployer.deploy(IATIActivities);
+  deployer.deploy(IATIActivity);
 };

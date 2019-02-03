@@ -49,7 +49,7 @@ contract Activity {
   }
 
 
-  struct Activity {
+  struct OrgActivity {
     bytes32 activityRef;
     string identifier;
     ReportingOrg reportingOrg;
@@ -58,7 +58,7 @@ contract Activity {
     bytes32 lastUpdated;
     bytes32 lang;
     bytes32 currency;
-    boolean humanitarian;
+    bool humanitarian;
     uint8 hierarchy;
     bytes32 linkedData;
     uint8 budgetNotProvided;
@@ -67,12 +67,12 @@ contract Activity {
     uint8 scope;
   }
 
-  function setActivity(bytes32 _activitiesRef, Activity memory _activity) public;
+  function setActivity(bytes32 _activitiesRef, OrgActivity memory _activity) public;
 
   function getNumActivities(bytes32 _activitiesRef) public view returns (uint256);
   function getActivityReference(bytes32 _activitiesRef, uint256 _index) public view returns (bytes32);
 
-  function getActivity(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (Activity memory);
+  function getActivity(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (OrgActivity memory);
   function getActivityIdentifier(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (string memory);
   function getReportingOrg(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (ReportingOrg memory);
   function getTitle(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (string memory);
@@ -80,10 +80,10 @@ contract Activity {
   function getLastUpdatedTime(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32);
   function getLang(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32);
   function getCurrency(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32);
-  function getHumanitarian(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (boolean);
+  function getHumanitarian(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bool);
   function getHierarchy(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8);
   function getLinkedData(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32);
-  function getBudgetProvided(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8);
+  function getBudgetNotProvided(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8);
   function getStatus(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8);
   function getDate(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32);
   function getScope(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8);
