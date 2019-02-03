@@ -10,15 +10,9 @@ contract IATIActivities is Activities {
   mapping(bytes32 =>  Activities) private activities;
 
   event SetActivities(OrgActivities memory _activities);
-  event SetReportingOrg(bytes32 _activitiesRef, ReportingOrg memory _reportingOrg);
-  event SetVersion(bytes32 _activitiesRef, bytes32 _version);
-  event SetGeneratedTime(bytes32 _activitiesRef, bytes32 _generatedTime);
-  event SetLinkedData(bytes32 _activitiesRef, bytes32 _linkedData);
 
   function setActivities(Activities memory _activities) public {
-    require (_activities.activitiesRef[0] != 0 &&
-             _activities.reportingOrg.orgRef[0] != 0 &&
-             _activities.reportingOrg.orgType > 0 &&
+    require (_activities.activitiesRef[0] != 0
              _activities.version[0] != 0 &&
              _activities.generatedTime[0] != 0);
 
@@ -33,60 +27,6 @@ contract IATIActivities is Activities {
     }
 
     emit SetActivities(_activities);
-  }
-
-  function setReportingOrg(bytes32 _activitiesRef, ReportingOrg memory _reportingOrg) public {
-    require (_activitiesRef[0] != 0 &&
-             _reportingOrg.orgRef[0] != 0 &&
-             _reportingOrg.orgType > 0);
-
-    activities[_activitiesRef].reportingOrg = _reportingOrg;
-
-    if (!getExists(_activitiesRef, activitiesRefs)) {
-       activitiesRefs.push(_activitiesRef);
-    }
-
-    emit SetReportingOrg(_activitiesRef, _activity);
-  }
-
-  function setVersion(bytes32 _activitiesRef, bytes32 _version) public {
-    require (_activitiesRef[0] != 0 &&
-             _version[0] != 0);
-
-    activities[_activitiesRef].version = _version;
-
-    if (!getExists(_activitiesRef, activitiesRefs)) {
-       activitiesRefs.push(_activitiesRef);
-    }
-
-    emit SetVersion(_activitiesRef, _version);
-  }
-
-  function setGeneratedTime(bytes32 _activitiesRef, bytes32 _generatedTime) public {
-    require (_activitiesRef[0] != 0 &&
-             _generatedTime[0] != 0);
-
-    activities[_activitiesRef].generatedTime = _generatedTime;
-
-    if (!getExists(_activitiesRef, activitiesRefs)) {
-       activitiesRefs.push(_activitiesRef);
-    }
-
-    emit SetGeneratedTime(_activitiesRef, _generatedTime);
-  }
-
-  function setLinkedData(bytes32 _activitiesRef, bytes32 _linkedData) public {
-    require (_activitiesRef[0] != 0 &&
-             _activityRef[0] != 0 &&
-             _linkedData[0] != 0);
-
-    activities[_activitiesRef].linkedData = _linkedData;
-
-    if (!getExists(_activitiesRef, activitiesRefs)) {
-       activitiesRefs.push(_activitiesRef);
-    }
-
-    emit SetLinkedData(_activitiesRef, _linkedData);
   }
 
   function getNumActivities() public view returns (uint256) {

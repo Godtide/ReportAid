@@ -2906,6 +2906,37 @@ class Helpers {
     {value: 2040, label: "2040"}
   ]
 
+  static activityHierarchy = [
+    {value: 1, label: "activity"},
+    {value: 2, label: "sub-activity"},
+    {value: 3, label: "sub-sub-activity"}
+  ]
+
+  static activityBudgetNotProvided = [
+    {value: 1, label: "Commercial Restrictions"},
+    {value: 2, label: "Legal Restrictions"},
+    {value: 3, label: "Rapid Onset Emergency"}
+  ]
+
+  static activityStatus = [
+    {value: 1, label: "Pipeline/identification"},
+    {value: 2, label: "Implementation"},
+    {value: 3, label: "Finalisation"},
+    {value: 4, label: "Closed"},
+    {value: 5, label: "Cancelled"},
+    {value: 6, label: "Suspended"}
+  ]
+
+  static activityScope = [
+    {value: 1, label: "Global"},
+    {value: 2, label: "Regional"},
+    {value: 3, label: "Multi-national"},
+    {value: 4, label: "National"},
+    {value: 5, label: "Sub-national: Multi-first-level administrative areas"},
+    {value: 6, label: "Sub-national: Single first-level administrative area"},
+    {value: 7, label: "Sub-national: Single second-level administrative area"},
+    {value: 8, label: "Single location"}
+  ]
 }
 
 export { Paths, Blockchain, Contract, Helpers }
