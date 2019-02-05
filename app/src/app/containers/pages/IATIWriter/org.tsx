@@ -12,18 +12,18 @@ import { TextField } from "material-ui-formik-components"
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { OrganisationProps } from '../../../store/IATI/types'
+import { OrgProps } from '../../../store/IATI/types'
 
-import { setOrganisation } from '../../../store/IATI/IATIWriter/organisation/actions'
+import { setOrg } from '../../../store/IATI/IATIWriter/orgs/actions'
 
 import { TransactionHelper, TransactionTypes } from '../../io/transactionHelper'
 
-import { Organisation } from '../../../utils/strings'
+import { Org as OrgStrings } from '../../../utils/strings'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
 
-const organisationSchema = Yup.object().shape({
+const orgSchema = Yup.object().shape({
   name: Yup
     .string()
     .required('Required'),
@@ -52,7 +52,7 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
    super(props)
   }
 
-  handleSubmit = (values: OrganisationProps, setSubmitting: Function, reset: Function) => {
+  handleSubmit = (values: OrgProps, setSubmitting: Function, reset: Function) => {
     this.setState({submitFunc: setSubmitting, resetFunc: reset})
     this.props.handleSubmit(values)
   }
@@ -61,24 +61,24 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
 
     return (
       <div>
-        <h2>{Organisation.headingOrgWriter}</h2>
+        <h2>{OrgStrings.headingOrgWriter}</h2>
         <div>
           <Formik
             initialValues={ {name: '', code: '', identifier: ''} }
-            validationSchema={organisationSchema}
-            onSubmit={(values: OrganisationProps, actions: any) => {
+            validationSchema={orgSchema}
+            onSubmit={(values: OrgProps, actions: any) => {
               this.handleSubmit(values, actions.setSubmitting, actions.resetForm)
             }}
-            render={(formProps: FormikProps<OrganisationProps>) => (
+            render={(formProps: FormikProps<OrgProps>) => (
               <Form>
                 <FormControl fullWidth={true}>
-                  <Field name='name' label={Organisation.orgName} component={TextField} />
+                  <Field name='name' label={OrgStrings.orgName} component={TextField} />
                   <ErrorMessage name='name' />
                   <br />
-                  <Field name='code' label={Organisation.code} component={TextField} />
+                  <Field name='code' label={OrgStrings.code} component={TextField} />
                   <ErrorMessage name='code' />
                   <br />
-                  <Field name='identifier' label={Organisation.identifier} component={TextField} />
+                  <Field name='identifier' label={OrgStrings.identifier} component={TextField} />
                   <ErrorMessage name='identifier' />
                   <br />
                   {formProps.isSubmitting && <LinearProgress />}
@@ -103,11 +103,11 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgDispatchProps => {
   return {
-    handleSubmit: (ownProps: any) => dispatch(setOrganisation(ownProps))
+    handleSubmit: (ownProps: any) => dispatch(setOrg(ownProps))
   }
 }
 
-export const Organisations = withTheme(withStyles(styles)(connect<void, OrgDispatchProps, {}, ApplicationState>(
+export const Org = withTheme(withStyles(styles)(connect<void, OrgDispatchProps, {}, ApplicationState>(
   null,
   mapDispatchToProps
 )(OrgForm)))

@@ -60,7 +60,7 @@ library Strings {
     return index;
   }
 
-  function getExists(bytes32 _x, bytes32[] memory _xs) public view returns (bool) {
+  function getExists(bytes32 _x, bytes32[] memory _xs) public pure returns (bool) {
     require (_x[0] != 0);
 
     bool exists = false;

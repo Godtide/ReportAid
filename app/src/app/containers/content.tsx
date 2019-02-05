@@ -8,7 +8,7 @@ import { Info } from './pages/info/info'
 import { InfoTypes } from './pages/info/types'
 
 import { BlockchainInfo } from './pages/blockchain/blockchainInfo'
-import { Organisations as OrgWriter } from './pages/IATIWriter/organisation'
+import { Org as OrgWriter } from './pages/IATIWriter/org'
 import { OrganisationReports as OrgReportsWriter } from './pages/IATIWriter/organisationReports'
 import { OrganisationReportDocs as OrgReportDocsWriter } from './pages/IATIWriter/organisationReportDocs'
 import { OrganisationReportBudgets as OrgReportBudgetsWriter } from './pages/IATIWriter/organisationReportBudgets'
@@ -17,7 +17,7 @@ import { OrganisationReportRecipientBudgets as OrgReportRecipientBudgetsWriter }
 import { OrganisationReportRegionBudgets as OrgReportRegionBudgetsWriter } from './pages/IATIWriter/organisationReportRegionBudgets'
 import { OrganisationReportCountryBudgets as OrgReportCountryBudgetsWriter } from './pages/IATIWriter/organisationReportCountryBudgets'
 
-import { Organisations as OrgReader } from './pages/IATIReader/organisation'
+import { Orgs as OrgReader } from './pages/IATIReader/orgs'
 import { OrganisationReports as OrgReportsReader } from './pages/IATIReader/organisationReports'
 import { OrganisationReportDocs as OrgReportDocsReader } from './pages/IATIReader/organisationReportDocs'
 import { OrganisationReportBudgets as OrgReportBudgetsReader } from './pages/IATIReader/organisationReportBudgets'

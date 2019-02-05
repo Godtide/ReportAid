@@ -1,0 +1,295 @@
+
+> ReportAid@0.0.5 develMigrate /its/home/sh601/gitrepos/ReportAid/app
+> cd ./src/blockchain && truffle migrate --network development
+
+Compiling ./contracts/IATIOrganisationReportDocs.sol...
+Compiling ./contracts/OrganisationReportDocs.sol...
+
+Compilation warnings encountered:
+
+/its/home/sh601/gitrepos/ReportAid/app/src/blockchain/contracts/Activities.sol:2:1: Warning: Experimental features are turned on. Do not use experimental features on live deployments.
+pragma experimental ABIEncoderV2;
+^-------------------------------^
+,/its/home/sh601/gitrepos/ReportAid/app/src/blockchain/contracts/Activity.sol:2:1: Warning: Experimental features are turned on. Do not use experimental features on live deployments.
+pragma experimental ABIEncoderV2;
+^-------------------------------^
+,/its/home/sh601/gitrepos/ReportAid/app/src/blockchain/contracts/Strings.sol:2:1: Warning: Experimental features are turned on. Do not use experimental features on live deployments.
+pragma experimental ABIEncoderV2;
+^-------------------------------^
+,/its/home/sh601/gitrepos/ReportAid/app/src/blockchain/contracts/IATIActivities.sol:2:1: Warning: Experimental features are turned on. Do not use experimental features on live deployments.
+pragma experimental ABIEncoderV2;
+^-------------------------------^
+,/its/home/sh601/gitrepos/ReportAid/app/src/blockchain/contracts/IATIActivity.sol:2:1: Warning: Experimental features are turned on. Do not use experimental features on live deployments.
+pragma experimental ABIEncoderV2;
+^-------------------------------^
+,/its/home/sh601/gitrepos/ReportAid/app/src/blockchain/contracts/OrganisationReportBudgets.sol:2:1: Warning: Experimental features are turned on. Do not use experimental features on live deployments.
+pragma experimental ABIEncoderV2;
+^-------------------------------^
+,/its/home/sh601/gitrepos/ReportAid/app/src/blockchain/contracts/IATIOrganisationReportBudgets.sol:2:1: Warning: Experimental features are turned on. Do not use experimental features on live deployments.
+pragma experimental ABIEncoderV2;
+^-------------------------------^
+,/its/home/sh601/gitrepos/ReportAid/app/src/blockchain/contracts/OrganisationReportCountryBudgets.sol:2:1: Warning: Experimental features are turned on. Do not use experimental features on live deployments.
+pragma experimental ABIEncoderV2;
+^-------------------------------^
+,/its/home/sh601/gitrepos/ReportAid/app/src/blockchain/contracts/IATIOrganisationReportCountryBudgets.sol:2:1: Warning: Experimental features are turned on. Do not use experimental features on live deployments.
+pragma experimental ABIEncoderV2;
+^-------------------------------^
+,/its/home/sh601/gitrepos/ReportAid/app/src/blockchain/contracts/OrganisationReportDocs.sol:2:1: Warning: Experimental features are turned on. Do not use experimental features on live deployments.
+pragma experimental ABIEncoderV2;
+^-------------------------------^
+,/its/home/sh601/gitrepos/ReportAid/app/src/blockchain/contracts/IATIOrganisationReportDocs.sol:2:1: Warning: Experimental features are turned on. Do not use experimental features on live deployments.
+pragma experimental ABIEncoderV2;
+^-------------------------------^
+,/its/home/sh601/gitrepos/ReportAid/app/src/blockchain/contracts/OrganisationReportExpenditure.sol:2:1: Warning: Experimental features are turned on. Do not use experimental features on live deployments.
+pragma experimental ABIEncoderV2;
+^-------------------------------^
+,/its/home/sh601/gitrepos/ReportAid/app/src/blockchain/contracts/IATIOrganisationReportExpenditure.sol:2:1: Warning: Experimental features are turned on. Do not use experimental features on live deployments.
+pragma experimental ABIEncoderV2;
+^-------------------------------^
+,/its/home/sh601/gitrepos/ReportAid/app/src/blockchain/contracts/OrganisationReportRecipientBudgets.sol:2:1: Warning: Experimental features are turned on. Do not use experimental features on live deployments.
+pragma experimental ABIEncoderV2;
+^-------------------------------^
+,/its/home/sh601/gitrepos/ReportAid/app/src/blockchain/contracts/IATIOrganisationReportRecipientBudgets.sol:2:1: Warning: Experimental features are turned on. Do not use experimental features on live deployments.
+pragma experimental ABIEncoderV2;
+^-------------------------------^
+,/its/home/sh601/gitrepos/ReportAid/app/src/blockchain/contracts/OrganisationReportRegionBudgets.sol:2:1: Warning: Experimental features are turned on. Do not use experimental features on live deployments.
+pragma experimental ABIEncoderV2;
+^-------------------------------^
+,/its/home/sh601/gitrepos/ReportAid/app/src/blockchain/contracts/IATIOrganisationReportRegionBudgets.sol:2:1: Warning: Experimental features are turned on. Do not use experimental features on live deployments.
+pragma experimental ABIEncoderV2;
+^-------------------------------^
+,/its/home/sh601/gitrepos/ReportAid/app/src/blockchain/contracts/OrganisationReports.sol:2:1: Warning: Experimental features are turned on. Do not use experimental features on live deployments.
+pragma experimental ABIEncoderV2;
+^-------------------------------^
+,/its/home/sh601/gitrepos/ReportAid/app/src/blockchain/contracts/IATIOrganisationReports.sol:2:1: Warning: Experimental features are turned on. Do not use experimental features on live deployments.
+pragma experimental ABIEncoderV2;
+^-------------------------------^
+,/its/home/sh601/gitrepos/ReportAid/app/src/blockchain/contracts/Orgs.sol:2:1: Warning: Experimental features are turned on. Do not use experimental features on live deployments.
+pragma experimental ABIEncoderV2;
+^-------------------------------^
+,/its/home/sh601/gitrepos/ReportAid/app/src/blockchain/contracts/IATIOrgs.sol:2:1: Warning: Experimental features are turned on. Do not use experimental features on live deployments.
+pragma experimental ABIEncoderV2;
+^-------------------------------^
+
+Writing artifacts to ./build/contracts
+
+⚠️  Important ⚠️
+If you're using an HDWalletProvider, it must be Web3 1.0 enabled or your migration will hang.
+
+
+Starting migrations...
+======================
+> Network name:    'development'
+> Network id:      5777
+> Block gas limit: 6721975
+
+
+2_deploy_contracts.js
+=====================
+
+   Deploying 'Strings'
+   -------------------
+   > transaction hash:    0xc8a71a8c61a6154f0424562dec33aaf68ed5c04656019f3f26de51c5e91d2603
+- Blocks: 0            Seconds: 0
+   > Blocks: 0            Seconds: 0
+   > contract address:    0xE34A21132646DFD804A35faad90e74CE38B36f85
+   > account:             0xd400515d7Bb28Ed05d027a3DA14928CEDCeE0DAb
+   > balance:             99.97697476
+   > gas used:            824320
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.0164864 ETH
+
+
+   Linking
+   -------
+   * Contract: IATIOrgs <--> Library: Strings (at address: 0xE34A21132646DFD804A35faad90e74CE38B36f85)
+
+   Linking
+   -------
+   * Contract: IATIOrganisationReports <--> Library: Strings (at address: 0xE34A21132646DFD804A35faad90e74CE38B36f85)
+
+   Linking
+   -------
+   * Contract: IATIOrganisationReportDocs <--> Library: Strings (at address: 0xE34A21132646DFD804A35faad90e74CE38B36f85)
+
+   Linking
+   -------
+   * Contract: IATIOrganisationReportBudgets <--> Library: Strings (at address: 0xE34A21132646DFD804A35faad90e74CE38B36f85)
+
+   Linking
+   -------
+   * Contract: IATIOrganisationReportExpenditure <--> Library: Strings (at address: 0xE34A21132646DFD804A35faad90e74CE38B36f85)
+
+   Linking
+   -------
+   * Contract: IATIOrganisationReportRecipientBudgets <--> Library: Strings (at address: 0xE34A21132646DFD804A35faad90e74CE38B36f85)
+
+   Linking
+   -------
+   * Contract: IATIOrganisationReportRegionBudgets <--> Library: Strings (at address: 0xE34A21132646DFD804A35faad90e74CE38B36f85)
+
+   Linking
+   -------
+   * Contract: IATIOrganisationReportCountryBudgets <--> Library: Strings (at address: 0xE34A21132646DFD804A35faad90e74CE38B36f85)
+
+   Linking
+   -------
+   * Contract: IATIActivities <--> Library: Strings (at address: 0xE34A21132646DFD804A35faad90e74CE38B36f85)
+
+   Linking
+   -------
+   * Contract: IATIActivity <--> Library: Strings (at address: 0xE34A21132646DFD804A35faad90e74CE38B36f85)
+
+   Deploying 'IATIOrgs'
+   --------------------
+   > transaction hash:    0xc6df43ec197895e381cba28666811db55fd743e592416a881e926ea9f502d280
+- Blocks: 0            Seconds: 0
+   > Blocks: 0            Seconds: 0
+   > contract address:    0x5fd0bf6818576c58E067749821F1C41aAf97B16A
+   > account:             0xd400515d7Bb28Ed05d027a3DA14928CEDCeE0DAb
+   > balance:             99.9548674
+   > gas used:            1105368
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.02210736 ETH
+
+
+   Deploying 'IATIOrganisationReports'
+   -----------------------------------
+   > transaction hash:    0xe3138a0eb449ed6e48b581252cc6f6b94804934d313a3e94bb645f924ae5f615
+- Blocks: 0            Seconds: 0
+   > Blocks: 0            Seconds: 0
+   > contract address:    0x1dF54fB0bE96038017A1C0563477FabeaEf4A9E3
+   > account:             0xd400515d7Bb28Ed05d027a3DA14928CEDCeE0DAb
+   > balance:             99.91216556
+   > gas used:            2135092
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.04270184 ETH
+
+
+   Deploying 'IATIOrganisationReportDocs'
+   --------------------------------------
+   > transaction hash:    0x2e18d8cc87221fd91d10b3146ab03d23dbb5f25353a9a175e9b25b29cf6efce6
+- Blocks: 0            Seconds: 0
+   > Blocks: 0            Seconds: 0
+   > contract address:    0xFa9f7680705968660d36F34D080d5fEeD0614221
+   > account:             0xd400515d7Bb28Ed05d027a3DA14928CEDCeE0DAb
+   > balance:             99.85690948
+   > gas used:            2762804
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.05525608 ETH
+
+
+   Deploying 'IATIOrganisationReportBudgets'
+   -----------------------------------------
+   > transaction hash:    0x6bc06f185e36eed6b352f26baf68cd08602b539ffb935e804f034724cd85ea49
+- Blocks: 0            Seconds: 0
+   > Blocks: 0            Seconds: 0
+   > contract address:    0xB155E22D9598cC0e635792070A888127Ae349B0c
+   > account:             0xd400515d7Bb28Ed05d027a3DA14928CEDCeE0DAb
+   > balance:             99.8175796
+   > gas used:            1966494
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.03932988 ETH
+
+
+   Deploying 'IATIOrganisationReportExpenditure'
+   ---------------------------------------------
+   > transaction hash:    0x79ea2715664ae69f4d631d96c8ac2853d251339f3b33362eaaed2cde77d0be86
+- Blocks: 0            Seconds: 0
+   > Blocks: 0            Seconds: 0
+   > contract address:    0x85f1116DF7FCFE73bc511Ac1a6a69BaB0A3af1dA
+   > account:             0xd400515d7Bb28Ed05d027a3DA14928CEDCeE0DAb
+   > balance:             99.77824844
+   > gas used:            1966558
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.03933116 ETH
+
+
+   Deploying 'IATIOrganisationReportRecipientBudgets'
+   --------------------------------------------------
+   > transaction hash:    0x180b379175f40957172765dcc2dec7b330d73e133273e535c3aac915d2f131db
+- Blocks: 0            Seconds: 0
+   > Blocks: 0            Seconds: 0
+   > contract address:    0x7461eB577da59CBEE2618BB82c0d67311AE89960
+   > account:             0xd400515d7Bb28Ed05d027a3DA14928CEDCeE0DAb
+   > balance:             99.7360115
+   > gas used:            2111847
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.04223694 ETH
+
+
+   Deploying 'IATIOrganisationReportRegionBudgets'
+   -----------------------------------------------
+   > transaction hash:    0x3794c584935f6b4e5a4f3ed9f82647c530d6c72e8cb4710e61c9b3ff76e8f69d
+- Blocks: 0            Seconds: 0
+   > Blocks: 0            Seconds: 0
+   > contract address:    0x7952136EB509C59bFe8393a0BAeB17D3a5E0a400
+   > account:             0xd400515d7Bb28Ed05d027a3DA14928CEDCeE0DAb
+   > balance:             99.69434304
+   > gas used:            2083423
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.04166846 ETH
+
+
+   Deploying 'IATIOrganisationReportCountryBudgets'
+   ------------------------------------------------
+   > transaction hash:    0xebd9a5e7ba88d19c725cd8bc4fea87c79745636c6d2534c626b145108e16781e
+- Blocks: 0            Seconds: 0
+   > Blocks: 0            Seconds: 0
+   > contract address:    0x391Ef15D0640b87c6Fbaa555CaE2ed29dfd9F5c1
+   > account:             0xd400515d7Bb28Ed05d027a3DA14928CEDCeE0DAb
+   > balance:             99.65210738
+   > gas used:            2111783
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.04223566 ETH
+
+
+   Deploying 'IATIActivities'
+   --------------------------
+   > transaction hash:    0xcda55911da461351c3aee04727095e5cff2502210869e5ad36a627cc2e2e6fe9
+- Blocks: 0            Seconds: 0
+   > Blocks: 0            Seconds: 0
+   > contract address:    0x69f373FeE4B3E8e807c29C1ae3E9Cf945Eff9Ff9
+   > account:             0xd400515d7Bb28Ed05d027a3DA14928CEDCeE0DAb
+   > balance:             99.63571986
+   > gas used:            819376
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.01638752 ETH
+
+
+   Deploying 'IATIActivity'
+   ------------------------
+   > transaction hash:    0x2c1f205a346ea6cce4d7da733284c8b1301737926cff5f5197fee5785e0ba8da
+- Blocks: 0            Seconds: 0
+   > Blocks: 0            Seconds: 0
+   > contract address:    0xd658BCf4D324B313924f1B8CdbB89D4DD06cc81F
+   > account:             0xd400515d7Bb28Ed05d027a3DA14928CEDCeE0DAb
+   > balance:             99.56919102
+   > gas used:            3326442
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.06652884 ETH
+
+
+- Saving migration to chain.
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:          0.42427014 ETH
+
+
+Summary
+=======
+> Total deployments:   11
+> Final cost:          0.42427014 ETH
+

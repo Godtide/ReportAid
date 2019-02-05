@@ -3,13 +3,13 @@ import { connect } from 'react-redux'
 import { ThunkDispatch } from 'redux-thunk'
 import Markdown from 'react-markdown'
 
-import { getOrgs } from '../../../store/IATI/IATIReader/organisation/actions'
+import { getOrgs } from '../../../store/IATI/IATIReader/orgs/actions'
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { OrgData } from '../../../store/IATI/IATIReader/organisation/types'
+import { OrgData } from '../../../store/IATI/IATIReader/orgs/types'
 
-import { Organisation as OrgStrings } from '../../../utils/strings'
+import { Org as OrgStrings } from '../../../utils/strings'
 
 import { getDictEntries } from '../../../components/io/dict'
 
@@ -27,7 +27,7 @@ interface OrgDispatchProps {
 
 type OrgReaderProps =  WithStyles<typeof styles> & OrgProps & OrgDispatchProps
 
-export class Orgs extends React.Component<OrgReaderProps> {
+export class OrgsReader extends React.Component<OrgReaderProps> {
 
   constructor (props: OrgReaderProps) {
     super(props)
@@ -75,7 +75,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   }
 }
 
-export const Organisations = withTheme(withStyles(styles)(connect<OrgProps, OrgDispatchProps, {}, ApplicationState>(
+export const Orgs = withTheme(withStyles(styles)(connect<OrgProps, OrgDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(Orgs)))
+)(OrgsReader)))

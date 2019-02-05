@@ -9,8 +9,8 @@ import { ActionProps } from '../../store/types'
 import { Field, ErrorMessage} from 'formik'
 import { Select } from "material-ui-formik-components"
 
-import { getOrgs } from '../../store/IATI/IATIReader/organisation/actions'
-import { OrgData } from '../../store/IATI/IATIReader/organisation/types'
+import { getOrgs } from '../../store/IATI/IATIReader/orgs/actions'
+import { OrgData } from '../../store/IATI/IATIReader/orgs/types'
 
 interface OrgProps {
   name: string

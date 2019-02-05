@@ -97,7 +97,7 @@ class Transaction {
 
 }
 
-class Organisation {
+class Org {
 
   static headingOrgWriter = 'Create Organisation Records'
   static headingOrgReader = 'Read Organisation Records'
@@ -303,7 +303,7 @@ export { App,
          IATIWriter,
          IATIReader,
          Transaction,
-         Organisation,
+         Org,
          OrganisationReport,
          OrganisationReportDoc,
          OrganisationReportBudget,

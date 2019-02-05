@@ -7,7 +7,7 @@ import { ApplicationState } from '../../../store'
 import { storeAction } from '../../../actions'
 
 import { ActionProps, PayloadProps, TxProps, TxData } from '../../../types'
-import { OrganisationProps, IATIOrgProps } from '../../types'
+import { OrgProps, IATIOrgProps } from '../../types'
 import { OrgWriterActionTypes } from './types'
 
 const add = (payload: PayloadProps): Function => {
@@ -17,7 +17,7 @@ const add = (payload: PayloadProps): Function => {
   }
 }
 
-export const setOrganisation = (orgDetails: OrganisationProps) => {
+export const setOrg = (orgDetails: OrgProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
     const identifier =  orgDetails.code + '-' + orgDetails.identifier
@@ -33,13 +33,13 @@ export const setOrganisation = (orgDetails: OrganisationProps) => {
     let txData: TxData = {}
 
     try {
-      const tx = await orgContract.setOrganisation(org)
+      const tx = await orgContract.setOrg(org)
       const key = tx.hash
       txData[key] = tx
       actionType = OrgWriterActionTypes.ADD_SUCCESS
     } catch (error) {
       txData[-1] = txData
-      console.log('setOrganisation error', error)
+      console.log('setOrg error', error)
     }
 
     dispatch(add({data: {data: txData}})(actionType))

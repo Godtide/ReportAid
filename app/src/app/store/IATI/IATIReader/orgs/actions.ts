@@ -8,9 +8,9 @@ import { OrgReaderActionTypes, OrgReaderProps, OrgData } from './types'
 
 export const getOrgs = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>) => {
-    await dispatch(getNumOrganisations())
+    await dispatch(getNumOrgs())
     await dispatch(getReferences())
-    dispatch(getOrgData())
+    dispatch(getOrgsData())
     /* await dispatch(getNames())
     dispatch(getIDs())*/
   }
@@ -23,18 +23,18 @@ const get = (payload: PayloadProps): Function => {
   }
 }
 
-const getNumOrganisations = () => {
+const getNumOrgs = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
     const orgContract = state.chainContracts.data.contracts.orgContract
     let actionType = OrgReaderActionTypes.NUM_FAILURE
     let numOrgs = { num: 0 }
     try {
-      const num = await orgContract.getNumOrganisations()
+      const num = await orgContract.getNumOrgs()
       numOrgs.num = num.toNumber()
       actionType = OrgReaderActionTypes.NUM_SUCCESS
     } catch (error) {
-      console.log('getNumOrganisations error', error)
+      console.log('getNumOrgs error', error)
     }
 
     dispatch(get({data: numOrgs})(actionType))
@@ -50,7 +50,7 @@ const getReferences = () => {
     let actionType = OrgReaderActionTypes.REF_FAILURE
     for (let i = 0; i < numOrgs; i++) {
        try {
-         const ref = await orgContract.getOrganisationReference(i.toString())
+         const ref = await orgContract.getOrgReference(i.toString())
          //console.log('Ref', ref)
          orgRefs[ref] = {
            orgRef: ref,
@@ -67,7 +67,7 @@ const getReferences = () => {
   }
 }
 
-const getOrgData = () => {
+const getOrgsData = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
     const orgContract = state.chainContracts.data.contracts.orgContract
@@ -78,7 +78,7 @@ const getOrgData = () => {
     for (let i = 0; i < orgKeys.length; i++) {
       const thisKey = orgKeys[i]
        try {
-         const data = await orgContract.getOrganisation(thisKey)
+         const data = await orgContract.getOrg(thisKey)
          //console.log ('Org stuff: ', data)
          orgs[thisKey].name = data[1]
          orgs[thisKey].identifier = data[2]
@@ -103,7 +103,7 @@ const getNames = () => {
     for (let i = 0; i < orgKeys.length; i++) {
       const thisKey = orgKeys[i]
        try {
-         orgs[thisKey].name = await orgContract.getOrganisationName(thisKey)
+         orgs[thisKey].name = await orgContract.getOrgName(thisKey)
          actionType = OrgReaderActionTypes.NAME_SUCCESS
        } catch (error) {
          console.log('getNames error', error)
@@ -125,7 +125,7 @@ const getIDs = () => {
     for (let i = 0; i < orgKeys.length; i++) {
       const thisKey = orgKeys[i]
        try {
-         orgs[thisKey].identifier = await orgContract.getOrganisationIdentifier(thisKey)
+         orgs[thisKey].identifier = await orgContract.getOrgIdentifier(thisKey)
          actionType = OrgReaderActionTypes.ID_SUCCESS
        } catch (error) {
          console.log('getIDs error', error)

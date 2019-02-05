@@ -4,7 +4,7 @@ import { combineReducers, Reducer, Store, createStore, applyMiddleware } from 'r
 import ReduxThunk, { ThunkAction } from 'redux-thunk'
 
 import { ActionProps, TxProps } from './types'
-import { OrgReaderProps } from './IATI/IATIReader/organisation/types'
+import { OrgReaderProps } from './IATI/IATIReader/orgs/types'
 import { OrgReportReaderProps } from './IATI/IATIReader/organisationReports/types'
 import { OrgReportDocsReaderProps } from './IATI/IATIReader/organisationReportDocs/types'
 import { OrgReportBudgetsReaderProps } from './IATI/IATIReader/organisationReportBudgets/types'
@@ -27,7 +27,7 @@ import { reducer as overviewReducer } from './info/overview/reducer'
 import { reducer as IATIWriterInfoReducer } from './info/IATIWriter/reducer'
 import { reducer as IATIReaderInfoReducer } from './info/IATIReader/reducer'
 
-import { reducer as orgReaderReducer } from './IATI/IATIReader/organisation/reducer'
+import { reducer as orgReaderReducer } from './IATI/IATIReader/orgs/reducer'
 import { reducer as orgReportsReaderReducer } from './IATI/IATIReader/organisationReports/reducer'
 import { reducer as orgReportDocsReaderReducer } from './IATI/IATIReader/organisationReportDocs/reducer'
 import { reducer as orgReportBudgetsReaderReducer } from './IATI/IATIReader/organisationReportBudgets/reducer'
@@ -36,7 +36,7 @@ import { reducer as orgReportRecipientBudgetsReaderReducer } from './IATI/IATIRe
 import { reducer as orgReportRegionBudgetsReaderReducer } from './IATI/IATIReader/organisationReportRegionBudgets/reducer'
 import { reducer as orgReportCountryBudgetsReaderReducer } from './IATI/IATIReader/organisationReportCountryBudgets/reducer'
 
-import { reducer as orgWriterReducer } from './IATI/IATIWriter/organisation/reducer'
+import { reducer as orgWriterReducer } from './IATI/IATIWriter/orgs/reducer'
 import { reducer as orgReportsWriterReducer } from './IATI/IATIWriter/organisationReports/reducer'
 import { reducer as orgReportDocsWriterReducer } from './IATI/IATIWriter/organisationReportDocs/reducer'
 import { reducer as orgReportBudgetsWriterReducer } from './IATI/IATIWriter/organisationReportBudgets/reducer'

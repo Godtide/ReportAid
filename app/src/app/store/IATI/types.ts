@@ -82,7 +82,7 @@ export interface IATIOrgReportCountryBudgetProps {
   finance: FinanceProps
 }
 
-export interface OrganisationProps {
+export interface OrgProps {
   name: string
   code: string
   identifier: string

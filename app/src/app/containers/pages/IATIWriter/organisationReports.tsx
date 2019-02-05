@@ -21,7 +21,7 @@ import { setOrganisationReport } from '../../../store/IATI/IATIWriter/organisati
 import { OrganisationPicker } from '../../../components/io/orgPicker'
 import { TransactionHelper, TransactionTypes } from '../../io/transactionHelper'
 
-import { Organisation, OrganisationReport } from '../../../utils/strings'
+import { Org, OrganisationReport } from '../../../utils/strings'
 import { Helpers } from '../../../utils/config'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
