@@ -4,10 +4,10 @@ pragma experimental ABIEncoderV2;
 // IATI Organisation Reports
 // Steve Huckle
 
-import "./OrganisationReportBudgets.sol";
+import "./OrganisationBudgets.sol";
 import "./Strings.sol";
 
-contract IATIOrganisationReportBudgets is OrganisationReportBudgets {
+contract IATIOrganisationBudgets is OrganisationBudgets {
 
   bytes32[] reportReferences;
   mapping(bytes32 => bytes32[]) private budgetReferences;

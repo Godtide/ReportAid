@@ -1,13 +1,10 @@
 pragma solidity ^0.5.0;
 pragma experimental ABIEncoderV2;
 
-// IATI Organisation Reports
-// Steve Huckle
-
-import "./OrganisationReportExpenditure.sol";
+import "./OrganisationExpenditure.sol";
 import "./Strings.sol";
 
-contract IATIOrganisationReportExpenditure is OrganisationReportExpenditure {
+contract IATIOrganisationExpenditure is OrganisationExpenditure {
 
   bytes32[] reportReferences;
   mapping(bytes32 => bytes32[]) private expenditureReferences;

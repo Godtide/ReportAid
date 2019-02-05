@@ -1,10 +1,10 @@
 pragma solidity ^0.5.0;
 pragma experimental ABIEncoderV2;
 
-import "./OrganisationReportDocs.sol";
+import "./OrganisationDocs.sol";
 import "./Strings.sol";
 
-contract IATIOrganisationReportDocs is OrganisationReports {
+contract IATIOrganisationDocs is OrganisationDocs {
 
   bytes32[] reportReferences;
   mapping(bytes32 => bytes32[]) private reportDocReferences;
