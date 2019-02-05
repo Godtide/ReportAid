@@ -84,28 +84,23 @@ class Contract {
   ]
 
   static organisationDocsABI = [
-    "event SetDocument(tuple(tuple(bytes32 orgRef, bytes32 reportRef) report, bytes32 docRef, string title, string format, string url, bytes32 category, bytes32 countryRef, string desc, bytes32 lang, bytes32 date) doc)",
+    "event SetDocument(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _docRef, tuple(string title, string format, string url, bytes32 category, bytes32 countryRef, string desc, bytes32 lang, bytes32 date) doc)",
 
-    "function setDocument(tuple(tuple(bytes32 orgRef, bytes32 reportRef) report, bytes32 docRef, string title, string format, string url, bytes32 category, bytes32 countryRef, string desc, bytes32 lang, bytes32 date) doc)@500000",
+    "function setDocument(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _docRef, tuple(string title, string format, string url, bytes32 category, bytes32 countryRef, string desc, bytes32 lang, bytes32 date) doc) public",
 
-    "function getReportExists(bytes32 _reportRef) view returns (bool)",
-    "function getReportDocExists(bytes32 reportRef, bytes32 docRef) view returns (bool)",
-    "function getNumReports() view returns (uint256)",
-    "function getNumReportDocs(bytes32 reportRef) view returns (uint256)",
-    "function getReportReference(uint256 _index) view returns (bytes32)",
-    "function getReportDocReference(bytes32 docRef, uint256 index) view returns (bytes32)",
+    "function getNumDocs(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (uint256)",
+    "function getDocReference(bytes32 _organisationsRef, bytes32 _orgRef, uint256 _index) public view returns (bytes32)",
 
-    "function getDocument(bytes32 reportRef, bytes32 docRef) view returns (tuple(tuple(bytes32 orgRef, bytes32 reportRef) report, bytes32 docRef, string title, string format, string url, bytes32 category, bytes32 countryRef, string desc, bytes32 lang, bytes32 date) doc)",
+    "function getDocument(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _docRef) public view returns (tuple(string title, string format, string url, bytes32 category, bytes32 countryRef, string desc, bytes32 lang, bytes32 date) doc)",
 
-    "function getDocumentTitle(bytes32 reportRef, bytes32 docRef) view returns (string)",
-    "function getDocumentReportingOrg(bytes32 reportRef, bytes32 docRef) public view returns (bytes32)",
-    "function getDocumentFormat(bytes32 reportRef, bytes32 docRef) view returns (string)",
-    "function getDocumentURL(bytes32 reportRef, bytes32 docRef) view returns (string)",
-    "function getDocumentCategory(bytes32 reportRef, bytes32 docRef) view returns (bytes32)",
-    "function getDocumentCountry(bytes32 reportRef, bytes32 docRef) view returns (bytes32)",, bytes32 _orgRef
-    "function getDocumentDescription(bytes32 reportRef, bytes32 docRef) view returns (string)",
-    "function getDocumentLang(bytes32 reportRef, bytes32 docRef) view returns (bytes32)",
-    "function getDocumentDate(bytes32 reportRef, bytes32 docRef) view returns (bytes32)"
+    "function getDocumentTitle(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _docRef) public view returns (string memory)",
+    "function getDocumentFormat(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _docRef) public view returns (string memory)",
+    "function getDocumentURL(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _docRef) public view returns (string memory)",
+    "function getDocumentCategory(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _docRef) public view returns (bytes32)",
+    "function getDocumentCountry(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _docRef) public view returns (bytes32)",
+    "function getDocumentDescription(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _docRef) public view returns (string memory)",
+    "function getDocumentLang(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _docRef) public view returns (bytes32)",
+    "function getDocumentDate(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _docRef) public view returns (bytes32)"
   ]
 
   static organisationBudgetsABI = [
@@ -137,7 +132,7 @@ class Contract {
 
     "function getReportExists(bytes32 reportRef) view returns (bool)",
     "function getExpenditureExists(bytes32 reportRef, bytes32 expenditureRef) view returns (bool)",
-    "function getNumReports() view returns (uint256)",, bytes32 _orgRef
+    "function getNumReports() view returns (uint256)",
     "function getNumExpenditures(bytes32 reportRef) view returns (uint256)",
     "function getReportReference(uint256 index) view returns (bytes32)",
     "function getExpenditureReference(bytes32 reportRef, uint256 index) view returns (bytes32)",
@@ -205,7 +200,7 @@ class Contract {
 
     "function getReportExists(bytes32 _reportRef) view returns (bool)",
     "function getCountryBudgetExists(bytes32 _reportRef, bytes32 _budgetRef) view returns (bool)",
-    "function getNumReports() view returns (uint256)",, bytes32 _orgRef
+    "function getNumReports() view returns (uint256)",
     "function getNumCountryBudgets(bytes32 _reportRef) view returns (uint256)",
     "function getReportReference(uint256 _index) view returns (bytes32)",
     "function getCountryBudgetReference(bytes32 _reportRef, uint256 _index) view returns (bytes32)",

@@ -15,8 +15,6 @@ contract OrganisationDocs {
   }
 
   struct Document {
-    Report report;
-    bytes32 docRef;
     string title;
     string format;
     string url;
@@ -27,25 +25,19 @@ contract OrganisationDocs {
     bytes32 date;
   }
 
-  function setDocument(Document memory _document) public;
+  function setDocument(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _docRef, Document memory _document) public;
 
-  function getReportExists(bytes32 _reportRef) public view returns (bool);
-  function getReportDocExists(bytes32 _reportRef, bytes32 _docRef) public view returns (bool);
+  function getNumDocs(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (uint256);
+  function getDocReference(bytes32 _organisationsRef, bytes32 _orgRef, uint256 _index) public view returns (bytes32);
 
-  function getNumReports() public view returns (uint256);
-  function getNumReportDocs(bytes32 _reportRef) public view returns (uint256);
+  function getDocument(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _docRef) public view returns (Document memory);
 
-  function getReportReference(uint256 _index) public view returns (bytes32);
-  function getReportDocReference(bytes32 _docRef, uint256 _index) public view returns (bytes32);
-
-  function getDocument(bytes32 _reportRef, bytes32 _docRef) public view returns (Document memory);
-  function getDocumentReportingOrg(bytes32 _reportRef, bytes32 _docRef) public view returns (bytes32);
-  function getDocumentTitle(bytes32 _reportRef, bytes32 _docRef) public view returns (string memory);
-  function getDocumentFormat(bytes32 _reportRef, bytes32 _docRef) public view returns (string memory);
-  function getDocumentURL(bytes32 _reportRef, bytes32 _docRef) public view returns (string memory);
-  function getDocumentCategory(bytes32 _reportRef, bytes32 _docRef) public view returns (bytes32);
-  function getDocumentCountry(bytes32 _reportRef, bytes32 _docRef) public view returns (bytes32);
-  function getDocumentDescription(bytes32 _reportRef, bytes32 _docRef) public view returns (string memory);
-  function getDocumentLang(bytes32 _reportRef, bytes32 _docRef) public view returns (bytes32);
-  function getDocumentDate(bytes32 _reportRef, bytes32 _docRef) public view returns (bytes32);
+  function getDocumentTitle(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _docRef) public view returns (string memory);
+  function getDocumentFormat(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _docRef) public view returns (string memory);
+  function getDocumentURL(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _docRef) public view returns (string memory);
+  function getDocumentCategory(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _docRef) public view returns (bytes32);
+  function getDocumentCountry(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _docRef) public view returns (bytes32);
+  function getDocumentDescription(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _docRef) public view returns (string memory);
+  function getDocumentLang(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _docRef) public view returns (bytes32);
+  function getDocumentDate(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _docRef) public view returns (bytes32);
 }
