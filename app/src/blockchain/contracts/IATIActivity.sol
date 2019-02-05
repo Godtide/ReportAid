@@ -6,15 +6,14 @@ import "./Strings.sol";
 
 contract IATIActivity is Activity {
 
-  bytes32[] activitiesRefs;
   mapping(bytes32 => bytes32[]) private activityRefs;
   mapping(bytes32 =>  mapping(bytes32 => OrgActivity)) private activities;
 
-  event SetActivity(bytes32 _activitiesRef, OrgActivity _activity);
+  event SetActivity(bytes32 _activitiesRef, bytes32 activityRef, OrgActivity _activity);
 
-  function setActivity(bytes32 _activitiesRef, OrgActivity memory _activity) public {
+  function setActivity(bytes32 _activitiesRef, bytes32 activityRef, OrgActivity memory _activity) public {
     require (_activitiesRef[0] != 0 &&
-             _activity.activityRef[0] != 0 &&
+             activityRef[0] != 0 &&
              bytes(_activity.identifier).length > 0 &&
              _activity.reportingOrg.orgRef[0] != 0 &&
              _activity.reportingOrg.orgType > 0 &&
@@ -33,33 +32,19 @@ contract IATIActivity is Activity {
              _activity.scope >= uint8(Scope.NONE) &&
              _activity.scope < uint8(Scope.MAX));
 
-    activities[_activitiesRef][_activity.activityRef] = _activity;
+    activities[_activitiesRef][activityRef] = _activity;
 
-    if (!Strings.getExists(_activitiesRef, activitiesRefs)) {
-      activitiesRefs.push(_activitiesRef);
+    if(!Strings.getExists(activityRef, activityRefs[_activitiesRef])) {
+      activityRefs[_activitiesRef].push(activityRef);
     }
 
-    if(!Strings.getExists(_activity.activityRef, activityRefs[_activitiesRef])) {
-      activityRefs[_activitiesRef].push(_activity.activityRef);
-    }
-
-    emit SetActivity(_activitiesRef, _activity);
+    emit SetActivity(_activitiesRef, activityRef, _activity);
   }
 
-  function getNumActivities() public view returns (uint256) {
-    return activitiesRefs.length;
-  }
-
-  function getNumActivity(bytes32 _activitiesRef) public view returns (uint256) {
+  function getNumActivities(bytes32 _activitiesRef) public view returns (uint256) {
     require (_activitiesRef[0] != 0);
 
     return activityRefs[_activitiesRef].length;
-  }
-
-  function getActivitiesReference(uint256 _index) public view returns (bytes32) {
-    require (_index < activitiesRefs.length);
-
-    return activitiesRefs[_index];
   }
 
   function getActivityReference(bytes32 _activitiesRef, uint256 _index) public view returns (bytes32) {

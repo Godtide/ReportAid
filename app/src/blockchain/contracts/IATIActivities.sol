@@ -9,20 +9,20 @@ contract IATIActivities is Activities {
   bytes32[] activitiesRefs;
   mapping(bytes32 =>  OrgActivities) private activities;
 
-  event SetActivities(OrgActivities _activities);
+  event SetActivities(bytes32 _activitiesRef, OrgActivities _activities);
 
-  function setActivities(OrgActivities memory _activities) public {
-    require (_activities.activitiesRef[0] != 0  &&
+  function setActivities(bytes32 _activitiesRef, OrgActivities memory _activities) public {
+    require (_activitiesRef[0] != 0  &&
              _activities.version[0] != 0 &&
              _activities.generatedTime[0] != 0);
 
-    activities[_activities.activitiesRef] = _activities;
+    activities[_activitiesRef] = _activities;
 
-    if (!Strings.getExists(_activities.activitiesRef, activitiesRefs)) {
-      activitiesRefs.push(_activities.activitiesRef);
+    if (!Strings.getExists(_activitiesRef, activitiesRefs)) {
+      activitiesRefs.push(_activitiesRef);
     }
 
-    emit SetActivities(_activities);
+    emit SetActivities(_activitiesRef, _activities);
   }
 
   function getNumActivities() public view returns (uint256) {

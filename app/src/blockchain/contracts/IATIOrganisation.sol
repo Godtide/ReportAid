@@ -6,44 +6,33 @@ import "./Strings.sol";
 
 contract IATIOrganisation is Organisation {
 
-  bytes32[] organisationsRefs;
   mapping(bytes32 => bytes32[]) private orgRefs;
   mapping(bytes32 =>  mapping(bytes32 => Org)) private organisations;
 
-  event SetOrg(bytes32 _organisationsRef, Org _org);
+  event SetOrg(bytes32 _organisationsRef, bytes32 _orgRef, Org _org);
 
-  function setOrg(bytes32 _organisationsRef, Org memory _org) public {
+  function setOrg(bytes32 _organisationsRef, bytes32 _orgRef, Org memory _org) public {
     require (_organisationsRef[0] != 0 &&
-             _org.orgRef[0] != 0 &&
+             _orgRef[0] != 0 &&
              _org.reportingOrg.orgRef[0] != 0 &&
              _org.reportingOrg.orgType > 0 &&
              _org.lang[0] != 0 &&
              _org.currency[0] != 0 &&
              _org.lastUpdatedTime[0] != 0 );
 
-    organisations[_organisationsRef][_org.orgRef] = _org;
+    organisations[_organisationsRef][_orgRef] = _org;
 
-    if (!Strings.getExists(_organisationsRef, organisationsRefs)) {
-        organisationsRefs.push(_organisationsRef);
+    if(!Strings.getExists(_orgRef, orgRefs[_organisationsRef])) {
+      orgRefs[_organisationsRef].push(_orgRef);
     }
 
-    emit SetOrg(_organisationsRef, _org);
+    emit SetOrg(_organisationsRef, _orgRef, _org);
   }
 
-  function getNumOrganisations() public view returns (uint256) {
-    return organisationsRefs.length;
-  }
-
-  function getNumOrg(bytes32 _organisationsRef) public view returns (uint256) {
+  function getNumOrgs(bytes32 _organisationsRef) public view returns (uint256) {
     require (_organisationsRef[0] != 0);
 
     return orgRefs[_organisationsRef].length;
-  }
-
-  function getOrganisationsReference(uint256 _index) public view returns (bytes32) {
-    require (_index < organisationsRefs.length);
-
-    return organisationsRefs[_index];
   }
 
   function getOrgReference(bytes32 _organisationsRef, uint256 _index) public view returns (bytes32) {

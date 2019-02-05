@@ -3,11 +3,6 @@ pragma experimental ABIEncoderV2;
 
 contract OrganisationDocs {
 
-  struct Report {
-    bytes32 orgRef;
-    bytes32 reportRef;
-  }
-
   enum DocAttributes {
     TITLE,
     FORMAT,

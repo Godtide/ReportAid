@@ -50,7 +50,6 @@ contract Activity {
 
 
   struct OrgActivity {
-    bytes32 activityRef;
     string identifier;
     ReportingOrg reportingOrg;
     string title;
@@ -67,12 +66,9 @@ contract Activity {
     uint8 scope;
   }
 
-  function setActivity(bytes32 _activitiesRef, OrgActivity memory _activity) public;
+  function setActivity(bytes32 _activitiesRef, bytes32 activityRef, OrgActivity memory _activity) public;
 
-  function getNumActivities() public view returns (uint256);
-  function getNumActivity(bytes32 _activitiesRef) public view returns (uint256);
-
-  function getActivitiesReference(uint256 _index) public view returns (bytes32);
+  function getNumActivities(bytes32 _activitiesRef) public view returns (uint256);
   function getActivityReference(bytes32 _activitiesRef, uint256 _index) public view returns (bytes32);
 
   function getActivity(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (OrgActivity memory);
