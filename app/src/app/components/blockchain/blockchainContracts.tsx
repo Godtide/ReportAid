@@ -15,6 +15,8 @@ import { IATIOrganisationReportExpenditure } from '../../../blockchain/typechain
 import { IATIOrganisationReportRecipientBudgets } from '../../../blockchain/typechain/IATIOrganisationReportRecipientBudgets'
 import { IATIOrganisationReportRegionBudgets } from '../../../blockchain/typechain/IATIOrganisationReportRegionBudgets'
 import { IATIOrganisationReportCountryBudgets } from '../../../blockchain/typechain/IATIOrganisationReportCountryBudgets'
+import { IATIActivities } from '../../../blockchain/typechain/IATIActivities'
+import { IATIActivity } from '../../../blockchain/typechain/IATIActivity'
 
 interface ChainProps {
   store: Store
@@ -35,33 +37,39 @@ export const setContracts = (props: ChainProps) => {
       const contractData: ContractProps = {
         data: {
           contracts: {
-            orgContract: new ethers.Contract(Contract.orgsAddress,
+            orgs: new ethers.Contract(Contract.orgsAddress,
                                               Contract.orgsABI,
                                               signer) as IATIOrgs,
-            organisationsContract: new ethers.Contract(Contract.organisationsAddress,
+            organisations: new ethers.Contract(Contract.organisationsAddress,
                                                      Contract.organisationsABI,
                                                      signer) as IATIOrganisations,
-            organisationContract: new ethers.Contract(Contract.organisationAddress,
+            organisation: new ethers.Contract(Contract.organisationAddress,
                                                      Contract.organisationABI,
                                                      signer) as IATIOrganisation,
-            orgReportDocsContract: new ethers.Contract(Contract.organisationReportDocsAddress,
+            orgReportDocs: new ethers.Contract(Contract.organisationReportDocsAddress,
                                                      Contract.organisationReportDocsABI,
                                                      signer) as IATIOrganisationReportDocs,
-            orgReportBudgetsContract: new ethers.Contract(Contract.organisationReportBudgetsAddress,
+            orgReportBudgets: new ethers.Contract(Contract.organisationReportBudgetsAddress,
                                                      Contract.organisationReportBudgetsABI,
                                                      signer) as IATIOrganisationReportBudgets,
-            orgReportExpenditureContract: new ethers.Contract(Contract.organisationReportExpenditureAddress,
+            orgReportExpenditure: new ethers.Contract(Contract.organisationReportExpenditureAddress,
                                                      Contract.organisationReportExpenditureABI,
                                                      signer) as IATIOrganisationReportExpenditure,
-            orgReportRecipientBudgetsContract: new ethers.Contract(Contract.organisationReportRecipientBudgetsAddress,
+            orgReportRecipientBudgets: new ethers.Contract(Contract.organisationReportRecipientBudgetsAddress,
                                                      Contract.organisationReportRecipientBudgetsABI,
                                                      signer) as IATIOrganisationReportRecipientBudgets,
-            orgReportRegionBudgetsContract: new ethers.Contract(Contract.organisationReportRegionBudgetsAddress,
+            orgReportRegionBudgets: new ethers.Contract(Contract.organisationReportRegionBudgetsAddress,
                                                      Contract.organisationReportRegionBudgetsABI,
                                                      signer) as IATIOrganisationReportRegionBudgets,
-            orgReportCountryBudgetsContract: new ethers.Contract(Contract.organisationReportCountryBudgetsAddress,
+            orgReportCountryBudgets: new ethers.Contract(Contract.organisationReportCountryBudgetsAddress,
                                                      Contract.organisationReportCountryBudgetsABI,
-                                                     signer) as IATIOrganisationReportCountryBudgets
+                                                     signer) as IATIOrganisationReportCountryBudgets,
+            activities: new ethers.Contract(Contract.activitiesAddress,
+                                                     Contract.activitiesABI,
+                                                     signer) as IATIActivities,
+            activity: new ethers.Contract(Contract.activityAddress,
+                                                     Contract.activityABI,
+                                                     signer) as IATIActivity,
           }
         }
       }

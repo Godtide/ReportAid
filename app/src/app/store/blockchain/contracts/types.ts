@@ -3,15 +3,17 @@ import { PayloadProps } from '../../types'
 export interface ContractProps extends PayloadProps {
   data: {
     contracts: {
-      orgContract: object
-      organisationsContract: object
-      organisationContract: object
-      orgReportDocsContract: object
-      orgReportBudgetsContract: object
-      orgReportExpenditureContract: object
-      orgReportRecipientBudgetsContract: object
-      orgReportRegionBudgetsContract: object
-      orgReportCountryBudgetsContract: object
+      orgs: object
+      organisations: object
+      organisation: object
+      orgReportDocs: object
+      orgReportBudgets: object
+      orgReportExpenditure: object
+      orgReportRecipientBudgets: object
+      orgReportRegionBudgets: object
+      orgReportCountryBudgets: object
+      activities: object
+      activity: object
     }
   }
 }
