@@ -8,6 +8,7 @@ import { Contract } from '../../utils/config'
 
 import { IATIOrgs } from '../../../blockchain/typechain/IATIOrgs'
 import { IATIOrganisations } from '../../../blockchain/typechain/IATIOrganisations'
+import { IATIOrganisation } from '../../../blockchain/typechain/IATIOrganisation'
 import { IATIOrganisationReportDocs } from '../../../blockchain/typechain/IATIOrganisationReportDocs'
 import { IATIOrganisationReportBudgets } from '../../../blockchain/typechain/IATIOrganisationReportBudgets'
 import { IATIOrganisationReportExpenditure } from '../../../blockchain/typechain/IATIOrganisationReportExpenditure'
@@ -40,6 +41,9 @@ export const setContracts = (props: ChainProps) => {
             organisationsContract: new ethers.Contract(Contract.organisationsAddress,
                                                      Contract.organisationsABI,
                                                      signer) as IATIOrganisations,
+            organisationContract: new ethers.Contract(Contract.organisationAddress,
+                                                     Contract.organisationABI,
+                                                     signer) as IATIOrganisation,
             orgReportDocsContract: new ethers.Contract(Contract.organisationReportDocsAddress,
                                                      Contract.organisationReportDocsABI,
                                                      signer) as IATIOrganisationReportDocs,

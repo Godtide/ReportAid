@@ -69,7 +69,10 @@ contract Activity {
 
   function setActivity(bytes32 _activitiesRef, OrgActivity memory _activity) public;
 
-  function getNumActivities(bytes32 _activitiesRef) public view returns (uint256);
+  function getNumActivities() public view returns (uint256);
+  function getNumActivity(bytes32 _activitiesRef) public view returns (uint256);
+
+  function getActivitiesReference(uint256 _index) public view returns (bytes32);
   function getActivityReference(bytes32 _activitiesRef, uint256 _index) public view returns (bytes32);
 
   function getActivity(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (OrgActivity memory);

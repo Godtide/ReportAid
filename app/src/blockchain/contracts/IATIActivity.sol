@@ -46,10 +46,20 @@ contract IATIActivity is Activity {
     emit SetActivity(_activitiesRef, _activity);
   }
 
-  function getNumActivities(bytes32 _activitiesRef) public view returns (uint256) {
+  function getNumActivities() public view returns (uint256) {
+    return activitiesRefs.length;
+  }
+
+  function getNumActivity(bytes32 _activitiesRef) public view returns (uint256) {
     require (_activitiesRef[0] != 0);
 
     return activityRefs[_activitiesRef].length;
+  }
+
+  function getActivitiesReference(uint256 _index) public view returns (bytes32) {
+    require (_index < activitiesRefs.length);
+
+    return activitiesRefs[_index];
   }
 
   function getActivityReference(bytes32 _activitiesRef, uint256 _index) public view returns (bytes32) {

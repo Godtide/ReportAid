@@ -42,35 +42,48 @@ class Contract {
 
     "function setOrg(tuple(bytes32 orgRef, string name, string identifier) _org)@150000",
 
-    "function getOrgExists(bytes32 _orgRef) view returns (bool)",
     "function getNumOrgs() view returns (uint256)",
     "function getOrgReference(uint256 _index) view returns (bytes32)",
+
     "function getOrg(bytes32 _orgRef) view returns (tuple(bytes32 orgRef, string name, string identifier) org)",
+
     "function getOrgName(bytes32 _orgRef) view returns (string)",
     "function getOrgIdentifier(bytes32 _orgRef) view returns (string)"
   ]
 
   static organisationsABI = [
-    "event SetReport(tuple(tuple(bytes32 orgRef, bytes32 reportRef) report, tuple(bytes32 orgRef, uint8 orgType, bool isSecondary) reportingOrg, bytes32 version, bytes32 lang, bytes32 currency, bytes32 lastUpdatedTime) orgReport)",
+    "event SetOrganisations(tuple(bytes32 _organisationsRef, bytes32 version, bytes32 generatedTime) organisations)",
 
-    "function setReport(tuple(tuple(bytes32 orgRef, bytes32 reportRef) report, tuple(bytes32 orgRef, uint8 orgType, bool isSecondary) reportingOrg, bytes32 version, bytes32 lang, bytes32 currency, bytes32 lastUpdatedTime) orgReport)@500000",
+    "function setOrganisations(tuple(bytes32 _organisationsRef, bytes32 version, bytes32 generatedTime) organisations) ",
 
-    "function getOrgExists(bytes32 orgRef) view returns (bool)",
-    "function getReportExists(bytes32 orgRef, bytes32 reportRef) view returns (bool)",
-    "function getNumOrgs() view returns (uint256)",
-    "function getNumReports(bytes32 orgRef) view returns (uint256)",
-    "function getOrganisationReference(uint256 _index) view returns (bytes32)",
-    "function getReportReference(bytes32 orgRef, uint256 index) view returns (bytes32)",
+    "function getNumOrganisations()  view returns (uint256)",
+    "function getOrganisationsReference(uint256 _index)  view returns (bytes32)",
 
-    "function getReport(bytes32 orgRef, bytes32 reportRef) view returns (tuple(tuple(bytes32 orgRef, bytes32 reportRef) report, tuple(bytes32 orgRef, uint8 orgType, bool isSecondary) reportingOrg, bytes32 version, bytes32 lang, bytes32 currency, bytes32 lastUpdatedTime) orgReport)",
+    "function getOrganisations(bytes32 _organisationsRef)  view returns (tuple(bytes32 _organisationsRef, bytes32 version, bytes32 generatedTime) organisations)",
 
-    "function getLang(bytes32 orgRef, bytes32 reportRef) view returns (bytes32)",
-    "function getCurrency(bytes32 orgRef, bytes32 reportRef) view returns (bytes32)",
-    "function getVersion(bytes32 orgRef, bytes32 reportRef) view returns (bytes32)",
-    "function getLastUpdatedTime(bytes32 orgRef, bytes32 reportRef) view returns (bytes32)",
-    "function getReportingOrg(bytes32 orgRef, bytes32 reportRef) view returns (bytes32)",
-    "function getReportingOrgType(bytes32 orgRef, bytes32 reportRef) view returns (uint8)",
-    "function getReportingOrgIsSecondary(bytes32 orgRef, bytes32 reportRef) view returns (bool)"
+    "function getVersion(bytes32 _organisationsRef)  view returns (bytes32)",
+    "function getGeneratedTime(bytes32 _organisationsRef)  view returns (bytes32)"
+  ]
+
+  static organisationABI = [
+    "event SetOrg(bytes32 _organisationsRef, tuple(bytes32 orgRef, tuple(bytes32 orgRef, uint8 orgType, bool isSecondary) reportingOrg, bytes32 lang, bytes32 currency, bytes32 lastUpdatedTime))",
+
+    "function setOrg(bytes32 _organisationsRef, tuple(bytes32 orgRef, tuple(bytes32 orgRef, uint8 orgType, bool isSecondary) reportingOrg, bytes32 lang, bytes32 currency, bytes32 lastUpdatedTime)) ",
+
+    "function getNumOrganisations()  view returns (uint256)",
+    "function getNumOrg(bytes32 _organisationsRef)  view returns (uint256)",
+
+    "function getOrganisationsReference(uint256 _index)  view returns (bytes32)",
+    "function getOrgReference(bytes32 _organisationsRef, uint256 _index)  view returns (bytes32)",
+
+    "function getOrg(bytes32 _organisationsRef, bytes32 _orgRef)  view returns (tuple(bytes32 orgRef, tuple(bytes32 orgRef, uint8 orgType, bool isSecondary) reportingOrg, bytes32 lang, bytes32 currency, bytes32 lastUpdatedTime))",
+
+    "function getLang(bytes32 _organisationsRef, bytes32 _orgRef)  view returns (bytes32)",
+    "function getCurrency(bytes32 _organisationsRef, bytes32 _orgRef)  view returns (bytes32)",
+    "function getLastUpdatedTime(bytes32 _organisationsRef, bytes32 _orgRef)  view returns (bytes32)",
+    "function getReportingOrg(bytes32 _organisationsRef, bytes32 _orgRef)  view returns (bytes32)",
+    "function getReportingOrgType(bytes32 _organisationsRef, bytes32 _orgRef)  view returns (uint8)",
+    "function getReportingOrgIsSecondary(bytes32 _organisationsRef, bytes32 _orgRef)  view returns (bool)"
   ]
 
   static organisationReportDocsABI = [
@@ -231,7 +244,10 @@ class Contract {
 
     "function setActivity(bytes32 _activitiesRef, tuple(bytes32 activityRef, string identifier, tuple(bytes32 orgRef, uint8 orgType, bool isSecondary) reportingOrg, string title, string description, bytes32 lastUpdated, bytes32 lang, bytes32 currency, bool humanitarian, uint8 hierarchy, bytes32 linkedData, uint8 budgetNotProvided, uint8 status, bytes32 date, uint8 scope) orgActivity)",
 
-    "function getNumActivities(bytes32 _activitiesRef) view returns (uint256)",
+    "function getNumActivities() view returns (uint256)",
+    "function getNumActivity(bytes32 _activitiesRef) view returns (uint256)",
+
+    "function getActivitiesReference(uint256 _index) public view returns (bytes32)",
     "function getActivityReference(bytes32 _activitiesRef, uint256 _index) view returns (bytes32)",
 
     "function getActivity(bytes32 _activitiesRef, bytes32 _activityRef) view returns (tuple(bytes32 activityRef, string identifier, tuple(bytes32 orgRef, uint8 orgType, bool isSecondary) reportingOrg, string title, string description, bytes32 lastUpdated, bytes32 lang, bytes32 currency, bool humanitarian, uint8 hierarchy, bytes32 linkedData, uint8 budgetNotProvided, uint8 status, bytes32 date, uint8 scope) orgActivity)",
@@ -268,6 +284,7 @@ class Contract {
 
   static orgsAddress = "0xDb65296eA3bf2aFd42b644169C0FdaD046393bd8"
   static organisationsAddress = "0x5f2152F11C1B0EDF2f763E7683F7344A8d9464df"
+  static organisationAddress = "0x5f2152F11C1B0EDF2f763E7683F7344A8d9464df"
   static organisationReportDocsAddress = "0xEdd40Cc0996f06079D8A3E48bcA34b508D34D17F"
   static organisationReportBudgetsAddress = "0x5d6AF1d47970939bfD640434C1c6df3Fee9D202E"
   static organisationReportExpenditureAddress = "0x5fa6e4A643C46B1dC970b3dbaFc1bBc169D30Ecd"

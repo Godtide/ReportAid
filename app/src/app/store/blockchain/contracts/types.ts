@@ -5,6 +5,7 @@ export interface ContractProps extends PayloadProps {
     contracts: {
       orgContract: object
       organisationsContract: object
+      organisationContract: object
       orgReportDocsContract: object
       orgReportBudgetsContract: object
       orgReportExpenditureContract: object
