@@ -5,7 +5,7 @@ import { ActionProps } from '../../types'
     data: {
       contracts: {
         orgContract: {},
-        orgReportsContract: {},
+        organisationsContract: {},
         orgReportDocsContract: {},
         orgReportBudgetsContract: {},
         orgReportExpenditureContract: {},

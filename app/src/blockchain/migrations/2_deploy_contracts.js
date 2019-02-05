@@ -1,6 +1,6 @@
 const StringsLib = artifacts.require("./Strings.sol");
 const IATIOrgs = artifacts.require("./IATIOrgs.sol");
-const IATIOrganisationReports = artifacts.require("./IATIOrganisationReports.sol");
+const IATIOrganisations = artifacts.require("./IATIOrganisations.sol");
 const IATIOrganisationReportDocs = artifacts.require("./IATIOrganisationReportDocs.sol");
 const IATIOrganisationReportBudgets = artifacts.require("./IATIOrganisationReportBudgets.sol");
 const IATIOrganisationReportExpenditure = artifacts.require("./IATIOrganisationReportExpenditure.sol");
@@ -14,7 +14,7 @@ const IATIActivity = artifacts.require("./IATIActivity.sol");
 module.exports = function(deployer) {
   deployer.deploy(StringsLib);
   deployer.link(StringsLib, IATIOrgs);
-  deployer.link(StringsLib, IATIOrganisationReports);
+  deployer.link(StringsLib, IATIOrganisations);
   deployer.link(StringsLib, IATIOrganisationReportDocs);
   deployer.link(StringsLib, IATIOrganisationReportBudgets);
   deployer.link(StringsLib, IATIOrganisationReportExpenditure);
@@ -24,7 +24,7 @@ module.exports = function(deployer) {
   deployer.link(StringsLib, IATIActivities);
   deployer.link(StringsLib, IATIActivity);
   deployer.deploy(IATIOrgs);
-  deployer.deploy(IATIOrganisationReports);
+  deployer.deploy(IATIOrganisations);
   deployer.deploy(IATIOrganisationReportDocs);
   deployer.deploy(IATIOrganisationReportBudgets);
   deployer.deploy(IATIOrganisationReportExpenditure);

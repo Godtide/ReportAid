@@ -50,7 +50,7 @@ class Contract {
     "function getOrgIdentifier(bytes32 _orgRef) view returns (string)"
   ]
 
-  static organisationReportsABI = [
+  static organisationsABI = [
     "event SetReport(tuple(tuple(bytes32 orgRef, bytes32 reportRef) report, tuple(bytes32 orgRef, uint8 orgType, bool isSecondary) reportingOrg, bytes32 version, bytes32 lang, bytes32 currency, bytes32 lastUpdatedTime) orgReport)",
 
     "function setReport(tuple(tuple(bytes32 orgRef, bytes32 reportRef) report, tuple(bytes32 orgRef, uint8 orgType, bool isSecondary) reportingOrg, bytes32 version, bytes32 lang, bytes32 currency, bytes32 lastUpdatedTime) orgReport)@500000",
@@ -266,16 +266,16 @@ class Contract {
   static organisationReportRegionBudgetsAddress = "0xc414e8AAbbe4753faBCf5180BD8438F99adb3016"
   static organisationReportCountryBudgetsAddress = "0xD63A6e29cc37e2A45ad723220c41dDB1AfC31Ec3"*/
 
-  static orgsAddress = "0x5fd0bf6818576c58E067749821F1C41aAf97B16A"
-  static organisationReportsAddress = "0x1dF54fB0bE96038017A1C0563477FabeaEf4A9E3"
-  static organisationReportDocsAddress = "0xFa9f7680705968660d36F34D080d5fEeD0614221"
-  static organisationReportBudgetsAddress = "0xB155E22D9598cC0e635792070A888127Ae349B0c"
-  static organisationReportExpenditureAddress = "0x85f1116DF7FCFE73bc511Ac1a6a69BaB0A3af1dA"
-  static organisationReportRecipientBudgetsAddress = "0x7461eB577da59CBEE2618BB82c0d67311AE89960"
-  static organisationReportRegionBudgetsAddress = "0x7952136EB509C59bFe8393a0BAeB17D3a5E0a400"
-  static organisationReportCountryBudgetsAddress = "0x391Ef15D0640b87c6Fbaa555CaE2ed29dfd9F5c1"
-  static activitiesAddress = "0x69f373FeE4B3E8e807c29C1ae3E9Cf945Eff9Ff9"
-  static activityAddress = "0xd658BCf4D324B313924f1B8CdbB89D4DD06cc81F"
+  static orgsAddress = "0xDb65296eA3bf2aFd42b644169C0FdaD046393bd8"
+  static organisationsAddress = "0x5f2152F11C1B0EDF2f763E7683F7344A8d9464df"
+  static organisationReportDocsAddress = "0xEdd40Cc0996f06079D8A3E48bcA34b508D34D17F"
+  static organisationReportBudgetsAddress = "0x5d6AF1d47970939bfD640434C1c6df3Fee9D202E"
+  static organisationReportExpenditureAddress = "0x5fa6e4A643C46B1dC970b3dbaFc1bBc169D30Ecd"
+  static organisationReportRecipientBudgetsAddress = "0xb3271E488Dd836dCd1F4c23C9648a0B1B81BBCB9"
+  static organisationReportRegionBudgetsAddress = "0x3f87Af7057043fE68fD0E942180F200EA277aE48"
+  static organisationReportCountryBudgetsAddress = "0xe0d8994A35Cf8ea62d3377c8b7793e4b8861C572"
+  static activitiesAddress = "0x12fe62A7B6fE261f4c2Fe0A849A2369Fa2966860"
+  static activityAddress = "0x6B94e44b2f2611963B77E497C96a0B092798651d"
 }
 
 class Helpers {

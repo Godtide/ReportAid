@@ -15,22 +15,12 @@ contract IATIOrgs is Orgs {
     require (_org.orgRef[0] != 0 && bytes(_org.name).length > 0 && bytes(_org.identifier).length > 0);
 
     organisations[_org.orgRef] = _org;
-    if(!getOrgExists(_org.orgRef)) {
-      orgReferences.push(_org.orgRef);
+
+    if (!Strings.getExists(_org.orgRef, orgReferences)) {
+        orgReferences.push(_org.orgRef);
     }
 
     emit SetOrg(_org);
-  }
-
-  function getOrgExists(bytes32 _orgRef) public view returns (bool) {
-    require (_orgRef[0] != 0);
-
-    bool exists = false;
-    if ( !(orgReferences.length == 0) ) {
-      uint256 index = Strings.getIndex(_orgRef, orgReferences);
-      exists = (index != orgReferences.length);
-    }
-    return exists;
   }
 
   function getNumOrgs() public view returns (uint256) {
