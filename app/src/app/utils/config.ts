@@ -52,14 +52,14 @@ class Contract {
   ]
 
   static organisationsABI = [
-    "event SetOrganisations(tuple(bytes32 _organisationsRef, bytes32 version, bytes32 generatedTime) organisations)",
+    "event SetOrganisations(bytes32 _organisationsRef, tuple(bytes32 version, bytes32 generatedTime) organisations)",
 
-    "function setOrganisations(tuple(bytes32 _organisationsRef, bytes32 version, bytes32 generatedTime) organisations) ",
+    "function setOrganisations(bytes32 _organisationsRef, tuple(bytes32 version, bytes32 generatedTime) organisations) ",
 
     "function getNumOrganisations()  view returns (uint256)",
     "function getOrganisationsReference(uint256 _index)  view returns (bytes32)",
 
-    "function getOrganisations(bytes32 _organisationsRef)  view returns (tuple(bytes32 _organisationsRef, bytes32 version, bytes32 generatedTime) organisations)",
+    "function getOrganisations(bytes32 _organisationsRef)  view returns (tuple(bytes32 version, bytes32 generatedTime) organisations)",
 
     "function getVersion(bytes32 _organisationsRef)  view returns (bytes32)",
     "function getGeneratedTime(bytes32 _organisationsRef)  view returns (bytes32)"

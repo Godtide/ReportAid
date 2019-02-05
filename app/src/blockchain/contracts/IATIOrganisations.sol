@@ -9,20 +9,20 @@ contract IATIOrganisations is Organisations {
   bytes32[] organisationsRefs;
   mapping(bytes32 =>  Orgs) private organisations;
 
-  event SetOrganisations(Orgs _organisations);
+  event SetOrganisations(bytes32 _organisationsRef, Orgs _organisations);
 
-  function setOrganisations(Orgs memory _organisations) public {
-    require (_organisations._organisationsRef[0] != 0 &&
+  function setOrganisations(bytes32 _organisationsRef, Orgs memory _organisations) public {
+    require (_organisationsRef[0] != 0 &&
              _organisations.version[0] != 0 &&
              _organisations.generatedTime[0] != 0);
 
-    organisations[_organisations._organisationsRef] = _organisations;
+    organisations[_organisationsRef] = _organisations;
 
-    if (!Strings.getExists(_organisations._organisationsRef, organisationsRefs)) {
-        organisationsRefs.push(_organisations._organisationsRef);
+    if (!Strings.getExists(_organisationsRef, organisationsRefs)) {
+        organisationsRefs.push(_organisationsRef);
     }
 
-    emit SetOrganisations(_organisations);
+    emit SetOrganisations(_organisationsRef, _organisations);
   }
 
   function getNumOrganisations() public view returns (uint256) {
