@@ -3,11 +3,6 @@ pragma experimental ABIEncoderV2;
 
 contract OrganisationBudgets {
 
-  struct Report {
-    bytes32 orgRef;
-    bytes32 reportRef;
-  }
-
   struct Finance {
     uint256 value;
     uint8 status;
@@ -16,28 +11,19 @@ contract OrganisationBudgets {
   }
 
   struct Budget {
-    Report report;
-    bytes32 budgetRef;
     bytes32 budgetLine;
     Finance finance;
   }
 
-  function setTotalBudget(Budget memory _budget) public;
+  function setBudget(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef, Budget memory _budget) public;
 
-  function getReportExists(bytes32 _reportRef) public view returns (bool);
-  function getTotalBudgetExists(bytes32 _reportRef, bytes32 _budgetRef) public view returns (bool);
+  function getNumBudgets(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (uint256);
+  function getBudgetReference(bytes32 _organisationsRef, bytes32 _orgRef, uint256 _index) public view returns (bytes32);
 
-  function getNumReports() public view returns (uint256);
-  function getNumTotalBudgets(bytes32 _reportRef) public view returns (uint256);
-
-  function getReportReference(uint256 _index) public view returns (bytes32);
-  function getTotalBudgetReference(bytes32 _reportRef, uint256 _index) public view returns (bytes32);
-
-  function getTotalBudget(bytes32 _reportRef, bytes32 _budgetRef) public view returns (Budget memory);
-  function getTotalBudgetReportingOrg(bytes32 _reportRef, bytes32 _budgetRef) public view returns (bytes32);
-  function getTotalBudgetLine(bytes32 _reportRef, bytes32 _budgetRef) public view returns (bytes32);
-  function getTotalBudgetValue(bytes32 _reportRef, bytes32 _budgetRef) public view returns (uint256);
-  function getTotalBudgetStatus(bytes32 _reportRef, bytes32 _budgetRef) public view returns (uint8);
-  function getTotalBudgetStart(bytes32 _reportRef, bytes32 _budgetRef) public view returns (bytes32);
-  function getTotalBudgetEnd(bytes32 _reportRef, bytes32 _budgetRef) public view returns (bytes32);
+  function getBudget(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (Budget memory);
+  function getBudgetLine(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (bytes32);
+  function getBudgetValue(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (uint256);
+  function getBudgetStatus(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (uint8);
+  function getBudgetStart(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (bytes32);
+  function getBudgetEnd(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (bytes32);
 }
