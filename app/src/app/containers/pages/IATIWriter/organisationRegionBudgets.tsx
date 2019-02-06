@@ -11,15 +11,15 @@ import { Select, TextField } from "material-ui-formik-components"
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { IATIOrgReportRegionBudgetProps, OrgReportRegionBudgetProps, ReportProps } from '../../../store/IATI/types'
+import { IATIOrgRegionBudgetProps, OrgRegionBudgetProps, Props } from '../../../store/IATI/types'
 
-import { setRegionBudget } from '../../../store/IATI/IATIWriter/organisationReportRegionBudgets/actions'
+import { setRegionBudget } from '../../../store/IATI/IATIWriter/organisationRegionBudgets/actions'
 
 import { FormikDatePicker } from '../../../components/io/datePicker'
-import { OrgReportPicker } from '../../../components/io/reportPicker'
+import { OrgPicker } from '../../../components/io/reportPicker'
 import { TransactionHelper, TransactionTypes } from '../../io/transactionHelper'
 
-import { OrganisationReportRegionBudget } from '../../../utils/strings'
+import { OrganisationRegionBudget } from '../../../utils/strings'
 import { Helpers } from '../../../utils/config'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
@@ -64,51 +64,51 @@ const reportSchema = Yup.object().shape({
 const StartDatePickerProps = {
   day: {
     name: 'startDay',
-    label: OrganisationReportRegionBudget.budgetStartDay
+    label: OrganisationRegionBudget.budgetStartDay
   },
   month: {
     name: 'startMonth',
-    label: OrganisationReportRegionBudget.budgetStartMonth
+    label: OrganisationRegionBudget.budgetStartMonth
   },
   year: {
     name: 'startYear',
-    label: OrganisationReportRegionBudget.budgetStartYear
+    label: OrganisationRegionBudget.budgetStartYear
   }
 }
 
 const EndDatePickerProps = {
   day: {
     name: 'endDay',
-    label: OrganisationReportRegionBudget.budgetEndDay
+    label: OrganisationRegionBudget.budgetEndDay
   },
   month: {
     name: 'endMonth',
-    label: OrganisationReportRegionBudget.budgetEndMonth
+    label: OrganisationRegionBudget.budgetEndMonth
   },
   year: {
     name: 'endYear',
-    label: OrganisationReportRegionBudget.budgetEndYear
+    label: OrganisationRegionBudget.budgetEndYear
   }
 }
 
-interface OrgReportRegionBudgetsDispatchProps {
+interface OrgRegionBudgetsDispatchProps {
   handleSubmit: (values: any) => void
 }
 
-type OrgReportRegionBudgetsFormProps = WithStyles<typeof styles> & OrgReportRegionBudgetsDispatchProps
+type OrgRegionBudgetsFormProps = WithStyles<typeof styles> & OrgRegionBudgetsDispatchProps
 
-export class OrgReportRegionBudgetsForm extends React.Component<OrgReportRegionBudgetsFormProps> {
+export class OrgRegionBudgetsForm extends React.Component<OrgRegionBudgetsFormProps> {
 
   state = {
     submitFunc: (function(submit: boolean) { return submit }),
     resetFunc: (function() { return null })
   }
 
-  constructor (props: OrgReportRegionBudgetsFormProps) {
+  constructor (props: OrgRegionBudgetsFormProps) {
    super(props)
   }
 
-  handleSubmit = (values: OrgReportRegionBudgetProps, setSubmitting: Function, reset: Function) => {
+  handleSubmit = (values: OrgRegionBudgetProps, setSubmitting: Function, reset: Function) => {
     this.setState({submitFunc: setSubmitting, resetFunc: reset})
     this.props.handleSubmit(values)
   }
@@ -117,10 +117,10 @@ export class OrgReportRegionBudgetsForm extends React.Component<OrgReportRegionB
 
     return (
       <div>
-        <h2>{OrganisationReportRegionBudget.headingOrgReportRegionBudgetWriter}</h2>
+        <h2>{OrganisationRegionBudget.headingOrgRegionBudgetWriter}</h2>
         <div>
           <Formik
-            initialValues={ {report: {} as ReportProps,
+            initialValues={ {report: {} as Props,
                              regionRef: 1,
                              budgetLine: "",
                              value: 0,
@@ -133,35 +133,35 @@ export class OrgReportRegionBudgetsForm extends React.Component<OrgReportRegionB
                              endYear: 2000
                             }}
             validationSchema={reportSchema}
-            onSubmit={(values: OrgReportRegionBudgetProps, actions: any) => {
+            onSubmit={(values: OrgRegionBudgetProps, actions: any) => {
               this.handleSubmit(values, actions.setSubmitting, actions.resetForm)
             }}
-            render={(formProps: FormikProps<OrgReportRegionBudgetProps>) => (
+            render={(formProps: FormikProps<OrgRegionBudgetProps>) => (
               <Form>
                 <FormControl fullWidth={true}>
-                  <OrgReportPicker name='report' label={OrganisationReportRegionBudget.reportReference} />
+                  <OrgPicker name='report' label={OrganisationRegionBudget.reportReference} />
                   <Field
                     name='budgetLine'
-                    label={OrganisationReportRegionBudget.budgetLine}
+                    label={OrganisationRegionBudget.budgetLine}
                     component={TextField}
                   />
                   <ErrorMessage name='budgetLine' />
                   <Field
                     name="regionRef"
-                    label={OrganisationReportRegionBudget.regionReference}
+                    label={OrganisationRegionBudget.regionReference}
                     component={Select}
                     options={Helpers.oecdDacCrs}
                   />
                   <ErrorMessage name='regionRef' />
                   <Field
                     name='value'
-                    label={OrganisationReportRegionBudget.value}
+                    label={OrganisationRegionBudget.value}
                     component={TextField}
                   />
                   <ErrorMessage name='value' />
                   <Field
                     name="status"
-                    label={OrganisationReportRegionBudget.status}
+                    label={OrganisationRegionBudget.status}
                     component={Select}
                     options={Helpers.financeStatus}
                   />
@@ -189,13 +189,13 @@ export class OrgReportRegionBudgetsForm extends React.Component<OrgReportRegionB
   }
 }
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgReportRegionBudgetsDispatchProps => {
+const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgRegionBudgetsDispatchProps => {
   return {
     handleSubmit: (ownProps: any) => dispatch(setRegionBudget(ownProps))
   }
 }
 
-export const OrganisationReportRegionBudgets = withTheme(withStyles(styles)(connect<void, OrgReportRegionBudgetsDispatchProps, {}, ApplicationState>(
+export const OrganisationRegionBudgets = withTheme(withStyles(styles)(connect<void, OrgRegionBudgetsDispatchProps, {}, ApplicationState>(
   null,
   mapDispatchToProps
-)(OrgReportRegionBudgetsForm)))
+)(OrgRegionBudgetsForm)))

@@ -12,16 +12,16 @@ import { Select } from "material-ui-formik-components"
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { IATIOrgProps, OrgReportProps } from '../../../store/IATI/types'
+import { IATIOrgProps, OrgProps } from '../../../store/IATI/types'
 
 //import { getDictEntries } from '../../../utils/dict'
 
-import { setOrganisationReport } from '../../../store/IATI/IATIWriter/organisationReports/actions'
+import { setOrganisation } from '../../../store/IATI/IATIWriter/organisations/actions'
 
 import { OrganisationPicker } from '../../../components/io/orgPicker'
 import { TransactionHelper, TransactionTypes } from '../../io/transactionHelper'
 
-import { Org, OrganisationReport } from '../../../utils/strings'
+import { Org, Organisation } from '../../../utils/strings'
 import { Helpers } from '../../../utils/config'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
@@ -51,24 +51,24 @@ const reportSchema = Yup.object().shape({
     .required('Required'),
 })
 
-export interface OrgReportsDispatchProps {
+export interface OrgsDispatchProps {
   handleSubmit: (values: any) => void
 }
 
-type OrgReportsFormProps = WithStyles<typeof styles> & OrgReportsDispatchProps
+type OrgsFormProps = WithStyles<typeof styles> & OrgsDispatchProps
 
-export class OrgReportsForm extends React.Component<OrgReportsFormProps> {
+export class OrgsForm extends React.Component<OrgsFormProps> {
 
   state = {
     submitFunc: (function(submit: boolean) { return submit }),
     resetFunc: (function() { return null })
   }
 
-  constructor (props: OrgReportsFormProps) {
+  constructor (props: OrgsFormProps) {
    super(props)
   }
 
-  handleSubmit = (values: OrgReportProps, setSubmitting: Function, reset: Function) => {
+  handleSubmit = (values: OrgProps, setSubmitting: Function, reset: Function) => {
     this.setState({submitFunc: setSubmitting, resetFunc: reset})
     this.props.handleSubmit(values)
   }
@@ -77,7 +77,7 @@ export class OrgReportsForm extends React.Component<OrgReportsFormProps> {
 
     return (
       <div>
-        <h2>{OrganisationReport.headingOrgReportWriter}</h2>
+        <h2>{Organisation.headingOrgWriter}</h2>
         <div>
           <Formik
             initialValues={ {version: "",
@@ -89,45 +89,45 @@ export class OrgReportsForm extends React.Component<OrgReportsFormProps> {
                              currency: ""
                             }}
             validationSchema={reportSchema}
-            onSubmit={(values: OrgReportProps, actions: any) => {
+            onSubmit={(values: OrgProps, actions: any) => {
               this.handleSubmit(values, actions.setSubmitting, actions.resetForm)
             }}
-            render={(formProps: FormikProps<OrgReportProps>) => (
+            render={(formProps: FormikProps<OrgProps>) => (
               <Form>
                 <FormControl fullWidth={true}>
                   <Field
                     name="version"
-                    label={OrganisationReport.version}
+                    label={Organisation.version}
                     component={Select}
                     options={Helpers.reportVersions}
                   />
                   <ErrorMessage name='version' />
-                  <OrganisationPicker name='orgRef' label={OrganisationReport.orgIdentifier} />
-                  <OrganisationPicker name='reportingOrgRef' label={OrganisationReport.reportingOrgRef} />
+                  <OrganisationPicker name='orgRef' label={Organisation.orgIdentifier} />
+                  <OrganisationPicker name='reportingOrgRef' label={Organisation.reportingOrgRef} />
                   <Field
                     name="reportingOrgType"
-                    label={OrganisationReport.reportingOrgType}
+                    label={Organisation.reportingOrgType}
                     component={Select}
                     options={Helpers.organisationCodes}
                   />
                   <ErrorMessage name='reportingOrgType' />
                   <Field
                     name="reportingOrgIsSecondary"
-                    label={OrganisationReport.reportingOrgIsSecondary}
+                    label={Organisation.reportingOrgIsSecondary}
                     component={Select}
                     options={Helpers.isSecondary}
                   />
                   <ErrorMessage name='reportingOrgIsSecondary' />
                   <Field
                     name="lang"
-                    label={OrganisationReport.language}
+                    label={Organisation.language}
                     component={Select}
                     options={Helpers.languageCodes}
                   />
                   <ErrorMessage name='lang' />
                   <Field
                     name="currency"
-                    label={OrganisationReport.currency}
+                    label={Organisation.currency}
                     component={Select}
                     options={Helpers.currencyCodes}
                   />
@@ -153,13 +153,13 @@ export class OrgReportsForm extends React.Component<OrgReportsFormProps> {
   }
 }
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgReportsDispatchProps => {
+const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgsDispatchProps => {
   return {
-    handleSubmit: (ownProps: any) => dispatch(setOrganisationReport(ownProps))
+    handleSubmit: (ownProps: any) => dispatch(setOrganisation(ownProps))
   }
 }
 
-export const OrganisationReports = withTheme(withStyles(styles)(connect<void, OrgReportsDispatchProps, {}, ApplicationState>(
+export const Organisations = withTheme(withStyles(styles)(connect<void, OrgsDispatchProps, {}, ApplicationState>(
   null,
   mapDispatchToProps
-)(OrgReportsForm)))
+)(OrgsForm)))

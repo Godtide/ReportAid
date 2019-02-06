@@ -12,15 +12,15 @@ import { Select, TextField } from "material-ui-formik-components"
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { IATIOrgReportDocProps, OrgReportDocProps, ReportProps} from '../../../store/IATI/types'
+import { IATIOrgDocProps, OrgDocProps, Props} from '../../../store/IATI/types'
 
-import { setOrganisationReportDoc } from '../../../store/IATI/IATIWriter/organisationReportDocs/actions'
+import { setOrganisationDoc } from '../../../store/IATI/IATIWriter/organisationDocs/actions'
 
 import { FormikDatePicker } from '../../../components/io/datePicker'
-import { OrgReportPicker } from '../../../components/io/reportPicker'
+import { OrgPicker } from '../../../components/io/reportPicker'
 import { TransactionHelper, TransactionTypes } from '../../io/transactionHelper'
 
-import { OrganisationReportDoc } from '../../../utils/strings'
+import { OrganisationDoc } from '../../../utils/strings'
 import { Helpers } from '../../../utils/config'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
@@ -78,36 +78,36 @@ const docSchema = Yup.object().shape({
 const DatePickerProps = {
   day: {
     name: 'day',
-    label: OrganisationReportDoc.documentDay
+    label: OrganisationDoc.documentDay
   },
   month: {
     name: 'month',
-    label: OrganisationReportDoc.documentMonth
+    label: OrganisationDoc.documentMonth
   },
   year: {
     name: 'year',
-    label: OrganisationReportDoc.documentYear
+    label: OrganisationDoc.documentYear
   }
 }
 
-interface OrgReportDocsDispatchProps {
+interface OrgDocsDispatchProps {
   handleSubmit: (values: any) => void
 }
 
-type OrgReportDocsFormProps = WithStyles<typeof styles> & OrgReportDocsDispatchProps
+type OrgDocsFormProps = WithStyles<typeof styles> & OrgDocsDispatchProps
 
-export class OrgReportDocsForm extends React.Component<OrgReportDocsFormProps> {
+export class OrgDocsForm extends React.Component<OrgDocsFormProps> {
 
   state = {
     submitFunc: (function(submit: boolean) { return submit }),
     resetFunc: (function() { return null })
   }
 
-  constructor (props: OrgReportDocsFormProps) {
+  constructor (props: OrgDocsFormProps) {
    super(props)
   }
 
-  handleSubmit = (values: OrgReportDocProps, setSubmitting: Function, reset: Function) => {
+  handleSubmit = (values: OrgDocProps, setSubmitting: Function, reset: Function) => {
     this.setState({submitFunc: setSubmitting, resetFunc: reset})
     this.props.handleSubmit(values)
   }
@@ -116,10 +116,10 @@ export class OrgReportDocsForm extends React.Component<OrgReportDocsFormProps> {
 
     return (
       <div>
-        <h2>{OrganisationReportDoc.headingOrgReportDocWriter}</h2>
+        <h2>{OrganisationDoc.headingOrgDocWriter}</h2>
         <div>
           <Formik
-            initialValues={ {report: {} as ReportProps,
+            initialValues={ {report: {} as Props,
                              title: '',
                              format: '',
                              url: '',
@@ -132,55 +132,55 @@ export class OrgReportDocsForm extends React.Component<OrgReportDocsFormProps> {
                              year: 2000
                             }}
             validationSchema={docSchema}
-            onSubmit={(values: OrgReportDocProps, actions: any) => {
+            onSubmit={(values: OrgDocProps, actions: any) => {
               this.handleSubmit(values, actions.setSubmitting, actions.resetForm)
             }}
-            render={(formProps: FormikProps<OrgReportDocProps>) => (
+            render={(formProps: FormikProps<OrgDocProps>) => (
               <Form>
                 <FormControl fullWidth={true}>
-                  <OrgReportPicker name='report' label={OrganisationReportDoc.reportReference} />
+                  <OrgPicker name='report' label={OrganisationDoc.reportReference} />
                   <Field
                     name='title'
-                    label={OrganisationReportDoc.documentTitle}
+                    label={OrganisationDoc.documentTitle}
                     component={TextField}
                   />
                   <ErrorMessage name='title' />
                   <Field
                     name='format'
-                    label={OrganisationReportDoc.documentFormat}
+                    label={OrganisationDoc.documentFormat}
                     component={Select}
                     options={Helpers.documentFormats}
                   />
                   <ErrorMessage name='format' />
                   <Field
                     name='url'
-                    label={OrganisationReportDoc.documentURL}
+                    label={OrganisationDoc.documentURL}
                     component={TextField}
                   />
                   <ErrorMessage name='url' />
                   <Field
                     name='category'
-                    label={OrganisationReportDoc.documentCategory}
+                    label={OrganisationDoc.documentCategory}
                     component={Select}
                     options={Helpers.documentCategories}
                   />
                   <ErrorMessage name='category' />
                   <Field
                     name='countryRef'
-                    label={OrganisationReportDoc.documentCountryRef}
+                    label={OrganisationDoc.documentCountryRef}
                     component={Select}
                     options={Helpers.countryCodes}
                   />
                   <ErrorMessage name='countryRef' />
                   <Field
                     name='desc'
-                    label={OrganisationReportDoc.documentDesc}
+                    label={OrganisationDoc.documentDesc}
                     component={TextField}
                   />
                   <ErrorMessage name='desc' />
                   <Field
                     name="lang"
-                    label={OrganisationReportDoc.documentLang}
+                    label={OrganisationDoc.documentLang}
                     component={Select}
                     options={Helpers.languageCodes}
                   />
@@ -207,13 +207,13 @@ export class OrgReportDocsForm extends React.Component<OrgReportDocsFormProps> {
   }
 }
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgReportDocsDispatchProps => {
+const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgDocsDispatchProps => {
   return {
-    handleSubmit: (ownProps: any) => dispatch(setOrganisationReportDoc(ownProps))
+    handleSubmit: (ownProps: any) => dispatch(setOrganisationDoc(ownProps))
   }
 }
 
-export const OrganisationReportDocs = withTheme(withStyles(styles)(connect<void, OrgReportDocsDispatchProps, {}, ApplicationState>(
+export const OrganisationDocs = withTheme(withStyles(styles)(connect<void, OrgDocsDispatchProps, {}, ApplicationState>(
   null,
   mapDispatchToProps
-)(OrgReportDocsForm)))
+)(OrgDocsForm)))

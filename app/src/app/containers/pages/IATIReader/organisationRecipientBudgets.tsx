@@ -5,65 +5,65 @@ import { ThunkDispatch } from 'redux-thunk'
 import { ethers } from 'ethers'
 import Markdown from 'react-markdown'
 
-import { getReportRecipientBudgets } from '../../../store/IATI/IATIReader/organisationReportRecipientBudgets/actions'
+import { getRecipientBudgets } from '../../../store/IATI/IATIReader/organisationRecipientBudgets/actions'
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { OrgReportRecipientBudgetsData } from '../../../store/IATI/IATIReader/organisationReportRecipientBudgets/types'
+import { OrgRecipientBudgetsData } from '../../../store/IATI/IATIReader/organisationRecipientBudgets/types'
 
-import { OrganisationReportRecipientBudget as OrgReportRecipientBudgetStrings } from '../../../utils/strings'
+import { OrganisationRecipientBudget as OrgRecipientBudgetStrings } from '../../../utils/strings'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
 
-interface OrgReportRecipientBudgetProps {
+interface OrgRecipientBudgetProps {
   num: number
-  orgReportRecipientBudgets: OrgReportRecipientBudgetsData
+  orgRecipientBudgets: OrgRecipientBudgetsData
 }
 
-interface OrgReportRecipientBudgetDispatchProps {
-  getReportRecipientBudgets: () => void
+interface OrgRecipientBudgetDispatchProps {
+  getRecipientBudgets: () => void
 }
 
-type OrgReportRecipientBudgetsReaderProps =  WithStyles<typeof styles> & OrgReportRecipientBudgetProps & OrgReportRecipientBudgetDispatchProps
+type OrgRecipientBudgetsReaderProps =  WithStyles<typeof styles> & OrgRecipientBudgetProps & OrgRecipientBudgetDispatchProps
 
-export class OrgReportRecipientBudgets extends React.Component<OrgReportRecipientBudgetsReaderProps> {
+export class OrgRecipientBudgets extends React.Component<OrgRecipientBudgetsReaderProps> {
 
-  constructor (props: OrgReportRecipientBudgetsReaderProps) {
+  constructor (props: OrgRecipientBudgetsReaderProps) {
     super(props)
   }
 
   componentDidMount() {
-    this.props.getReportRecipientBudgets()
+    this.props.getRecipientBudgets()
   }
 
   render() {
 
-    const budgetsData = Object.keys(this.props.orgReportRecipientBudgets)
+    const budgetsData = Object.keys(this.props.orgRecipientBudgets)
     let xs = ""
     if ( budgetsData.length > 0 ) {
       let length = 0
       //console.log ("Orgsdata: ", orgsData, " length ", orgsData.length )
       budgetsData.forEach((reportKey) => {
-        xs += `**${OrgReportRecipientBudgetStrings.reportReference}**: ${reportKey}<br />`
-        const values = Object.values(this.props.orgReportRecipientBudgets[reportKey])
+        xs += `**${OrgRecipientBudgetStrings.reportReference}**: ${reportKey}<br />`
+        const values = Object.values(this.props.orgRecipientBudgets[reportKey])
         //console.log('Values: ', values)
-        xs += `**${OrgReportRecipientBudgetStrings.numReportBudgets}**: ${values[0]} <br /><br />`
+        xs += `**${OrgRecipientBudgetStrings.numBudgets}**: ${values[0]} <br /><br />`
         Object.keys(values[1]).forEach((budgetKey) => {
-          //console.log('Report: ', values[1][budgetKey])
+          //console.log(': ', values[1][budgetKey])
           //const version = ethers.utils.parseBytes32String(values[1][thisKey].version)
           if ( values[1][budgetKey].hasOwnProperty('budgetLine') && values[1][budgetKey].budgetLine != "" ) {
             const budgetLine = ethers.utils.parseBytes32String(values[1][budgetKey].budgetLine)
             const start = ethers.utils.parseBytes32String(values[1][budgetKey].finance.start)
             const end = ethers.utils.parseBytes32String(values[1][budgetKey].finance.end)
-            xs+= `**${OrgReportRecipientBudgetStrings.reportingOrgRef}**: ${values[1][budgetKey].report.orgRef} <br />`
-            xs+= `**${OrgReportRecipientBudgetStrings.budgetReference}**: ${budgetKey} <br />`
-            xs+= `**${OrgReportRecipientBudgetStrings.orgReference}**: ${values[1][budgetKey].orgRef} <br />`
-            xs+= `**${OrgReportRecipientBudgetStrings.budgetLine}**: ${budgetLine} <br />`
-            xs+= `**${OrgReportRecipientBudgetStrings.value}**: ${values[1][budgetKey].finance.value} <br />`
-            xs+= `**${OrgReportRecipientBudgetStrings.status}**: ${values[1][budgetKey].finance.status} <br />`
-            xs+= `**${OrgReportRecipientBudgetStrings.budgetStart}**: ${start} <br />`
-            xs+= `**${OrgReportRecipientBudgetStrings.budgetEnd}**: ${end} <br /><br />`
+            xs+= `**${OrgRecipientBudgetStrings.reportingOrgRef}**: ${values[1][budgetKey].report.orgRef} <br />`
+            xs+= `**${OrgRecipientBudgetStrings.budgetReference}**: ${budgetKey} <br />`
+            xs+= `**${OrgRecipientBudgetStrings.orgReference}**: ${values[1][budgetKey].orgRef} <br />`
+            xs+= `**${OrgRecipientBudgetStrings.budgetLine}**: ${budgetLine} <br />`
+            xs+= `**${OrgRecipientBudgetStrings.value}**: ${values[1][budgetKey].finance.value} <br />`
+            xs+= `**${OrgRecipientBudgetStrings.status}**: ${values[1][budgetKey].finance.status} <br />`
+            xs+= `**${OrgRecipientBudgetStrings.budgetStart}**: ${start} <br />`
+            xs+= `**${OrgRecipientBudgetStrings.budgetEnd}**: ${end} <br /><br />`
           }
         })
         length += 1
@@ -73,33 +73,33 @@ export class OrgReportRecipientBudgets extends React.Component<OrgReportRecipien
 
     return (
       <div>
-        <h2>{OrgReportRecipientBudgetStrings.headingOrgReportRecipientBudgetReader}</h2>
+        <h2>{OrgRecipientBudgetStrings.headingOrgRecipientBudgetReader}</h2>
         <p>
-          <b>{OrgReportRecipientBudgetStrings.numReports}</b>: {this.props.num}
+          <b>{OrgRecipientBudgetStrings.nums}</b>: {this.props.num}
         </p>
         <hr />
-        <h3>{OrgReportRecipientBudgetStrings.reportBudgetDetails}</h3>
+        <h3>{OrgRecipientBudgetStrings.reportBudgetDetails}</h3>
         <Markdown escapeHtml={false} source={xs} />
       </div>
     )
   }
 }
 
-const mapStateToProps = (state: ApplicationState): OrgReportRecipientBudgetProps => {
+const mapStateToProps = (state: ApplicationState): OrgRecipientBudgetProps => {
   //console.log(state.orgReader)
   return {
-    num: state.orgReportRecipientBudgetsReader.num,
-    orgReportRecipientBudgets: state.orgReportRecipientBudgetsReader.data
+    num: state.orgRecipientBudgetsReader.num,
+    orgRecipientBudgets: state.orgRecipientBudgetsReader.data
   }
 }
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgReportRecipientBudgetDispatchProps => {
+const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgRecipientBudgetDispatchProps => {
   return {
-    getReportRecipientBudgets: () => dispatch(getReportRecipientBudgets())
+    getRecipientBudgets: () => dispatch(getRecipientBudgets())
   }
 }
 
-export const OrganisationReportRecipientBudgets = withTheme(withStyles(styles)(connect<OrgReportRecipientBudgetProps, OrgReportRecipientBudgetDispatchProps, {}, ApplicationState>(
+export const OrganisationRecipientBudgets = withTheme(withStyles(styles)(connect<OrgRecipientBudgetProps, OrgRecipientBudgetDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(OrgReportRecipientBudgets)))
+)(OrgRecipientBudgets)))

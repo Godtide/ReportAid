@@ -11,15 +11,15 @@ import { Select, TextField } from "material-ui-formik-components"
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { IATIOrgReportCountryBudgetProps, OrgReportCountryBudgetProps, ReportProps } from '../../../store/IATI/types'
+import { IATIOrgCountryBudgetProps, OrgCountryBudgetProps, Props } from '../../../store/IATI/types'
 
-import { setCountryBudget } from '../../../store/IATI/IATIWriter/organisationReportCountryBudgets/actions'
+import { setCountryBudget } from '../../../store/IATI/IATIWriter/organisationCountryBudgets/actions'
 
 import { FormikDatePicker } from '../../../components/io/datePicker'
-import { OrgReportPicker } from '../../../components/io/reportPicker'
+import { OrgPicker } from '../../../components/io/reportPicker'
 import { TransactionHelper, TransactionTypes } from '../../io/transactionHelper'
 
-import { OrganisationReportCountryBudget } from '../../../utils/strings'
+import { OrganisationCountryBudget } from '../../../utils/strings'
 import { Helpers } from '../../../utils/config'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
@@ -64,51 +64,51 @@ const reportSchema = Yup.object().shape({
 const StartDatePickerProps = {
   day: {
     name: 'startDay',
-    label: OrganisationReportCountryBudget.budgetStartDay
+    label: OrganisationCountryBudget.budgetStartDay
   },
   month: {
     name: 'startMonth',
-    label: OrganisationReportCountryBudget.budgetStartMonth
+    label: OrganisationCountryBudget.budgetStartMonth
   },
   year: {
     name: 'startYear',
-    label: OrganisationReportCountryBudget.budgetStartYear
+    label: OrganisationCountryBudget.budgetStartYear
   }
 }
 
 const EndDatePickerProps = {
   day: {
     name: 'endDay',
-    label: OrganisationReportCountryBudget.budgetEndDay
+    label: OrganisationCountryBudget.budgetEndDay
   },
   month: {
     name: 'endMonth',
-    label: OrganisationReportCountryBudget.budgetEndMonth
+    label: OrganisationCountryBudget.budgetEndMonth
   },
   year: {
     name: 'endYear',
-    label: OrganisationReportCountryBudget.budgetEndYear
+    label: OrganisationCountryBudget.budgetEndYear
   }
 }
 
-interface OrgReportCountryBudgetsDispatchProps {
+interface OrgCountryBudgetsDispatchProps {
   handleSubmit: (values: any) => void
 }
 
-type OrgReportCountryBudgetsFormProps = WithStyles<typeof styles> & OrgReportCountryBudgetsDispatchProps
+type OrgCountryBudgetsFormProps = WithStyles<typeof styles> & OrgCountryBudgetsDispatchProps
 
-export class OrgReportCountryBudgetsForm extends React.Component<OrgReportCountryBudgetsFormProps> {
+export class OrgCountryBudgetsForm extends React.Component<OrgCountryBudgetsFormProps> {
 
   state = {
     submitFunc: (function(submit: boolean) { return submit }),
     resetFunc: (function() { return null })
   }
 
-  constructor (props: OrgReportCountryBudgetsFormProps) {
+  constructor (props: OrgCountryBudgetsFormProps) {
    super(props)
   }
 
-  handleSubmit = (values: OrgReportCountryBudgetProps, setSubmitting: Function, reset: Function) => {
+  handleSubmit = (values: OrgCountryBudgetProps, setSubmitting: Function, reset: Function) => {
     this.setState({submitFunc: setSubmitting, resetFunc: reset})
     this.props.handleSubmit(values)
   }
@@ -117,10 +117,10 @@ export class OrgReportCountryBudgetsForm extends React.Component<OrgReportCountr
 
     return (
       <div>
-        <h2>{OrganisationReportCountryBudget.headingOrgReportCountryBudgetWriter}</h2>
+        <h2>{OrganisationCountryBudget.headingOrgCountryBudgetWriter}</h2>
         <div>
           <Formik
-            initialValues={ {report: {} as ReportProps,
+            initialValues={ {report: {} as Props,
                              countryRef: "",
                              budgetLine: "",
                              value: 0,
@@ -133,35 +133,35 @@ export class OrgReportCountryBudgetsForm extends React.Component<OrgReportCountr
                              endYear: 2000
                             }}
             validationSchema={reportSchema}
-            onSubmit={(values: OrgReportCountryBudgetProps, actions: any) => {
+            onSubmit={(values: OrgCountryBudgetProps, actions: any) => {
               this.handleSubmit(values, actions.setSubmitting, actions.resetForm)
             }}
-            render={(formProps: FormikProps<OrgReportCountryBudgetProps>) => (
+            render={(formProps: FormikProps<OrgCountryBudgetProps>) => (
               <Form>
                 <FormControl fullWidth={true}>
-                  <OrgReportPicker name='report' label={OrganisationReportCountryBudget.reportReference} />
+                  <OrgPicker name='report' label={OrganisationCountryBudget.reportReference} />
                   <Field
                     name='budgetLine'
-                    label={OrganisationReportCountryBudget.budgetLine}
+                    label={OrganisationCountryBudget.budgetLine}
                     component={TextField}
                   />
                   <ErrorMessage name='budgetLine' />
                   <Field
                     name="countryRef"
-                    label={OrganisationReportCountryBudget.countryReference}
+                    label={OrganisationCountryBudget.countryReference}
                     component={Select}
                     options={Helpers.countryCodes}
                   />
                   <ErrorMessage name='countryRef' />
                   <Field
                     name='value'
-                    label={OrganisationReportCountryBudget.value}
+                    label={OrganisationCountryBudget.value}
                     component={TextField}
                   />
                   <ErrorMessage name='value' />
                   <Field
                     name="status"
-                    label={OrganisationReportCountryBudget.status}
+                    label={OrganisationCountryBudget.status}
                     component={Select}
                     options={Helpers.financeStatus}
                   />
@@ -189,13 +189,13 @@ export class OrgReportCountryBudgetsForm extends React.Component<OrgReportCountr
   }
 }
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgReportCountryBudgetsDispatchProps => {
+const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgCountryBudgetsDispatchProps => {
   return {
     handleSubmit: (ownProps: any) => dispatch(setCountryBudget(ownProps))
   }
 }
 
-export const OrganisationReportCountryBudgets = withTheme(withStyles(styles)(connect<void, OrgReportCountryBudgetsDispatchProps, {}, ApplicationState>(
+export const OrganisationCountryBudgets = withTheme(withStyles(styles)(connect<void, OrgCountryBudgetsDispatchProps, {}, ApplicationState>(
   null,
   mapDispatchToProps
-)(OrgReportCountryBudgetsForm)))
+)(OrgCountryBudgetsForm)))

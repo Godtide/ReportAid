@@ -5,50 +5,50 @@ import { ThunkDispatch } from 'redux-thunk'
 import { ethers } from 'ethers'
 import Markdown from 'react-markdown'
 
-import { getReportDocs } from '../../../store/IATI/IATIReader/organisationReportDocs/actions'
+import { getDocs } from '../../../store/IATI/IATIReader/organisationDocs/actions'
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { OrgReportDocsData } from '../../../store/IATI/IATIReader/organisationReportDocs/types'
+import { OrgDocsData } from '../../../store/IATI/IATIReader/organisationDocs/types'
 
-import { OrganisationReportDoc as OrgReportDocStrings } from '../../../utils/strings'
+import { OrganisationDoc as OrgDocStrings } from '../../../utils/strings'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
 
-interface OrgReportDocProps {
+interface OrgDocProps {
   num: number
-  orgReportDocs: OrgReportDocsData
+  orgDocs: OrgDocsData
 }
 
-interface OrgReportDocDispatchProps {
-  getReportDocs: () => void
+interface OrgDocDispatchProps {
+  getDocs: () => void
 }
 
-type OrgReportDocsReaderProps =  WithStyles<typeof styles> & OrgReportDocProps & OrgReportDocDispatchProps
+type OrgDocsReaderProps =  WithStyles<typeof styles> & OrgDocProps & OrgDocDispatchProps
 
-export class OrgReportDocs extends React.Component<OrgReportDocsReaderProps> {
+export class OrgDocs extends React.Component<OrgDocsReaderProps> {
 
-  constructor (props: OrgReportDocsReaderProps) {
+  constructor (props: OrgDocsReaderProps) {
     super(props)
   }
 
   componentDidMount() {
-    this.props.getReportDocs()
+    this.props.getDocs()
   }
 
   render() {
 
-    const docsData = Object.keys(this.props.orgReportDocs)
+    const docsData = Object.keys(this.props.orgDocs)
     let xs = ""
     if ( docsData.length > 0 ) {
       let length = 0
       //console.log ("Orgsdata: ", orgsData, " length ", orgsData.length )
       docsData.forEach((reportKey) => {
-        xs += `**${OrgReportDocStrings.reportReference}**: ${reportKey}<br />`
-        const values = Object.values(this.props.orgReportDocs[reportKey])
+        xs += `**${OrgDocStrings.reportReference}**: ${reportKey}<br />`
+        const values = Object.values(this.props.orgDocs[reportKey])
         //console.log('Values: ', values)
-        xs += `**${OrgReportDocStrings.numReportDocs}**: ${values[0]} <br /><br />`
+        xs += `**${OrgDocStrings.numDocs}**: ${values[0]} <br /><br />`
         Object.keys(values[1]).forEach((docKey) => {
           //console.log('Doc: ', values[1][docKey])
           //const version = ethers.utils.parseBytes32String(values[1][thisKey].version)
@@ -57,16 +57,16 @@ export class OrgReportDocs extends React.Component<OrgReportDocsReaderProps> {
             const countryRef = ethers.utils.parseBytes32String(values[1][docKey].countryRef)
             const lang = ethers.utils.parseBytes32String(values[1][docKey].lang)
             const date = ethers.utils.parseBytes32String(values[1][docKey].date)
-            xs+= `**${OrgReportDocStrings.reportingOrgRef}**: ${values[1][docKey].report.orgRef} <br />`
-            xs+= `**${OrgReportDocStrings.docReference}**: ${docKey} <br />`
-            xs+= `**${OrgReportDocStrings.documentTitle}**: ${values[1][docKey].title} <br />`
-            xs+= `**${OrgReportDocStrings.documentFormat}**: ${values[1][docKey].format} <br />`
-            xs+= `**${OrgReportDocStrings.documentURL}**: ${values[1][docKey].url} <br />`
-            xs+= `**${OrgReportDocStrings.documentCategory}**: ${category} <br />`
-            xs+= `**${OrgReportDocStrings.documentCountryRef}**: ${countryRef} <br />`
-            xs+= `**${OrgReportDocStrings.documentDesc}**: ${values[1][docKey].desc} <br />`
-            xs+= `**${OrgReportDocStrings.documentLang}**: ${lang} <br />`
-            xs+= `**${OrgReportDocStrings.documentDate}**: ${date} <br /><br />`
+            xs+= `**${OrgDocStrings.reportingOrgRef}**: ${values[1][docKey].report.orgRef} <br />`
+            xs+= `**${OrgDocStrings.docReference}**: ${docKey} <br />`
+            xs+= `**${OrgDocStrings.documentTitle}**: ${values[1][docKey].title} <br />`
+            xs+= `**${OrgDocStrings.documentFormat}**: ${values[1][docKey].format} <br />`
+            xs+= `**${OrgDocStrings.documentURL}**: ${values[1][docKey].url} <br />`
+            xs+= `**${OrgDocStrings.documentCategory}**: ${category} <br />`
+            xs+= `**${OrgDocStrings.documentCountryRef}**: ${countryRef} <br />`
+            xs+= `**${OrgDocStrings.documentDesc}**: ${values[1][docKey].desc} <br />`
+            xs+= `**${OrgDocStrings.documentLang}**: ${lang} <br />`
+            xs+= `**${OrgDocStrings.documentDate}**: ${date} <br /><br />`
           }
         })
         length += 1
@@ -76,33 +76,33 @@ export class OrgReportDocs extends React.Component<OrgReportDocsReaderProps> {
 
     return (
       <div>
-        <h2>{OrgReportDocStrings.headingOrgReportDocReader}</h2>
+        <h2>{OrgDocStrings.headingOrgDocReader}</h2>
         <p>
-          <b>{OrgReportDocStrings.numReports}</b>: {this.props.num}
+          <b>{OrgDocStrings.nums}</b>: {this.props.num}
         </p>
         <hr />
-        <h3>{OrgReportDocStrings.reportDocDetails}</h3>
+        <h3>{OrgDocStrings.reportDocDetails}</h3>
         <Markdown escapeHtml={false} source={xs} />
       </div>
     )
   }
 }
 
-const mapStateToProps = (state: ApplicationState): OrgReportDocProps => {
+const mapStateToProps = (state: ApplicationState): OrgDocProps => {
   //console.log(state.orgReader)
   return {
-    num: state.orgReportDocsReader.num,
-    orgReportDocs: state.orgReportDocsReader.data
+    num: state.orgDocsReader.num,
+    orgDocs: state.orgDocsReader.data
   }
 }
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgReportDocDispatchProps => {
+const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgDocDispatchProps => {
   return {
-    getReportDocs: () => dispatch(getReportDocs())
+    getDocs: () => dispatch(getDocs())
   }
 }
 
-export const OrganisationReportDocs = withTheme(withStyles(styles)(connect<OrgReportDocProps, OrgReportDocDispatchProps, {}, ApplicationState>(
+export const OrganisationDocs = withTheme(withStyles(styles)(connect<OrgDocProps, OrgDocDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(OrgReportDocs)))
+)(OrgDocs)))

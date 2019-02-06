@@ -5,65 +5,65 @@ import { ThunkDispatch } from 'redux-thunk'
 import { ethers } from 'ethers'
 import Markdown from 'react-markdown'
 
-import { getReportRegionBudgets } from '../../../store/IATI/IATIReader/organisationReportRegionBudgets/actions'
+import { getRegionBudgets } from '../../../store/IATI/IATIReader/organisationRegionBudgets/actions'
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { OrgReportRegionBudgetsData } from '../../../store/IATI/IATIReader/organisationReportRegionBudgets/types'
+import { OrgRegionBudgetsData } from '../../../store/IATI/IATIReader/organisationRegionBudgets/types'
 
-import { OrganisationReportRegionBudget as OrgReportRegionBudgetStrings } from '../../../utils/strings'
+import { OrganisationRegionBudget as OrgRegionBudgetStrings } from '../../../utils/strings'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
 
-interface OrgReportRegionBudgetProps {
+interface OrgRegionBudgetProps {
   num: number
-  orgReportRegionBudgets: OrgReportRegionBudgetsData
+  orgRegionBudgets: OrgRegionBudgetsData
 }
 
-interface OrgReportRegionBudgetDispatchProps {
-  getReportRegionBudgets: () => void
+interface OrgRegionBudgetDispatchProps {
+  getRegionBudgets: () => void
 }
 
-type OrgReportRegionBudgetsReaderProps =  WithStyles<typeof styles> & OrgReportRegionBudgetProps & OrgReportRegionBudgetDispatchProps
+type OrgRegionBudgetsReaderProps =  WithStyles<typeof styles> & OrgRegionBudgetProps & OrgRegionBudgetDispatchProps
 
-export class OrgReportRegionBudgets extends React.Component<OrgReportRegionBudgetsReaderProps> {
+export class OrgRegionBudgets extends React.Component<OrgRegionBudgetsReaderProps> {
 
-  constructor (props: OrgReportRegionBudgetsReaderProps) {
+  constructor (props: OrgRegionBudgetsReaderProps) {
     super(props)
   }
 
   componentDidMount() {
-    this.props.getReportRegionBudgets()
+    this.props.getRegionBudgets()
   }
 
   render() {
 
-    const budgetsData = Object.keys(this.props.orgReportRegionBudgets)
+    const budgetsData = Object.keys(this.props.orgRegionBudgets)
     let xs = ""
     if ( budgetsData.length > 0 ) {
       let length = 0
       //console.log ("Orgsdata: ", orgsData, " length ", orgsData.length )
       budgetsData.forEach((reportKey) => {
-        xs += `**${OrgReportRegionBudgetStrings.reportReference}**: ${reportKey}<br />`
-        const values = Object.values(this.props.orgReportRegionBudgets[reportKey])
+        xs += `**${OrgRegionBudgetStrings.reportReference}**: ${reportKey}<br />`
+        const values = Object.values(this.props.orgRegionBudgets[reportKey])
         //console.log('Values: ', values)
-        xs += `**${OrgReportRegionBudgetStrings.numReportBudgets}**: ${values[0]} <br /><br />`
+        xs += `**${OrgRegionBudgetStrings.numBudgets}**: ${values[0]} <br /><br />`
         Object.keys(values[1]).forEach((budgetKey) => {
-          //console.log('Report: ', values[1][budgetKey])
+          //console.log(': ', values[1][budgetKey])
           //const version = ethers.utils.parseBytes32String(values[1][thisKey].version)
           if ( values[1][budgetKey].hasOwnProperty('budgetLine') && values[1][budgetKey].budgetLine != "" ) {
             const budgetLine = ethers.utils.parseBytes32String(values[1][budgetKey].budgetLine)
             const start = ethers.utils.parseBytes32String(values[1][budgetKey].finance.start)
             const end = ethers.utils.parseBytes32String(values[1][budgetKey].finance.end)
-            xs+= `**${OrgReportRegionBudgetStrings.reportingOrgRef}**: ${values[1][budgetKey].report.orgRef} <br />`
-            xs+= `**${OrgReportRegionBudgetStrings.budgetReference}**: ${budgetKey} <br />`
-            xs+= `**${OrgReportRegionBudgetStrings.regionReference}**: ${values[1][budgetKey].regionRef} <br />`
-            xs+= `**${OrgReportRegionBudgetStrings.budgetLine}**: ${budgetLine} <br />`
-            xs+= `**${OrgReportRegionBudgetStrings.value}**: ${values[1][budgetKey].finance.value} <br />`
-            xs+= `**${OrgReportRegionBudgetStrings.status}**: ${values[1][budgetKey].finance.status} <br />`
-            xs+= `**${OrgReportRegionBudgetStrings.budgetStart}**: ${start} <br />`
-            xs+= `**${OrgReportRegionBudgetStrings.budgetEnd}**: ${end} <br /><br />`
+            xs+= `**${OrgRegionBudgetStrings.reportingOrgRef}**: ${values[1][budgetKey].report.orgRef} <br />`
+            xs+= `**${OrgRegionBudgetStrings.budgetReference}**: ${budgetKey} <br />`
+            xs+= `**${OrgRegionBudgetStrings.regionReference}**: ${values[1][budgetKey].regionRef} <br />`
+            xs+= `**${OrgRegionBudgetStrings.budgetLine}**: ${budgetLine} <br />`
+            xs+= `**${OrgRegionBudgetStrings.value}**: ${values[1][budgetKey].finance.value} <br />`
+            xs+= `**${OrgRegionBudgetStrings.status}**: ${values[1][budgetKey].finance.status} <br />`
+            xs+= `**${OrgRegionBudgetStrings.budgetStart}**: ${start} <br />`
+            xs+= `**${OrgRegionBudgetStrings.budgetEnd}**: ${end} <br /><br />`
           }
         })
         length += 1
@@ -73,33 +73,33 @@ export class OrgReportRegionBudgets extends React.Component<OrgReportRegionBudge
 
     return (
       <div>
-        <h2>{OrgReportRegionBudgetStrings.headingOrgReportRegionBudgetReader}</h2>
+        <h2>{OrgRegionBudgetStrings.headingOrgRegionBudgetReader}</h2>
         <p>
-          <b>{OrgReportRegionBudgetStrings.numReports}</b>: {this.props.num}
+          <b>{OrgRegionBudgetStrings.nums}</b>: {this.props.num}
         </p>
         <hr />
-        <h3>{OrgReportRegionBudgetStrings.reportBudgetDetails}</h3>
+        <h3>{OrgRegionBudgetStrings.reportBudgetDetails}</h3>
         <Markdown escapeHtml={false} source={xs} />
       </div>
     )
   }
 }
 
-const mapStateToProps = (state: ApplicationState): OrgReportRegionBudgetProps => {
+const mapStateToProps = (state: ApplicationState): OrgRegionBudgetProps => {
   //console.log(state.orgReader)
   return {
-    num: state.orgReportRegionBudgetsReader.num,
-    orgReportRegionBudgets: state.orgReportRegionBudgetsReader.data
+    num: state.orgRegionBudgetsReader.num,
+    orgRegionBudgets: state.orgRegionBudgetsReader.data
   }
 }
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgReportRegionBudgetDispatchProps => {
+const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgRegionBudgetDispatchProps => {
   return {
-    getReportRegionBudgets: () => dispatch(getReportRegionBudgets())
+    getRegionBudgets: () => dispatch(getRegionBudgets())
   }
 }
 
-export const OrganisationReportRegionBudgets = withTheme(withStyles(styles)(connect<OrgReportRegionBudgetProps, OrgReportRegionBudgetDispatchProps, {}, ApplicationState>(
+export const OrganisationRegionBudgets = withTheme(withStyles(styles)(connect<OrgRegionBudgetProps, OrgRegionBudgetDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(OrgReportRegionBudgets)))
+)(OrgRegionBudgets)))

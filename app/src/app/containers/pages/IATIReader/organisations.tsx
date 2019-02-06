@@ -5,68 +5,68 @@ import { ThunkDispatch } from 'redux-thunk'
 import { ethers } from 'ethers'
 import Markdown from 'react-markdown'
 
-import { getOrgReports } from '../../../store/IATI/IATIReader/organisationReports/actions'
+import { getOrgs } from '../../../store/IATI/IATIReader/organisations/actions'
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { OrgReportData } from '../../../store/IATI/IATIReader/organisationReports/types'
+import { OrgData } from '../../../store/IATI/IATIReader/organisations/types'
 
-import { OrganisationReport as OrgReportStrings } from '../../../utils/strings'
+import { Organisation as OrgStrings } from '../../../utils/strings'
 
 import { getDictEntries } from '../../../components/io/dict'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
 
-interface OrgReportProps {
+interface OrgProps {
   num: number
-  orgReports: OrgReportData
+  orgs: OrgData
 }
 
-interface OrgReportDispatchProps {
-  getOrgReports: () => void
+interface OrgDispatchProps {
+  getOrgs: () => void
 }
 
-type OrgReportReaderProps =  WithStyles<typeof styles> & OrgReportProps & OrgReportDispatchProps
+type OrgReaderProps =  WithStyles<typeof styles> & OrgProps & OrgDispatchProps
 
-export class OrgReports extends React.Component<OrgReportReaderProps> {
+export class Orgs extends React.Component<OrgReaderProps> {
 
-  constructor (props: OrgReportReaderProps) {
+  constructor (props: OrgReaderProps) {
     super(props)
   }
 
   componentDidMount() {
-    this.props.getOrgReports()
+    this.props.getOrgs()
   }
 
   render() {
 
-    const orgsData = Object.keys(this.props.orgReports)
+    const orgsData = Object.keys(this.props.orgs)
     let xs = ""
     if ( orgsData.length > 0 ) {
       let length = 0
       //console.log ("Orgsdata: ", orgsData, " length ", orgsData.length )
       orgsData.forEach((key) => {
-        xs += `**${OrgReportStrings.orgIdentifier}**: ${key}<br />`
-        const values = Object.values(this.props.orgReports[key])
+        xs += `**${OrgStrings.orgIdentifier}**: ${key}<br />`
+        const values = Object.values(this.props.orgs[key])
         //console.log('Values: ', values)
-        xs += `**${OrgReportStrings.numOrgReports}**: ${values[0]} <br /><br />`
+        xs += `**${OrgStrings.numOrgs}**: ${values[0]} <br /><br />`
         Object.keys(values[1]).forEach((thisKey) => {
-          //console.log('Report: ', values[1][thisKey])
+          //console.log(': ', values[1][thisKey])
           //const version = ethers.utils.parseBytes32String(values[1][thisKey].version)
           if ( values[1][thisKey].hasOwnProperty('version') && values[1][thisKey].version != "" ) {
             const version = ethers.utils.parseBytes32String(values[1][thisKey].version)
             const language =  ethers.utils.parseBytes32String(values[1][thisKey].lang)
             const currency =  ethers.utils.parseBytes32String(values[1][thisKey].currency)
             const lastUpdated =  ethers.utils.parseBytes32String(values[1][thisKey].lastUpdatedTime)
-            xs+= `**${OrgReportStrings.reportingOrgRef}**: ${values[1][thisKey].reportingOrg.orgRef} <br />`
-            xs+= `**${OrgReportStrings.reportKey}**: ${thisKey} <br />`
-            xs+= `**${OrgReportStrings.reportingOrgType}**: ${values[1][thisKey].reportingOrg.orgType} <br />`
-            xs+= `**${OrgReportStrings.reportingOrgIsSecondary}**: ${values[1][thisKey].reportingOrg.isSecondary} <br />`
-            xs+= `**${OrgReportStrings.version}**: ${version} <br />`
-            xs+= `**${OrgReportStrings.language}**: ${language} <br />`
-            xs+= `**${OrgReportStrings.currency}**: ${currency} <br />`
-            xs+= `**${OrgReportStrings.lastUpdated}**: ${lastUpdated} <br /><br />`
+            xs+= `**${OrgStrings.reportingOrgRef}**: ${values[1][thisKey].reportingOrg.orgRef} <br />`
+            xs+= `**${OrgStrings.reportKey}**: ${thisKey} <br />`
+            xs+= `**${OrgStrings.reportingOrgType}**: ${values[1][thisKey].reportingOrg.orgType} <br />`
+            xs+= `**${OrgStrings.reportingOrgIsSecondary}**: ${values[1][thisKey].reportingOrg.isSecondary} <br />`
+            xs+= `**${OrgStrings.version}**: ${version} <br />`
+            xs+= `**${OrgStrings.language}**: ${language} <br />`
+            xs+= `**${OrgStrings.currency}**: ${currency} <br />`
+            xs+= `**${OrgStrings.lastUpdated}**: ${lastUpdated} <br /><br />`
           }
         })
         length += 1
@@ -76,33 +76,33 @@ export class OrgReports extends React.Component<OrgReportReaderProps> {
 
     return (
       <div>
-        <h2>{OrgReportStrings.headingOrgReportReader}</h2>
+        <h2>{OrgStrings.headingOrgReader}</h2>
         <p>
-          <b>{OrgReportStrings.numOrganisations}</b>: {this.props.num}
+          <b>{OrgStrings.numOrganisations}</b>: {this.props.num}
         </p>
         <hr />
-        <h3>{OrgReportStrings.orgReportDetails}</h3>
+        <h3>{OrgStrings.orgDetails}</h3>
         <Markdown escapeHtml={false} source={xs} />
       </div>
     )
   }
 }
 
-const mapStateToProps = (state: ApplicationState): OrgReportProps => {
+const mapStateToProps = (state: ApplicationState): OrgProps => {
   //console.log(state.orgReader)
   return {
-    num: state.orgReportsReader.num,
-    orgReports: state.orgReportsReader.data
+    num: state.orgsReader.num,
+    orgs: state.orgsReader.data
   }
 }
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgReportDispatchProps => {
+const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgDispatchProps => {
   return {
-    getOrgReports: () => dispatch(getOrgReports())
+    getOrgs: () => dispatch(getOrgs())
   }
 }
 
-export const OrganisationReports = withTheme(withStyles(styles)(connect<OrgReportProps, OrgReportDispatchProps, {}, ApplicationState>(
+export const Organisations = withTheme(withStyles(styles)(connect<OrgProps, OrgDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(OrgReports)))
+)(Orgs)))
