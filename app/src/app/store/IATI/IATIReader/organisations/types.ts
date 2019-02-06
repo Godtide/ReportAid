@@ -1,35 +1,35 @@
 import { PayloadProps, DictData } from '../../../types'
-import { IATIOrgProps } from '../../types'
+import { IATIOrganisationsProps } from '../../types'
 
 export interface Data {
-  [key: string]: IATIOrgProps
+  [key: string]: IATIOrganisationsProps
 }
 
-export interface s {
+export interface Organisations {
   num: number
   data: Data
 }
 
 export interface OrgData extends DictData {
-  [key: string]: s
+  [key: string]: Organisations
 }
 
-export interface OrgReaderProps extends PayloadProps {
+export interface OrganisationsReaderProps extends PayloadProps {
   num: number
   data: OrgData
 }
 
-export const enum OrgReaderActionTypes {
-  NUM_SUCCESS = '@@OrgReaderAction/GETNUM_SUCCESS',
-  NUM_FAILURE = '@@OrgReaderAction/GETNUM_FAILURE',
-  EXISTS_SUCCESS = '@@OrgReaderAction/GETEXISTS_SUCCESS',
-  EXISTS_FAILURE = '@@OrgReaderAction/GETEXISTS_FAILURE',
-  REF_SUCCESS = '@@OrgReaderAction/GETREFERENCE_SUCCESS',
-  REF_FAILURE = '@@OrgReaderAction/GETREFERENCE_FAILURE',
-  NUMREP_SUCCESS = '@@OrgReaderAction/GETNUMREP_SUCCESS',
-  NUMREP_FAILURE = '@@OrgReaderAction/GETNUMREP_FAILURE',
-  REPORTREF_SUCCESS = '@@OrgReaderAction/GETREPORTREF_SUCCESS',
-  REPORTREF_FAILURE = '@@OrgReaderAction/GETREPORTREF_FAILURE',
-  REPORT_SUCCESS = '@@OrgReaderAction/GETREPORT_SUCCESS',
-  REPORT_FAILURE = '@@OrgReaderAction/GETREPORT_FAILURE'
+export const enum OrganisationsReaderActionTypes {
+  NUM_SUCCESS = '@@OrganisationsReaderAction/GETNUM_SUCCESS',
+  NUM_FAILURE = '@@OrganisationsReaderAction/GETNUM_FAILURE',
+  EXISTS_SUCCESS = '@@OrganisationsReaderAction/GETEXISTS_SUCCESS',
+  EXISTS_FAILURE = '@@OrganisationsReaderAction/GETEXISTS_FAILURE',
+  REF_SUCCESS = '@@OrganisationsReaderAction/GETREFERENCE_SUCCESS',
+  REF_FAILURE = '@@OrganisationsReaderAction/GETREFERENCE_FAILURE',
+  NUMREP_SUCCESS = '@@OrganisationsReaderAction/GETNUMREP_SUCCESS',
+  NUMREP_FAILURE = '@@OrganisationsReaderAction/GETNUMREP_FAILURE',
+  REPORTREF_SUCCESS = '@@OrganisationsReaderAction/GETREPORTREF_SUCCESS',
+  REPORTREF_FAILURE = '@@OrganisationsReaderAction/GETREPORTREF_FAILURE',
+  REPORT_SUCCESS = '@@OrganisationsReaderAction/GETREPORT_SUCCESS',
+  REPORT_FAILURE = '@@OrganisationsReaderAction/GETREPORT_FAILURE'
 }
