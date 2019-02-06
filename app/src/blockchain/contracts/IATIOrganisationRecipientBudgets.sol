@@ -9,124 +9,81 @@ import "./Strings.sol";
 
 contract IATIOrganisationRecipientBudgets is OrganisationRecipientBudgets {
 
-  bytes32[] reportReferences;
-  mapping(bytes32 => bytes32[]) private recipientBudgetReferences;
-  mapping(bytes32 => mapping(bytes32 => RecipientBudget)) private recipientBudgets;
+  mapping(bytes32 => mapping(bytes32 => bytes32[])) private budgetRefs;
+  mapping(bytes32 => mapping(bytes32 => mapping(bytes32 => RecipientBudget))) private budgets;
 
-  event SetRecipientBudget(RecipientBudget _budget);
+  event SetRecipientBudget(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef, RecipientBudget _budget);
 
-  function setRecipientBudget(RecipientBudget memory _budget) public {
-    require (_budget.report.reportRef[0] != 0 &&
-             _budget.report.orgRef[0] != 0 &&
-             _budget.budgetRef[0] != 0 &&
+  function setRecipientBudget(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef, RecipientBudget memory _budget) public {
+    require (_organisationsRef[0] != 0 &&
+             _orgRef[0] != 0 &&
+             _budgetRef[0] != 0 &&
              _budget.recipientOrgRef[0] != 0 &&
              _budget.budgetLine[0] != 0 &&
              _budget.finance.status > 0 &&
              _budget.finance.start[0] != 0 &&
              _budget.finance.end[0] != 0 );
 
-    recipientBudgets[_budget.report.reportRef][_budget.budgetRef] = _budget;
+    budgets[_organisationsRef][_orgRef][_budgetRef] = _budget;
 
-    if (!getReportExists(_budget.report.reportRef)) {
-      reportReferences.push(_budget.report.reportRef);
+    if(!Strings.getExists(_budgetRef, budgetRefs[_organisationsRef][_orgRef])) {
+      budgetRefs[_organisationsRef][_orgRef].push(_budgetRef);
     }
 
-    if (!getRecipientBudgetExists(_budget.report.reportRef, _budget.budgetRef)) {
-      recipientBudgetReferences[_budget.report.reportRef].push(_budget.budgetRef);
-    }
-
-    emit SetRecipientBudget(_budget);
+    emit SetRecipientBudget(_organisationsRef, _orgRef, _budgetRef, _budget);
   }
 
-  function getReportExists(bytes32 _reportRef) public view returns (bool) {
-    require (_reportRef[0] != 0);
+  function getNumRecipientBudgets(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (uint256) {
+    require (_organisationsRef[0] != 0 && _orgRef[0] != 0);
 
-    bool exists = false;
-    if ( !(reportReferences.length == 0) ) {
-      uint256 index = Strings.getIndex(_reportRef, reportReferences);
-      exists = (index != reportReferences.length);
-    }
-    return exists;
+    return budgetRefs[_organisationsRef][_orgRef].length;
   }
 
-  function getRecipientBudgetExists(bytes32 _reportRef, bytes32 _budgetRef) public view returns (bool) {
-    require (_reportRef[0] != 0 && _budgetRef[0] != 0);
+  function getRecipientBudgetReference(bytes32 _organisationsRef, bytes32 _orgRef, uint256 _index) public view returns (bytes32) {
+    require (_organisationsRef[0] != 0 && _orgRef[0] != 0 && _index < budgetRefs[_organisationsRef][_orgRef].length);
 
-    bool exists = false;
-    if ( !(recipientBudgetReferences[_reportRef].length == 0) ) {
-      uint256 index = Strings.getIndex(_budgetRef, recipientBudgetReferences[_reportRef]);
-      exists = (index != recipientBudgetReferences[_reportRef].length);
-    }
-    return exists;
+    return budgetRefs[_organisationsRef][_orgRef][_index];
   }
 
-  function getNumReports() public view returns (uint256) {
-    return reportReferences.length;
+  function getRecipientBudget(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (RecipientBudget memory) {
+    require (_organisationsRef[0] != 0 && _orgRef[0] != 0 && _budgetRef[0] != 0);
+
+    return budgets[_organisationsRef][_orgRef][_budgetRef];
   }
 
-  function getNumRecipientBudgets(bytes32 _reportRef) public view returns (uint256) {
-    require (_reportRef[0] != 0);
+  function getRecipientBudgetOrg(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (bytes32) {
+    require (_organisationsRef[0] != 0 && _orgRef[0] != 0 && _budgetRef[0] != 0);
 
-    return recipientBudgetReferences[_reportRef].length;
+    return budgets[_organisationsRef][_orgRef][_budgetRef].recipientOrgRef;
   }
 
-  function getReportReference(uint256 _index) public view returns (bytes32) {
-    require (_index < reportReferences.length);
+  function getRecipientBudgetLine(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (bytes32) {
+    require (_organisationsRef[0] != 0 && _orgRef[0] != 0 && _budgetRef[0] != 0);
 
-    return reportReferences[_index];
+    return budgets[_organisationsRef][_orgRef][_budgetRef].budgetLine;
   }
 
-  function getRecipientBudgetReference(bytes32 _reportRef, uint256 _index) public view returns (bytes32) {
-    require (_reportRef[0] != 0 && _index < recipientBudgetReferences[_reportRef].length);
+  function getRecipientBudgetValue(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (uint256) {
+    require (_organisationsRef[0] != 0 && _orgRef[0] != 0 && _budgetRef[0] != 0);
 
-    return recipientBudgetReferences[_reportRef][_index];
+    return budgets[_organisationsRef][_orgRef][_budgetRef].finance.value;
   }
 
-  function getRecipientBudget(bytes32 _reportRef, bytes32 _recipientBudgetRef) public view returns (RecipientBudget memory) {
-    require (_reportRef[0] != 0 && _recipientBudgetRef[0] != 0);
+  function getRecipientBudgetStatus(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (uint8) {
+    require (_organisationsRef[0] != 0 && _orgRef[0] != 0 && _budgetRef[0] != 0);
 
-    return recipientBudgets[_reportRef][_recipientBudgetRef];
+    return budgets[_organisationsRef][_orgRef][_budgetRef].finance.status;
   }
 
-  function getRecipientBudgetReportingOrg(bytes32 _reportRef, bytes32 _recipientBudgetRef) public view returns (bytes32) {
-    require (_reportRef[0] != 0 && _recipientBudgetRef[0] != 0);
+  function getRecipientBudgetStart(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (bytes32) {
+    require (_organisationsRef[0] != 0 && _orgRef[0] != 0 && _budgetRef[0] != 0);
 
-    return recipientBudgets[_reportRef][_recipientBudgetRef].report.orgRef;
+    return budgets[_organisationsRef][_orgRef][_budgetRef].finance.start;
   }
 
-  function getRecipientBudgetOrg(bytes32 _reportRef, bytes32 _recipientBudgetRef) public view returns (bytes32) {
-    require (_reportRef[0] != 0 && _recipientBudgetRef[0] != 0);
+  function getRecipientBudgetEnd(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (bytes32) {
+    require (_organisationsRef[0] != 0 && _orgRef[0] != 0 && _budgetRef[0] != 0);
 
-    return recipientBudgets[_reportRef][_recipientBudgetRef].recipientOrgRef;
-  }
-
-  function getRecipientBudgetLine(bytes32 _reportRef, bytes32 _recipientBudgetRef) public view returns (bytes32) {
-    require (_reportRef[0] != 0 && _recipientBudgetRef[0] != 0);
-
-    return recipientBudgets[_reportRef][_recipientBudgetRef].budgetLine;
-  }
-
-  function getRecipientBudgetValue(bytes32 _reportRef, bytes32 _recipientBudgetRef) public view returns (uint256) {
-    require (_reportRef[0] != 0 && _recipientBudgetRef[0] != 0);
-
-    return recipientBudgets[_reportRef][_recipientBudgetRef].finance.value;
-  }
-
-  function getRecipientBudgetStatus(bytes32 _reportRef, bytes32 _recipientBudgetRef) public view returns (uint8) {
-    require (_reportRef[0] != 0 && _recipientBudgetRef[0] != 0);
-
-    return recipientBudgets[_reportRef][_recipientBudgetRef].finance.status;
-  }
-
-  function getRecipientBudgetStart(bytes32 _reportRef, bytes32 _recipientBudgetRef) public view returns (bytes32) {
-    require (_reportRef[0] != 0 && _recipientBudgetRef[0] != 0);
-
-    return recipientBudgets[_reportRef][_recipientBudgetRef].finance.start;
-  }
-
-  function getRecipientBudgetEnd(bytes32 _reportRef, bytes32 _recipientBudgetRef) public view returns (bytes32) {
-    require (_reportRef[0] != 0 && _recipientBudgetRef[0] != 0);
-
-    return recipientBudgets[_reportRef][_recipientBudgetRef].finance.end;
+    return budgets[_organisationsRef][_orgRef][_budgetRef].finance.end;
   }
 }
