@@ -4,29 +4,25 @@ export interface IATIOrgProps {
   identifier: string
 }
 
-export interface ReportProps {
-  orgRef: string
-  reportRef: string
-}
-
 export interface ReportingOrgProps {
   orgRef: string
   orgType: number
   isSecondary: boolean
 }
 
-export interface IATIOrgReportProps {
+export interface IATIOrganisationsProps {
   version: string
-  report: ReportProps
+  generatedTime: string
+}
+
+export interface IATIOrganisationProps {
   reportingOrg: ReportingOrgProps
   lang: string
   currency: string
   lastUpdatedTime: string
 }
 
-export interface IATIOrgReportDocProps {
-  report: ReportProps
-  docRef: string
+export interface IATIOrganisationDocProps {
   title: string
   format: string
   url: string
@@ -44,39 +40,31 @@ export interface FinanceProps {
   end: string
 }
 
-export interface IATIOrgReportBudgetProps {
-  report: ReportProps
+export interface IATIOrganisationBudgetProps {
   budgetRef: string
   budgetLine: string
   finance: FinanceProps
 }
 
-export interface IATIOrgReportExpenditureProps {
-  report: ReportProps
+export interface IATIOrganisationExpenditureProps {
   expenditureRef: string
   expenditureLine: string
   finance: FinanceProps
 }
 
-export interface IATIOrgReportRecipientBudgetProps {
-  report: ReportProps
-  budgetRef: string
-  orgRef: string
+export interface IATIOrganisationRecipientBudgetProps {
+  recipientOrgRef: string
   budgetLine: string
   finance: FinanceProps
 }
 
-export interface IATIOrgReportRegionBudgetProps {
-  report: ReportProps
-  budgetRef: string
+export interface IATIOrganisationRegionBudgetProps {
   regionRef: number
   budgetLine: string
   finance: FinanceProps
 }
 
-export interface IATIOrgReportCountryBudgetProps {
-  report: ReportProps
-  budgetRef: string
+export interface IATIOrganisationCountryBudgetProps {
   countryRef: string
   budgetLine: string
   finance: FinanceProps
@@ -88,20 +76,22 @@ export interface OrgProps {
   identifier: string
 }
 
+export interface OrganisationsProps {
+  organisationsRef: string
+  version: string
+}
 
-
-export interface OrgReportProps {
+export interface OrganisationProps {
+  organisationRef: string
   reportingOrgRef: string
   reportingOrgType: number
   reportingOrgIsSecondary: boolean
-  orgRef: string
-  version: string
   lang: string
   currency: string
 }
 
-export interface OrgReportDocProps {
-  report: ReportProps
+export interface OrganisationDocProps {
+  docRef: string
   title: string
   format: string
   url: string
@@ -114,8 +104,8 @@ export interface OrgReportDocProps {
   year: number
 }
 
-export interface OrgReportBudgetProps {
-  report: ReportProps
+export interface OrganisationBudgetProps {
+  budgetRef: string
   budgetLine: string
   value: number
   status: number
@@ -127,8 +117,8 @@ export interface OrgReportBudgetProps {
   endYear: number
 }
 
-export interface OrgReportExpenditureProps {
-  report: ReportProps
+export interface OrganisationExpenditureProps {
+  expenditureRef: string
   expenditureLine: string
   value: number
   status: number
@@ -140,8 +130,8 @@ export interface OrgReportExpenditureProps {
   endYear: number
 }
 
-export interface OrgReportRecipientBudgetProps {
-  report: ReportProps
+export interface OrganisationRecipientBudgetProps {
+  budgetRef: string
   recipientOrgRef: string
   budgetLine: string
   value: number
@@ -154,8 +144,8 @@ export interface OrgReportRecipientBudgetProps {
   endYear: number
 }
 
-export interface OrgReportRegionBudgetProps {
-  report: ReportProps
+export interface OrganisationRegionBudgetProps {
+  budgetRef: string
   regionRef: number
   budgetLine: string
   value: number
@@ -168,8 +158,8 @@ export interface OrgReportRegionBudgetProps {
   endYear: number
 }
 
-export interface OrgReportCountryBudgetProps {
-  report: ReportProps
+export interface OrganisationCountryBudgetProps {
+  budgetRef: string
   countryRef: string
   budgetLine: string
   value: number

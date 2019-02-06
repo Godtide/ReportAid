@@ -21,21 +21,23 @@ class Paths {
   static readonly reader='Read Records'
 
   static readonly orgWriter='Organisation'
-  static readonly orgReportWriter='Report'
-  static readonly orgDocsWriter='Document'
-  static readonly orgBudgetsWriter="Budget"
-  static readonly orgExpenditureWriter = "Expenditure"
-  static readonly orgRecipientBudgetsWriter = "Recipient Budget"
-  static readonly orgRegionBudgetsWriter='Region Budget'
-  static readonly orgCountryBudgetsWriter='Country Budget'
-  static readonly orgReader='Organisations'
-  static readonly orgReportReader='Reports'
-  static readonly orgDocsReader='Documents'
-  static readonly orgBudgetsReader='Budgets'
-  static readonly orgExpenditureReader='Expenditures'
-  static readonly orgRecipientBudgetsReader='Recipient Budgets'
-  static readonly orgRegionBudgetsReader='Region Budgets'
-  static readonly orgCountryBudgetsReader='Country Budgets'
+  static readonly organisationsWriter='Report'
+  static readonly organisationWriter='Organisation Report'
+  static readonly organisationDocsWriter='Document'
+  static readonly organisationBudgetsWriter="Budget"
+  static readonly organisationExpenditureWriter = "Expenditure"
+  static readonly organisationRecipientBudgetsWriter = "Recipient Budget"
+  static readonly organisationRegionBudgetsWriter='Region Budget'
+  static readonly organisationCountryBudgetsWriter='Country Budget'
+  static readonly orgReader='Organisation'
+  static readonly organisationsReader='Organisations'
+  static readonly organisationReader='Organisation Reports'
+  static readonly organisationDocsReader='Documents'
+  static readonly organisationBudgetsReader='Budgets'
+  static readonly organisationExpenditureReader='Expenditures'
+  static readonly organisationRecipientBudgetsReader='Recipient Budgets'
+  static readonly organisationRegionBudgetsReader='Region Budgets'
+  static readonly organisationCountryBudgetsReader='Country Budgets'
 }
 
 class Blockchain {
@@ -94,13 +96,12 @@ class Transaction {
   static summary = 'Transaction Summary'
   static success = 'Submitted Successfully!'
   static fail = 'Submission Failed!'
-
 }
 
 class Org {
 
-  static headingOrgWriter = 'Create Organisation Records'
-  static headingOrgReader = 'Read Organisation Records'
+  static headingOrgWriter = 'Create Organisation'
+  static headingOrgReader = 'Read Organisation'
 
   static orgDetails = 'Organisation Details'
   static orgIdentifier = "Organisation Reference"
@@ -112,12 +113,25 @@ class Org {
   static numOrgs = 'Number of Organisations'
 }
 
+class Organisations {
+
+  static headingOrganisationsWriter = 'Write Organisations'
+  static headingOrganisationsReader = 'Read Organisations'
+
+  static version = "Version"
+  static reportKey = "Key"
+  static generated = "Generated"
+
+  static numOrganisations = 'Number of Organisations'
+  static organisationsDetails = 'Details'
+}
+
 class Organisation {
 
-  static headingOrgWriter = 'Create Organisation'
-  static headingOrgOrganisationsWriterReader = 'Organisation'
+  static headingOrganisationWriter = 'Create Organisation'
+  static headingOrganisationReader = 'Organisation'
 
-  static numOrgs = "Number of reports"
+  static numOrganisation = "Number of reports"
   static version = "Version"
   static orgIdentifier = "Organisation"
   static reportKey = "Key"
@@ -128,14 +142,14 @@ class Organisation {
   static currency = "Currency"
   static lastUpdated = "Last Updated"
 
-  static numOrganisations = 'Number of Organisations'
-  static orgDetails = 'Details'
+  static numOrganisation = 'Number of Organisation Records'
+  static organisationDetails = 'Details'
 }
 
 class OrganisationDoc {
 
-  static headingOrgDocWriter = 'Create Document'
-  static headingOrgDocReader = 'Documents'
+  static headingOrganisationDocWriter = 'Create Document'
+  static headingOrganisationDocReader = 'Documents'
 
   static num = "Number of Organisations Reporting"
 
@@ -154,14 +168,14 @@ class OrganisationDoc {
   static documentYear = "Year"
   static documentDate = "Date"
 
-  static numDocs = "Number of Documents"
-  static reportDocDetails = 'Document Details'
+  static numOrganisationDocs = "Number of Documents"
+  static organisationDocDetails = 'Document Details'
 }
 
 class OrganisationBudget {
 
-  static headingOrgBudgetWriter = 'Create Report Budget'
-  static headingOrgBudgetReader = 'Report Budgets'
+  static headingOrganisationBudgetWriter = 'Create Report Budget'
+  static headingOrganisationBudgetReader = 'Report Budgets'
 
   static num = "Number of Organisations Reporting"
 
@@ -181,13 +195,13 @@ class OrganisationBudget {
   static budgetEndYear = "End Year"
 
   static numBudgets = "Number of Budgets"
-  static reportBudgetDetails = 'Budget Details'
+  static organisationBudgetDetails = 'Budget Details'
 }
 
 class OrganisationExpenditure {
 
-  static headingOrgExpenditureWriter = 'Create Report Expenditure'
-  static headingOrgExpenditureReader = 'Report Expenditure'
+  static headingOrganisationExpenditureWriter = 'Create Report Expenditure'
+  static headingOrganisationExpenditureReader = 'Report Expenditure'
 
   static num = "Number of Organisations Reporting"
 
@@ -207,13 +221,13 @@ class OrganisationExpenditure {
   static expenditureEndYear = "End Year"
 
   static numExpenditure = "Number of Expenditure"
-  static reportExpenditureDetails = 'Expenditure Details'
+  static organisationExpenditureDetails = 'Expenditure Details'
 }
 
 class OrganisationRecipientBudget {
 
-  static headingOrgRecipientBudgetWriter = 'Create Report Recipient Budget'
-  static headingOrgRecipientBudgetReader = 'Report Recipient Budgets'
+  static headingOrganisationRecipientBudgetWriter = 'Create Report Recipient Budget'
+  static headingOrganisationRecipientBudgetReader = 'Report Recipient Budgets'
 
   static num = "Number of Organisations Reporting"
 
@@ -234,13 +248,13 @@ class OrganisationRecipientBudget {
   static budgetEndYear = "End Year"
 
   static numBudgets = "Number of Recipient Budgets"
-  static reportBudgetDetails = 'Recipient Budget Details'
+  static organisationBudgetDetails = 'Recipient Budget Details'
 }
 
 class OrganisationRegionBudget {
 
-  static headingOrgRegionBudgetWriter = 'Create Report Region Budget'
-  static headingOrgRegionBudgetReader = 'Report Region Budgets'
+  static headingOrganisationRegionBudgetWriter = 'Create Report Region Budget'
+  static headingOrganisationRegionBudgetReader = 'Report Region Budgets'
 
   static num = "Number of Organisations Reporting"
 
@@ -261,13 +275,13 @@ class OrganisationRegionBudget {
   static budgetEndYear = "End Year"
 
   static numBudgets = "Number of Region Budgets"
-  static reportBudgetDetails = 'Region Budget Details'
+  static organisationBudgetDetails = 'Region Budget Details'
 }
 
 class OrganisationCountryBudget {
 
-  static headingOrgCountryBudgetWriter = 'Create Report Country Budget'
-  static headingOrgCountryBudgetReader = 'Report Country Budgets'
+  static headingOrganisationCountryBudgetWriter = 'Create Report Country Budget'
+  static headingOrganisationCountryBudgetReader = 'Report Country Budgets'
 
   static num = "Number of Organisations Reporting"
 
@@ -288,7 +302,7 @@ class OrganisationCountryBudget {
   static budgetEndYear = "End Year"
 
   static numBudgets = "Number of Country Budgets"
-  static reportBudgetDetails = 'Country Budget Details'
+  static organisationBudgetDetails = 'Country Budget Details'
 }
 
 
@@ -303,6 +317,7 @@ export { App,
          IATIReader,
          Transaction,
          Org,
+         Organisations,
          Organisation,
          OrganisationDoc,
          OrganisationBudget,

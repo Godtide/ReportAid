@@ -10,7 +10,7 @@ import List from '@material-ui/icons/List'
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../styles/theme'
 
-import { Paths, Org } from '../utils/strings'
+import { Paths, Organisation } from '../utils/strings'
 import { Paths as PathConfig } from '../utils/config'
 
 class Sider extends React.Component<WithStyles<typeof styles>> {
@@ -20,7 +20,7 @@ class Sider extends React.Component<WithStyles<typeof styles>> {
     return (
       <div>
 
-        <h3>{Org.headingOrgWriter}</h3>
+        <h3>{Organisation.headingOrganisationWriter}</h3>
         <MenuList>
           <Link to={PathConfig.orgWriter}>
             <MenuItem>
@@ -90,7 +90,7 @@ class Sider extends React.Component<WithStyles<typeof styles>> {
 
         <hr />
 
-        <h3>{Org.headingOrgReader}</h3>
+        <h3>{Organisation.headingOrganisationReader}</h3>
         <MenuList>
           <Link to={PathConfig.orgReader}>
             <MenuItem>
