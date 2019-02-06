@@ -104,116 +104,91 @@ class Contract {
   ]
 
   static organisationBudgetsABI = [
-    "event SetTotalBudget(tuple(tuple(bytes32 orgRef, bytes32 reportRef) report, bytes32 budgetRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)",
+    "event SetBudget(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef, tuple(bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)",
 
-    "function setTotalBudget(tuple(tuple(bytes32 orgRef, bytes32 reportRef) report, bytes32 , bytes32 _orgRefbudgetRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)@500000",
+    "function setBudget(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef, tuple(bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget) public",
 
-    "function getReportExists(bytes32 reportRef) view returns (bool)",
-    "function getTotalBudgetExists(bytes32 reportRef, bytes32 budgetRef) view returns (bool)",
-    "function getNumReports() view returns (uint256)",
-    "function getNumTotalBudgets(bytes32 reportRef) view returns (uint256)",
-    "function getReportReference(uint256 index) view returns (bytes32)",
-    "function getTotalBudgetReference(bytes32 reportRef, uint256 index) view returns (bytes32)",
+    "function getNumBudgets(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (uint256)",
+    "function getBudgetReference(bytes32 _organisationsRef, bytes32 _orgRef, uint256 _index) public view returns (bytes32)",
 
-    "function getTotalBudget(bytes32 reportRef, bytes32 budgetRef) view returns (tuple(tuple(bytes32 orgRef, bytes32 reportRef) report, bytes32 budgetRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)",
+    "function getBudget(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (tuple(bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)",
 
-    "function getTotalBudgetReportingOrg(bytes32 _reportRef, bytes32 _budgetRef) public view returns (bytes32)",
-    "function getTotalBudgetLine(bytes32 reportRef, bytes32 budgetRef) view returns (bytes32)",
-    "function getTotalBudgetValue(bytes32 reportRef, bytes32 budgetRef) view returns (uint256)",
-    "function getTotalBudgetStatus(bytes32 reportRef, bytes32 budgetRef) view returns (uint8)",
-    "function getTotalBudgetStart(bytes32 reportRef, bytes32 budgetRef) view returns (bytes32)",
-    "function getTotalBudgetEnd(bytes32 reportRef, bytes32 budgetRef) view returns (bytes32)"
+    "function getBudgetLine(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (bytes32)",
+    "function getBudgetValue(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (uint256)",
+    "function getBudgetStatus(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (uint8)",
+    "function getBudgetStart(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (bytes32)",
+    "function getBudgetEnd(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (bytes32)"
   ]
 
   static organisationExpenditureABI = [
-    "event SetExpenditure(tuple(tuple(bytes32 orgRef, bytes32 reportRef) report, bytes32 expenditureRef, bytes32 expenditureLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) expenditure)",
+    "event SetExpenditure(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _expenditureRef, tuple(bytes32 expenditureLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) expenditure)",
 
-    "function setExpenditure(tuple(tuple(bytes32 orgRef, bytes32 reportRef) report, bytes32 expenditureRef, bytes32 expenditureLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) expenditure)@500000",
+    "function setExpenditure(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _expenditureRef, tuple(bytes32 expenditureLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) expenditure) public",
 
-    "function getReportExists(bytes32 reportRef) view returns (bool)",
-    "function getExpenditureExists(bytes32 reportRef, bytes32 expenditureRef) view returns (bool)",
-    "function getNumReports() view returns (uint256)",
-    "function getNumExpenditures(bytes32 reportRef) view returns (uint256)",
-    "function getReportReference(uint256 index) view returns (bytes32)",
-    "function getExpenditureReference(bytes32 reportRef, uint256 index) view returns (bytes32)",
+    "function getNumExpenditures(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (uint256)",
+    "function getExpenditureReference(bytes32 _organisationsRef, bytes32 _orgRef, uint256 _index) public view returns (bytes32)",
 
-    "function getExpenditure(bytes32 reportRef, bytes32 expenditureRef) view returns (tuple(tuple(bytes32 orgRef, bytes32 reportRef) report, bytes32 expenditureRef, bytes32 expenditureLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) expenditure)",
+    "function getExpenditure(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _expenditureRef) public view returns (tuple(bytes32 expenditureLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) expenditure)",
+    "function getExpenditureLine(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _expenditureRef) public view returns (bytes32)",
 
-    "function getExpenditureReportingOrg(bytes32 _reportRef, bytes32 _expenditureRef) view returns (bytes32)",
-    "function getExpenditureLine(bytes32 reportRef, bytes32 budgetRef) view returns (bytes32)",
-    "function getExpenditureValue(bytes32 reportRef, bytes32 expenditureRef) view returns (uint256)",
-    "function getExpenditureStatus(bytes32 reportRef, bytes32 expenditureRef) view returns (uint8)",
-    "function getExpenditureStart(bytes32 reportRef, bytes32 expenditureRef) view returns (bytes32)",
-    "function getExpenditureEnd(bytes32 reportRef, bytes32 expenditureRef) view returns (bytes32)"
+    "function getExpenditureValue(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _expenditureRef) public view returns (uint256)",
+    "function getExpenditureStatus(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _expenditureRef) public view returns (uint8)",
+    "function getExpenditureStart(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _expenditureRef) public view returns (bytes32)",
+    "function getExpenditureEnd(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _expenditureRef) public view returns (bytes32)"
   ]
 
   static organisationRecipientBudgetsABI = [
-    "event SetRecipientBudget(tuple(tuple(bytes32 orgRef, bytes32 reportRef) report, bytes32 budgetRef, bytes32 orgRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)",
+    "event SetRecipientBudget(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef, tuple(bytes32 recipientOrgRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)",
 
-    "function setRecipientBudget(tuple(tuple(bytes32 orgRef, bytes32 reportRef) report, bytes32 budgetRef, bytes32 orgRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)@500000",
+    "function setRecipientBudget(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef, tuple(bytes32 recipientOrgRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget) public",
 
-    "function getReportExists(bytes32 _reportRef) view returns (bool)",
-    "function getRecipientBudgetExists(bytes32 _reportRef, bytes32 _budgetRef) view returns (bool)",
-    "function getNumReports() view returns (uint256)",
-    "function getNumRecipientBudgets(bytes32 _reportRef) view returns (uint256)",
-    "function getReportReference(uint256 _index) view returns (bytes32)",
-    "function getRecipientBudgetReference(bytes32 _reportRef, uint256 _index) view returns (bytes32)",
+    "function getNumRecipientBudgets(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (uint256)",
+    "function getRecipientBudgetReference(bytes32 _organisationsRef, bytes32 _orgRef, uint256 _index) public view returns (bytes32)",
 
-    "function getRecipientBudget(bytes32 _reportRef, bytes32 _recipientBudgetRef) view returns (tuple(tuple(bytes32 orgRef, bytes32 reportRef) report, bytes32 budgetRef, bytes32 orgRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)",
+    "function getRecipientBudget(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (tuple(bytes32 recipientOrgRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)",
 
-    "function getRecipientBudgetReportingOrg(bytes32 _reportRef, bytes32 _recipientBudgetRef) public view returns (bytes32)",
-    "function getRecipientBudgetOrg(bytes32 _reportRef, bytes32 _recipientBudgetRef) public view returns (bytes32)",
-    "function getRecipientBudgetLine(bytes32 _reportRef, bytes32 _recipientBudgetRef) view returns (bytes32)",
-    "function getRecipientBudgetValue(bytes32 _reportRef, bytes32 _recipientBudgetRef) view returns (uint256)",
-    "function getRecipientBudgetStatus(bytes32 _reportRef, bytes32 _recipientBudgetRef) view returns (uint8)",
-    "function getRecipientBudgetStart(bytes32 _reportRef, bytes32 _recipientBudgetRef) view returns (bytes32)",
-    "function getRecipientBudgetEnd(bytes32 _reportRef, bytes32 _recipientBudgetRef) view returns (bytes32)"
+    "function getRecipientBudgetOrg(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (bytes32)",
+    "function getRecipientBudgetLine(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (bytes32)",
+    "function getRecipientBudgetValue(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (uint256)",
+    "function getRecipientBudgetStatus(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (uint8)",
+    "function getRecipientBudgetStart(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (bytes32)",
+    "function getRecipientBudgetEnd(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (bytes32)"
   ]
 
   static organisationRegionBudgetsABI = [
-    "event SetRegionBudget(tuple(tuple(bytes32 orgRef, bytes32 reportRef) report, bytes32 budgetRef, uint256 regionRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)",
+    "event SetRegionBudget(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef, tuple(uint256 regionRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)",
 
-    "function setRegionBudget(tuple(tuple(bytes32 orgRef, bytes32 reportRef) report, bytes32 budgetRef, uint256 regionRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)@500000",
+    "function setRegionBudget(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef, tuple(uint256 regionRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget) public",
 
-    "function getReportExists(bytes32 _reportRef) view returns (bool)",
-    "function getRegionBudgetExists(bytes32 _reportRef, bytes32 _regionBudgetRef) view returns (bool)",
-    "function getNumReports() view returns (uint256)",
-    "function getNumRegionBudgets(bytes32 _reportRef) view returns (uint256)",
-    "function getReportReference(uint256 _index) view returns (bytes32)",
-    "function getRegionBudgetReference(bytes32 _reportRef, uint256 _index) view returns (bytes32)",
+    "function getNumRegionBudgets(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (uint256)",
+    "function getRegionBudgetReference(bytes32 _organisationsRef, bytes32 _orgRef, uint256 _index) public view returns (bytes32)",
 
-    "function getRegionsBudget(bytes32 _reportRef, bytes32 _regionBudgetRef) view returns (tuple(tuple(bytes32 orgRef, bytes32 reportRef) report, bytes32 budgetRef, uint256 regionRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)",
+    "function getRegionsBudget(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (tuple(uint256 regionRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)",
 
-    "function getRegionsBudgetReportingOrg(bytes32 _reportRef, bytes32 _regionBudgetRef) view returns (bytes32)",
-    "function getRegionsBudgetRegion(bytes32 _reportRef, bytes32 _regionBudgetRef) view returns (uint256)",
-    "function getRegionsBudgetLine(bytes32 _reportRef, uint256 _regionBudgetRef) view returns (bytes32)",
-    "function getRegionsBudgetValue(bytes32 _reportRef, bytes32 _regionBudgetRef) view returns (uint256)",
-    "function getRegionsBudgetStatus(bytes32 _reportRef, bytes32 _regionBudgetRef) view returns (uint8)",
-    "function getRegionsBudgetStart(bytes32 _reportRef, bytes32 _regionBudgetRef) view returns (bytes32)",
-    "function getRegionsBudgetEnd(bytes32 _reportRef, bytes32 _regionBudgetRef) view returns (bytes32)"
+    "function getRegionsBudgetRegion(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (uint256)",
+    "function getRegionsBudgetLine(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (bytes32)",
+    "function getRegionsBudgetValue(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (uint256)",
+    "function getRegionsBudgetStatus(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (uint8)",
+    "function getRegionsBudgetStart(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (bytes32)",
+    "function getRegionsBudgetEnd(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (bytes32)"
   ]
 
   static organisationCountryBudgetsABI = [
-    "event SetCountryBudget(tuple(tuple(bytes32 orgRef, bytes32 reportRef) report, bytes32 budgetRef, bytes32 regionRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)",
+    "event SetCountryBudget(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef, tuple(bytes32 countryRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)",
 
-    "function setCountryBudget(tuple(tuple(bytes32 orgRef, bytes32 reportRef) report, bytes32 budgetRef, bytes32 countryRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)@500000",
+    "function setCountryBudget(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef, tuple(bytes32 countryRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget) public",
 
-    "function getReportExists(bytes32 _reportRef) view returns (bool)",
-    "function getCountryBudgetExists(bytes32 _reportRef, bytes32 _budgetRef) view returns (bool)",
-    "function getNumReports() view returns (uint256)",
-    "function getNumCountryBudgets(bytes32 _reportRef) view returns (uint256)",
-    "function getReportReference(uint256 _index) view returns (bytes32)",
-    "function getCountryBudgetReference(bytes32 _reportRef, uint256 _index) view returns (bytes32)",
+    "function getNumCountryBudgets(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (uint256)",
+    "function getCountryBudgetReference(bytes32 _organisationsRef, bytes32 _orgRef, uint256 _index) public view returns (bytes32)",
 
-    "function getCountryBudget(bytes32 _reportRef, bytes32 _countryBudgetRef) view returns (tuple(tuple(bytes32 orgRef, bytes32 reportRef) report, bytes32 budgetRef, bytes32 countryRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)",
+    "function getCountryBudget(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (tuple(bytes32 countryRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)",
 
-    "function getCountryBudgetReportingOrg(bytes32 _reportRef, bytes32 _countryBudgetRef) public view returns (bytes32)",
-    "function getCountryBudgetCountry(bytes32 _reportRef, bytes32 _countryBudgetRef) view returns (bytes32)",
-    "function getCountryBudgetLine(bytes32 _reportRef, bytes32 _countryBudgetRef) view returns (bytes32)",
-    "function getCountryBudgetValue(bytes32 _reportRef, bytes32 _countryBudgetRef) view returns (uint256)",
-    "function getCountryBudgetStatus(bytes32 _reportRef, bytes32 _countryBudgetRef) view returns (uint8)",
-    "function getCountryBudgetStart(bytes32 _reportRef, bytes32 _countryBudgetRef) view returns (bytes32)",
-    "function getCountryBudgetEnd(bytes32 _reportRef, bytes32 _countryBudgetRef) view returns (bytes32)"
+    "function getCountryBudgetCountry(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (bytes32)",
+    "function getCountryBudgetLine(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (bytes32)",
+    "function getCountryBudgetValue(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (uint256)",
+    "function getCountryBudgetStatus(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (uint8)",
+    "function getCountryBudgetStart(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (bytes32)",
+    "function getCountryBudgetEnd(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (bytes32)"
   ]
 
   static activitiesABI = [
