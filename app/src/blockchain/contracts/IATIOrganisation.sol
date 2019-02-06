@@ -9,9 +9,9 @@ contract IATIOrganisation is Organisation {
   mapping(bytes32 => bytes32[]) private orgRefs;
   mapping(bytes32 =>  mapping(bytes32 => Org)) private organisations;
 
-  event SetOrg(bytes32 _organisationsRef, bytes32 _orgRef, Org _org);
+  event SetOrganisation(bytes32 _organisationsRef, bytes32 _orgRef, Org _org);
 
-  function setOrg(bytes32 _organisationsRef, bytes32 _orgRef, Org memory _org) public {
+  function setOrganisation(bytes32 _organisationsRef, bytes32 _orgRef, Org memory _org) public {
     require (_organisationsRef[0] != 0 &&
              _orgRef[0] != 0 &&
              _org.reportingOrg.orgRef[0] != 0 &&
@@ -26,22 +26,22 @@ contract IATIOrganisation is Organisation {
       orgRefs[_organisationsRef].push(_orgRef);
     }
 
-    emit SetOrg(_organisationsRef, _orgRef, _org);
+    emit SetOrganisation(_organisationsRef, _orgRef, _org);
   }
 
-  function getNumOrgs(bytes32 _organisationsRef) public view returns (uint256) {
+  function getNumOrganisations(bytes32 _organisationsRef) public view returns (uint256) {
     require (_organisationsRef[0] != 0);
 
     return orgRefs[_organisationsRef].length;
   }
 
-  function getOrgReference(bytes32 _organisationsRef, uint256 _index) public view returns (bytes32) {
+  function getOrganisationReference(bytes32 _organisationsRef, uint256 _index) public view returns (bytes32) {
     require (_organisationsRef[0] != 0 && _index < orgRefs[_organisationsRef].length);
 
     return orgRefs[_organisationsRef][_index];
   }
 
-  function getOrg(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (Org memory) {
+  function getOrganisation(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (Org memory) {
     require (_organisationsRef[0] != 0 && _orgRef[0] != 0);
 
     return organisations[_organisationsRef][_orgRef];

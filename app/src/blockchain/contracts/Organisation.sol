@@ -16,12 +16,12 @@ contract Organisation {
     bytes32 lastUpdatedTime;
   }
 
-  function setOrg(bytes32 _organisationsRef, bytes32 _orgRef, Org memory _org) public;
+  function setOrganisation(bytes32 _organisationsRef, bytes32 _orgRef, Org memory _org) public;
 
-  function getNumOrgs(bytes32 _organisationsRef) public view returns (uint256);
-  function getOrgReference(bytes32 _organisationsRef, uint256 _index) public view returns (bytes32);
+  function getNumOrganisations(bytes32 _organisationsRef) public view returns (uint256);
+  function getOrganisationReference(bytes32 _organisationsRef, uint256 _index) public view returns (bytes32);
 
-  function getOrg(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (Org memory);
+  function getOrganisation(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (Org memory);
 
   function getLang(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (bytes32);
   function getCurrency(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (bytes32);

@@ -66,14 +66,14 @@ class Contract {
   ]
 
   static organisationABI = [
-    "event SetOrg(bytes32 _organisationsRef, bytes32 _orgRef, tuple(tuple(bytes32 orgRef, uint8 orgType, bool isSecondary) reportingOrg, bytes32 lang, bytes32 currency, bytes32 lastUpdatedTime))",
+    "event SetOrganisation(bytes32 _organisationsRef, bytes32 _orgRef, tuple(tuple(bytes32 orgRef, uint8 orgType, bool isSecondary) reportingOrg, bytes32 lang, bytes32 currency, bytes32 lastUpdatedTime))",
 
-    "function setOrg(bytes32 _organisationsRef, bytes32 _orgRef, tuple(tuple(bytes32 orgRef, uint8 orgType, bool isSecondary) reportingOrg, bytes32 lang, bytes32 currency, bytes32 lastUpdatedTime)) ",
+    "function setOrganisation(bytes32 _organisationsRef, bytes32 _orgRef, tuple(tuple(bytes32 orgRef, uint8 orgType, bool isSecondary) reportingOrg, bytes32 lang, bytes32 currency, bytes32 lastUpdatedTime)) ",
 
-    "function getNumOrgs(bytes32 _organisationsRef)  view returns (uint256)",
-    "function getOrgReference(bytes32 _organisationsRef, uint256 _index)  view returns (bytes32)",
+    "function getNumOrganisations(bytes32 _organisationsRef)  view returns (uint256)",
+    "function getOrganisationReference(bytes32 _organisationsRef, uint256 _index)  view returns (bytes32)",
 
-    "function getOrg(bytes32 _organisationsRef, bytes32 _orgRef)  view returns (tuple(tuple(bytes32 orgRef, uint8 orgType, bool isSecondary) reportingOrg, bytes32 lang, bytes32 currency, bytes32 lastUpdatedTime))",
+    "function getOrganisation(bytes32 _organisationsRef, bytes32 _orgRef)  view returns (tuple(tuple(bytes32 orgRef, uint8 orgType, bool isSecondary) reportingOrg, bytes32 lang, bytes32 currency, bytes32 lastUpdatedTime))",
 
     "function getLang(bytes32 _organisationsRef, bytes32 _orgRef)  view returns (bytes32)",
     "function getCurrency(bytes32 _organisationsRef, bytes32 _orgRef)  view returns (bytes32)",
