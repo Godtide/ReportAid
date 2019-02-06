@@ -6,117 +6,74 @@ import "./Strings.sol";
 
 contract IATIOrganisationExpenditure is OrganisationExpenditure {
 
-  bytes32[] reportReferences;
-  mapping(bytes32 => bytes32[]) private expenditureReferences;
-  mapping(bytes32 => mapping(bytes32 => Expenditure)) private expenditures;
+  mapping(bytes32 => mapping(bytes32 => bytes32[])) private expenditureRefs;
+  mapping(bytes32 => mapping(bytes32 => mapping(bytes32 => Expenditure))) private expenditures;
 
-  event SetExpenditure(Expenditure _expenditure);
+  event SetExpenditure(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _expenditureRef, Expenditure _expenditure);
 
-  function setExpenditure(Expenditure memory _expenditure) public {
-    require (_expenditure.report.reportRef[0] != 0 &&
-             _expenditure.report.orgRef[0] != 0 &&
-             _expenditure.expenditureRef[0] != 0 &&
+  function setExpenditure(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _expenditureRef, Expenditure memory _expenditure) public {
+    require (_organisationsRef[0] != 0 &&
+             _orgRef[0] != 0 &&
+             _expenditureRef[0] != 0 &&
              _expenditure.expenditureLine[0] != 0 &&
              _expenditure.finance.status > 0 &&
              _expenditure.finance.start[0] != 0 &&
              _expenditure.finance.end[0] != 0 );
 
-    expenditures[_expenditure.report.reportRef][_expenditure.expenditureRef] = _expenditure;
+     expenditures[_organisationsRef][_orgRef][_expenditureRef] = _expenditure;
 
-    if (!getReportExists(_expenditure.report.reportRef)) {
-      reportReferences.push(_expenditure.report.reportRef);
-    }
+     if(!Strings.getExists(_expenditureRef, expenditureRefs[_organisationsRef][_orgRef])) {
+       expenditureRefs[_organisationsRef][_orgRef].push(_expenditureRef);
+     }
 
-    if (!getExpenditureExists(_expenditure.report.reportRef, _expenditure.expenditureRef)) {
-    expenditureReferences[_expenditure.report.reportRef].push(_expenditure.expenditureRef);
-    }
-
-    emit SetExpenditure(_expenditure);
+     emit SetExpenditure(_organisationsRef, _orgRef, _expenditureRef, _expenditure);
   }
 
-  function getReportExists(bytes32 _reportRef) public view returns (bool) {
-    require (_reportRef[0] != 0);
+  function getNumExpenditures(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (uint256) {
+    require (_organisationsRef[0] != 0 && _orgRef[0] != 0);
 
-    bool exists = false;
-    if ( !(reportReferences.length == 0) ) {
-      uint256 index = Strings.getIndex(_reportRef, reportReferences);
-      exists = (index != reportReferences.length);
-    }
-    return exists;
+    return expenditureRefs[_organisationsRef][_orgRef].length;
   }
 
-  function getExpenditureExists(bytes32 _reportRef, bytes32 _expenditureRef) public view returns (bool) {
-    require (_reportRef[0] != 0 && _expenditureRef[0] != 0);
+  function getExpenditureReference(bytes32 _organisationsRef, bytes32 _orgRef, uint256 _index) public view returns (bytes32) {
+    require (_organisationsRef[0] != 0 && _orgRef[0] != 0 && _index < expenditureRefs[_organisationsRef][_orgRef].length);
 
-    bool exists = false;
-    if ( !(expenditureReferences[_reportRef].length == 0) ) {
-      uint256 index = Strings.getIndex(_expenditureRef, expenditureReferences[_reportRef]);
-      exists = (index != expenditureReferences[_reportRef].length);
-    }
-    return exists;
+    return expenditureRefs[_organisationsRef][_orgRef][_index];
   }
 
-  function getNumReports() public view returns (uint256) {
-    return reportReferences.length;
+  function getExpenditure(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _expenditureRef) public view returns (Expenditure memory) {
+    require (_organisationsRef[0] != 0 && _orgRef[0] != 0 && _expenditureRef[0] != 0);
+
+    return expenditures[_organisationsRef][_orgRef][_expenditureRef];
   }
 
-  function getNumExpenditures(bytes32 _reportRef) public view returns (uint256) {
-    require (_reportRef[0] != 0);
+  function getExpenditureLine(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _expenditureRef) public view returns (bytes32) {
+    require (_organisationsRef[0] != 0 && _orgRef[0] != 0 && _expenditureRef[0] != 0);
 
-    return expenditureReferences[_reportRef].length;
+    return expenditures[_organisationsRef][_orgRef][_expenditureRef].expenditureLine;
   }
 
-  function getReportReference(uint256 _index) public view returns (bytes32) {
-    require (_index < reportReferences.length);
+  function getExpenditureValue(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _expenditureRef) public view returns (uint256) {
+    require (_organisationsRef[0] != 0 && _orgRef[0] != 0 && _expenditureRef[0] != 0);
 
-    return reportReferences[_index];
+    return expenditures[_organisationsRef][_orgRef][_expenditureRef].finance.value;
   }
 
-  function getExpenditureReference(bytes32 _reportRef, uint256 _index) public view returns (bytes32) {
-    require (_reportRef[0] != 0 && _index < expenditureReferences[_reportRef].length);
+  function getExpenditureStatus(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _expenditureRef) public view returns (uint8) {
+    require (_organisationsRef[0] != 0 && _orgRef[0] != 0 && _expenditureRef[0] != 0);
 
-    return expenditureReferences[_reportRef][_index];
+    return expenditures[_organisationsRef][_orgRef][_expenditureRef].finance.status;
   }
 
-  function getExpenditure(bytes32 _reportRef, bytes32 _expenditureRef) public view returns (Expenditure memory) {
-    require (_reportRef[0] != 0 && _expenditureRef[0] != 0);
+  function getExpenditureStart(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _expenditureRef) public view returns (bytes32) {
+    require (_organisationsRef[0] != 0 && _orgRef[0] != 0 && _expenditureRef[0] != 0);
 
-    return expenditures[_reportRef][_expenditureRef];
+    return expenditures[_organisationsRef][_orgRef][_expenditureRef].finance.start;
   }
 
-  function getExpenditureReportingOrg(bytes32 _reportRef, bytes32 _expenditureRef) public view returns (bytes32) {
-    require (_reportRef[0] != 0 && _expenditureRef[0] != 0);
+  function getExpenditureEnd(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _expenditureRef) public view returns (bytes32) {
+    require (_organisationsRef[0] != 0 && _orgRef[0] != 0 && _expenditureRef[0] != 0);
 
-    return expenditures[_reportRef][_expenditureRef].report.orgRef;
-  }
-
-  function getExpenditureLine(bytes32 _reportRef, bytes32 _expenditureRef) public view returns (bytes32) {
-    require (_reportRef[0] != 0 && _expenditureRef[0] != 0);
-
-    return expenditures[_reportRef][_expenditureRef].expenditureLine;
-  }
-
-  function getExpenditureValue(bytes32 _reportRef, bytes32 _expenditureRef) public view returns (uint256) {
-    require (_reportRef[0] != 0 && _expenditureRef[0] != 0);
-
-    return expenditures[_reportRef][_expenditureRef].finance.value;
-  }
-
-  function getExpenditureStatus(bytes32 _reportRef, bytes32 _expenditureRef) public view returns (uint8) {
-    require (_reportRef[0] != 0 && _expenditureRef[0] != 0);
-
-    return expenditures[_reportRef][_expenditureRef].finance.status;
-  }
-
-  function getExpenditureStart(bytes32 _reportRef, bytes32 _expenditureRef) public view returns (bytes32) {
-    require (_reportRef[0] != 0 && _expenditureRef[0] != 0);
-
-    return expenditures[_reportRef][_expenditureRef].finance.start;
-  }
-
-  function getExpenditureEnd(bytes32 _reportRef, bytes32 _expenditureRef) public view returns (bytes32) {
-    require (_reportRef[0] != 0 && _expenditureRef[0] != 0);
-
-    return expenditures[_reportRef][_expenditureRef].finance.end;
+    return expenditures[_organisationsRef][_orgRef][_expenditureRef].finance.end;
   }
 }
