@@ -1,132 +1,86 @@
 pragma solidity ^0.5.0;
 pragma experimental ABIEncoderV2;
 
-// IATI Organisation Reports
-// Steve Huckle
-
 import "./OrganisationRegionBudgets.sol";
 import "./Strings.sol";
 
 contract IATIOrganisationRegionBudgets is OrganisationRegionBudgets {
 
-  bytes32[] reportReferences;
-  mapping(bytes32 => bytes32[]) private regionBudgetReferences;
-  mapping(bytes32 => mapping(bytes32 => RegionBudget)) private regionBudgets;
+  mapping(bytes32 => mapping(bytes32 => bytes32[])) private budgetRefs;
+  mapping(bytes32 => mapping(bytes32 => mapping(bytes32 => RegionBudget))) private budgets;
 
-  event SetRegionBudget(RegionBudget _budget);
+  event SetRegionBudget(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef, RegionBudget _budget);
 
-  function setRegionBudget(RegionBudget memory _budget) public {
-    require (_budget.report.reportRef[0] != 0 &&
-             _budget.report.orgRef[0] != 0 &&
-             _budget.budgetRef[0] != 0 &&
+  function setRegionBudget(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef, RegionBudget memory _budget) public {
+    require (_organisationsRef[0] != 0 &&
+             _orgRef[0] != 0 &&
+             _budgetRef[0] != 0 &&
              _budget.regionRef > 0 &&
              _budget.budgetLine[0] != 0 &&
              _budget.finance.status > 0 &&
              _budget.finance.start[0] != 0 &&
              _budget.finance.end[0] != 0 );
 
-    regionBudgets[_budget.report.reportRef][_budget.budgetRef] = _budget;
+     budgets[_organisationsRef][_orgRef][_budgetRef] = _budget;
 
-    if (!getReportExists(_budget.report.reportRef)) {
-      reportReferences.push(_budget.report.reportRef);
-    }
+     if(!Strings.getExists(_budgetRef, budgetRefs[_organisationsRef][_orgRef])) {
+       budgetRefs[_organisationsRef][_orgRef].push(_budgetRef);
+     }
 
-    if (!getRegionBudgetExists(_budget.report.reportRef, _budget.budgetRef)) {
-      regionBudgetReferences[_budget.report.reportRef].push(_budget.budgetRef);
-    }
-
-    emit SetRegionBudget(_budget);
+     emit SetRegionBudget(_organisationsRef, _orgRef, _budgetRef, _budget);
   }
 
-  function getReportExists(bytes32 _reportRef) public view returns (bool) {
-    require (_reportRef[0] != 0);
+  function getNumRegionBudgets(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (uint256) {
+    require (_organisationsRef[0] != 0 && _orgRef[0] != 0);
 
-    bool exists = false;
-    if ( !(reportReferences.length == 0) ) {
-      uint256 index = Strings.getIndex(_reportRef, reportReferences);
-      exists = (index != reportReferences.length);
-    }
-    return exists;
+    return budgetRefs[_organisationsRef][_orgRef].length;
   }
 
-  function getRegionBudgetExists(bytes32 _reportRef, bytes32 _regionBudgetRef) public view returns (bool) {
-    require (_reportRef[0] != 0 && _regionBudgetRef[0] != 0);
+  function getRegionBudgetReference(bytes32 _organisationsRef, bytes32 _orgRef, uint256 _index) public view returns (bytes32) {
+    require (_organisationsRef[0] != 0 && _orgRef[0] != 0 && _index < budgetRefs[_organisationsRef][_orgRef].length);
 
-    bool exists = false;
-    if ( !(regionBudgetReferences[_reportRef].length == 0) ) {
-      uint256 index = Strings.getIndex(_regionBudgetRef, regionBudgetReferences[_reportRef]);
-      exists = (index != regionBudgetReferences[_reportRef].length);
-    }
-    return exists;
+    return budgetRefs[_organisationsRef][_orgRef][_index];
   }
 
-  function getNumReports() public view returns (uint256) {
-    return reportReferences.length;
+  function getRegionsBudget(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (RegionBudget memory) {
+    require (_organisationsRef[0] != 0 && _orgRef[0] != 0 && _budgetRef[0] != 0);
+
+    return budgets[_organisationsRef][_orgRef][_budgetRef];
   }
 
-  function getNumRegionBudgets(bytes32 _reportRef) public view returns (uint256) {
-    require (_reportRef[0] != 0);
+  function getRegionsBudgetRegion(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (uint256) {
+    require (_organisationsRef[0] != 0 && _orgRef[0] != 0 && _budgetRef[0] != 0);
 
-    return regionBudgetReferences[_reportRef].length;
+    return budgets[_organisationsRef][_orgRef][_budgetRef].regionRef;
   }
 
-  function getReportReference(uint256 _index) public view returns (bytes32) {
-    require (_index < reportReferences.length);
+  function getRegionsBudgetLine(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (bytes32) {
+    require (_organisationsRef[0] != 0 && _orgRef[0] != 0 && _budgetRef[0] != 0);
 
-    return reportReferences[_index];
+    return budgets[_organisationsRef][_orgRef][_budgetRef].budgetLine;
   }
 
-  function getRegionBudgetReference(bytes32 _reportRef, uint256 _index) public view returns (bytes32) {
-    require (_reportRef[0] != 0 && _index < regionBudgetReferences[_reportRef].length);
+  function getRegionsBudgetValue(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (uint256) {
+    require (_organisationsRef[0] != 0 && _orgRef[0] != 0 && _budgetRef[0] != 0);
 
-    return regionBudgetReferences[_reportRef][_index];
+    return budgets[_organisationsRef][_orgRef][_budgetRef].finance.value;
   }
 
-  function getRegionsBudget(bytes32 _reportRef, bytes32 _regionBudgetRef) public view returns (RegionBudget memory) {
-    require (_reportRef[0] != 0 && _regionBudgetRef[0] != 0);
+  function getRegionsBudgetStatus(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (uint8) {
+    require (_organisationsRef[0] != 0 && _orgRef[0] != 0 && _budgetRef[0] != 0);
 
-    return regionBudgets[_reportRef][_regionBudgetRef];
+    return budgets[_organisationsRef][_orgRef][_budgetRef].finance.status;
   }
 
-  function getRegionsBudgetReportingOrg(bytes32 _reportRef, bytes32 _regionBudgetRef) public view returns (bytes32) {
-    require (_reportRef[0] != 0 && _regionBudgetRef[0] != 0);
+  function getRegionsBudgetStart(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (bytes32) {
+    require (_organisationsRef[0] != 0 && _orgRef[0] != 0 && _budgetRef[0] != 0);
 
-    return regionBudgets[_reportRef][_regionBudgetRef].report.orgRef;
+    return budgets[_organisationsRef][_orgRef][_budgetRef].finance.start;
   }
 
-  function getRegionsBudgetRegion(bytes32 _reportRef, bytes32 _regionBudgetRef) public view returns (uint256) {
-    require (_reportRef[0] != 0 && _regionBudgetRef[0] != 0);
+  function getRegionsBudgetEnd(bytes32 _organisationsRef, bytes32 _orgRef, bytes32 _budgetRef) public view returns (bytes32) {
+    require (_organisationsRef[0] != 0 && _orgRef[0] != 0 && _budgetRef[0] != 0);
 
-    return regionBudgets[_reportRef][_regionBudgetRef].regionRef;
-  }
-
-  function getRegionsBudgetLine(bytes32 _reportRef, bytes32 _regionBudgetRef) public view returns (bytes32) {
-    require (_reportRef[0] != 0 && _regionBudgetRef[0] != 0);
-
-    return regionBudgets[_reportRef][_regionBudgetRef].budgetLine;
-  }
-
-  function getRegionsBudgetValue(bytes32 _reportRef, bytes32 _regionBudgetRef) public view returns (uint256) {
-    require (_reportRef[0] != 0 && _regionBudgetRef[0] != 0);
-
-    return regionBudgets[_reportRef][_regionBudgetRef].finance.value;
-  }
-
-  function getRegionsBudgetStatus(bytes32 _reportRef, bytes32 _regionBudgetRef) public view returns (uint8) {
-    require (_reportRef[0] != 0 && _regionBudgetRef[0] != 0);
-
-    return regionBudgets[_reportRef][_regionBudgetRef].finance.status;
-  }
-
-  function getRegionsBudgetStart(bytes32 _reportRef, bytes32 _regionBudgetRef) public view returns (bytes32) {
-    require (_reportRef[0] != 0 && _regionBudgetRef[0] != 0);
-
-    return regionBudgets[_reportRef][_regionBudgetRef].finance.start;
-  }
-
-  function getRegionsBudgetEnd(bytes32 _reportRef, bytes32 _regionBudgetRef) public view returns (bytes32) {
-    require (_reportRef[0] != 0 && _regionBudgetRef[0] != 0);
-
-    return regionBudgets[_reportRef][_regionBudgetRef].finance.end;
+    return budgets[_organisationsRef][_orgRef][_budgetRef].finance.end;
   }
 }
