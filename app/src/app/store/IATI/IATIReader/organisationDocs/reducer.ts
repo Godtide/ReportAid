@@ -1,7 +1,7 @@
-import { OrgDocsReaderActionTypes, OrgDocsReaderProps } from './types'
+import { OrganisationDocsReaderActionTypes, OrganisationDocsReaderProps } from './types'
 import { ActionProps, PayloadProps } from '../../../types'
 
-const initialState: OrgDocsReaderProps = {
+const initialState: OrganisationDocsReaderProps = {
   num: 0,
   data: {
     '': {
@@ -27,36 +27,36 @@ const initialState: OrgDocsReaderProps = {
   }
 }
 
-export const reducer = (state: OrgDocsReaderProps = initialState, action: ActionProps): OrgDocsReaderProps => {
+export const reducer = (state: OrganisationDocsReaderProps = initialState, action: ActionProps): OrganisationDocsReaderProps => {
   //console.log('Boom!', action.type, action.payload)
   const payload = action.payload as PayloadProps
   if ( typeof payload != 'undefined' ) {
-    const payloadData = payload.data as OrgDocsReaderProps
-    if ( (action.type == OrgDocsReaderActionTypes.NUM_SUCCESS ) ||
-         (action.type == OrgDocsReaderActionTypes.NUM_SUCCESS ) ) {
+    const payloadData = payload.data as OrganisationDocsReaderProps
+    if ( (action.type == OrganisationDocsReaderActionTypes.NUM_SUCCESS ) ||
+         (action.type == OrganisationDocsReaderActionTypes.NUM_SUCCESS ) ) {
 
-      const data: OrgDocsReaderProps = {
+      const data: OrganisationDocsReaderProps = {
         num: payloadData.num,
         data: { ...state.data }
       }
       return {...data}
 
-    } else if ( (action.type == OrgDocsReaderActionTypes.REF_SUCCESS ) ||
-         (action.type == OrgDocsReaderActionTypes.REF_FAILURE ) ) {
+    } else if ( (action.type == OrganisationDocsReaderActionTypes.REF_SUCCESS ) ||
+         (action.type == OrganisationDocsReaderActionTypes.REF_FAILURE ) ) {
 
-       const data: OrgDocsReaderProps  = {
+       const data: OrganisationDocsReaderProps  = {
          num: state.num,
          data: payloadData.data
        }
 
        return data
 
-    } else if ( (action.type == OrgDocsReaderActionTypes.NUMDOC_SUCCESS ) ||
-                (action.type == OrgDocsReaderActionTypes.NUMDOC_FAILURE ) ||
-                (action.type == OrgDocsReaderActionTypes.DOC_SUCCESS ) ||
-                (action.type == OrgDocsReaderActionTypes.DOC_FAILURE ) ) {
+    } else if ( (action.type == OrganisationDocsReaderActionTypes.NUMDOC_SUCCESS ) ||
+                (action.type == OrganisationDocsReaderActionTypes.NUMDOC_FAILURE ) ||
+                (action.type == OrganisationDocsReaderActionTypes.DOC_SUCCESS ) ||
+                (action.type == OrganisationDocsReaderActionTypes.DOC_FAILURE ) ) {
 
-       const data: OrgDocsReaderProps  = {
+       const data: OrganisationDocsReaderProps  = {
          num: state.num,
          data: {...payloadData.data}
        }

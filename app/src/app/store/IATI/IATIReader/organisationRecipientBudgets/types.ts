@@ -1,8 +1,8 @@
 import { PayloadProps, DictData } from '../../../types'
-import { IATIOrgRecipientBudgetProps } from '../../types'
+import { IATIOrganisationRecipientBudgetProps } from '../../types'
 
 export interface RecipientBudgetData {
-  [key: string]: IATIOrgRecipientBudgetProps
+  [key: string]: IATIOrganisationRecipientBudgetProps
 }
 
 export interface RecipientBudgets {
@@ -10,26 +10,26 @@ export interface RecipientBudgets {
   data: RecipientBudgetData
 }
 
-export interface OrgRecipientBudgetsData extends DictData {
+export interface OrganisationRecipientBudgetsData extends DictData {
   [key: string]: RecipientBudgets
 }
 
-export interface OrgRecipientBudgetsReaderProps extends PayloadProps {
+export interface OrganisationRecipientBudgetsReaderProps extends PayloadProps {
   num: number
-  data: OrgRecipientBudgetsData
+  data: OrganisationRecipientBudgetsData
 }
 
-export const enum OrgRecipientBudgetsReaderActionTypes {
-  NUM_SUCCESS = '@@OrgRecipientBudgetsReaderAction/GETNUM_SUCCESS',
-  NUM_FAILURE = '@@OrgRecipientBudgetsReaderAction/GETNUM_FAILURE',
-  EXISTS_SUCCESS = '@@OrgRecipientBudgetsReaderAction/GETEXISTS_SUCCESS',
-  EXISTS_FAILURE = '@@OrgRecipientBudgetsReaderAction/GETEXISTS_FAILURE',
-  REF_SUCCESS = '@@OrgRecipientBudgetsReaderAction/GETREFERENCE_SUCCESS',
-  REF_FAILURE = '@@OrgRecipientBudgetsReaderAction/GETREFERENCE_FAILURE',
-  NUMBUDGET_SUCCESS = '@@OrgRecipientBudgetsReaderAction/GETNUMBUDGET_SUCCESS',
-  NUMBUDGET_FAILURE = '@@OrgRecipientBudgetsReaderAction/GETNUMBUDGET_FAILURE',
-  BUDGETREF_SUCCESS = '@@OrgRecipientBudgetsReaderAction/GETBUDGETREF_SUCCESS',
-  BUDGETREF_FAILURE = '@@OrgRecipientBudgetsReaderAction/GETBUDGETREF_FAILURE',
-  BUDGET_SUCCESS = '@@OrgRecipientBudgetsReaderAction/GETBUDGET_SUCCESS',
-  BUDGET_FAILURE = '@@OrgRecipientBudgetsReaderAction/GETBUDGET_FAILURE'
+export const enum OrganisationRecipientBudgetsReaderActionTypes {
+  NUM_SUCCESS = '@@OrganisationRecipientBudgetsReaderAction/GETNUM_SUCCESS',
+  NUM_FAILURE = '@@OrganisationRecipientBudgetsReaderAction/GETNUM_FAILURE',
+  EXISTS_SUCCESS = '@@OrganisationRecipientBudgetsReaderAction/GETEXISTS_SUCCESS',
+  EXISTS_FAILURE = '@@OrganisationRecipientBudgetsReaderAction/GETEXISTS_FAILURE',
+  REF_SUCCESS = '@@OrganisationRecipientBudgetsReaderAction/GETREFERENCE_SUCCESS',
+  REF_FAILURE = '@@OrganisationRecipientBudgetsReaderAction/GETREFERENCE_FAILURE',
+  NUMBUDGET_SUCCESS = '@@OrganisationRecipientBudgetsReaderAction/GETNUMBUDGET_SUCCESS',
+  NUMBUDGET_FAILURE = '@@OrganisationRecipientBudgetsReaderAction/GETNUMBUDGET_FAILURE',
+  BUDGETREF_SUCCESS = '@@OrganisationRecipientBudgetsReaderAction/GETBUDGETREF_SUCCESS',
+  BUDGETREF_FAILURE = '@@OrganisationRecipientBudgetsReaderAction/GETBUDGETREF_FAILURE',
+  BUDGET_SUCCESS = '@@OrganisationRecipientBudgetsReaderAction/GETBUDGET_SUCCESS',
+  BUDGET_FAILURE = '@@OrganisationRecipientBudgetsReaderAction/GETBUDGET_FAILURE'
 }

@@ -1,7 +1,7 @@
-import { OrgExpenditureReaderActionTypes, OrgExpenditureReaderProps } from './types'
+import { OrganisationExpenditureReaderActionTypes, OrganisationExpenditureReaderProps } from './types'
 import { ActionProps, PayloadProps } from '../../../types'
 
-const initialState: OrgExpenditureReaderProps = {
+const initialState: OrganisationExpenditureReaderProps = {
   num: 0,
   data: {
     '': {
@@ -26,36 +26,36 @@ const initialState: OrgExpenditureReaderProps = {
   }
 }
 
-export const reducer = (state: OrgExpenditureReaderProps = initialState, action: ActionProps): OrgExpenditureReaderProps => {
+export const reducer = (state: OrganisationExpenditureReaderProps = initialState, action: ActionProps): OrganisationExpenditureReaderProps => {
   //console.log('Boom!', action.type, action.payload)
   const payload = action.payload as PayloadProps
   if ( typeof payload != 'undefined' ) {
-    const payloadData = payload.data as OrgExpenditureReaderProps
-    if ( (action.type == OrgExpenditureReaderActionTypes.NUM_SUCCESS ) ||
-         (action.type == OrgExpenditureReaderActionTypes.NUM_SUCCESS ) ) {
+    const payloadData = payload.data as OrganisationExpenditureReaderProps
+    if ( (action.type == OrganisationExpenditureReaderActionTypes.NUM_SUCCESS ) ||
+         (action.type == OrganisationExpenditureReaderActionTypes.NUM_SUCCESS ) ) {
 
-      const data: OrgExpenditureReaderProps = {
+      const data: OrganisationExpenditureReaderProps = {
         num: payloadData.num,
         data: { ...state.data }
       }
       return {...data}
 
-    } else if ( (action.type == OrgExpenditureReaderActionTypes.REF_SUCCESS ) ||
-         (action.type == OrgExpenditureReaderActionTypes.REF_FAILURE ) ) {
+    } else if ( (action.type == OrganisationExpenditureReaderActionTypes.REF_SUCCESS ) ||
+         (action.type == OrganisationExpenditureReaderActionTypes.REF_FAILURE ) ) {
 
-       const data: OrgExpenditureReaderProps  = {
+       const data: OrganisationExpenditureReaderProps  = {
          num: state.num,
          data: payloadData.data
        }
 
        return data
 
-    } else if ( (action.type == OrgExpenditureReaderActionTypes.NUMEXPENDITURE_SUCCESS ) ||
-                (action.type == OrgExpenditureReaderActionTypes.NUMEXPENDITURE_FAILURE ) ||
-                (action.type == OrgExpenditureReaderActionTypes.EXPENDITURE_SUCCESS ) ||
-                (action.type == OrgExpenditureReaderActionTypes.EXPENDITURE_FAILURE ) ) {
+    } else if ( (action.type == OrganisationExpenditureReaderActionTypes.NUMEXPENDITURE_SUCCESS ) ||
+                (action.type == OrganisationExpenditureReaderActionTypes.NUMEXPENDITURE_FAILURE ) ||
+                (action.type == OrganisationExpenditureReaderActionTypes.EXPENDITURE_SUCCESS ) ||
+                (action.type == OrganisationExpenditureReaderActionTypes.EXPENDITURE_FAILURE ) ) {
 
-       const data: OrgExpenditureReaderProps  = {
+       const data: OrganisationExpenditureReaderProps  = {
          num: state.num,
          data: {...payloadData.data}
        }

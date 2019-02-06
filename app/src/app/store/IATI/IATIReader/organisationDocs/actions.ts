@@ -5,7 +5,7 @@ import { ApplicationState } from '../../../store'
 import { storeAction } from '../../../actions'
 
 import { ActionProps, PayloadProps } from '../../../types'
-import { OrgDocsReaderActionTypes, OrgDocsReaderProps, OrgDocsData } from './types'
+import { OrganisationDocsReaderActionTypes, OrganisationDocsReaderProps, OrganisationDocsData } from './types'
 
 export const getDocs = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>) => {
@@ -18,8 +18,8 @@ export const getDocs = () => {
 }
 
 const get = (payload: PayloadProps): Function => {
-  return (actionType: OrgDocsReaderActionTypes): OrgDocsReaderProps => {
-    const getProps = storeAction(actionType)(payload) as OrgDocsReaderProps
+  return (actionType: OrganisationDocsReaderActionTypes): OrganisationDocsReaderProps => {
+    const getProps = storeAction(actionType)(payload) as OrganisationDocsReaderProps
     return getProps
   }
 }
@@ -28,13 +28,13 @@ const getNums = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
     const orgDocsContract = state.chainContracts.data.contracts.orgDocsContract
-    let actionType = OrgDocsReaderActionTypes.NUM_FAILURE
+    let actionType = OrganisationDocsReaderActionTypes.NUM_FAILURE
     let nums = { num: 0 }
     try {
       const num = await orgDocsContract.getNums()
       //console.log('Num orgs: ', num)
       nums.num = num.toNumber()
-      actionType = OrgDocsReaderActionTypes.NUM_SUCCESS
+      actionType = OrganisationDocsReaderActionTypes.NUM_SUCCESS
     } catch (error) {
       console.log('getNums error', error)
     }
@@ -48,8 +48,8 @@ const getReferences = () => {
     const state = getState()
     const orgDocsContract = state.chainContracts.data.contracts.orgDocsContract
     const nums = state.orgDocsReader.num
-    let reportDocRefs: OrgDocsData = {}
-    let actionType = OrgDocsReaderActionTypes.REF_FAILURE
+    let reportDocRefs: OrganisationDocsData = {}
+    let actionType = OrganisationDocsReaderActionTypes.REF_FAILURE
     for (let i = 0; i < nums; i++) {
        try {
          const ref = await orgDocsContract.getReference(i.toString())
@@ -57,7 +57,7 @@ const getReferences = () => {
            num: 0,
            data: {}
          }
-         actionType = OrgDocsReaderActionTypes.REF_SUCCESS
+         actionType = OrganisationDocsReaderActionTypes.REF_SUCCESS
        } catch (error) {
          console.log('getReferences error', error)
        }
@@ -72,9 +72,9 @@ const getNumDocs = () => {
 
     const state = getState()
     const orgDocsContract = state.chainContracts.data.contracts.orgDocsContract
-    let actionType = OrgDocsReaderActionTypes.NUMDOC_FAILURE
+    let actionType = OrganisationDocsReaderActionTypes.NUMDOC_FAILURE
 
-    const reports = state.orgDocsReader.data as OrgDocsData
+    const reports = state.orgDocsReader.data as OrganisationDocsData
     const reportKeys = Object.keys(reports)
 
     for (let i = 0; i < reportKeys.length; i++) {
@@ -84,7 +84,7 @@ const getNumDocs = () => {
          const num = await orgDocsContract.getNumDocs(reportKey)
          reports[reportKey].num = num.toNumber()
          //console.log( 'Num reports for ', thisKey, ' ; ', orgs[thisKey].num)
-         actionType = OrgDocsReaderActionTypes.NUMDOC_SUCCESS
+         actionType = OrganisationDocsReaderActionTypes.NUMDOC_SUCCESS
        } catch (error) {
          console.log('getNumDocs error', error)
        }
@@ -98,9 +98,9 @@ const getDocRefs = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
     const orgDocsContract = state.chainContracts.data.contracts.orgDocsContract
-    let actionType = OrgDocsReaderActionTypes.DOCREF_FAILURE
+    let actionType = OrganisationDocsReaderActionTypes.DOCREF_FAILURE
 
-    const reports = state.orgDocsReader.data as OrgDocsData
+    const reports = state.orgDocsReader.data as OrganisationDocsData
     const reportKeys = Object.keys(reports)
 
     for (let i = 0; i < reportKeys.length; i++) {
@@ -125,7 +125,7 @@ const getDocRefs = () => {
               lang: '',
               date: ''
             }
-            actionType = OrgDocsReaderActionTypes.DOCREF_SUCCESS
+            actionType = OrganisationDocsReaderActionTypes.DOCREF_SUCCESS
           } catch (error) {
             console.log('getDocRefs error', error)
           }
@@ -140,9 +140,9 @@ const getDocsData = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
     const orgDocsContract = state.chainContracts.data.contracts.orgDocsContract
-    let actionType = OrgDocsReaderActionTypes.DOC_FAILURE
+    let actionType = OrganisationDocsReaderActionTypes.DOC_FAILURE
 
-    const reports = state.orgDocsReader.data as OrgDocsData
+    const reports = state.orgDocsReader.data as OrganisationDocsData
     const reportKeys = Object.keys(reports)
 
     for (let i = 0; i < reportKeys.length; i++) {
@@ -156,7 +156,7 @@ const getDocsData = () => {
           //const reportData = await orgsContract.getCurrency(orgKey, reportRefKey)
           //console.log(' Data for org ', orgKey, ' ref key ', reportRefKey, ' is data ', reportData)
           reports[reportKey].data[docRefKey] = docData
-          actionType = OrgDocsReaderActionTypes.DOC_SUCCESS
+          actionType = OrganisationDocsReaderActionTypes.DOC_SUCCESS
         } catch (error) {
           console.log('getDocData error', error)
         }

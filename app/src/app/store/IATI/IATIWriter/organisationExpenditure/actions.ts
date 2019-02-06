@@ -7,17 +7,17 @@ import { ApplicationState } from '../../../store'
 import { storeAction } from '../../../actions'
 
 import { ActionProps, PayloadProps, TxProps, TxData } from '../../../types'
-import { OrgExpenditureProps, IATIOrgExpenditureProps } from '../../types'
-import { OrgExpenditureWriterActionTypes } from './types'
+import { OrganisationExpenditureProps, IATIOrganisationExpenditureProps } from '../../types'
+import { OrganisationExpenditureWriterActionTypes } from './types'
 
 const add = (payload: PayloadProps): Function => {
-  return (actionType: OrgExpenditureWriterActionTypes): TxProps => {
+  return (actionType: OrganisationExpenditureWriterActionTypes): TxProps => {
     const writerProps = storeAction(actionType)(payload) as TxProps
     return writerProps
   }
 }
 
-export const setOrganisationExpenditure = (expenditureDetails: OrgExpenditureProps) => {
+export const setOrganisationExpenditure = (expenditureDetails: OrganisationExpenditureProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
 
@@ -27,7 +27,7 @@ export const setOrganisationExpenditure = (expenditureDetails: OrgExpenditurePro
     const endDate = end.toISOString()
     //console.log('Start: ', startDate, ' End: ', endDate)
 
-    const orgExpenditure: IATIOrgExpenditureProps = {
+    const orgExpenditure: IATIOrganisationExpenditureProps = {
       report: {
         reportRef: expenditureDetails.report.reportRef,
         orgRef: expenditureDetails.report.orgRef
@@ -44,14 +44,14 @@ export const setOrganisationExpenditure = (expenditureDetails: OrgExpenditurePro
 
     const orgExpenditureContract = state.chainContracts.data.contracts.orgExpenditureContract
     //console.log('Budget: ', orgBudget, ' Contract ', orgBudgetsContract)
-    let actionType = OrgExpenditureWriterActionTypes.ADD_FAILURE
+    let actionType = OrganisationExpenditureWriterActionTypes.ADD_FAILURE
     let txData: TxData = {}
     try {
       // set(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, bytes32 _version, bytes32 _generatedTime)
       const tx = await orgExpenditureContract.setExpenditure(orgExpenditure)
       const key = tx.hash
       txData[key] = tx
-      actionType = OrgExpenditureWriterActionTypes.ADD_SUCCESS
+      actionType = OrganisationExpenditureWriterActionTypes.ADD_SUCCESS
     } catch (error) {
       txData[-1] = txData
       console.log('setBudget error', error)

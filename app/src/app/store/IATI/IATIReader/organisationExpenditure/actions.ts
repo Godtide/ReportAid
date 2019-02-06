@@ -5,7 +5,7 @@ import { ApplicationState } from '../../../store'
 import { storeAction } from '../../../actions'
 
 import { ActionProps, PayloadProps } from '../../../types'
-import { OrgExpenditureReaderActionTypes, OrgExpenditureReaderProps, OrgExpenditureData } from './types'
+import { OrganisationExpenditureReaderActionTypes, OrganisationExpenditureReaderProps, OrganisationExpenditureData } from './types'
 
 export const getExpenditure = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>) => {
@@ -18,8 +18,8 @@ export const getExpenditure = () => {
 }
 
 const get = (payload: PayloadProps): Function => {
-  return (actionType: OrgExpenditureReaderActionTypes): OrgExpenditureReaderProps => {
-    const getProps = storeAction(actionType)(payload) as OrgExpenditureReaderProps
+  return (actionType: OrganisationExpenditureReaderActionTypes): OrganisationExpenditureReaderProps => {
+    const getProps = storeAction(actionType)(payload) as OrganisationExpenditureReaderProps
     return getProps
   }
 }
@@ -28,13 +28,13 @@ const getNums = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
     const orgExpenditureContract = state.chainContracts.data.contracts.orgExpenditureContract
-    let actionType = OrgExpenditureReaderActionTypes.NUM_FAILURE
+    let actionType = OrganisationExpenditureReaderActionTypes.NUM_FAILURE
     let nums = { num: 0 }
     try {
       const num = await orgExpenditureContract.getNums()
       //console.log('Num orgs: ', num)
       nums.num = num.toNumber()
-      actionType = OrgExpenditureReaderActionTypes.NUM_SUCCESS
+      actionType = OrganisationExpenditureReaderActionTypes.NUM_SUCCESS
     } catch (error) {
       console.log('getNums error', error)
     }
@@ -48,8 +48,8 @@ const getReferences = () => {
     const state = getState()
     const orgExpenditureContract = state.chainContracts.data.contracts.orgExpenditureContract
     const nums = state.orgExpenditureReader.num
-    let reportExpenditureRefs: OrgExpenditureData = {}
-    let actionType = OrgExpenditureReaderActionTypes.REF_FAILURE
+    let reportExpenditureRefs: OrganisationExpenditureData = {}
+    let actionType = OrganisationExpenditureReaderActionTypes.REF_FAILURE
     for (let i = 0; i < nums; i++) {
        try {
          const ref = await orgExpenditureContract.getReference(i.toString())
@@ -57,7 +57,7 @@ const getReferences = () => {
            num: 0,
            data: {}
          }
-         actionType = OrgExpenditureReaderActionTypes.REF_SUCCESS
+         actionType = OrganisationExpenditureReaderActionTypes.REF_SUCCESS
        } catch (error) {
          console.log('getReferences error', error)
        }
@@ -72,9 +72,9 @@ const getNumExpenditure = () => {
 
     const state = getState()
     const orgExpenditureContract = state.chainContracts.data.contracts.orgExpenditureContract
-    let actionType = OrgExpenditureReaderActionTypes.NUMEXPENDITURE_FAILURE
+    let actionType = OrganisationExpenditureReaderActionTypes.NUMEXPENDITURE_FAILURE
 
-    const reports = state.orgExpenditureReader.data as OrgExpenditureData
+    const reports = state.orgExpenditureReader.data as OrganisationExpenditureData
     const reportKeys = Object.keys(reports)
 
     for (let i = 0; i < reportKeys.length; i++) {
@@ -84,7 +84,7 @@ const getNumExpenditure = () => {
          const num = await orgExpenditureContract.getNumExpenditures(reportKey)
          reports[reportKey].num = num.toNumber()
          //console.log( 'Num reports for ', thisKey, ' ; ', orgs[thisKey].num)
-         actionType = OrgExpenditureReaderActionTypes.NUMEXPENDITURE_SUCCESS
+         actionType = OrganisationExpenditureReaderActionTypes.NUMEXPENDITURE_SUCCESS
        } catch (error) {
          console.log('getNumExpenditure error', error)
        }
@@ -98,9 +98,9 @@ const getExpenditureRefs = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
     const orgExpenditureContract = state.chainContracts.data.contracts.orgExpenditureContract
-    let actionType = OrgExpenditureReaderActionTypes.EXPENDITUREREF_FAILURE
+    let actionType = OrganisationExpenditureReaderActionTypes.EXPENDITUREREF_FAILURE
 
-    const reports = state.orgExpenditureReader.data as OrgExpenditureData
+    const reports = state.orgExpenditureReader.data as OrganisationExpenditureData
     const reportKeys = Object.keys(reports)
 
     for (let i = 0; i < reportKeys.length; i++) {
@@ -124,7 +124,7 @@ const getExpenditureRefs = () => {
                 end: ''
               }
             }
-            actionType = OrgExpenditureReaderActionTypes.EXPENDITUREREF_SUCCESS
+            actionType = OrganisationExpenditureReaderActionTypes.EXPENDITUREREF_SUCCESS
           } catch (error) {
             console.log('getExpenditureRefs error', error)
           }
@@ -139,9 +139,9 @@ const getExpenditureData = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
     const orgExpenditureContract = state.chainContracts.data.contracts.orgExpenditureContract
-    let actionType = OrgExpenditureReaderActionTypes.EXPENDITURE_FAILURE
+    let actionType = OrganisationExpenditureReaderActionTypes.EXPENDITURE_FAILURE
 
-    const reports = state.orgExpenditureReader.data as OrgExpenditureData
+    const reports = state.orgExpenditureReader.data as OrganisationExpenditureData
     const reportKeys = Object.keys(reports)
 
     for (let i = 0; i < reportKeys.length; i++) {
@@ -155,7 +155,7 @@ const getExpenditureData = () => {
           //const reportData = await orgsContract.getCurrency(orgKey, reportRefKey)
           //console.log(' Data for org ', orgKey, ' ref key ', reportRefKey, ' is data ', reportData)
           reports[reportKey].data[expenditureRefKey] = expenditureData
-          actionType = OrgExpenditureReaderActionTypes.EXPENDITURE_SUCCESS
+          actionType = OrganisationExpenditureReaderActionTypes.EXPENDITURE_SUCCESS
         } catch (error) {
           console.log('getExpenditureData error', error)
         }

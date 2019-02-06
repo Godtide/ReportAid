@@ -1,8 +1,8 @@
 import { PayloadProps, DictData } from '../../../types'
-import { IATIOrgCountryBudgetProps } from '../../types'
+import { IATIOrganisationCountryBudgetProps } from '../../types'
 
 export interface CountryBudgetData {
-  [key: string]: IATIOrgCountryBudgetProps
+  [key: string]: IATIOrganisationCountryBudgetProps
 }
 
 export interface CountryBudgets {
@@ -10,26 +10,26 @@ export interface CountryBudgets {
   data: CountryBudgetData
 }
 
-export interface OrgCountryBudgetsData extends DictData {
+export interface OrganisationCountryBudgetsData extends DictData {
   [key: string]: CountryBudgets
 }
 
-export interface OrgCountryBudgetsReaderProps extends PayloadProps {
+export interface OrganisationCountryBudgetsReaderProps extends PayloadProps {
   num: number
-  data: OrgCountryBudgetsData
+  data: OrganisationCountryBudgetsData
 }
 
-export const enum OrgCountryBudgetsReaderActionTypes {
-  NUM_SUCCESS = '@@OrgCountryBudgetsReaderAction/GETNUM_SUCCESS',
-  NUM_FAILURE = '@@OrgCountryBudgetsReaderAction/GETNUM_FAILURE',
-  EXISTS_SUCCESS = '@@OrgCountryBudgetsReaderAction/GETEXISTS_SUCCESS',
-  EXISTS_FAILURE = '@@OrgCountryBudgetsReaderAction/GETEXISTS_FAILURE',
-  REF_SUCCESS = '@@OrgCountryBudgetsReaderAction/GETREFERENCE_SUCCESS',
-  REF_FAILURE = '@@OrgCountryBudgetsReaderAction/GETREFERENCE_FAILURE',
-  NUMBUDGET_SUCCESS = '@@OrgCountryBudgetsReaderAction/GETNUMBUDGET_SUCCESS',
-  NUMBUDGET_FAILURE = '@@OrgCountryBudgetsReaderAction/GETNUMBUDGET_FAILURE',
-  BUDGETREF_SUCCESS = '@@OrgCountryBudgetsReaderAction/GETBUDGETREF_SUCCESS',
-  BUDGETREF_FAILURE = '@@OrgCountryBudgetsReaderAction/GETBUDGETREF_FAILURE',
-  BUDGET_SUCCESS = '@@OrgCountryBudgetsReaderAction/GETBUDGET_SUCCESS',
-  BUDGET_FAILURE = '@@OrgCountryBudgetsReaderAction/GETBUDGET_FAILURE'
+export const enum OrganisationCountryBudgetsReaderActionTypes {
+  NUM_SUCCESS = '@@OrganisationCountryBudgetsReaderAction/GETNUM_SUCCESS',
+  NUM_FAILURE = '@@OrganisationCountryBudgetsReaderAction/GETNUM_FAILURE',
+  EXISTS_SUCCESS = '@@OrganisationCountryBudgetsReaderAction/GETEXISTS_SUCCESS',
+  EXISTS_FAILURE = '@@OrganisationCountryBudgetsReaderAction/GETEXISTS_FAILURE',
+  REF_SUCCESS = '@@OrganisationCountryBudgetsReaderAction/GETREFERENCE_SUCCESS',
+  REF_FAILURE = '@@OrganisationCountryBudgetsReaderAction/GETREFERENCE_FAILURE',
+  NUMBUDGET_SUCCESS = '@@OrganisationCountryBudgetsReaderAction/GETNUMBUDGET_SUCCESS',
+  NUMBUDGET_FAILURE = '@@OrganisationCountryBudgetsReaderAction/GETNUMBUDGET_FAILURE',
+  BUDGETREF_SUCCESS = '@@OrganisationCountryBudgetsReaderAction/GETBUDGETREF_SUCCESS',
+  BUDGETREF_FAILURE = '@@OrganisationCountryBudgetsReaderAction/GETBUDGETREF_FAILURE',
+  BUDGET_SUCCESS = '@@OrganisationCountryBudgetsReaderAction/GETBUDGET_SUCCESS',
+  BUDGET_FAILURE = '@@OrganisationCountryBudgetsReaderAction/GETBUDGET_FAILURE'
 }

@@ -1,7 +1,7 @@
-import { OrgRecipientBudgetsReaderActionTypes, OrgRecipientBudgetsReaderProps } from './types'
+import { OrganisationRecipientBudgetsReaderActionTypes, OrganisationRecipientBudgetsReaderProps } from './types'
 import { ActionProps, PayloadProps } from '../../../types'
 
-const initialState: OrgRecipientBudgetsReaderProps = {
+const initialState: OrganisationRecipientBudgetsReaderProps = {
   num: 0,
   data: {
     '': {
@@ -27,36 +27,36 @@ const initialState: OrgRecipientBudgetsReaderProps = {
   }
 }
 
-export const reducer = (state: OrgRecipientBudgetsReaderProps = initialState, action: ActionProps): OrgRecipientBudgetsReaderProps => {
+export const reducer = (state: OrganisationRecipientBudgetsReaderProps = initialState, action: ActionProps): OrganisationRecipientBudgetsReaderProps => {
   //console.log('Boom!', action.type, action.payload)
   const payload = action.payload as PayloadProps
   if ( typeof payload != 'undefined' ) {
-    const payloadData = payload.data as OrgRecipientBudgetsReaderProps
-    if ( (action.type == OrgRecipientBudgetsReaderActionTypes.NUM_SUCCESS ) ||
-         (action.type == OrgRecipientBudgetsReaderActionTypes.NUM_SUCCESS ) ) {
+    const payloadData = payload.data as OrganisationRecipientBudgetsReaderProps
+    if ( (action.type == OrganisationRecipientBudgetsReaderActionTypes.NUM_SUCCESS ) ||
+         (action.type == OrganisationRecipientBudgetsReaderActionTypes.NUM_SUCCESS ) ) {
 
-      const data: OrgRecipientBudgetsReaderProps = {
+      const data: OrganisationRecipientBudgetsReaderProps = {
         num: payloadData.num,
         data: { ...state.data }
       }
       return {...data}
 
-    } else if ( (action.type == OrgRecipientBudgetsReaderActionTypes.REF_SUCCESS ) ||
-         (action.type == OrgRecipientBudgetsReaderActionTypes.REF_FAILURE ) ) {
+    } else if ( (action.type == OrganisationRecipientBudgetsReaderActionTypes.REF_SUCCESS ) ||
+         (action.type == OrganisationRecipientBudgetsReaderActionTypes.REF_FAILURE ) ) {
 
-       const data: OrgRecipientBudgetsReaderProps  = {
+       const data: OrganisationRecipientBudgetsReaderProps  = {
          num: state.num,
          data: payloadData.data
        }
 
        return data
 
-    } else if ( (action.type == OrgRecipientBudgetsReaderActionTypes.NUMBUDGET_SUCCESS ) ||
-                (action.type == OrgRecipientBudgetsReaderActionTypes.NUMBUDGET_FAILURE ) ||
-                (action.type == OrgRecipientBudgetsReaderActionTypes.BUDGET_SUCCESS ) ||
-                (action.type == OrgRecipientBudgetsReaderActionTypes.BUDGET_FAILURE ) ) {
+    } else if ( (action.type == OrganisationRecipientBudgetsReaderActionTypes.NUMBUDGET_SUCCESS ) ||
+                (action.type == OrganisationRecipientBudgetsReaderActionTypes.NUMBUDGET_FAILURE ) ||
+                (action.type == OrganisationRecipientBudgetsReaderActionTypes.BUDGET_SUCCESS ) ||
+                (action.type == OrganisationRecipientBudgetsReaderActionTypes.BUDGET_FAILURE ) ) {
 
-       const data: OrgRecipientBudgetsReaderProps  = {
+       const data: OrganisationRecipientBudgetsReaderProps  = {
          num: state.num,
          data: {...payloadData.data}
        }

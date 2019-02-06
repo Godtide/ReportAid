@@ -5,7 +5,7 @@ import { ApplicationState } from '../../../store'
 import { storeAction } from '../../../actions'
 
 import { ActionProps, PayloadProps } from '../../../types'
-import { OrgRecipientBudgetsReaderActionTypes, OrgRecipientBudgetsReaderProps, OrgRecipientBudgetsData } from './types'
+import { OrganisationRecipientBudgetsReaderActionTypes, OrganisationRecipientBudgetsReaderProps, OrganisationRecipientBudgetsData } from './types'
 
 export const getRecipientBudgets = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>) => {
@@ -18,8 +18,8 @@ export const getRecipientBudgets = () => {
 }
 
 const get = (payload: PayloadProps): Function => {
-  return (actionType: OrgRecipientBudgetsReaderActionTypes): OrgRecipientBudgetsReaderProps => {
-    const getProps = storeAction(actionType)(payload) as OrgRecipientBudgetsReaderProps
+  return (actionType: OrganisationRecipientBudgetsReaderActionTypes): OrganisationRecipientBudgetsReaderProps => {
+    const getProps = storeAction(actionType)(payload) as OrganisationRecipientBudgetsReaderProps
     return getProps
   }
 }
@@ -28,13 +28,13 @@ const getNums = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
     const orgRecipientBudgetsContract = state.chainContracts.data.contracts.orgRecipientBudgetsContract
-    let actionType = OrgRecipientBudgetsReaderActionTypes.NUM_FAILURE
+    let actionType = OrganisationRecipientBudgetsReaderActionTypes.NUM_FAILURE
     let nums = { num: 0 }
     try {
       const num = await orgRecipientBudgetsContract.getNums()
       //console.log('Num orgs: ', num)
       nums.num = num.toNumber()
-      actionType = OrgRecipientBudgetsReaderActionTypes.NUM_SUCCESS
+      actionType = OrganisationRecipientBudgetsReaderActionTypes.NUM_SUCCESS
     } catch (error) {
       console.log('getNums error', error)
     }
@@ -48,8 +48,8 @@ const getReferences = () => {
     const state = getState()
     const orgRecipientBudgetsContract = state.chainContracts.data.contracts.orgRecipientBudgetsContract
     const nums = state.orgRecipientBudgetsReader.num
-    let reportRecipientBudgetRefs: OrgRecipientBudgetsData = {}
-    let actionType = OrgRecipientBudgetsReaderActionTypes.REF_FAILURE
+    let reportRecipientBudgetRefs: OrganisationRecipientBudgetsData = {}
+    let actionType = OrganisationRecipientBudgetsReaderActionTypes.REF_FAILURE
     for (let i = 0; i < nums; i++) {
        try {
          const ref = await orgRecipientBudgetsContract.getReference(i.toString())
@@ -57,7 +57,7 @@ const getReferences = () => {
            num: 0,
            data: {}
          }
-         actionType = OrgRecipientBudgetsReaderActionTypes.REF_SUCCESS
+         actionType = OrganisationRecipientBudgetsReaderActionTypes.REF_SUCCESS
        } catch (error) {
          console.log('getReferences error', error)
        }
@@ -72,9 +72,9 @@ const getNumRecipientBudgets = () => {
 
     const state = getState()
     const orgRecipientBudgetsContract = state.chainContracts.data.contracts.orgRecipientBudgetsContract
-    let actionType = OrgRecipientBudgetsReaderActionTypes.NUMBUDGET_FAILURE
+    let actionType = OrganisationRecipientBudgetsReaderActionTypes.NUMBUDGET_FAILURE
 
-    const reports = state.orgRecipientBudgetsReader.data as OrgRecipientBudgetsData
+    const reports = state.orgRecipientBudgetsReader.data as OrganisationRecipientBudgetsData
     const reportKeys = Object.keys(reports)
 
     for (let i = 0; i < reportKeys.length; i++) {
@@ -84,7 +84,7 @@ const getNumRecipientBudgets = () => {
          const num = await orgRecipientBudgetsContract.getNumRecipientBudgets(reportKey)
          reports[reportKey].num = num.toNumber()
          //console.log( 'Num reports for ', thisKey, ' ; ', orgs[thisKey].num)
-         actionType = OrgRecipientBudgetsReaderActionTypes.NUMBUDGET_SUCCESS
+         actionType = OrganisationRecipientBudgetsReaderActionTypes.NUMBUDGET_SUCCESS
        } catch (error) {
          console.log('getNumRecipientBudgets error', error)
        }
@@ -98,9 +98,9 @@ const getRecipientBudgetRefs = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
     const orgRecipientBudgetsContract = state.chainContracts.data.contracts.orgRecipientBudgetsContract
-    let actionType = OrgRecipientBudgetsReaderActionTypes.BUDGETREF_FAILURE
+    let actionType = OrganisationRecipientBudgetsReaderActionTypes.BUDGETREF_FAILURE
 
-    const reports = state.orgRecipientBudgetsReader.data as OrgRecipientBudgetsData
+    const reports = state.orgRecipientBudgetsReader.data as OrganisationRecipientBudgetsData
     const reportKeys = Object.keys(reports)
 
     for (let i = 0; i < reportKeys.length; i++) {
@@ -125,7 +125,7 @@ const getRecipientBudgetRefs = () => {
                 end: ''
               }
             }
-            actionType = OrgRecipientBudgetsReaderActionTypes.BUDGETREF_SUCCESS
+            actionType = OrganisationRecipientBudgetsReaderActionTypes.BUDGETREF_SUCCESS
           } catch (error) {
             console.log('getRecipientBudgetRefs error', error)
           }
@@ -140,9 +140,9 @@ const getRecipientBudgetData = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
     const orgRecipientBudgetsContract = state.chainContracts.data.contracts.orgRecipientBudgetsContract
-    let actionType = OrgRecipientBudgetsReaderActionTypes.BUDGET_FAILURE
+    let actionType = OrganisationRecipientBudgetsReaderActionTypes.BUDGET_FAILURE
 
-    const reports = state.orgRecipientBudgetsReader.data as OrgRecipientBudgetsData
+    const reports = state.orgRecipientBudgetsReader.data as OrganisationRecipientBudgetsData
     const reportKeys = Object.keys(reports)
 
     for (let i = 0; i < reportKeys.length; i++) {
@@ -156,7 +156,7 @@ const getRecipientBudgetData = () => {
           //const reportData = await orgsContract.getCurrency(orgKey, reportRefKey)
           //console.log(' Data for org ', orgKey, ' ref key ', reportRefKey, ' is data ', reportData)
           reports[reportKey].data[budgetRefKey] = budgetData
-          actionType = OrgRecipientBudgetsReaderActionTypes.BUDGET_SUCCESS
+          actionType = OrganisationRecipientBudgetsReaderActionTypes.BUDGET_SUCCESS
         } catch (error) {
           console.log('getRecipientBudgetData error', error)
         }

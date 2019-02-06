@@ -7,17 +7,17 @@ import { ApplicationState } from '../../../store'
 import { storeAction } from '../../../actions'
 
 import { ActionProps, PayloadProps, TxProps, TxData } from '../../../types'
-import { OrgDocProps, IATIOrgDocProps } from '../../types'
-import { OrgDocsWriterActionTypes } from './types'
+import { OrganisationDocProps, IATIOrganisationDocProps } from '../../types'
+import { OrganisationDocsWriterActionTypes } from './types'
 
 const add = (payload: PayloadProps): Function => {
-  return (actionType: OrgDocsWriterActionTypes): TxProps => {
+  return (actionType: OrganisationDocsWriterActionTypes): TxProps => {
     const writerProps = storeAction(actionType)(payload) as TxProps
     return writerProps
   }
 }
 
-export const setOrganisationDoc = (reportDocDetails: OrgDocProps) => {
+export const setOrganisationDoc = (reportDocDetails: OrganisationDocProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
 
@@ -26,7 +26,7 @@ export const setOrganisationDoc = (reportDocDetails: OrgDocProps) => {
 
     //console.log('Ref: ', reportDocDetails.reportRef)
 
-    const orgDoc: IATIOrgDocProps = {
+    const orgDoc: IATIOrganisationDocProps = {
       report: {
         reportRef: reportDocDetails.report.reportRef,
         orgRef: reportDocDetails.report.orgRef
@@ -43,13 +43,13 @@ export const setOrganisationDoc = (reportDocDetails: OrgDocProps) => {
     }
 
     const orgDocsContract = state.chainContracts.data.contracts.orgDocsContract
-    let actionType = OrgDocsWriterActionTypes.ADD_FAILURE
+    let actionType = OrganisationDocsWriterActionTypes.ADD_FAILURE
     let txData: TxData = {}
     try {
       const tx = await orgDocsContract.setDocument(orgDoc)
       const key = tx.hash
       txData[key] = tx
-      actionType = OrgDocsWriterActionTypes.ADD_SUCCESS
+      actionType = OrganisationDocsWriterActionTypes.ADD_SUCCESS
     } catch (error) {
       console.log('setDoc error', error)
     }

@@ -7,17 +7,17 @@ import { ApplicationState } from '../../../store'
 import { storeAction } from '../../../actions'
 
 import { ActionProps, PayloadProps, TxProps, TxData } from '../../../types'
-import { OrgBudgetProps, IATIOrgBudgetProps } from '../../types'
-import { OrgBudgetsWriterActionTypes } from './types'
+import { OrganisationBudgetProps, IATIOrganisationBudgetProps } from '../../types'
+import { OrganisationBudgetsWriterActionTypes } from './types'
 
 const add = (payload: PayloadProps): Function => {
-  return (actionType: OrgBudgetsWriterActionTypes): TxProps => {
+  return (actionType: OrganisationBudgetsWriterActionTypes): TxProps => {
     const writerProps = storeAction(actionType)(payload) as TxProps
     return writerProps
   }
 }
 
-export const setOrganisationBudget = (budgetDetails: OrgBudgetProps) => {
+export const setOrganisationBudget = (budgetDetails: OrganisationBudgetProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
 
@@ -27,7 +27,7 @@ export const setOrganisationBudget = (budgetDetails: OrgBudgetProps) => {
     const endDate = end.toISOString()
     //console.log('Start: ', startDate, ' End: ', endDate)
 
-    const orgBudget: IATIOrgBudgetProps = {
+    const orgBudget: IATIOrganisationBudgetProps = {
       report: {
         reportRef: budgetDetails.report.reportRef,
         orgRef: budgetDetails.report.orgRef
@@ -44,14 +44,14 @@ export const setOrganisationBudget = (budgetDetails: OrgBudgetProps) => {
 
     const orgBudgetsContract = state.chainContracts.data.contracts.orgBudgetsContract
     //console.log('Budget: ', orgBudget, ' Contract ', orgBudgetsContract)
-    let actionType = OrgBudgetsWriterActionTypes.ADD_FAILURE
+    let actionType = OrganisationBudgetsWriterActionTypes.ADD_FAILURE
     let txData: TxData = {}
     try {
       // set(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, bytes32 _version, bytes32 _generatedTime)
       const tx = await orgBudgetsContract.setTotalBudget(orgBudget)
       const key = tx.hash
       txData[key] = tx
-      actionType = OrgBudgetsWriterActionTypes.ADD_SUCCESS
+      actionType = OrganisationBudgetsWriterActionTypes.ADD_SUCCESS
     } catch (error) {
       txData[-1] = txData
       console.log('setBudget error', error)
