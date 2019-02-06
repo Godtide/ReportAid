@@ -1,8 +1,8 @@
 import { PayloadProps, DictData } from '../../../types'
-import { IATIOrgReportExpenditureProps } from '../../types'
+import { IATIOrgExpenditureProps } from '../../types'
 
 export interface ExpenditureData {
-  [key: string]: IATIOrgReportExpenditureProps
+  [key: string]: IATIOrgExpenditureProps
 }
 
 export interface Expenditure {
@@ -10,26 +10,26 @@ export interface Expenditure {
   data: ExpenditureData
 }
 
-export interface OrgReportExpenditureData extends DictData {
+export interface OrgExpenditureData extends DictData {
   [key: string]: Expenditure
 }
 
-export interface OrgReportExpenditureReaderProps extends PayloadProps {
+export interface OrgExpenditureReaderProps extends PayloadProps {
   num: number
-  data: OrgReportExpenditureData
+  data: OrgExpenditureData
 }
 
-export const enum OrgReportExpenditureReaderActionTypes {
-  NUM_SUCCESS = '@@OrgReportExpenditureReaderAction/GETNUM_SUCCESS',
-  NUM_FAILURE = '@@OrgReportExpenditureReaderAction/GETNUM_FAILURE',
-  EXISTS_SUCCESS = '@@OrgReportExpenditureReaderAction/GETEXISTS_SUCCESS',
-  EXISTS_FAILURE = '@@OrgReportExpenditureReaderAction/GETEXISTS_FAILURE',
-  REF_SUCCESS = '@@OrgReportExpenditureReaderAction/GETREFERENCE_SUCCESS',
-  REF_FAILURE = '@@OrgReportExpenditureReaderAction/GETREFERENCE_FAILURE',
-  NUMEXPENDITURE_SUCCESS = '@@OrgReportExpenditureReaderAction/GETNUMEXPENDITURE_SUCCESS',
-  NUMEXPENDITURE_FAILURE = '@@OrgReportExpenditureReaderAction/GETNUMEXPENDITURE_FAILURE',
-  EXPENDITUREREF_SUCCESS = '@@OrgReportExpenditureReaderAction/GETEXPENDITUREREF_SUCCESS',
-  EXPENDITUREREF_FAILURE = '@@OrgReportExpenditureReaderAction/GETEXPENDITUREREF_FAILURE',
-  EXPENDITURE_SUCCESS = '@@OrgReportExpenditureReaderAction/GETEXPENDITURE_SUCCESS',
-  EXPENDITURE_FAILURE = '@@OrgReportExpenditureReaderAction/GETEXPENDITURE_FAILURE'
+export const enum OrgExpenditureReaderActionTypes {
+  NUM_SUCCESS = '@@OrgExpenditureReaderAction/GETNUM_SUCCESS',
+  NUM_FAILURE = '@@OrgExpenditureReaderAction/GETNUM_FAILURE',
+  EXISTS_SUCCESS = '@@OrgExpenditureReaderAction/GETEXISTS_SUCCESS',
+  EXISTS_FAILURE = '@@OrgExpenditureReaderAction/GETEXISTS_FAILURE',
+  REF_SUCCESS = '@@OrgExpenditureReaderAction/GETREFERENCE_SUCCESS',
+  REF_FAILURE = '@@OrgExpenditureReaderAction/GETREFERENCE_FAILURE',
+  NUMEXPENDITURE_SUCCESS = '@@OrgExpenditureReaderAction/GETNUMEXPENDITURE_SUCCESS',
+  NUMEXPENDITURE_FAILURE = '@@OrgExpenditureReaderAction/GETNUMEXPENDITURE_FAILURE',
+  EXPENDITUREREF_SUCCESS = '@@OrgExpenditureReaderAction/GETEXPENDITUREREF_SUCCESS',
+  EXPENDITUREREF_FAILURE = '@@OrgExpenditureReaderAction/GETEXPENDITUREREF_FAILURE',
+  EXPENDITURE_SUCCESS = '@@OrgExpenditureReaderAction/GETEXPENDITURE_SUCCESS',
+  EXPENDITURE_FAILURE = '@@OrgExpenditureReaderAction/GETEXPENDITURE_FAILURE'
 }

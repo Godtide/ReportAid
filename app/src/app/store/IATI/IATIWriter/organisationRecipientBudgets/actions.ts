@@ -7,17 +7,17 @@ import { ApplicationState } from '../../../store'
 import { storeAction } from '../../../actions'
 
 import { ActionProps, PayloadProps, TxProps, TxData } from '../../../types'
-import { OrgReportRecipientBudgetProps, IATIOrgReportRecipientBudgetProps } from '../../types'
-import { OrgReportRecipientBudgetsWriterActionTypes } from './types'
+import { OrgRecipientBudgetProps, IATIOrgRecipientBudgetProps } from '../../types'
+import { OrgRecipientBudgetsWriterActionTypes } from './types'
 
 const add = (payload: PayloadProps): Function => {
-  return (actionType: OrgReportRecipientBudgetsWriterActionTypes): TxProps => {
+  return (actionType: OrgRecipientBudgetsWriterActionTypes): TxProps => {
     const writerProps = storeAction(actionType)(payload) as TxProps
     return writerProps
   }
 }
 
-export const setRecipientBudget = (budgetDetails: OrgReportRecipientBudgetProps) => {
+export const setRecipientBudget = (budgetDetails: OrgRecipientBudgetProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
 
@@ -27,7 +27,7 @@ export const setRecipientBudget = (budgetDetails: OrgReportRecipientBudgetProps)
     const endDate = end.toISOString()
     //console.log('Start: ', startDate, ' End: ', endDate)
 
-    const recipientBudget: IATIOrgReportRecipientBudgetProps = {
+    const recipientBudget: IATIOrgRecipientBudgetProps = {
       report: {
         reportRef: budgetDetails.report.reportRef,
         orgRef: budgetDetails.report.orgRef
@@ -43,16 +43,16 @@ export const setRecipientBudget = (budgetDetails: OrgReportRecipientBudgetProps)
       }
     }
 
-    const orgReportRecipientBudgetsContract = state.chainContracts.data.contracts.orgReportRecipientBudgetsContract
-    //console.log('RecipientBudget: ', orgRecipientBudget, ' Contract ', orgReportRecipientBudgetsContract)
-    let actionType = OrgReportRecipientBudgetsWriterActionTypes.ADD_FAILURE
+    const orgRecipientBudgetsContract = state.chainContracts.data.contracts.orgRecipientBudgetsContract
+    //console.log('RecipientBudget: ', orgRecipientBudget, ' Contract ', orgRecipientBudgetsContract)
+    let actionType = OrgRecipientBudgetsWriterActionTypes.ADD_FAILURE
     let txData: TxData = {}
     try {
-      // setReport(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, bytes32 _version, bytes32 _generatedTime)
-      const tx = await orgReportRecipientBudgetsContract.setRecipientBudget(recipientBudget)
+      // set(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, bytes32 _version, bytes32 _generatedTime)
+      const tx = await orgRecipientBudgetsContract.setRecipientBudget(recipientBudget)
       const key = tx.hash
       txData[key] = tx
-      actionType = OrgReportRecipientBudgetsWriterActionTypes.ADD_SUCCESS
+      actionType = OrgRecipientBudgetsWriterActionTypes.ADD_SUCCESS
     } catch (error) {
       txData[-1] = txData
       console.log('setRecipientBudget error', error)

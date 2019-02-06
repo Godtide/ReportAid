@@ -1,35 +1,35 @@
 import { PayloadProps, DictData } from '../../../types'
-import { IATIOrgReportProps } from '../../types'
+import { IATIOrgProps } from '../../types'
 
-export interface ReportData {
-  [key: string]: IATIOrgReportProps
+export interface Data {
+  [key: string]: IATIOrgProps
 }
 
-export interface Reports {
+export interface s {
   num: number
-  data: ReportData
+  data: Data
 }
 
-export interface OrgReportData extends DictData {
-  [key: string]: Reports
+export interface OrgData extends DictData {
+  [key: string]: s
 }
 
-export interface OrgReportReaderProps extends PayloadProps {
+export interface OrgReaderProps extends PayloadProps {
   num: number
-  data: OrgReportData
+  data: OrgData
 }
 
-export const enum OrgReportReaderActionTypes {
-  NUM_SUCCESS = '@@OrgReportReaderAction/GETNUM_SUCCESS',
-  NUM_FAILURE = '@@OrgReportReaderAction/GETNUM_FAILURE',
-  EXISTS_SUCCESS = '@@OrgReportReaderAction/GETEXISTS_SUCCESS',
-  EXISTS_FAILURE = '@@OrgReportReaderAction/GETEXISTS_FAILURE',
-  REF_SUCCESS = '@@OrgReportReaderAction/GETREFERENCE_SUCCESS',
-  REF_FAILURE = '@@OrgReportReaderAction/GETREFERENCE_FAILURE',
-  NUMREP_SUCCESS = '@@OrgReportReaderAction/GETNUMREP_SUCCESS',
-  NUMREP_FAILURE = '@@OrgReportReaderAction/GETNUMREP_FAILURE',
-  REPORTREF_SUCCESS = '@@OrgReportReaderAction/GETREPORTREF_SUCCESS',
-  REPORTREF_FAILURE = '@@OrgReportReaderAction/GETREPORTREF_FAILURE',
-  REPORT_SUCCESS = '@@OrgReportReaderAction/GETREPORT_SUCCESS',
-  REPORT_FAILURE = '@@OrgReportReaderAction/GETREPORT_FAILURE'
+export const enum OrgReaderActionTypes {
+  NUM_SUCCESS = '@@OrgReaderAction/GETNUM_SUCCESS',
+  NUM_FAILURE = '@@OrgReaderAction/GETNUM_FAILURE',
+  EXISTS_SUCCESS = '@@OrgReaderAction/GETEXISTS_SUCCESS',
+  EXISTS_FAILURE = '@@OrgReaderAction/GETEXISTS_FAILURE',
+  REF_SUCCESS = '@@OrgReaderAction/GETREFERENCE_SUCCESS',
+  REF_FAILURE = '@@OrgReaderAction/GETREFERENCE_FAILURE',
+  NUMREP_SUCCESS = '@@OrgReaderAction/GETNUMREP_SUCCESS',
+  NUMREP_FAILURE = '@@OrgReaderAction/GETNUMREP_FAILURE',
+  REPORTREF_SUCCESS = '@@OrgReaderAction/GETREPORTREF_SUCCESS',
+  REPORTREF_FAILURE = '@@OrgReaderAction/GETREPORTREF_FAILURE',
+  REPORT_SUCCESS = '@@OrgReaderAction/GETREPORT_SUCCESS',
+  REPORT_FAILURE = '@@OrgReaderAction/GETREPORT_FAILURE'
 }

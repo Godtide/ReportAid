@@ -1,4 +1,4 @@
-export const enum OrgReportsWriterActionTypes {
-  ADD_SUCCESS = '@@OrgReportsWriterAction/ADD_SUCCESS',
-  ADD_FAILURE = '@@OrgReportsWriterAction/ADD_FAILURE'
+export const enum OrganisationsWriterActionTypes {
+  ADD_SUCCESS = '@@OrganisationsWriterAction/ADD_SUCCESS',
+  ADD_FAILURE = '@@OrganisationsWriterAction/ADD_FAILURE'
 }

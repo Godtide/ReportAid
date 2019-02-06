@@ -7,17 +7,17 @@ import { ApplicationState } from '../../../store'
 import { storeAction } from '../../../actions'
 
 import { ActionProps, PayloadProps, TxProps, TxData } from '../../../types'
-import { OrgReportCountryBudgetProps, IATIOrgReportCountryBudgetProps } from '../../types'
-import { OrgReportCountryBudgetsWriterActionTypes } from './types'
+import { OrgCountryBudgetProps, IATIOrgCountryBudgetProps } from '../../types'
+import { OrgCountryBudgetsWriterActionTypes } from './types'
 
 const add = (payload: PayloadProps): Function => {
-  return (actionType: OrgReportCountryBudgetsWriterActionTypes): TxProps => {
+  return (actionType: OrgCountryBudgetsWriterActionTypes): TxProps => {
     const writerProps = storeAction(actionType)(payload) as TxProps
     return writerProps
   }
 }
 
-export const setCountryBudget = (budgetDetails: OrgReportCountryBudgetProps) => {
+export const setCountryBudget = (budgetDetails: OrgCountryBudgetProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
 
@@ -27,7 +27,7 @@ export const setCountryBudget = (budgetDetails: OrgReportCountryBudgetProps) => 
     const endDate = end.toISOString()
     //console.log('Start: ', startDate, ' End: ', endDate)
 
-    const countryBudget: IATIOrgReportCountryBudgetProps = {
+    const countryBudget: IATIOrgCountryBudgetProps = {
       report: {
         reportRef: budgetDetails.report.reportRef,
         orgRef: budgetDetails.report.orgRef
@@ -43,16 +43,16 @@ export const setCountryBudget = (budgetDetails: OrgReportCountryBudgetProps) => 
       }
     }
 
-    const orgReportCountryBudgetsContract = state.chainContracts.data.contracts.orgReportCountryBudgetsContract
-    //console.log('CountryBudget: ', countryBudget, ' Contract ', orgReportCountryBudgetsContract)
-    let actionType = OrgReportCountryBudgetsWriterActionTypes.ADD_FAILURE
+    const orgCountryBudgetsContract = state.chainContracts.data.contracts.orgCountryBudgetsContract
+    //console.log('CountryBudget: ', countryBudget, ' Contract ', orgCountryBudgetsContract)
+    let actionType = OrgCountryBudgetsWriterActionTypes.ADD_FAILURE
     let txData: TxData = {}
     try {
-      // setReport(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, bytes32 _version, bytes32 _generatedTime)
-      const tx = await orgReportCountryBudgetsContract.setCountryBudget(countryBudget)
+      // set(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, bytes32 _version, bytes32 _generatedTime)
+      const tx = await orgCountryBudgetsContract.setCountryBudget(countryBudget)
       const key = tx.hash
       txData[key] = tx
-      actionType = OrgReportCountryBudgetsWriterActionTypes.ADD_SUCCESS
+      actionType = OrgCountryBudgetsWriterActionTypes.ADD_SUCCESS
     } catch (error) {
       txData[-1] = txData
       console.log('setCountryBudget error', error)

@@ -1,7 +1,7 @@
-import { OrgReportDocsReaderActionTypes, OrgReportDocsReaderProps } from './types'
+import { OrgDocsReaderActionTypes, OrgDocsReaderProps } from './types'
 import { ActionProps, PayloadProps } from '../../../types'
 
-const initialState: OrgReportDocsReaderProps = {
+const initialState: OrgDocsReaderProps = {
   num: 0,
   data: {
     '': {
@@ -27,41 +27,41 @@ const initialState: OrgReportDocsReaderProps = {
   }
 }
 
-export const reducer = (state: OrgReportDocsReaderProps = initialState, action: ActionProps): OrgReportDocsReaderProps => {
+export const reducer = (state: OrgDocsReaderProps = initialState, action: ActionProps): OrgDocsReaderProps => {
   //console.log('Boom!', action.type, action.payload)
   const payload = action.payload as PayloadProps
   if ( typeof payload != 'undefined' ) {
-    const payloadData = payload.data as OrgReportDocsReaderProps
-    if ( (action.type == OrgReportDocsReaderActionTypes.NUM_SUCCESS ) ||
-         (action.type == OrgReportDocsReaderActionTypes.NUM_SUCCESS ) ) {
+    const payloadData = payload.data as OrgDocsReaderProps
+    if ( (action.type == OrgDocsReaderActionTypes.NUM_SUCCESS ) ||
+         (action.type == OrgDocsReaderActionTypes.NUM_SUCCESS ) ) {
 
-      const data: OrgReportDocsReaderProps = {
+      const data: OrgDocsReaderProps = {
         num: payloadData.num,
         data: { ...state.data }
       }
       return {...data}
 
-    } else if ( (action.type == OrgReportDocsReaderActionTypes.REF_SUCCESS ) ||
-         (action.type == OrgReportDocsReaderActionTypes.REF_FAILURE ) ) {
+    } else if ( (action.type == OrgDocsReaderActionTypes.REF_SUCCESS ) ||
+         (action.type == OrgDocsReaderActionTypes.REF_FAILURE ) ) {
 
-       const data: OrgReportDocsReaderProps  = {
+       const data: OrgDocsReaderProps  = {
          num: state.num,
          data: payloadData.data
        }
 
        return data
 
-    } else if ( (action.type == OrgReportDocsReaderActionTypes.NUMDOC_SUCCESS ) ||
-                (action.type == OrgReportDocsReaderActionTypes.NUMDOC_FAILURE ) ||
-                (action.type == OrgReportDocsReaderActionTypes.DOC_SUCCESS ) ||
-                (action.type == OrgReportDocsReaderActionTypes.DOC_FAILURE ) ) {
+    } else if ( (action.type == OrgDocsReaderActionTypes.NUMDOC_SUCCESS ) ||
+                (action.type == OrgDocsReaderActionTypes.NUMDOC_FAILURE ) ||
+                (action.type == OrgDocsReaderActionTypes.DOC_SUCCESS ) ||
+                (action.type == OrgDocsReaderActionTypes.DOC_FAILURE ) ) {
 
-       const data: OrgReportDocsReaderProps  = {
+       const data: OrgDocsReaderProps  = {
          num: state.num,
          data: {...payloadData.data}
        }
 
-       //console.log ('Report data: ', data)
+       //console.log (' data: ', data)
        return data
 
     } else {

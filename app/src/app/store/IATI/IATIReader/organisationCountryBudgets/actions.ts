@@ -5,102 +5,102 @@ import { ApplicationState } from '../../../store'
 import { storeAction } from '../../../actions'
 
 import { ActionProps, PayloadProps } from '../../../types'
-import { OrgReportCountryBudgetsReaderActionTypes, OrgReportCountryBudgetsReaderProps, OrgReportCountryBudgetsData } from './types'
+import { OrgCountryBudgetsReaderActionTypes, OrgCountryBudgetsReaderProps, OrgCountryBudgetsData } from './types'
 
-export const getReportCountryBudgets = () => {
+export const getCountryBudgets = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>) => {
-    await dispatch(getNumReports())
-    await dispatch(getReportReferences())
-    await dispatch(getNumReportCountryBudgets())
-    await dispatch(getReportCountryBudgetRefs())
-    dispatch(getReportCountryBudgetData())
+    await dispatch(getNums())
+    await dispatch(getReferences())
+    await dispatch(getNumCountryBudgets())
+    await dispatch(getCountryBudgetRefs())
+    dispatch(getCountryBudgetData())
   }
 }
 
 const get = (payload: PayloadProps): Function => {
-  return (actionType: OrgReportCountryBudgetsReaderActionTypes): OrgReportCountryBudgetsReaderProps => {
-    const getProps = storeAction(actionType)(payload) as OrgReportCountryBudgetsReaderProps
+  return (actionType: OrgCountryBudgetsReaderActionTypes): OrgCountryBudgetsReaderProps => {
+    const getProps = storeAction(actionType)(payload) as OrgCountryBudgetsReaderProps
     return getProps
   }
 }
 
-const getNumReports = () => {
+const getNums = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
-    const orgReportCountryBudgetsContract = state.chainContracts.data.contracts.orgReportCountryBudgetsContract
-    let actionType = OrgReportCountryBudgetsReaderActionTypes.NUM_FAILURE
-    let numReports = { num: 0 }
+    const orgCountryBudgetsContract = state.chainContracts.data.contracts.orgCountryBudgetsContract
+    let actionType = OrgCountryBudgetsReaderActionTypes.NUM_FAILURE
+    let nums = { num: 0 }
     try {
-      const num = await orgReportCountryBudgetsContract.getNumReports()
+      const num = await orgCountryBudgetsContract.getNums()
       //console.log('Num orgs: ', num)
-      numReports.num = num.toNumber()
-      actionType = OrgReportCountryBudgetsReaderActionTypes.NUM_SUCCESS
+      nums.num = num.toNumber()
+      actionType = OrgCountryBudgetsReaderActionTypes.NUM_SUCCESS
     } catch (error) {
-      console.log('getNumReports error', error)
+      console.log('getNums error', error)
     }
 
-    dispatch(get({data: numReports})(actionType))
+    dispatch(get({data: nums})(actionType))
   }
 }
 
-const getReportReferences = () => {
+const getReferences = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
-    const orgReportCountryBudgetsContract = state.chainContracts.data.contracts.orgReportCountryBudgetsContract
-    const numReports = state.orgReportCountryBudgetsReader.num
-    let reportCountryBudgetRefs: OrgReportCountryBudgetsData = {}
-    let actionType = OrgReportCountryBudgetsReaderActionTypes.REF_FAILURE
-    for (let i = 0; i < numReports; i++) {
+    const orgCountryBudgetsContract = state.chainContracts.data.contracts.orgCountryBudgetsContract
+    const nums = state.orgCountryBudgetsReader.num
+    let reportCountryBudgetRefs: OrgCountryBudgetsData = {}
+    let actionType = OrgCountryBudgetsReaderActionTypes.REF_FAILURE
+    for (let i = 0; i < nums; i++) {
        try {
-         const ref = await orgReportCountryBudgetsContract.getReportReference(i.toString())
+         const ref = await orgCountryBudgetsContract.getReference(i.toString())
          reportCountryBudgetRefs[ref] = {
            num: 0,
            data: {}
          }
-         actionType = OrgReportCountryBudgetsReaderActionTypes.REF_SUCCESS
+         actionType = OrgCountryBudgetsReaderActionTypes.REF_SUCCESS
        } catch (error) {
-         console.log('getReportReferences error', error)
+         console.log('getReferences error', error)
        }
     }
-    //console.log('orgReportRefs: ', orgRefs)
+    //console.log('orgRefs: ', orgRefs)
     dispatch(get({data: {data: reportCountryBudgetRefs}})(actionType))
   }
 }
 
-const getNumReportCountryBudgets = () => {
+const getNumCountryBudgets = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
 
     const state = getState()
-    const orgReportCountryBudgetsContract = state.chainContracts.data.contracts.orgReportCountryBudgetsContract
-    let actionType = OrgReportCountryBudgetsReaderActionTypes.NUMBUDGET_FAILURE
+    const orgCountryBudgetsContract = state.chainContracts.data.contracts.orgCountryBudgetsContract
+    let actionType = OrgCountryBudgetsReaderActionTypes.NUMBUDGET_FAILURE
 
-    const reports = state.orgReportCountryBudgetsReader.data as OrgReportCountryBudgetsData
+    const reports = state.orgCountryBudgetsReader.data as OrgCountryBudgetsData
     const reportKeys = Object.keys(reports)
 
     for (let i = 0; i < reportKeys.length; i++) {
       const reportKey = reportKeys[i]
        try {
-         //console.log('Report key: ', reportKey)
-         const num = await orgReportCountryBudgetsContract.getNumCountryBudgets(reportKey)
+         //console.log(' key: ', reportKey)
+         const num = await orgCountryBudgetsContract.getNumCountryBudgets(reportKey)
          reports[reportKey].num = num.toNumber()
          //console.log( 'Num reports for ', thisKey, ' ; ', orgs[thisKey].num)
-         actionType = OrgReportCountryBudgetsReaderActionTypes.NUMBUDGET_SUCCESS
+         actionType = OrgCountryBudgetsReaderActionTypes.NUMBUDGET_SUCCESS
        } catch (error) {
-         console.log('getNumReportCountryBudgets error', error)
+         console.log('getNumCountryBudgets error', error)
        }
     }
-    //console.log('orgReportRefs: ', orgRefs)
+    //console.log('orgRefs: ', orgRefs)
     dispatch(get({data: {data: reports}})(actionType))
   }
 }
 
-const getReportCountryBudgetRefs = () => {
+const getCountryBudgetRefs = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
-    const orgReportCountryBudgetsContract = state.chainContracts.data.contracts.orgReportCountryBudgetsContract
-    let actionType = OrgReportCountryBudgetsReaderActionTypes.BUDGETREF_FAILURE
+    const orgCountryBudgetsContract = state.chainContracts.data.contracts.orgCountryBudgetsContract
+    let actionType = OrgCountryBudgetsReaderActionTypes.BUDGETREF_FAILURE
 
-    const reports = state.orgReportCountryBudgetsReader.data as OrgReportCountryBudgetsData
+    const reports = state.orgCountryBudgetsReader.data as OrgCountryBudgetsData
     const reportKeys = Object.keys(reports)
 
     for (let i = 0; i < reportKeys.length; i++) {
@@ -108,8 +108,8 @@ const getReportCountryBudgetRefs = () => {
       const numCountryBudgets = reports[reportKey].num
       for (let j = 0; j < numCountryBudgets; j++) {
          try {
-            const ref = await orgReportCountryBudgetsContract.getCountryBudgetReference(reportKey, j)
-            //console.log ('Report ref: ', ref)
+            const ref = await orgCountryBudgetsContract.getCountryBudgetReference(reportKey, j)
+            //console.log (' ref: ', ref)
             reports[reportKey].data[ref] = {
               report: {
                 reportRef: '',
@@ -125,24 +125,24 @@ const getReportCountryBudgetRefs = () => {
                 end: ''
               }
             }
-            actionType = OrgReportCountryBudgetsReaderActionTypes.BUDGETREF_SUCCESS
+            actionType = OrgCountryBudgetsReaderActionTypes.BUDGETREF_SUCCESS
           } catch (error) {
-            console.log('getReportCountryBudgetRefs error', error)
+            console.log('getCountryBudgetRefs error', error)
           }
       }
     }
-    //console.log('orgReportRefs: ', orgRefs)
+    //console.log('orgRefs: ', orgRefs)
     dispatch(get({data: {data: reports}})(actionType))
   }
 }
 
-const getReportCountryBudgetData = () => {
+const getCountryBudgetData = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
-    const orgReportCountryBudgetsContract = state.chainContracts.data.contracts.orgReportCountryBudgetsContract
-    let actionType = OrgReportCountryBudgetsReaderActionTypes.BUDGET_FAILURE
+    const orgCountryBudgetsContract = state.chainContracts.data.contracts.orgCountryBudgetsContract
+    let actionType = OrgCountryBudgetsReaderActionTypes.BUDGET_FAILURE
 
-    const reports = state.orgReportCountryBudgetsReader.data as OrgReportCountryBudgetsData
+    const reports = state.orgCountryBudgetsReader.data as OrgCountryBudgetsData
     const reportKeys = Object.keys(reports)
 
     for (let i = 0; i < reportKeys.length; i++) {
@@ -150,19 +150,19 @@ const getReportCountryBudgetData = () => {
       const budgetRefKeys = Object.keys(reports[reportKey].data)
       for (let j = 0; j < budgetRefKeys.length; j++) {
        const budgetRefKey = budgetRefKeys[j]
-       //console.log('Report Data for org ', orgKey, ' ref key ', reportRefKey)
+       //console.log(' Data for org ', orgKey, ' ref key ', reportRefKey)
        try {
-          const budgetData = await orgReportCountryBudgetsContract.getCountryBudget(reportKey, budgetRefKey)
-          //const reportData = await orgReportsContract.getCurrency(orgKey, reportRefKey)
-          //console.log('Report Data for org ', orgKey, ' ref key ', reportRefKey, ' is data ', reportData)
+          const budgetData = await orgCountryBudgetsContract.getCountryBudget(reportKey, budgetRefKey)
+          //const reportData = await orgsContract.getCurrency(orgKey, reportRefKey)
+          //console.log(' Data for org ', orgKey, ' ref key ', reportRefKey, ' is data ', reportData)
           reports[reportKey].data[budgetRefKey] = budgetData
-          actionType = OrgReportCountryBudgetsReaderActionTypes.BUDGET_SUCCESS
+          actionType = OrgCountryBudgetsReaderActionTypes.BUDGET_SUCCESS
         } catch (error) {
-          console.log('getReportCountryBudgetData error', error)
+          console.log('getCountryBudgetData error', error)
         }
       }
     }
-    //console.log('orgReportRefs: ', orgRefs)
+    //console.log('orgRefs: ', orgRefs)
     dispatch(get({data: {data: reports}})(actionType))
   }
 }

@@ -7,17 +7,17 @@ import { ApplicationState } from '../../../store'
 import { storeAction } from '../../../actions'
 
 import { ActionProps, PayloadProps, TxProps, TxData } from '../../../types'
-import { OrgReportRegionBudgetProps, IATIOrgReportRegionBudgetProps } from '../../types'
-import { OrgReportRegionBudgetsWriterActionTypes } from './types'
+import { OrgRegionBudgetProps, IATIOrgRegionBudgetProps } from '../../types'
+import { OrgRegionBudgetsWriterActionTypes } from './types'
 
 const add = (payload: PayloadProps): Function => {
-  return (actionType: OrgReportRegionBudgetsWriterActionTypes): TxProps => {
+  return (actionType: OrgRegionBudgetsWriterActionTypes): TxProps => {
     const writerProps = storeAction(actionType)(payload) as TxProps
     return writerProps
   }
 }
 
-export const setRegionBudget = (budgetDetails: OrgReportRegionBudgetProps) => {
+export const setRegionBudget = (budgetDetails: OrgRegionBudgetProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
 
@@ -27,7 +27,7 @@ export const setRegionBudget = (budgetDetails: OrgReportRegionBudgetProps) => {
     const endDate = end.toISOString()
     //console.log('Start: ', startDate, ' End: ', endDate)
 
-    const regionBudget: IATIOrgReportRegionBudgetProps = {
+    const regionBudget: IATIOrgRegionBudgetProps = {
       report: {
         reportRef: budgetDetails.report.reportRef,
         orgRef: budgetDetails.report.orgRef
@@ -43,16 +43,16 @@ export const setRegionBudget = (budgetDetails: OrgReportRegionBudgetProps) => {
       }
     }
 
-    const orgReportRegionBudgetsContract = state.chainContracts.data.contracts.orgReportRegionBudgetsContract
-    //console.log('RegionBudget: ', regionBudget, ' Contract ', orgReportRegionBudgetsContract)
-    let actionType = OrgReportRegionBudgetsWriterActionTypes.ADD_FAILURE
+    const orgRegionBudgetsContract = state.chainContracts.data.contracts.orgRegionBudgetsContract
+    //console.log('RegionBudget: ', regionBudget, ' Contract ', orgRegionBudgetsContract)
+    let actionType = OrgRegionBudgetsWriterActionTypes.ADD_FAILURE
     let txData: TxData = {}
     try {
-      // setReport(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, bytes32 _version, bytes32 _generatedTime)
-      const tx = await orgReportRegionBudgetsContract.setRegionBudget(regionBudget)
+      // set(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, bytes32 _version, bytes32 _generatedTime)
+      const tx = await orgRegionBudgetsContract.setRegionBudget(regionBudget)
       const key = tx.hash
       txData[key] = tx
-      actionType = OrgReportRegionBudgetsWriterActionTypes.ADD_SUCCESS
+      actionType = OrgRegionBudgetsWriterActionTypes.ADD_SUCCESS
     } catch (error) {
       txData[-1] = txData
       console.log('setRegionBudget error', error)

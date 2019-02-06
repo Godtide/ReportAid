@@ -7,26 +7,26 @@ import { ApplicationState } from '../../../store'
 import { storeAction } from '../../../actions'
 
 import { ActionProps, PayloadProps, TxProps, TxData } from '../../../types'
-import { OrgReportDocProps, IATIOrgReportDocProps } from '../../types'
-import { OrgReportDocsWriterActionTypes } from './types'
+import { OrgDocProps, IATIOrgDocProps } from '../../types'
+import { OrgDocsWriterActionTypes } from './types'
 
 const add = (payload: PayloadProps): Function => {
-  return (actionType: OrgReportDocsWriterActionTypes): TxProps => {
+  return (actionType: OrgDocsWriterActionTypes): TxProps => {
     const writerProps = storeAction(actionType)(payload) as TxProps
     return writerProps
   }
 }
 
-export const setOrganisationReportDoc = (reportDocDetails: OrgReportDocProps) => {
+export const setOrganisationDoc = (reportDocDetails: OrgDocProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
 
     const docDate = new Date(reportDocDetails.year + '/' + reportDocDetails.month + '/' + reportDocDetails.day)
     const reportDocDate = docDate.toISOString()
 
-    //console.log('ReportRef: ', reportDocDetails.reportRef)
+    //console.log('Ref: ', reportDocDetails.reportRef)
 
-    const orgReportDoc: IATIOrgReportDocProps = {
+    const orgDoc: IATIOrgDocProps = {
       report: {
         reportRef: reportDocDetails.report.reportRef,
         orgRef: reportDocDetails.report.orgRef
@@ -42,16 +42,16 @@ export const setOrganisationReportDoc = (reportDocDetails: OrgReportDocProps) =>
       date: ethers.utils.formatBytes32String(reportDocDate)
     }
 
-    const orgReportDocsContract = state.chainContracts.data.contracts.orgReportDocsContract
-    let actionType = OrgReportDocsWriterActionTypes.ADD_FAILURE
+    const orgDocsContract = state.chainContracts.data.contracts.orgDocsContract
+    let actionType = OrgDocsWriterActionTypes.ADD_FAILURE
     let txData: TxData = {}
     try {
-      const tx = await orgReportDocsContract.setDocument(orgReportDoc)
+      const tx = await orgDocsContract.setDocument(orgDoc)
       const key = tx.hash
       txData[key] = tx
-      actionType = OrgReportDocsWriterActionTypes.ADD_SUCCESS
+      actionType = OrgDocsWriterActionTypes.ADD_SUCCESS
     } catch (error) {
-      console.log('setReportDoc error', error)
+      console.log('setDoc error', error)
     }
 
     dispatch(add({data: {data: txData}})(actionType))

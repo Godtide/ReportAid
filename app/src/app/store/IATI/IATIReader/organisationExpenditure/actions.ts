@@ -5,102 +5,102 @@ import { ApplicationState } from '../../../store'
 import { storeAction } from '../../../actions'
 
 import { ActionProps, PayloadProps } from '../../../types'
-import { OrgReportExpenditureReaderActionTypes, OrgReportExpenditureReaderProps, OrgReportExpenditureData } from './types'
+import { OrgExpenditureReaderActionTypes, OrgExpenditureReaderProps, OrgExpenditureData } from './types'
 
-export const getReportExpenditure = () => {
+export const getExpenditure = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>) => {
-    await dispatch(getNumReports())
-    await dispatch(getReportReferences())
-    await dispatch(getNumReportExpenditure())
-    await dispatch(getReportExpenditureRefs())
-    dispatch(getReportExpenditureData())
+    await dispatch(getNums())
+    await dispatch(getReferences())
+    await dispatch(getNumExpenditure())
+    await dispatch(getExpenditureRefs())
+    dispatch(getExpenditureData())
   }
 }
 
 const get = (payload: PayloadProps): Function => {
-  return (actionType: OrgReportExpenditureReaderActionTypes): OrgReportExpenditureReaderProps => {
-    const getProps = storeAction(actionType)(payload) as OrgReportExpenditureReaderProps
+  return (actionType: OrgExpenditureReaderActionTypes): OrgExpenditureReaderProps => {
+    const getProps = storeAction(actionType)(payload) as OrgExpenditureReaderProps
     return getProps
   }
 }
 
-const getNumReports = () => {
+const getNums = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
-    const orgReportExpenditureContract = state.chainContracts.data.contracts.orgReportExpenditureContract
-    let actionType = OrgReportExpenditureReaderActionTypes.NUM_FAILURE
-    let numReports = { num: 0 }
+    const orgExpenditureContract = state.chainContracts.data.contracts.orgExpenditureContract
+    let actionType = OrgExpenditureReaderActionTypes.NUM_FAILURE
+    let nums = { num: 0 }
     try {
-      const num = await orgReportExpenditureContract.getNumReports()
+      const num = await orgExpenditureContract.getNums()
       //console.log('Num orgs: ', num)
-      numReports.num = num.toNumber()
-      actionType = OrgReportExpenditureReaderActionTypes.NUM_SUCCESS
+      nums.num = num.toNumber()
+      actionType = OrgExpenditureReaderActionTypes.NUM_SUCCESS
     } catch (error) {
-      console.log('getNumReports error', error)
+      console.log('getNums error', error)
     }
 
-    dispatch(get({data: numReports})(actionType))
+    dispatch(get({data: nums})(actionType))
   }
 }
 
-const getReportReferences = () => {
+const getReferences = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
-    const orgReportExpenditureContract = state.chainContracts.data.contracts.orgReportExpenditureContract
-    const numReports = state.orgReportExpenditureReader.num
-    let reportExpenditureRefs: OrgReportExpenditureData = {}
-    let actionType = OrgReportExpenditureReaderActionTypes.REF_FAILURE
-    for (let i = 0; i < numReports; i++) {
+    const orgExpenditureContract = state.chainContracts.data.contracts.orgExpenditureContract
+    const nums = state.orgExpenditureReader.num
+    let reportExpenditureRefs: OrgExpenditureData = {}
+    let actionType = OrgExpenditureReaderActionTypes.REF_FAILURE
+    for (let i = 0; i < nums; i++) {
        try {
-         const ref = await orgReportExpenditureContract.getReportReference(i.toString())
+         const ref = await orgExpenditureContract.getReference(i.toString())
          reportExpenditureRefs[ref] = {
            num: 0,
            data: {}
          }
-         actionType = OrgReportExpenditureReaderActionTypes.REF_SUCCESS
+         actionType = OrgExpenditureReaderActionTypes.REF_SUCCESS
        } catch (error) {
-         console.log('getReportReferences error', error)
+         console.log('getReferences error', error)
        }
     }
-    //console.log('orgReportRefs: ', orgRefs)
+    //console.log('orgRefs: ', orgRefs)
     dispatch(get({data: {data: reportExpenditureRefs}})(actionType))
   }
 }
 
-const getNumReportExpenditure = () => {
+const getNumExpenditure = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
 
     const state = getState()
-    const orgReportExpenditureContract = state.chainContracts.data.contracts.orgReportExpenditureContract
-    let actionType = OrgReportExpenditureReaderActionTypes.NUMEXPENDITURE_FAILURE
+    const orgExpenditureContract = state.chainContracts.data.contracts.orgExpenditureContract
+    let actionType = OrgExpenditureReaderActionTypes.NUMEXPENDITURE_FAILURE
 
-    const reports = state.orgReportExpenditureReader.data as OrgReportExpenditureData
+    const reports = state.orgExpenditureReader.data as OrgExpenditureData
     const reportKeys = Object.keys(reports)
 
     for (let i = 0; i < reportKeys.length; i++) {
       const reportKey = reportKeys[i]
        try {
-         //console.log('Report key: ', reportKey)
-         const num = await orgReportExpenditureContract.getNumExpenditures(reportKey)
+         //console.log(' key: ', reportKey)
+         const num = await orgExpenditureContract.getNumExpenditures(reportKey)
          reports[reportKey].num = num.toNumber()
          //console.log( 'Num reports for ', thisKey, ' ; ', orgs[thisKey].num)
-         actionType = OrgReportExpenditureReaderActionTypes.NUMEXPENDITURE_SUCCESS
+         actionType = OrgExpenditureReaderActionTypes.NUMEXPENDITURE_SUCCESS
        } catch (error) {
-         console.log('getNumReportExpenditure error', error)
+         console.log('getNumExpenditure error', error)
        }
     }
-    //console.log('orgReportRefs: ', orgRefs)
+    //console.log('orgRefs: ', orgRefs)
     dispatch(get({data: {data: reports}})(actionType))
   }
 }
 
-const getReportExpenditureRefs = () => {
+const getExpenditureRefs = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
-    const orgReportExpenditureContract = state.chainContracts.data.contracts.orgReportExpenditureContract
-    let actionType = OrgReportExpenditureReaderActionTypes.EXPENDITUREREF_FAILURE
+    const orgExpenditureContract = state.chainContracts.data.contracts.orgExpenditureContract
+    let actionType = OrgExpenditureReaderActionTypes.EXPENDITUREREF_FAILURE
 
-    const reports = state.orgReportExpenditureReader.data as OrgReportExpenditureData
+    const reports = state.orgExpenditureReader.data as OrgExpenditureData
     const reportKeys = Object.keys(reports)
 
     for (let i = 0; i < reportKeys.length; i++) {
@@ -108,8 +108,8 @@ const getReportExpenditureRefs = () => {
       const numExpenditure = reports[reportKey].num
       for (let j = 0; j < numExpenditure; j++) {
          try {
-            const ref = await orgReportExpenditureContract.getExpenditureReference(reportKey, j)
-            //console.log ('Report ref: ', ref)
+            const ref = await orgExpenditureContract.getExpenditureReference(reportKey, j)
+            //console.log (' ref: ', ref)
             reports[reportKey].data[ref] = {
               report: {
                 reportRef: '',
@@ -124,24 +124,24 @@ const getReportExpenditureRefs = () => {
                 end: ''
               }
             }
-            actionType = OrgReportExpenditureReaderActionTypes.EXPENDITUREREF_SUCCESS
+            actionType = OrgExpenditureReaderActionTypes.EXPENDITUREREF_SUCCESS
           } catch (error) {
-            console.log('getReportExpenditureRefs error', error)
+            console.log('getExpenditureRefs error', error)
           }
       }
     }
-    //console.log('orgReportRefs: ', orgRefs)
+    //console.log('orgRefs: ', orgRefs)
     dispatch(get({data: {data: reports}})(actionType))
   }
 }
 
-const getReportExpenditureData = () => {
+const getExpenditureData = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
-    const orgReportExpenditureContract = state.chainContracts.data.contracts.orgReportExpenditureContract
-    let actionType = OrgReportExpenditureReaderActionTypes.EXPENDITURE_FAILURE
+    const orgExpenditureContract = state.chainContracts.data.contracts.orgExpenditureContract
+    let actionType = OrgExpenditureReaderActionTypes.EXPENDITURE_FAILURE
 
-    const reports = state.orgReportExpenditureReader.data as OrgReportExpenditureData
+    const reports = state.orgExpenditureReader.data as OrgExpenditureData
     const reportKeys = Object.keys(reports)
 
     for (let i = 0; i < reportKeys.length; i++) {
@@ -149,19 +149,19 @@ const getReportExpenditureData = () => {
       const expenditureRefKeys = Object.keys(reports[reportKey].data)
       for (let j = 0; j < expenditureRefKeys.length; j++) {
        const expenditureRefKey = expenditureRefKeys[j]
-       //console.log('Report Data for org ', orgKey, ' ref key ', reportRefKey)
+       //console.log(' Data for org ', orgKey, ' ref key ', reportRefKey)
        try {
-          const expenditureData = await orgReportExpenditureContract.getExpenditure(reportKey, expenditureRefKey)
-          //const reportData = await orgReportsContract.getCurrency(orgKey, reportRefKey)
-          //console.log('Report Data for org ', orgKey, ' ref key ', reportRefKey, ' is data ', reportData)
+          const expenditureData = await orgExpenditureContract.getExpenditure(reportKey, expenditureRefKey)
+          //const reportData = await orgsContract.getCurrency(orgKey, reportRefKey)
+          //console.log(' Data for org ', orgKey, ' ref key ', reportRefKey, ' is data ', reportData)
           reports[reportKey].data[expenditureRefKey] = expenditureData
-          actionType = OrgReportExpenditureReaderActionTypes.EXPENDITURE_SUCCESS
+          actionType = OrgExpenditureReaderActionTypes.EXPENDITURE_SUCCESS
         } catch (error) {
-          console.log('getReportExpenditureData error', error)
+          console.log('getExpenditureData error', error)
         }
       }
     }
-    //console.log('orgReportRefs: ', orgRefs)
+    //console.log('orgRefs: ', orgRefs)
     dispatch(get({data: {data: reports}})(actionType))
   }
 }

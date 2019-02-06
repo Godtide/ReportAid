@@ -1,35 +1,35 @@
 import { PayloadProps, DictData } from '../../../types'
-import { IATIOrgReportDocProps } from '../../types'
+import { IATIOrgDocProps } from '../../types'
 
-export interface ReportDocsData {
-  [key: string]: IATIOrgReportDocProps
+export interface DocsData {
+  [key: string]: IATIOrgDocProps
 }
 
-export interface ReportDocs {
+export interface Docs {
   num: number
-  data: ReportDocsData
+  data: DocsData
 }
 
-export interface OrgReportDocsData extends DictData {
-  [key: string]: ReportDocs
+export interface OrgDocsData extends DictData {
+  [key: string]: Docs
 }
 
-export interface OrgReportDocsReaderProps extends PayloadProps {
+export interface OrgDocsReaderProps extends PayloadProps {
   num: number
-  data: OrgReportDocsData
+  data: OrgDocsData
 }
 
-export const enum OrgReportDocsReaderActionTypes {
-  NUM_SUCCESS = '@@OrgReportBudgetsReaderAction/GETNUM_SUCCESS',
-  NUM_FAILURE = '@@OrgReportBudgetsReaderAction/GETNUM_FAILURE',
-  EXISTS_SUCCESS = '@@OrgReportBudgetsReaderAction/GETEXISTS_SUCCESS',
-  EXISTS_FAILURE = '@@OrgReportBudgetsReaderAction/GETEXISTS_FAILURE',
-  REF_SUCCESS = '@@OrgReportBudgetsReaderAction/GETREFERENCE_SUCCESS',
-  REF_FAILURE = '@@OrgReportBudgetsReaderAction/GETREFERENCE_FAILURE',
-  NUMDOC_SUCCESS = '@@OrgReportBudgetsReaderAction/GETNUMDOC_SUCCESS',
-  NUMDOC_FAILURE = '@@OrgReportBudgetsReaderAction/GETNUMDOC_FAILURE',
-  DOCREF_SUCCESS = '@@OrgReportBudgetsReaderAction/GETDOCREF_SUCCESS',
-  DOCREF_FAILURE = '@@OrgReportBudgetsReaderAction/GETDOCREF_FAILURE',
-  DOC_SUCCESS = '@@OrgReportBudgetsReaderAction/GETDOC_SUCCESS',
-  DOC_FAILURE = '@@OrgReportBudgetsReaderAction/GETDOC_FAILURE'
+export const enum OrgDocsReaderActionTypes {
+  NUM_SUCCESS = '@@OrgBudgetsReaderAction/GETNUM_SUCCESS',
+  NUM_FAILURE = '@@OrgBudgetsReaderAction/GETNUM_FAILURE',
+  EXISTS_SUCCESS = '@@OrgBudgetsReaderAction/GETEXISTS_SUCCESS',
+  EXISTS_FAILURE = '@@OrgBudgetsReaderAction/GETEXISTS_FAILURE',
+  REF_SUCCESS = '@@OrgBudgetsReaderAction/GETREFERENCE_SUCCESS',
+  REF_FAILURE = '@@OrgBudgetsReaderAction/GETREFERENCE_FAILURE',
+  NUMDOC_SUCCESS = '@@OrgBudgetsReaderAction/GETNUMDOC_SUCCESS',
+  NUMDOC_FAILURE = '@@OrgBudgetsReaderAction/GETNUMDOC_FAILURE',
+  DOCREF_SUCCESS = '@@OrgBudgetsReaderAction/GETDOCREF_SUCCESS',
+  DOCREF_FAILURE = '@@OrgBudgetsReaderAction/GETDOCREF_FAILURE',
+  DOC_SUCCESS = '@@OrgBudgetsReaderAction/GETDOC_SUCCESS',
+  DOC_FAILURE = '@@OrgBudgetsReaderAction/GETDOC_FAILURE'
 }

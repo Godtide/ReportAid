@@ -7,23 +7,23 @@ import { ApplicationState } from '../../../store'
 import { storeAction } from '../../../actions'
 
 import { ActionProps, PayloadProps, TxProps, TxData } from '../../../types'
-import { OrgReportProps, IATIOrgReportProps } from '../../types'
-import { OrgReportsWriterActionTypes } from './types'
+import { OrgProps, IATIOrgProps } from '../../types'
+import { OrganisationsWriterActionTypes } from './types'
 
 const add = (payload: PayloadProps): Function => {
-  return (actionType: OrgReportsWriterActionTypes): TxProps => {
+  return (actionType: OrganisationsWriterActionTypes): TxProps => {
     const writerProps = storeAction(actionType)(payload) as TxProps
     return writerProps
   }
 }
 
-export const setOrganisationReport = (reportDetails: OrgReportProps) => {
+export const setOrganisation = (reportDetails: OrgProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
     const date = new Date()
     const dateTime = date.toISOString()
 
-    const orgReport: IATIOrgReportProps = {
+    const org: IATIOrgProps = {
       version: ethers.utils.formatBytes32String(reportDetails.version),
       report: {
         reportRef: ethers.utils.formatBytes32String(shortid.generate()),
@@ -39,17 +39,17 @@ export const setOrganisationReport = (reportDetails: OrgReportProps) => {
       lastUpdatedTime: ethers.utils.formatBytes32String(dateTime)
     }
 
-    const orgReportsContract = state.chainContracts.data.contracts.orgReportsContract
-    let actionType = OrgReportsWriterActionTypes.ADD_FAILURE
+    const orgsContract = state.chainContracts.data.contracts.orgsContract
+    let actionType = OrganisationsWriterActionTypes.ADD_FAILURE
     let txData: TxData = {}
     try {
-      // setReport(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, bytes32 _version, bytes32 _generatedTime)
-      const tx = await orgReportsContract.setReport(orgReport)
+      // set(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, bytes32 _version, bytes32 _generatedTime)
+      const tx = await orgsContract.set(org)
       const key = tx.hash
       txData[key] = tx
-      actionType = OrgReportsWriterActionTypes.ADD_SUCCESS
+      actionType = OrganisationsWriterActionTypes.ADD_SUCCESS
     } catch (error) {
-      console.log('setReport error', error)
+      console.log('set error', error)
     }
 
     dispatch(add({data: {data: txData}})(actionType))

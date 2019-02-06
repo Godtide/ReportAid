@@ -1,4 +1,4 @@
-export const enum OrgReportCountryBudgetsWriterActionTypes {
-  ADD_SUCCESS = '@@OrgReportCountryBudgetsWriterAction/ADD_SUCCESS',
-  ADD_FAILURE = '@@OrgReportCountryBudgetsWriterAction/ADD_FAILURE'
+export const enum OrgCountryBudgetsWriterActionTypes {
+  ADD_SUCCESS = '@@OrgCountryBudgetsWriterAction/ADD_SUCCESS',
+  ADD_FAILURE = '@@OrgCountryBudgetsWriterAction/ADD_FAILURE'
 }
