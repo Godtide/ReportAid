@@ -22,20 +22,20 @@ class Paths {
 
   static readonly orgWriter='Organisation'
   static readonly orgReportWriter='Report'
-  static readonly orgReportDocsWriter='Report Document'
-  static readonly orgReportBudgetsWriter="Report Budget"
-  static readonly orgReportExpenditureWriter = "Report Expenditure"
-  static readonly orgReportRecipientBudgetsWriter = "Report Recipient Budget"
-  static readonly orgReportRegionBudgetsWriter='Report Region Budget'
-  static readonly orgReportCountryBudgetsWriter='Report Country Budget'
+  static readonly orgDocsWriter='Document'
+  static readonly orgBudgetsWriter="Budget"
+  static readonly orgExpenditureWriter = "Expenditure"
+  static readonly orgRecipientBudgetsWriter = "Recipient Budget"
+  static readonly orgRegionBudgetsWriter='Region Budget'
+  static readonly orgCountryBudgetsWriter='Country Budget'
   static readonly orgReader='Organisations'
   static readonly orgReportReader='Reports'
-  static readonly orgReportDocsReader='Report Documents'
-  static readonly orgReportBudgetsReader='Report Budgets'
-  static readonly orgReportExpenditureReader='Report Expenditures'
-  static readonly orgReportRecipientBudgetsReader='Report Recipient Budgets'
-  static readonly orgReportRegionBudgetsReader='Report Region Budgets'
-  static readonly orgReportCountryBudgetsReader='Report Country Budgets'
+  static readonly orgDocsReader='Documents'
+  static readonly orgBudgetsReader='Budgets'
+  static readonly orgExpenditureReader='Expenditures'
+  static readonly orgRecipientBudgetsReader='Recipient Budgets'
+  static readonly orgRegionBudgetsReader='Region Budgets'
+  static readonly orgCountryBudgetsReader='Country Budgets'
 }
 
 class Blockchain {
