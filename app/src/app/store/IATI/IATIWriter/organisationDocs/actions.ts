@@ -17,36 +17,37 @@ const add = (payload: PayloadProps): Function => {
   }
 }
 
-export const setOrganisationDoc = (reportDocDetails: OrganisationDocProps) => {
+export const setOrganisationDoc = (details: OrganisationDocProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
+
     const state = getState()
+    const docsContract = state.chainContracts.data.contracts.organisactionDocs
 
-    const docDate = new Date(reportDocDetails.year + '/' + reportDocDetails.month + '/' + reportDocDetails.day)
-    const reportDocDate = docDate.toISOString()
+    const docDate = new Date(details.year + '/' + details.month + '/' + details.day)
 
-    //console.log('Ref: ', reportDocDetails.reportRef)
-
-    const orgDoc: IATIOrganisationDocProps = {
-      report: {
-        reportRef: reportDocDetails.report.reportRef,
-        orgRef: reportDocDetails.report.orgRef
-      },
-      docRef: ethers.utils.formatBytes32String(shortid.generate()),
-      title: reportDocDetails.title,
-      format: reportDocDetails.format,
-      url: reportDocDetails.url,
-      category: ethers.utils.formatBytes32String(reportDocDetails.category),
-      countryRef: ethers.utils.formatBytes32String(reportDocDetails.countryRef),
-      desc: reportDocDetails.desc,
-      lang: ethers.utils.formatBytes32String(reportDocDetails.lang),
-      date: ethers.utils.formatBytes32String(reportDocDate)
+    let docRef = details.docRef
+    if ( docRef == "" ) {
+      docRef = ethers.utils.formatBytes32String(shortid.generate())
     }
 
-    const orgDocsContract = state.chainContracts.data.contracts.orgDocsContract
+    const doc: IATIOrganisationDocProps = {
+      title: details.title,
+      format: details.format,
+      url: details.url,
+      category: ethers.utils.formatBytes32String(details.category),
+      countryRef: ethers.utils.formatBytes32String(details.countryRef),
+      desc: details.desc,
+      lang: ethers.utils.formatBytes32String(details.lang),
+      date: ethers.utils.formatBytes32String(docDate.toISOString())
+    }
+
     let actionType = OrganisationDocsWriterActionTypes.ADD_FAILURE
     let txData: TxData = {}
     try {
-      const tx = await orgDocsContract.setDocument(orgDoc)
+      const tx = await orgDocsContract.setDocument(details.organisationsRef,
+                                                   details.organisationRef,
+                                                   docRef,
+                                                   doc)
       const key = tx.hash
       txData[key] = tx
       actionType = OrganisationDocsWriterActionTypes.ADD_SUCCESS

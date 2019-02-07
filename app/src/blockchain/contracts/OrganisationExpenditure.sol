@@ -11,7 +11,6 @@ contract OrganisationExpenditure {
   }
 
   struct Expenditure {
-    bytes32 expenditureRef;
     bytes32 expenditureLine;
     Finance finance;
   }

@@ -17,38 +17,39 @@ const add = (payload: PayloadProps): Function => {
   }
 }
 
-export const setOrganisationExpenditure = (expenditureDetails: OrganisationExpenditureProps) => {
+export const setOrganisationExpenditure = (details: OrganisationExpenditureProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
+
     const state = getState()
+    const expenditureContract = state.chainContracts.data.contracts.organisationExpenditure
 
-    const start = new Date(expenditureDetails.startYear + '/' + expenditureDetails.startMonth + '/' + expenditureDetails.startDay)
-    const startDate = start.toISOString()
-    const end = new Date(expenditureDetails.endYear + '/' + expenditureDetails.endMonth + '/' + expenditureDetails.endDay)
-    const endDate = end.toISOString()
-    //console.log('Start: ', startDate, ' End: ', endDate)
+    const start = new Date(details.startYear + '/' + details.startMonth + '/' + details.startDay)
+    const end = new Date(details.endYear + '/' + details.endMonth + '/' + details.endDay)
 
-    const orgExpenditure: IATIOrganisationExpenditureProps = {
-      report: {
-        reportRef: expenditureDetails.report.reportRef,
-        orgRef: expenditureDetails.report.orgRef
-      },
-      expenditureRef: ethers.utils.formatBytes32String(shortid.generate()),
+    let expenditureRef = details.expenditureRef
+    if ( expenditureRef == "" ) {
+      expenditureRef = ethers.utils.formatBytes32String(shortid.generate())
+    }
+
+    const expenditure: IATIOrganisationExpenditureProps = {
       expenditureLine: ethers.utils.formatBytes32String(expenditureDetails.expenditureLine),
       finance: {
         value: expenditureDetails.value,
         status: expenditureDetails.status,
-        start: ethers.utils.formatBytes32String(startDate),
-        end: ethers.utils.formatBytes32String(endDate)
+        start: ethers.utils.formatBytes32String(start.toISOString()),
+        end: ethers.utils.formatBytes32String(end.toISOString())
       }
     }
 
-    const orgExpenditureContract = state.chainContracts.data.contracts.orgExpenditureContract
     //console.log('Budget: ', orgBudget, ' Contract ', orgBudgetsContract)
     let actionType = OrganisationExpenditureWriterActionTypes.ADD_FAILURE
     let txData: TxData = {}
     try {
       // set(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, bytes32 _version, bytes32 _generatedTime)
-      const tx = await orgExpenditureContract.setExpenditure(orgExpenditure)
+      const tx = await orgExpenditureContract.setExpenditure(details.organisationsRef,
+                                                             details.organisationRef,
+                                                             expenditureRef,
+                                                             expenditure)
       const key = tx.hash
       txData[key] = tx
       actionType = OrganisationExpenditureWriterActionTypes.ADD_SUCCESS

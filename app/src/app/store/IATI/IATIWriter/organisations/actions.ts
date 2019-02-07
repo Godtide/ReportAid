@@ -19,18 +19,16 @@ const add = (payload: PayloadProps): Function => {
 
 export const setOrganisations = (details: OrgProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
-    const state = getState()
-    const date = new Date()
-    const dateTime = date.toISOString()
 
+    const state = getState()
+    const organisationsContract = state.chainContracts.data.contracts.organisations
     const organisationsRef = ethers.utils.formatBytes32String(shortid.generate())
 
     const organisations: IATIOrganisationsProps = {
       version: ethers.utils.formatBytes32String(details.version),
-      generatedTime: ethers.utils.formatBytes32String(dateTime)
+      generatedTime: ethers.utils.formatBytes32String(new Date().toISOString())
     }
 
-    const organisationsContract = state.chainContracts.data.contracts.organisations
     let actionType = OrganisationsWriterActionTypes.ADD_FAILURE
     let txData: TxData = {}
     try {

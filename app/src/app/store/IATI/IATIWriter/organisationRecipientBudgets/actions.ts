@@ -17,39 +17,39 @@ const add = (payload: PayloadProps): Function => {
   }
 }
 
-export const setRecipientBudget = (budgetDetails: OrganisationRecipientBudgetProps) => {
+export const setRecipientBudget = (details: OrganisationRecipientBudgetProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
+
     const state = getState()
+    const recipientBudgetsContract = state.chainContracts.data.contracts.organisationRecipientBudgets
 
-    const start = new Date(budgetDetails.startYear + '/' + budgetDetails.startMonth + '/' + budgetDetails.startDay)
-    const startDate = start.toISOString()
-    const end = new Date(budgetDetails.endYear + '/' + budgetDetails.endMonth + '/' + budgetDetails.endDay)
-    const endDate = end.toISOString()
-    //console.log('Start: ', startDate, ' End: ', endDate)
+    const start = new Date(details.startYear + '/' + details.startMonth + '/' + details.startDay)
+    const end = new Date(details.endYear + '/' + details.endMonth + '/' + details.endDay)
 
-    const recipientBudget: IATIOrganisationRecipientBudgetProps = {
-      report: {
-        reportRef: budgetDetails.report.reportRef,
-        orgRef: budgetDetails.report.orgRef
-      },
-      budgetRef: ethers.utils.formatBytes32String(shortid.generate()),
-      orgRef: budgetDetails.recipientOrgRef,
-      budgetLine: ethers.utils.formatBytes32String(budgetDetails.budgetLine),
-      finance: {
-        value: budgetDetails.value,
-        status: budgetDetails.status,
-        start: ethers.utils.formatBytes32String(startDate),
-        end: ethers.utils.formatBytes32String(endDate)
-      }
+    let budgetRef = details.budgetRef
+    if ( budgetRef == "" ) {
+      budgetRef = ethers.utils.formatBytes32String(shortid.generate())
     }
 
-    const orgRecipientBudgetsContract = state.chainContracts.data.contracts.orgRecipientBudgetsContract
+    const recipientBudget: IATIOrganisationRecipientBudgetProps = {
+      recipientOrgRef: details.recipientOrgRef,
+      budgetLine: ethers.utils.formatBytes32String(details.budgetLine),
+      finance: {
+        value: details.value,
+        status: details.status,
+        start: ethers.utils.formatBytes32String(start.toISOString()),
+        end: ethers.utils.formatBytes32String(end.toISOString())
+      }
+    }
     //console.log('RecipientBudget: ', orgRecipientBudget, ' Contract ', orgRecipientBudgetsContract)
     let actionType = OrganisationRecipientBudgetsWriterActionTypes.ADD_FAILURE
     let txData: TxData = {}
     try {
       // set(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, bytes32 _version, bytes32 _generatedTime)
-      const tx = await orgRecipientBudgetsContract.setRecipientBudget(recipientBudget)
+      const tx = await recipientBudgetsContract.setRecipientBudget(details.organisationsRef,
+                                                                   details.organisationRef,
+                                                                   budgetRef,
+                                                                   recipientBudget)
       const key = tx.hash
       txData[key] = tx
       actionType = OrganisationRecipientBudgetsWriterActionTypes.ADD_SUCCESS

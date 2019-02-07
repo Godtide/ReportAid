@@ -17,22 +17,6 @@ const add = (payload: PayloadProps): Function => {
   }
 }
 
-/*
-struct ReportingOrg {
-  bytes32 orgRef;
-  uint8 orgType;
-  bool isSecondary;
-}
-
-struct Org {
-  bytes32 orgRef;
-  ReportingOrg reportingOrg;
-  bytes32 lang;
-  bytes32 currency;
-  bytes32 lastUpdatedTime;
-}
-*/
-
 export const setOrganisation = (details: OrganisationProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
 

@@ -19,37 +19,38 @@ const add = (payload: PayloadProps): Function => {
 
 export const setRegionBudget = (budgetDetails: OrganisationRegionBudgetProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
+
     const state = getState()
+    const regionBudgetsContract = state.chainContracts.data.contracts.organisationRegionBudgets
 
     const start = new Date(budgetDetails.startYear + '/' + budgetDetails.startMonth + '/' + budgetDetails.startDay)
-    const startDate = start.toISOString()
     const end = new Date(budgetDetails.endYear + '/' + budgetDetails.endMonth + '/' + budgetDetails.endDay)
-    const endDate = end.toISOString()
-    //console.log('Start: ', startDate, ' End: ', endDate)
+
+    let budgetRef = details.budgetRef
+    if ( budgetRef == "" ) {
+      budgetRef = ethers.utils.formatBytes32String(shortid.generate())
+    }
 
     const regionBudget: IATIOrganisationRegionBudgetProps = {
-      report: {
-        reportRef: budgetDetails.report.reportRef,
-        orgRef: budgetDetails.report.orgRef
-      },
-      budgetRef: ethers.utils.formatBytes32String(shortid.generate()),
       regionRef: budgetDetails.regionRef,
       budgetLine: ethers.utils.formatBytes32String(budgetDetails.budgetLine),
       finance: {
         value: budgetDetails.value,
         status: budgetDetails.status,
-        start: ethers.utils.formatBytes32String(startDate),
-        end: ethers.utils.formatBytes32String(endDate)
+        start: ethers.utils.formatBytes32String(start.toISOString()),
+        end: ethers.utils.formatBytes32String(end.toISOString())
       }
     }
 
-    const orgRegionBudgetsContract = state.chainContracts.data.contracts.orgRegionBudgetsContract
     //console.log('RegionBudget: ', regionBudget, ' Contract ', orgRegionBudgetsContract)
     let actionType = OrganisationRegionBudgetsWriterActionTypes.ADD_FAILURE
     let txData: TxData = {}
     try {
       // set(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, bytes32 _version, bytes32 _generatedTime)
-      const tx = await orgRegionBudgetsContract.setRegionBudget(regionBudget)
+      const tx = await regionBudgetsContract.setRegionBudget(details.organisationsRef,
+                                                             details.organisationRef,
+                                                             budgetRef,
+                                                             regionBudget)
       const key = tx.hash
       txData[key] = tx
       actionType = OrganisationRegionBudgetsWriterActionTypes.ADD_SUCCESS
