@@ -9,8 +9,8 @@ import { OrganisationReaderActionTypes, OrganisationReaderProps, OrganisationDat
 
 export const getOrganisation = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>) => {
-    await dispatch(getNumOrgs())
-    await dispatch(getOrgReferences())
+    await dispatch(getNumOrganisations())
+    await dispatch(getOrganisationReferences())
     await dispatch(getNumOrgs())
     await dispatch(getOrgRefs())
     dispatch(getOrgData())
