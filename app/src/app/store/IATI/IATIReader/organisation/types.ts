@@ -10,13 +10,13 @@ export interface Organisation {
   data: Data
 }
 
-export interface OrgData extends DictData {
+export interface OrganisationData extends DictData {
   [key: string]: Organisation
 }
 
 export interface OrganisationReaderProps extends PayloadProps {
   num: number
-  data: OrgData
+  data: OrganisationData
 }
 
 export const enum OrganisationReaderActionTypes {

@@ -5,9 +5,9 @@ import { ApplicationState } from '../../../store'
 import { storeAction } from '../../../actions'
 
 import { ActionProps, PayloadProps } from '../../../types'
-import { OrganisationReaderActionTypes, OrganisationReaderProps, OrgData } from './types'
+import { OrganisationReaderActionTypes, OrganisationReaderProps, OrganisationData } from './types'
 
-export const getOrgs = () => {
+export const getOrganisation = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>) => {
     await dispatch(getNumOrgs())
     await dispatch(getOrgReferences())

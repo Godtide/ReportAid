@@ -10,7 +10,7 @@ contract Organisation {
   }
 
   struct Org {
-    bytes32 org;
+    bytes32 orgRef;
     ReportingOrg reportingOrg;
     bytes32 lang;
     bytes32 currency;

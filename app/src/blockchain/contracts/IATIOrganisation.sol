@@ -14,7 +14,7 @@ contract IATIOrganisation is Organisation {
   function setOrganisation(bytes32 _organisationsRef, bytes32 _orgRef, Org memory _org) public {
     require (_organisationsRef[0] != 0 &&
              _orgRef[0] != 0 &&
-             _org[0] != 0 &&
+             _org.orgRef[0] != 0 &&
              _org.reportingOrg.orgRef[0] != 0 &&
              _org.reportingOrg.orgType > 0 &&
              _org.lang[0] != 0 &&
@@ -48,10 +48,10 @@ contract IATIOrganisation is Organisation {
     return organisations[_organisationsRef][_orgRef];
   }
 
-  function getOrganisationOrg(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (byest32) {
+  function getOrganisationOrg(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (bytes32) {
     require (_organisationsRef[0] != 0 && _orgRef[0] != 0);
 
-    return organisations[_organisationsRef][_orgRef].org;
+    return organisations[_organisationsRef][_orgRef].orgRef;
   }
 
   function getReportingOrg(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (bytes32) {

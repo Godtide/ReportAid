@@ -7,7 +7,7 @@ import { ApplicationState } from '../../../store'
 import { storeAction } from '../../../actions'
 
 import { ActionProps, PayloadProps, TxProps, TxData } from '../../../types'
-import { OrgProps, IATIOrgProps } from '../../types'
+import { OrganisationsProps, IATIOrganisationsProps } from '../../types'
 import { OrganisationsWriterActionTypes } from './types'
 
 const add = (payload: PayloadProps): Function => {
@@ -17,34 +17,25 @@ const add = (payload: PayloadProps): Function => {
   }
 }
 
-export const setOrganisation = (reportDetails: OrgProps) => {
+export const setOrganisations = (details: OrgProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
     const date = new Date()
     const dateTime = date.toISOString()
 
-    const org: IATIOrgProps = {
-      version: ethers.utils.formatBytes32String(reportDetails.version),
-      report: {
-        reportRef: ethers.utils.formatBytes32String(shortid.generate()),
-        orgRef: reportDetails.orgRef
-      },
-      reportingOrg: {
-        orgRef: reportDetails.reportingOrgRef,
-        orgType: reportDetails.reportingOrgType,
-        isSecondary: reportDetails.reportingOrgIsSecondary
-      },
-      lang: ethers.utils.formatBytes32String(reportDetails.lang),
-      currency: ethers.utils.formatBytes32String(reportDetails.currency),
-      lastUpdatedTime: ethers.utils.formatBytes32String(dateTime)
+    const organisationsRef = ethers.utils.formatBytes32String(shortid.generate())
+
+    const organisations: IATIOrganisationsProps = {
+      version: ethers.utils.formatBytes32String(details.version),
+      generatedTime: ethers.utils.formatBytes32String(dateTime)
     }
 
-    const orgsContract = state.chainContracts.data.contracts.orgsContract
+    const organisationsContract = state.chainContracts.data.contracts.organisations
     let actionType = OrganisationsWriterActionTypes.ADD_FAILURE
     let txData: TxData = {}
     try {
       // set(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, bytes32 _version, bytes32 _generatedTime)
-      const tx = await orgsContract.set(org)
+      const tx = await organisationsContract.setOrganisations(organisationsRef, organisations)
       const key = tx.hash
       txData[key] = tx
       actionType = OrganisationsWriterActionTypes.ADD_SUCCESS

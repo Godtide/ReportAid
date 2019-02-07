@@ -16,6 +16,7 @@ export interface IATIOrganisationsProps {
 }
 
 export interface IATIOrganisationProps {
+  orgRef: string
   reportingOrg: ReportingOrgProps
   lang: string
   currency: string
@@ -82,6 +83,7 @@ export interface OrganisationsProps {
 }
 
 export interface OrganisationProps {
+  organisationsRef: string
   organisationRef: string
   reportingOrgRef: string
   reportingOrgType: number
@@ -91,6 +93,8 @@ export interface OrganisationProps {
 }
 
 export interface OrganisationDocProps {
+  organisationsRef: string
+  organisationRef: string
   docRef: string
   title: string
   format: string
@@ -105,6 +109,8 @@ export interface OrganisationDocProps {
 }
 
 export interface OrganisationBudgetProps {
+  organisationsRef: string
+  organisationRef: string
   budgetRef: string
   budgetLine: string
   value: number
@@ -118,6 +124,8 @@ export interface OrganisationBudgetProps {
 }
 
 export interface OrganisationExpenditureProps {
+  organisationsRef: string
+  organisationRef: string
   expenditureRef: string
   expenditureLine: string
   value: number
@@ -131,6 +139,8 @@ export interface OrganisationExpenditureProps {
 }
 
 export interface OrganisationRecipientBudgetProps {
+  organisationsRef: string
+  organisationRef: string
   budgetRef: string
   recipientOrgRef: string
   budgetLine: string
@@ -145,6 +155,8 @@ export interface OrganisationRecipientBudgetProps {
 }
 
 export interface OrganisationRegionBudgetProps {
+  organisationsRef: string
+  organisationRef: string
   budgetRef: string
   regionRef: number
   budgetLine: string
@@ -159,6 +171,8 @@ export interface OrganisationRegionBudgetProps {
 }
 
 export interface OrganisationCountryBudgetProps {
+  organisationsRef: string
+  organisationRef: string
   budgetRef: string
   countryRef: string
   budgetLine: string
