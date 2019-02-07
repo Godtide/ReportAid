@@ -75,6 +75,7 @@ class Contract {
 
     "function getOrganisation(bytes32 _organisationsRef, bytes32 _orgRef)  view returns (tuple(tuple(bytes32 orgRef, uint8 orgType, bool isSecondary) reportingOrg, bytes32 lang, bytes32 currency, bytes32 lastUpdatedTime))",
 
+    "function getOrganisationOrg(bytes32 _organisationsRef, bytes32 _orgRef) view returns (bytes32)",
     "function getLang(bytes32 _organisationsRef, bytes32 _orgRef)  view returns (bytes32)",
     "function getCurrency(bytes32 _organisationsRef, bytes32 _orgRef)  view returns (bytes32)",
     "function getLastUpdatedTime(bytes32 _organisationsRef, bytes32 _orgRef)  view returns (bytes32)",

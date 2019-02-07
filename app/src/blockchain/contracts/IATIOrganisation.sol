@@ -14,6 +14,7 @@ contract IATIOrganisation is Organisation {
   function setOrganisation(bytes32 _organisationsRef, bytes32 _orgRef, Org memory _org) public {
     require (_organisationsRef[0] != 0 &&
              _orgRef[0] != 0 &&
+             _org[0] != 0 &&
              _org.reportingOrg.orgRef[0] != 0 &&
              _org.reportingOrg.orgType > 0 &&
              _org.lang[0] != 0 &&
@@ -47,22 +48,10 @@ contract IATIOrganisation is Organisation {
     return organisations[_organisationsRef][_orgRef];
   }
 
-  function getLang(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (bytes32) {
+  function getOrganisationOrg(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (byest32) {
     require (_organisationsRef[0] != 0 && _orgRef[0] != 0);
 
-    return organisations[_organisationsRef][_orgRef].lang;
-  }
-
-  function getCurrency(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (bytes32) {
-    require (_organisationsRef[0] != 0 && _orgRef[0] != 0);
-
-    return organisations[_organisationsRef][_orgRef].currency;
-  }
-
-  function getLastUpdatedTime(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (bytes32) {
-    require (_organisationsRef[0] != 0 && _orgRef[0] != 0);
-
-    return organisations[_organisationsRef][_orgRef].lastUpdatedTime;
+    return organisations[_organisationsRef][_orgRef].org;
   }
 
   function getReportingOrg(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (bytes32) {
@@ -81,5 +70,23 @@ contract IATIOrganisation is Organisation {
     require (_organisationsRef[0] != 0 && _orgRef[0] != 0);
 
     return organisations[_organisationsRef][_orgRef].reportingOrg.isSecondary;
+  }
+
+  function getLang(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (bytes32) {
+    require (_organisationsRef[0] != 0 && _orgRef[0] != 0);
+
+    return organisations[_organisationsRef][_orgRef].lang;
+  }
+
+  function getCurrency(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (bytes32) {
+    require (_organisationsRef[0] != 0 && _orgRef[0] != 0);
+
+    return organisations[_organisationsRef][_orgRef].currency;
+  }
+
+  function getLastUpdatedTime(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (bytes32) {
+    require (_organisationsRef[0] != 0 && _orgRef[0] != 0);
+
+    return organisations[_organisationsRef][_orgRef].lastUpdatedTime;
   }
 }

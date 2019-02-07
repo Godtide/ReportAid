@@ -10,6 +10,7 @@ contract Organisation {
   }
 
   struct Org {
+    bytes32 org;
     ReportingOrg reportingOrg;
     bytes32 lang;
     bytes32 currency;
@@ -23,10 +24,11 @@ contract Organisation {
 
   function getOrganisation(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (Org memory);
 
-  function getLang(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (bytes32);
-  function getCurrency(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (bytes32);
-  function getLastUpdatedTime(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (bytes32);
+  function getOrganisationOrg(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (bytes32);
   function getReportingOrg(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (bytes32);
   function getReportingOrgType(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (uint8);
   function getReportingOrgIsSecondary(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (bool);
+  function getLang(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (bytes32);
+  function getCurrency(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (bytes32);
+  function getLastUpdatedTime(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (bytes32);
 }
