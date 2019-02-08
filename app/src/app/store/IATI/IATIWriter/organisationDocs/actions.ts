@@ -38,7 +38,7 @@ export const setOrganisationDoc = (details: OrganisationDocProps) => {
     let actionType = IATIWriterActionTypes.ADD_FAILURE
     let txData: TxData = {}
     try {
-      const tx = await orgDocsContract.setDocument(details.organisationsRef,
+      const tx = await docsContract.setDocument(details.organisationsRef,
                                                    details.organisationRef,
                                                    docRef,
                                                    doc)
