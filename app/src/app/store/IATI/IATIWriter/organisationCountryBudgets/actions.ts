@@ -4,18 +4,12 @@ import shortid from 'shortid'
 import { ethers } from 'ethers'
 
 import { ApplicationState } from '../../../store'
-import { storeAction } from '../../../actions'
+
+import { write } from '../actions'
 
 import { ActionProps, PayloadProps, TxProps, TxData } from '../../../types'
 import { OrganisationCountryBudgetProps, IATIOrganisationCountryBudgetProps } from '../../types'
-import { OrganisationCountryBudgetsWriterActionTypes } from './types'
-
-const add = (payload: PayloadProps): Function => {
-  return (actionType: OrganisationCountryBudgetsWriterActionTypes): TxProps => {
-    const writerProps = storeAction(actionType)(payload) as TxProps
-    return writerProps
-  }
-}
+import { IATIWriterActionTypes } from '../types'
 
 export const setCountryBudget = (details: OrganisationCountryBudgetProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
@@ -42,7 +36,7 @@ export const setCountryBudget = (details: OrganisationCountryBudgetProps) => {
       }
     }
     //console.log('CountryBudget: ', countryBudget, ' Contract ', orgCountryBudgetsContract)
-    let actionType = OrganisationCountryBudgetsWriterActionTypes.ADD_FAILURE
+    let actionType = IATIWriterActionTypes.ADD_FAILURE
     let txData: TxData = {}
     try {
       // set(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, bytes32 _version, bytes32 _generatedTime)
@@ -52,12 +46,12 @@ export const setCountryBudget = (details: OrganisationCountryBudgetProps) => {
                                                                countryBudget)
       const key = tx.hash
       txData[key] = tx
-      actionType = OrganisationCountryBudgetsWriterActionTypes.ADD_SUCCESS
+      actionType = IATIWriterActionTypes.ADD_SUCCESS
     } catch (error) {
       txData[-1] = txData
       console.log('setCountryBudget error', error)
     }
 
-    dispatch(add({data: {data: txData}})(actionType))
+    dispatch(write({data: {data: txData}})(actionType))
   }
 }

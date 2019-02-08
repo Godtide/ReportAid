@@ -4,18 +4,12 @@ import shortid from 'shortid'
 import { ethers } from 'ethers'
 
 import { ApplicationState } from '../../../store'
-import { storeAction } from '../../../actions'
+
+import { write } from '../actions'
 
 import { ActionProps, PayloadProps, TxProps, TxData } from '../../../types'
 import { OrganisationRecipientBudgetProps, IATIOrganisationRecipientBudgetProps } from '../../types'
-import { OrganisationRecipientBudgetsWriterActionTypes } from './types'
-
-const add = (payload: PayloadProps): Function => {
-  return (actionType: OrganisationRecipientBudgetsWriterActionTypes): TxProps => {
-    const writerProps = storeAction(actionType)(payload) as TxProps
-    return writerProps
-  }
-}
+import { IATIWriterActionTypes } from '../types'
 
 export const setRecipientBudget = (details: OrganisationRecipientBudgetProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
@@ -42,7 +36,7 @@ export const setRecipientBudget = (details: OrganisationRecipientBudgetProps) =>
       }
     }
     //console.log('RecipientBudget: ', orgRecipientBudget, ' Contract ', orgRecipientBudgetsContract)
-    let actionType = OrganisationRecipientBudgetsWriterActionTypes.ADD_FAILURE
+    let actionType = IATIWriterActionTypes.ADD_FAILURE
     let txData: TxData = {}
     try {
       // set(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, bytes32 _version, bytes32 _generatedTime)
@@ -52,12 +46,12 @@ export const setRecipientBudget = (details: OrganisationRecipientBudgetProps) =>
                                                                    recipientBudget)
       const key = tx.hash
       txData[key] = tx
-      actionType = OrganisationRecipientBudgetsWriterActionTypes.ADD_SUCCESS
+      actionType = IATIWriterActionTypes.ADD_SUCCESS
     } catch (error) {
       txData[-1] = txData
       console.log('setRecipientBudget error', error)
     }
 
-    dispatch(add({data: {data: txData}})(actionType))
+    dispatch(write({data: {data: txData}})(actionType))
   }
 }

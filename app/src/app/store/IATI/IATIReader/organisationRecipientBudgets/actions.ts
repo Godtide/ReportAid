@@ -4,9 +4,9 @@ import { ApplicationState } from '../../../store'
 
 import { ActionProps } from '../../../types'
 
-import { get } from '../actions'
+import { read } from '../actions'
 
-import { OrganisationBudgetsReaderActionTypes, OrganisationsReportProps } from '../types'
+import { IATIReportActionTypes, OrganisationsReportProps } from '../types'
 
 export const getRecipientBudgets = (props: OrganisationsReportProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>,, getState: Function) => {

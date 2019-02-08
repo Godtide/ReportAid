@@ -7,7 +7,7 @@ import { IATIOrganisationsProps,
          IATIOrganisationExpenditureProps,
          IATIOrganisationDocProps } from '../types'
 
- export interface ReportProps {
+ export interface OrganisationsReportProps {
    organisationsRef: string
    organisationRef: string
  }
@@ -55,25 +55,25 @@ export interface IATIOrganisationsReport extends DictData {
   [key: string]: IATIOrganisationsData
 }
 
-export interface IATIOrganisationsReportProps extends PayloadProps {
+export interface IATIReportProps extends PayloadProps {
   data: IATIOrganisationsReport
 }
 
-export const enum OrganisationsReportActionTypes {
-  ORGANISATIONS_SUCCESS = '@@OrganisationsReaderActionTypes/GETORGANISATIONS_SUCCESS',
-  ORGANISATIONS_FAILURE = '@@OrganisationsReaderActionTypes/GETORGANISATIONS_FAILURE',
-  ORGANISATION_SUCCESS = '@@OrganisationsReaderActionTypes/GETORGANISATION_SUCCESS',
-  ORGANISATION_FAILURE = '@@OrganisationsReaderActionTypes/GETORGANISATION_FAILURE',
-  BUDGET_SUCCESS = '@@OrganisationsReaderActionTypes/GETBUDGET_SUCCESS',
-  BUDGET_FAILURE = '@@OrganisationsReaderActionTypes/GETBUDGET_FAILURE',
-  RECIPIENTORGBUDGET_SUCCESS = '@@OrganisationsReaderActionTypes/GETRECIPIENTORGBUDGET_SUCCESS',
-  RECIPIENTORGBUDGET_FAILURE = '@@OrganisationsReaderActionTypes/GETRECIPIENTORGBUDGET_FAILURE',
-  RECIPIENTREGIONBUDGET_SUCCESS = '@@OrganisationsReaderActionTypes/GETRECIPIENTREGIONBUDGET_SUCCESS',
-  RECIPIENTREGIONBUDGET_FAILURE = '@@OrganisationsReaderActionTypes/GETRECIPIENTREGIONBUDGET_FAILURE',
-  RECIPIENTCOUNTRYBUDGET_SUCCESS = '@@OrganisationsReaderActionTypes/GETRECIPIENTCOUNTRYBUDGET_SUCCESS',
-  RECIPIENTCOUNTRYBUDGET_FAILURE = '@@OrganisationsReaderActionTypes/GETRECIPIENTCOUNTRYBUDGET_FAILURE',
-  TOTALEXPENDITURE_SUCCESS = '@@OrganisationsReaderActionTypes/GETTOTALEXPENDITURE_SUCCESS',
-  TOTALEXPENDITURE_FAILURE = '@@OrganisationsReaderActionTypes/GETTOTALEXPENDITURE_FAILURE',
-  DOCUMENT_SUCCESS = '@@OrganisationsReaderActionTypes/GETDOCUMENT_SUCCESS',
-  DOCUMENT_FAILURE = '@@OrganisationsReaderActionTypes/GETDOCUMENT_FAILURE'
+export const enum IATIReportActionTypes {
+  ORGANISATIONS_SUCCESS = '@@OrganisationsReaderActionTypes/READORGANISATIONS_SUCCESS',
+  ORGANISATIONS_FAILURE = '@@OrganisationsReaderActionTypes/READORGANISATIONS_FAILURE',
+  ORGANISATION_SUCCESS = '@@OrganisationsReaderActionTypes/READORGANISATION_SUCCESS',
+  ORGANISATION_FAILURE = '@@OrganisationsReaderActionTypes/READORGANISATION_FAILURE',
+  BUDGET_SUCCESS = '@@OrganisationsReaderActionTypes/READBUDGET_SUCCESS',
+  BUDGET_FAILURE = '@@OrganisationsReaderActionTypes/READBUDGET_FAILURE',
+  RECIPIENTORGBUDGET_SUCCESS = '@@OrganisationsReaderActionTypes/READRECIPIENTORGBUDGET_SUCCESS',
+  RECIPIENTORGBUDGET_FAILURE = '@@OrganisationsReaderActionTypes/READRECIPIENTORGBUDGET_FAILURE',
+  RECIPIENTREGIONBUDGET_SUCCESS = '@@OrganisationsReaderActionTypes/READRECIPIENTREGIONBUDGET_SUCCESS',
+  RECIPIENTREGIONBUDGET_FAILURE = '@@OrganisationsReaderActionTypes/READRECIPIENTREGIONBUDGET_FAILURE',
+  RECIPIENTCOUNTRYBUDGET_SUCCESS = '@@OrganisationsReaderActionTypes/READRECIPIENTCOUNTRYBUDGET_SUCCESS',
+  RECIPIENTCOUNTRYBUDGET_FAILURE = '@@OrganisationsReaderActionTypes/READRECIPIENTCOUNTRYBUDGET_FAILURE',
+  TOTALEXPENDITURE_SUCCESS = '@@OrganisationsReaderActionTypes/READTOTALEXPENDITURE_SUCCESS',
+  TOTALEXPENDITURE_FAILURE = '@@OrganisationsReaderActionTypes/READTOTALEXPENDITURE_FAILURE',
+  DOCUMENT_SUCCESS = '@@OrganisationsReaderActionTypes/READDOCUMENT_SUCCESS',
+  DOCUMENT_FAILURE = '@@OrganisationsReaderActionTypes/READDOCUMENT_FAILURE'
 }

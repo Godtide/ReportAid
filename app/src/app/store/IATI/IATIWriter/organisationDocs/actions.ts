@@ -4,18 +4,12 @@ import shortid from 'shortid'
 import { ethers } from 'ethers'
 
 import { ApplicationState } from '../../../store'
-import { storeAction } from '../../../actions'
+
+import { write } from '../actions'
 
 import { ActionProps, PayloadProps, TxProps, TxData } from '../../../types'
 import { OrganisationDocProps, IATIOrganisationDocProps } from '../../types'
-import { OrganisationDocsWriterActionTypes } from './types'
-
-const add = (payload: PayloadProps): Function => {
-  return (actionType: OrganisationDocsWriterActionTypes): TxProps => {
-    const writerProps = storeAction(actionType)(payload) as TxProps
-    return writerProps
-  }
-}
+import { IATIWriterActionTypes } from '../types'
 
 export const setOrganisationDoc = (details: OrganisationDocProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
@@ -41,7 +35,7 @@ export const setOrganisationDoc = (details: OrganisationDocProps) => {
       date: ethers.utils.formatBytes32String(docDate.toISOString())
     }
 
-    let actionType = OrganisationDocsWriterActionTypes.ADD_FAILURE
+    let actionType = IATIWriterActionTypes.ADD_FAILURE
     let txData: TxData = {}
     try {
       const tx = await orgDocsContract.setDocument(details.organisationsRef,
@@ -50,11 +44,11 @@ export const setOrganisationDoc = (details: OrganisationDocProps) => {
                                                    doc)
       const key = tx.hash
       txData[key] = tx
-      actionType = OrganisationDocsWriterActionTypes.ADD_SUCCESS
+      actionType = IATIWriterActionTypes.ADD_SUCCESS
     } catch (error) {
       console.log('setDoc error', error)
     }
 
-    dispatch(add({data: {data: txData}})(actionType))
+    dispatch(write({data: {data: txData}})(actionType))
   }
 }

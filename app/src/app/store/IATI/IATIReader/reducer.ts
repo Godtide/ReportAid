@@ -1,7 +1,7 @@
-import { OrganisationsReportActionTypes, IATIOrganisationsReportProps } from './types'
+import { IATIReportActionTypes, IATIOrganisationsReportProps } from './types'
 import { ActionProps, PayloadProps } from '../../types'
 
-const initialState: IATIOrganisationsReportProps = {
+const initialState: IATIReportProps = {
   data: {
     '': {
       IATIOganisations: {},
@@ -30,18 +30,18 @@ const initialState: IATIOrganisationsReportProps = {
   }
 }
 
-export const reducer = (state: IATIOrganisationsReportProps = initialState, action: ActionProps): IATIOrganisationsReportProps => {
+export const reducer = (state: IATIReportProps = initialState, action: ActionProps): IATIReportProps => {
 
   const payload = action.payload as PayloadProps
-  if ( (action.type == OrganisationsReportActionTypes.ORGANISATIONS_SUCCESS ) ||
-       (action.type == OrganisationsReportActionTypes.ORGANISATION_SUCCESS ) ||
-       (action.type == OrganisationsReportActionTypes.BUDGET_SUCCESS ) ||
-       (action.type == OrganisationsReportActionTypes.RECIPIENTORGBUDGET_SUCCESS ) ||
-       (action.type == OrganisationsReportActionTypes.RECIPIENTREGIONBUDGET_SUCCESS ) ||
-       (action.type == OrganisationsReportActionTypes.RECIPIENTCOUNTRYBUDGET_SUCCESS ) ||
-       (action.type == OrganisationsReportActionTypes.TOTALEXPENDITURE_SUCCESS ) ||
-       (action.type == OrganisationsReportActionTypes.DOCUMENT_SUCCESS ) ) {
-    const data = (action.payload.data as IATIOrganisationsReportProps)
+  if ( (action.type == IATIReportActionTypes.ORGANISATIONS_SUCCESS ) ||
+       (action.type == IATIReportActionTypes.ORGANISATION_SUCCESS ) ||
+       (action.type == IATIReportActionTypes.BUDGET_SUCCESS ) ||
+       (action.type == IATIReportActionTypes.RECIPIENTORGBUDGET_SUCCESS ) ||
+       (action.type == IATIReportActionTypes.RECIPIENTREGIONBUDGET_SUCCESS ) ||
+       (action.type == IATIReportActionTypes.RECIPIENTCOUNTRYBUDGET_SUCCESS ) ||
+       (action.type == IATIReportActionTypes.TOTALEXPENDITURE_SUCCESS ) ||
+       (action.type == IATIReportActionTypes.DOCUMENT_SUCCESS ) ) {
+    const data = (action.payload.data as IATIReportProps)
     return {...state, ...data}
   } else {
     return state

@@ -4,18 +4,12 @@ import shortid from 'shortid'
 import { ethers } from 'ethers'
 
 import { ApplicationState } from '../../../store'
-import { storeAction } from '../../../actions'
 
-import { ActionProps, PayloadProps, TxProps, TxData } from '../../../types'
+import { write } from '../actions'
+
+import { ActionProps, TxData } from '../../../types'
 import { OrganisationProps, IATIOrganisationProps } from '../../types'
-import { OrganisationWriterActionTypes } from './types'
-
-const add = (payload: PayloadProps): Function => {
-  return (actionType: OrganisationWriterActionTypes): TxProps => {
-    const writerProps = storeAction(actionType)(payload) as TxProps
-    return writerProps
-  }
-}
+import { IATIWriterActionTypes } from '../types'
 
 export const setOrganisation = (details: OrganisationProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
@@ -40,18 +34,18 @@ export const setOrganisation = (details: OrganisationProps) => {
       lastUpdatedTime: ethers.utils.formatBytes32String(new Date().toISOString())
     }
 
-    let actionType = OrganisationWriterActionTypes.ADD_FAILURE
+    let actionType = IATIWriterActionTypes.ADD_FAILURE
     let txData: TxData = {}
     try {
       // set(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, bytes32 _version, bytes32 _generatedTime)
       const tx = await organisationContract.setOrganisation(details.organisationsRef, organisationRef, organisation)
       const key = tx.hash
       txData[key] = tx
-      actionType = OrganisationWriterActionTypes.ADD_SUCCESS
+      actionType = IATIWriterActionTypes.ADD_SUCCESS
     } catch (error) {
       console.log('set error', error)
     }
 
-    dispatch(add({data: {data: txData}})(actionType))
+    dispatch(write({data: {data: txData}})(actionType))
   }
 }
