@@ -88,6 +88,7 @@ class Sider extends React.Component<WithStyles<typeof styles>> {
           </Link>
         </MenuList>
 
+        /*
         <hr />
 
         <h3>{Organisation.headingOrganisationReader}</h3>
@@ -157,6 +158,7 @@ class Sider extends React.Component<WithStyles<typeof styles>> {
             </MenuItem>
           </Link>
         </MenuList>
+        */
       </div>
     )
   }
