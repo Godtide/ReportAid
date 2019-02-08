@@ -44,7 +44,7 @@ export const setOrganisation = (details: OrganisationProps) => {
     let txData: TxData = {}
     try {
       // set(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, bytes32 _version, bytes32 _generatedTime)
-      const tx = await orgsContract.setOrganisation(details.organisationsRef, organisationRef, organisation)
+      const tx = await organisationContract.setOrganisation(details.organisationsRef, organisationRef, organisation)
       const key = tx.hash
       txData[key] = tx
       actionType = OrganisationWriterActionTypes.ADD_SUCCESS

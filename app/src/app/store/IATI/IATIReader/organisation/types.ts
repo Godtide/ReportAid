@@ -6,7 +6,6 @@ export interface Data {
 }
 
 export interface Organisation {
-  num: number
   data: Data
 }
 
@@ -15,7 +14,6 @@ export interface OrganisationData extends DictData {
 }
 
 export interface OrganisationReaderProps extends PayloadProps {
-  num: number
   data: OrganisationData
 }
 
