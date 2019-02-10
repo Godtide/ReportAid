@@ -14,7 +14,7 @@ import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
 import { OrgProps } from '../../../store/IATI/types'
 
-import { setOrg } from '../../../store/IATI/IATIWriter/orgs/actions'
+import { setOrg } from '../../../store/IATI/IATIWriter/organisations/orgs/actions'
 
 import { TransactionHelper, TransactionTypes } from '../../io/transactionHelper'
 

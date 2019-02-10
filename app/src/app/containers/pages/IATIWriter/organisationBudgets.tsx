@@ -14,7 +14,7 @@ import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
 import { IATIOrgBudgetProps, OrgBudgetProps, Props } from '../../../store/IATI/types'
 
-import { setOrganisationBudget } from '../../../store/IATI/IATIWriter/organisationBudgets/actions'
+import { setOrganisationBudget } from '../../../store/IATI/IATIWriter/organisations/organisationBudgets/actions'
 
 import { FormikDatePicker } from '../../../components/io/datePicker'
 import { OrganisationPicker } from '../../../components/io/orgPicker'
@@ -41,7 +41,7 @@ import { withTheme, styles } from '../../../styles/theme'
 })(Select);*/
 
 const reportSchema = Yup.object().shape({
-  report: Yup
+  organisations: Yup
     .object()
     .required('Required'),
   budgetLine: Yup
@@ -132,7 +132,7 @@ export class OrgBudgetsForm extends React.Component<OrgBudgetsFormProps> {
         <h2>{OrganisationBudget.headingOrgBudgetWriter}</h2>
         <div>
           <Formik
-            initialValues={ {report: {} as Props,
+            initialValues={ {organisations: {} as Props,
                              budgetLine: "",
                              value: 0,
                              status: 1,
@@ -150,7 +150,7 @@ export class OrgBudgetsForm extends React.Component<OrgBudgetsFormProps> {
             render={(formProps: FormikProps<OrgBudgetProps>) => (
               <Form>
                 <FormControl fullWidth={true}>
-                  <OrgPicker name='report' label={OrganisationBudget.reportReference} />
+                  <OrganisationsPicker name='organisations' label={OrganisationBudget.organisationsReference} />
                   <Field
                     name='budgetLine'
                     label={OrganisationBudget.budgetLine}

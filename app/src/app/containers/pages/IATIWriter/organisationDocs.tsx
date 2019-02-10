@@ -14,7 +14,7 @@ import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
 import { IATIOrgDocProps, OrgDocProps, Props} from '../../../store/IATI/types'
 
-import { setOrganisationDoc } from '../../../store/IATI/IATIWriter/organisationDocs/actions'
+import { setOrganisationDoc } from '../../../store/IATI/IATIWriter/organisations/organisationDocs/actions'
 
 import { FormikDatePicker } from '../../../components/io/datePicker'
 import { OrgPicker } from '../../../components/io/reportPicker'
@@ -40,7 +40,7 @@ import { withTheme, styles } from '../../../styles/theme'
 })(Select);*/
 
 const docSchema = Yup.object().shape({
-  report: Yup
+  organisations: Yup
     .object()
     .required('Required'),
   title: Yup
@@ -119,7 +119,7 @@ export class OrgDocsForm extends React.Component<OrgDocsFormProps> {
         <h2>{OrganisationDoc.headingOrgDocWriter}</h2>
         <div>
           <Formik
-            initialValues={ {report: {} as Props,
+            initialValues={ {organisations: {} as Props,
                              title: '',
                              format: '',
                              url: '',
@@ -138,7 +138,7 @@ export class OrgDocsForm extends React.Component<OrgDocsFormProps> {
             render={(formProps: FormikProps<OrgDocProps>) => (
               <Form>
                 <FormControl fullWidth={true}>
-                  <OrgPicker name='report' label={OrganisationDoc.reportReference} />
+                  <OrganisationsPicker name='organisations' label={OrganisationDoc.organisationsReference} />
                   <Field
                     name='title'
                     label={OrganisationDoc.documentTitle}

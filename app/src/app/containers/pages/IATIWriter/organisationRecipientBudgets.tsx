@@ -13,7 +13,7 @@ import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
 import { IATIOrgRecipientBudgetProps, OrgRecipientBudgetProps, Props } from '../../../store/IATI/types'
 
-import { setRecipientBudget } from '../../../store/IATI/IATIWriter/organisationRecipientBudgets/actions'
+import { setRecipientBudget } from '../../../store/IATI/IATIWriter/organisations/organisationRecipientBudgets/actions'
 
 import { FormikDatePicker } from '../../../components/io/datePicker'
 import { OrganisationPicker } from '../../../components/io/orgPicker'
@@ -27,7 +27,7 @@ import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
 
 const reportSchema = Yup.object().shape({
-  report: Yup
+  organisations: Yup
     .object()
     .required('Required'),
   recipientOrgRef: Yup
@@ -121,7 +121,7 @@ export class OrgRecipientBudgetsForm extends React.Component<OrgRecipientBudgets
         <h2>{OrganisationRecipientBudget.headingOrgRecipientBudgetWriter}</h2>
         <div>
           <Formik
-            initialValues={ {report: {} as Props,
+            initialValues={ {organisations: {} as Props,
                              recipientOrgRef: "",
                              budgetLine: "",
                              value: 0,
@@ -140,7 +140,7 @@ export class OrgRecipientBudgetsForm extends React.Component<OrgRecipientBudgets
             render={(formProps: FormikProps<OrgRecipientBudgetProps>) => (
               <Form>
                 <FormControl fullWidth={true}>
-                  <OrgPicker name='report' label={OrganisationRecipientBudget.reportReference} />
+                  <OrganisationsPicker name='organisations' label={OrganisationRecipientBudget.organisationsReference} />
                   <OrganisationPicker name='recipientOrgRef' label={OrganisationRecipientBudget.orgReference} />
                   <Field
                     name='budgetLine'

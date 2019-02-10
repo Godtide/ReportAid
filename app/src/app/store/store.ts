@@ -5,7 +5,7 @@ import ReduxThunk, { ThunkAction } from 'redux-thunk'
 
 import { ActionProps, TxProps } from './types'
 
-import { IATIOrganisationsReportProps } from './IATI/IATIReader/types'
+import { IATIOrganisationsReportProps } from './IATI/IATIReader/organisations/types'
 
 /*import { OrgReaderProps } from './IATI/IATIReader/orgs/types'
 import { OrganisationReaderProps } from './IATI/IATIReader/organisations/types'
@@ -31,7 +31,7 @@ import { reducer as overviewReducer } from './info/overview/reducer'
 import { reducer as IATIWriterInfoReducer } from './info/IATIWriter/reducer'
 import { reducer as IATIReaderInfoReducer } from './info/IATIReader/reducer'
 
-import { reducer as reportReducer } from './IATI/IATIReader/reducer'
+import { reducer as organisationsReaderReducer } from './IATI/IATIReader/organisations/reducer'
 
 /*
 import { reducer as orgReaderReducer } from './IATI/IATIReader/orgs/reducer'
@@ -45,15 +45,16 @@ import { reducer as organisationRegionBudgetsReaderReducer } from './IATI/IATIRe
 import { reducer as organisationCountryBudgetsReaderReducer } from './IATI/IATIReader/organisationCountryBudgets/reducer'
 */
 
-import { reducer as orgWriterReducer } from './IATI/IATIWriter/orgs/reducer'
 import { reducer as organisationsWriterReducer } from './IATI/IATIWriter/organisations/reducer'
+
+/*import { reducer as organisationsWriterReducer } from './IATI/IATIWriter/organisations/reducer'
 import { reducer as organisationWriterReducer } from './IATI/IATIWriter/organisation/reducer'
 import { reducer as organisationDocsWriterReducer } from './IATI/IATIWriter/organisationDocs/reducer'
 import { reducer as organisationBudgetsWriterReducer } from './IATI/IATIWriter/organisationBudgets/reducer'
 import { reducer as organisationExpenditureWriterReducer } from './IATI/IATIWriter/organisationExpenditure/reducer'
 import { reducer as organisationRecipientBudgetsWriterReducer } from './IATI/IATIWriter/organisationRecipientBudgets/reducer'
 import { reducer as organisationRegionBudgetsWriterReducer } from './IATI/IATIWriter/organisationRegionBudgets/reducer'
-import { reducer as organisationCountryBudgetsWriterReducer } from './IATI/IATIWriter/organisationCountryBudgets/reducer'
+import { reducer as organisationCountryBudgetsWriterReducer } from './IATI/IATIWriter/organisationCountryBudgets/reducer'*/
 
 export type ThunkResult<R> = ThunkAction<R, ApplicationState, null, any>
 
@@ -99,16 +100,16 @@ export const rootReducer: Reducer<ApplicationState, ActionProps> = combineReduce
   overview: overviewReducer,
   writer: IATIWriterInfoReducer,
   reader: IATIReaderInfoReducer,
-  orgForm: orgWriterReducer,
+  orgForm: organisationsWriterReducer,
   organisationsForm: organisationsWriterReducer,
-  organisationForm: organisationWriterReducer,
-  organisationDocsForm: organisationDocsWriterReducer,
-  organisationBudgetsForm: organisationBudgetsWriterReducer,
-  organisationExpenditureForm: organisationExpenditureWriterReducer,
-  organisationRecipientBudgetsForm: organisationRecipientBudgetsWriterReducer,
-  organisationRegionBudgetsForm: organisationRegionBudgetsWriterReducer,
-  organisationCountryBudgetsForm: organisationCountryBudgetsWriterReducer,
-  organisationsReport: reportReducer
+  organisationForm: organisationsWriterReducer,
+  organisationDocsForm: organisationsWriterReducer,
+  organisationBudgetsForm: organisationsWriterReducer,
+  organisationExpenditureForm: organisationsWriterReducer,
+  organisationRecipientBudgetsForm: organisationsWriterReducer,
+  organisationRegionBudgetsForm: organisationsWriterReducer,
+  organisationCountryBudgetsForm: organisationsWriterReducer,
+  organisationsReport: organisationsReaderReducer
   /* orgReader: orgReaderReducer,
   organisationsReader: organisationsReaderReducer,
   organisationReader: organisationReaderReducer,

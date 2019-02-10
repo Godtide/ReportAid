@@ -14,7 +14,7 @@ import { ApplicationState } from '../../../store'
 import { ActionProps, TxData } from '../../../store/types'
 import { IATIOrgExpenditureProps, OrgExpenditureProps, Props } from '../../../store/IATI/types'
 
-import { setOrganisationExpenditure } from '../../../store/IATI/IATIWriter/organisationExpenditure/actions'
+import { setOrganisationExpenditure } from '../../../store/IATI/IATIWriter/organisations/organisationExpenditure/actions'
 
 import { FormikDatePicker } from '../../../components/io/datePicker'
 import { OrganisationPicker } from '../../../components/io/orgPicker'
@@ -28,7 +28,7 @@ import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
 
 const reportSchema = Yup.object().shape({
-  report: Yup
+  organisations: Yup
     .object()
     .required('Required'),
   expenditureLine: Yup
@@ -119,7 +119,7 @@ export class OrgExpenditureForm extends React.Component<OrgExpenditureFormProps>
         <h2>{OrgExpenditure.headingOrgExpenditureWriter}</h2>
         <div>
           <Formik
-            initialValues={ {report: {} as Props,
+            initialValues={ {organisations: {} as Props,
                              expenditureLine: "",
                              value: 0,
                              status: 1,
@@ -137,7 +137,7 @@ export class OrgExpenditureForm extends React.Component<OrgExpenditureFormProps>
             render={(formProps: FormikProps<OrgExpenditureProps>) => (
               <Form>
                 <FormControl fullWidth={true}>
-                  <OrgPicker name='report' label={OrgExpenditure.reportReference} />
+                  <OrganisationsPicker name='organisations' label={OrgExpenditure.organisationsReference} />
                   <Field
                     name='expenditureLine'
                     label={OrgExpenditure.expenditureLine}

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { ThunkDispatch } from 'redux-thunk'
 import Markdown from 'react-markdown'
 
-import { getOrgs } from '../../../store/IATI/IATIReader/orgs/actions'
+import { getOrgs } from '../../../store/IATI/IATIReader/organisations/orgs/actions'
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'

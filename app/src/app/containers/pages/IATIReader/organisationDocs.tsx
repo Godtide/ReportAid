@@ -5,7 +5,7 @@ import { ThunkDispatch } from 'redux-thunk'
 import { ethers } from 'ethers'
 import Markdown from 'react-markdown'
 
-import { getDocs } from '../../../store/IATI/IATIReader/organisationDocs/actions'
+import { getDocs } from '../../../store/IATI/IATIReader/organisations/organisationDocs/actions'
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'

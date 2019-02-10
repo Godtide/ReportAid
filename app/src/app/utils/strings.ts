@@ -132,9 +132,8 @@ class Organisation {
   static headingOrganisationReader = 'Organisation'
 
   static numOrganisation = "Number of reports"
-  static version = "Version"
+  static organisationsReference = "Organisations Reference"
   static orgIdentifier = "Organisation"
-  static reportKey = "Key"
   static reportingOrgRef = 'Reporting Organisation'
   static reportingOrgType = "Reporting Organisation Type"
   static reportingOrgIsSecondary = "Is Reporting Organisation Secondary?"
@@ -153,7 +152,8 @@ class OrganisationDoc {
 
   static num = "Number of Organisations Reporting"
 
-  static reportReference = "Report Reference"
+  static organisationsReference = "Organisations Reference"
+  static organisationReference = "Organisation Reference"
   static reportingOrgRef = 'Reporting Organisation'
   static docReference = "Document Reference"
   static documentTitle = "Document Title"
@@ -181,7 +181,8 @@ class OrganisationBudget {
 
   static reportingOrgRef = 'Reporting Organisation'
   static budgetReference = "Budget Reference"
-  static reportReference = "Report Reference"
+  static organisationsReference = "Organisations Reference"
+  static organisationReference = "Organisation Reference"
   static budgetLine = "Budget Line"
   static value = "Value"
   static status = "Status"
@@ -207,7 +208,8 @@ class OrganisationExpenditure {
 
   static reportingOrgRef = 'Reporting Organisation'
   static expenditureReference = "Expenditure Reference"
-  static reportReference = "Report Reference"
+  static organisationsReference = "Organisations Reference"
+  static organisationReference = "Organisation Reference"
   static expenditureLine = "Expenditure Line"
   static value = "Value"
   static status = "Status"
@@ -233,7 +235,8 @@ class OrganisationRecipientBudget {
 
   static reportingOrgRef = 'Reporting Organisation'
   static budgetReference = "Budget Reference"
-  static reportReference = "Report Reference"
+  static organisationsReference = "Organisations Reference"
+  static organisationReference = "Organisation Reference"
   static orgReference = "Recipient Reference"
   static budgetLine = "Budget Line"
   static value = "Value"
@@ -260,7 +263,8 @@ class OrganisationRegionBudget {
 
   static reportingOrgRef = 'Reporting Organisation'
   static budgetReference = "Budget Reference"
-  static reportReference = "Report Reference"
+  static organisationsReference = "Organisations Reference"
+  static organisationReference = "Organisation Reference"
   static regionReference = "Region Reference"
   static budgetLine = "Budget Line"
   static value = "Value"
@@ -287,7 +291,8 @@ class OrganisationCountryBudget {
 
   static reportingOrgRef = 'Reporting Organisation'
   static budgetReference = "Budget Reference"
-  static reportReference = "Report Reference"
+  static organisationsReference = "Organisations Reference"
+  static organisationReference = "Organisation Reference"
   static countryReference = "Country Reference"
   static budgetLine = "Budget Line"
   static value = "Value"

@@ -13,6 +13,18 @@ import { withTheme, styles } from '../styles/theme'
 import { Paths, Organisation } from '../utils/strings'
 import { Paths as PathConfig } from '../utils/config'
 
+/*
+static readonly orgWriter='/create-organisation'
+static readonly organisationsWriter='/create-organisations-report'
+static readonly organisationWriter='/create-organisationsreport'
+static readonly organisationDocsWriter = '/create-organisation-report-docs'
+static readonly organisationBudgetsWriter = '/create-organisation-report-budget'
+static readonly organisationExpenditureWriter = '/create-organisation-report-expenditure'
+static readonly organisationRecipientBudgetsWriter = '/create-organisation-report-recipient-budget'
+static readonly organisationRegionBudgetsWriter = '/create-organisation-report-region-budget'
+static readonly organisationCountryBudgetsWriter = '/create-organisation-report-country-budget'
+*/
+
 class Sider extends React.Component<WithStyles<typeof styles>> {
 
   render() {
@@ -30,7 +42,8 @@ class Sider extends React.Component<WithStyles<typeof styles>> {
               {Paths.orgWriter}
             </MenuItem>
           </Link>
-          <Link to={PathConfig.orgReportWriter}>
+
+          /*<Link to={PathConfig.orgReportWriter}>
             <MenuItem>
               <IconButton className={this.props.classes.button} aria-label={Paths.orgReportWriter}>
                 <Create />
@@ -86,6 +99,7 @@ class Sider extends React.Component<WithStyles<typeof styles>> {
               {Paths.orgReportCountryBudgetsWriter}
             </MenuItem>
           </Link>
+          */
         </MenuList>
 
         /*

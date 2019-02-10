@@ -1,14 +1,11 @@
-import { ThunkDispatch } from 'redux-thunk'
+import { storeAction } from '../../actions'
 
-import { ApplicationState } from '../../../store'
+import { ActionProps, PayloadProps } from '../../../types'
+import { OrganisationsReaderActionTypes } from './types'
 
-import { ActionProps } from '../../../types'
-
-import { read } from '../actions'
-
-import { IATIReportActionTypes, OrganisationsReportProps } from '../types'
-
-export const getOrganisations = (props: OrganisationsReportProps) => {
-  return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>,, getState: Function) => {
+export const read = (payload: PayloadProps): Function => {
+  return (actionType: IATIReportActionTypes): IATIReportActionTypes => {
+    const getProps = storeAction(actionType)(payload) as IATIReportActionTypes
+    return getProps
   }
 }

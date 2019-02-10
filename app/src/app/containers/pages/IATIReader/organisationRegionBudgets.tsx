@@ -5,11 +5,11 @@ import { ThunkDispatch } from 'redux-thunk'
 import { ethers } from 'ethers'
 import Markdown from 'react-markdown'
 
-import { getRegionBudgets } from '../../../store/IATI/IATIReader/organisationRegionBudgets/actions'
+import { getRegionBudgets } from '../../../store/IATI/IATIReader/organisations/organisationRegionBudgets/actions'
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { OrgRegionBudgetsData } from '../../../store/IATI/IATIReader/organisationRegionBudgets/types'
+import { OrgRegionBudgetsData } from '../../../store/IATI/IATIReader/organisations/organisationRegionBudgets/types'
 
 import { OrganisationRegionBudget as OrgRegionBudgetStrings } from '../../../utils/strings'
 
