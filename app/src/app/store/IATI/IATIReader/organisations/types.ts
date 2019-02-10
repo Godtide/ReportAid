@@ -49,8 +49,14 @@ export interface IATIOrganisationReportProps extends PayloadProps {
   document: IATIDocumentReportProps
 }
 
+export interface IATIOrganisationsReportData extends PayloadProps {
+  [key: string]: IATIOrganisationsProps
+}
+
+
+
 export interface IATIOrganisationsReport extends PayloadProps {
-  [key: string]: object
+  IATIOrgtanisations: object
   data: IATIOrganisationReportProps
 }
 

@@ -1,6 +1,12 @@
 import { IATIReportActionTypes, IATIOrganisationsReportProps } from './types'
 import { ActionProps, PayloadProps } from '../../../types'
 
+/*
+ERROR in [at-loader] ./src/app/store/IATI/IATIReader/organisations/reducer.ts:5:3
+    TS2322: Type '{ '': { IATIOganisations: {}; '': { IATIOganisation: {}; totalBudget: { '': {}; }; recipientOrgBudget: { '': {}; }; recipientRegionBudget: { '': {}; }; recipientCountryBudget: { '': {}; }; totalExpenditure: { '': {}; }; document: { ...; }; }; }; }' is not assignable to type 'IATIOrganisationsReport'.
+  Property 'data' is missing in type '{ '': { IATIOganisations: {}; '': { IATIOganisation: {}; totalBudget: { '': {}; }; recipientOrgBudget: { '': {}; }; recipientRegionBudget: { '': {}; }; recipientCountryBudget: { '': {}; }; totalExpenditure: { '': {}; }; document: { ...; }; }; }; }'.
+
+*/
 const initialState: IATIOrganisationsReportProps = {
   data: {
     '': {
@@ -8,7 +14,9 @@ const initialState: IATIOrganisationsReportProps = {
       '': {
         IATIOganisation: {},
         totalBudget: {
-          '': {}
+          '': {
+
+          }
         },
         recipientOrgBudget: {
           '': {}
