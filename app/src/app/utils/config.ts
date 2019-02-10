@@ -24,7 +24,7 @@ class Paths {
   static readonly organisationDocsReader = '/read-organisation-report-docs'
   static readonly organisationBudgetsReader = '/read-organisation-report-budgets'
   static readonly organisationExpenditureReader = '/read-organisation-report-expenditure'
-  static readonly organisationExpenditureReader = '/read-organisation-report-recipient-budgets'
+  static readonly organisationRecipientBudgetsReader = '/read-organisation-report-recipient-budgets'
   static readonly organisationRegionBudgetsReader = '/read-organisation-report-region-budgets'
   static readonly organisationCountryBudgetsReader = '/read-organisation-report-country-budgets'
 }

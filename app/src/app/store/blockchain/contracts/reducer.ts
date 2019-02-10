@@ -7,12 +7,12 @@ import { ActionProps } from '../../types'
         orgs: {},
         organisations: {},
         organisation: {},
-        orgReportDocs: {},
-        orgReportBudgets: {},
-        orgReportExpenditure: {},
-        orgReportRecipientBudgets: {},
-        orgReportRegionBudgets: {},
-        orgReportCountryBudgets: {},
+        organisationDocs: {},
+        organisationBudgets: {},
+        organisationExpenditure: {},
+        organisationRecipientBudgets: {},
+        organisationRegionBudgets: {},
+        organisationCountryBudgets: {},
         activities: {},
         activity: {}
       }

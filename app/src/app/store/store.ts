@@ -69,16 +69,8 @@ export interface ApplicationState {
   overview: InfoProps
   writer: InfoProps
   reader: InfoProps
-  orgForm: TxProps
-  organisationsForm: TxProps
-  organisationForm: TxProps
-  organisationDocsForm: TxProps
-  organisationBudgetsForm: TxProps
-  organisationExpenditureForm: TxProps
-  organisationRecipientBudgetsForm: TxProps
-  organisationRegionBudgetsForm: TxProps
-  organisationCountryBudgetsForm: TxProps
-  organisationsReport: IATIOrganisationsReportProps
+  organisationsWriterForms: TxProps
+  organisationsReader: IATIOrganisationsReportProps
   /*orgReader: OrgReaderProps
   organisationsReader: OrganisationsReaderProps
   organisationReader: OrganisationReaderProps
@@ -100,15 +92,7 @@ export const rootReducer: Reducer<ApplicationState, ActionProps> = combineReduce
   overview: overviewReducer,
   writer: IATIWriterInfoReducer,
   reader: IATIReaderInfoReducer,
-  orgForm: organisationsWriterReducer,
-  organisationsForm: organisationsWriterReducer,
-  organisationForm: organisationsWriterReducer,
-  organisationDocsForm: organisationsWriterReducer,
-  organisationBudgetsForm: organisationsWriterReducer,
-  organisationExpenditureForm: organisationsWriterReducer,
-  organisationRecipientBudgetsForm: organisationsWriterReducer,
-  organisationRegionBudgetsForm: organisationsWriterReducer,
-  organisationCountryBudgetsForm: organisationsWriterReducer,
+  organisationsWriterForms: organisationsWriterReducer,
   organisationsReport: organisationsReaderReducer
   /* orgReader: orgReaderReducer,
   organisationsReader: organisationsReaderReducer,

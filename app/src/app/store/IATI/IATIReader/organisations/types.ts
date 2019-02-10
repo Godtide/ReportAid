@@ -1,5 +1,6 @@
 import { PayloadProps, DictData } from '../../../types'
 import { IATIOrganisationsProps,
+         IATIOrganisationProps,
          IATIOrganisationBudgetProps,
          IATIOrganisationRecipientBudgetProps,
          IATIOrganisationRegionBudgetProps,
@@ -36,8 +37,10 @@ export interface IATIDocumentReportProps {
   [key: string]: IATIOrganisationDocProps
 }
 
-export interface IATIOrganisationReportProps extends DictData {
-  IATIOganisation: IATIOrganisationProps
+//TS2411: Property 'data' of type 'IATIOrganisationDataProps' is not assignable to string index type 'IATIOrganisationProps'.
+
+export interface IATIOrganisationReportProps extends PayloadProps {
+  [key: string]: object
   totalBudget: IATIBudgetReportProps
   recipientOrgBudget: IATIRecipientOrgBudgetReportProps
   recipientRegionBudget: IATIRecipientRegionBudgetReportProps
@@ -46,16 +49,12 @@ export interface IATIOrganisationReportProps extends DictData {
   document: IATIDocumentReportProps
 }
 
-export interface IATIOrganisationsData extends DictData {
-  IATIOganisations: IATIOrganisationsProps
-  [key: string]: IATIOrganisationReportProps
+export interface IATIOrganisationsReport extends PayloadProps {
+  [key: string]: object
+  data: IATIOrganisationReportProps
 }
 
-export interface IATIOrganisationsReport extends DictData {
-  [key: string]: IATIOrganisationsData
-}
-
-export interface IATIReportProps extends PayloadProps {
+export interface IATIOrganisationsReportProps extends PayloadProps {
   data: IATIOrganisationsReport
 }
 

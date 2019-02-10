@@ -1,7 +1,7 @@
 import { IATIReportActionTypes, IATIOrganisationsReportProps } from './types'
-import { ActionProps, PayloadProps } from '../../types'
+import { ActionProps, PayloadProps } from '../../../types'
 
-const initialState: IATIReportProps = {
+const initialState: IATIOrganisationsReportProps = {
   data: {
     '': {
       IATIOganisations: {},
@@ -30,7 +30,7 @@ const initialState: IATIReportProps = {
   }
 }
 
-export const reducer = (state: IATIReportProps = initialState, action: ActionProps): IATIReportProps => {
+export const reducer = (state: IATIOrganisationsReportProps = initialState, action: ActionProps): IATIOrganisationsReportProps => {
 
   const payload = action.payload as PayloadProps
   if ( (action.type == IATIReportActionTypes.ORGANISATIONS_SUCCESS ) ||
@@ -41,7 +41,7 @@ export const reducer = (state: IATIReportProps = initialState, action: ActionPro
        (action.type == IATIReportActionTypes.RECIPIENTCOUNTRYBUDGET_SUCCESS ) ||
        (action.type == IATIReportActionTypes.TOTALEXPENDITURE_SUCCESS ) ||
        (action.type == IATIReportActionTypes.DOCUMENT_SUCCESS ) ) {
-    const data = (action.payload.data as IATIReportProps)
+    const data = (action.payload.data as IATIOrganisationsReportProps)
     return {...state, ...data}
   } else {
     return state

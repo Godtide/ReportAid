@@ -23,14 +23,14 @@ export const setOrg = (orgDetails: OrgProps) => {
         identifier: orgDetails.code + '-' + orgDetails.identifier
     }
 
-    let actionType = IATIWriterActionTypes.ADD_FAILURE
+    let actionType = IATIWriterActionTypes.ORGS_FAILURE
     let txData: TxData = {}
 
     try {
       const tx = await orgsContract.setOrg(org)
       const key = tx.hash
       txData[key] = tx
-      actionType = IATIWriterActionTypes.ADD_SUCCESS
+      actionType = IATIWriterActionTypes.ORGS_SUCCESS
     } catch (error) {
       txData[-1] = txData
       console.log('setOrg error', error)

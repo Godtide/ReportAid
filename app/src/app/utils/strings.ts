@@ -131,7 +131,7 @@ class Organisation {
   static headingOrganisationWriter = 'Create Organisation'
   static headingOrganisationReader = 'Organisation'
 
-  static numOrganisation = "Number of reports"
+  static numOrganisationReports = "Number of reports"
   static organisationsReference = "Organisations Reference"
   static orgIdentifier = "Organisation"
   static reportingOrgRef = 'Reporting Organisation'
