@@ -37,10 +37,7 @@ export interface IATIDocumentReportProps {
   [key: string]: IATIOrganisationDocProps
 }
 
-//TS2411: Property 'data' of type 'IATIOrganisationDataProps' is not assignable to string index type 'IATIOrganisationProps'.
-
-export interface IATIOrganisationReportProps extends PayloadProps {
-  [key: string]: object
+export interface IATIOrganisationData {
   totalBudget: IATIBudgetReportProps
   recipientOrgBudget: IATIRecipientOrgBudgetReportProps
   recipientRegionBudget: IATIRecipientRegionBudgetReportProps
@@ -49,19 +46,23 @@ export interface IATIOrganisationReportProps extends PayloadProps {
   document: IATIDocumentReportProps
 }
 
-export interface IATIOrganisationsReportData extends PayloadProps {
-  [key: string]: IATIOrganisationsProps
+export interface IATIOrganisationReport extends DictData {
+  IATIOrganisation: IATIOrganisationProps
+  data: IATIOrganisationData
 }
 
+export interface IATIOrganisationReportProps extends DictData {
+  [key: string]: IATIOrganisationReport
+}
 
 
 export interface IATIOrganisationsReport extends PayloadProps {
-  IATIOrgtanisations: object
+  IATIOrganisations: IATIOrganisationsProps
   data: IATIOrganisationReportProps
 }
 
-export interface IATIOrganisationsReportProps extends PayloadProps {
-  data: IATIOrganisationsReport
+export interface IATIOrganisationsReportProps extends DictData {
+  [key: string]: IATIOrganisationsReport
 }
 
 export const enum IATIReportActionTypes {

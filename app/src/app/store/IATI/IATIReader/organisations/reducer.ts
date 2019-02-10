@@ -1,37 +1,98 @@
 import { IATIReportActionTypes, IATIOrganisationsReportProps } from './types'
 import { ActionProps, PayloadProps } from '../../../types'
 
-/*
-ERROR in [at-loader] ./src/app/store/IATI/IATIReader/organisations/reducer.ts:5:3
-    TS2322: Type '{ '': { IATIOganisations: {}; '': { IATIOganisation: {}; totalBudget: { '': {}; }; recipientOrgBudget: { '': {}; }; recipientRegionBudget: { '': {}; }; recipientCountryBudget: { '': {}; }; totalExpenditure: { '': {}; }; document: { ...; }; }; }; }' is not assignable to type 'IATIOrganisationsReport'.
-  Property 'data' is missing in type '{ '': { IATIOganisations: {}; '': { IATIOganisation: {}; totalBudget: { '': {}; }; recipientOrgBudget: { '': {}; }; recipientRegionBudget: { '': {}; }; recipientCountryBudget: { '': {}; }; totalExpenditure: { '': {}; }; document: { ...; }; }; }; }'.
-
-*/
 const initialState: IATIOrganisationsReportProps = {
-  data: {
-    '': {
-      IATIOganisations: {},
+  '': {
+    IATIOrganisations: {
+      version: '',
+      generatedTime: ''
+    },
+    data: {
       '': {
-        IATIOganisation: {},
-        totalBudget: {
-          '': {
-
+        IATIOrganisation: {
+          orgRef: '',
+          reportingOrg: {
+            orgRef: '',
+            orgType: 0,
+            isSecondary: false
+          },
+          lang: '',
+          currency: '',
+          lastUpdatedTime: ''
+        },
+        data: {
+          totalBudget: {
+            '': {
+              budgetRef: '',
+              budgetLine: '',
+              finance: {
+                value: 0,
+                status: 0,
+                start: '',
+                end: ''
+              }
+            }
+          },
+          recipientOrgBudget: {
+            '': {
+              recipientOrgRef: '',
+              budgetLine: '',
+              finance: {
+                value: 0,
+                status: 0,
+                start: '',
+                end: ''
+              }
+            }
+          },
+          recipientRegionBudget: {
+            '': {
+              regionRef: 0,
+              budgetLine: '',
+              finance: {
+                value: 0,
+                status: 0,
+                start: '',
+                end: ''
+              }
+            }
+          },
+          recipientCountryBudget: {
+            '': {
+              countryRef: '',
+              budgetLine: '',
+              finance: {
+                value: 0,
+                status: 0,
+                start: '',
+                end: ''
+              }
+            }
+          },
+          totalExpenditure: {
+            '': {
+              expenditureRef: '',
+              expenditureLine: '',
+              finance: {
+                value: 0,
+                status: 0,
+                start: '',
+                end: ''
+              }
+            }
+          },
+          document: {
+            '': {
+              title: '',
+              format: '',
+              url: '',
+              category: '',
+              countryRef: '',
+              desc: '',
+              lang: '',
+              date: ''
+            }
           }
-        },
-        recipientOrgBudget: {
-          '': {}
-        },
-        recipientRegionBudget: {
-          '': {}
-        },
-        recipientCountryBudget: {
-          '': {}
-        },
-        totalExpenditure: {
-          '': {}
-        },
-        document: {
-          '': {}
         }
       }
     }
