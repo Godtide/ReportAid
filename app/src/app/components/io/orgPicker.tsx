@@ -27,7 +27,7 @@ interface OrgDispatchProps {
 
 type OrgPickerProps = OrgProps & OrgDataProps & OrgDispatchProps
 
-class OrgPicker extends React.Component<OrgPickerProps> {
+class Org extends React.Component<OrgPickerProps> {
 
   constructor (props: OrgPickerProps) {
    super(props)
@@ -71,7 +71,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   }
 }
 
-export const OrganisationPicker = connect<OrgDataProps, OrgDispatchProps, {}, ApplicationState>(
+export const OrgPicker = connect<OrgDataProps, OrgDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(OrgPicker)
+)(Org)

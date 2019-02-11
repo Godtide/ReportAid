@@ -27,7 +27,7 @@ interface OrgDispatchProps {
 
 type OrgReaderProps =  WithStyles<typeof styles> & OrgProps & OrgDispatchProps
 
-export class OrgsReader extends React.Component<OrgReaderProps> {
+class OrgsReader extends React.Component<OrgReaderProps> {
 
   constructor (props: OrgReaderProps) {
     super(props)

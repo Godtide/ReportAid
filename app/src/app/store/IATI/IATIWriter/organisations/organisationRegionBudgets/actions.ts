@@ -11,14 +11,14 @@ import { ActionProps, PayloadProps, TxProps, TxData } from '../../../../types'
 import { OrganisationRegionBudgetProps, IATIOrganisationRegionBudgetProps } from '../../../types'
 import { IATIWriterActionTypes } from '../types'
 
-export const setRegionBudget = (budgetDetails: OrganisationRegionBudgetProps) => {
+export const setRegionBudget = (details: OrganisationRegionBudgetProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
 
     const state = getState()
     const regionBudgetsContract = state.chainContracts.data.contracts.organisationRegionBudgets
 
-    const start = new Date(budgetDetails.startYear + '/' + budgetDetails.startMonth + '/' + budgetDetails.startDay)
-    const end = new Date(budgetDetails.endYear + '/' + budgetDetails.endMonth + '/' + budgetDetails.endDay)
+    const start = new Date(details.startYear + '/' + details.startMonth + '/' + details.startDay)
+    const end = new Date(details.endYear + '/' + details.endMonth + '/' + details.endDay)
 
     let budgetRef = details.budgetRef
     if ( budgetRef == "" ) {
@@ -26,11 +26,11 @@ export const setRegionBudget = (budgetDetails: OrganisationRegionBudgetProps) =>
     }
 
     const regionBudget: IATIOrganisationRegionBudgetProps = {
-      regionRef: budgetDetails.regionRef,
-      budgetLine: ethers.utils.formatBytes32String(budgetDetails.budgetLine),
+      regionRef: details.regionRef,
+      budgetLine: ethers.utils.formatBytes32String(details.budgetLine),
       finance: {
-        value: budgetDetails.value,
-        status: budgetDetails.status,
+        value: details.value,
+        status: details.status,
         start: ethers.utils.formatBytes32String(start.toISOString()),
         end: ethers.utils.formatBytes32String(end.toISOString())
       }

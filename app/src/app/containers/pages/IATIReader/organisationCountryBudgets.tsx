@@ -9,27 +9,27 @@ import { getCountryBudgets } from '../../../store/IATI/IATIReader/organisations/
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { OrgCountryBudgetsData } from '../../../store/IATI/IATIReader/organisationCountryBudgets/types'
+import { OrganisationCountryBudgetsData } from '../../../store/IATI/IATIReader/types'
 
-import { OrganisationCountryBudget as OrgCountryBudgetStrings } from '../../../utils/strings'
+import { OrganisationCountryBudget as OrganisationCountryBudgetStrings } from '../../../utils/strings'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
 
-interface OrgCountryBudgetProps {
+interface OrganisationCountryBudgetProps {
   num: number
-  orgCountryBudgets: OrgCountryBudgetsData
+  orgCountryBudgets: OrganisationCountryBudgetsData
 }
 
-interface OrgCountryBudgetDispatchProps {
+interface OrganisationCountryBudgetDispatchProps {
   getCountryBudgets: () => void
 }
 
-type OrgCountryBudgetsReaderProps =  WithStyles<typeof styles> & OrgCountryBudgetProps & OrgCountryBudgetDispatchProps
+type OrganisationCountryBudgetsReaderProps =  WithStyles<typeof styles> & OrganisationCountryBudgetProps & OrganisationCountryBudgetDispatchProps
 
-export class OrgCountryBudgets extends React.Component<OrgCountryBudgetsReaderProps> {
+class CountryBudgets extends React.Component<OrganisationCountryBudgetsReaderProps> {
 
-  constructor (props: OrgCountryBudgetsReaderProps) {
+  constructor (props: OrganisationCountryBudgetsReaderProps) {
     super(props)
   }
 
@@ -45,10 +45,10 @@ export class OrgCountryBudgets extends React.Component<OrgCountryBudgetsReaderPr
       let length = 0
       //console.log ("Orgsdata: ", orgsData, " length ", orgsData.length )
       budgetsData.forEach((reportKey) => {
-        xs += `**${OrgCountryBudgetStrings.reportReference}**: ${reportKey}<br />`
+        xs += `**${OrganisationCountryBudgetStrings.reportReference}**: ${reportKey}<br />`
         const values = Object.values(this.props.orgCountryBudgets[reportKey])
         //console.log('Values: ', values)
-        xs += `**${OrgCountryBudgetStrings.numBudgets}**: ${values[0]} <br /><br />`
+        xs += `**${OrganisationCountryBudgetStrings.numBudgets}**: ${values[0]} <br /><br />`
         Object.keys(values[1]).forEach((budgetKey) => {
           //console.log(': ', values[1][budgetKey])
           //const version = ethers.utils.parseBytes32String(values[1][thisKey].version)
@@ -57,14 +57,14 @@ export class OrgCountryBudgets extends React.Component<OrgCountryBudgetsReaderPr
             const budgetLine = ethers.utils.parseBytes32String(values[1][budgetKey].budgetLine)
             const start = ethers.utils.parseBytes32String(values[1][budgetKey].finance.start)
             const end = ethers.utils.parseBytes32String(values[1][budgetKey].finance.end)
-            xs+= `**${OrgCountryBudgetStrings.reportingOrgRef}**: ${values[1][budgetKey].report.orgRef} <br />`
-            xs+= `**${OrgCountryBudgetStrings.budgetReference}**: ${budgetKey} <br />`
-            xs+= `**${OrgCountryBudgetStrings.countryReference}**: ${countryRef} <br />`
-            xs+= `**${OrgCountryBudgetStrings.budgetLine}**: ${budgetLine} <br />`
-            xs+= `**${OrgCountryBudgetStrings.value}**: ${values[1][budgetKey].finance.value} <br />`
-            xs+= `**${OrgCountryBudgetStrings.status}**: ${values[1][budgetKey].finance.status} <br />`
-            xs+= `**${OrgCountryBudgetStrings.budgetStart}**: ${start} <br />`
-            xs+= `**${OrgCountryBudgetStrings.budgetEnd}**: ${end} <br /><br />`
+            xs+= `**${OrganisationCountryBudgetStrings.reportingOrgRef}**: ${values[1][budgetKey].report.orgRef} <br />`
+            xs+= `**${OrganisationCountryBudgetStrings.budgetReference}**: ${budgetKey} <br />`
+            xs+= `**${OrganisationCountryBudgetStrings.countryReference}**: ${countryRef} <br />`
+            xs+= `**${OrganisationCountryBudgetStrings.budgetLine}**: ${budgetLine} <br />`
+            xs+= `**${OrganisationCountryBudgetStrings.value}**: ${values[1][budgetKey].finance.value} <br />`
+            xs+= `**${OrganisationCountryBudgetStrings.status}**: ${values[1][budgetKey].finance.status} <br />`
+            xs+= `**${OrganisationCountryBudgetStrings.budgetStart}**: ${start} <br />`
+            xs+= `**${OrganisationCountryBudgetStrings.budgetEnd}**: ${end} <br /><br />`
           }
         })
         length += 1
@@ -74,19 +74,19 @@ export class OrgCountryBudgets extends React.Component<OrgCountryBudgetsReaderPr
 
     return (
       <div>
-        <h2>{OrgCountryBudgetStrings.headingOrgCountryBudgetReader}</h2>
+        <h2>{OrganisationCountryBudgetStrings.headingOrganisationCountryBudgetReader}</h2>
         <p>
-          <b>{OrgCountryBudgetStrings.nums}</b>: {this.props.num}
+          <b>{OrganisationCountryBudgetStrings.nums}</b>: {this.props.num}
         </p>
         <hr />
-        <h3>{OrgCountryBudgetStrings.reportBudgetDetails}</h3>
+        <h3>{OrganisationCountryBudgetStrings.reportBudgetDetails}</h3>
         <Markdown escapeHtml={false} source={xs} />
       </div>
     )
   }
 }
 
-const mapStateToProps = (state: ApplicationState): OrgCountryBudgetProps => {
+const mapStateToProps = (state: ApplicationState): OrganisationCountryBudgetProps => {
   //console.log(state.orgReader)
   return {
     num: state.orgCountryBudgetsReader.num,
@@ -94,13 +94,13 @@ const mapStateToProps = (state: ApplicationState): OrgCountryBudgetProps => {
   }
 }
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgCountryBudgetDispatchProps => {
+const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrganisationCountryBudgetDispatchProps => {
   return {
     getCountryBudgets: () => dispatch(getCountryBudgets())
   }
 }
 
-export const OrganisationCountryBudgets = withTheme(withStyles(styles)(connect<OrgCountryBudgetProps, OrgCountryBudgetDispatchProps, {}, ApplicationState>(
+export const OrganisationCountryBudgets = withTheme(withStyles(styles)(connect<OrganisationCountryBudgetProps, OrganisationCountryBudgetDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(OrgCountryBudgets)))
+)(CountryBudgets)))

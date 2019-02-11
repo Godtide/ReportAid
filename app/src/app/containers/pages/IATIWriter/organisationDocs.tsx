@@ -19,6 +19,7 @@ import { setOrganisationDoc } from '../../../store/IATI/IATIWriter/organisations
 import { FormikDatePicker } from '../../../components/io/datePicker'
 import { OrganisationsPicker } from '../../../components/io/organisationsPicker'
 import { OrganisationPicker } from '../../../components/io/organisationPicker'
+import { OrgPicker } from '../../../components/io/orgPicker'
 import { TransactionHelper } from '../../io/transactionHelper'
 
 import { OrganisationDoc } from '../../../utils/strings'
@@ -120,7 +121,7 @@ export class OrgDocsForm extends React.Component<OrgDocsFormProps> {
         <h2>{OrganisationDoc.headingOrganisationDocWriter}</h2>
         <div>
           <Formik
-            initialValues={ {organisations: {} as Props,
+            initialValues={ {organisations: {},
                              title: '',
                              format: '',
                              url: '',

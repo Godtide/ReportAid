@@ -9,7 +9,7 @@ import { ActionProps } from '../../store/types'
 import { Field, ErrorMessage} from 'formik'
 import { Select } from "material-ui-formik-components"
 
-import { getOrganisation } from '../../store/IATI/IATIReader/organisations/organisations/actions'
+import { getOrganisation } from '../../store/IATI/IATIReader/organisations/organisation/actions'
 
 import { OrganisationProps } from '../../store/IATI/types'
 
@@ -40,7 +40,7 @@ class Organisation extends React.Component<OrganisationPickerProps> {
 
   validateOrganisation (value: object) {
     let error
-    if (!(value.hasOwnProperty('organisationsRef')) {
+    if (!(value.hasOwnProperty('organisationRef'))) {
       error = 'Required!'
     }
     return error
@@ -48,15 +48,15 @@ class Organisation extends React.Component<OrganisationPickerProps> {
 
   render() {
 
-    let organisationsRefs: any[] = [{ value: {} as OrganisationProps, label: "" }]
+    let organisationRefs: any[] = [{ value: {} as OrganisationProps, label: "" }]
      Object.keys(this.props.organisations).forEach((key) => {
       //console.log(orgKey)
       const values = Object.values(this.props.organisations[key])
       //console.log(values)
-      Object.keys(values[1]).forEach((organisationsKey) => {
+      Object.keys(values[1]).forEach((organisationKey) => {
         //console.log('Key: ', reportKey)
-        const ref: OrganisationProps = { organisationsRef: organisationsKey}
-        reportRefs.push({ value: organisationsKey, label: organisationsKey })
+        //const ref: OrganisationProps = { organisationRef: organisationKey}
+        organisationRefs.push({ value: organisationKey, label: organisationKey })
       })
     })
 
@@ -69,7 +69,7 @@ class Organisation extends React.Component<OrganisationPickerProps> {
           label={this.props.label}
           validate={this.validateOrganisation}
           component={Select}
-          options={organisationsRefs}
+          options={organisationRefs}
         />
         <ErrorMessage name={this.props.name} />
       </React.Fragment>

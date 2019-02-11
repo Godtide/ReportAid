@@ -18,8 +18,8 @@ import { setOrganisationBudget } from '../../../store/IATI/IATIWriter/organisati
 
 import { FormikDatePicker } from '../../../components/io/datePicker'
 import { OrganisationsPicker } from '../../../components/io/organisationsPicker'
-import { OrganisationPicker } from '../../../components/io/orgPicker'
-import { OrgPicker } from '../../../components/io/reportPicker'
+import { OrganisationPicker } from '../../../components/io/organisationPicker'
+import { OrgPicker } from '../../../components/io/orgPicker'
 import { TransactionHelper } from '../../io/transactionHelper'
 
 import { OrganisationBudget } from '../../../utils/strings'
@@ -133,7 +133,7 @@ export class OrganisationBudgetsForm extends React.Component<OrganisationBudgets
         <h2>{OrganisationBudget.headingOrganisationBudgetWriter}</h2>
         <div>
           <Formik
-            initialValues={ {organisations: {} as Props,
+            initialValues={ {organisations: {},
                              budgetLine: "",
                              value: 0,
                              status: 1,

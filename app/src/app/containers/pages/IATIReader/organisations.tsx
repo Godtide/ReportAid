@@ -9,7 +9,7 @@ import { getOrgs } from '../../../store/IATI/IATIReader/organisations/organisati
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { OrgData } from '../../../store/IATI/IATIReader/organisations/types'
+import { OrganisationsData } from '../../../store/IATI/IATIReader/types'
 
 import { Organisation as OrgStrings } from '../../../utils/strings'
 
@@ -29,7 +29,7 @@ interface OrgDispatchProps {
 
 type OrgReaderProps =  WithStyles<typeof styles> & OrgProps & OrgDispatchProps
 
-export class Orgs extends React.Component<OrgReaderProps> {
+class OrganisationsReader extends React.Component<OrgReaderProps> {
 
   constructor (props: OrgReaderProps) {
     super(props)
@@ -105,4 +105,4 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
 export const Organisations = withTheme(withStyles(styles)(connect<OrgProps, OrgDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(Orgs)))
+)(OrganisationsReader)))

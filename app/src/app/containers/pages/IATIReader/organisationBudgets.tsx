@@ -9,7 +9,7 @@ import { getBudgets } from '../../../store/IATI/IATIReader/organisations/organis
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { OrgBudgetsData } from '../../../store/IATI/IATIReader/organisationBudgets/types'
+import { OrganisationBudgetsData } from '../../../store/IATI/IATIReader/types'
 
 import { OrganisationBudget as OrgBudgetStrings } from '../../../utils/strings'
 
@@ -18,18 +18,18 @@ import { withTheme, styles } from '../../../styles/theme'
 
 interface OrgBudgetProps {
   num: number
-  orgBudgets: OrgBudgetsData
+  orgBudgets: OrganisationBudgetsData
 }
 
 interface OrgBudgetDispatchProps {
   getBudgets: () => void
 }
 
-type OrgBudgetsReaderProps =  WithStyles<typeof styles> & OrgBudgetProps & OrgBudgetDispatchProps
+type OrganisationBudgetsReaderProps =  WithStyles<typeof styles> & OrgBudgetProps & OrgBudgetDispatchProps
 
-export class OrgBudgets extends React.Component<OrgBudgetsReaderProps> {
+class Budgets extends React.Component<OrganisationBudgetsReaderProps> {
 
-  constructor (props: OrgBudgetsReaderProps) {
+  constructor (props: OrganisationBudgetsReaderProps) {
     super(props)
   }
 
@@ -72,12 +72,12 @@ export class OrgBudgets extends React.Component<OrgBudgetsReaderProps> {
 
     return (
       <div>
-        <h2>{OrgBudgetStrings.headingOrgBudgetReader}</h2>
+        <h2>{OrgBudgetStrings.headingOrganisationBudgetReader}</h2>
         <p>
-          <b>{OrgBudgetStrings.nums}</b>: {this.props.num}
+          <b>{OrgBudgetStrings.num}</b>: {this.props.num}
         </p>
         <hr />
-        <h3>{OrgBudgetStrings.reportBudgetDetails}</h3>
+        <h3>{OrgBudgetStrings.organisationBudgetDetails}</h3>
         <Markdown escapeHtml={false} source={xs} />
       </div>
     )
@@ -101,4 +101,4 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
 export const OrganisationBudgets = withTheme(withStyles(styles)(connect<OrgBudgetProps, OrgBudgetDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(OrgBudgets)))
+)(Budgets)))

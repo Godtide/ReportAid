@@ -8,7 +8,7 @@ import { ActionProps, TxData } from '../../store/types'
 import { Transaction } from '../../utils/strings'
 import { Helpers } from '../../utils/config'
 
-export interface TransactionType {
+export interface TransactionFuncs {
   submitFunc: (submit: boolean) => boolean
   resetFunc: () => void
 }
@@ -17,7 +17,7 @@ interface TransactionProps {
   tx: TxData
 }
 
-type TxProps = TransactionProps
+type TxProps = TransactionProps & TransactionFuncs
 
 class TX extends React.Component<TxProps> {
 
@@ -65,13 +65,13 @@ class TX extends React.Component<TxProps> {
   }
 }
 
-const mapStateToProps = (state: ApplicationState, ownProps: TransactionType): TransactionProps => {
+const mapStateToProps = (state: ApplicationState): TransactionProps => {
   //console.log(state.orgReader)
   return {
     tx: state.organisationsWriterForms.data
   }
 }
 
-export const TransactionHelper = connect<TransactionProps, {}, TransactionType, ApplicationState>(
+export const TransactionHelper = connect<TransactionProps, {}, {}, ApplicationState>(
   mapStateToProps
 )(TX)

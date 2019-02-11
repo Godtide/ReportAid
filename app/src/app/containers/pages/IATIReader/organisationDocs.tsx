@@ -9,27 +9,27 @@ import { getDocs } from '../../../store/IATI/IATIReader/organisations/organisati
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { OrgDocsData } from '../../../store/IATI/IATIReader/organisationDocs/types'
+import { OrganisationDocsData } from '../../../store/IATI/IATIReader/types'
 
-import { OrganisationDoc as OrgDocStrings } from '../../../utils/strings'
+import { OrganisationDoc as OrganisationDocStrings } from '../../../utils/strings'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
 
-interface OrgDocProps {
+interface OrganisationDocProps {
   num: number
-  orgDocs: OrgDocsData
+  orgDocs: OrganisationDocsData
 }
 
-interface OrgDocDispatchProps {
+interface OrganisationDocDispatchProps {
   getDocs: () => void
 }
 
-type OrgDocsReaderProps =  WithStyles<typeof styles> & OrgDocProps & OrgDocDispatchProps
+type OrganisationDocsReaderProps =  WithStyles<typeof styles> & OrganisationDocProps & OrganisationDocDispatchProps
 
-export class OrgDocs extends React.Component<OrgDocsReaderProps> {
+class Docs extends React.Component<OrganisationDocsReaderProps> {
 
-  constructor (props: OrgDocsReaderProps) {
+  constructor (props: OrganisationDocsReaderProps) {
     super(props)
   }
 
@@ -45,10 +45,10 @@ export class OrgDocs extends React.Component<OrgDocsReaderProps> {
       let length = 0
       //console.log ("Orgsdata: ", orgsData, " length ", orgsData.length )
       docsData.forEach((reportKey) => {
-        xs += `**${OrgDocStrings.reportReference}**: ${reportKey}<br />`
+        xs += `**${OrganisationDocStrings.reportReference}**: ${reportKey}<br />`
         const values = Object.values(this.props.orgDocs[reportKey])
         //console.log('Values: ', values)
-        xs += `**${OrgDocStrings.numDocs}**: ${values[0]} <br /><br />`
+        xs += `**${OrganisationDocStrings.numDocs}**: ${values[0]} <br /><br />`
         Object.keys(values[1]).forEach((docKey) => {
           //console.log('Doc: ', values[1][docKey])
           //const version = ethers.utils.parseBytes32String(values[1][thisKey].version)
@@ -57,16 +57,16 @@ export class OrgDocs extends React.Component<OrgDocsReaderProps> {
             const countryRef = ethers.utils.parseBytes32String(values[1][docKey].countryRef)
             const lang = ethers.utils.parseBytes32String(values[1][docKey].lang)
             const date = ethers.utils.parseBytes32String(values[1][docKey].date)
-            xs+= `**${OrgDocStrings.reportingOrgRef}**: ${values[1][docKey].report.orgRef} <br />`
-            xs+= `**${OrgDocStrings.docReference}**: ${docKey} <br />`
-            xs+= `**${OrgDocStrings.documentTitle}**: ${values[1][docKey].title} <br />`
-            xs+= `**${OrgDocStrings.documentFormat}**: ${values[1][docKey].format} <br />`
-            xs+= `**${OrgDocStrings.documentURL}**: ${values[1][docKey].url} <br />`
-            xs+= `**${OrgDocStrings.documentCategory}**: ${category} <br />`
-            xs+= `**${OrgDocStrings.documentCountryRef}**: ${countryRef} <br />`
-            xs+= `**${OrgDocStrings.documentDesc}**: ${values[1][docKey].desc} <br />`
-            xs+= `**${OrgDocStrings.documentLang}**: ${lang} <br />`
-            xs+= `**${OrgDocStrings.documentDate}**: ${date} <br /><br />`
+            xs+= `**${OrganisationDocStrings.reportingOrgRef}**: ${values[1][docKey].report.orgRef} <br />`
+            xs+= `**${OrganisationDocStrings.docReference}**: ${docKey} <br />`
+            xs+= `**${OrganisationDocStrings.documentTitle}**: ${values[1][docKey].title} <br />`
+            xs+= `**${OrganisationDocStrings.documentFormat}**: ${values[1][docKey].format} <br />`
+            xs+= `**${OrganisationDocStrings.documentURL}**: ${values[1][docKey].url} <br />`
+            xs+= `**${OrganisationDocStrings.documentCategory}**: ${category} <br />`
+            xs+= `**${OrganisationDocStrings.documentCountryRef}**: ${countryRef} <br />`
+            xs+= `**${OrganisationDocStrings.documentDesc}**: ${values[1][docKey].desc} <br />`
+            xs+= `**${OrganisationDocStrings.documentLang}**: ${lang} <br />`
+            xs+= `**${OrganisationDocStrings.documentDate}**: ${date} <br /><br />`
           }
         })
         length += 1
@@ -76,19 +76,19 @@ export class OrgDocs extends React.Component<OrgDocsReaderProps> {
 
     return (
       <div>
-        <h2>{OrgDocStrings.headingOrgDocReader}</h2>
+        <h2>{OrganisationDocStrings.headingOrganisationDocReader}</h2>
         <p>
-          <b>{OrgDocStrings.nums}</b>: {this.props.num}
+          <b>{OrganisationDocStrings.nums}</b>: {this.props.num}
         </p>
         <hr />
-        <h3>{OrgDocStrings.reportDocDetails}</h3>
+        <h3>{OrganisationDocStrings.reportDocDetails}</h3>
         <Markdown escapeHtml={false} source={xs} />
       </div>
     )
   }
 }
 
-const mapStateToProps = (state: ApplicationState): OrgDocProps => {
+const mapStateToProps = (state: ApplicationState): OrganisationDocProps => {
   //console.log(state.orgReader)
   return {
     num: state.orgDocsReader.num,
@@ -96,13 +96,13 @@ const mapStateToProps = (state: ApplicationState): OrgDocProps => {
   }
 }
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgDocDispatchProps => {
+const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrganisationDocDispatchProps => {
   return {
     getDocs: () => dispatch(getDocs())
   }
 }
 
-export const OrganisationDocs = withTheme(withStyles(styles)(connect<OrgDocProps, OrgDocDispatchProps, {}, ApplicationState>(
+export const OrganisationDocs = withTheme(withStyles(styles)(connect<OrganisationDocProps, OrganisationDocDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(OrgDocs)))
+)(Docs)))

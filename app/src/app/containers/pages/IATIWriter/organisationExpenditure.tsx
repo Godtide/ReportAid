@@ -18,11 +18,11 @@ import { setOrganisationExpenditure } from '../../../store/IATI/IATIWriter/organ
 
 import { FormikDatePicker } from '../../../components/io/datePicker'
 import { OrganisationsPicker } from '../../../components/io/organisationsPicker'
-import { OrganisationPicker } from '../../../components/io/orgPicker'
-import { OrgPicker } from '../../../components/io/reportPicker'
+import { OrganisationPicker } from '../../../components/io/organisationPicker'
+import { OrgPicker } from '../../../components/io/orgPicker'
 import { TransactionHelper } from '../../io/transactionHelper'
 
-import { OrganisationExpenditure as OrganisationExpenditure } from '../../../utils/strings'
+import { OrganisationExpenditure as OrganisationExpenditureStrings } from '../../../utils/strings'
 import { Helpers } from '../../../utils/config'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
@@ -64,30 +64,30 @@ const reportSchema = Yup.object().shape({
 const StartDatePickerProps = {
   day: {
     name: 'startDay',
-    label: OrganisationExpenditure.expenditureStartDay
+    label: OrganisationExpenditureStrings.expenditureStartDay
   },
   month: {
     name: 'startMonth',
-    label: OrganisationExpenditure.expenditureStartMonth
+    label: OrganisationExpenditureStrings.expenditureStartMonth
   },
   year: {
     name: 'startYear',
-    label: OrganisationExpenditure.expenditureStartYear
+    label: OrganisationExpenditureStrings.expenditureStartYear
   }
 }
 
 const EndDatePickerProps = {
   day: {
     name: 'endDay',
-    label: OrganisationExpenditure.expenditureEndDay
+    label: OrganisationExpenditureStrings.expenditureEndDay
   },
   month: {
     name: 'endMonth',
-    label: OrganisationExpenditure.expenditureEndMonth
+    label: OrganisationExpenditureStrings.expenditureEndMonth
   },
   year: {
     name: 'endYear',
-    label: OrganisationExpenditure.expenditureEndYear
+    label: OrganisationExpenditureStrings.expenditureEndYear
   }
 }
 
@@ -117,10 +117,10 @@ export class OrganisationExpenditureForm extends React.Component<OrganisationExp
 
     return (
       <div>
-        <h2>{OrganisationExpenditure.headingOrganisationExpenditureWriter}</h2>
+        <h2>{OrganisationExpenditureStrings.headingOrganisationExpenditureWriter}</h2>
         <div>
           <Formik
-            initialValues={ {organisations: {} as Props,
+            initialValues={ {organisations: {},
                              expenditureLine: "",
                              value: 0,
                              status: 1,
@@ -138,22 +138,22 @@ export class OrganisationExpenditureForm extends React.Component<OrganisationExp
             render={(formProps: FormikProps<OrganisationExpenditureProps>) => (
               <Form>
                 <FormControl fullWidth={true}>
-                  <OrganisationsPicker name='organisations' label={OrganisationExpenditure.organisationsReference} />
+                  <OrganisationsPicker name='organisations' label={OrganisationExpenditureStrings.organisationsReference} />
                   <Field
                     name='expenditureLine'
-                    label={OrganisationExpenditure.expenditureLine}
+                    label={OrganisationExpenditureStrings.expenditureLine}
                     component={TextField}
                   />
                   <ErrorMessage name='expenditureLine' />
                   <Field
                     name='value'
-                    label={OrganisationExpenditure.value}
+                    label={OrganisationExpenditureStrings.value}
                     component={TextField}
                   />
                   <ErrorMessage name='value' />
                   <Field
                     name="status"
-                    label={OrganisationExpenditure.status}
+                    label={OrganisationExpenditureStrings.status}
                     component={Select}
                     options={Helpers.financeStatus}
                   />

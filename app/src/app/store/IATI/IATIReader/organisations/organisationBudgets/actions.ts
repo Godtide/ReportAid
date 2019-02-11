@@ -6,7 +6,7 @@ import { ActionProps } from '../../../../types'
 
 import { read } from '../actions'
 
-import { IATIReportActionTypes, OrganisationsReportProps } from '../types'
+import { IATIOrganisationsReportProps, IATIReportActionTypes, OrganisationsReportProps } from '../types'
 
 export const getBudgets = (props: OrganisationsReportProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>,, getState: Function) => {
@@ -17,11 +17,11 @@ export const getBudgets = (props: OrganisationsReportProps) => {
     const organisationRef = props.organisationRef
 
     const report = state.organisationsReport.data as IATIOrganisationsReportProps
-    let actionType = OrganisationBudgetsReaderActionTypes.BUDGET_FAILURE
+    let actionType = IATIReportActionTypes.BUDGET_FAILURE
     try {
       const num = await budgetsContract.getNumBudgets(props.organisationsRef, props.organisationRef)
-      numBudgets = num.toNumber()
-      for (let i = 0; i < nums; i++) {
+      const numBudgets = num.toNumber()
+      for (let i = 0; i < numBudgets; i++) {
          const budgetRef = await budgetsContract.getBudgetReference(organisationsRef,
                                                                     organisationRef,
                                                                     i.toString())
@@ -29,7 +29,7 @@ export const getBudgets = (props: OrganisationsReportProps) => {
                                                         organisationRef,
                                                         budgetRef)
          report[organisationsRef][organisationRef].totalBudget[budgetRef] = budget
-         actionType = OrganisationBudgetsReaderActionTypes.BUDGET_SUCCESS
+         actionType = IATIReportActionTypes.BUDGET_SUCCESS
       }
     } catch (error) {
       console.log('getBudgets error', error)
