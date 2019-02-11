@@ -42,14 +42,14 @@ class Blockchain {
 class Contract {
 
   static orgsABI = [
-    "event SetOrg(tuple(bytes32 orgRef, string name, string identifier) _org)",
+    "event SetOrg(bytes32 _orgRef, tuple(string name, string identifier) _org)",
 
-    "function setOrg(tuple(bytes32 orgRef, string name, string identifier) _org)@150000",
+    "function setOrg(bytes32 _orgRef, tuple(string name, string identifier) _org)@150000",
 
     "function getNumOrgs() view returns (uint256)",
     "function getOrgReference(uint256 _index) view returns (bytes32)",
 
-    "function getOrg(bytes32 _orgRef) view returns (tuple(bytes32 orgRef, string name, string identifier) org)",
+    "function getOrg(bytes32 _orgRef) view returns (tuple(string name, string identifier) org)",
 
     "function getOrgName(bytes32 _orgRef) view returns (string)",
     "function getOrgIdentifier(bytes32 _orgRef) view returns (string)"

@@ -1,5 +1,6 @@
 import { PayloadProps, DictData } from '../../../types'
-import { IATIOrganisationsProps,
+import { IATIOrgProps,
+         IATIOrganisationsProps,
          IATIOrganisationProps,
          IATIOrganisationBudgetProps,
          IATIOrganisationRecipientBudgetProps,
@@ -8,10 +9,10 @@ import { IATIOrganisationsProps,
          IATIOrganisationExpenditureProps,
          IATIOrganisationDocProps } from '../../types'
 
- export interface OrganisationsReportProps {
-   organisationsRef: string
-   organisationRef: string
- }
+export interface OrganisationsReportProps {
+ organisationsRef: string
+ organisationRef: string
+}
 
 export interface IATIBudgetReportProps {
   [key: string]: IATIOrganisationBudgetProps
@@ -54,7 +55,6 @@ export interface IATIOrganisationReport extends DictData {
 export interface IATIOrganisationReportProps extends DictData {
   [key: string]: IATIOrganisationReport
 }
-
 
 export interface IATIOrganisationsReport extends PayloadProps {
   IATIOrganisations: IATIOrganisationsProps

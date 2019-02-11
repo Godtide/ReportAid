@@ -1,5 +1,4 @@
 export interface IATIOrgProps {
-  orgRef: string
   name: string
   identifier: string
 }
@@ -70,6 +69,7 @@ export interface IATIOrganisationCountryBudgetProps {
 }
 
 export interface OrgProps {
+  orgRef: string
   name: string
   code: string
   identifier: string

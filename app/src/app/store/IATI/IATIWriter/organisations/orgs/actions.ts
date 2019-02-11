@@ -11,23 +11,27 @@ import { ActionProps, PayloadProps, TxProps, TxData } from '../../../../types'
 import { OrgProps, IATIOrgProps } from '../../../types'
 import { IATIWriterActionTypes } from '../types'
 
-export const setOrg = (orgDetails: OrgProps) => {
+export const setOrg = (details: OrgProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
     const orgsContract = state.chainContracts.data.contracts.orgs
-    const identifier =  orgDetails.code + '-' + orgDetails.identifier
+    const identifier =  details.code + '-' + details.identifier
+
+    let orgRef = details.orgRef
+    if ( orgRef == "" ) {
+      orgRef = ethers.utils.formatBytes32String(shortid.generate())
+    }
 
     const org: IATIOrgProps = {
-        orgRef: ethers.utils.formatBytes32String(shortid.generate()),
-        name: orgDetails.name,
-        identifier: orgDetails.code + '-' + orgDetails.identifier
+        name: details.name,
+        identifier: details.code + '-' + details.identifier
     }
 
     let actionType = IATIWriterActionTypes.ORGS_FAILURE
     let txData: TxData = {}
 
     try {
-      const tx = await orgsContract.setOrg(org)
+      const tx = await orgsContract.setOrg(orgRef, org)
       const key = tx.hash
       txData[key] = tx
       actionType = IATIWriterActionTypes.ORGS_SUCCESS

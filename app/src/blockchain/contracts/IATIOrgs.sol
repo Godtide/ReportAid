@@ -9,18 +9,18 @@ contract IATIOrgs is Orgs {
   bytes32[] orgReferences;
   mapping(bytes32 => Org) private organisations;
 
-  event SetOrg(Org _org);
+  event SetOrg(bytes32 _orgRef, Org _org);
 
-  function setOrg(Org memory _org) public {
-    require (_org.orgRef[0] != 0 && bytes(_org.name).length > 0 && bytes(_org.identifier).length > 0);
+  function setOrg(bytes32 _orgRef, Org memory _org) public {
+    require (_orgRef[0] != 0 && bytes(_org.name).length > 0 && bytes(_org.identifier).length > 0);
 
-    organisations[_org.orgRef] = _org;
+    organisations[_orgRef] = _org;
 
-    if (!Strings.getExists(_org.orgRef, orgReferences)) {
-        orgReferences.push(_org.orgRef);
+    if (!Strings.getExists(_orgRef, orgReferences)) {
+        orgReferences.push(_orgRef);
     }
 
-    emit SetOrg(_org);
+    emit SetOrg(_orgRef, _org);
   }
 
   function getNumOrgs() public view returns (uint256) {

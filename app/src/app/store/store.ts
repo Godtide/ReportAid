@@ -5,6 +5,7 @@ import ReduxThunk, { ThunkAction } from 'redux-thunk'
 
 import { ActionProps, TxProps } from './types'
 
+import { IATIOrgReportProps } from './IATI/IATIReader/organisations/orgs/types'
 import { IATIOrganisationsReportProps } from './IATI/IATIReader/organisations/types'
 
 /*import { OrgReaderProps } from './IATI/IATIReader/orgs/types'
@@ -31,6 +32,7 @@ import { reducer as overviewReducer } from './info/overview/reducer'
 import { reducer as IATIWriterInfoReducer } from './info/IATIWriter/reducer'
 import { reducer as IATIReaderInfoReducer } from './info/IATIReader/reducer'
 
+import { reducer as orgsReaderReducer } from './IATI/IATIReader/organisations/orgs/reducer'
 import { reducer as organisationsReaderReducer } from './IATI/IATIReader/organisations/reducer'
 
 /*
@@ -70,6 +72,7 @@ export interface ApplicationState {
   writer: InfoProps
   reader: InfoProps
   organisationsWriterForms: TxProps
+  orgsReader: IATIOrgReportProps,
   organisationsReader: IATIOrganisationsReportProps
   /*orgReader: OrgReaderProps
   organisationsReader: OrganisationsReaderProps
@@ -93,6 +96,7 @@ export const rootReducer: Reducer<ApplicationState, ActionProps> = combineReduce
   writer: IATIWriterInfoReducer,
   reader: IATIReaderInfoReducer,
   organisationsWriterForms: organisationsWriterReducer,
+  orgsReader: orgsReaderReducer,
   organisationsReader: organisationsReaderReducer
   /* orgReader: orgReaderReducer,
   organisationsReader: organisationsReaderReducer,

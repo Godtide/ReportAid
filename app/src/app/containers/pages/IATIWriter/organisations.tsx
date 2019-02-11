@@ -25,6 +25,8 @@ import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
 
 const organisationsSchema = Yup.object().shape({
+  organisationsRef: Yup
+    .string(),
   version: Yup
     .string()
     .required('Required')
@@ -59,7 +61,7 @@ export class OrganisationsForm extends React.Component<OrganisationsFormProps> {
         <h2>{OrganisationsStrings.headingOrganisationsWriter}</h2>
         <div>
           <Formik
-            initialValues={ {version: ""} }
+            initialValues={ {organisationsRef: "", version: ""} }
             validationSchema={organisationsSchema}
             onSubmit={(values: OrganisationsProps, actions: any) => {
               this.handleSubmit(values, actions.setSubmitting, actions.resetForm)

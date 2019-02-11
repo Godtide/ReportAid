@@ -10,7 +10,7 @@ import { Field, ErrorMessage} from 'formik'
 import { Select } from "material-ui-formik-components"
 
 import { getOrgs } from '../../store/IATI/IATIReader/organisations/orgs/actions'
-import { OrgData } from '../../store/IATI/IATIReader/organisations/orgs/types'
+import { IATIOrgProps } from '../../store/IATI/types'
 
 interface OrgProps {
   name: string
@@ -18,7 +18,7 @@ interface OrgProps {
 }
 
 interface OrgDataProps {
-  orgs: OrgData
+  orgs: IATIOrgProps
 }
 
 interface OrgDispatchProps {
@@ -41,7 +41,7 @@ class Org extends React.Component<OrgPickerProps> {
 
     let orgRefs : any[] = [{ value: "", label: "" }]
     Object.keys(this.props.orgs).forEach((orgKey) => {
-      orgRefs.push({ value: orgKey, label: orgKey })
+      orgRefs.push({ value: orgKey, label: orgRef[orgKey].name })
     })
 
     return (
@@ -61,7 +61,7 @@ class Org extends React.Component<OrgPickerProps> {
 const mapStateToProps = (state: ApplicationState): OrgDataProps => {
   //console.log(state.orgReader)
   return {
-    orgs: state.orgReader.data
+    orgs: state.orgsReader.data
   }
 }
 

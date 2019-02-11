@@ -24,6 +24,8 @@ import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
 
 const orgSchema = Yup.object().shape({
+  orgRef: Yup
+    .string(),
   name: Yup
     .string()
     .required('Required'),
@@ -64,7 +66,7 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
         <h2>{OrgStrings.headingOrgWriter}</h2>
         <div>
           <Formik
-            initialValues={ {name: '', code: '', identifier: ''} }
+            initialValues={ {orgRef: '', name: '', code: '', identifier: ''} }
             validationSchema={orgSchema}
             onSubmit={(values: OrgProps, actions: any) => {
               this.handleSubmit(values, actions.setSubmitting, actions.resetForm)
