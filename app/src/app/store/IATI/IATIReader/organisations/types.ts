@@ -47,7 +47,7 @@ export interface IATIOrganisationData {
   document: IATIDocumentReportProps
 }
 
-export interface IATIOrganisationReport extends DictData {
+export interface IATIOrganisationReport extends PayloadProps {
   IATIOrganisation: IATIOrganisationProps
   data: IATIOrganisationData
 }
@@ -61,8 +61,12 @@ export interface IATIOrganisationsReport extends PayloadProps {
   data: IATIOrganisationReportProps
 }
 
-export interface IATIOrganisationsReportProps extends DictData {
+export interface IATIOrganisationsData extends DictData {
   [key: string]: IATIOrganisationsReport
+}
+
+export interface IATIOrganisationsReportProps extends PayloadProps {
+  data: IATIOrganisationsData
 }
 
 export const enum IATIReportActionTypes {

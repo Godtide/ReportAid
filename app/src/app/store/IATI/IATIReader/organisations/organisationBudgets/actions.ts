@@ -9,7 +9,7 @@ import { read } from '../actions'
 import { IATIOrganisationsReportProps, IATIReportActionTypes, OrganisationsReportProps } from '../types'
 
 export const getBudgets = (props: OrganisationsReportProps) => {
-  return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>,, getState: Function) => {
+  return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
 
     const state = getState()
     const budgetsContract = state.chainContracts.data.contracts.organisationBudgets

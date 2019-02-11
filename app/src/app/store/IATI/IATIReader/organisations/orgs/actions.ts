@@ -1,20 +1,25 @@
 import { ThunkDispatch } from 'redux-thunk'
 
+import { storeAction } from '../../../../actions'
 import { ApplicationState } from '../../../../store'
-
-import { ActionProps } from '../../../../types'
+import { ActionProps, PayloadProps} from '../../../../types'
 
 import { IATIOrgProps } from '../../../types'
 import { IATIOrgReports } from '../types'
-
-import { read } from '../actions'
 
 import { IATIOrganisationsReportProps, IATIReportActionTypes, OrganisationsReportProps } from '../types'
 
 import { IATIOrgsWriterActionTypes } from './types'
 
+export const read = (payload: PayloadProps): Function => {
+  return (actionType: IATIReportActionTypes): IATIOrgReports => {
+    const getProps = storeAction(actionType)(payload) as IATIOrgReports
+    return getProps
+  }
+}
+
 export const getOrgs = () => {
-  return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>,, getState: Function) => {
+  return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
 
     const state = getState()
     const orgsContract = state.chainContracts.data.contracts.orgs

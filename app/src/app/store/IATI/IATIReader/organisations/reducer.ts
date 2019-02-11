@@ -2,93 +2,95 @@ import { IATIReportActionTypes, IATIOrganisationsReportProps } from './types'
 import { ActionProps, PayloadProps } from '../../../types'
 
 const initialState: IATIOrganisationsReportProps = {
-  '': {
-    IATIOrganisations: {
-      version: '',
-      generatedTime: ''
-    },
-    data: {
-      '': {
-        IATIOrganisation: {
-          orgRef: '',
-          reportingOrg: {
+  data: {
+    '': {
+      IATIOrganisations: {
+        version: '',
+        generatedTime: ''
+      },
+      data: {
+        '': {
+          IATIOrganisation: {
             orgRef: '',
-            orgType: 0,
-            isSecondary: false
+            reportingOrg: {
+              orgRef: '',
+              orgType: 0,
+              isSecondary: false
+            },
+            lang: '',
+            currency: '',
+            lastUpdatedTime: ''
           },
-          lang: '',
-          currency: '',
-          lastUpdatedTime: ''
-        },
-        data: {
-          totalBudget: {
-            '': {
-              budgetLine: '',
-              finance: {
-                value: 0,
-                status: 0,
-                start: '',
-                end: ''
+          data: {
+            totalBudget: {
+              '': {
+                budgetLine: '',
+                finance: {
+                  value: 0,
+                  status: 0,
+                  start: '',
+                  end: ''
+                }
               }
-            }
-          },
-          recipientOrgBudget: {
-            '': {
-              recipientOrgRef: '',
-              budgetLine: '',
-              finance: {
-                value: 0,
-                status: 0,
-                start: '',
-                end: ''
+            },
+            recipientOrgBudget: {
+              '': {
+                recipientOrgRef: '',
+                budgetLine: '',
+                finance: {
+                  value: 0,
+                  status: 0,
+                  start: '',
+                  end: ''
+                }
               }
-            }
-          },
-          recipientRegionBudget: {
-            '': {
-              regionRef: 0,
-              budgetLine: '',
-              finance: {
-                value: 0,
-                status: 0,
-                start: '',
-                end: ''
+            },
+            recipientRegionBudget: {
+              '': {
+                regionRef: 0,
+                budgetLine: '',
+                finance: {
+                  value: 0,
+                  status: 0,
+                  start: '',
+                  end: ''
+                }
               }
-            }
-          },
-          recipientCountryBudget: {
-            '': {
-              countryRef: '',
-              budgetLine: '',
-              finance: {
-                value: 0,
-                status: 0,
-                start: '',
-                end: ''
+            },
+            recipientCountryBudget: {
+              '': {
+                countryRef: '',
+                budgetLine: '',
+                finance: {
+                  value: 0,
+                  status: 0,
+                  start: '',
+                  end: ''
+                }
               }
-            }
-          },
-          totalExpenditure: {
-            '': {
-              expenditureLine: '',
-              finance: {
-                value: 0,
-                status: 0,
-                start: '',
-                end: ''
+            },
+            totalExpenditure: {
+              '': {
+                expenditureLine: '',
+                finance: {
+                  value: 0,
+                  status: 0,
+                  start: '',
+                  end: ''
+                }
               }
-            }
-          },
-          document: {
-            '': {
-              title: '',
-              format: '',
-              url: '',
-              category: '',
-              countryRef: '',
-              desc: '',
-              lang: '',
-              date: ''
+            },
+            document: {
+              '': {
+                title: '',
+                format: '',
+                url: '',
+                category: '',
+                countryRef: '',
+                desc: '',
+                lang: '',
+                date: ''
+              }
             }
           }
         }

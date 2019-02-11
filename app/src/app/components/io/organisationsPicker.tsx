@@ -11,7 +11,7 @@ import { Select } from "material-ui-formik-components"
 
 import { getOrganisations } from '../../store/IATI/IATIReader/organisations/organisations/actions'
 
-import { OrganisationsProps } from '../../store/IATI/types'
+import { IATIOrganisationsData } from '../../store/IATIReader/organisations/types'
 
 interface OrganisationsFormProps {
   name: string
@@ -19,7 +19,7 @@ interface OrganisationsFormProps {
 }
 
 interface OrganisationsDataProps {
-  organisations: OrganisationsProps
+  organisations: IATIOrganisationsData
 }
 
 interface OrganisationsDispatchProps {
@@ -38,26 +38,11 @@ class Organisations extends React.Component<OrganisationsPickerProps> {
     this.props.getOrganisations()
   }
 
-  validateOrganisations (value: object) {
-    let error
-    if (!(value.hasOwnProperty('organisationsRef'))) {
-      error = 'Required!'
-    }
-    return error
-  }
-
   render() {
 
-    let organisationsRefs: any[] = [{ value: {} as OrganisationsProps, label: "" }]
-     Object.keys(this.props.organisations).forEach((key) => {
-      //console.log(orgKey)
-      const values: any = Object.values(this.props.organisations[key])
-      //console.log(values)
-      Object.keys(values[1]).forEach((organisationsKey) => {
-        //console.log('Key: ', reportKey)
-        //const ref: OrganisationsProps = { organisationsRef: organisationsKey, version}
-        organisationsRefs.push({ value: organisationsKey, label: organisationsKey })
-      })
+    let organisationsRefs: any[] = [{ value: "", label: "" }]
+    Object.keys(this.props.organisations).forEach((organisationsKey) => {
+      organisationsRefs.push({ value: organisationsKey, label: organisationsKey })
     })
 
     //console.log('Refs: ', reportRefs)
