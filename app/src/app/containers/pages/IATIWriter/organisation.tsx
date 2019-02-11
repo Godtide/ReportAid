@@ -17,7 +17,7 @@ import { OrganisationProps } from '../../../store/IATI/types'
 import { setOrganisation } from '../../../store/IATI/IATIWriter/organisations/organisation/actions'
 
 import { OrganisationsPicker } from '../../../components/io/organisationsPicker'
-import { TransactionHelper, TransactionTypes } from '../../io/transactionHelper'
+import { TransactionHelper } from '../../io/transactionHelper'
 
 import { Organisation as OrganisationStrings } from '../../../utils/strings'
 import { Helpers } from '../../../utils/config'
@@ -83,14 +83,13 @@ export class OrganisationForm extends React.Component<OrganisationFormProps> {
                              currency: ""
                             }}
             validationSchema={organisationSchema}
-            onSubmit={(values: OrgProps, actions: any) => {
+            onSubmit={(values: OrganisationProps, actions: any) => {
               this.handleSubmit(values, actions.setSubmitting, actions.resetForm)
             }}
-            render={(formProps: FormikProps<OrgProps>) => (
+            render={(formProps: FormikProps<OrganisationProps>) => (
               <Form>
                 <FormControl fullWidth={true}>
                   <OrganisationsPicker name='organisationsRef' label={OrganisationStrings.organisationsReference} />
-                  <OrganisationPicker name='reportingOrgRef' label={OrganisationStrings.reportingOrgRef} />
                   <Field
                     name="reportingOrgType"
                     label={OrganisationStrings.reportingOrgType}
@@ -131,7 +130,6 @@ export class OrganisationForm extends React.Component<OrganisationFormProps> {
           />
         </div>
         <TransactionHelper
-          type={TransactionTypes.ORGREPORT}
           submitFunc={this.state.submitFunc}
           resetFunc={this.state.resetFunc}
         />

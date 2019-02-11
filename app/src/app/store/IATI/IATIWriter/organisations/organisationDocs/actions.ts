@@ -35,7 +35,7 @@ export const setOrganisationDoc = (details: OrganisationDocProps) => {
       date: ethers.utils.formatBytes32String(docDate.toISOString())
     }
 
-    let actionType = IATIWriterActionTypes.ADD_FAILURE
+    let actionType = IATIWriterActionTypes.DOCUMENT_FAILURE
     let txData: TxData = {}
     try {
       const tx = await docsContract.setDocument(details.organisationsRef,
@@ -44,7 +44,7 @@ export const setOrganisationDoc = (details: OrganisationDocProps) => {
                                                    doc)
       const key = tx.hash
       txData[key] = tx
-      actionType = IATIWriterActionTypes.ADD_SUCCESS
+      actionType = IATIWriterActionTypes.DOCUMENT_SUCCESS
     } catch (error) {
       console.log('setDoc error', error)
     }

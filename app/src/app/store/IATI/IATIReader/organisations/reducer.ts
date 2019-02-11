@@ -23,7 +23,6 @@ const initialState: IATIOrganisationsReportProps = {
         data: {
           totalBudget: {
             '': {
-              budgetRef: '',
               budgetLine: '',
               finance: {
                 value: 0,
@@ -71,7 +70,6 @@ const initialState: IATIOrganisationsReportProps = {
           },
           totalExpenditure: {
             '': {
-              expenditureRef: '',
               expenditureLine: '',
               finance: {
                 value: 0,

@@ -36,7 +36,7 @@ export const setCountryBudget = (details: OrganisationCountryBudgetProps) => {
       }
     }
     //console.log('CountryBudget: ', countryBudget, ' Contract ', orgCountryBudgetsContract)
-    let actionType = IATIWriterActionTypes.ADD_FAILURE
+    let actionType = IATIWriterActionTypes.RECIPIENTCOUNTRYBUDGET_FAILURE
     let txData: TxData = {}
     try {
       // set(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, bytes32 _version, bytes32 _generatedTime)
@@ -46,7 +46,7 @@ export const setCountryBudget = (details: OrganisationCountryBudgetProps) => {
                                                                countryBudget)
       const key = tx.hash
       txData[key] = tx
-      actionType = IATIWriterActionTypes.ADD_SUCCESS
+      actionType = IATIWriterActionTypes.RECIPIENTCOUNTRYBUDGET_SUCCESS
     } catch (error) {
       txData[-1] = txData
       console.log('setCountryBudget error', error)

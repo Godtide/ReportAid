@@ -28,20 +28,19 @@ interface OrganisationsDispatchProps {
 
 type OrganisationsPickerProps = OrganisationsFormProps & OrganisationsDataProps & OrganisationsDispatchProps
 
-class OrganisationsPicker extends React.Component<OrganisationsPickerProps> {
+class Organisations extends React.Component<OrganisationsPickerProps> {
 
   constructor (props: OrganisationsPickerProps) {
    super(props)
   }
 
   componentDidMount() {
-    this.props.getOrgOrganisationss()
+    this.props.getOrganisations()
   }
 
-  validateOrgOrganisations (value: object) {
+  validateOrganisations (value: object) {
     let error
-    if (!(value.hasOwnProperty('orgRef')) &&
-        !(value.hasOwnProperty('reportRef')) ) {
+    if (!(value.hasOwnProperty('organisationsRef'))) {
       error = 'Required!'
     }
     return error
@@ -50,14 +49,14 @@ class OrganisationsPicker extends React.Component<OrganisationsPickerProps> {
   render() {
 
     let organisationsRefs: any[] = [{ value: {} as OrganisationsProps, label: "" }]
-     Object.keys(this.props.orgOrganisationss).forEach((orgKey) => {
+     Object.keys(this.props.organisations).forEach((key) => {
       //console.log(orgKey)
-      const values = Object.values(this.props.orgOrganisationss[orgKey])
+      const values: any = Object.values(this.props.organisations[key])
       //console.log(values)
-      Object.keys(values[1]).forEach((reportKey) => {
+      Object.keys(values[1]).forEach((organisationsKey) => {
         //console.log('Key: ', reportKey)
-        const report: OrganisationsProps = { orgRef: orgKey, reportRef: reportKey}
-        reportRefs.push({ value: report, label: reportKey })
+        //const ref: OrganisationsProps = { organisationsRef: organisationsKey, version}
+        organisationsRefs.push({ value: organisationsKey, label: organisationsKey })
       })
     })
 
@@ -68,9 +67,9 @@ class OrganisationsPicker extends React.Component<OrganisationsPickerProps> {
         <Field
           name={this.props.name}
           label={this.props.label}
-          validate={this.validateOrgOrganisations}
+          validate={this.validateOrganisations}
           component={Select}
-          options={reportRefs}
+          options={organisationsRefs}
         />
         <ErrorMessage name={this.props.name} />
       </React.Fragment>
@@ -81,17 +80,17 @@ class OrganisationsPicker extends React.Component<OrganisationsPickerProps> {
 const mapStateToProps = (state: ApplicationState): OrganisationsDataProps => {
   //console.log(state.orgReader)
   return {
-    orgOrganisationss: state.orgOrganisationssReader.data
+    organisations: state.organisationsReader.data
   }
 }
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrganisationsDispatchProps => {
   return {
-    getOrgOrganisationss: () => dispatch(getOrgOrganisationss())
+    getOrganisations: () => dispatch(getOrganisations())
   }
 }
 
-export const OrgOrganisationsPicker = connect<OrganisationsDataProps, OrganisationsDispatchProps, {}, ApplicationState>(
+export const OrganisationsPicker = connect<OrganisationsDataProps, OrganisationsDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(OrganisationsPicker)
+)(Organisations)

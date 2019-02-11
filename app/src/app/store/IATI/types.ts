@@ -42,13 +42,11 @@ export interface FinanceProps {
 }
 
 export interface IATIOrganisationBudgetProps {
-  budgetRef: string
   budgetLine: string
   finance: FinanceProps
 }
 
 export interface IATIOrganisationExpenditureProps {
-  expenditureRef: string
   expenditureLine: string
   finance: FinanceProps
 }

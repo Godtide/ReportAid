@@ -23,7 +23,7 @@ export const setOrganisation = (details: OrganisationProps) => {
     }
 
     const organisation: IATIOrganisationProps = {
-      orgRef: details.orgRef,
+      orgRef: organisationRef,
       reportingOrg: {
         orgRef: details.reportingOrgRef,
         orgType: details.reportingOrgType,
@@ -34,14 +34,14 @@ export const setOrganisation = (details: OrganisationProps) => {
       lastUpdatedTime: ethers.utils.formatBytes32String(new Date().toISOString())
     }
 
-    let actionType = IATIWriterActionTypes.ADD_FAILURE
+    let actionType = IATIWriterActionTypes.ORGANISATION_FAILURE
     let txData: TxData = {}
     try {
       // set(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, bytes32 _version, bytes32 _generatedTime)
       const tx = await organisationContract.setOrganisation(details.organisationsRef, organisationRef, organisation)
       const key = tx.hash
       txData[key] = tx
-      actionType = IATIWriterActionTypes.ADD_SUCCESS
+      actionType = IATIWriterActionTypes.ORGANISATION_SUCCESS
     } catch (error) {
       console.log('set error', error)
     }

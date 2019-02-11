@@ -12,14 +12,15 @@ import { Select, TextField } from "material-ui-formik-components"
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { IATIOrgBudgetProps, OrgBudgetProps, Props } from '../../../store/IATI/types'
+import { OrganisationBudgetProps } from '../../../store/IATI/types'
 
 import { setOrganisationBudget } from '../../../store/IATI/IATIWriter/organisations/organisationBudgets/actions'
 
 import { FormikDatePicker } from '../../../components/io/datePicker'
+import { OrganisationsPicker } from '../../../components/io/organisationsPicker'
 import { OrganisationPicker } from '../../../components/io/orgPicker'
 import { OrgPicker } from '../../../components/io/reportPicker'
-import { TransactionHelper, TransactionTypes } from '../../io/transactionHelper'
+import { TransactionHelper } from '../../io/transactionHelper'
 
 import { OrganisationBudget } from '../../../utils/strings'
 import { Helpers } from '../../../utils/config'
@@ -103,24 +104,24 @@ const EndDatePickerProps = {
   }
 }
 
-interface OrgBudgetsDispatchProps {
+interface OrganisationBudgetsDispatchProps {
   handleSubmit: (values: any) => void
 }
 
-type OrgBudgetsFormProps = WithStyles<typeof styles> & OrgBudgetsDispatchProps
+type OrganisationBudgetsFormProps = WithStyles<typeof styles> & OrganisationBudgetsDispatchProps
 
-export class OrgBudgetsForm extends React.Component<OrgBudgetsFormProps> {
+export class OrganisationBudgetsForm extends React.Component<OrganisationBudgetsFormProps> {
 
   state = {
     submitFunc: (function(submit: boolean) { return submit }),
     resetFunc: (function() { return null })
   }
 
-  constructor (props: OrgBudgetsFormProps) {
+  constructor (props: OrganisationBudgetsFormProps) {
    super(props)
   }
 
-  handleSubmit = (values: OrgBudgetProps, setSubmitting: Function, reset: Function) => {
+  handleSubmit = (values: OrganisationBudgetProps, setSubmitting: Function, reset: Function) => {
     this.setState({submitFunc: setSubmitting, resetFunc: reset})
     this.props.handleSubmit(values)
   }
@@ -129,7 +130,7 @@ export class OrgBudgetsForm extends React.Component<OrgBudgetsFormProps> {
 
     return (
       <div>
-        <h2>{OrganisationBudget.headingOrgBudgetWriter}</h2>
+        <h2>{OrganisationBudget.headingOrganisationBudgetWriter}</h2>
         <div>
           <Formik
             initialValues={ {organisations: {} as Props,
@@ -144,10 +145,10 @@ export class OrgBudgetsForm extends React.Component<OrgBudgetsFormProps> {
                              endYear: 2000
                             }}
             validationSchema={reportSchema}
-            onSubmit={(values: OrgBudgetProps, actions: any) => {
+            onSubmit={(values: OrganisationBudgetProps, actions: any) => {
               this.handleSubmit(values, actions.setSubmitting, actions.resetForm)
             }}
-            render={(formProps: FormikProps<OrgBudgetProps>) => (
+            render={(formProps: FormikProps<OrganisationBudgetProps>) => (
               <Form>
                 <FormControl fullWidth={true}>
                   <OrganisationsPicker name='organisations' label={OrganisationBudget.organisationsReference} />
@@ -184,7 +185,6 @@ export class OrgBudgetsForm extends React.Component<OrgBudgetsFormProps> {
           />
         </div>
         <TransactionHelper
-          type={TransactionTypes.ORGREPORTBUDGET}
           submitFunc={this.state.submitFunc}
           resetFunc={this.state.resetFunc}
         />
@@ -193,13 +193,13 @@ export class OrgBudgetsForm extends React.Component<OrgBudgetsFormProps> {
   }
 }
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgBudgetsDispatchProps => {
+const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrganisationBudgetsDispatchProps => {
   return {
     handleSubmit: (ownProps: any) => dispatch(setOrganisationBudget(ownProps))
   }
 }
 
-export const OrganisationBudgets = withTheme(withStyles(styles)(connect<void, OrgBudgetsDispatchProps, {}, ApplicationState>(
+export const OrganisationBudgets = withTheme(withStyles(styles)(connect<void, OrganisationBudgetsDispatchProps, {}, ApplicationState>(
   null,
   mapDispatchToProps
-)(OrgBudgetsForm)))
+)(OrganisationBudgetsForm)))

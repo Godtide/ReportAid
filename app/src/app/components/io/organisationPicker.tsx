@@ -9,39 +9,38 @@ import { ActionProps } from '../../store/types'
 import { Field, ErrorMessage} from 'formik'
 import { Select } from "material-ui-formik-components"
 
-import { getOrganisations } from '../../store/IATI/IATIReader/organisations/organisations/actions'
+import { getOrganisation } from '../../store/IATI/IATIReader/organisations/organisations/actions'
 
-import { OrganisationsProps } from '../../store/IATI/types'
+import { OrganisationProps } from '../../store/IATI/types'
 
-interface OrganisationsFormProps {
+interface OrganisationFormProps {
   name: string
   label: string
 }
 
-interface OrganisationsDataProps {
-  organisations: OrganisationsProps
+interface OrganisationDataProps {
+  organisations: OrganisationProps
 }
 
-interface OrganisationsDispatchProps {
-  getOrganisations: () => void
+interface OrganisationDispatchProps {
+  getOrganisation: () => void
 }
 
-type OrganisationsPickerProps = OrganisationsFormProps & OrganisationsDataProps & OrganisationsDispatchProps
+type OrganisationPickerProps = OrganisationFormProps & OrganisationDataProps & OrganisationDispatchProps
 
-class OrganisationsPicker extends React.Component<OrganisationsPickerProps> {
+class Organisation extends React.Component<OrganisationPickerProps> {
 
-  constructor (props: OrganisationsPickerProps) {
+  constructor (props: OrganisationPickerProps) {
    super(props)
   }
 
   componentDidMount() {
-    this.props.getOrgOrganisationss()
+    this.props.getOrganisation()
   }
 
-  validateOrgOrganisations (value: object) {
+  validateOrganisation (value: object) {
     let error
-    if (!(value.hasOwnProperty('orgRef')) &&
-        !(value.hasOwnProperty('reportRef')) ) {
+    if (!(value.hasOwnProperty('organisationsRef')) {
       error = 'Required!'
     }
     return error
@@ -49,15 +48,15 @@ class OrganisationsPicker extends React.Component<OrganisationsPickerProps> {
 
   render() {
 
-    let organisationsRefs: any[] = [{ value: {} as OrganisationsProps, label: "" }]
-     Object.keys(this.props.orgOrganisationss).forEach((orgKey) => {
+    let organisationsRefs: any[] = [{ value: {} as OrganisationProps, label: "" }]
+     Object.keys(this.props.organisations).forEach((key) => {
       //console.log(orgKey)
-      const values = Object.values(this.props.orgOrganisationss[orgKey])
+      const values = Object.values(this.props.organisations[key])
       //console.log(values)
-      Object.keys(values[1]).forEach((reportKey) => {
+      Object.keys(values[1]).forEach((organisationsKey) => {
         //console.log('Key: ', reportKey)
-        const report: OrganisationsProps = { orgRef: orgKey, reportRef: reportKey}
-        reportRefs.push({ value: report, label: reportKey })
+        const ref: OrganisationProps = { organisationsRef: organisationsKey}
+        reportRefs.push({ value: organisationsKey, label: organisationsKey })
       })
     })
 
@@ -68,9 +67,9 @@ class OrganisationsPicker extends React.Component<OrganisationsPickerProps> {
         <Field
           name={this.props.name}
           label={this.props.label}
-          validate={this.validateOrgOrganisations}
+          validate={this.validateOrganisation}
           component={Select}
-          options={reportRefs}
+          options={organisationsRefs}
         />
         <ErrorMessage name={this.props.name} />
       </React.Fragment>
@@ -78,20 +77,20 @@ class OrganisationsPicker extends React.Component<OrganisationsPickerProps> {
   }
 }
 
-const mapStateToProps = (state: ApplicationState): OrganisationsDataProps => {
+const mapStateToProps = (state: ApplicationState): OrganisationDataProps => {
   //console.log(state.orgReader)
   return {
-    orgOrganisationss: state.orgOrganisationssReader.data
+    organisations: state.organisationsReader.data
   }
 }
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrganisationsDispatchProps => {
+const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrganisationDispatchProps => {
   return {
-    getOrgOrganisationss: () => dispatch(getOrgOrganisationss())
+    getOrganisation: () => dispatch(getOrganisation())
   }
 }
 
-export const OrgOrganisationsPicker = connect<OrganisationsDataProps, OrganisationsDispatchProps, {}, ApplicationState>(
+export const OrganisationPicker = connect<OrganisationDataProps, OrganisationDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(OrganisationsPicker)
+)(Organisation)

@@ -16,7 +16,7 @@ import { OrganisationsProps } from '../../../store/IATI/types'
 
 import { setOrganisations } from '../../../store/IATI/IATIWriter/organisations/organisations/actions'
 
-import { TransactionHelper, TransactionTypes } from '../../io/transactionHelper'
+import { TransactionHelper } from '../../io/transactionHelper'
 
 import { Organisations as OrganisationsStrings } from '../../../utils/strings'
 import { Helpers } from '../../../utils/config'
@@ -61,7 +61,7 @@ export class OrganisationsForm extends React.Component<OrganisationsFormProps> {
           <Formik
             initialValues={ {version: ""} }
             validationSchema={organisationsSchema}
-            onSubmit={(values: OrgProps, actions: any) => {
+            onSubmit={(values: OrganisationsProps, actions: any) => {
               this.handleSubmit(values, actions.setSubmitting, actions.resetForm)
             }}
             render={(formProps: FormikProps<OrganisationsProps>) => (
@@ -86,7 +86,6 @@ export class OrganisationsForm extends React.Component<OrganisationsFormProps> {
           />
         </div>
         <TransactionHelper
-          type={TransactionTypes.ORGREPORT}
           submitFunc={this.state.submitFunc}
           resetFunc={this.state.resetFunc}
         />
@@ -97,7 +96,7 @@ export class OrganisationsForm extends React.Component<OrganisationsFormProps> {
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrganisationsDispatchProps => {
   return {
-    handleSubmit: (ownProps: any) => dispatch(setOrganisation(ownProps))
+    handleSubmit: (ownProps: any) => dispatch(setOrganisations(ownProps))
   }
 }
 

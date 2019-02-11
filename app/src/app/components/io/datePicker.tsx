@@ -24,27 +24,6 @@ interface DatePickerProps {
 
 export const FormikDatePicker = (props: DatePickerProps) => {
 
-  /*let dayRefs: any[] = []
-  Array.from({ length: 31 }, (v: number, i: number) => {
-    const value = ++i
-    dayRefs.push({ value: value, label: value.toString() })
-  })
-
-  let monthRefs: any[] = []
-  Array.from({ length: 12 }, (v: number, i: number) => {
-    const value = ++i
-    monthRefs.push({ value: value, label: value.toString() })
-  })
-
-  const startYear = 2000
-  const stopYear = 2040
-  const step = 1
-  let yearRefs: any[] = []
-  Array.from({ length: (stopYear - startYear) / step }, (_, i: number) => {
-    const year = startYear + (i * step)
-    yearRefs.push({ value: year, label: year.toString() })
-  })*/
-
   return (
     <Grid container>
       <Grid item xs={12} sm={3}>

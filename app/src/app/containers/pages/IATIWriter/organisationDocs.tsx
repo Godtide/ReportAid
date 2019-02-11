@@ -12,13 +12,14 @@ import { Select, TextField } from "material-ui-formik-components"
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { IATIOrgDocProps, OrgDocProps, Props} from '../../../store/IATI/types'
+import { OrganisationDocProps } from '../../../store/IATI/types'
 
 import { setOrganisationDoc } from '../../../store/IATI/IATIWriter/organisations/organisationDocs/actions'
 
 import { FormikDatePicker } from '../../../components/io/datePicker'
-import { OrgPicker } from '../../../components/io/reportPicker'
-import { TransactionHelper, TransactionTypes } from '../../io/transactionHelper'
+import { OrganisationsPicker } from '../../../components/io/organisationsPicker'
+import { OrganisationPicker } from '../../../components/io/organisationPicker'
+import { TransactionHelper } from '../../io/transactionHelper'
 
 import { OrganisationDoc } from '../../../utils/strings'
 import { Helpers } from '../../../utils/config'
@@ -107,7 +108,7 @@ export class OrgDocsForm extends React.Component<OrgDocsFormProps> {
    super(props)
   }
 
-  handleSubmit = (values: OrgDocProps, setSubmitting: Function, reset: Function) => {
+  handleSubmit = (values: OrganisationDocProps, setSubmitting: Function, reset: Function) => {
     this.setState({submitFunc: setSubmitting, resetFunc: reset})
     this.props.handleSubmit(values)
   }
@@ -116,7 +117,7 @@ export class OrgDocsForm extends React.Component<OrgDocsFormProps> {
 
     return (
       <div>
-        <h2>{OrganisationDoc.headingOrgDocWriter}</h2>
+        <h2>{OrganisationDoc.headingOrganisationDocWriter}</h2>
         <div>
           <Formik
             initialValues={ {organisations: {} as Props,
@@ -132,10 +133,10 @@ export class OrgDocsForm extends React.Component<OrgDocsFormProps> {
                              year: 2000
                             }}
             validationSchema={docSchema}
-            onSubmit={(values: OrgDocProps, actions: any) => {
+            onSubmit={(values: OrganisationDocProps, actions: any) => {
               this.handleSubmit(values, actions.setSubmitting, actions.resetForm)
             }}
-            render={(formProps: FormikProps<OrgDocProps>) => (
+            render={(formProps: FormikProps<OrganisationDocProps>) => (
               <Form>
                 <FormControl fullWidth={true}>
                   <OrganisationsPicker name='organisations' label={OrganisationDoc.organisationsReference} />
@@ -198,7 +199,6 @@ export class OrgDocsForm extends React.Component<OrgDocsFormProps> {
           />
         </div>
         <TransactionHelper
-          type={TransactionTypes.ORGREPORTDOC}
           submitFunc={this.state.submitFunc}
           resetFunc={this.state.resetFunc}
         />

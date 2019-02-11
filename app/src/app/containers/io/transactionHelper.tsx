@@ -8,19 +8,7 @@ import { ActionProps, TxData } from '../../store/types'
 import { Transaction } from '../../utils/strings'
 import { Helpers } from '../../utils/config'
 
-export const enum TransactionTypes {
-  ORG = 'org',
-  ORGREPORT = 'orgReport',
-  ORGREPORTDOC = 'orgReportDoc',
-  ORGREPORTBUDGET = 'orgReportBudget',
-  ORGREPORTEXPENDITURE = 'orgReportExpenditure',
-  ORGREPORTRECIPIENTBUDGET = 'orgReportRecipientBudget',
-  ORGREPORTREGIONBUDGET = 'orgReportRegionBudget',
-  ORGREPORTCOUNTRYBUDGET = 'orgReportCountryBudget'
-}
-
 export interface TransactionType {
-  type: TransactionTypes
   submitFunc: (submit: boolean) => boolean
   resetFunc: () => void
 }
@@ -29,7 +17,7 @@ interface TransactionProps {
   tx: TxData
 }
 
-type TxProps = TransactionType & TransactionProps
+type TxProps = TransactionProps
 
 class TX extends React.Component<TxProps> {
 
@@ -79,25 +67,8 @@ class TX extends React.Component<TxProps> {
 
 const mapStateToProps = (state: ApplicationState, ownProps: TransactionType): TransactionProps => {
   //console.log(state.orgReader)
-  switch (ownProps.type) {
-    case TransactionTypes.ORG:
-      return { tx: state.orgForm.data }
-    case TransactionTypes.ORGREPORT:
-      return { tx: state.orgReportsForm.data }
-    case TransactionTypes.ORGREPORTDOC:
-      return { tx: state.orgReportDocsForm.data }
-    case TransactionTypes.ORGREPORTBUDGET:
-      return { tx: state.orgReportBudgetsForm.data }
-    case TransactionTypes.ORGREPORTEXPENDITURE:
-      return { tx: state.orgReportExpenditureForm.data }
-    case TransactionTypes.ORGREPORTRECIPIENTBUDGET:
-      return { tx: state.orgReportRecipientBudgetsForm.data }
-    case TransactionTypes.ORGREPORTREGIONBUDGET:
-      return { tx: state.orgReportRegionBudgetsForm.data }
-    case TransactionTypes.ORGREPORTCOUNTRYBUDGET:
-      return { tx: state.orgReportCountryBudgetsForm.data }
-    default:
-      return { tx: {} }
+  return {
+    tx: state.organisationsWriterForms.data
   }
 }
 

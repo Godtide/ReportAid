@@ -26,17 +26,17 @@ export const setOrganisationExpenditure = (details: OrganisationExpenditureProps
     }
 
     const expenditure: IATIOrganisationExpenditureProps = {
-      expenditureLine: ethers.utils.formatBytes32String(expenditureDetails.expenditureLine),
+      expenditureLine: ethers.utils.formatBytes32String(details.expenditureLine),
       finance: {
-        value: expenditureDetails.value,
-        status: expenditureDetails.status,
+        value: details.value,
+        status: details.status,
         start: ethers.utils.formatBytes32String(start.toISOString()),
         end: ethers.utils.formatBytes32String(end.toISOString())
       }
     }
 
     //console.log('Budget: ', orgBudget, ' Contract ', orgBudgetsContract)
-    let actionType = IATIWriterActionTypes.ADD_FAILURE
+    let actionType = IATIWriterActionTypes.TOTALEXPENDITURE_FAILURE
     let txData: TxData = {}
     try {
       // set(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, bytes32 _version, bytes32 _generatedTime)
@@ -46,7 +46,7 @@ export const setOrganisationExpenditure = (details: OrganisationExpenditureProps
                                                              expenditure)
       const key = tx.hash
       txData[key] = tx
-      actionType = IATIWriterActionTypes.ADD_SUCCESS
+      actionType = IATIWriterActionTypes.TOTALEXPENDITURE_SUCCESS
     } catch (error) {
       txData[-1] = txData
       console.log('setBudget error', error)

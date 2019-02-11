@@ -93,7 +93,7 @@ export const rootReducer: Reducer<ApplicationState, ActionProps> = combineReduce
   writer: IATIWriterInfoReducer,
   reader: IATIReaderInfoReducer,
   organisationsWriterForms: organisationsWriterReducer,
-  organisationsReport: organisationsReaderReducer
+  organisationsReader: organisationsReaderReducer
   /* orgReader: orgReaderReducer,
   organisationsReader: organisationsReaderReducer,
   organisationReader: organisationReaderReducer,

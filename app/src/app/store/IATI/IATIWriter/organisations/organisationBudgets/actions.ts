@@ -22,20 +22,20 @@ export const setOrganisationBudget = (details: OrganisationBudgetProps) => {
       budgetRef = ethers.utils.formatBytes32String(shortid.generate())
     }
 
-    const start = new Date(budgetDetails.startYear + '/' + budgetDetails.startMonth + '/' + budgetDetails.startDay)
-    const end = new Date(budgetDetails.endYear + '/' + budgetDetails.endMonth + '/' + budgetDetails.endDay)
+    const start = new Date(details.startYear + '/' + details.startMonth + '/' + details.startDay)
+    const end = new Date(details.endYear + '/' + details.endMonth + '/' + details.endDay)
 
     const budget: IATIOrganisationBudgetProps = {
-      budgetLine: ethers.utils.formatBytes32String(budgetDetails.budgetLine),
+      budgetLine: ethers.utils.formatBytes32String(details.budgetLine),
       finance: {
-        value: budgetDetails.value,
-        status: budgetDetails.status,
+        value: details.value,
+        status: details.status,
         start: ethers.utils.formatBytes32String(start.toISOString()),
         end: ethers.utils.formatBytes32String(end.toISOString())
       }
     }
 
-    let actionType = IATIWriterActionTypes.ADD_FAILURE
+    let actionType = IATIWriterActionTypes.BUDGET_FAILURE
     let txData: TxData = {}
     try {
       // set(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, bytes32 _version, bytes32 _generatedTime)
@@ -45,7 +45,7 @@ export const setOrganisationBudget = (details: OrganisationBudgetProps) => {
                                                  budget)
       const key = tx.hash
       txData[key] = tx
-      actionType = IATIWriterActionTypes.ADD_SUCCESS
+      actionType = IATIWriterActionTypes.BUDGET_SUCCESS
     } catch (error) {
       txData[-1] = txData
       console.log('setBudget error', error)

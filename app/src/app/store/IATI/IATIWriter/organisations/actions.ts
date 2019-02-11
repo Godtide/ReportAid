@@ -1,7 +1,7 @@
 import { storeAction } from '../../../actions'
 
-import { ActionProps, PayloadProps } from '../../../types'
-import { OrganisationsReaderActionTypes } from './types'
+import { ActionProps, PayloadProps, TxProps } from '../../../types'
+import { IATIWriterActionTypes } from './types'
 
 export const write = (payload: PayloadProps): Function => {
   return (actionType: IATIWriterActionTypes): TxProps => {

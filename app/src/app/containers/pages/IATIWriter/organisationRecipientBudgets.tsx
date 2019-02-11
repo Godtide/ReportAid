@@ -18,7 +18,7 @@ import { setRecipientBudget } from '../../../store/IATI/IATIWriter/organisations
 import { FormikDatePicker } from '../../../components/io/datePicker'
 import { OrganisationPicker } from '../../../components/io/orgPicker'
 import { OrgPicker } from '../../../components/io/reportPicker'
-import { TransactionHelper, TransactionTypes } from '../../io/transactionHelper'
+import { TransactionHelper } from '../../io/transactionHelper'
 
 import { OrganisationRecipientBudget } from '../../../utils/strings'
 import { Helpers } from '../../../utils/config'
@@ -175,7 +175,6 @@ export class OrgRecipientBudgetsForm extends React.Component<OrgRecipientBudgets
           />
         </div>
         <TransactionHelper
-          type={TransactionTypes.ORGREPORTRECIPIENTBUDGET}
           submitFunc={this.state.submitFunc}
           resetFunc={this.state.resetFunc}
         />

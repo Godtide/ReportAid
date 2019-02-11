@@ -16,7 +16,7 @@ import { OrgProps } from '../../../store/IATI/types'
 
 import { setOrg } from '../../../store/IATI/IATIWriter/organisations/orgs/actions'
 
-import { TransactionHelper, TransactionTypes } from '../../io/transactionHelper'
+import { TransactionHelper } from '../../io/transactionHelper'
 
 import { Org as OrgStrings } from '../../../utils/strings'
 
@@ -92,7 +92,6 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
           />
         </div>
         <TransactionHelper
-          type={TransactionTypes.ORG}
           submitFunc={this.state.submitFunc}
           resetFunc={this.state.resetFunc}
         />

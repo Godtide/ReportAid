@@ -17,7 +17,7 @@ import { setRegionBudget } from '../../../store/IATI/IATIWriter/organisations/or
 
 import { FormikDatePicker } from '../../../components/io/datePicker'
 import { OrgPicker } from '../../../components/io/reportPicker'
-import { TransactionHelper, TransactionTypes } from '../../io/transactionHelper'
+import { TransactionHelper } from '../../io/transactionHelper'
 
 import { OrganisationRegionBudget } from '../../../utils/strings'
 import { Helpers } from '../../../utils/config'
@@ -180,7 +180,6 @@ export class OrgRegionBudgetsForm extends React.Component<OrgRegionBudgetsFormPr
           />
         </div>
         <TransactionHelper
-          type={TransactionTypes.ORGREPORTREGIONBUDGET}
           submitFunc={this.state.submitFunc}
           resetFunc={this.state.resetFunc}
         />
