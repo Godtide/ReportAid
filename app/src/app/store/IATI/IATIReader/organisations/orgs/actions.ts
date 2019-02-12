@@ -21,22 +21,25 @@ export const getOrgs = () => {
     const state = getState()
     const orgsContract = state.chainContracts.data.contracts.orgs
 
-    const report = state.orgsData.data as IATIOrgReports
+    let orgsData: IATIOrgReports = {}
     let actionType = IATIOrgsWriterActionTypes.ORGS_FAILURE
     try {
       const num = await orgsContract.getNumOrgs()
       const numOrgs = num.toNumber()
+      console.log("Num orgs: ", numOrgs)
       for (let i = 0; i < numOrgs; i++) {
          const orgRef = await orgsContract.getOrgReference(i.toString())
+         console.log("OrgRef: ", orgRef)
          const org: IATIOrgProps = await orgsContract.getOrg(orgRef)
-         report[orgRef] = org
+         console.log("Org: ", org)
+         orgsData[orgRef] = org
          actionType = IATIOrgsWriterActionTypes.ORGS_SUCCESS
       }
     } catch (error) {
-      console.log('getBudgets error', error)
+      console.log('getOrgs error', error)
     }
 
-    dispatch(read({data: report})(actionType))
+    dispatch(read({data: orgsData})(actionType))
 
   }
 }

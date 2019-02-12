@@ -101,7 +101,6 @@ const initialState: IATIOrganisationsReportProps = {
 
 export const reducer = (state: IATIOrganisationsReportProps = initialState, action: ActionProps): IATIOrganisationsReportProps => {
 
-  const payload = action.payload as PayloadProps
   if ( (action.type == IATIReportActionTypes.ORGANISATIONS_SUCCESS ) ||
        (action.type == IATIReportActionTypes.ORGANISATION_SUCCESS ) ||
        (action.type == IATIReportActionTypes.BUDGET_SUCCESS ) ||

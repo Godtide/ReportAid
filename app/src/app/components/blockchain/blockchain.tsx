@@ -25,7 +25,7 @@ const stop = (props: StopProps) => {
   if ( provider.hasOwnProperty('connection') ) {
 
     const account = state.chainAccount.data.account
-    const orgContract = state.chainContracts.data.contracts.orgContract
+    const orgContract = state.chainContracts.data.contracts.orgs
     if ( (orgContract.hasOwnProperty('getOrganisationExists')) &&
          (account != "" ) ) {
       /* console.log('stopping intervals for account ', account)

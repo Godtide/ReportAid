@@ -38,7 +38,9 @@ class OrgsReader extends React.Component<OrgReaderProps> {
 
     let xs: string = ""
     let num = 0
+    //console.log("Orgs data: ", this.props.orgs)
     Object.keys(this.props.orgs).forEach((key) => {
+      //console.log(key)
       num += 1
       xs += `**${OrgStrings.orgIdentifier}**: ${key}, `
       xs += `**${OrgStrings.orgName}**: ${this.props.orgs[key].name}, `
