@@ -5,7 +5,7 @@ import { ApplicationState } from '../../../../store'
 import { ActionProps } from '../../../../types'
 import { IATIOrganisationExpenditureProps } from '../../../types'
 import { IATIReportActionTypes,
-         IATIDocumentReportProps,
+         IATITotalExpenditureReportProps,
          OrganisationsReportProps } from '../types'
 
 import { read } from '../actions'
@@ -18,7 +18,7 @@ export const getExpenditure = (props: OrganisationsReportProps) => {
     const organisationsRef = props.organisationsRef
     const organisationRef = props.organisationRef
 
-    const expenditureReports = state.organisationsReport.data[organisationsRef].data[organisationRef].data.totalExpenditure as IATIOrganisationExpenditureProps
+    const expenditureReports = state.organisationsReport.data[organisationsRef].data[organisationRef].data.totalExpenditure as IATITotalExpenditureReportProps
 
     let actionType = IATIReportActionTypes.TOTALEXPENDITURE_FAILURE
     try {
