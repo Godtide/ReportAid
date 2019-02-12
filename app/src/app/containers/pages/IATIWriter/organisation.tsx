@@ -17,6 +17,7 @@ import { OrganisationProps } from '../../../store/IATI/types'
 import { setOrganisation } from '../../../store/IATI/IATIWriter/organisations/organisation/actions'
 
 import { OrganisationsPicker } from '../../../components/io/organisationsPicker'
+import { OrganisationPicker } from '../../../components/io/organisationPicker'
 import { TransactionHelper } from '../../io/transactionHelper'
 
 import { Organisation as OrganisationStrings } from '../../../utils/strings'
@@ -26,9 +27,6 @@ import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
 
 const organisationSchema = Yup.object().shape({
-  organisationsRef: Yup
-    .string()
-    .required('Required'),
   reportingOrgRef: Yup
     .string()
     .required('Required'),
@@ -76,6 +74,7 @@ export class OrganisationForm extends React.Component<OrganisationFormProps> {
         <div>
           <Formik
             initialValues={ {organisationsRef: "",
+                             organisationRef: "",
                              reportingOrgRef: "",
                              reportingOrgType: 0,
                              reportingOrgIsSecondary: false,
@@ -89,7 +88,8 @@ export class OrganisationForm extends React.Component<OrganisationFormProps> {
             render={(formProps: FormikProps<OrganisationProps>) => (
               <Form>
                 <FormControl fullWidth={true}>
-                  <OrganisationsPicker name='organisationsRef' label={OrganisationStrings.organisationsReference} />
+                  <OrganisationsPicker label={OrganisationStrings.organisationsReference} />
+                  <OrganisationPicker organisationsRef={organisationsRef} label={OrganisationStrings.organisationReference} />
                   <Field
                     name="reportingOrgType"
                     label={OrganisationStrings.reportingOrgType}

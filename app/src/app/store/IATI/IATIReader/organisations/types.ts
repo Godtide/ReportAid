@@ -9,6 +9,10 @@ import { IATIOrgProps,
          IATIOrganisationExpenditureProps,
          IATIOrganisationDocProps } from '../../types'
 
+export interface OrganisationReportProps {
+  organisationsRef: string
+}
+
 export interface OrganisationsReportProps {
  organisationsRef: string
  organisationRef: string

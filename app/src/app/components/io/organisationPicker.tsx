@@ -1,5 +1,5 @@
 import * as React from 'react'
-
+import * as Yup from 'yup'
 import { connect } from 'react-redux'
 import { ThunkDispatch } from 'redux-thunk'
 
@@ -11,19 +11,26 @@ import { Select } from "material-ui-formik-components"
 
 import { getOrganisation } from '../../store/IATI/IATIReader/organisations/organisation/actions'
 
+import { IATIOrganisationsData, IATIOrganisationReportProps } from '../../store/IATI/IATIReader/organisations/types'
 import { OrganisationProps } from '../../store/IATI/types'
 
+const organisationSchema = Yup.object().shape({
+  organisation: Yup
+    .string()
+    .required('Required')
+})
+
 interface OrganisationFormProps {
-  name: string
+  organisationsRef: string
   label: string
 }
 
 interface OrganisationDataProps {
-  organisations: OrganisationProps
+  organisations: IATIOrganisationsData
 }
 
 interface OrganisationDispatchProps {
-  getOrganisation: () => void
+  getOrganisation: (organisationsRef: string) => void
 }
 
 type OrganisationPickerProps = OrganisationFormProps & OrganisationDataProps & OrganisationDispatchProps
@@ -35,43 +42,29 @@ class Organisation extends React.Component<OrganisationPickerProps> {
   }
 
   componentDidMount() {
-    this.props.getOrganisation()
-  }
-
-  validateOrganisation (value: object) {
-    let error
-    if (!(value.hasOwnProperty('organisationRef'))) {
-      error = 'Required!'
+    if(this.props.organisationsRef != "") {
+      this.props.getOrganisation(this.props.organisationsRef)
     }
-    return error
   }
 
   render() {
 
-    let organisationRefs: any[] = [{ value: {} as OrganisationProps, label: "" }]
-     Object.keys(this.props.organisations).forEach((key) => {
-      //console.log(orgKey)
-      const values = Object.values(this.props.organisations[key])
-      //console.log(values)
-      Object.keys(values[1]).forEach((organisationKey) => {
-        //console.log('Key: ', reportKey)
-        //const ref: OrganisationProps = { organisationRef: organisationKey}
-        organisationRefs.push({ value: organisationKey, label: organisationKey })
-      })
+    let organisationRefs: any[] = [{ value: "", label: "" }]
+    const organisationReports: IATIOrganisationReportProps = this.props.organisations[this.props.organisationsRef].data
+    Object.keys(organisationReports).forEach((organisationKey) => {
+       organisationRefs.push({ value: organisationKey, label: organisationKey })
     })
-
-    //console.log('Refs: ', reportRefs)
 
     return (
       <React.Fragment>
         <Field
-          name={this.props.name}
+          name='organisation'
           label={this.props.label}
-          validate={this.validateOrganisation}
+          validate={organisationSchema}
           component={Select}
           options={organisationRefs}
         />
-        <ErrorMessage name={this.props.name} />
+        <ErrorMessage name='organisation' />
       </React.Fragment>
     )
   }
@@ -86,7 +79,7 @@ const mapStateToProps = (state: ApplicationState): OrganisationDataProps => {
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrganisationDispatchProps => {
   return {
-    getOrganisation: () => dispatch(getOrganisation())
+    getOrganisation: (organisationsRef: string) => dispatch(getOrganisation({organisationsRef: organisationsRef}))
   }
 }
 

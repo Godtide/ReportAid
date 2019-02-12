@@ -133,6 +133,7 @@ class Organisation {
 
   static numOrganisationReports = "Number of reports"
   static organisationsReference = "Organisations Reference"
+  static organisationReference = "Organisation Reference"
   static orgIdentifier = "Organisation"
   static reportingOrgRef = 'Reporting Organisation'
   static reportingOrgType = "Reporting Organisation Type"

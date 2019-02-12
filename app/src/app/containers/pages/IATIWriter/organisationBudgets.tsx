@@ -133,7 +133,7 @@ export class OrganisationBudgetsForm extends React.Component<OrganisationBudgets
         <h2>{OrganisationBudget.headingOrganisationBudgetWriter}</h2>
         <div>
           <Formik
-            initialValues={ {organisations: {},
+            initialValues={ {organisations: "",
                              budgetLine: "",
                              value: 0,
                              status: 1,
@@ -151,7 +151,7 @@ export class OrganisationBudgetsForm extends React.Component<OrganisationBudgets
             render={(formProps: FormikProps<OrganisationBudgetProps>) => (
               <Form>
                 <FormControl fullWidth={true}>
-                  <OrganisationsPicker name='organisations' label={OrganisationBudget.organisationsReference} />
+                  <OrganisationsPicker label={OrganisationBudget.organisationsReference} />
                   <Field
                     name='budgetLine'
                     label={OrganisationBudget.budgetLine}

@@ -29,7 +29,7 @@ import { withTheme, styles } from '../../../styles/theme'
 
 const reportSchema = Yup.object().shape({
   organisations: Yup
-    .object()
+    .string()
     .required('Required'),
   countryRef: Yup
     .string()
@@ -122,7 +122,7 @@ export class OrganisationCountryBudgetsForm extends React.Component<Organisation
         <h2>{OrganisationCountryBudget.headingOrganisationCountryBudgetWriter}</h2>
         <div>
           <Formik
-            initialValues={ {organisations: {},
+            initialValues={ {organisations: "",
                              countryRef: "",
                              budgetLine: "",
                              value: 0,
@@ -141,7 +141,7 @@ export class OrganisationCountryBudgetsForm extends React.Component<Organisation
             render={(formProps: FormikProps<OrganisationCountryBudgetProps>) => (
               <Form>
                 <FormControl fullWidth={true}>
-                  <OrganisationsPicker name='organisations' label={OrganisationCountryBudget.organisationsReference} />
+                  <OrganisationsPicker label={OrganisationCountryBudget.organisationsReference} />
                   <Field
                     name='budgetLine'
                     label={OrganisationCountryBudget.budgetLine}

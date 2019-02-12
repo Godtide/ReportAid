@@ -21,7 +21,6 @@ const organisationsSchema = Yup.object().shape({
 })
 
 interface OrganisationsFormProps {
-  name: string
   label: string
 }
 
