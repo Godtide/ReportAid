@@ -17,18 +17,18 @@ contract Organisation {
     bytes32 lastUpdatedTime;
   }
 
-  function setOrganisation(bytes32 _organisationsRef, bytes32 _orgRef, Org memory _org) public;
+  function setOrganisation(bytes32 _organisationsRef, bytes32 _organisationRef, Org memory _org) public;
 
   function getNumOrganisations(bytes32 _organisationsRef) public view returns (uint256);
   function getOrganisationReference(bytes32 _organisationsRef, uint256 _index) public view returns (bytes32);
 
-  function getOrganisation(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (Org memory);
+  function getOrganisation(bytes32 _organisationsRef, bytes32 _organisationRef) public view returns (Org memory);
 
-  function getOrganisationOrg(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (bytes32);
-  function getReportingOrg(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (bytes32);
-  function getReportingOrgType(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (uint8);
-  function getReportingOrgIsSecondary(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (bool);
-  function getLang(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (bytes32);
-  function getCurrency(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (bytes32);
-  function getLastUpdatedTime(bytes32 _organisationsRef, bytes32 _orgRef) public view returns (bytes32);
+  function getOrganisationOrg(bytes32 _organisationsRef, bytes32 _organisationRef) public view returns (bytes32);
+  function getReportingOrg(bytes32 _organisationsRef, bytes32 _organisationRef) public view returns (bytes32);
+  function getReportingOrgType(bytes32 _organisationsRef, bytes32 _organisationRef) public view returns (uint8);
+  function getReportingOrgIsSecondary(bytes32 _organisationsRef, bytes32 _organisationRef) public view returns (bool);
+  function getLang(bytes32 _organisationsRef, bytes32 _organisationRef) public view returns (bytes32);
+  function getCurrency(bytes32 _organisationsRef, bytes32 _organisationRef) public view returns (bytes32);
+  function getLastUpdatedTime(bytes32 _organisationsRef, bytes32 _organisationRef) public view returns (bytes32);
 }
