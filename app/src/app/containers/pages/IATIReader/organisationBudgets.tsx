@@ -9,7 +9,7 @@ import { getBudgets } from '../../../store/IATI/IATIReader/organisations/organis
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { OrganisationBudgetsData } from '../../../store/IATI/IATIReader/types'
+import { IATIOrganisationsData } from '../../../store/IATI/IATIReader/organisations/types'
 
 import { OrganisationBudget as OrgBudgetStrings } from '../../../utils/strings'
 
@@ -17,8 +17,7 @@ import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
 
 interface OrgBudgetProps {
-  num: number
-  orgBudgets: OrganisationBudgetsData
+  organisations: IATIOrganisationsData
 }
 
 interface OrgBudgetDispatchProps {
@@ -39,8 +38,10 @@ class Budgets extends React.Component<OrganisationBudgetsReaderProps> {
 
   render() {
 
-    const budgetsData = Object.keys(this.props.orgBudgets)
+    const reportsData = Object.keys(this.props.organisations)
     let xs = ""
+    let num = 0
+    /*let xs = ""
     if ( budgetsData.length > 0 ) {
       let length = 0
       //console.log ("Orgsdata: ", orgsData, " length ", orgsData.length )
@@ -68,13 +69,13 @@ class Budgets extends React.Component<OrganisationBudgetsReaderProps> {
         length += 1
         length == budgetsData.length ? xs += "" : xs += "---<br /><br />"
       })
-    }
+    }*/
 
     return (
       <div>
         <h2>{OrgBudgetStrings.headingOrganisationBudgetReader}</h2>
         <p>
-          <b>{OrgBudgetStrings.num}</b>: {this.props.num}
+          <b>{OrgBudgetStrings.num}</b>: {num}
         </p>
         <hr />
         <h3>{OrgBudgetStrings.organisationBudgetDetails}</h3>
@@ -87,8 +88,7 @@ class Budgets extends React.Component<OrganisationBudgetsReaderProps> {
 const mapStateToProps = (state: ApplicationState): OrgBudgetProps => {
   //console.log(state.orgReader)
   return {
-    num: state.orgBudgetsReader.num,
-    orgBudgets: state.orgBudgetsReader.data
+    organisations: state.organisationsReader.data
   }
 }
 

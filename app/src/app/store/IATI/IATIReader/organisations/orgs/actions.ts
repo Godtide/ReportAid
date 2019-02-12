@@ -5,11 +5,8 @@ import { ApplicationState } from '../../../../store'
 import { ActionProps, PayloadProps} from '../../../../types'
 
 import { IATIOrgProps } from '../../../types'
-import { IATIOrgReports } from '../types'
-
 import { IATIOrganisationsReportProps, IATIReportActionTypes, OrganisationsReportProps } from '../types'
-
-import { IATIOrgsWriterActionTypes } from './types'
+import { IATIOrgsWriterActionTypes, IATIOrgReports } from './types'
 
 export const read = (payload: PayloadProps): Function => {
   return (actionType: IATIReportActionTypes): IATIOrgReports => {

@@ -6,7 +6,8 @@ import { ActionProps } from '../../../../types'
 
 import { read } from '../actions'
 
-import { IATIOrganisationsData, IATIReportActionTypes } from '../types'
+import { IATIOrganisationsProps } from '../../../types'
+import { IATIReportActionTypes, IATIOrganisationsData } from '../types'
 
 export const getOrganisations = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
@@ -21,8 +22,8 @@ export const getOrganisations = () => {
       const numOrganisations = num.toNumber()
       for (let i = 0; i < numOrganisations; i++) {
          const ref = await organisationsContract.getOrganisationsReference(i.toString())
-         const organisations: IATIOrganisationsData = await organisationsContract.getOrganisations(ref)
-         report[ref] = organisations
+         const organisations: IATIOrganisationsProps = await organisationsContract.getOrganisations(ref)
+         report[ref].IATIOrganisations = organisations
          actionType = IATIReportActionTypes.ORGANISATIONS_SUCCESS
       }
     } catch (error) {

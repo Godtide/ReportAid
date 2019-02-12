@@ -39,8 +39,10 @@ class Expenditure extends React.Component<OrganisationExpenditureReaderProps> {
 
   render() {
 
-    const expenditureData = Object.keys(this.props.orgExpenditure)
+    const reportsData = Object.keys(this.props.organisations)
     let xs = ""
+    let num = 0
+    /*let xs = ""
     if ( expenditureData.length > 0 ) {
       let length = 0
       //console.log ("Orgsdata: ", orgsData, " length ", orgsData.length )
@@ -68,7 +70,7 @@ class Expenditure extends React.Component<OrganisationExpenditureReaderProps> {
         length += 1
         length == expenditureData.length ? xs += "" : xs += "---<br /><br />"
       })
-    }
+    }*/
 
     return (
       <div>

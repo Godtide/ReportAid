@@ -39,8 +39,10 @@ class RecipientBudgets extends React.Component<OrganisationRecipientBudgetsReade
 
   render() {
 
-    const budgetsData = Object.keys(this.props.orgRecipientBudgets)
+    const reportsData = Object.keys(this.props.organisations)
     let xs = ""
+    let num = 0
+    /*let xs = ""
     if ( budgetsData.length > 0 ) {
       let length = 0
       //console.log ("Orgsdata: ", orgsData, " length ", orgsData.length )
@@ -69,7 +71,7 @@ class RecipientBudgets extends React.Component<OrganisationRecipientBudgetsReade
         length += 1
         length == budgetsData.length ? xs += "" : xs += "---<br /><br />"
       })
-    }
+    }*/
 
     return (
       <div>

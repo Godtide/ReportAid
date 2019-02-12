@@ -9,7 +9,7 @@ import { getDocs } from '../../../store/IATI/IATIReader/organisations/organisati
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { OrganisationDocsData } from '../../../store/IATI/IATIReader/types'
+import { IATIOrganisationsData } from '../../../store/IATI/IATIReader/organisations/types'
 
 import { OrganisationDoc as OrganisationDocStrings } from '../../../utils/strings'
 
@@ -17,8 +17,7 @@ import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
 
 interface OrganisationDocProps {
-  num: number
-  orgDocs: OrganisationDocsData
+  organisations: IATIOrganisationsData
 }
 
 interface OrganisationDocDispatchProps {
@@ -39,8 +38,10 @@ class Docs extends React.Component<OrganisationDocsReaderProps> {
 
   render() {
 
-    const docsData = Object.keys(this.props.orgDocs)
+    const reportsData = Object.keys(this.props.organisations)
     let xs = ""
+    let num = 0
+    /*let xs = ""
     if ( docsData.length > 0 ) {
       let length = 0
       //console.log ("Orgsdata: ", orgsData, " length ", orgsData.length )
@@ -72,7 +73,7 @@ class Docs extends React.Component<OrganisationDocsReaderProps> {
         length += 1
         length == docsData.length ? xs += "" : xs += "---<br /><br />"
       })
-    }
+    }*/
 
     return (
       <div>

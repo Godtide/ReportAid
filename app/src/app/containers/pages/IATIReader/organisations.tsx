@@ -41,8 +41,10 @@ class OrganisationsReader extends React.Component<OrgReaderProps> {
 
   render() {
 
-    const orgsData = Object.keys(this.props.orgs)
+    const reportsData = Object.keys(this.props.organisations)
     let xs = ""
+    let num = 0
+    /*let xs = ""
     if ( orgsData.length > 0 ) {
       let length = 0
       //console.log ("Orgsdata: ", orgsData, " length ", orgsData.length )
@@ -72,7 +74,7 @@ class OrganisationsReader extends React.Component<OrgReaderProps> {
         length += 1
         length == orgsData.length ? xs += "" : xs += "---<br /><br />"
       })
-    }
+    }*/
 
     return (
       <div>

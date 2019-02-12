@@ -7,7 +7,7 @@ import { getOrgs } from '../../../store/IATI/IATIReader/organisations/orgs/actio
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { OrgData } from '../../../store/IATI/IATIReader/orgs/types'
+import { IATIOrgReports } from '../../../store/IATI/IATIReader/orgs/types'
 
 import { Org as OrgStrings } from '../../../utils/strings'
 
@@ -17,8 +17,7 @@ import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
 
 interface OrgProps {
-  num: number
-  orgs: OrgData
+  orgs: IATIOrgReports
 }
 
 interface OrgDispatchProps {
@@ -64,8 +63,7 @@ class OrgsReader extends React.Component<OrgReaderProps> {
 const mapStateToProps = (state: ApplicationState): OrgProps => {
   //console.log(state.orgReader)
   return {
-    num: state.orgReader.num,
-    orgs: state.orgReader.data
+    orgs: state.orgsReader.data
   }
 }
 
