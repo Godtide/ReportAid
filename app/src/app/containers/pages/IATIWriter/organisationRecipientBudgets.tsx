@@ -28,8 +28,11 @@ import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
 
 const reportSchema = Yup.object().shape({
-  organisations: Yup
-    .object()
+  organisationsRef: Yup
+    .string()
+    .required('Required'),
+  organisationRef: Yup
+    .string()
     .required('Required'),
   recipientOrgRef: Yup
     .string()
@@ -102,6 +105,7 @@ type OrganisationRecipientBudgetsFormProps = WithStyles<typeof styles> & Organis
 export class OrganisationRecipientBudgetsForm extends React.Component<OrganisationRecipientBudgetsFormProps> {
 
   state = {
+    organisationsRef: "",
     submitFunc: (function(submit: boolean) { return submit }),
     resetFunc: (function() { return null })
   }
@@ -115,6 +119,14 @@ export class OrganisationRecipientBudgetsForm extends React.Component<Organisati
     this.props.handleSubmit(values)
   }
 
+  handleOrganisationsChange = (value: string) => {
+    this.setState({organisationsRef: value})
+  }
+
+  handleOrganisationChange = (value: string) => {
+    console.log(value)
+  }
+
   render() {
 
     return (
@@ -122,7 +134,9 @@ export class OrganisationRecipientBudgetsForm extends React.Component<Organisati
         <h2>{OrganisationRecipientBudget.headingOrganisationRecipientBudgetWriter}</h2>
         <div>
           <Formik
-            initialValues={ {organisations: {},
+            initialValues={ {organisationsRef: "",
+                             organisationRef: "",
+                             budgetRef: "",
                              recipientOrgRef: "",
                              budgetLine: "",
                              value: 0,
@@ -141,8 +155,19 @@ export class OrganisationRecipientBudgetsForm extends React.Component<Organisati
             render={(formProps: FormikProps<OrganisationRecipientBudgetProps>) => (
               <Form>
                 <FormControl fullWidth={true}>
-                  <OrganisationsPicker name='organisations' label={OrganisationRecipientBudget.organisationsReference} />
-                  <OrganisationPicker name='recipientOrgRef' label={OrganisationRecipientBudget.orgReference} />
+                  <OrganisationsPicker
+                    changeFunction={this.handleOrganisationsChange}
+                    name='organisationsRef'
+                    label={OrganisationRecipientBudget.organisationsReference}
+                  />
+                  <ErrorMessage name='organisationsRef' />
+                  <OrganisationPicker
+                    organisationsRef={this.state.organisationsRef}
+                    changeFunction={this.handleOrganisationChange}
+                    name='organisationRef'
+                    label={OrganisationRecipientBudget.organisationReference}
+                  />
+                  <ErrorMessage name='organisationRef' />
                   <Field
                     name='budgetLine'
                     label={OrganisationRecipientBudget.budgetLine}

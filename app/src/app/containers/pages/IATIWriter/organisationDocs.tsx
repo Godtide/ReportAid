@@ -42,8 +42,11 @@ import { withTheme, styles } from '../../../styles/theme'
 })(Select);*/
 
 const docSchema = Yup.object().shape({
-  organisations: Yup
-    .object()
+  organisationsRef: Yup
+    .string()
+    .required('Required'),
+  organisationRef: Yup
+    .string()
     .required('Required'),
   title: Yup
     .string()
@@ -101,6 +104,7 @@ type OrgDocsFormProps = WithStyles<typeof styles> & OrgDocsDispatchProps
 export class OrgDocsForm extends React.Component<OrgDocsFormProps> {
 
   state = {
+    organisationsRef: "",
     submitFunc: (function(submit: boolean) { return submit }),
     resetFunc: (function() { return null })
   }
@@ -114,6 +118,14 @@ export class OrgDocsForm extends React.Component<OrgDocsFormProps> {
     this.props.handleSubmit(values)
   }
 
+  handleOrganisationsChange = (value: string) => {
+    this.setState({organisationsRef: value})
+  }
+
+  handleOrganisationChange = (value: string) => {
+    console.log(value)
+  }
+
   render() {
 
     return (
@@ -121,7 +133,9 @@ export class OrgDocsForm extends React.Component<OrgDocsFormProps> {
         <h2>{OrganisationDoc.headingOrganisationDocWriter}</h2>
         <div>
           <Formik
-            initialValues={ {organisations: {},
+            initialValues={ {organisationsRef: "",
+                             organisationRef: "",
+                             docRef: "",
                              title: '',
                              format: '',
                              url: '',
@@ -140,7 +154,19 @@ export class OrgDocsForm extends React.Component<OrgDocsFormProps> {
             render={(formProps: FormikProps<OrganisationDocProps>) => (
               <Form>
                 <FormControl fullWidth={true}>
-                  <OrganisationsPicker name='organisations' label={OrganisationDoc.organisationsReference} />
+                  <OrganisationsPicker
+                    changeFunction={this.handleOrganisationsChange}
+                    name='organisationsRef'
+                    label={OrganisationDoc.organisationsReference}
+                  />
+                  <ErrorMessage name='organisationsRef' />
+                  <OrganisationPicker
+                    organisationsRef={this.state.organisationsRef}
+                    changeFunction={this.handleOrganisationChange}
+                    name='organisationRef'
+                    label={OrganisationDoc.organisationReference}
+                  />
+                  <ErrorMessage name='organisationRef' />
                   <Field
                     name='title'
                     label={OrganisationDoc.documentTitle}

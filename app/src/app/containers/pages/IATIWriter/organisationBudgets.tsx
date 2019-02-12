@@ -42,8 +42,11 @@ import { withTheme, styles } from '../../../styles/theme'
 })(Select);*/
 
 const reportSchema = Yup.object().shape({
-  organisations: Yup
-    .object()
+  organisationsRef: Yup
+    .string()
+    .required('Required'),
+  organisationRef: Yup
+    .string()
     .required('Required'),
   budgetLine: Yup
     .string()
@@ -113,6 +116,7 @@ type OrganisationBudgetsFormProps = WithStyles<typeof styles> & OrganisationBudg
 export class OrganisationBudgetsForm extends React.Component<OrganisationBudgetsFormProps> {
 
   state = {
+    organisationsRef: "",
     submitFunc: (function(submit: boolean) { return submit }),
     resetFunc: (function() { return null })
   }
@@ -126,6 +130,14 @@ export class OrganisationBudgetsForm extends React.Component<OrganisationBudgets
     this.props.handleSubmit(values)
   }
 
+  handleOrganisationsChange = (value: string) => {
+    this.setState({organisationsRef: value})
+  }
+
+  handleOrganisationChange = (value: string) => {
+    console.log(value)
+  }
+
   render() {
 
     return (
@@ -133,7 +145,9 @@ export class OrganisationBudgetsForm extends React.Component<OrganisationBudgets
         <h2>{OrganisationBudget.headingOrganisationBudgetWriter}</h2>
         <div>
           <Formik
-            initialValues={ {organisations: "",
+            initialValues={ {organisationsRef: "",
+                             organisationRef: "",
+                             budgetRef: "",
                              budgetLine: "",
                              value: 0,
                              status: 1,
@@ -151,7 +165,19 @@ export class OrganisationBudgetsForm extends React.Component<OrganisationBudgets
             render={(formProps: FormikProps<OrganisationBudgetProps>) => (
               <Form>
                 <FormControl fullWidth={true}>
-                  <OrganisationsPicker label={OrganisationBudget.organisationsReference} />
+                  <OrganisationsPicker
+                    changeFunction={this.handleOrganisationsChange}
+                    name='organisationsRef'
+                    label={OrganisationBudget.organisationsReference}
+                  />
+                  <ErrorMessage name='organisationsRef' />
+                  <OrganisationPicker
+                    organisationsRef={this.state.organisationsRef}
+                    changeFunction={this.handleOrganisationChange}
+                    name='organisationRef'
+                    label={OrganisationBudget.organisationReference}
+                  />
+                  <ErrorMessage name='organisationRef' />
                   <Field
                     name='budgetLine'
                     label={OrganisationBudget.budgetLine}

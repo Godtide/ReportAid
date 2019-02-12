@@ -29,8 +29,11 @@ import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
 
 const reportSchema = Yup.object().shape({
-  organisations: Yup
-    .object()
+  organisationsRef: Yup
+    .string()
+    .required('Required'),
+  organisationRef: Yup
+    .string()
     .required('Required'),
   expenditureLine: Yup
     .string()
@@ -100,6 +103,7 @@ type OrganisationExpenditureFormProps = WithStyles<typeof styles> & Organisation
 export class OrganisationExpenditureForm extends React.Component<OrganisationExpenditureFormProps> {
 
   state = {
+    organisationsRef: "",
     submitFunc: (function(submit: boolean) { return submit }),
     resetFunc: (function() { return null })
   }
@@ -113,6 +117,14 @@ export class OrganisationExpenditureForm extends React.Component<OrganisationExp
     this.props.handleSubmit(values)
   }
 
+  handleOrganisationsChange = (value: string) => {
+    this.setState({organisationsRef: value})
+  }
+
+  handleOrganisationChange = (value: string) => {
+    console.log(value)
+  }
+
   render() {
 
     return (
@@ -120,7 +132,9 @@ export class OrganisationExpenditureForm extends React.Component<OrganisationExp
         <h2>{OrganisationExpenditureStrings.headingOrganisationExpenditureWriter}</h2>
         <div>
           <Formik
-            initialValues={ {organisations: {},
+            initialValues={ {organisationsRef: "",
+                             organisationRef: "",
+                             expenditureRef: "",
                              expenditureLine: "",
                              value: 0,
                              status: 1,
@@ -138,7 +152,19 @@ export class OrganisationExpenditureForm extends React.Component<OrganisationExp
             render={(formProps: FormikProps<OrganisationExpenditureProps>) => (
               <Form>
                 <FormControl fullWidth={true}>
-                  <OrganisationsPicker name='organisations' label={OrganisationExpenditureStrings.organisationsReference} />
+                  <OrganisationsPicker
+                    changeFunction={this.handleOrganisationsChange}
+                    name='organisationsRef'
+                    label={OrganisationExpenditureStrings.organisationsReference}
+                  />
+                  <ErrorMessage name='organisationsRef' />
+                  <OrganisationPicker
+                    organisationsRef={this.state.organisationsRef}
+                    changeFunction={this.handleOrganisationChange}
+                    name='organisationRef'
+                    label={OrganisationExpenditureStrings.organisationReference}
+                  />
+                  <ErrorMessage name='organisationRef' />
                   <Field
                     name='expenditureLine'
                     label={OrganisationExpenditureStrings.expenditureLine}

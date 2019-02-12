@@ -109,13 +109,6 @@ export class OrganisationForm extends React.Component<OrganisationFormProps> {
                     label={OrganisationStrings.organisationsReference}
                   />
                   <ErrorMessage name='organisationsRef' />
-                  <OrganisationPicker
-                    organisationsRef={this.state.organisationsRef}
-                    changeFunction={this.handleOrganisationChange}
-                    name='organisationRef'
-                    label={OrganisationStrings.organisationReference}
-                  />
-                  <ErrorMessage name='organisationRef' />
                   <Field
                     name="reportingOrgType"
                     label={OrganisationStrings.reportingOrgType}
