@@ -27,6 +27,12 @@ import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
 
 const organisationSchema = Yup.object().shape({
+  organisationsRef: Yup
+    .string()
+    .required('Required'),
+  organisationRef: Yup
+    .string()
+    .required('Required'),
   reportingOrgRef: Yup
     .string()
     .required('Required'),
@@ -53,6 +59,7 @@ type OrganisationFormProps = WithStyles<typeof styles> & OrganisationDispatchPro
 export class OrganisationForm extends React.Component<OrganisationFormProps> {
 
   state = {
+    organisationsRef: "",
     submitFunc: (function(submit: boolean) { return submit }),
     resetFunc: (function() { return null })
   }
@@ -64,6 +71,14 @@ export class OrganisationForm extends React.Component<OrganisationFormProps> {
   handleSubmit = (values: OrganisationProps, setSubmitting: Function, reset: Function) => {
     this.setState({submitFunc: setSubmitting, resetFunc: reset})
     this.props.handleSubmit(values)
+  }
+
+  handleOrganisationsChange = (value: string) => {
+    this.setState({organisationsRef: value})
+  }
+
+  handleOrganisationChange = (value: string) => {
+    console.log(value)
   }
 
   render() {
@@ -88,8 +103,19 @@ export class OrganisationForm extends React.Component<OrganisationFormProps> {
             render={(formProps: FormikProps<OrganisationProps>) => (
               <Form>
                 <FormControl fullWidth={true}>
-                  <OrganisationsPicker label={OrganisationStrings.organisationsReference} />
-                  <OrganisationPicker organisationsRef={organisationsRef} label={OrganisationStrings.organisationReference} />
+                  <OrganisationsPicker
+                    changeFunction={this.handleOrganisationsChange}
+                    name='organisationsRef'
+                    label={OrganisationStrings.organisationsReference}
+                  />
+                  <ErrorMessage name='organisationsRef' />
+                  <OrganisationPicker
+                    organisationsRef={this.state.organisationsRef}
+                    changeFunction={this.handleOrganisationChange}
+                    name='organisationRef'
+                    label={OrganisationStrings.organisationReference}
+                  />
+                  <ErrorMessage name='organisationRef' />
                   <Field
                     name="reportingOrgType"
                     label={OrganisationStrings.reportingOrgType}

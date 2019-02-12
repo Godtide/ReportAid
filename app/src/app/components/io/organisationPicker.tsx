@@ -14,14 +14,10 @@ import { getOrganisation } from '../../store/IATI/IATIReader/organisations/organ
 import { IATIOrganisationsData, IATIOrganisationReportProps } from '../../store/IATI/IATIReader/organisations/types'
 import { OrganisationProps } from '../../store/IATI/types'
 
-const organisationSchema = Yup.object().shape({
-  organisation: Yup
-    .string()
-    .required('Required')
-})
-
 interface OrganisationFormProps {
   organisationsRef: string
+  changeFunction: Function
+  name: string
   label: string
 }
 
@@ -58,13 +54,12 @@ class Organisation extends React.Component<OrganisationPickerProps> {
     return (
       <React.Fragment>
         <Field
-          name='organisation'
+          name={this.props.name}
           label={this.props.label}
-          validate={organisationSchema}
           component={Select}
+          onChange={(ev: any)=>this.props.changeFunction(ev.target.value)}
           options={organisationRefs}
         />
-        <ErrorMessage name='organisation' />
       </React.Fragment>
     )
   }
