@@ -3,13 +3,12 @@ import { ThunkDispatch } from 'redux-thunk'
 import { ApplicationState } from '../../../../store'
 
 import { ActionProps } from '../../../../types'
-
-import { read } from '../actions'
-
-import { IATIOrganisationsReportProps,
-         IATIReportActionTypes,
+import { IATIOrganisationBudgetProps } from '../../../types'
+import { IATIReportActionTypes,
          IATIBudgetReportProps,
          OrganisationsReportProps } from '../types'
+
+import { read } from '../actions'
 
 export const getBudgets = (props: OrganisationsReportProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
@@ -19,7 +18,8 @@ export const getBudgets = (props: OrganisationsReportProps) => {
     const organisationsRef = props.organisationsRef
     const organisationRef = props.organisationRef
 
-    const report = state.organisationsReport.data as IATIOrganisationsReportProps
+    const budgetReports = state.organisationsReport.data[organisationsRef].data[organisationRef].data.totalBudget as IATIBudgetReportProps
+
     let actionType = IATIReportActionTypes.BUDGET_FAILURE
     try {
       const num = await budgetsContract.getNumBudgets(props.organisationsRef, props.organisationRef)
@@ -28,16 +28,16 @@ export const getBudgets = (props: OrganisationsReportProps) => {
          const budgetRef = await budgetsContract.getBudgetReference(organisationsRef,
                                                                     organisationRef,
                                                                     i.toString())
-         const budget: IATIBudgetReportProps = await budgetsContract.getBudget(organisationsRef,
-                                                        organisationRef,
-                                                        budgetRef)
-         report[organisationsRef][organisationRef].totalBudget[budgetRef] = budget
+         const budget: IATIOrganisationBudgetProps = await budgetsContract.getBudget(organisationsRef,
+                                                                               organisationRef,
+                                                                               budgetRef)
+         budgetReports[budgetRef] = budget
          actionType = IATIReportActionTypes.BUDGET_SUCCESS
       }
     } catch (error) {
       console.log('getBudgets error', error)
     }
 
-    dispatch(read({data: report})(actionType))
+    dispatch(read({data: budgetReports})(actionType))
   }
 }

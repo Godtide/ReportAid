@@ -3,11 +3,10 @@ import { ThunkDispatch } from 'redux-thunk'
 import { ApplicationState } from '../../../../store'
 
 import { ActionProps } from '../../../../types'
-
-import { read } from '../actions'
-
 import { IATIOrganisationProps } from '../../../types'
 import { IATIReportActionTypes, IATIOrganisationReportProps, OrganisationReportProps } from '../types'
+
+import { read } from '../actions'
 
 export const getOrganisation = (props: OrganisationReportProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
