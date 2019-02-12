@@ -9,7 +9,7 @@ import { getExpenditure } from '../../../store/IATI/IATIReader/organisations/org
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { OrganisationExpenditureData } from '../../../store/IATI/IATIReader/types'
+import { IATIOrganisationsData } from '../../../store/IATI/IATIReader/organisations/types'
 
 import { OrganisationExpenditure as OrganisationExpenditureStrings } from '../../../utils/strings'
 
@@ -17,8 +17,7 @@ import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
 
 interface OrganisationExpenditureProps {
-  num: number
-  orgExpenditure: OrganisationExpenditureData
+  organisations: IATIOrganisationsData
 }
 
 interface OrganisationExpenditureDispatchProps {
@@ -76,10 +75,10 @@ class Expenditure extends React.Component<OrganisationExpenditureReaderProps> {
       <div>
         <h2>{OrganisationExpenditureStrings.headingOrganisationExpenditureReader}</h2>
         <p>
-          <b>{OrganisationExpenditureStrings.nums}</b>: {this.props.num}
+          <b>{OrganisationExpenditureStrings.numExpenditure}</b>: {num}
         </p>
         <hr />
-        <h3>{OrganisationExpenditureStrings.reportExpenditureDetails}</h3>
+        <h3>{OrganisationExpenditureStrings.organisationExpenditureDetails}</h3>
         <Markdown escapeHtml={false} source={xs} />
       </div>
     )
@@ -89,8 +88,7 @@ class Expenditure extends React.Component<OrganisationExpenditureReaderProps> {
 const mapStateToProps = (state: ApplicationState): OrganisationExpenditureProps => {
   //console.log(state.orgReader)
   return {
-    num: state.orgExpenditureReader.num,
-    orgExpenditure: state.orgExpenditureReader.data
+    organisations: state.organisationsReader.data
   }
 }
 

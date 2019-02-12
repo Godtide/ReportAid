@@ -9,7 +9,7 @@ import { getRecipientBudgets } from '../../../store/IATI/IATIReader/organisation
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { OrganisationRecipientBudgetsData } from '../../../store/IATI/IATIReader/types'
+import { IATIOrganisationsData } from '../../../store/IATI/IATIReader/organisations/types'
 
 import { OrganisationRecipientBudget as OrganisationRecipientBudgetStrings } from '../../../utils/strings'
 
@@ -17,8 +17,7 @@ import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
 
 interface OrganisationRecipientBudgetProps {
-  num: number
-  orgRecipientBudgets: OrganisationRecipientBudgetsData
+  organisations: IATIOrganisationsData
 }
 
 interface OrganisationRecipientBudgetDispatchProps {
@@ -77,10 +76,10 @@ class RecipientBudgets extends React.Component<OrganisationRecipientBudgetsReade
       <div>
         <h2>{OrganisationRecipientBudgetStrings.headingOrganisationRecipientBudgetReader}</h2>
         <p>
-          <b>{OrganisationRecipientBudgetStrings.nums}</b>: {this.props.num}
+          <b>{OrganisationRecipientBudgetStrings.numBudgets}</b>: {num}
         </p>
         <hr />
-        <h3>{OrganisationRecipientBudgetStrings.reportBudgetDetails}</h3>
+        <h3>{OrganisationRecipientBudgetStrings.organisationRecipientBudgetDetails}</h3>
         <Markdown escapeHtml={false} source={xs} />
       </div>
     )
@@ -90,8 +89,7 @@ class RecipientBudgets extends React.Component<OrganisationRecipientBudgetsReade
 const mapStateToProps = (state: ApplicationState): OrganisationRecipientBudgetProps => {
   //console.log(state.orgReader)
   return {
-    num: state.orgRecipientBudgetsReader.num,
-    orgRecipientBudgets: state.orgRecipientBudgetsReader.data
+    organisations: state.organisationsReader.data
   }
 }
 

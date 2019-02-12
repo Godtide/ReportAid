@@ -75,7 +75,7 @@ class Budgets extends React.Component<OrganisationBudgetsReaderProps> {
       <div>
         <h2>{OrgBudgetStrings.headingOrganisationBudgetReader}</h2>
         <p>
-          <b>{OrgBudgetStrings.num}</b>: {num}
+          <b>{OrgBudgetStrings.numBudgets}</b>: {num}
         </p>
         <hr />
         <h3>{OrgBudgetStrings.organisationBudgetDetails}</h3>

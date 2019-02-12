@@ -77,10 +77,10 @@ class CountryBudgets extends React.Component<OrganisationCountryBudgetsReaderPro
       <div>
         <h2>{OrganisationCountryBudgetStrings.headingOrganisationCountryBudgetReader}</h2>
         <p>
-          <b>{OrganisationCountryBudgetStrings.nums}</b>: {this.props.num}
+          <b>{OrganisationCountryBudgetStrings.numBudgets}</b>: {num}
         </p>
         <hr />
-        <h3>{OrganisationCountryBudgetStrings.reportBudgetDetails}</h3>
+        <h3>{OrganisationCountryBudgetStrings.organisationCountryBudgetDetails}</h3>
         <Markdown escapeHtml={false} source={xs} />
       </div>
     )

@@ -5,26 +5,23 @@ import { ThunkDispatch } from 'redux-thunk'
 import { ethers } from 'ethers'
 import Markdown from 'react-markdown'
 
-import { getOrgs } from '../../../store/IATI/IATIReader/organisations/organisations/actions'
+import { getOrganisations } from '../../../store/IATI/IATIReader/organisations/organisations/actions'
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { OrganisationsData } from '../../../store/IATI/IATIReader/types'
+import { IATIOrganisationsData } from '../../../store/IATI/IATIReader/organisations/types'
 
-import { Organisation as OrgStrings } from '../../../utils/strings'
-
-import { getDictEntries } from '../../../components/io/dict'
+import { Organisations as OrganisationsStrings } from '../../../utils/strings'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
 
 interface OrgProps {
-  num: number
-  orgs: OrgData
+  organisations: IATIOrganisationsData
 }
 
 interface OrgDispatchProps {
-  getOrgs: () => void
+  getOrganisations: () => void
 }
 
 type OrgReaderProps =  WithStyles<typeof styles> & OrgProps & OrgDispatchProps
@@ -36,7 +33,7 @@ class OrganisationsReader extends React.Component<OrgReaderProps> {
   }
 
   componentDidMount() {
-    this.props.getOrgs()
+    this.props.getOrganisations()
   }
 
   render() {
@@ -78,12 +75,12 @@ class OrganisationsReader extends React.Component<OrgReaderProps> {
 
     return (
       <div>
-        <h2>{OrgStrings.headingOrgReader}</h2>
+        <h2>{OrganisationsStrings.headingOrganisationsReader}</h2>
         <p>
-          <b>{OrgStrings.numOrganisations}</b>: {this.props.num}
+          <b>{OrganisationsStrings.numOrganisations}</b>: {num}
         </p>
         <hr />
-        <h3>{OrgStrings.orgDetails}</h3>
+        <h3>{OrganisationsStrings.organisationsDetails}</h3>
         <Markdown escapeHtml={false} source={xs} />
       </div>
     )
@@ -93,14 +90,13 @@ class OrganisationsReader extends React.Component<OrgReaderProps> {
 const mapStateToProps = (state: ApplicationState): OrgProps => {
   //console.log(state.orgReader)
   return {
-    num: state.orgsReader.num,
-    orgs: state.orgsReader.data
+    organisations: state.organisationsReader.data
   }
 }
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgDispatchProps => {
   return {
-    getOrgs: () => dispatch(getOrgs())
+    getOrganisations: () => dispatch(getOrganisations())
   }
 }
 

@@ -103,7 +103,6 @@ class Org {
   static headingOrgWriter = 'Create Organisation'
   static headingOrgReader = 'Read Organisation'
 
-  static orgDetails = 'Organisation Details'
   static orgIdentifier = "Organisation Reference"
 
   static orgName = 'Name'
@@ -111,6 +110,7 @@ class Org {
   static identifier = 'Identifier'
 
   static numOrgs = 'Number of Organisations'
+  static orgDetails = 'Organisation Details'
 }
 
 class Organisations {
@@ -122,8 +122,8 @@ class Organisations {
   static reportKey = "Key"
   static generated = "Generated"
 
-  static numOrganisations = 'Number of Organisations'
-  static organisationsDetails = 'Details'
+  static numOrganisations = 'Number of Organisations Reports'
+  static organisationsDetails = 'Organisations Reports Details'
 }
 
 class Organisation {
@@ -143,15 +143,13 @@ class Organisation {
   static lastUpdated = "Last Updated"
 
   static numOrganisation = 'Number of Organisation Records'
-  static organisationDetails = 'Details'
+  static organisationDetails = 'Organisation Details'
 }
 
 class OrganisationDoc {
 
   static headingOrganisationDocWriter = 'Create Document'
   static headingOrganisationDocReader = 'Documents'
-
-  static num = "Number of Organisations Reporting"
 
   static organisationsReference = "Organisations Reference"
   static organisationReference = "Organisation Reference"
@@ -169,7 +167,7 @@ class OrganisationDoc {
   static documentYear = "Year"
   static documentDate = "Date"
 
-  static numOrganisationDocs = "Number of Documents"
+  static numDocs = "Number of Documents"
   static organisationDocDetails = 'Document Details'
 }
 
@@ -177,8 +175,6 @@ class OrganisationBudget {
 
   static headingOrganisationBudgetWriter = 'Create Report Budget'
   static headingOrganisationBudgetReader = 'Report Budgets'
-
-  static num = "Number of Organisations Reporting"
 
   static reportingOrgRef = 'Reporting Organisation'
   static budgetReference = "Budget Reference"
@@ -205,8 +201,6 @@ class OrganisationExpenditure {
   static headingOrganisationExpenditureWriter = 'Create Report Expenditure'
   static headingOrganisationExpenditureReader = 'Report Expenditure'
 
-  static num = "Number of Organisations Reporting"
-
   static reportingOrgRef = 'Reporting Organisation'
   static expenditureReference = "Expenditure Reference"
   static organisationsReference = "Organisations Reference"
@@ -232,8 +226,6 @@ class OrganisationRecipientBudget {
   static headingOrganisationRecipientBudgetWriter = 'Create Report Recipient Budget'
   static headingOrganisationRecipientBudgetReader = 'Report Recipient Budgets'
 
-  static num = "Number of Organisations Reporting"
-
   static reportingOrgRef = 'Reporting Organisation'
   static budgetReference = "Budget Reference"
   static organisationsReference = "Organisations Reference"
@@ -252,15 +244,13 @@ class OrganisationRecipientBudget {
   static budgetEndYear = "End Year"
 
   static numBudgets = "Number of Recipient Budgets"
-  static organisationBudgetDetails = 'Recipient Budget Details'
+  static organisationRecipientBudgetDetails = 'Recipient Budget Details'
 }
 
 class OrganisationRegionBudget {
 
   static headingOrganisationRegionBudgetWriter = 'Create Report Region Budget'
   static headingOrganisationRegionBudgetReader = 'Report Region Budgets'
-
-  static num = "Number of Organisations Reporting"
 
   static reportingOrgRef = 'Reporting Organisation'
   static budgetReference = "Budget Reference"
@@ -280,15 +270,13 @@ class OrganisationRegionBudget {
   static budgetEndYear = "End Year"
 
   static numBudgets = "Number of Region Budgets"
-  static organisationBudgetDetails = 'Region Budget Details'
+  static organisationRegionBudgetDetails = 'Region Budget Details'
 }
 
 class OrganisationCountryBudget {
 
   static headingOrganisationCountryBudgetWriter = 'Create Report Country Budget'
   static headingOrganisationCountryBudgetReader = 'Report Country Budgets'
-
-  static num = "Number of Organisations Reporting"
 
   static reportingOrgRef = 'Reporting Organisation'
   static budgetReference = "Budget Reference"
@@ -308,7 +296,7 @@ class OrganisationCountryBudget {
   static budgetEndYear = "End Year"
 
   static numBudgets = "Number of Country Budgets"
-  static organisationBudgetDetails = 'Country Budget Details'
+  static organisationCountryBudgetDetails = 'Country Budget Details'
 }
 
 

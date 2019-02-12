@@ -7,11 +7,9 @@ import { getOrgs } from '../../../store/IATI/IATIReader/organisations/orgs/actio
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { IATIOrgReports } from '../../../store/IATI/IATIReader/orgs/types'
+import { IATIOrgReports } from '../../../store/IATI/IATIReader/organisations/orgs/types'
 
 import { Org as OrgStrings } from '../../../utils/strings'
-
-import { getDictEntries } from '../../../components/io/dict'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
@@ -39,8 +37,9 @@ class OrgsReader extends React.Component<OrgReaderProps> {
   render() {
 
     let xs: string = ""
-    //console.log('Orgs props: ', this.props.orgs)
+    let num = 0
     Object.keys(this.props.orgs).forEach((key) => {
+      num += 1
       xs += `**${OrgStrings.orgIdentifier}**: ${key}, `
       xs += `**${OrgStrings.orgName}**: ${this.props.orgs[key].name}, `
       xs += `**${OrgStrings.identifier}**: ${this.props.orgs[key].identifier}<br />`
@@ -50,7 +49,7 @@ class OrgsReader extends React.Component<OrgReaderProps> {
       <div>
         <h2>{OrgStrings.headingOrgReader}</h2>
         <p>
-          <b>{OrgStrings.numOrgs}</b>: {this.props.num}
+          <b>{OrgStrings.numOrgs}</b>: {num}
         </p>
         <hr />
         <h3>{OrgStrings.orgDetails}</h3>

@@ -18,7 +18,7 @@ export const getExpenditure = (props: OrganisationsReportProps) => {
     const organisationsRef = props.organisationsRef
     const organisationRef = props.organisationRef
 
-    const expenditureReports = state.organisationsReport.data[organisationsRef].data[organisationRef].data.totalExpenditure as IATITotalExpenditureReportProps
+    const expenditureReports = state.organisationsReport.data[organisationsRef].data[organisationRef].data.totalExpenditure as IATIOrganisationExpenditureProps
 
     let actionType = IATIReportActionTypes.TOTALEXPENDITURE_FAILURE
     try {

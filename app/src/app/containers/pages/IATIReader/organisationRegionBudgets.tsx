@@ -9,7 +9,7 @@ import { getRegionBudgets } from '../../../store/IATI/IATIReader/organisations/o
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { OrganisationRegionBudgetsData } from '../../../store/IATI/IATIReader/organisations/types'
+import { IATIOrganisationsData } from '../../../store/IATI/IATIReader/organisations/types'
 
 import { OrganisationRegionBudget as OrganisationRegionBudgetStrings } from '../../../utils/strings'
 
@@ -17,8 +17,7 @@ import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
 
 interface OrganisationRegionBudgetProps {
-  num: number
-  orgRegionBudgets: OrganisationRegionBudgetsData
+  organisations: IATIOrganisationsData
 }
 
 interface OrganisationRegionBudgetDispatchProps {
@@ -77,10 +76,10 @@ class RegionBudgets extends React.Component<OrganisationRegionBudgetsReaderProps
       <div>
         <h2>{OrganisationRegionBudgetStrings.headingOrganisationRegionBudgetReader}</h2>
         <p>
-          <b>{OrganisationRegionBudgetStrings.nums}</b>: {this.props.num}
+          <b>{OrganisationRegionBudgetStrings.numBudgets}</b>: {num}
         </p>
         <hr />
-        <h3>{OrganisationRegionBudgetStrings.reportBudgetDetails}</h3>
+        <h3>{OrganisationRegionBudgetStrings.organisationRegionBudgetDetails}</h3>
         <Markdown escapeHtml={false} source={xs} />
       </div>
     )
@@ -90,8 +89,7 @@ class RegionBudgets extends React.Component<OrganisationRegionBudgetsReaderProps
 const mapStateToProps = (state: ApplicationState): OrganisationRegionBudgetProps => {
   //console.log(state.orgReader)
   return {
-    num: state.orgRegionBudgetsReader.num,
-    orgRegionBudgets: state.orgRegionBudgetsReader.data
+    organisations: state.organisationsReader.data
   }
 }
 

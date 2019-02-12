@@ -79,10 +79,10 @@ class Docs extends React.Component<OrganisationDocsReaderProps> {
       <div>
         <h2>{OrganisationDocStrings.headingOrganisationDocReader}</h2>
         <p>
-          <b>{OrganisationDocStrings.nums}</b>: {this.props.num}
+          <b>{OrganisationDocStrings.numDocs}</b>: {num}
         </p>
         <hr />
-        <h3>{OrganisationDocStrings.reportDocDetails}</h3>
+        <h3>{OrganisationDocStrings.organisationDocDetails}</h3>
         <Markdown escapeHtml={false} source={xs} />
       </div>
     )
@@ -92,8 +92,7 @@ class Docs extends React.Component<OrganisationDocsReaderProps> {
 const mapStateToProps = (state: ApplicationState): OrganisationDocProps => {
   //console.log(state.orgReader)
   return {
-    num: state.orgDocsReader.num,
-    orgDocs: state.orgDocsReader.data
+    organisations: state.organisationsReader.data
   }
 }
 
