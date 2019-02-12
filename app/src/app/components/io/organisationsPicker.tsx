@@ -1,5 +1,6 @@
 import * as React from 'react'
 
+import * as Yup from 'yup'
 import { connect } from 'react-redux'
 import { ThunkDispatch } from 'redux-thunk'
 
@@ -11,7 +12,13 @@ import { Select } from "material-ui-formik-components"
 
 import { getOrganisations } from '../../store/IATI/IATIReader/organisations/organisations/actions'
 
-import { IATIOrganisationsData } from '../../store/IATIReader/organisations/types'
+import { IATIOrganisationsData } from '../../store/IATI/IATIReader/organisations/types'
+
+const organisationsSchema = Yup.object().shape({
+  organisations: Yup
+    .string()
+    .required('Required')
+})
 
 interface OrganisationsFormProps {
   name: string
@@ -50,13 +57,13 @@ class Organisations extends React.Component<OrganisationsPickerProps> {
     return (
       <React.Fragment>
         <Field
-          name={this.props.name}
+          name='organisations'
           label={this.props.label}
-          validate={this.validateOrganisations}
+          validate={organisationsSchema}
           component={Select}
           options={organisationsRefs}
         />
-        <ErrorMessage name={this.props.name} />
+        <ErrorMessage name='organisations' />
       </React.Fragment>
     )
   }
