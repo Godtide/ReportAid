@@ -13,155 +13,12 @@ import { withTheme, styles } from '../styles/theme'
 import { Paths, Organisation } from '../utils/strings'
 import { Paths as PathConfig } from '../utils/config'
 
-/*
-static readonly orgWriter='/create-organisation'
-static readonly organisationsWriter='/create-organisations-report'
-static readonly organisationWriter='/create-organisationsreport'
-static readonly organisationDocsWriter = '/create-organisation-report-docs'
-static readonly organisationBudgetsWriter = '/create-organisation-report-budget'
-static readonly organisationExpenditureWriter = '/create-organisation-report-expenditure'
-static readonly organisationRecipientBudgetsWriter = '/create-organisation-report-recipient-budget'
-static readonly organisationRegionBudgetsWriter = '/create-organisation-report-region-budget'
-static readonly organisationCountryBudgetsWriter = '/create-organisation-report-country-budget'
-*/
-
-/*<Link to={PathConfig.orgReportWriter}>
-  <MenuItem>
-    <IconButton className={this.props.classes.button} aria-label={Paths.orgReportWriter}>
-      <Create />
-    </IconButton>
-    {Paths.orgReportWriter}
-  </MenuItem>
-</Link>
-<Link to={PathConfig.orgReportDocsWriter}>
-  <MenuItem>
-    <IconButton className={this.props.classes.button} aria-label={Paths.orgReportDocsWriter}>
-      <Create />
-    </IconButton>
-    {Paths.orgReportDocsWriter}
-  </MenuItem>
-</Link>
-<Link to={PathConfig.orgReportBudgetsWriter}>
-  <MenuItem>
-    <IconButton className={this.props.classes.button} aria-label={Paths.orgReportBudgetsWriter}>
-      <Create />
-    </IconButton>
-    {Paths.orgReportBudgetsWriter}
-  </MenuItem>
-</Link>
-<Link to={PathConfig.orgReportExpenditureWriter}>
-  <MenuItem>
-    <IconButton className={this.props.classes.button} aria-label={Paths.orgReportExpenditureWriter}>
-      <Create />
-    </IconButton>
-    {Paths.orgReportExpenditureWriter}
-  </MenuItem>
-</Link>
-<Link to={PathConfig.orgReportRecipientBudgetsWriter}>
-  <MenuItem>
-    <IconButton className={this.props.classes.button} aria-label={Paths.orgReportRecipientBudgetsWriter}>
-      <Create />
-    </IconButton>
-    {Paths.orgReportRecipientBudgetsWriter}
-  </MenuItem>
-</Link>
-<Link to={PathConfig.orgReportRegionBudgetsWriter}>
-  <MenuItem>
-    <IconButton className={this.props.classes.button} aria-label={Paths.orgReportRegionBudgetsWriter}>
-      <Create />
-    </IconButton>
-    {Paths.orgReportRegionBudgetsWriter}
-  </MenuItem>
-</Link>
-<Link to={PathConfig.orgReportCountryBudgetsWriter}>
-  <MenuItem>
-    <IconButton className={this.props.classes.button} aria-label={Paths.orgReportCountryBudgetsWriter}>
-      <Create />
-    </IconButton>
-    {Paths.orgReportCountryBudgetsWriter}
-  </MenuItem>
-</Link>
-*/
-
-/*
-<hr />
-
-<h3>{Organisation.headingOrganisationReader}</h3>
-<MenuList>
-  <Link to={PathConfig.orgReader}>
-    <MenuItem>
-      <IconButton className={this.props.classes.button} aria-label={Paths.orgReader}>
-        <List />
-      </IconButton>
-      {Paths.orgReader}
-    </MenuItem>
-  </Link>
-  <Link to={PathConfig.orgReportReader}>
-    <MenuItem>
-      <IconButton className={this.props.classes.button} aria-label={Paths.orgReportReader}>
-        <List />
-      </IconButton>
-      {Paths.orgReportReader}
-    </MenuItem>
-  </Link>
-  <Link to={PathConfig.orgReportDocsReader}>
-    <MenuItem>
-      <IconButton className={this.props.classes.button} aria-label={Paths.orgReportDocsReader}>
-        <List />
-      </IconButton>
-      {Paths.orgReportDocsReader}
-    </MenuItem>
-  </Link>
-  <Link to={PathConfig.orgReportBudgetsReader}>
-    <MenuItem>
-      <IconButton className={this.props.classes.button} aria-label={Paths.orgReportBudgetsReader}>
-        <List />
-      </IconButton>
-      {Paths.orgReportBudgetsReader}
-    </MenuItem>
-  </Link>
-  <Link to={PathConfig.orgReportExpenditureReader}>
-    <MenuItem>
-      <IconButton className={this.props.classes.button} aria-label={Paths.orgReportExpenditureReader}>
-        <List />
-      </IconButton>
-      {Paths.orgReportExpenditureReader}
-    </MenuItem>
-  </Link>
-  <Link to={PathConfig.orgReportRecipientBudgetsReader}>
-    <MenuItem>
-      <IconButton className={this.props.classes.button} aria-label={Paths.orgReportRecipientBudgetsReader}>
-        <List />
-      </IconButton>
-      {Paths.orgReportRecipientBudgetsReader}
-    </MenuItem>
-  </Link>
-  <Link to={PathConfig.orgReportRegionBudgetsReader}>
-    <MenuItem>
-      <IconButton className={this.props.classes.button} aria-label={Paths.orgReportRegionBudgetsReader}>
-        <List />
-      </IconButton>
-      {Paths.orgReportRegionBudgetsReader}
-    </MenuItem>
-  </Link>
-  <Link to={PathConfig.orgReportCountryBudgetsReader}>
-    <MenuItem>
-      <IconButton className={this.props.classes.button} aria-label={Paths.orgReportCountryBudgetsReader}>
-        <List />
-      </IconButton>
-      {Paths.orgReportCountryBudgetsReader}
-    </MenuItem>
-  </Link>
-</MenuList>
-*/
-
 class Sider extends React.Component<WithStyles<typeof styles>> {
 
   render() {
 
     return (
       <div>
-
         <h3>{Organisation.headingOrganisationWriter}</h3>
         <MenuList>
           <Link to={PathConfig.orgWriter}>
@@ -172,10 +29,123 @@ class Sider extends React.Component<WithStyles<typeof styles>> {
               {Paths.orgWriter}
             </MenuItem>
           </Link>
-
-
+          <Link to={PathConfig.organisationDocsWriter}>
+            <MenuItem>
+              <IconButton className={this.props.classes.button} aria-label={Paths.organisationDocsWriter}>
+                <Create />
+              </IconButton>
+              {Paths.organisationDocsWriter}
+            </MenuItem>
+          </Link>
+          <Link to={PathConfig.organisationBudgetsWriter}>
+            <MenuItem>
+              <IconButton className={this.props.classes.button} aria-label={Paths.organisationBudgetsWriter}>
+                <Create />
+              </IconButton>
+              {Paths.organisationBudgetsWriter}
+            </MenuItem>
+          </Link>
+          <Link to={PathConfig.organisationExpenditureWriter}>
+            <MenuItem>
+              <IconButton className={this.props.classes.button} aria-label={Paths.organisationExpenditureWriter}>
+                <Create />
+              </IconButton>
+              {Paths.organisationExpenditureWriter}
+            </MenuItem>
+          </Link>
+          <Link to={PathConfig.organisationRecipientBudgetsWriter}>
+            <MenuItem>
+              <IconButton className={this.props.classes.button} aria-label={Paths.organisationRecipientBudgetsWriter}>
+                <Create />
+              </IconButton>
+              {Paths.organisationRecipientBudgetsWriter}
+            </MenuItem>
+          </Link>
+          <Link to={PathConfig.organisationRegionBudgetsWriter}>
+            <MenuItem>
+              <IconButton className={this.props.classes.button} aria-label={Paths.organisationRegionBudgetsWriter}>
+                <Create />
+              </IconButton>
+              {Paths.organisationRegionBudgetsWriter}
+            </MenuItem>
+          </Link>
+          <Link to={PathConfig.organisationCountryBudgetsWriter}>
+            <MenuItem>
+              <IconButton className={this.props.classes.button} aria-label={Paths.organisationCountryBudgetsWriter}>
+                <Create />
+              </IconButton>
+              {Paths.organisationCountryBudgetsWriter}
+            </MenuItem>
+          </Link>
         </MenuList>
 
+        <h3>{Organisation.headingOrganisationReader}</h3>
+        <MenuList>
+          <Link to={PathConfig.orgsReader}>
+            <MenuItem>
+              <IconButton className={this.props.classes.button} aria-label={Paths.orgsReader}>
+                <List />
+              </IconButton>
+              {Paths.orgsReader}
+            </MenuItem>
+          </Link>
+          <Link to={PathConfig.organisationReader}>
+            <MenuItem>
+              <IconButton className={this.props.classes.button} aria-label={Paths.organisationReader}>
+                <List />
+              </IconButton>
+              {Paths.organisationReader}
+            </MenuItem>
+          </Link>
+          <Link to={PathConfig.organisationDocsReader}>
+            <MenuItem>
+              <IconButton className={this.props.classes.button} aria-label={Paths.organisationDocsReader}>
+                <List />
+              </IconButton>
+              {Paths.organisationDocsReader}
+            </MenuItem>
+          </Link>
+          <Link to={PathConfig.organisationBudgetsReader}>
+            <MenuItem>
+              <IconButton className={this.props.classes.button} aria-label={Paths.organisationBudgetsReader}>
+                <List />
+              </IconButton>
+              {Paths.organisationBudgetsReader}
+            </MenuItem>
+          </Link>
+          <Link to={PathConfig.organisationExpenditureReader}>
+            <MenuItem>
+              <IconButton className={this.props.classes.button} aria-label={Paths.organisationExpenditureReader}>
+                <List />
+              </IconButton>
+              {Paths.organisationExpenditureReader}
+            </MenuItem>
+          </Link>
+          <Link to={PathConfig.organisationRecipientBudgetsReader}>
+            <MenuItem>
+              <IconButton className={this.props.classes.button} aria-label={Paths.organisationRecipientBudgetsReader}>
+                <List />
+              </IconButton>
+              {Paths.organisationRecipientBudgetsReader}
+            </MenuItem>
+          </Link>
+          <Link to={PathConfig.organisationRegionBudgetsReader}>
+            <MenuItem>
+              <IconButton className={this.props.classes.button} aria-label={Paths.organisationRegionBudgetsReader}>
+                <List />
+              </IconButton>
+              {Paths.organisationRegionBudgetsReader}
+            </MenuItem>
+          </Link>
+          <Link to={PathConfig.organisationCountryBudgetsReader}>
+            <MenuItem>
+              <IconButton className={this.props.classes.button} aria-label={Paths.organisationCountryBudgetsReader}>
+                <List />
+              </IconButton>
+              {Paths.organisationCountryBudgetsReader}
+            </MenuItem>
+          </Link>
+        </MenuList>
 
       </div>
     )

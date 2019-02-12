@@ -29,7 +29,8 @@ class Paths {
   static readonly organisationRecipientBudgetsWriter = "Recipient Budget"
   static readonly organisationRegionBudgetsWriter='Region Budget'
   static readonly organisationCountryBudgetsWriter='Country Budget'
-  static readonly orgReader='Organisation'
+
+  static readonly orgsReader='Organisation'
   static readonly organisationsReader='Organisations'
   static readonly organisationReader='Organisation Reports'
   static readonly organisationDocsReader='Documents'
@@ -85,7 +86,7 @@ class IATIReader {
 
   static heading = 'IATI Reader'
 
-  static info = `The [Read Organisations](#${configPaths.orgReader}) link, lets you read a top-level record for an IATI reporting organsation.`
+  static info = `The [Read Organisations](#${configPaths.orgsReader}) link, lets you read a top-level record for an IATI reporting organsation.`
 }
 
 class Transaction {

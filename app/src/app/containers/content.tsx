@@ -18,25 +18,14 @@ import { OrganisationRecipientBudgets as OrganisationRecipientBudgetsWriter } fr
 import { OrganisationRegionBudgets as OrganisationRegionBudgetsWriter } from './pages/IATIWriter/organisationRegionBudgets'
 import { OrganisationCountryBudgets as OrganisationCountryBudgetsWriter } from './pages/IATIWriter/organisationCountryBudgets'
 
-/*
-import { Orgs as OrgReader } from './pages/IATIReader/orgs'
-import { Organisations as OrgsReader } from './pages/IATIReader/organisations'
+import { Orgs as OrgsReader } from './pages/IATIReader/orgs'
+import { Organisations as OrganisationsReader } from './pages/IATIReader/organisations'
 import { OrganisationDocs as OrgDocsReader } from './pages/IATIReader/organisationDocs'
 import { OrganisationBudgets as OrgBudgetsReader } from './pages/IATIReader/organisationBudgets'
 import { OrganisationExpenditure as OrgExpenditureReader } from './pages/IATIReader/organisationExpenditure'
 import { OrganisationRecipientBudgets as OrgRecipientBudgetsReader } from './pages/IATIReader/organisationRecipientBudgets'
 import { OrganisationRegionBudgets as OrgRegionBudgetsReader } from './pages/IATIReader/organisationRegionBudgets'
 import { OrganisationCountryBudgets as OrgCountryBudgetsReader } from './pages/IATIReader/organisationCountryBudgets'
-
-<Route name={Paths.orgReader} path={PathConfig.orgReader} render={() => <OrgReader />} />
-<Route name={Paths.orgReader} path={PathConfig.orgReader} render={() => <OrgsReader />} />
-<Route name={Paths.orgDocsReader} path={PathConfig.orgDocsReader} render={() => <OrgDocsReader />} />
-<Route name={Paths.orgBudgetsReader} path={PathConfig.orgBudgetsReader} render={() => <OrgBudgetsReader />} />
-<Route name={Paths.orgExpenditureReader} path={PathConfig.orgExpenditureReader} render={() => <OrgExpenditureReader />} />
-<Route name={Paths.orgRecipientBudgetsReader} path={PathConfig.orgRecipientBudgetsReader} render={() => <OrgRecipientBudgetsReader />} />
-<Route name={Paths.orgRegionBudgetsReader} path={PathConfig.orgRegionBudgetsReader} render={() => <OrgRegionBudgetsReader />} />
-<Route name={Paths.orgCountryBudgetsReader} path={PathConfig.orgCountryBudgetsReader} render={() => <OrgCountryBudgetsReader />} />
-*/
 
 import { Paths } from '../utils/strings'
 import { Paths as PathConfig } from '../utils/config'
@@ -99,6 +88,47 @@ class AppContent extends React.Component<WithStyles<typeof styles>> {
           name={Paths.organisationCountryBudgetsWriter}
           path={PathConfig.organisationCountryBudgetsWriter}
           render={() => <OrganisationCountryBudgetsWriter />}
+        />
+
+        <Route
+          name={Paths.orgsReader}
+          path={PathConfig.orgsReader}
+          render={() => <OrgsReader />}
+        />
+        <Route
+          name={Paths.organisationsReader}
+          path={PathConfig.organisationsReader}
+          render={() => <OrganisationsReader />}
+        />
+        <Route
+          name={Paths.organisationDocsReader}
+          path={PathConfig.organisationDocsReader}
+          render={() => <OrgDocsReader />}
+        />
+        <Route
+          name={Paths.organisationBudgetsReader}
+          path={PathConfig.organisationBudgetsReader}
+          render={() => <OrgBudgetsReader />}
+        />
+        <Route
+          name={Paths.organisationExpenditureReader}
+          path={PathConfig.organisationExpenditureReader}
+          render={() => <OrgExpenditureReader />}
+        />
+        <Route
+          name={Paths.organisationRecipientBudgetsReader}
+          path={PathConfig.organisationRecipientBudgetsReader}
+          render={() => <OrgRecipientBudgetsReader />}
+        />
+        <Route
+          name={Paths.organisationRegionBudgetsReader}
+          path={PathConfig.organisationRegionBudgetsReader}
+          render={() => <OrgRegionBudgetsReader />}
+        />
+        <Route
+          name={Paths.organisationCountryBudgetsReader}
+          path={PathConfig.organisationCountryBudgetsReader}
+          render={() => <OrgCountryBudgetsReader />}
         />
 
       </Switch>
