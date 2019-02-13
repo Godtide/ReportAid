@@ -101,17 +101,26 @@ const initialState: IATIOrganisationsReportProps = {
 
 export const reducer = (state: IATIOrganisationsReportProps = initialState, action: ActionProps): IATIOrganisationsReportProps => {
 
-  if ( (action.type == IATIReportActionTypes.ORGANISATIONS_SUCCESS ) ||
-       (action.type == IATIReportActionTypes.ORGANISATION_SUCCESS ) ||
-       (action.type == IATIReportActionTypes.BUDGET_SUCCESS ) ||
-       (action.type == IATIReportActionTypes.RECIPIENTORGBUDGET_SUCCESS ) ||
-       (action.type == IATIReportActionTypes.RECIPIENTREGIONBUDGET_SUCCESS ) ||
-       (action.type == IATIReportActionTypes.RECIPIENTCOUNTRYBUDGET_SUCCESS ) ||
-       (action.type == IATIReportActionTypes.TOTALEXPENDITURE_SUCCESS ) ||
-       (action.type == IATIReportActionTypes.DOCUMENT_SUCCESS ) ) {
-    const data = (action.payload.data as IATIOrganisationsReportProps)
-    return {...state, ...data}
-  } else {
-    return state
+  switch (action.type) {
+    case IATIReportActionTypes.ORGANISATIONS_SUCCESS: {
+      const data = (action.payload as IATIOrganisationsReportProps)
+      console.log("Data: ", data)
+    }
+    case IATIReportActionTypes.ORGANISATION_SUCCESS: {
+    }
+    case IATIReportActionTypes.BUDGET_SUCCESS: {
+    }
+    case IATIReportActionTypes.RECIPIENTORGBUDGET_SUCCESS: {
+    }
+    case IATIReportActionTypes.RECIPIENTREGIONBUDGET_SUCCESS: {
+    }
+    case IATIReportActionTypes.RECIPIENTCOUNTRYBUDGET_SUCCESS: {
+    }
+    case IATIReportActionTypes.TOTALEXPENDITURE_SUCCESS: {
+    }
+    case IATIReportActionTypes.DOCUMENT_SUCCESS: {
+    }
+    default:
+      return state
   }
 }

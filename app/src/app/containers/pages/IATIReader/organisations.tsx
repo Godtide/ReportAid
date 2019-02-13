@@ -38,7 +38,10 @@ class OrganisationsReader extends React.Component<OrgReaderProps> {
 
   render() {
 
-    const reportsData = Object.keys(this.props.organisations)
+    console.log(JSON.stringify(this.props.organisations))
+    //JSON.stringify(this.props.organisations)
+    //const reportsData = Object.keys(this.props.organisations)
+    const reportsData = {}
     let xs = ""
     let num = 0
     /*let xs = ""

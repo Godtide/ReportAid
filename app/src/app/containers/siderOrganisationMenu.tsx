@@ -10,7 +10,7 @@ import List from '@material-ui/icons/List'
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../styles/theme'
 
-import { Paths, Organisation } from '../utils/strings'
+import { Paths, App } from '../utils/strings'
 import { Paths as PathConfig } from '../utils/config'
 
 class Sider extends React.Component<WithStyles<typeof styles>> {
@@ -19,7 +19,7 @@ class Sider extends React.Component<WithStyles<typeof styles>> {
 
     return (
       <div>
-        <h3>{Organisation.headingOrganisationWriter}</h3>
+        <h3>{App.headingOrganisationsWriter}</h3>
         <MenuList>
           <Link to={PathConfig.orgWriter}>
             <MenuItem>
@@ -27,6 +27,22 @@ class Sider extends React.Component<WithStyles<typeof styles>> {
                 <Create />
               </IconButton>
               {Paths.orgWriter}
+            </MenuItem>
+          </Link>
+          <Link to={PathConfig.organisationsWriter}>
+            <MenuItem>
+              <IconButton className={this.props.classes.button} aria-label={Paths.organisationsWriter}>
+                <Create />
+              </IconButton>
+              {Paths.organisationsWriter}
+            </MenuItem>
+          </Link>
+          <Link to={PathConfig.organisationWriter}>
+            <MenuItem>
+              <IconButton className={this.props.classes.button} aria-label={Paths.organisationWriter}>
+                <Create />
+              </IconButton>
+              {Paths.organisationWriter}
             </MenuItem>
           </Link>
           <Link to={PathConfig.organisationDocsWriter}>
@@ -79,7 +95,7 @@ class Sider extends React.Component<WithStyles<typeof styles>> {
           </Link>
         </MenuList>
 
-        <h3>{Organisation.headingOrganisationReader}</h3>
+        <h3>{App.headingOrganisationsReader}</h3>
         <MenuList>
           <Link to={PathConfig.orgsReader}>
             <MenuItem>
@@ -89,10 +105,18 @@ class Sider extends React.Component<WithStyles<typeof styles>> {
               {Paths.orgsReader}
             </MenuItem>
           </Link>
+          <Link to={PathConfig.organisationsReader}>
+            <MenuItem>
+              <IconButton className={this.props.classes.button} aria-label={Paths.organisationsReader}>
+                <Create />
+              </IconButton>
+              {Paths.organisationsReader}
+            </MenuItem>
+          </Link>
           <Link to={PathConfig.organisationReader}>
             <MenuItem>
               <IconButton className={this.props.classes.button} aria-label={Paths.organisationReader}>
-                <List />
+                <Create />
               </IconButton>
               {Paths.organisationReader}
             </MenuItem>

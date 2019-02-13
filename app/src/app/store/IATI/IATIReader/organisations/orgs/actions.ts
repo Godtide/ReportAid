@@ -26,12 +26,12 @@ export const getOrgs = () => {
     try {
       const num = await orgsContract.getNumOrgs()
       const numOrgs = num.toNumber()
-      console.log("Num orgs: ", numOrgs)
+      //console.log("Num orgs: ", numOrgs)
       for (let i = 0; i < numOrgs; i++) {
          const orgRef = await orgsContract.getOrgReference(i.toString())
-         console.log("OrgRef: ", orgRef)
+         //console.log("OrgRef: ", orgRef)
          const org: IATIOrgProps = await orgsContract.getOrg(orgRef)
-         console.log("Org: ", org)
+         //console.log("Org: ", org)
          orgsData[orgRef] = org
          actionType = IATIOrgsWriterActionTypes.ORGS_SUCCESS
       }

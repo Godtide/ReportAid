@@ -7,6 +7,8 @@ class App {
   static readonly copyright='[University of Sussex](https://www.sussex.ac.uk/) © 2018'
   static readonly author='Created by [Steven Huckle](https://glowkeeper.github.io/)'
 
+  static headingOrganisationsWriter = 'Create Organisations Data'
+  static headingOrganisationsReader = 'Read Organisations Data'
 }
 
 class Paths {
