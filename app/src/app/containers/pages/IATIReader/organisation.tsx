@@ -117,7 +117,7 @@ class OrganisationReader extends React.Component<OrgReaderProps> {
             initialValues={ {organisationsRef: "",
                              organisationRef: ""
                             }}
-            //validationSchema={reportSchema}
+            validationSchema={reportSchema}
             onSubmit={(values: OrganisationsReportProps, actions: any) => {
               this.handleSubmit(values, actions.setSubmitting, actions.resetForm)
             }}
@@ -126,7 +126,7 @@ class OrganisationReader extends React.Component<OrgReaderProps> {
                 <FormControl fullWidth={true}>
                   <OrganisationsPicker
                     changeFunction={this.handleOrganisationsChange}
-                    value={formProps.setFieldValue}
+                    setValue={formProps.setFieldValue}
                     name='organisationsRef'
                     label={OrganisationStrings.organisationsReference}
                   />

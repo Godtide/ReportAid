@@ -124,6 +124,7 @@ class CountryBudgets extends React.Component<OrganisationCountryBudgetsReaderPro
                 <FormControl fullWidth={true}>
                   <OrganisationsPicker
                     changeFunction={this.handleOrganisationsChange}
+                    setValue={formProps.setFieldValue}
                     name='organisationsRef'
                     label={OrganisationCountryBudgetStrings.organisationsReference}
                   />

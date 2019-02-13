@@ -105,6 +105,7 @@ export class OrganisationForm extends React.Component<OrganisationFormProps> {
                 <FormControl fullWidth={true}>
                   <OrganisationsPicker
                     changeFunction={this.handleOrganisationsChange}
+                    setValue={formProps.setFieldValue}
                     name='organisationsRef'
                     label={OrganisationStrings.organisationsReference}
                   />

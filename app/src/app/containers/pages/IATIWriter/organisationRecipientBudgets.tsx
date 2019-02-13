@@ -157,6 +157,7 @@ export class OrganisationRecipientBudgetsForm extends React.Component<Organisati
                 <FormControl fullWidth={true}>
                   <OrganisationsPicker
                     changeFunction={this.handleOrganisationsChange}
+                    setValue={formProps.setFieldValue}
                     name='organisationsRef'
                     label={OrganisationRecipientBudget.organisationsReference}
                   />

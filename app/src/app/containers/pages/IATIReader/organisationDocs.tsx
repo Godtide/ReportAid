@@ -126,6 +126,7 @@ class Docs extends React.Component<OrganisationDocsReaderProps> {
                 <FormControl fullWidth={true}>
                   <OrganisationsPicker
                     changeFunction={this.handleOrganisationsChange}
+                    setValue={formProps.setFieldValue}
                     name='organisationsRef'
                     label={OrganisationDocStrings.organisationsReference}
                   />

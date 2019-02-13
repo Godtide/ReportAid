@@ -123,6 +123,7 @@ class RegionBudgets extends React.Component<OrganisationRegionBudgetsReaderProps
                 <FormControl fullWidth={true}>
                   <OrganisationsPicker
                     changeFunction={this.handleOrganisationsChange}
+                    setValue={formProps.setFieldValue}
                     name='organisationsRef'
                     label={OrganisationRegionBudgetStrings.organisationsReference}
                   />
