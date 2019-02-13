@@ -34,7 +34,7 @@ export const setOrganisation = (details: OrganisationProps) => {
       lastUpdatedTime: ethers.utils.formatBytes32String(new Date().toISOString())
     }
 
-    console.log ('OrgsRef: ', details.organisationsRef, 'OrgRef', organisationRef, 'Orgs: ', organisation)
+    //console.log ('OrgsRef: ', details.organisationsRef, 'OrgRef', organisationRef, 'Orgs: ', organisation)
 
     let actionType = IATIWriterActionTypes.ORGANISATION_FAILURE
     let txData: TxData = {}
@@ -45,7 +45,7 @@ export const setOrganisation = (details: OrganisationProps) => {
       txData[key] = tx
       actionType = IATIWriterActionTypes.ORGANISATION_SUCCESS
     } catch (error) {
-      console.log('set error', error)
+      console.log('setOrganisation error', error)
     }
 
     dispatch(write({data: {data: txData}})(actionType))

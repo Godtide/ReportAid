@@ -24,7 +24,7 @@ export const getOrganisations = () => {
          const ref = await organisationsContract.getOrganisationsReference(i.toString())
 
          const organisations: IATIOrganisationsProps = await organisationsContract.getOrganisations(ref)
-         let thisData: IATIOrganisationsReport = {
+         const thisData: IATIOrganisationsReport = {
            IATIOrganisations: organisations,
            data: {}
          }
