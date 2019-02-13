@@ -10,7 +10,8 @@ const initialState: TxProps = {
 export const reducer = (state: TxProps = initialState, action: ActionProps): TxProps => {
 
   const payload = action.payload as PayloadProps
-  if ( (action.type == IATIWriterActionTypes.ORGANISATIONS_SUCCESS ) ||
+  if ( (action.type == IATIWriterActionTypes.ORGS_SUCCESS ) ||
+       (action.type == IATIWriterActionTypes.ORGANISATIONS_SUCCESS ) ||
        (action.type == IATIWriterActionTypes.ORGANISATION_SUCCESS ) ||
        (action.type == IATIWriterActionTypes.BUDGET_SUCCESS ) ||
        (action.type == IATIWriterActionTypes.RECIPIENTORGBUDGET_SUCCESS ) ||
