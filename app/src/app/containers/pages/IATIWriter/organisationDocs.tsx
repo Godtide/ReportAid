@@ -164,6 +164,7 @@ export class OrgDocsForm extends React.Component<OrgDocsFormProps> {
                   <OrganisationPicker
                     organisationsRef={this.state.organisationsRef}
                     changeFunction={this.handleOrganisationChange}
+                    setValue={formProps.setFieldValue}
                     name='organisationRef'
                     label={OrganisationDoc.organisationReference}
                   />

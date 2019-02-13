@@ -18,6 +18,7 @@ import { setOrganisation } from '../../../store/IATI/IATIWriter/organisations/or
 
 import { OrganisationsPicker } from '../../../components/io/organisationsPicker'
 import { OrganisationPicker } from '../../../components/io/organisationPicker'
+import { OrgPicker } from '../../../components/io/orgPicker'
 import { TransactionHelper } from '../../io/transactionHelper'
 
 import { Organisation as OrganisationStrings } from '../../../utils/strings'
@@ -31,8 +32,7 @@ const organisationSchema = Yup.object().shape({
     .string()
     .required('Required'),
   organisationRef: Yup
-    .string()
-    .required('Required'),
+    .string(),
   reportingOrgRef: Yup
     .string()
     .required('Required'),
@@ -70,6 +70,7 @@ export class OrganisationForm extends React.Component<OrganisationFormProps> {
 
   handleSubmit = (values: OrganisationProps, setSubmitting: Function, reset: Function) => {
     this.setState({submitFunc: setSubmitting, resetFunc: reset})
+    console.log(values)
     this.props.handleSubmit(values)
   }
 
@@ -110,6 +111,11 @@ export class OrganisationForm extends React.Component<OrganisationFormProps> {
                     label={OrganisationStrings.organisationsReference}
                   />
                   <ErrorMessage name='organisationsRef' />
+                  <OrgPicker
+                    name='reportingOrgRef'
+                    label={OrganisationStrings.reportingOrgRef}
+                  />
+                  <ErrorMessage name='reportingOrgRef' />
                   <Field
                     name="reportingOrgType"
                     label={OrganisationStrings.reportingOrgType}

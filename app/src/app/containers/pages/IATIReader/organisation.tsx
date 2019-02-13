@@ -55,7 +55,7 @@ class OrganisationReader extends React.Component<OrgReaderProps> {
 
   handleSubmit = (values: OrganisationsReportProps, setSubmitting: Function, reset: Function) => {
     this.setState({submitFunc: setSubmitting, resetFunc: reset})
-    console.log('Values ', values)
+    //console.log('Values ', values)
     this.props.handleSubmit(values)
   }
 

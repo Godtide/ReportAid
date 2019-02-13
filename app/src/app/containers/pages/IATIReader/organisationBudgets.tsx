@@ -130,6 +130,7 @@ class Budgets extends React.Component<OrganisationBudgetsReaderProps> {
                   <OrganisationPicker
                     organisationsRef={this.state.organisationsRef}
                     changeFunction={this.handleOrganisationChange}
+                    setValue={formProps.setFieldValue}
                     name='organisationRef'
                     label={OrgBudgetStrings.organisationReference}
                   />

@@ -17,6 +17,7 @@ import { OrganisationProps } from '../../store/IATI/types'
 interface OrganisationFormProps {
   organisationsRef: string
   changeFunction: Function
+  setValue: Function
   name: string
   label: string
 }
@@ -62,6 +63,7 @@ class Organisation extends React.Component<OrganisationPickerProps> {
           component={Select}
           onChange={(ev: any) => {
             this.props.changeFunction(ev.target.value)
+            this.props.setValue(this.props.name, ev.target.value)
           }}
           options={organisationRefs}
         />
