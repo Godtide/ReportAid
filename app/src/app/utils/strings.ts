@@ -138,6 +138,7 @@ class Organisation {
   static organisationsReference = "Organisations Reference"
   static organisationReference = "Organisation Reference"
   static orgIdentifier = "Organisation"
+  static orgRef = "Issuing Organisation"
   static reportingOrgRef = 'Reporting Organisation'
   static reportingOrgType = "Reporting Organisation Type"
   static reportingOrgIsSecondary = "Is Reporting Organisation Secondary?"

@@ -83,6 +83,7 @@ export interface OrganisationsProps {
 export interface OrganisationProps {
   organisationsRef: string
   organisationRef: string
+  orgRef: string
   reportingOrgRef: string
   reportingOrgType: number
   reportingOrgIsSecondary: boolean

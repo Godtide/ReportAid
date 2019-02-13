@@ -33,6 +33,9 @@ const organisationSchema = Yup.object().shape({
     .required('Required'),
   organisationRef: Yup
     .string(),
+  orgRef: Yup
+    .string()
+    .required('Required'),
   reportingOrgRef: Yup
     .string()
     .required('Required'),
@@ -91,6 +94,7 @@ export class OrganisationForm extends React.Component<OrganisationFormProps> {
           <Formik
             initialValues={ {organisationsRef: "",
                              organisationRef: "",
+                             orgRef: "",
                              reportingOrgRef: "",
                              reportingOrgType: 0,
                              reportingOrgIsSecondary: false,
@@ -111,6 +115,11 @@ export class OrganisationForm extends React.Component<OrganisationFormProps> {
                     label={OrganisationStrings.organisationsReference}
                   />
                   <ErrorMessage name='organisationsRef' />
+                  <OrgPicker
+                    name='orgRef'
+                    label={OrganisationStrings.orgRef}
+                  />
+                  <ErrorMessage name='orgRef' />
                   <OrgPicker
                     name='reportingOrgRef'
                     label={OrganisationStrings.reportingOrgRef}

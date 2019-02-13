@@ -23,7 +23,7 @@ export const setOrganisation = (details: OrganisationProps) => {
     }
 
     const organisation: IATIOrganisationProps = {
-      orgRef: organisationRef,
+      orgRef: details.orgRef,
       reportingOrg: {
         orgRef: details.reportingOrgRef,
         orgType: details.reportingOrgType,
@@ -33,6 +33,8 @@ export const setOrganisation = (details: OrganisationProps) => {
       currency: ethers.utils.formatBytes32String(details.currency),
       lastUpdatedTime: ethers.utils.formatBytes32String(new Date().toISOString())
     }
+
+    console.log ('OrgsRef: ', details.organisationsRef, 'OrgRef', organisationRef, 'Orgs: ', organisation)
 
     let actionType = IATIWriterActionTypes.ORGANISATION_FAILURE
     let txData: TxData = {}
