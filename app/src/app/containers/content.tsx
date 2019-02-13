@@ -20,6 +20,7 @@ import { OrganisationCountryBudgets as OrganisationCountryBudgetsWriter } from '
 
 import { Orgs as OrgsReader } from './pages/IATIReader/orgs'
 import { Organisations as OrganisationsReader } from './pages/IATIReader/organisations'
+import { Organisation as OrganisationReader } from './pages/IATIReader/organisation'
 import { OrganisationDocs as OrgDocsReader } from './pages/IATIReader/organisationDocs'
 import { OrganisationBudgets as OrgBudgetsReader } from './pages/IATIReader/organisationBudgets'
 import { OrganisationExpenditure as OrgExpenditureReader } from './pages/IATIReader/organisationExpenditure'
@@ -99,6 +100,11 @@ class AppContent extends React.Component<WithStyles<typeof styles>> {
           name={Paths.organisationsReader}
           path={PathConfig.organisationsReader}
           render={() => <OrganisationsReader />}
+        />
+        <Route
+          name={Paths.organisationReader}
+          path={PathConfig.organisationReader}
+          render={() => <OrganisationReader />}
         />
         <Route
           name={Paths.organisationDocsReader}

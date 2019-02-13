@@ -7,7 +7,7 @@ import { ThunkDispatch } from 'redux-thunk'
 import { ApplicationState } from '../../store'
 import { ActionProps } from '../../store/types'
 
-import { Field, ErrorMessage} from 'formik'
+import { Field, ErrorMessage } from 'formik'
 import { Select } from "material-ui-formik-components"
 
 import { getOrganisations } from '../../store/IATI/IATIReader/organisations/organisations/actions'
@@ -55,7 +55,9 @@ class Organisations extends React.Component<OrganisationsPickerProps> {
           name={this.props.name}
           label={this.props.label}
           component={Select}
-          onChange={(ev: any)=>this.props.changeFunction(ev.target.value)}
+          onChange={(ev: any) => {
+            this.props.changeFunction(ev.target.value)
+          }}
           options={organisationsRefs}
         />
       </React.Fragment>

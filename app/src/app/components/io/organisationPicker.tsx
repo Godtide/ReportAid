@@ -46,10 +46,13 @@ class Organisation extends React.Component<OrganisationPickerProps> {
   render() {
 
     let organisationRefs: any[] = [{ value: "", label: "" }]
-    const organisationReports: IATIOrganisationReportProps = this.props.organisations[this.props.organisationsRef].data
-    Object.keys(organisationReports).forEach((organisationKey) => {
-       organisationRefs.push({ value: organisationKey, label: organisationKey })
-    })
+    if(this.props.organisationsRef != "") {
+      console.log(this.props.organisationsRef)
+      const organisationReports: IATIOrganisationReportProps = this.props.organisations[this.props.organisationsRef].data
+      Object.keys(organisationReports).forEach((organisationKey) => {
+         organisationRefs.push({ value: organisationKey, label: organisationKey })
+      })
+    }
 
     return (
       <React.Fragment>
@@ -57,7 +60,9 @@ class Organisation extends React.Component<OrganisationPickerProps> {
           name={this.props.name}
           label={this.props.label}
           component={Select}
-          onChange={(ev: any)=>this.props.changeFunction(ev.target.value)}
+          onChange={(ev: any) => {
+            this.props.changeFunction(ev.target.value)
+          }}
           options={organisationRefs}
         />
       </React.Fragment>

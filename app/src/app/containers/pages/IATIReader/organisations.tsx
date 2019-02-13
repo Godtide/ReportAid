@@ -38,43 +38,22 @@ class OrganisationsReader extends React.Component<OrgReaderProps> {
 
   render() {
 
-    console.log(JSON.stringify(this.props.organisations))
-    //JSON.stringify(this.props.organisations)
+    //console.log(JSON.stringify(this.props.organisations))
     //const reportsData = Object.keys(this.props.organisations)
-    const reportsData = {}
+    const reportsData = this.props.organisations
     let xs = ""
     let num = 0
-    /*let xs = ""
-    if ( orgsData.length > 0 ) {
-      let length = 0
-      //console.log ("Orgsdata: ", orgsData, " length ", orgsData.length )
-      orgsData.forEach((key) => {
-        xs += `**${OrgStrings.orgIdentifier}**: ${key}<br />`
-        const values = Object.values(this.props.orgs[key])
-        //console.log('Values: ', values)
-        xs += `**${OrgStrings.numOrgs}**: ${values[0]} <br /><br />`
-        Object.keys(values[1]).forEach((thisKey) => {
-          //console.log(': ', values[1][thisKey])
-          //const version = ethers.utils.parseBytes32String(values[1][thisKey].version)
-          if ( values[1][thisKey].hasOwnProperty('version') && values[1][thisKey].version != "" ) {
-            const version = ethers.utils.parseBytes32String(values[1][thisKey].version)
-            const language =  ethers.utils.parseBytes32String(values[1][thisKey].lang)
-            const currency =  ethers.utils.parseBytes32String(values[1][thisKey].currency)
-            const lastUpdated =  ethers.utils.parseBytes32String(values[1][thisKey].lastUpdatedTime)
-            xs+= `**${OrgStrings.reportingOrgRef}**: ${values[1][thisKey].reportingOrg.orgRef} <br />`
-            xs+= `**${OrgStrings.reportKey}**: ${thisKey} <br />`
-            xs+= `**${OrgStrings.reportingOrgType}**: ${values[1][thisKey].reportingOrg.orgType} <br />`
-            xs+= `**${OrgStrings.reportingOrgIsSecondary}**: ${values[1][thisKey].reportingOrg.isSecondary} <br />`
-            xs+= `**${OrgStrings.version}**: ${version} <br />`
-            xs+= `**${OrgStrings.language}**: ${language} <br />`
-            xs+= `**${OrgStrings.currency}**: ${currency} <br />`
-            xs+= `**${OrgStrings.lastUpdated}**: ${lastUpdated} <br /><br />`
-          }
-        })
-        length += 1
-        length == orgsData.length ? xs += "" : xs += "---<br /><br />"
-      })
-    }*/
+    Object.keys(reportsData).forEach((organisationsKey) => {
+        if ( reportsData[organisationsKey].IATIOrganisations.hasOwnProperty('version') &&
+             reportsData[organisationsKey].IATIOrganisations.version != "" ) {
+          num += 1
+          const version = ethers.utils.parseBytes32String(reportsData[organisationsKey].IATIOrganisations.version)
+          const generatedTime = ethers.utils.parseBytes32String(reportsData[organisationsKey].IATIOrganisations.generatedTime)
+          xs += `**${OrganisationsStrings.reportKey}**: ${organisationsKey}<br />`
+          xs += `**${OrganisationsStrings.version}**: ${version}<br />`
+          xs += `**${OrganisationsStrings.generated}**: ${generatedTime}<br /><br />`
+        }
+    })
 
     return (
       <div>

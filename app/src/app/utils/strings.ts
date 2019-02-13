@@ -121,8 +121,8 @@ class Organisations {
   static headingOrganisationsWriter = 'Write Organisations'
   static headingOrganisationsReader = 'Read Organisations'
 
-  static version = "Version"
   static reportKey = "Key"
+  static version = "Version"
   static generated = "Generated"
 
   static numOrganisations = 'Number of Organisations Reports'
