@@ -51,15 +51,24 @@ class Expenditure extends React.Component<OrganisationExpenditureReaderProps> {
   state = {
     organisationsRef: "",
     submitFunc: (function(submit: boolean) { return submit }),
-    resetFunc: (function() { return null })
+    resetFunc: (function() { return null }),
+    submitting: false
   }
 
   constructor (props: OrganisationExpenditureReaderProps) {
     super(props)
   }
 
+  componentDidUpdate(previousProps: OrganisationExpenditureReaderProps) {
+    if(this.state.submitting) {
+      this.setState({submitting: false})
+      this.state.submitFunc(false)
+      this.state.resetFunc()
+    }
+  }
+
   handleSubmit = (values: OrganisationsReportProps, setSubmitting: Function, reset: Function) => {
-    this.setState({submitFunc: setSubmitting, resetFunc: reset})
+    this.setState({submitFunc: setSubmitting, resetFunc: reset, submitting: true})
     this.props.handleSubmit(values)
   }
 
@@ -73,38 +82,35 @@ class Expenditure extends React.Component<OrganisationExpenditureReaderProps> {
 
   render() {
 
-    const reportsData = Object.keys(this.props.expenditure)
+    const expenditureData = this.props.expenditure
     let xs = ""
     let num = 0
-    /*let xs = ""
-    if ( expenditureData.length > 0 ) {
-      let length = 0
-      //console.log ("Orgsdata: ", orgsData, " length ", orgsData.length )
-      expenditureData.forEach((reportKey) => {
-        xs += `**${OrganisationExpenditureStrings.reportReference}**: ${reportKey}<br />`
-        const values = Object.values(this.props.orgExpenditure[reportKey])
-        //console.log('Values: ', values)
-        xs += `**${OrganisationExpenditureStrings.numExpenditure}**: ${values[0]} <br /><br />`
-        Object.keys(values[1]).forEach((expenditureKey) => {
-          //console.log(': ', values[1][expenditureKey])
-          //const version = ethers.utils.parseBytes32String(values[1][thisKey].version)
-          if ( values[1][expenditureKey].hasOwnProperty('expenditureLine') && values[1][expenditureKey].expenditureLine != "" ) {
-            const expenditureLine = ethers.utils.parseBytes32String(values[1][expenditureKey].expenditureLine)
-            const start = ethers.utils.parseBytes32String(values[1][expenditureKey].finance.start)
-            const end = ethers.utils.parseBytes32String(values[1][expenditureKey].finance.end)
-            xs+= `**${OrganisationExpenditureStrings.reportingOrgRef}**: ${values[1][expenditureKey].report.orgRef} <br />`
-            xs+= `**${OrganisationExpenditureStrings.expenditureReference}**: ${expenditureKey} <br />`
-            xs+= `**${OrganisationExpenditureStrings.expenditureLine}**: ${expenditureLine} <br />`
-            xs+= `**${OrganisationExpenditureStrings.value}**: ${values[1][expenditureKey].finance.value} <br />`
-            xs+= `**${OrganisationExpenditureStrings.status}**: ${values[1][expenditureKey].finance.status} <br />`
-            xs+= `**${OrganisationExpenditureStrings.expenditureStart}**: ${start} <br />`
-            xs+= `**${OrganisationExpenditureStrings.expenditureEnd}**: ${end} <br /><br />`
+    Object.keys(expenditureData).forEach((organisationsKey) => {
+      //numOrganisations += 1
+      xs += `**${OrganisationExpenditureStrings.organisationsReference}**: ${organisationsKey}<br />`
+      Object.keys(expenditureData[organisationsKey].data).forEach((organisationKey) => {
+
+        xs += `**${OrganisationExpenditureStrings.organisationReference}**: ${organisationKey}<br />`
+        Object.keys(expenditureData[organisationsKey].data[organisationKey].data).forEach((expenditureKey) => {
+          if ( expenditureData[organisationsKey].data[organisationKey].data[expenditureKey].hasOwnProperty('expenditureLine') &&
+               expenditureData[organisationsKey].data[organisationKey].data[expenditureKey].expenditureLine != "" ) {
+
+            num += 1
+            const thisExpenditureData =  expenditureData[organisationsKey].data[organisationKey].data[expenditureKey]
+
+            const expenditureLine = ethers.utils.parseBytes32String(thisExpenditureData.expenditureLine)
+            const start = ethers.utils.parseBytes32String(thisExpenditureData.finance.start)
+            const end = ethers.utils.parseBytes32String(thisExpenditureData.finance.end)
+            xs += `**${OrganisationExpenditureStrings.expenditureReference}**: ${expenditureKey} <br />`
+            xs += `**${OrganisationExpenditureStrings.expenditureLine}**: ${expenditureLine} <br />`
+            xs += `**${OrganisationExpenditureStrings.value}**: ${thisExpenditureData.finance.value} <br />`
+            xs += `**${OrganisationExpenditureStrings.status}**: ${thisExpenditureData.finance.status} <br />`
+            xs += `**${OrganisationExpenditureStrings.expenditureStart}**: ${start} <br />`
+            xs += `**${OrganisationExpenditureStrings.expenditureEnd}**: ${end} <br /><br />`
           }
         })
-        length += 1
-        length == expenditureData.length ? xs += "" : xs += "---<br /><br />"
       })
-    }*/
+    })
 
     return (
       <div>
