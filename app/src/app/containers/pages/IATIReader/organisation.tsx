@@ -90,15 +90,17 @@ class OrganisationReader extends React.Component<OrgReaderProps> {
       Object.keys(organisationData[organisationsKey].data).forEach((organisationKey) => {
         if ( organisationData[organisationsKey].data[organisationKey].hasOwnProperty('lang') &&
              organisationData[organisationsKey].data[organisationKey].lang != "" ) {
+
           numOrganisation += 1
-          const language =  ethers.utils.parseBytes32String(organisationData[organisationsKey].data[organisationKey].lang)
-          const currency =  ethers.utils.parseBytes32String(organisationData[organisationsKey].data[organisationKey].currency)
-          const lastUpdated =  ethers.utils.parseBytes32String(organisationData[organisationsKey].data[organisationKey].lastUpdatedTime)
+          const thisOrganisationData = organisationData[organisationsKey].data[organisationKey]
+          const language =  ethers.utils.parseBytes32String(thisOrganisationData.lang)
+          const currency =  ethers.utils.parseBytes32String(thisOrganisationData.currency)
+          const lastUpdated =  ethers.utils.parseBytes32String(thisOrganisationData.lastUpdatedTime)
           xs += `**${OrganisationStrings.organisationReference}**: ${organisationKey}<br />`
-          xs += `**${OrganisationStrings.orgRef}**: ${organisationData[organisationsKey].data[organisationKey].orgRef}<br />`
-          xs += `**${OrganisationStrings.reportingOrgRef}**: ${organisationData[organisationsKey].data[organisationKey].reportingOrg.orgRef} <br />`
-          xs += `**${OrganisationStrings.reportingOrgType}**: ${organisationData[organisationsKey].data[organisationKey].reportingOrg.orgType} <br />`
-          xs += `**${OrganisationStrings.reportingOrgIsSecondary}**: ${organisationData[organisationsKey].data[organisationKey].reportingOrg.isSecondary} <br />`
+          xs += `**${OrganisationStrings.orgRef}**: ${thisOrganisationData.orgRef}<br />`
+          xs += `**${OrganisationStrings.reportingOrgRef}**: ${thisOrganisationData.reportingOrg.orgRef} <br />`
+          xs += `**${OrganisationStrings.reportingOrgType}**: ${thisOrganisationData.reportingOrg.orgType} <br />`
+          xs += `**${OrganisationStrings.reportingOrgIsSecondary}**: ${thisOrganisationData.reportingOrg.isSecondary} <br />`
           xs += `**${OrganisationStrings.language}**: ${language} <br />`
           xs += `**${OrganisationStrings.currency}**: ${currency} <br />`
           xs += `**${OrganisationStrings.lastUpdated}**: ${lastUpdated} <br /><br />`
