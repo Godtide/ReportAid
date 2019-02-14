@@ -29,7 +29,7 @@ export const reducer = (state: IATIOrganisationDocReportProps = initialState, ac
 
   switch (action.type) {
     case IATIReportActionTypes.DOCUMENT_SUCCESS: {
-      const data = (action.payload as IATIOrganisationDocReportProps)
+      const data = (action.payload.data as IATIOrganisationDocReportProps)
       return {...state, ...data}
     }
     default:

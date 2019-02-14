@@ -15,7 +15,7 @@ export const reducer = (state: IATIOrganisationsReportProps = initialState, acti
 
   switch (action.type) {
     case IATIReportActionTypes.ORGANISATIONS_SUCCESS: {
-      const data = (action.payload as IATIOrganisationsReportProps)
+      const data = (action.payload.data as IATIOrganisationsReportProps)
       return {...state, ...data}
     }
     default:

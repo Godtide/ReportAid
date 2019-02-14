@@ -26,7 +26,7 @@ export const reducer = (state: IATIOrganisationReportProps = initialState, actio
 
   switch (action.type) {
     case IATIReportActionTypes.ORGANISATION_SUCCESS: {
-      const data = (action.payload as IATIOrganisationReportProps)
+      const data = (action.payload.data as IATIOrganisationReportProps)
       const newState = {...state, ...data}
       //console.log('New state: ', newState)
       return newState

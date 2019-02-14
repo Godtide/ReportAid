@@ -14,7 +14,7 @@ const initialState: IATIOrgReportProps = {
 export const reducer = (state: IATIOrgReportProps = initialState, action: ActionProps): IATIOrgReportProps => {
 
   if ( (action.type == IATIReportActionTypes.ORGS_SUCCESS ) ) {
-    const data = action.payload as IATIOrgReportProps
+    const data = action.payload.data as IATIOrgReportProps
     return {...state,...data}
   } else {
     return state
