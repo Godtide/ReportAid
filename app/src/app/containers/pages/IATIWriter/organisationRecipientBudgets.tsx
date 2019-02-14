@@ -170,6 +170,11 @@ export class OrganisationRecipientBudgetsForm extends React.Component<Organisati
                     label={OrganisationRecipientBudget.organisationReference}
                   />
                   <ErrorMessage name='organisationRef' />
+                  <OrgPicker
+                    name='recipientOrgRef'
+                    label={OrganisationRecipientBudget.orgReference}
+                  />
+                  <ErrorMessage name='recipientOrgRef' />
                   <Field
                     name='budgetLine'
                     label={OrganisationRecipientBudget.budgetLine}

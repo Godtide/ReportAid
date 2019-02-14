@@ -35,11 +35,11 @@ export const setRecipientBudget = (details: OrganisationRecipientBudgetProps) =>
         end: ethers.utils.formatBytes32String(end.toISOString())
       }
     }
-    //console.log('RecipientBudget: ', orgRecipientBudget, ' Contract ', orgRecipientBudgetsContract)
+
     let actionType = IATIWriterActionTypes.RECIPIENTORGBUDGET_FAILURE
     let txData: TxData = {}
     try {
-      // set(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, bytes32 _version, bytes32 _generatedTime)
+
       const tx = await recipientBudgetsContract.setRecipientBudget(details.organisationsRef,
                                                                    details.organisationRef,
                                                                    budgetRef,
