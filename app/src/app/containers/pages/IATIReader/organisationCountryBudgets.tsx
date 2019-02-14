@@ -51,15 +51,24 @@ class CountryBudgets extends React.Component<OrganisationCountryBudgetsReaderPro
   state = {
     organisationsRef: "",
     submitFunc: (function(submit: boolean) { return submit }),
-    resetFunc: (function() { return null })
+    resetFunc: (function() { return null }),
+    submitting: false
   }
 
   constructor (props: OrganisationCountryBudgetsReaderProps) {
     super(props)
   }
 
+  componentDidUpdate(previousProps: OrganisationCountryBudgetsReaderProps) {
+    if(this.state.submitting) {
+      this.setState({submitting: false})
+      this.state.submitFunc(false)
+      this.state.resetFunc()
+    }
+  }
+
   handleSubmit = (values: OrganisationsReportProps, setSubmitting: Function, reset: Function) => {
-    this.setState({submitFunc: setSubmitting, resetFunc: reset})
+    this.setState({submitFunc: setSubmitting, resetFunc: reset, submitting: true})
     this.props.handleSubmit(values)
   }
 
@@ -73,40 +82,37 @@ class CountryBudgets extends React.Component<OrganisationCountryBudgetsReaderPro
 
   render() {
 
-    const reportsData = Object.keys(this.props.budgets)
+    const budgetsData = this.props.budgets
     let xs = ""
     let num = 0
-    /*let xs = ""
-    if ( budgetsData.length > 0 ) {
-      let length = 0
-      //console.log ("Orgsdata: ", orgsData, " length ", orgsData.length )
-      budgetsData.forEach((reportKey) => {
-        xs += `**${OrganisationCountryBudgetStrings.reportReference}**: ${reportKey}<br />`
-        const values = Object.values(this.props.orgCountryBudgets[reportKey])
-        //console.log('Values: ', values)
-        xs += `**${OrganisationCountryBudgetStrings.numBudgets}**: ${values[0]} <br /><br />`
-        Object.keys(values[1]).forEach((budgetKey) => {
-          //console.log(': ', values[1][budgetKey])
-          //const version = ethers.utils.parseBytes32String(values[1][thisKey].version)
-          if ( values[1][budgetKey].hasOwnProperty('countryRef') && values[1][budgetKey].countryRef != "" ) {
-            const countryRef = ethers.utils.parseBytes32String(values[1][budgetKey].countryRef)
-            const budgetLine = ethers.utils.parseBytes32String(values[1][budgetKey].budgetLine)
-            const start = ethers.utils.parseBytes32String(values[1][budgetKey].finance.start)
-            const end = ethers.utils.parseBytes32String(values[1][budgetKey].finance.end)
-            xs+= `**${OrganisationCountryBudgetStrings.reportingOrgRef}**: ${values[1][budgetKey].report.orgRef} <br />`
+    Object.keys(budgetsData).forEach((organisationsKey) => {
+      //numOrganisations += 1
+      xs += `**${OrganisationCountryBudgetStrings.organisationsReference}**: ${organisationsKey}<br />`
+      Object.keys(budgetsData[organisationsKey].data).forEach((organisationKey) => {
+
+        xs += `**${OrganisationCountryBudgetStrings.organisationReference}**: ${organisationKey}<br />`
+        Object.keys(budgetsData[organisationsKey].data[organisationKey].data).forEach((budgetKey) => {
+          if ( budgetsData[organisationsKey].data[organisationKey].data[budgetKey].hasOwnProperty('budgetLine') &&
+               budgetsData[organisationsKey].data[organisationKey].data[budgetKey].budgetLine != "" ) {
+
+            num += 1
+            const thisbudgetData =  budgetsData[organisationsKey].data[organisationKey].data[budgetKey]
+
+            const countryRef = ethers.utils.parseBytes32String(thisbudgetData.countryRef)
+            const budgetLine = ethers.utils.parseBytes32String(thisbudgetData.budgetLine)
+            const start = ethers.utils.parseBytes32String(thisbudgetData.finance.start)
+            const end = ethers.utils.parseBytes32String(thisbudgetData.finance.end)
             xs+= `**${OrganisationCountryBudgetStrings.budgetReference}**: ${budgetKey} <br />`
             xs+= `**${OrganisationCountryBudgetStrings.countryReference}**: ${countryRef} <br />`
             xs+= `**${OrganisationCountryBudgetStrings.budgetLine}**: ${budgetLine} <br />`
-            xs+= `**${OrganisationCountryBudgetStrings.value}**: ${values[1][budgetKey].finance.value} <br />`
-            xs+= `**${OrganisationCountryBudgetStrings.status}**: ${values[1][budgetKey].finance.status} <br />`
+            xs+= `**${OrganisationCountryBudgetStrings.value}**: ${thisbudgetData.finance.value} <br />`
+            xs+= `**${OrganisationCountryBudgetStrings.status}**: ${thisbudgetData.finance.status} <br />`
             xs+= `**${OrganisationCountryBudgetStrings.budgetStart}**: ${start} <br />`
             xs+= `**${OrganisationCountryBudgetStrings.budgetEnd}**: ${end} <br /><br />`
           }
         })
-        length += 1
-        length == budgetsData.length ? xs += "" : xs += "---<br /><br />"
       })
-    }*/
+    })
 
     return (
       <div>

@@ -9,7 +9,6 @@ import { Formik, Form, Field, FormikProps, ErrorMessage} from 'formik'
 import * as Yup from 'yup'
 import { LinearProgress } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
-//import { Date } from 'formik-material-ui'
 import FormControl from '@material-ui/core/FormControl'
 
 import { OrganisationsPicker } from '../../../components/io/organisationsPicker'
