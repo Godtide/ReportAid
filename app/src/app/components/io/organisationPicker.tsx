@@ -50,11 +50,12 @@ class Organisation extends React.Component<OrganisationPickerProps> {
 
     //console.log ('rendering', this.props.organisation, this.props.organisationsRef)
     let organisationRefs: any[] = [{ value: "", label: "" }]
-    if(this.props.organisationsRef != "") {
-      console.log(this.props.organisationsRef)
-      const organisationReports = this.props.organisation[this.props.organisationsRef].data
-      //console.log('Report: ', organisationReports)
-      Object.keys(organisationReports).forEach((organisationKey) => {
+    //console.log(this.props.organisationsRef)
+    //console.log(this.props.organisation[this.props.organisationsRef])
+    if ( ( this.props.organisationsRef != "" ) &&
+         ( typeof this.props.organisation[this.props.organisationsRef] !== 'undefined' ) &&
+         ( this.props.organisation[this.props.organisationsRef].hasOwnProperty('data') ) ) {
+      Object.keys(this.props.organisation[this.props.organisationsRef].data).forEach((organisationKey) => {
         //console.log('Org key: ', organisationKey)
         organisationRefs.push({ value: organisationKey, label: organisationKey })
       })
