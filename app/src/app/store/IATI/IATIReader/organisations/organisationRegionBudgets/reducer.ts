@@ -30,9 +30,7 @@ export const reducer = (state: IATIOrganisationRegionBudgetReportProps = initial
   switch (action.type) {
     case IATIReportActionTypes.RECIPIENTREGIONBUDGET_SUCCESS: {
       const data = (action.payload.data as IATIOrganisationRegionBudgetReportProps)
-      const newState = {...state, ...data}
-      //console.log('New state: ', newState)
-      return newState
+      return {...state, ...data}
     }
     default:
       return state

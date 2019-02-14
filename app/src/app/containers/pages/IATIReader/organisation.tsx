@@ -47,15 +47,25 @@ class OrganisationReader extends React.Component<OrgReaderProps> {
   state = {
     organisationsRef: "",
     submitFunc: (function(submit: boolean) { return submit }),
-    resetFunc: (function() { return null })
+    resetFunc: (function() { return null }),
+    submitting: false
   }
 
   constructor (props: OrgReaderProps) {
     super(props)
   }
 
+  componentDidUpdate(previousProps: OrgReaderProps) {
+
+    if(this.state.submitting) {
+      this.setState({submitting: false})
+      this.state.submitFunc(false)
+      this.state.resetFunc()
+    }
+  }
+
   handleSubmit = (values: OrganisationsReportProps, setSubmitting: Function, reset: Function) => {
-    this.setState({submitFunc: setSubmitting, resetFunc: reset})
+    this.setState({submitFunc: setSubmitting, resetFunc: reset, submitting: true})
     //console.log('Values ', values)
     this.props.handleSubmit(values)
   }
@@ -72,10 +82,10 @@ class OrganisationReader extends React.Component<OrgReaderProps> {
 
     const organisationData = this.props.organisation
     let xs = ""
-    let numOrganisations = 0
+    //let numOrganisations = 0
     let numOrganisation = 0
     Object.keys(organisationData).forEach((organisationsKey) => {
-      numOrganisations += 1
+      //numOrganisations += 1
       xs += `**${OrganisationStrings.organisationsReference}**: ${organisationsKey}<br />`
       Object.keys(organisationData[organisationsKey].data).forEach((organisationKey) => {
         if ( organisationData[organisationsKey].data[organisationKey].hasOwnProperty('lang') &&
@@ -131,9 +141,6 @@ class OrganisationReader extends React.Component<OrgReaderProps> {
         </div>
         <hr />
         <p>
-          <b>{OrganisationStrings.numOrganisations}</b>: {numOrganisations}
-        </p>
-        <p>
           <b>{OrganisationStrings.numOrganisation}</b>: {numOrganisation}
         </p>
         <h3>{OrganisationStrings.organisationDetails}</h3>
@@ -142,6 +149,12 @@ class OrganisationReader extends React.Component<OrgReaderProps> {
     )
   }
 }
+
+/*
+<p>
+  <b>{OrganisationStrings.numOrganisations}</b>: {numOrganisations}
+</p>
+*/
 
 const mapStateToProps = (state: ApplicationState): OrgProps => {
   //console.log(state.orgReader)
