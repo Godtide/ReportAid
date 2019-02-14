@@ -32,6 +32,8 @@ export const getOrganisation = (props: OrganisationReportProps) => {
          const organisationRef = await organisationContract.getOrganisationReference(organisationsRef, i.toString())
          const organisation: IATIOrganisationProps = await organisationContract.getOrganisation(organisationsRef, organisationRef)
          organisationData.data[organisationsRef].data[organisationRef] = organisation
+
+         console.log(organisationsRef, organisationData.data[organisationsRef].data[organisationRef] )
          actionType = IATIReportActionTypes.ORGANISATION_SUCCESS
       }
     } catch (error) {

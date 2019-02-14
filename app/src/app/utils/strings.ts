@@ -32,7 +32,7 @@ class Paths {
   static readonly organisationRegionBudgetsWriter='Region Budget'
   static readonly organisationCountryBudgetsWriter='Country Budget'
 
-  static readonly orgsReader='Organisation'
+  static readonly orgsReader='Org\'s'
   static readonly organisationsReader='Organisations'
   static readonly organisationReader='Organisation Reports'
   static readonly organisationDocsReader='Documents'
@@ -104,7 +104,7 @@ class Transaction {
 class Org {
 
   static headingOrgWriter = 'Create Organisation'
-  static headingOrgReader = 'Read Organisation'
+  static headingOrgReader = 'Organisations'
 
   static orgIdentifier = "Organisation Reference"
 
@@ -134,10 +134,8 @@ class Organisation {
   static headingOrganisationWriter = 'Create Organisation'
   static headingOrganisationReader = 'Organisation'
 
-  static numOrganisationReports = "Number of reports"
   static organisationsReference = "Organisations Reference"
   static organisationReference = "Organisation Reference"
-  static orgIdentifier = "Organisation"
   static orgRef = "Issuing Organisation"
   static reportingOrgRef = 'Reporting Organisation'
   static reportingOrgType = "Reporting Organisation Type"
@@ -146,7 +144,8 @@ class Organisation {
   static currency = "Currency"
   static lastUpdated = "Last Updated"
 
-  static numOrganisation = 'Number of Organisation Records'
+  static numOrganisations = "Number of Organisations Reports"
+  static numOrganisation = 'Number of Organisation Reports'
   static organisationDetails = 'Organisation Details'
 }
 
@@ -157,7 +156,6 @@ class OrganisationDoc {
 
   static organisationsReference = "Organisations Reference"
   static organisationReference = "Organisation Reference"
-  static reportingOrgRef = 'Reporting Organisation'
   static docReference = "Document Reference"
   static documentTitle = "Document Title"
   static documentFormat = "Format"

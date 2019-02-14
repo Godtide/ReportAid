@@ -39,23 +39,23 @@ class Organisation extends React.Component<OrganisationPickerProps> {
   }
 
   componentDidUpdate(previousProps: OrganisationPickerProps) {
-    console.log('Organisations: ', this.props.organisationsRef)
+    //console.log('Organisations: ', this.props.organisationsRef)
     if(this.props.organisationsRef != "" &&  previousProps.organisationsRef != this.props.organisationsRef) {
       this.props.getOrganisation(this.props.organisationsRef)
-      console.log('Done Updating: ', this.props.organisationsRef)
+      //console.log('Done Updating: ', this.props.organisationsRef)
     }
   }
 
   render() {
 
-    console.log ('rendering', this.props.organisation, this.props.organisationsRef)
+    //console.log ('rendering', this.props.organisation, this.props.organisationsRef)
     let organisationRefs: any[] = [{ value: "", label: "" }]
     if(this.props.organisationsRef != "") {
       console.log(this.props.organisationsRef)
       const organisationReports = this.props.organisation[this.props.organisationsRef].data
-      console.log('Report: ', organisationReports)
+      //console.log('Report: ', organisationReports)
       Object.keys(organisationReports).forEach((organisationKey) => {
-        console.log('Org key: ', organisationKey)
+        //console.log('Org key: ', organisationKey)
         organisationRefs.push({ value: organisationKey, label: organisationKey })
       })
     }

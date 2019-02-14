@@ -70,45 +70,31 @@ class OrganisationReader extends React.Component<OrgReaderProps> {
 
   render() {
 
-    //console.log(JSON.stringify(this.props.organisations))
-    //const reportsData = Object.keys(this.props.organisations)
-    const reportsData = this.props.organisation
+    const organisationData = this.props.organisation
     let xs = ""
-    let num = 0
-        /*let xs = ""
-    if ( orgsData.length > 0 ) {
-      let length = 0
-      //console.log ("Orgsdata: ", orgsData, " length ", orgsData.length )
-      orgsData.forEach((key) => {
-        xs += `**${OrgStrings.orgIdentifier}**: ${key}<br />`
-        const values = Object.values(this.props.orgs[key])
-        //console.log('Values: ', values)
-        xs += `**${OrgStrings.numOrgs}**: ${values[0]} <br /><br />`
-        Object.keys(values[1]).forEach((thisKey) => {
-          //console.log(': ', values[1][thisKey])
-          //const version = ethers.utils.parseBytes32String(values[1][thisKey].version)
-          if ( values[1][thisKey].hasOwnProperty('version') && values[1][thisKey].version != "" ) {
-            const version = ethers.utils.parseBytes32String(values[1][thisKey].version)
-            const language =  ethers.utils.parseBytes32String(values[1][thisKey].lang)
-            const currency =  ethers.utils.parseBytes32String(values[1][thisKey].currency)
-            const lastUpdated =  ethers.utils.parseBytes32String(values[1][thisKey].lastUpdatedTime)
-            xs+= `**${OrgStrings.reportingOrgRef}**: ${values[1][thisKey].reportingOrg.orgRef} <br />`
-            xs+= `**${OrgStrings.reportKey}**: ${thisKey} <br />`
-            xs+= `**${OrgStrings.reportingOrgType}**: ${values[1][thisKey].reportingOrg.orgType} <br />`
-            xs+= `**${OrgStrings.reportingOrgIsSecondary}**: ${values[1][thisKey].reportingOrg.isSecondary} <br />`
-            xs+= `**${OrgStrings.version}**: ${version} <br />`
-            xs+= `**${OrgStrings.language}**: ${language} <br />`
-            xs+= `**${OrgStrings.currency}**: ${currency} <br />`
-            xs+= `**${OrgStrings.lastUpdated}**: ${lastUpdated} <br /><br />`
-          }
-        })
-        length += 1
-        length == orgsData.length ? xs += "" : xs += "---<br /><br />"
+    let numOrganisations = 0
+    let numOrganisation = 0
+    Object.keys(organisationData).forEach((organisationsKey) => {
+      numOrganisations += 1
+      xs += `**${OrganisationStrings.organisationsReference}**: ${organisationsKey}<br />`
+      Object.keys(organisationData[organisationsKey].data).forEach((organisationKey) => {
+        if ( organisationData[organisationsKey].data[organisationKey].hasOwnProperty('lang') &&
+             organisationData[organisationsKey].data[organisationKey].lang != "" ) {
+          numOrganisation += 1
+          const language =  ethers.utils.parseBytes32String(organisationData[organisationsKey].data[organisationKey].lang)
+          const currency =  ethers.utils.parseBytes32String(organisationData[organisationsKey].data[organisationKey].currency)
+          const lastUpdated =  ethers.utils.parseBytes32String(organisationData[organisationsKey].data[organisationKey].lastUpdatedTime)
+          xs += `**${OrganisationStrings.organisationReference}**: ${organisationKey}<br />`
+          xs += `**${OrganisationStrings.orgRef}**: ${organisationData[organisationsKey].data[organisationKey].orgRef}<br />`
+          xs += `**${OrganisationStrings.reportingOrgRef}**: ${organisationData[organisationsKey].data[organisationKey].reportingOrg.orgRef} <br />`
+          xs += `**${OrganisationStrings.reportingOrgType}**: ${organisationData[organisationsKey].data[organisationKey].reportingOrg.orgType} <br />`
+          xs += `**${OrganisationStrings.reportingOrgIsSecondary}**: ${organisationData[organisationsKey].data[organisationKey].reportingOrg.isSecondary} <br />`
+          xs += `**${OrganisationStrings.language}**: ${language} <br />`
+          xs += `**${OrganisationStrings.currency}**: ${currency} <br />`
+          xs += `**${OrganisationStrings.lastUpdated}**: ${lastUpdated} <br /><br />`
+        }
       })
-    }*/
-
-
-    //<ErrorMessage name='organisationsRef' />
+    })
 
     return (
       <div>
@@ -145,7 +131,10 @@ class OrganisationReader extends React.Component<OrgReaderProps> {
         </div>
         <hr />
         <p>
-          <b>{OrganisationStrings.numOrganisation}</b>: {num}
+          <b>{OrganisationStrings.numOrganisations}</b>: {numOrganisations}
+        </p>
+        <p>
+          <b>{OrganisationStrings.numOrganisation}</b>: {numOrganisation}
         </p>
         <h3>{OrganisationStrings.organisationDetails}</h3>
         <Markdown escapeHtml={false} source={xs} />
