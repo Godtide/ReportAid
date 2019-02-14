@@ -51,15 +51,24 @@ class Docs extends React.Component<OrganisationDocsReaderProps> {
   state = {
     organisationsRef: "",
     submitFunc: (function(submit: boolean) { return submit }),
-    resetFunc: (function() { return null })
+    resetFunc: (function() { return null }),
+    submitting: false
   }
 
   constructor (props: OrganisationDocsReaderProps) {
     super(props)
   }
 
+  componentDidUpdate(previousProps: OrganisationDocsReaderProps) {
+    if(this.state.submitting) {
+      this.setState({submitting: false})
+      this.state.submitFunc(false)
+      this.state.resetFunc()
+    }
+  }
+
   handleSubmit = (values: OrganisationsReportProps, setSubmitting: Function, reset: Function) => {
-    this.setState({submitFunc: setSubmitting, resetFunc: reset})
+    this.setState({submitFunc: setSubmitting, resetFunc: reset, submitting: true})
     this.props.handleSubmit(values)
   }
 
@@ -73,42 +82,38 @@ class Docs extends React.Component<OrganisationDocsReaderProps> {
 
   render() {
 
-    const reportsData = Object.keys(this.props.docs)
+    const docsData = this.props.docs
     let xs = ""
     let num = 0
-    /*let xs = ""
-    if ( docsData.length > 0 ) {
-      let length = 0
-      //console.log ("Orgsdata: ", orgsData, " length ", orgsData.length )
-      docsData.forEach((reportKey) => {
-        xs += `**${OrganisationDocStrings.reportReference}**: ${reportKey}<br />`
-        const values = Object.values(this.props.orgDocs[reportKey])
-        //console.log('Values: ', values)
-        xs += `**${OrganisationDocStrings.numDocs}**: ${values[0]} <br /><br />`
-        Object.keys(values[1]).forEach((docKey) => {
-          //console.log('Doc: ', values[1][docKey])
-          //const version = ethers.utils.parseBytes32String(values[1][thisKey].version)
-          if ( values[1][docKey].hasOwnProperty('category') && values[1][docKey].category != "" ) {
-            const category = ethers.utils.parseBytes32String(values[1][docKey].category)
-            const countryRef = ethers.utils.parseBytes32String(values[1][docKey].countryRef)
-            const lang = ethers.utils.parseBytes32String(values[1][docKey].lang)
-            const date = ethers.utils.parseBytes32String(values[1][docKey].date)
-            xs+= `**${OrganisationDocStrings.reportingOrgRef}**: ${values[1][docKey].report.orgRef} <br />`
+    Object.keys(docsData).forEach((organisationsKey) => {
+      //numOrganisations += 1
+      xs += `**${OrganisationDocStrings.organisationsReference}**: ${organisationsKey}<br />`
+      Object.keys(docsData[organisationsKey].data).forEach((organisationKey) => {
+
+        xs += `**${OrganisationDocStrings.organisationReference}**: ${organisationKey}<br />`
+        Object.keys(docsData[organisationsKey].data[organisationKey].data).forEach((docKey) => {
+          if ( docsData[organisationsKey].data[organisationKey].data[docKey].hasOwnProperty('title') &&
+               docsData[organisationsKey].data[organisationKey].data[docKey].title != "" ) {
+
+            num += 1
+            const thisDocData =  docsData[organisationsKey].data[organisationKey].data[docKey]
+            const category = ethers.utils.parseBytes32String(thisDocData.category)
+            const countryRef = ethers.utils.parseBytes32String(thisDocData.countryRef)
+            const lang = ethers.utils.parseBytes32String(thisDocData.lang)
+            const date = ethers.utils.parseBytes32String(thisDocData.date)
             xs+= `**${OrganisationDocStrings.docReference}**: ${docKey} <br />`
-            xs+= `**${OrganisationDocStrings.documentTitle}**: ${values[1][docKey].title} <br />`
-            xs+= `**${OrganisationDocStrings.documentFormat}**: ${values[1][docKey].format} <br />`
-            xs+= `**${OrganisationDocStrings.documentURL}**: ${values[1][docKey].url} <br />`
+            xs+= `**${OrganisationDocStrings.documentTitle}**: ${thisDocData.title} <br />`
+            xs+= `**${OrganisationDocStrings.documentFormat}**: ${thisDocData.format} <br />`
+            xs+= `**${OrganisationDocStrings.documentURL}**: ${thisDocData.url} <br />`
             xs+= `**${OrganisationDocStrings.documentCategory}**: ${category} <br />`
             xs+= `**${OrganisationDocStrings.documentCountryRef}**: ${countryRef} <br />`
-            xs+= `**${OrganisationDocStrings.documentDesc}**: ${values[1][docKey].desc} <br />`
+            xs+= `**${OrganisationDocStrings.documentDesc}**: ${thisDocData.desc} <br />`
             xs+= `**${OrganisationDocStrings.documentLang}**: ${lang} <br />`
             xs+= `**${OrganisationDocStrings.documentDate}**: ${date} <br /><br />`
           }
         })
-        length += 1
-        length == docsData.length ? xs += "" : xs += "---<br /><br />"
       })
-    }*/
+    })
 
     return (
       <div>
