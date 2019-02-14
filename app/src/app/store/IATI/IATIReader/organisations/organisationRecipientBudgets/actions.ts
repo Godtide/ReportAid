@@ -4,9 +4,8 @@ import { ApplicationState } from '../../../../store'
 
 import { ActionProps } from '../../../../types'
 import { IATIOrganisationRecipientBudgetProps } from '../../../types'
-import { IATIReportActionTypes,
-         IATIRecipientOrgBudgetReportProps,
-         OrganisationsReportProps } from '../types'
+import { IATIReportActionTypes, OrganisationsReportProps } from '../types'
+import { IATIOrganisationRecipientBudgetReportProps } from './types'
 
 import { read } from '../actions'
 
@@ -18,8 +17,17 @@ export const getRecipientBudgets = (props: OrganisationsReportProps) => {
     const organisationsRef = props.organisationsRef
     const organisationRef = props.organisationRef
 
-    const budgetReports = state.organisationsReport.data[organisationsRef].data[organisationRef].data.recipientOrgBudget as IATIRecipientOrgBudgetReportProps
-
+    let budgetReports: IATIOrganisationRecipientBudgetReportProps = {
+      data: {
+        [organisationsRef]: {
+          data: {
+            [organisationRef]: {
+              data: {}
+            }
+          }
+        }
+      }
+    }
     let actionType = IATIReportActionTypes.RECIPIENTORGBUDGET_FAILURE
     try {
       const num = await recipientBudgetsContract.getNumRecipientBudgets(props.organisationsRef, props.organisationRef)
@@ -31,7 +39,7 @@ export const getRecipientBudgets = (props: OrganisationsReportProps) => {
          const budget: IATIOrganisationRecipientBudgetProps = await recipientBudgetsContract.getRecipientBudget(organisationsRef,
                                                                                                                 organisationRef,
                                                                                                                 budgetRef)
-         budgetReports[budgetRef] = budget
+         budgetReports.data[organisationsRef].data[organisationRef].data[budgetRef] = budget
          actionType = IATIReportActionTypes.RECIPIENTORGBUDGET_SUCCESS
       }
     } catch (error) {

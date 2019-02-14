@@ -4,9 +4,8 @@ import { ApplicationState } from '../../../../store'
 
 import { ActionProps } from '../../../../types'
 import { IATIOrganisationExpenditureProps } from '../../../types'
-import { IATIReportActionTypes,
-         IATITotalExpenditureReportProps,
-         OrganisationsReportProps } from '../types'
+import { IATIReportActionTypes, OrganisationsReportProps } from '../types'
+import { IATIOrganisationExpenditureReportProps } from './types'
 
 import { read } from '../actions'
 
@@ -18,20 +17,28 @@ export const getExpenditure = (props: OrganisationsReportProps) => {
     const organisationsRef = props.organisationsRef
     const organisationRef = props.organisationRef
 
-    const expenditureReports = state.organisationsReport.data[organisationsRef].data[organisationRef].data.totalExpenditure as IATITotalExpenditureReportProps
-
+    let expenditureReports: IATIOrganisationExpenditureReportProps = {
+      data: {
+        [organisationsRef]: {
+          data: {
+            [organisationRef]: {
+              data: {}
+            }
+          }
+        }
+      }
+    }
     let actionType = IATIReportActionTypes.TOTALEXPENDITURE_FAILURE
     try {
       const num = await expenditureContract.getNumExpenditures(props.organisationsRef, props.organisationRef)
       const numExpenditure = num.toNumber()
       for (let i = 0; i < numExpenditure; i++) {
-         const expenditureRef = await expenditureContract.getExpenditureReference(organisationsRef,
+        const expenditureRef = await expenditureContract.getExpenditureReference(organisationsRef,
                                                                                   organisationRef,
                                                                                   i.toString())
-         const expenditure: IATIOrganisationExpenditureProps = await expenditureContract.getExpenditure(organisationsRef,
-                                                                                                        organisationRef,
-                                                                                                        expenditureRef)
-         expenditureReports[expenditureRef] = expenditure
+        const expenditure: IATIOrganisationExpenditureProps = await expenditureContract.getExpenditure(organisationsRef, organisationRef, expenditureRef)
+
+        expenditureReports.data[organisationsRef].data[organisationRef].data[expenditureRef] = expenditure
          actionType = IATIReportActionTypes.TOTALEXPENDITURE_SUCCESS
       }
     } catch (error) {

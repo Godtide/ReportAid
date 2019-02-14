@@ -4,9 +4,8 @@ import { ApplicationState } from '../../../../store'
 
 import { ActionProps } from '../../../../types'
 import { IATIOrganisationDocProps } from '../../../types'
-import { IATIReportActionTypes,
-         IATIDocumentReportProps,
-         OrganisationsReportProps } from '../types'
+import { IATIReportActionTypes, OrganisationsReportProps } from '../types'
+import { IATIOrganisationDocReportProps } from './types'
 
 import { read } from '../actions'
 
@@ -18,21 +17,31 @@ export const getDocs = (props: OrganisationsReportProps) => {
     const organisationsRef = props.organisationsRef
     const organisationRef = props.organisationRef
 
-    const docReports = state.organisationsReport.data[organisationsRef].data[organisationRef].data.document as IATIDocumentReportProps
-
+    let docReports: IATIOrganisationDocReportProps = {
+      data: {
+        [organisationsRef]: {
+          data: {
+            [organisationRef]: {
+              data: {}
+            }
+          }
+        }
+      }
+    }
     let actionType = IATIReportActionTypes.DOCUMENT_FAILURE
     try {
       const num = await docsContract.getNumDocs(props.organisationsRef, props.organisationRef)
       const numDocs = num.toNumber()
       for (let i = 0; i < numDocs; i++) {
-         const docRef = await docsContract.getDocReference(organisationsRef,
+        const docRef = await docsContract.getDocReference(organisationsRef,
                                                            organisationRef,
                                                            i.toString())
-         const doc: IATIOrganisationDocProps = await docsContract.getDocument(organisationsRef,
+        const doc: IATIOrganisationDocProps = await docsContract.getDocument(organisationsRef,
                                                                                 organisationRef,
                                                                                 docRef)
-         docReports[docRef] = doc
-         actionType = IATIReportActionTypes.DOCUMENT_SUCCESS
+
+        docReports.data[organisationsRef].data[organisationRef].data[docRef] = doc
+        actionType = IATIReportActionTypes.DOCUMENT_SUCCESS
       }
     } catch (error) {
       console.log('getDocs error', error)

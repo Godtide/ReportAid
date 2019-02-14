@@ -4,9 +4,8 @@ import { ApplicationState } from '../../../../store'
 
 import { ActionProps } from '../../../../types'
 import { IATIOrganisationRegionBudgetProps } from '../../../types'
-import { IATIReportActionTypes,
-         IATIRecipientRegionBudgetReportProps,
-         OrganisationsReportProps } from '../types'
+import { IATIReportActionTypes, OrganisationsReportProps } from '../types'
+import { IATIOrganisationRegionBudgetReportProps } from './types'
 
 import { read } from '../actions'
 
@@ -18,8 +17,17 @@ export const getRegionBudgets = (props: OrganisationsReportProps) => {
     const organisationsRef = props.organisationsRef
     const organisationRef = props.organisationRef
 
-    const budgetReports = state.organisationsReport.data[organisationsRef].data[organisationRef].data.recipientRegionBudget as IATIRecipientRegionBudgetReportProps
-
+    let budgetReports: IATIOrganisationRegionBudgetReportProps = {
+      data: {
+        [organisationsRef]: {
+          data: {
+            [organisationRef]: {
+              data: {}
+            }
+          }
+        }
+      }
+    }
     let actionType = IATIReportActionTypes.RECIPIENTREGIONBUDGET_FAILURE
     try {
       const num = await regionBudgetsContract.getNumRegionBudgets(props.organisationsRef, props.organisationRef)
@@ -31,7 +39,7 @@ export const getRegionBudgets = (props: OrganisationsReportProps) => {
          const budget: IATIOrganisationRegionBudgetProps = await regionBudgetsContract.getRegionsBudget(organisationsRef,
                                                                                                         organisationRef,
                                                                                                         budgetRef)
-         budgetReports[budgetRef] = budget
+         budgetReports.data[organisationsRef].data[organisationRef].data[budgetRef] = budget
          actionType = IATIReportActionTypes.RECIPIENTREGIONBUDGET_SUCCESS
       }
     } catch (error) {
