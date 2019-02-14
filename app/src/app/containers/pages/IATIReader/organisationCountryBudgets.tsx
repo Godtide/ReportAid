@@ -19,7 +19,8 @@ import { getCountryBudgets } from '../../../store/IATI/IATIReader/organisations/
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { IATIOrganisationsData, OrganisationsReportProps } from '../../../store/IATI/IATIReader/organisations/types'
+import { IATIOrganisationCountryBudgetReport } from '../../../store/IATI/IATIReader/organisations/organisationCountryBudgets/types'
+import { OrganisationsReportProps } from '../../../store/IATI/IATIReader/organisations/types'
 
 import { OrganisationCountryBudget as OrganisationCountryBudgetStrings } from '../../../utils/strings'
 
@@ -36,7 +37,7 @@ const reportSchema = Yup.object().shape({
 })
 
 interface OrganisationCountryBudgetProps {
-  organisations: IATIOrganisationsData
+  budgets: IATIOrganisationCountryBudgetReport
 }
 
 interface OrganisationCountryBudgetDispatchProps {
@@ -72,7 +73,7 @@ class CountryBudgets extends React.Component<OrganisationCountryBudgetsReaderPro
 
   render() {
 
-    const reportsData = Object.keys(this.props.organisations)
+    const reportsData = Object.keys(this.props.budgets)
     let xs = ""
     let num = 0
     /*let xs = ""
@@ -162,7 +163,7 @@ class CountryBudgets extends React.Component<OrganisationCountryBudgetsReaderPro
 const mapStateToProps = (state: ApplicationState): OrganisationCountryBudgetProps => {
   //console.log(state.orgReader)
   return {
-    organisations: state.organisationsReader.data
+    budgets: state.organisationCountryBudgetsReader.data
   }
 }
 

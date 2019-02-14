@@ -19,7 +19,8 @@ import { getExpenditure } from '../../../store/IATI/IATIReader/organisations/org
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { IATIOrganisationsData, OrganisationsReportProps } from '../../../store/IATI/IATIReader/organisations/types'
+import { IATIOrganisationExpenditureReport } from '../../../store/IATI/IATIReader/organisations/organisationExpenditure/types'
+import { OrganisationsReportProps } from '../../../store/IATI/IATIReader/organisations/types'
 
 import { OrganisationExpenditure as OrganisationExpenditureStrings } from '../../../utils/strings'
 
@@ -36,7 +37,7 @@ const reportSchema = Yup.object().shape({
 })
 
 interface OrganisationExpenditureProps {
-  organisations: IATIOrganisationsData
+  expenditure: IATIOrganisationExpenditureReport
 }
 
 interface OrganisationExpenditureDispatchProps {
@@ -72,7 +73,7 @@ class Expenditure extends React.Component<OrganisationExpenditureReaderProps> {
 
   render() {
 
-    const reportsData = Object.keys(this.props.organisations)
+    const reportsData = Object.keys(this.props.expenditure)
     let xs = ""
     let num = 0
     /*let xs = ""
@@ -160,7 +161,7 @@ class Expenditure extends React.Component<OrganisationExpenditureReaderProps> {
 const mapStateToProps = (state: ApplicationState): OrganisationExpenditureProps => {
   //console.log(state.orgReader)
   return {
-    organisations: state.organisationsReader.data
+    expenditure: state.organisationExpenditureReader.data
   }
 }
 
