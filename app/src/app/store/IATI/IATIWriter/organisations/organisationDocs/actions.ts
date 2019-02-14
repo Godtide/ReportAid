@@ -15,7 +15,7 @@ export const setOrganisationDoc = (details: OrganisationDocProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
 
     const state = getState()
-    const docsContract = state.chainContracts.data.contracts.organisactionDocs
+    const docsContract = state.chainContracts.data.contracts.organisationDocs
 
     const docDate = new Date(details.year + '/' + details.month + '/' + details.day)
 
