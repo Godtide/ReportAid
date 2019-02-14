@@ -4,7 +4,8 @@ import { ApplicationState } from '../../../../store'
 
 import { ActionProps } from '../../../../types'
 import { IATIOrganisationProps } from '../../../types'
-import { IATIReportActionTypes, IATIOrganisationReport, OrganisationReportProps, IATIOrganisationsData } from '../types'
+import { IATIReportActionTypes, OrganisationReportProps } from '../types'
+import { IATIOrganisationReportProps } from './types'
 
 import { read } from '../actions'
 
@@ -15,8 +16,13 @@ export const getOrganisation = (props: OrganisationReportProps) => {
     const organisationContract = state.chainContracts.data.contracts.organisation
     const organisationsRef = props.organisationsRef
 
-    let organisationsData: IATIOrganisationsData = state.organisationsReader.data
-    //console.log('orgs stuff: ', organisationsData)
+    let organisationData: IATIOrganisationReportProps = {
+      data: {
+        [organisationsRef]: {
+          data: {}
+        }
+      }
+    }
 
     let actionType = IATIReportActionTypes.ORGANISATION_FAILURE
     try {
@@ -25,89 +31,13 @@ export const getOrganisation = (props: OrganisationReportProps) => {
       for (let i = 0; i < numOrganisations; i++) {
          const organisationRef = await organisationContract.getOrganisationReference(organisationsRef, i.toString())
          const organisation: IATIOrganisationProps = await organisationContract.getOrganisation(organisationsRef, organisationRef)
-         // console.log('Org: ', org)
-         // IATIOrganisations: state.organisationsReader.data[organisationsRef].IATIOrganisations
-         organisationsData[organisationsRef].data[organisationRef] = {
-           IATIOrganisation: organisation,
-           data: {
-               totalBudget: {
-                 '': {
-                   budgetLine: '',
-                   finance: {
-                     value: 0,
-                     status: 0,
-                     start: '',
-                     end: ''
-                   }
-                 }
-               },
-               recipientOrgBudget: {
-                 '': {
-                   recipientOrgRef: '',
-                   budgetLine: '',
-                   finance: {
-                     value: 0,
-                     status: 0,
-                     start: '',
-                     end: ''
-                   }
-                 }
-               },
-               recipientRegionBudget: {
-                 '': {
-                   regionRef: 0,
-                   budgetLine: '',
-                   finance: {
-                     value: 0,
-                     status: 0,
-                     start: '',
-                     end: ''
-                   }
-                 }
-               },
-               recipientCountryBudget: {
-                 '': {
-                   countryRef: '',
-                   budgetLine: '',
-                   finance: {
-                     value: 0,
-                     status: 0,
-                     start: '',
-                     end: ''
-                   }
-                 }
-               },
-               totalExpenditure: {
-                 '': {
-                   expenditureLine: '',
-                   finance: {
-                     value: 0,
-                     status: 0,
-                     start: '',
-                     end: ''
-                   }
-                 }
-               },
-               document: {
-                 '': {
-                   title: '',
-                   format: '',
-                   url: '',
-                   category: '',
-                   countryRef: '',
-                   desc: '',
-                   lang: '',
-                   date: ''
-                 }
-               }
-             }
-         }
+         organisationData.data[organisationsRef].data[organisationRef] = organisation
          actionType = IATIReportActionTypes.ORGANISATION_SUCCESS
       }
     } catch (error) {
       console.log('getOrganisation error', error)
     }
 
-    dispatch(read({data: organisationsData})(actionType))
+    dispatch(read({data: organisationData})(actionType))
   }
 }

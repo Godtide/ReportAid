@@ -9,7 +9,7 @@ import { getOrganisations } from '../../../store/IATI/IATIReader/organisations/o
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { IATIOrganisationsData } from '../../../store/IATI/IATIReader/organisations/types'
+import { IATIOrganisationsData } from '../../../store/IATI/IATIReader/organisations/organisations/types'
 
 import { Organisations as OrganisationsStrings } from '../../../utils/strings'
 
@@ -44,11 +44,11 @@ class OrganisationsReader extends React.Component<OrgReaderProps> {
     let xs = ""
     let num = 0
     Object.keys(reportsData).forEach((organisationsKey) => {
-        if ( reportsData[organisationsKey].IATIOrganisations.hasOwnProperty('version') &&
-             reportsData[organisationsKey].IATIOrganisations.version != "" ) {
+        if ( reportsData[organisationsKey].hasOwnProperty('version') &&
+             reportsData[organisationsKey].version != "" ) {
           num += 1
-          const version = ethers.utils.parseBytes32String(reportsData[organisationsKey].IATIOrganisations.version)
-          const generatedTime = ethers.utils.parseBytes32String(reportsData[organisationsKey].IATIOrganisations.generatedTime)
+          const version = ethers.utils.parseBytes32String(reportsData[organisationsKey].version)
+          const generatedTime = ethers.utils.parseBytes32String(reportsData[organisationsKey].generatedTime)
           xs += `**${OrganisationsStrings.reportKey}**: ${organisationsKey}<br />`
           xs += `**${OrganisationsStrings.version}**: ${version}<br />`
           xs += `**${OrganisationsStrings.generated}**: ${generatedTime}<br /><br />`

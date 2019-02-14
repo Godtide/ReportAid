@@ -7,7 +7,8 @@ import { ActionProps } from '../../../../types'
 import { read } from '../actions'
 
 import { IATIOrganisationsProps } from '../../../types'
-import { IATIReportActionTypes, IATIOrganisationsReport, IATIOrganisationsData } from '../types'
+import { IATIReportActionTypes } from '../types'
+import { IATIOrganisationsReportProps } from './types'
 
 export const getOrganisations = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
@@ -15,7 +16,9 @@ export const getOrganisations = () => {
     const state = getState()
     const organisationsContract = state.chainContracts.data.contracts.organisations
 
-    let organisationsData: IATIOrganisationsData = {}
+    let organisationsData: IATIOrganisationsReportProps = {
+      data: {}
+    }
     let actionType = IATIReportActionTypes.ORGANISATIONS_FAILURE
     try {
       const num = await organisationsContract.getNumOrganisations()
@@ -24,11 +27,7 @@ export const getOrganisations = () => {
          const ref = await organisationsContract.getOrganisationsReference(i.toString())
 
          const organisations: IATIOrganisationsProps = await organisationsContract.getOrganisations(ref)
-         const thisData: IATIOrganisationsReport = {
-           IATIOrganisations: organisations,
-           data: {}
-         }
-         organisationsData[ref] = thisData
+         organisationsData.data[ref] = organisations
          actionType = IATIReportActionTypes.ORGANISATIONS_SUCCESS
       }
     } catch (error) {

@@ -8,8 +8,3 @@ export interface IATIOrgReports extends DictData {
 export interface IATIOrgReportProps extends PayloadProps {
   data: IATIOrgReports
 }
-
-export const enum IATIOrgsWriterActionTypes {
-  ORGS_SUCCESS = '@@IATIOrgsWriterActionTypes/WRITEORGS_SUCCESS',
-  ORGS_FAILURE = '@@IATIOrgsWriterActionTypes/WRITEORGS_FAILURE'
-}

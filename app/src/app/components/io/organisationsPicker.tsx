@@ -13,7 +13,7 @@ import { Select } from "material-ui-formik-components"
 
 import { getOrganisations } from '../../store/IATI/IATIReader/organisations/organisations/actions'
 
-import { IATIOrganisationsData } from '../../store/IATI/IATIReader/organisations/types'
+import { IATIOrganisationsData } from '../../store/IATI/IATIReader/organisations/organisations/types'
 
 interface OrganisationsFormProps {
   changeFunction: Function

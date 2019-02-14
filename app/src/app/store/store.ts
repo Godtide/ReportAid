@@ -6,16 +6,14 @@ import ReduxThunk, { ThunkAction } from 'redux-thunk'
 import { ActionProps, TxProps } from './types'
 
 import { IATIOrgReportProps } from './IATI/IATIReader/organisations/orgs/types'
-import { IATIOrganisationsReportProps } from './IATI/IATIReader/organisations/types'
-
-/*import { OrgReaderProps } from './IATI/IATIReader/orgs/types'
-import { OrganisationReaderProps } from './IATI/IATIReader/organisations/types'
-import { OrganisationDocsReaderProps } from './IATI/IATIReader/organisationDocs/types'
-import { OrganisationBudgetsReaderProps } from './IATI/IATIReader/organisationBudgets/types'
-import { OrganisationExpenditureReaderProps } from './IATI/IATIReader/organisationExpenditure/types'
-import { OrganisationRecipientBudgetsReaderProps } from './IATI/IATIReader/organisationRecipientBudgets/types'
-import { OrganisationRegionBudgetsReaderProps } from './IATI/IATIReader/organisationRegionBudgets/types'
-import { OrganisationCountryBudgetsReaderProps } from './IATI/IATIReader/organisationCountryBudgets/types'*/
+import { IATIOrganisationsReportProps } from './IATI/IATIReader/organisations/organisations/types'
+import { IATIOrganisationReportProps } from './IATI/IATIReader/organisations/organisation/types'
+import { IATIOrganisationDocReportProps } from './IATI/IATIReader/organisations/organisationDocs/types'
+import { IATIOrganisationBudgetReportProps } from './IATI/IATIReader/organisations/organisationBudgets/types'
+import { IATIOrganisationExpenditureReportProps } from './IATI/IATIReader/organisations/organisationExpenditure/types'
+import { IATIOrganisationRecipientBudgetReportProps } from './IATI/IATIReader/organisations/organisationRecipientBudgets/types'
+import { IATIOrganisationRegionBudgetReportProps } from './IATI/IATIReader/organisations/organisationRegionBudgets/types'
+import { IATIOrganisationCountryBudgetReportProps } from './IATI/IATIReader/organisations/organisationCountryBudgets/types'
 
 import { InfoProps } from './info/types'
 import { InfoProps as BlockchainInfoProps } from  './blockchain/info/types'
@@ -33,34 +31,19 @@ import { reducer as IATIWriterInfoReducer } from './info/IATIWriter/reducer'
 import { reducer as IATIReaderInfoReducer } from './info/IATIReader/reducer'
 
 import { reducer as orgsReaderReducer } from './IATI/IATIReader/organisations/orgs/reducer'
-import { reducer as organisationsReaderReducer } from './IATI/IATIReader/organisations/reducer'
-
-/*
-import { reducer as orgReaderReducer } from './IATI/IATIReader/orgs/reducer'
-import { reducer as organisationsReaderReducer } from './IATI/IATIReader/organisations/reducer'
-import { reducer as organisationReaderReducer } from './IATI/IATIReader/organisation/reducer'
-import { reducer as organisationDocsReaderReducer } from './IATI/IATIReader/organisationDocs/reducer'
-import { reducer as organisationBudgetsReaderReducer } from './IATI/IATIReader/organisationBudgets/reducer'
-import { reducer as organisationExpenditureReaderReducer } from './IATI/IATIReader/organisationExpenditure/reducer'
-import { reducer as organisationRecipientBudgetsReaderReducer } from './IATI/IATIReader/organisationRecipientBudgets/reducer'
-import { reducer as organisationRegionBudgetsReaderReducer } from './IATI/IATIReader/organisationRegionBudgets/reducer'
-import { reducer as organisationCountryBudgetsReaderReducer } from './IATI/IATIReader/organisationCountryBudgets/reducer'
-*/
+import { reducer as organisationsReaderReducer } from './IATI/IATIReader/organisations/organisations/reducer'
+import { reducer as organisationReaderReducer } from './IATI/IATIReader/organisations/organisation/reducer'
+import { reducer as organisationDocsReaderReducer } from './IATI/IATIReader/organisations/organisationDocs/reducer'
+import { reducer as organisationBudgetsReaderReducer } from './IATI/IATIReader/organisations/organisationBudgets/reducer'
+import { reducer as organisationExpenditureReaderReducer } from './IATI/IATIReader/organisations/organisationExpenditure/reducer'
+import { reducer as organisationRecipientBudgetsReaderReducer } from './IATI/IATIReader/organisations/organisationRecipientBudgets/reducer'
+import { reducer as organisationRegionBudgetsReaderReducer } from './IATI/IATIReader/organisations/organisationRegionBudgets/reducer'
+import { reducer as organisationCountryBudgetsReaderReducer } from './IATI/IATIReader/organisations/organisationCountryBudgets/reducer'
 
 import { reducer as organisationsWriterReducer } from './IATI/IATIWriter/organisations/reducer'
 
-/*import { reducer as organisationsWriterReducer } from './IATI/IATIWriter/organisations/reducer'
-import { reducer as organisationWriterReducer } from './IATI/IATIWriter/organisation/reducer'
-import { reducer as organisationDocsWriterReducer } from './IATI/IATIWriter/organisationDocs/reducer'
-import { reducer as organisationBudgetsWriterReducer } from './IATI/IATIWriter/organisationBudgets/reducer'
-import { reducer as organisationExpenditureWriterReducer } from './IATI/IATIWriter/organisationExpenditure/reducer'
-import { reducer as organisationRecipientBudgetsWriterReducer } from './IATI/IATIWriter/organisationRecipientBudgets/reducer'
-import { reducer as organisationRegionBudgetsWriterReducer } from './IATI/IATIWriter/organisationRegionBudgets/reducer'
-import { reducer as organisationCountryBudgetsWriterReducer } from './IATI/IATIWriter/organisationCountryBudgets/reducer'*/
-
 export type ThunkResult<R> = ThunkAction<R, ApplicationState, null, any>
 
-// The top-level state object
 export interface ApplicationState {
   chainInfo: BlockchainInfoProps
   chainAccount: AccountProps
@@ -72,17 +55,15 @@ export interface ApplicationState {
   writer: InfoProps
   reader: InfoProps
   organisationsWriterForms: TxProps
-  orgsReader: IATIOrgReportProps,
+  orgsReader: IATIOrgReportProps
   organisationsReader: IATIOrganisationsReportProps
-  /*orgReader: OrgReaderProps
-  organisationsReader: OrganisationsReaderProps
-  organisationReader: OrganisationReaderProps
-  organisationDocsReader: OrganisationDocsReaderProps
-  organisationBudgetsReader: OrganisationBudgetsReaderProps
-  organisationExpenditureReader: OrganisationExpenditureReaderProps
-  organisationRecipientBudgetsReader: OrganisationRecipientBudgetsReaderProps
-  organisationRegionBudgetsReader: OrganisationRegionBudgetsReaderProps
-  organisationCountryBudgetsReader: OrganisationCountryBudgetsReaderProps*/
+  organisationReader: IATIOrganisationReportProps
+  organisationDocsReader: IATIOrganisationDocReportProps
+  organisationBudgetsReader: IATIOrganisationBudgetReportProps
+  organisationExpenditureReader: IATIOrganisationExpenditureReportProps
+  organisationRecipientBudgetsReader: IATIOrganisationRecipientBudgetReportProps
+  organisationRegionBudgetsReader: IATIOrganisationRegionBudgetReportProps
+  organisationCountryBudgetsReader: IATIOrganisationCountryBudgetReportProps
 }
 
 export const rootReducer: Reducer<ApplicationState, ActionProps> = combineReducers<ApplicationState, ActionProps>({
@@ -97,8 +78,6 @@ export const rootReducer: Reducer<ApplicationState, ActionProps> = combineReduce
   reader: IATIReaderInfoReducer,
   organisationsWriterForms: organisationsWriterReducer,
   orgsReader: orgsReaderReducer,
-  organisationsReader: organisationsReaderReducer
-  /* orgReader: orgReaderReducer,
   organisationsReader: organisationsReaderReducer,
   organisationReader: organisationReaderReducer,
   organisationDocsReader: organisationDocsReaderReducer,
@@ -106,7 +85,7 @@ export const rootReducer: Reducer<ApplicationState, ActionProps> = combineReduce
   organisationExpenditureReader: organisationExpenditureReaderReducer,
   organisationRecipientBudgetsReader: organisationRecipientBudgetsReaderReducer,
   organisationRegionBudgetsReader: organisationRegionBudgetsReaderReducer,
-  organisationCountryBudgetsReader: organisationCountryBudgetsReaderReducer,*/
+  organisationCountryBudgetsReader: organisationCountryBudgetsReaderReducer
 })
 
 export function configureStore(

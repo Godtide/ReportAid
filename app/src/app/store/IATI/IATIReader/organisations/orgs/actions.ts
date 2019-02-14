@@ -5,12 +5,12 @@ import { ApplicationState } from '../../../../store'
 import { ActionProps, PayloadProps} from '../../../../types'
 
 import { IATIOrgProps } from '../../../types'
-import { IATIOrganisationsReportProps, IATIReportActionTypes, OrganisationsReportProps } from '../types'
-import { IATIOrgsWriterActionTypes, IATIOrgReports } from './types'
+import { IATIReportActionTypes } from '../types'
+import { IATIOrgReportProps } from './types'
 
 export const read = (payload: PayloadProps): Function => {
-  return (actionType: IATIReportActionTypes): IATIOrgReports => {
-    const getProps = storeAction(actionType)(payload) as IATIOrgReports
+  return (actionType: IATIReportActionTypes): PayloadProps => {
+    const getProps = storeAction(actionType)(payload) as PayloadProps
     return getProps
   }
 }
@@ -21,8 +21,10 @@ export const getOrgs = () => {
     const state = getState()
     const orgsContract = state.chainContracts.data.contracts.orgs
 
-    let orgsData: IATIOrgReports = {}
-    let actionType = IATIOrgsWriterActionTypes.ORGS_FAILURE
+    let orgsData: IATIOrgReportProps = {
+      data: {}
+    }
+    let actionType = IATIReportActionTypes.ORGS_FAILURE
     try {
       const num = await orgsContract.getNumOrgs()
       const numOrgs = num.toNumber()
@@ -32,8 +34,8 @@ export const getOrgs = () => {
          //console.log("OrgRef: ", orgRef)
          const org: IATIOrgProps = await orgsContract.getOrg(orgRef)
          //console.log("Org: ", org)
-         orgsData[orgRef] = org
-         actionType = IATIOrgsWriterActionTypes.ORGS_SUCCESS
+         orgsData.data[orgRef] = org
+         actionType = IATIReportActionTypes.ORGS_SUCCESS
       }
     } catch (error) {
       console.log('getOrgs error', error)

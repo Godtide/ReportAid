@@ -18,7 +18,8 @@ import { getOrganisation } from '../../../store/IATI/IATIReader/organisations/or
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { IATIOrganisationsData, OrganisationsReportProps } from '../../../store/IATI/IATIReader/organisations/types'
+import { IATIOrganisationReport } from '../../../store/IATI/IATIReader/organisations/organisation/types'
+import { OrganisationsReportProps } from '../../../store/IATI/IATIReader/organisations/types'
 
 import { Organisation as OrganisationStrings } from '../../../utils/strings'
 
@@ -32,7 +33,7 @@ const reportSchema = Yup.object().shape({
 })
 
 interface OrgProps {
-  organisations: IATIOrganisationsData
+  organisation: IATIOrganisationReport
 }
 
 interface OrgDispatchProps {
@@ -71,7 +72,7 @@ class OrganisationReader extends React.Component<OrgReaderProps> {
 
     //console.log(JSON.stringify(this.props.organisations))
     //const reportsData = Object.keys(this.props.organisations)
-    const reportsData = this.props.organisations
+    const reportsData = this.props.organisation
     let xs = ""
     let num = 0
         /*let xs = ""
@@ -156,7 +157,7 @@ class OrganisationReader extends React.Component<OrgReaderProps> {
 const mapStateToProps = (state: ApplicationState): OrgProps => {
   //console.log(state.orgReader)
   return {
-    organisations: state.organisationsReader.data
+    organisation: state.organisationReader.data
   }
 }
 
