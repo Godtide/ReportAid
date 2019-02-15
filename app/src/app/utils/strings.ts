@@ -9,6 +9,8 @@ class App {
 
   static headingOrganisationsWriter = 'Create Organisations Data'
   static headingOrganisationsReader = 'Read Organisations Data'
+  static headingActivitiesWriter = 'Create Activities Data'
+  static headingActivitiesReader = 'Read Activities Data'
 }
 
 class Paths {
@@ -74,21 +76,21 @@ class Help {
 
   static heading = 'ReportAid Help'
 
-  static info = `**ReportAid** allows humanitarian aid organisations to record information about funding.<br /><br />Have a read of the [Overview](#${configPaths.overview}) section, which gives some background about the app\'. <br /><br />To store a humanitarian aid record, click on the [Create Records](#${configPaths.writer}) link. To retrieve information, click on the [Read Records](#${configPaths.reader}) link. This app' relies on [MetaMask](https://metamask.io/).`
+  static info = `**ReportAid** allows humanitarian aid organisations to record information about funding.<br /><br />Have a read of the [Overview](#${configPaths.overview}) section, which gives some background about the app\'. <br /><br />The _${App.headingOrganisationsWriter}_ menu lets you create IATI Organsations records. The _${App.headingActivitiesWriter}_ menu lets you create IATI Activities records. The _${App.headingOrganisationsReader}_ menu lets you read IATI Organsations records. The _${App.headingActivitiesReader}_ menu lets you read IATI Activities records.<br /><br />This app' relies on [MetaMask](https://metamask.io/).`
 }
 
 class IATIWriter {
 
   static heading = 'IATI Writer'
 
-  static info = `The Create Organisations Data menu lets you create IATI Organsations records.<br /><br />The Create Activities Data menu lets you create IATI Activities records.`
+  static info = `The _${App.headingOrganisationsWriter}_ menu lets you create IATI Organsations records. The _${App.headingActivitiesWriter}_ menu lets you create IATI Activities records.`
 }
 
 class IATIReader {
 
   static heading = 'IATI Reader'
 
-  static info = `The Read Organisations Data menu lets you read IATI Organsations records.<br /><br />The Read Activities Data menu lets you read IATI Activities records.`
+  static info = `The _${App.headingOrganisationsReader}_ menu lets you read IATI Organsations records. The _${App.headingActivitiesReader}_ menu lets you read IATI Activities records.`
 }
 
 class Transaction {

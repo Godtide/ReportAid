@@ -171,7 +171,7 @@ const styles = (theme: Theme) =>
       backgroundColor: theme.palette.primary.light
     },
     appBar: {
-      padding: theme.spacing.unit * 2,
+      padding: theme.spacing.unit,
       margin: theme.spacing.unit,
       textAlign: 'left',
       fontSize: theme.typography.title.fontSize,
@@ -182,7 +182,7 @@ const styles = (theme: Theme) =>
       backgroundColor: theme.palette.primary.main
     },
     caption: {
-      padding: theme.spacing.unit * 2,
+      padding: theme.spacing.unit,
       margin: theme.spacing.unit,
       textAlign: 'center',
       fontSize: theme.typography.caption.fontSize,
@@ -193,7 +193,7 @@ const styles = (theme: Theme) =>
       backgroundColor: theme.palette.primary.light
     },
     footer: {
-      padding: theme.spacing.unit * 2,
+      padding: theme.spacing.unit,
       margin: theme.spacing.unit,
       textAlign: 'center',
       fontSize: theme.typography.subheading.fontSize,
