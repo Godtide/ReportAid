@@ -1,11 +1,6 @@
 import { Reducer } from 'redux'
 import { InfoPageProps } from './types'
-import { About } from '../../utils/strings'
-import { Help } from '../../utils/strings'
-import { Home } from '../../utils/strings'
-import { IATIReader } from '../../utils/strings'
-import { IATIWriter } from '../../utils/strings'
-import { Overview } from '../../utils/strings'
+import { About, Help, Home, IATIReader, IATIWriter, Overview } from '../../utils/strings'
 
 const initialState: InfoPageProps = {
   data: {
