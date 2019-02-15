@@ -6,8 +6,8 @@ import { Store } from 'redux'
 import { Provider } from 'ethers/providers/abstract-provider'
 import { Blockchain } from '../../utils/config'
 
-import { InfoProps } from '../../store/blockchain/info/types'
-import { addInfo } from '../../store/blockchain/info/actions'
+import { ChainDataProps } from '../../store/blockchain/data/types'
+import { addData } from '../../store/blockchain/data/actions'
 
 interface ChainProps {
   store: Store
@@ -40,7 +40,7 @@ export const setProvider = async (props: ChainProps) => {
   if (typeof chainObj.ensAddress != 'undefined') {
     ENSAddress = chainObj.ensAddress
   }
-  const infoData: InfoProps = {
+  const infoData: ChainDataProps = {
     data: {
       Name: chainObj.name,
       ChainId: chainObj.chainId,
@@ -49,6 +49,6 @@ export const setProvider = async (props: ChainProps) => {
     }
   }
 
-  const add = addInfo as Function
+  const add = addData as Function
   props.store.dispatch(add(infoData))
 }

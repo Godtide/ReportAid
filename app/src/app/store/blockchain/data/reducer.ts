@@ -1,7 +1,7 @@
-import { ChainInfoActionTypes, InfoProps } from './types'
+import { ChainDataActionTypes, ChainDataProps } from './types'
 import { ActionProps } from '../../types'
 
-const initialInfoState: InfoProps = {
+const initialInfoState: ChainDataProps = {
   data: {
     Name: '',
     ChainId: '',
@@ -10,9 +10,9 @@ const initialInfoState: InfoProps = {
   }
 }
 
-export const infoReducer = (state: InfoProps = initialInfoState, action: ActionProps): InfoProps => {
+export const reducer = (state: ChainDataProps = initialInfoState, action: ActionProps): ChainDataProps => {
   //console.log('blockchain info: ', action.type, action.payload)
-  if ( action.type == ChainInfoActionTypes.ADD_INFO ) {
+  if ( action.type == ChainDataActionTypes.ADD_DATA ) {
     //console.log('Chain info: ', action.payload)
     return Object.assign({}, state, action.payload)
   } else {

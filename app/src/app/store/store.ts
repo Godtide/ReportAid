@@ -16,11 +16,11 @@ import { IATIOrganisationRegionBudgetReportProps } from './IATI/IATIReader/organ
 import { IATIOrganisationCountryBudgetReportProps } from './IATI/IATIReader/organisations/organisationCountryBudgets/types'
 
 import { InfoProps } from './info/types'
-import { InfoProps as BlockchainInfoProps } from  './blockchain/info/types'
+import { ChainDataProps } from  './blockchain/data/types'
 import { AccountProps } from  './blockchain/account/types'
 import { ContractProps } from  './blockchain/contracts/types'
 
-import { infoReducer } from './blockchain/info/reducer'
+import { reducer as chainDataReducer } from './blockchain/data/reducer'
 import { reducer as accountReducer } from './blockchain/account/reducer'
 import { reducer as contractReducer } from './blockchain/contracts/reducer'
 import { reducer as aboutReducer } from './info/about/reducer'
@@ -45,7 +45,7 @@ import { reducer as organisationsWriterReducer } from './IATI/IATIWriter/organis
 export type ThunkResult<R> = ThunkAction<R, ApplicationState, null, any>
 
 export interface ApplicationState {
-  chainInfo: BlockchainInfoProps
+  chainInfo: ChainDataProps
   chainAccount: AccountProps
   chainContracts: ContractProps
   about: InfoProps
@@ -67,7 +67,7 @@ export interface ApplicationState {
 }
 
 export const rootReducer: Reducer<ApplicationState, ActionProps> = combineReducers<ApplicationState, ActionProps>({
-  chainInfo: infoReducer,
+  chainInfo: chainDataReducer,
   chainAccount: accountReducer,
   chainContracts: contractReducer,
   about: aboutReducer,
