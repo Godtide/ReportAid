@@ -22,10 +22,10 @@ class MainLayout extends React.Component<WithStyles<typeof styles>> {
         <Paper className={this.props.classes.root}>
           <Paper className={this.props.classes.header}>
             <Grid container>
-              <Grid item xs={12} sm={2}>
+              <Grid item xs={12} sm={1}>
                 <img className={this.props.classes.button} src={logo}/>
               </Grid>
-              <Grid item xs={12} sm={8}>
+              <Grid item xs={12} sm={9}>
                 <Paper className={this.props.classes.appBar}>
                   <ApplicationBar />
                 </Paper>
@@ -39,12 +39,12 @@ class MainLayout extends React.Component<WithStyles<typeof styles>> {
           </Paper>
           <Paper className={this.props.classes.content}>
             <Grid container spacing={0}>
-              <Grid item xs={12} sm={2}>
+              <Grid item xs={12} sm={3}>
                 <Paper className={this.props.classes.sider}>
                   <SiderOrganisationMenu />
                 </Paper>
               </Grid>
-              <Grid item xs={12} sm={10}>
+              <Grid item xs={12} sm={9}>
                 <Paper className={this.props.classes.content}>
                   <Content />
                 </Paper>

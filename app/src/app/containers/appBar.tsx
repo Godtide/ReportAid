@@ -26,8 +26,8 @@ class Bar extends React.Component<WithStyles<typeof styles>> {
 
     return (
       <div>
-        <AppBar position='relative'>
-          <Toolbar>
+        <AppBar position='static'>
+          <Toolbar variant="dense">
             <Link to={PathConfig.home}>
               <MenuItem>
                 <IconButton className={this.props.classes.button} aria-label={Paths.home}>
