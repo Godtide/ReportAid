@@ -2,6 +2,9 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { ThunkDispatch } from 'redux-thunk'
 
+import shortid from 'shortid'
+import { ethers } from 'ethers'
+
 import { Formik, Form, Field, FormikProps, ErrorMessage} from 'formik'
 import * as Yup from 'yup'
 import { LinearProgress } from '@material-ui/core'
@@ -25,7 +28,8 @@ import { withTheme, styles } from '../../../styles/theme'
 
 const orgSchema = Yup.object().shape({
   orgRef: Yup
-    .string(),
+    .string()
+    .required('Required'),
   name: Yup
     .string()
     .required('Required'),
@@ -46,6 +50,7 @@ type OrgWriterFormProps = WithStyles<typeof styles> & OrgDispatchProps
 export class OrgForm extends React.Component<OrgWriterFormProps> {
 
   state = {
+    orgRef: '',
     submitFunc: (function(submit: boolean) { return submit }),
     resetFunc: (function() { return null })
   }
@@ -54,9 +59,19 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
    super(props)
   }
 
+  componentDidMount() {
+    this.initialiseRef()
+  }
+
+  initialiseRef = () => {
+    const orgRef = ethers.utils.formatBytes32String(shortid.generate())
+    this.setState({orgRef: orgRef})
+  }
+
   handleSubmit = (values: OrgProps, setSubmitting: Function, reset: Function) => {
     this.setState({submitFunc: setSubmitting, resetFunc: reset})
     this.props.handleSubmit(values)
+    this.initialiseRef()
   }
 
   render() {
@@ -66,7 +81,8 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
         <h2>{OrgStrings.headingOrgWriter}</h2>
         <div>
           <Formik
-            initialValues={ {orgRef: '', name: '', code: '', identifier: ''} }
+            initialValues={ {orgRef: this.state.orgRef, name: '', code: '', identifier: ''} }
+            enableReinitialize={true}
             validationSchema={orgSchema}
             onSubmit={(values: OrgProps, actions: any) => {
               this.handleSubmit(values, actions.setSubmitting, actions.resetForm)
@@ -74,6 +90,13 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
             render={(formProps: FormikProps<OrgProps>) => (
               <Form>
                 <FormControl fullWidth={true}>
+                  <Field
+                    readOnly
+                    name='orgRef'
+                    value={this.state.orgRef}
+                    label={OrgStrings.orgIdentifier}
+                    component={TextField}
+                  />
                   <Field name='name' label={OrgStrings.orgName} component={TextField} />
                   <ErrorMessage name='name' />
                   <br />

@@ -2,13 +2,16 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { ThunkDispatch } from 'redux-thunk'
 
+import shortid from 'shortid'
+import { ethers } from 'ethers'
+
 import { Formik, Form, Field, FormikProps, ErrorMessage} from 'formik'
 import * as Yup from 'yup'
 import { LinearProgress } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
 import FormControl from '@material-ui/core/FormControl'
 //import { Select } from 'formik-material-ui'
-import { Select } from "material-ui-formik-components"
+import { TextField, Select } from "material-ui-formik-components"
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
@@ -32,7 +35,8 @@ const organisationSchema = Yup.object().shape({
     .string()
     .required('Required'),
   organisationRef: Yup
-    .string(),
+    .string()
+    .required('Required'),
   orgRef: Yup
     .string()
     .required('Required'),
@@ -63,6 +67,7 @@ export class OrganisationForm extends React.Component<OrganisationFormProps> {
 
   state = {
     organisationsRef: "",
+    organisationRef: "",
     submitFunc: (function(submit: boolean) { return submit }),
     resetFunc: (function() { return null })
   }
@@ -71,10 +76,19 @@ export class OrganisationForm extends React.Component<OrganisationFormProps> {
    super(props)
   }
 
+  componentDidMount() {
+    this.initialiseRef()
+  }
+
+  initialiseRef = () => {
+    const organisationRef = ethers.utils.formatBytes32String(shortid.generate())
+    this.setState({organisationRef: organisationRef})
+  }
+
   handleSubmit = (values: OrganisationProps, setSubmitting: Function, reset: Function) => {
     this.setState({submitFunc: setSubmitting, resetFunc: reset})
-    console.log(values)
     this.props.handleSubmit(values)
+    this.initialiseRef()
   }
 
   handleOrganisationsChange = (value: string) => {
@@ -93,7 +107,7 @@ export class OrganisationForm extends React.Component<OrganisationFormProps> {
         <div>
           <Formik
             initialValues={ {organisationsRef: "",
-                             organisationRef: "",
+                             organisationRef: this.state.organisationRef,
                              orgRef: "",
                              reportingOrgRef: "",
                              reportingOrgType: 0,
@@ -101,6 +115,7 @@ export class OrganisationForm extends React.Component<OrganisationFormProps> {
                              lang: "",
                              currency: ""
                             }}
+            enableReinitialize={true}
             validationSchema={organisationSchema}
             onSubmit={(values: OrganisationProps, actions: any) => {
               this.handleSubmit(values, actions.setSubmitting, actions.resetForm)
@@ -108,6 +123,13 @@ export class OrganisationForm extends React.Component<OrganisationFormProps> {
             render={(formProps: FormikProps<OrganisationProps>) => (
               <Form>
                 <FormControl fullWidth={true}>
+                  <Field
+                    readOnly
+                    name='organisationRef'
+                    value={this.state.organisationRef}
+                    label={OrganisationStrings.organisationReference}
+                    component={TextField}
+                  />
                   <OrganisationsPicker
                     changeFunction={this.handleOrganisationsChange}
                     setValue={formProps.setFieldValue}

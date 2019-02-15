@@ -22,7 +22,7 @@ class Paths {
   static readonly writer='Create Records'
   static readonly reader='Read Records'
 
-  static readonly orgWriter='Org\'s'
+  static readonly orgWriter='Org\''
   static readonly organisationsWriter='Organisations'
   static readonly organisationWriter='Organisation Report'
   static readonly organisationDocsWriter='Document'
@@ -67,7 +67,7 @@ class Overview {
 
   static heading = 'Overview of ReportAid'
 
-  static info = '**ReportAid** is the result of an academic paper titled: _Humanitarian Aid - a Blockchain Application That Adds Trust to Aid Provisioning_. The article discusses how the trust mechanisms of blockchain technology might be used to promote transparanecy in humanitarian aid provisioning. The general idea is that blockchains can add trust to the reporting of humanitarian aid funding.<br /><br />For more information about **ReportAid**, please contact s dot huckle at sussex dot ac dot uk.'
+  static info = '**ReportAid** iorgRefs the result of an academic paper titled: _Humanitarian Aid - a Blockchain Application That Adds Trust to Aid Provisioning_. The article discusses how the trust mechanisms of blockchain technology might be used to promote transparanecy in humanitarian aid provisioning. The general idea is that blockchains can add trust to the reporting of humanitarian aid funding.<br /><br />For more information about **ReportAid**, please contact s dot huckle at sussex dot ac dot uk.'
 }
 
 class Help {
@@ -106,7 +106,7 @@ class Org {
   static headingOrgWriter = 'Create Organisation'
   static headingOrgReader = 'Organisations'
 
-  static orgIdentifier = "Organisation Reference"
+  static orgIdentifier = "Org\' Reference"
 
   static orgName = 'Name'
   static code = 'Code'
@@ -121,7 +121,8 @@ class Organisations {
   static headingOrganisationsWriter = 'Write Organisations'
   static headingOrganisationsReader = 'Read Organisations'
 
-  static reportKey = "Key"
+  static organisationsReference = "Organisations Reference"
+  static reportKey = "Organisations Reference"
   static version = "Version"
   static generated = "Generated"
 

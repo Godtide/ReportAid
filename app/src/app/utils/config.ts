@@ -237,17 +237,17 @@ class Contract {
     "function getScope(bytes32 _activitiesRef, bytes32 _activityRef) view returns (uint8)"
   ]
 
-  static orgsAddress = "0x8EC9d338E9F990B16cE873629C734FBC658a4Cac"
-  static organisationsAddress = "0x8cA96cC847AE03c728d2d8957482B1FE113Ce810"
-  static organisationAddress = "0x1959a3B64A9b8a246cd4ae3305d29EF2Cf928358"
-  static organisationDocsAddress = "0xC7271378FB6a2B8292d09Ba8637197c51fF4d26B"
-  static organisationBudgetsAddress = "0xa5C039515f83982e33Da70210BD74c2a30a7Bd01"
-  static organisationExpenditureAddress = "0xc414e8AAbbe4753faBCf5180BD8438F99adb3016"
-  static organisationRecipientBudgetsAddress = "0xD63A6e29cc37e2A45ad723220c41dDB1AfC31Ec3"
-  static organisationRegionBudgetsAddress = "0x5384CFF0018Dd621E579F978F2fF963D0B2Bc652"
-  static organisationCountryBudgetsAddress = "0x2fe5E47B4F85740FCE65EAD551812379A590EE94"
-  static activitiesAddress = "0x6eaF25A60512381a3CFA388cbEa91cfe643B838f"
-  static activityAddress = "0xe0c591987bc980aC688886E7A34084E282951E9a"
+  static orgsAddress = "0x667CD537e1079044119438B0c8a62d59D557B55A"
+  static organisationsAddress = "0xcA5784A7c10A7CFC6480072FB46f0C54dFbFB989"
+  static organisationAddress = "0x2C433289b8A829AA3F34287039083309F542C8C4"
+  static organisationDocsAddress = "0x0A1E2F79698149724A6f02B549C9FCB216c3845C"
+  static organisationBudgetsAddress = "0x0aD0Fb44357c3274Fbd6F47Cc60Ca60444354390"
+  static organisationExpenditureAddress = "0x2FB258596E6359b9342E1e4d6617c72c54C893d9"
+  static organisationRecipientBudgetsAddress = "0xd3Fa22746d7d71f3386718A3F48f7b6a88073a4D"
+  static organisationRegionBudgetsAddress = "0xe97b1Cb304DD13e64AA833061d276F3C40453325"
+  static organisationCountryBudgetsAddress = "0x33bC4b3D57Df88bFAd0057DFfF2DeC217F5cA917"
+  static activitiesAddress = "0xF370A3797f3cC16E5420798762B77ec273Cb8a06"
+  static activityAddress = "0x9F0eA05eBa893D2736e1cB1a7295AC962CD274C8"
 }
 
 class Helpers {
