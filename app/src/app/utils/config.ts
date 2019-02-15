@@ -10,7 +10,7 @@ class Paths {
 
   static readonly orgWriter='/create-organisation'
   static readonly organisationsWriter='/create-organisations-report'
-  static readonly organisationWriter='/create-organisationsreport'
+  static readonly organisationWriter='/create-organisation-report'
   static readonly organisationDocsWriter = '/create-organisation-report-docs'
   static readonly organisationBudgetsWriter = '/create-organisation-report-budget'
   static readonly organisationExpenditureWriter = '/create-organisation-report-expenditure'

@@ -159,6 +159,17 @@ const styles = (theme: Theme) =>
       color: theme.typography.subheading.color,
       backgroundColor: theme.palette.primary.light,
     },
+    siderMenu: {
+      padding: 0,
+      margin: 0,
+      textAlign: 'left',
+      fontSize: theme.typography.title.fontSize,
+      fontWeight: theme.typography.subheading.fontWeight,
+      fontFamily: theme.typography.subheading.fontFamily,
+      lineHeight: theme.typography.subheading.lineHeight,
+      color: theme.typography.subheading.color,
+      backgroundColor: theme.palette.primary.light,
+    },
     appBar: {
       padding: theme.spacing.unit * 2,
       margin: theme.spacing.unit,
