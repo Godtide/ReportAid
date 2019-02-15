@@ -15,7 +15,7 @@ import { IATIOrganisationRecipientBudgetReportProps } from './IATI/IATIReader/or
 import { IATIOrganisationRegionBudgetReportProps } from './IATI/IATIReader/organisations/organisationRegionBudgets/types'
 import { IATIOrganisationCountryBudgetReportProps } from './IATI/IATIReader/organisations/organisationCountryBudgets/types'
 
-import { InfoProps } from './info/types'
+import { InfoPageProps } from './info/types'
 import { ChainDataProps } from  './blockchain/data/types'
 import { AccountProps } from  './blockchain/account/types'
 import { ContractProps } from  './blockchain/contracts/types'
@@ -23,12 +23,7 @@ import { ContractProps } from  './blockchain/contracts/types'
 import { reducer as chainDataReducer } from './blockchain/data/reducer'
 import { reducer as accountReducer } from './blockchain/account/reducer'
 import { reducer as contractReducer } from './blockchain/contracts/reducer'
-import { reducer as aboutReducer } from './info/about/reducer'
-import { reducer as homeReducer } from './info/home/reducer'
-import { reducer as helpReducer } from './info/help/reducer'
-import { reducer as overviewReducer } from './info/overview/reducer'
-import { reducer as IATIWriterInfoReducer } from './info/IATIWriter/reducer'
-import { reducer as IATIReaderInfoReducer } from './info/IATIReader/reducer'
+import { reducer as infoReducer } from './info/reducer'
 
 import { reducer as orgsReaderReducer } from './IATI/IATIReader/organisations/orgs/reducer'
 import { reducer as organisationsReaderReducer } from './IATI/IATIReader/organisations/organisations/reducer'
@@ -48,12 +43,7 @@ export interface ApplicationState {
   chainInfo: ChainDataProps
   chainAccount: AccountProps
   chainContracts: ContractProps
-  about: InfoProps
-  home: InfoProps
-  help: InfoProps
-  overview: InfoProps
-  writer: InfoProps
-  reader: InfoProps
+  info: InfoPageProps
   organisationsWriterForms: TxProps
   orgsReader: IATIOrgReportProps
   organisationsReader: IATIOrganisationsReportProps
@@ -70,12 +60,7 @@ export const rootReducer: Reducer<ApplicationState, ActionProps> = combineReduce
   chainInfo: chainDataReducer,
   chainAccount: accountReducer,
   chainContracts: contractReducer,
-  about: aboutReducer,
-  home: homeReducer,
-  help: helpReducer,
-  overview: overviewReducer,
-  writer: IATIWriterInfoReducer,
-  reader: IATIReaderInfoReducer,
+  info: infoReducer,
   organisationsWriterForms: organisationsWriterReducer,
   orgsReader: orgsReaderReducer,
   organisationsReader: organisationsReaderReducer,

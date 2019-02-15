@@ -34,19 +34,19 @@ class AppInfo extends React.Component<WithStyles<typeof styles> & AllProps> {
 const mapStateToProps = (state: ApplicationState, ownProps: StateProps): InfoProps => {
   switch (ownProps.type) {
     case InfoTypes.HOME:
-      return { title: state.home.title, data: state.home.data }
+      return { title: state.info.data.home.title, data: state.info.data.home.data }
     case InfoTypes.ABOUT:
-      return { title: state.about.title, data: state.about.data }
+      return { title: state.info.data.about.title, data: state.info.data.about.data }
     case InfoTypes.OVERVIEW:
-      return { title: state.overview.title, data: state.overview.data }
+      return { title: state.info.data.overview.title, data: state.info.data.overview.data }
     case InfoTypes.HELP:
-      return { title: state.help.title, data: state.help.data }
+      return { title: state.info.data.help.title, data: state.info.data.help.data }
     case InfoTypes.IATIWriter:
-      return { title: state.writer.title, data: state.writer.data }
-      case InfoTypes.IATIReader:
-        return { title: state.reader.title, data: state.reader.data }
+      return { title: state.info.data.IATIWriter.title, data: state.info.data.IATIWriter.data }
+    case InfoTypes.IATIReader:
+      return { title: state.info.data.IATIReader.title, data: state.info.data.IATIReader.data }
     default:
-      return { title: state.home.title, data: state.home.data }
+      return { title: state.info.data.home.title, data: state.info.data.home.data }
   }
 }
 

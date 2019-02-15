@@ -3,6 +3,8 @@ export const enum InfoTypes {
   HOME = 'home',
   OVERVIEW = 'overview',
   HELP = 'help',
+  CREATE = 'create',
+  READ = 'read',
   IATIWriter = 'writer',
   IATIReader = 'reader'
 }
