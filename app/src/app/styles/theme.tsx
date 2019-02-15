@@ -93,20 +93,20 @@ const styles = (theme: Theme) =>
     root: {
       padding: theme.spacing.unit * 2,
       backgroundColor: theme.palette.background.default,
-      flexGrow: 1,
+      flexGrow: 1
     },
     paper: {
-      padding: theme.spacing.unit * 2,
+      padding: theme.spacing.unit,
       margin: theme.spacing.unit,
       textAlign: 'center',
       fontSize: theme.typography.body1.fontSize,
       fontWeight: theme.typography.body1.fontWeight,
       fontFamily: theme.typography.body1.fontFamily,
       lineHeight: theme.typography.body1.lineHeight,
-      color: theme.typography.body1.color,
+      color: theme.typography.body1.color
     },
     header: {
-      padding: theme.spacing.unit * 2,
+      padding: theme.spacing.unit,
       margin: theme.spacing.unit,
       fontSize: theme.typography.headline.fontSize,
       fontWeight: theme.typography.headline.fontWeight,
@@ -114,7 +114,7 @@ const styles = (theme: Theme) =>
       lineHeight: theme.typography.headline.lineHeight,
       textAlign: 'center',
       color: theme.typography.title.color,
-      backgroundColor: theme.palette.primary.main,
+      backgroundColor: theme.palette.primary.main
     },
     title: {
       padding: theme.spacing.unit,
@@ -125,7 +125,7 @@ const styles = (theme: Theme) =>
       lineHeight: theme.typography.headline.lineHeight,
       textAlign: 'center',
       color: theme.typography.title.color,
-      backgroundColor: theme.palette.primary.main,
+      backgroundColor: theme.palette.primary.main
     },
     subHeader: {
       padding: theme.spacing.unit,
@@ -136,7 +136,7 @@ const styles = (theme: Theme) =>
       lineHeight: theme.typography.subheading.lineHeight,
       textAlign: 'center',
       color: theme.typography.subheading.color,
-      backgroundColor: theme.palette.primary.main,
+      backgroundColor: theme.palette.primary.main
     },
     content: {
       padding: theme.spacing.unit * 2,
@@ -146,10 +146,10 @@ const styles = (theme: Theme) =>
       fontFamily: theme.typography.body1.fontFamily,
       lineHeight: theme.typography.body1.lineHeight,
       color: theme.typography.body1.color,
-      backgroundColor: theme.palette.primary.light,
+      backgroundColor: theme.palette.primary.light
     },
     sider: {
-      padding: theme.spacing.unit * 2,
+      padding: theme.spacing.unit,
       margin: theme.spacing.unit,
       textAlign: 'left',
       fontSize: theme.typography.title.fontSize,
@@ -157,7 +157,7 @@ const styles = (theme: Theme) =>
       fontFamily: theme.typography.subheading.fontFamily,
       lineHeight: theme.typography.subheading.lineHeight,
       color: theme.typography.subheading.color,
-      backgroundColor: theme.palette.primary.light,
+      backgroundColor: theme.palette.primary.light
     },
     siderMenu: {
       padding: 0,
@@ -168,7 +168,7 @@ const styles = (theme: Theme) =>
       fontFamily: theme.typography.subheading.fontFamily,
       lineHeight: theme.typography.subheading.lineHeight,
       color: theme.typography.subheading.color,
-      backgroundColor: theme.palette.primary.light,
+      backgroundColor: theme.palette.primary.light
     },
     appBar: {
       padding: theme.spacing.unit * 2,
@@ -179,7 +179,7 @@ const styles = (theme: Theme) =>
       fontFamily: theme.typography.subheading.fontFamily,
       lineHeight: theme.typography.subheading.lineHeight,
       color: theme.typography.subheading.color,
-      backgroundColor: theme.palette.primary.main,
+      backgroundColor: theme.palette.primary.main
     },
     caption: {
       padding: theme.spacing.unit * 2,
@@ -190,7 +190,7 @@ const styles = (theme: Theme) =>
       fontFamily: theme.typography.caption.fontFamily,
       lineHeight: theme.typography.caption.lineHeight,
       color: theme.typography.caption.color,
-      backgroundColor: theme.palette.primary.light,
+      backgroundColor: theme.palette.primary.light
     },
     footer: {
       padding: theme.spacing.unit * 2,
@@ -200,10 +200,10 @@ const styles = (theme: Theme) =>
       fontWeight: theme.typography.subheading.fontWeight,
       fontFamily: theme.typography.subheading.fontFamily,
       lineHeight: theme.typography.subheading.lineHeight,
-      backgroundColor: theme.palette.primary.main,
+      backgroundColor: theme.palette.primary.main
     },
     button: {
-      margin: theme.spacing.unit,
+      margin: theme.spacing.unit
     },
   })
 
