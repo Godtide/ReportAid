@@ -74,6 +74,7 @@ class Docs extends React.Component<OrganisationDocsReaderProps> {
 
   handleSubmit = (values: OrganisationsReportProps, setSubmitting: Function, reset: Function) => {
     this.setState({submitFunc: setSubmitting, resetFunc: reset, submitting: true})
+    this.props.initialise()
     this.props.handleSubmit(values)
   }
 

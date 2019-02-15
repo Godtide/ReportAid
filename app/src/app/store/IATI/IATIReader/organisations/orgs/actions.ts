@@ -17,7 +17,7 @@ const read = (payload: PayloadProps): Function => {
 
 export const initialise = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
-    dispatch(read({data: { data: {} }})(IATIReportActionTypes.ORGS_INIT))
+    await dispatch(read({data: { data: {} }})(IATIReportActionTypes.ORGS_INIT))
   }
 }
 

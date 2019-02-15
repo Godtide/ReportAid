@@ -12,7 +12,7 @@ import { read } from '../actions'
 export const initialise = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const initData: IATIOrganisationsReportProps = { data: {} }
-    dispatch(read({data: initData})(IATIReportActionTypes.ORGANISATIONS_INIT))
+    await dispatch(read({data: initData})(IATIReportActionTypes.ORGANISATIONS_INIT))
   }
 }
 

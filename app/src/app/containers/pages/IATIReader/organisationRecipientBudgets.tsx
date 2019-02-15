@@ -74,6 +74,7 @@ class RecipientBudgets extends React.Component<OrganisationRecipientBudgetsReade
 
   handleSubmit = (values: OrganisationsReportProps, setSubmitting: Function, reset: Function) => {
     this.setState({submitFunc: setSubmitting, resetFunc: reset, submitting: true})
+    this.props.initialise()
     this.props.handleSubmit(values)
   }
 
