@@ -26,7 +26,7 @@ class Sider extends React.Component<WithStyles<typeof styles>> {
       <div>
         <ExpansionPanel className={this.props.classes.siderMenu}>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <h3>{App.headingOrganisationsWriter}</h3>
+            <h4>{App.headingOrganisationsWriter}</h4>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <MenuList>
@@ -108,7 +108,7 @@ class Sider extends React.Component<WithStyles<typeof styles>> {
 
         <ExpansionPanel className={this.props.classes.siderMenu}>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <h3>{App.headingOrganisationsReader}</h3>
+            <h4>{App.headingOrganisationsReader}</h4>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <MenuList>
