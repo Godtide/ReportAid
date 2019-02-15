@@ -14,7 +14,7 @@ import FormControl from '@material-ui/core/FormControl'
 
 import { OrganisationsPicker } from '../../../components/io/organisationsPicker'
 
-import { getOrganisation } from '../../../store/IATI/IATIReader/organisations/organisation/actions'
+import { initialise, getOrganisation } from '../../../store/IATI/IATIReader/organisations/organisation/actions'
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
@@ -38,6 +38,7 @@ interface OrgProps {
 
 interface OrgDispatchProps {
   handleSubmit: (values: any) => void
+  initialise: () => void
 }
 
 type OrgReaderProps =  WithStyles<typeof styles> & OrgProps & OrgDispatchProps
@@ -53,6 +54,10 @@ class OrganisationReader extends React.Component<OrgReaderProps> {
 
   constructor (props: OrgReaderProps) {
     super(props)
+  }
+
+  componentDidMount() {
+    this.props.initialise()
   }
 
   componentDidUpdate(previousProps: OrgReaderProps) {
@@ -167,7 +172,8 @@ const mapStateToProps = (state: ApplicationState): OrgProps => {
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgDispatchProps => {
   return {
-    handleSubmit: (ownProps: any) => dispatch(getOrganisation(ownProps))
+    handleSubmit: (ownProps: any) => dispatch(getOrganisation(ownProps)),
+    initialise: () => dispatch(initialise())
   }
 }
 

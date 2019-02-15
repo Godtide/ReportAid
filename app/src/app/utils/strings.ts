@@ -23,7 +23,7 @@ class Paths {
   static readonly reader='Read Records'
 
   static readonly orgWriter='Organisation'
-  static readonly organisationsWriter='Report'
+  static readonly organisationsWriter='Organisations'
   static readonly organisationWriter='Organisation Report'
   static readonly organisationDocsWriter='Document'
   static readonly organisationBudgetsWriter="Budget"

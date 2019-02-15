@@ -15,7 +15,7 @@ import FormControl from '@material-ui/core/FormControl'
 import { OrganisationsPicker } from '../../../components/io/organisationsPicker'
 import { OrganisationPicker } from '../../../components/io/organisationPicker'
 
-import { getDocs } from '../../../store/IATI/IATIReader/organisations/organisationDocs/actions'
+import { initialise, getDocs } from '../../../store/IATI/IATIReader/organisations/organisationDocs/actions'
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
@@ -42,6 +42,7 @@ interface OrganisationDocProps {
 
 interface OrganisationDocDispatchProps {
   handleSubmit: (values: any) => void
+  initialise: () => void
 }
 
 type OrganisationDocsReaderProps =  WithStyles<typeof styles> & OrganisationDocProps & OrganisationDocDispatchProps
@@ -57,6 +58,10 @@ class Docs extends React.Component<OrganisationDocsReaderProps> {
 
   constructor (props: OrganisationDocsReaderProps) {
     super(props)
+  }
+
+  componentDidMount() {
+    this.props.initialise()
   }
 
   componentDidUpdate(previousProps: OrganisationDocsReaderProps) {
@@ -176,7 +181,8 @@ const mapStateToProps = (state: ApplicationState): OrganisationDocProps => {
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrganisationDocDispatchProps => {
   return {
-    handleSubmit: (ownProps: any) => dispatch(getDocs(ownProps))
+    handleSubmit: (ownProps: any) => dispatch(getDocs(ownProps)),
+    initialise: () => dispatch(initialise())
   }
 }
 

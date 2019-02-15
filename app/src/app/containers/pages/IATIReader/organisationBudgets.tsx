@@ -14,7 +14,7 @@ import FormControl from '@material-ui/core/FormControl'
 import { OrganisationsPicker } from '../../../components/io/organisationsPicker'
 import { OrganisationPicker } from '../../../components/io/organisationPicker'
 
-import { getBudgets } from '../../../store/IATI/IATIReader/organisations/organisationBudgets/actions'
+import { initialise, getBudgets } from '../../../store/IATI/IATIReader/organisations/organisationBudgets/actions'
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
@@ -41,6 +41,7 @@ interface OrgBudgetProps {
 
 interface OrgBudgetDispatchProps {
   handleSubmit: (values: any) => void
+  initialise: () => void
 }
 
 type OrganisationBudgetsReaderProps =  WithStyles<typeof styles> & OrgBudgetProps & OrgBudgetDispatchProps
@@ -56,6 +57,10 @@ class Budgets extends React.Component<OrganisationBudgetsReaderProps> {
 
   constructor (props: OrganisationBudgetsReaderProps) {
     super(props)
+  }
+
+  componentDidMount() {
+    this.props.initialise()
   }
 
   componentDidUpdate(previousProps: OrganisationBudgetsReaderProps) {
@@ -172,7 +177,8 @@ const mapStateToProps = (state: ApplicationState): OrgBudgetProps => {
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgBudgetDispatchProps => {
   return {
-    handleSubmit: (ownProps: any) => dispatch(getBudgets(ownProps))
+    handleSubmit: (ownProps: any) => dispatch(getBudgets(ownProps)),
+    initialise: () => dispatch(initialise())
   }
 }
 

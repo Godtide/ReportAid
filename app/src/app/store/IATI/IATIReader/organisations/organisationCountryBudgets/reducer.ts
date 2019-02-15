@@ -28,6 +28,10 @@ const initialState: IATIOrganisationCountryBudgetReportProps = {
 export const reducer = (state: IATIOrganisationCountryBudgetReportProps = initialState, action: ActionProps): IATIOrganisationCountryBudgetReportProps => {
 
   switch (action.type) {
+    case IATIReportActionTypes.RECIPIENTCOUNTRYBUDGET_INIT: {
+      const data = (action.payload.data as IATIOrganisationCountryBudgetReportProps)
+      return data
+    }
     case IATIReportActionTypes.RECIPIENTCOUNTRYBUDGET_SUCCESS: {
       const data = (action.payload.data as IATIOrganisationCountryBudgetReportProps)
       return {...state, ...data}

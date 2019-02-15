@@ -15,7 +15,7 @@ import FormControl from '@material-ui/core/FormControl'
 import { OrganisationsPicker } from '../../../components/io/organisationsPicker'
 import { OrganisationPicker } from '../../../components/io/organisationPicker'
 
-import { getExpenditure } from '../../../store/IATI/IATIReader/organisations/organisationExpenditure/actions'
+import { initialise, getExpenditure } from '../../../store/IATI/IATIReader/organisations/organisationExpenditure/actions'
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
@@ -42,6 +42,7 @@ interface OrganisationExpenditureProps {
 
 interface OrganisationExpenditureDispatchProps {
   handleSubmit: (values: any) => void
+  initialise: () => void
 }
 
 type OrganisationExpenditureReaderProps =  WithStyles<typeof styles> & OrganisationExpenditureProps & OrganisationExpenditureDispatchProps
@@ -57,6 +58,10 @@ class Expenditure extends React.Component<OrganisationExpenditureReaderProps> {
 
   constructor (props: OrganisationExpenditureReaderProps) {
     super(props)
+  }
+
+  componentDidMount() {
+    this.props.initialise()
   }
 
   componentDidUpdate(previousProps: OrganisationExpenditureReaderProps) {
@@ -173,7 +178,8 @@ const mapStateToProps = (state: ApplicationState): OrganisationExpenditureProps 
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrganisationExpenditureDispatchProps => {
   return {
-    handleSubmit: (ownProps: any) => dispatch(getExpenditure(ownProps))
+    handleSubmit: (ownProps: any) => dispatch(getExpenditure(ownProps)),
+    initialise: () => dispatch(initialise())
   }
 }
 

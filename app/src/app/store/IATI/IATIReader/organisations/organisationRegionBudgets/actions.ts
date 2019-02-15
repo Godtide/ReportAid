@@ -9,6 +9,13 @@ import { IATIOrganisationRegionBudgetReportProps } from './types'
 
 import { read } from '../actions'
 
+export const initialise = () => {
+  return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
+    const initData: IATIOrganisationRegionBudgetReportProps = { data: {} }
+    dispatch(read({data: initData})(IATIReportActionTypes.RECIPIENTREGIONBUDGET_INIT))
+  }
+}
+
 export const getRegionBudgets = (props: OrganisationsReportProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
 

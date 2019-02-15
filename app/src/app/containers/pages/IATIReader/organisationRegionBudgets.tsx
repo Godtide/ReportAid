@@ -15,7 +15,7 @@ import FormControl from '@material-ui/core/FormControl'
 import { OrganisationsPicker } from '../../../components/io/organisationsPicker'
 import { OrganisationPicker } from '../../../components/io/organisationPicker'
 
-import { getRegionBudgets } from '../../../store/IATI/IATIReader/organisations/organisationRegionBudgets/actions'
+import { initialise, getRegionBudgets } from '../../../store/IATI/IATIReader/organisations/organisationRegionBudgets/actions'
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
@@ -42,6 +42,7 @@ interface OrganisationRegionBudgetProps {
 
 interface OrganisationRegionBudgetDispatchProps {
   handleSubmit: (values: any) => void
+  initialise: () => void
 }
 
 type OrganisationRegionBudgetsReaderProps =  WithStyles<typeof styles> & OrganisationRegionBudgetProps & OrganisationRegionBudgetDispatchProps
@@ -57,6 +58,10 @@ class RegionBudgets extends React.Component<OrganisationRegionBudgetsReaderProps
 
   constructor (props: OrganisationRegionBudgetsReaderProps) {
     super(props)
+  }
+
+  componentDidMount() {
+    this.props.initialise()
   }
 
   componentDidUpdate(previousProps: OrganisationRegionBudgetsReaderProps) {
@@ -176,7 +181,8 @@ const mapStateToProps = (state: ApplicationState): OrganisationRegionBudgetProps
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrganisationRegionBudgetDispatchProps => {
   return {
-    handleSubmit: (ownProps: any) => dispatch(getRegionBudgets(ownProps))
+    handleSubmit: (ownProps: any) => dispatch(getRegionBudgets(ownProps)),
+    initialise: () => dispatch(initialise())
   }
 }
 
