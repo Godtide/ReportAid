@@ -56,25 +56,7 @@ const reportSchema = Yup.object().shape({
     .required('Required'),
   status: Yup
     .number()
-    .required('Required'),
-  startDay: Yup
-    .number()
-    .required('Required'),
-  startMonth: Yup
-    .number()
-    .required('Required'),
-  startYear: Yup
-    .number()
-    .required('Required'),
-  endDay: Yup
-    .number()
-    .required('Required'),
-  endMonth: Yup
-    .number()
-    .required('Required'),
-  endYear: Yup
-    .number()
-    .required('Required'),
+    .required('Required')
 })
 
 const StartDatePickerProps = {
@@ -127,6 +109,7 @@ export class OrganisationBudgetsForm extends React.Component<OrganisationBudgets
 
   handleSubmit = (values: OrganisationBudgetProps, setSubmitting: Function, reset: Function) => {
     this.setState({submitFunc: setSubmitting, resetFunc: reset})
+    console.log(values)
     this.props.handleSubmit(values)
   }
 
@@ -151,12 +134,12 @@ export class OrganisationBudgetsForm extends React.Component<OrganisationBudgets
                              budgetLine: "",
                              value: 0,
                              status: 1,
-                             startDay: 1,
-                             startMonth: 1,
-                             startYear: 2000,
-                             endDay: 1,
-                             endMonth: 1,
-                             endYear: 2000
+                             startDay: 0,
+                             startMonth: 0,
+                             startYear: 0,
+                             endDay: 0,
+                             endMonth: 0,
+                             endYear: 0
                             }}
             validationSchema={reportSchema}
             onSubmit={(values: OrganisationBudgetProps, actions: any) => {
@@ -202,7 +185,7 @@ export class OrganisationBudgetsForm extends React.Component<OrganisationBudgets
                   <FormikDatePicker dates={StartDatePickerProps} />
                   <FormikDatePicker dates={EndDatePickerProps} />
                   <br />
-                  {formProps.isSubmitting && <LinearProgress />}
+                  {formProps.isSubmitting && formProps.isValidating && <LinearProgress />}
                   <br />
                   <Button type='submit' variant="raised" color="primary" disabled={formProps.isSubmitting}>
                     Submit

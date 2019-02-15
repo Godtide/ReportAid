@@ -5,6 +5,8 @@ import { Select } from "material-ui-formik-components"
 
 import { Helpers } from '../../utils/config'
 
+const isPositive = (message: string) => (value: any) => (typeof value == 'number' && value > 0 ? undefined : message)
+
 interface DatePickerProps {
   dates: {
     day: {
@@ -32,6 +34,7 @@ export const FormikDatePicker = (props: DatePickerProps) => {
           label={props.dates.day.label}
           //style={{ width: '10%' }}
           component={Select}
+          validate={isPositive('Required')}
           options={Helpers.days}
         />
         <ErrorMessage name={props.dates.day.name} />
@@ -41,6 +44,7 @@ export const FormikDatePicker = (props: DatePickerProps) => {
           name={props.dates.month.name}
           label={props.dates.month.label}
           //style={{ width: '10%' }}
+          validate={isPositive('Required')}
           component={Select}
           options={Helpers.months}
         />
@@ -51,6 +55,7 @@ export const FormikDatePicker = (props: DatePickerProps) => {
           name={props.dates.year.name}
           label={props.dates.year.label}
           //style={{ width: '10%' }}
+          validate={isPositive('Required')}
           component={Select}
           options={Helpers.years}
         />

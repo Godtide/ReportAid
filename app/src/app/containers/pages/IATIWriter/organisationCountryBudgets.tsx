@@ -45,25 +45,7 @@ const reportSchema = Yup.object().shape({
     .required('Required'),
   status: Yup
     .number()
-    .required('Required'),
-  startDay: Yup
-    .number()
-    .required('Required'),
-  startMonth: Yup
-    .number()
-    .required('Required'),
-  startYear: Yup
-    .number()
-    .required('Required'),
-  endDay: Yup
-    .number()
-    .required('Required'),
-  endMonth: Yup
-    .number()
-    .required('Required'),
-  endYear: Yup
-    .number()
-    .required('Required'),
+    .required('Required')
 })
 
 const StartDatePickerProps = {
@@ -141,12 +123,12 @@ export class OrganisationCountryBudgetsForm extends React.Component<Organisation
                              budgetLine: "",
                              value: 0,
                              status: 1,
-                             startDay: 1,
-                             startMonth: 1,
-                             startYear: 2000,
-                             endDay: 1,
-                             endMonth: 1,
-                             endYear: 2000
+                             startDay: 0,
+                             startMonth: 0,
+                             startYear: 0,
+                             endDay: 0,
+                             endMonth: 0,
+                             endYear: 0
                             }}
             validationSchema={reportSchema}
             onSubmit={(values: OrganisationCountryBudgetProps, actions: any) => {

@@ -68,16 +68,7 @@ const docSchema = Yup.object().shape({
     .required('Required'),
   lang: Yup
     .string()
-    .required('Required'),
-  day: Yup
-    .number()
-    .required('Required'),
-  month: Yup
-    .number()
-    .required('Required'),
-  year: Yup
-    .number()
-    .required('Required'),
+    .required('Required')
 })
 
 const DatePickerProps = {
@@ -143,9 +134,9 @@ export class OrgDocsForm extends React.Component<OrgDocsFormProps> {
                              countryRef: '',
                              desc: '',
                              lang: '',
-                             day: 1,
-                             month: 1,
-                             year: 2000
+                             day: 0,
+                             month: 0,
+                             year: 0
                             }}
             validationSchema={docSchema}
             onSubmit={(values: OrganisationDocProps, actions: any) => {
