@@ -81,14 +81,14 @@ class IATIWriter {
 
   static heading = 'IATI Writer'
 
-  static info = `The [Create Organisation](#${configPaths.orgWriter}) link, lets you create a top-level record for an IATI reporting organsation.`
+  static info = `The Create Organisations Data menu lets you create IATI Organsations records.<br /><br />The Create Activities Data menu lets you create IATI Activities records.`
 }
 
 class IATIReader {
 
   static heading = 'IATI Reader'
 
-  static info = `The [Read Organisations](#${configPaths.orgsReader}) link, lets you read a top-level record for an IATI reporting organsation.`
+  static info = `The Read Organisations Data menu lets you read IATI Organsations records.<br /><br />The Read Activities Data menu lets you read IATI Activities records.`
 }
 
 class Transaction {
