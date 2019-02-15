@@ -108,7 +108,7 @@ class Sider extends React.Component<WithStyles<typeof styles>> {
           <Link to={PathConfig.organisationsReader}>
             <MenuItem>
               <IconButton className={this.props.classes.button} aria-label={Paths.organisationsReader}>
-                <Create />
+                <List />
               </IconButton>
               {Paths.organisationsReader}
             </MenuItem>
@@ -116,7 +116,7 @@ class Sider extends React.Component<WithStyles<typeof styles>> {
           <Link to={PathConfig.organisationReader}>
             <MenuItem>
               <IconButton className={this.props.classes.button} aria-label={Paths.organisationReader}>
-                <Create />
+                <List />
               </IconButton>
               {Paths.organisationReader}
             </MenuItem>
