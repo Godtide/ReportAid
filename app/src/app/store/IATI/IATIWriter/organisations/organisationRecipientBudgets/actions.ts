@@ -11,6 +11,8 @@ import { ActionProps, PayloadProps, TxProps, TxData } from '../../../../types'
 import { OrganisationRecipientBudgetProps, IATIOrganisationRecipientBudgetProps } from '../../../types'
 import { IATIWriterActionTypes } from '../types'
 
+import { Transaction } from '../../../../../utils/strings'
+
 export const setRecipientBudget = (details: OrganisationRecipientBudgetProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
 
@@ -45,10 +47,20 @@ export const setRecipientBudget = (details: OrganisationRecipientBudgetProps) =>
                                                                    budgetRef,
                                                                    recipientBudget)
       const key = tx.hash
-      txData[key] = tx
+      txData = {
+        [key]: {
+          summary: `${Transaction.success}`,
+          info: tx
+        }
+      }
       actionType = IATIWriterActionTypes.RECIPIENTORGBUDGET_SUCCESS
     } catch (error) {
-      txData[-1] = txData
+      txData = {
+        [-1]: {
+          summary: `${Transaction.fail}`,
+          info: {}
+        }
+      }
       console.log('setRecipientBudget error', error)
     }
 

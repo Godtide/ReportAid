@@ -11,6 +11,8 @@ import { ActionProps, PayloadProps, TxProps, TxData } from '../../../../types'
 import { OrganisationDocProps, IATIOrganisationDocProps } from '../../../types'
 import { IATIWriterActionTypes } from '../types'
 
+import { Transaction } from '../../../../../utils/strings'
+
 export const setOrganisationDoc = (details: OrganisationDocProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
 
@@ -43,10 +45,20 @@ export const setOrganisationDoc = (details: OrganisationDocProps) => {
                                                    docRef,
                                                    doc)
       const key = tx.hash
-      txData[key] = tx
+      txData = {
+        [key]: {
+          summary: `${Transaction.success}`,
+          info: tx
+        }
+      }
       actionType = IATIWriterActionTypes.DOCUMENT_SUCCESS
     } catch (error) {
-      console.log('setDoc error', error)
+      txData = {
+        [-1]: {
+          summary: `${Transaction.fail}`,
+          info: {}
+        }
+      }
     }
 
     dispatch(write({data: {data: txData}})(actionType))

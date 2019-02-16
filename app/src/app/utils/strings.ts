@@ -97,7 +97,7 @@ class Transaction {
 
   static heading = "Transaction Details"
 
-  static key = 'Transaction Receipt'
+  static hash = 'Transaction Hash'
   static summary = 'Transaction Summary'
   static success = 'Submitted Successfully!'
   static fail = 'Submission Failed!'

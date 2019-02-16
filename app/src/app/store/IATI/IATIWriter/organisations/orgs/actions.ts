@@ -11,6 +11,8 @@ import { ActionProps, PayloadProps, TxProps, TxData } from '../../../../types'
 import { OrgProps, IATIOrgProps } from '../../../types'
 import { IATIWriterActionTypes } from '../types'
 
+import { Transaction } from '../../../../../utils/strings'
+
 export const setOrg = (details: OrgProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
     const state = getState()
@@ -33,10 +35,20 @@ export const setOrg = (details: OrgProps) => {
     try {
       const tx = await orgsContract.setOrg(orgRef, org)
       const key = tx.hash
-      txData[key] = tx
+      txData = {
+        [key]: {
+          summary: `${Transaction.success}`,
+          info: tx
+        }
+      }
       actionType = IATIWriterActionTypes.ORGS_SUCCESS
     } catch (error) {
-      txData[-1] = txData
+      txData = {
+        [-1]: {
+          summary: `${Transaction.fail}`,
+          info: {}
+        }
+      }
       console.log('setOrg error', error)
     }
 

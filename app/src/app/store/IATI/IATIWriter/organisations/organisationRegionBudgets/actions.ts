@@ -11,6 +11,8 @@ import { ActionProps, PayloadProps, TxProps, TxData } from '../../../../types'
 import { OrganisationRegionBudgetProps, IATIOrganisationRegionBudgetProps } from '../../../types'
 import { IATIWriterActionTypes } from '../types'
 
+import { Transaction } from '../../../../../utils/strings'
+
 export const setRegionBudget = (details: OrganisationRegionBudgetProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
 
@@ -46,10 +48,20 @@ export const setRegionBudget = (details: OrganisationRegionBudgetProps) => {
                                                              budgetRef,
                                                              regionBudget)
       const key = tx.hash
-      txData[key] = tx
+      txData = {
+        [key]: {
+          summary: `${Transaction.success}`,
+          info: tx
+        }
+      }
       actionType = IATIWriterActionTypes.RECIPIENTREGIONBUDGET_SUCCESS
     } catch (error) {
-      txData[-1] = txData
+      txData = {
+        [-1]: {
+          summary: `${Transaction.fail}`,
+          info: {}
+        }
+      }
       console.log('setRegionBudget error', error)
     }
 

@@ -2,6 +2,8 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { ThunkDispatch } from 'redux-thunk'
 
+import Markdown from 'react-markdown'
+
 import { ApplicationState } from '../../store'
 import { ActionProps, TxData } from '../../store/types'
 
@@ -21,45 +23,41 @@ type TxProps = TransactionProps & TransactionFuncs
 
 class TX extends React.Component<TxProps> {
 
-  state = {
-    txKey: '',
-    txSummary: '',
-    toggleSubmitting: false
-  }
-
   constructor (props: TxProps) {
    super(props)
   }
 
   componentDidUpdate(previousProps: TxProps) {
-    //console.log(this.props.tx)
     if(previousProps.tx != this.props.tx) {
-      const submitting = !this.state.toggleSubmitting
-      let txKey = ''
-      let txSummary = `${Transaction.fail}`
-      const txKeys = Object.keys(this.props.tx)
-      if (txKeys.length > 0 ) {
-        txKey = Object.keys(this.props.tx)[0]
-        if (txKey != "-1" ) {
-          txSummary = `${Transaction.success}`
-        }
-      }
-      this.setState({txKey: txKey, txSummary: txSummary, toggleSubmitting: submitting})
-      this.props.submitFunc(submitting)
+      this.props.submitFunc(false)
       this.props.resetFunc()
     }
   }
 
   render() {
 
+    let xs = ""
+    console.log('transaction: ', this.props.tx)
+    Object.keys(this.props.tx).forEach((tXHash) => {
+      const tx = this.props.tx[tXHash]
+      xs += `**${Transaction.summary}**: ${tx.summary}<br /><br />`
+      if (tXHash != "-1" ) {
+        Object.entries(tx.info).forEach((entry) => {
+          //console.log(entry[0])
+          if ( (entry[0] != "data") &&
+               (entry[0] != "raw") &&
+                (entry[0] != "wait") ) {
+            xs += `**${entry[0]}**: ${entry[1]}<br />`
+          }
+        })
+      }
+    })
+
     return (
       <React.Fragment>
         <hr />
         <h3>{Transaction.heading}</h3>
-        <p>
-          <b>{Transaction.summary}</b>: {this.state.txSummary}<br />
-          <b>{Transaction.key}</b>: {this.state.txKey}
-        </p>
+        <Markdown escapeHtml={false} source={xs} />
       </React.Fragment>
     )
   }

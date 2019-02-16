@@ -3,7 +3,10 @@ import { ActionProps, PayloadProps, TxProps, TxData } from '../../../types'
 
 const initialState: TxProps = {
   data: {
-    '': {}
+    '': {
+      summary: '',
+      info: {}
+    }
   }
 }
 
