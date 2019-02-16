@@ -13,6 +13,7 @@ import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
 import { OrganisationCountryBudgetProps } from '../../../store/IATI/types'
 
+import { initialise } from '../../../store/IATI/IATIWriter/organisations/actions'
 import { setCountryBudget } from '../../../store/IATI/IATIWriter/organisations/organisationCountryBudgets/actions'
 
 import { FormikDatePicker } from '../../../components/io/datePicker'
@@ -80,6 +81,7 @@ const EndDatePickerProps = {
 
 interface OrganisationCountryBudgetsDispatchProps {
   handleSubmit: (values: any) => void
+  initialise: () => void
 }
 
 type OrganisationCountryBudgetsFormProps = WithStyles<typeof styles> & OrganisationCountryBudgetsDispatchProps
@@ -96,8 +98,13 @@ export class OrganisationCountryBudgetsForm extends React.Component<Organisation
    super(props)
   }
 
+  componentDidMount() {
+    this.props.initialise()
+  }
+
   handleSubmit = (values: OrganisationCountryBudgetProps, setSubmitting: Function, reset: Function) => {
     this.setState({submitFunc: setSubmitting, resetFunc: reset})
+    this.props.initialise()
     this.props.handleSubmit(values)
   }
 
@@ -202,7 +209,8 @@ export class OrganisationCountryBudgetsForm extends React.Component<Organisation
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrganisationCountryBudgetsDispatchProps => {
   return {
-    handleSubmit: (ownProps: any) => dispatch(setCountryBudget(ownProps))
+    handleSubmit: (ownProps: any) => dispatch(setCountryBudget(ownProps)),
+    initialise: () => dispatch(initialise())
   }
 }
 

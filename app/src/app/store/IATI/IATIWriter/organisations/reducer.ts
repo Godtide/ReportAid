@@ -12,21 +12,24 @@ const initialState: TxProps = {
 
 export const reducer = (state: TxProps = initialState, action: ActionProps): TxProps => {
 
-  const payload = action.payload as PayloadProps
-  if ( (action.type == IATIWriterActionTypes.ORGS_SUCCESS ) ||
-       (action.type == IATIWriterActionTypes.ORGANISATIONS_SUCCESS ) ||
-       (action.type == IATIWriterActionTypes.ORGANISATION_SUCCESS ) ||
-       (action.type == IATIWriterActionTypes.BUDGET_SUCCESS ) ||
-       (action.type == IATIWriterActionTypes.RECIPIENTORGBUDGET_SUCCESS ) ||
-       (action.type == IATIWriterActionTypes.RECIPIENTREGIONBUDGET_SUCCESS ) ||
-       (action.type == IATIWriterActionTypes.RECIPIENTCOUNTRYBUDGET_SUCCESS ) ||
-       (action.type == IATIWriterActionTypes.TOTALEXPENDITURE_SUCCESS ) ||
-       (action.type == IATIWriterActionTypes.DOCUMENT_SUCCESS ) ) {
-
-   const data = (action.payload.data as TxData)
-   return {...state, ...data}
-
-  } else {
-    return state
+  switch (action.type) {
+    case IATIWriterActionTypes.TX_INIT: {
+      const data = action.payload.data as TxProps
+      return data
+    }
+    case IATIWriterActionTypes.ORGS_SUCCESS:
+    case IATIWriterActionTypes.ORGANISATIONS_SUCCESS:
+    case IATIWriterActionTypes.ORGANISATION_SUCCESS:
+    case IATIWriterActionTypes.BUDGET_SUCCESS:
+    case IATIWriterActionTypes.RECIPIENTORGBUDGET_SUCCESS:
+    case IATIWriterActionTypes.RECIPIENTREGIONBUDGET_SUCCESS:
+    case IATIWriterActionTypes.RECIPIENTCOUNTRYBUDGET_SUCCESS:
+    case IATIWriterActionTypes.TOTALEXPENDITURE_SUCCESS:
+    case IATIWriterActionTypes.DOCUMENT_SUCCESS: {
+      const data = (action.payload.data as TxData)
+      return {...state, ...data}
+    }
+    default:
+      return state
   }
 }

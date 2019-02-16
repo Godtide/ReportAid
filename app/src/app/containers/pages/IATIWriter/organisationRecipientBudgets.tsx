@@ -13,6 +13,7 @@ import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
 import { OrganisationRecipientBudgetProps } from '../../../store/IATI/types'
 
+import { initialise } from '../../../store/IATI/IATIWriter/organisations/actions'
 import { setRecipientBudget } from '../../../store/IATI/IATIWriter/organisations/organisationRecipientBudgets/actions'
 
 import { FormikDatePicker } from '../../../components/io/datePicker'
@@ -80,6 +81,7 @@ const EndDatePickerProps = {
 
 interface OrganisationRecipientBudgetsDispatchProps {
   handleSubmit: (values: any) => void
+  initialise: () => void
 }
 
 type OrganisationRecipientBudgetsFormProps = WithStyles<typeof styles> & OrganisationRecipientBudgetsDispatchProps
@@ -96,8 +98,13 @@ export class OrganisationRecipientBudgetsForm extends React.Component<Organisati
    super(props)
   }
 
+  componentDidMount() {
+    this.props.initialise()
+  }
+
   handleSubmit = (values: OrganisationRecipientBudgetProps, setSubmitting: Function, reset: Function) => {
     this.setState({submitFunc: setSubmitting, resetFunc: reset})
+    this.props.initialise()
     this.props.handleSubmit(values)
   }
 
@@ -200,7 +207,8 @@ export class OrganisationRecipientBudgetsForm extends React.Component<Organisati
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrganisationRecipientBudgetsDispatchProps => {
   return {
-    handleSubmit: (ownProps: any) => dispatch(setRecipientBudget(ownProps))
+    handleSubmit: (ownProps: any) => dispatch(setRecipientBudget(ownProps)),
+    initialise: () => dispatch(initialise())
   }
 }
 

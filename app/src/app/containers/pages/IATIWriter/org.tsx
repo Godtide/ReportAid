@@ -17,6 +17,7 @@ import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
 import { OrgProps } from '../../../store/IATI/types'
 
+import { initialise } from '../../../store/IATI/IATIWriter/organisations/actions'
 import { setOrg } from '../../../store/IATI/IATIWriter/organisations/orgs/actions'
 
 import { TransactionHelper } from '../../io/transactionHelper'
@@ -43,6 +44,7 @@ const orgSchema = Yup.object().shape({
 
 interface OrgDispatchProps {
   handleSubmit: (values: any) => void
+  initialise: () => void
 }
 
 type OrgWriterFormProps = WithStyles<typeof styles> & OrgDispatchProps
@@ -60,6 +62,7 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
   }
 
   componentDidMount() {
+    this.props.initialise()
     this.initialiseRef()
   }
 
@@ -70,6 +73,7 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
 
   handleSubmit = (values: OrgProps, setSubmitting: Function, reset: Function) => {
     this.setState({submitFunc: setSubmitting, resetFunc: reset})
+    this.props.initialise()
     this.props.handleSubmit(values)
     this.initialiseRef()
   }
@@ -127,7 +131,8 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgDispatchProps => {
   return {
-    handleSubmit: (ownProps: any) => dispatch(setOrg(ownProps))
+    handleSubmit: (ownProps: any) => dispatch(setOrg(ownProps)),
+    initialise: () => dispatch(initialise())
   }
 }
 

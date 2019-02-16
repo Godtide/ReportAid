@@ -17,6 +17,7 @@ import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
 import { OrganisationProps } from '../../../store/IATI/types'
 
+import { initialise } from '../../../store/IATI/IATIWriter/organisations/actions'
 import { setOrganisation } from '../../../store/IATI/IATIWriter/organisations/organisation/actions'
 
 import { OrganisationsPicker } from '../../../components/io/organisationsPicker'
@@ -59,6 +60,7 @@ const organisationSchema = Yup.object().shape({
 
 export interface OrganisationDispatchProps {
   handleSubmit: (values: any) => void
+  initialise: () => void
 }
 
 type OrganisationFormProps = WithStyles<typeof styles> & OrganisationDispatchProps
@@ -77,6 +79,7 @@ export class OrganisationForm extends React.Component<OrganisationFormProps> {
   }
 
   componentDidMount() {
+    this.props.initialise()
     this.initialiseRef()
   }
 
@@ -87,6 +90,7 @@ export class OrganisationForm extends React.Component<OrganisationFormProps> {
 
   handleSubmit = (values: OrganisationProps, setSubmitting: Function, reset: Function) => {
     this.setState({submitFunc: setSubmitting, resetFunc: reset})
+    this.props.initialise()
     this.props.handleSubmit(values)
     this.initialiseRef()
   }
@@ -197,7 +201,8 @@ export class OrganisationForm extends React.Component<OrganisationFormProps> {
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrganisationDispatchProps => {
   return {
-    handleSubmit: (ownProps: any) => dispatch(setOrganisation(ownProps))
+    handleSubmit: (ownProps: any) => dispatch(setOrganisation(ownProps)),
+    initialise: () => dispatch(initialise())
   }
 }
 

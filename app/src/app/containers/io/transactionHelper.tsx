@@ -37,21 +37,24 @@ class TX extends React.Component<TxProps> {
   render() {
 
     let xs = ""
-    console.log('transaction: ', this.props.tx)
-    Object.keys(this.props.tx).forEach((tXHash) => {
-      const tx = this.props.tx[tXHash]
-      xs += `**${Transaction.summary}**: ${tx.summary}<br /><br />`
-      if (tXHash != "-1" ) {
-        Object.entries(tx.info).forEach((entry) => {
-          //console.log(entry[0])
-          if ( (entry[0] != "data") &&
-               (entry[0] != "raw") &&
-                (entry[0] != "wait") ) {
-            xs += `**${entry[0]}**: ${entry[1]}<br />`
-          }
-        })
-      }
-    })
+    //console.log('transaction: ', this.props.tx)
+    if (typeof  this.props.tx != "undefined" ) {
+      Object.keys(this.props.tx).forEach((tXHash) => {
+        const tx = this.props.tx[tXHash]
+        xs += `**${Transaction.summary}**: ${tx.summary}<br /><br />`
+        if (tXHash != "-1" ) {
+          //console.log('transaction: ', this.props.tx)
+          Object.entries(tx.info).forEach((entry) => {
+            //console.log(entry[0])
+            if ( (entry[0] != "data") &&
+                 (entry[0] != "raw") &&
+                  (entry[0] != "wait") ) {
+              xs += `**${entry[0]}**: ${entry[1]}<br />`
+            }
+          })
+        }
+      })
+    }
 
     return (
       <React.Fragment>

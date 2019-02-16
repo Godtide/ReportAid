@@ -1,4 +1,5 @@
 export const enum IATIWriterActionTypes {
+  TX_INIT =  '@@IATIWriterActionTypes/TX_INIT',
   ORGS_SUCCESS = '@@IATIWriterActionTypes/WRITEORGS_SUCCESS',
   ORGS_FAILURE = '@@IATIWriterActionTypes/WRITEORGS_FAILURE',
   ORGANISATIONS_SUCCESS = '@@IATIWriterActionTypes/WRITEORGANISATIONS_SUCCESS',

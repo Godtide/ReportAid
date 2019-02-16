@@ -53,7 +53,6 @@ export const setOrganisationExpenditure = (details: OrganisationExpenditureProps
           info: tx
         }
       }
-      txData[key] = tx
       actionType = IATIWriterActionTypes.TOTALEXPENDITURE_SUCCESS
     } catch (error) {
       txData = {
