@@ -52,8 +52,7 @@ class Docs extends React.Component<OrganisationDocsReaderProps> {
   state = {
     organisationsRef: "",
     submitFunc: (function(submit: boolean) { return submit }),
-    resetFunc: (function() { return null }),
-    submitting: false
+    resetFunc: (function() { return null })
   }
 
   constructor (props: OrganisationDocsReaderProps) {
@@ -65,15 +64,14 @@ class Docs extends React.Component<OrganisationDocsReaderProps> {
   }
 
   componentDidUpdate(previousProps: OrganisationDocsReaderProps) {
-    if(this.state.submitting) {
-      this.setState({submitting: false})
+    if(previousProps.docs != this.props.docs) {
       this.state.submitFunc(false)
       this.state.resetFunc()
     }
   }
 
   handleSubmit = (values: OrganisationsReportProps, setSubmitting: Function, reset: Function) => {
-    this.setState({submitFunc: setSubmitting, resetFunc: reset, submitting: true})
+    this.setState({submitFunc: setSubmitting, resetFunc: reset})
     this.props.initialise()
     this.props.handleSubmit(values)
   }

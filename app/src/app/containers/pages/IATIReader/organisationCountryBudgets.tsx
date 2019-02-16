@@ -52,8 +52,7 @@ class CountryBudgets extends React.Component<OrganisationCountryBudgetsReaderPro
   state = {
     organisationsRef: "",
     submitFunc: (function(submit: boolean) { return submit }),
-    resetFunc: (function() { return null }),
-    submitting: false
+    resetFunc: (function() { return null })
   }
 
   constructor (props: OrganisationCountryBudgetsReaderProps) {
@@ -65,15 +64,14 @@ class CountryBudgets extends React.Component<OrganisationCountryBudgetsReaderPro
   }
 
   componentDidUpdate(previousProps: OrganisationCountryBudgetsReaderProps) {
-    if(this.state.submitting) {
-      this.setState({submitting: false})
+    if(previousProps.budgets != this.props.budgets) {
       this.state.submitFunc(false)
       this.state.resetFunc()
     }
   }
 
   handleSubmit = (values: OrganisationsReportProps, setSubmitting: Function, reset: Function) => {
-    this.setState({submitFunc: setSubmitting, resetFunc: reset, submitting: true})
+    this.setState({submitFunc: setSubmitting, resetFunc: reset})
     this.props.initialise()
     this.props.handleSubmit(values)
   }
