@@ -16,8 +16,10 @@ import { TextField } from "material-ui-formik-components"
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
 import { OrgProps } from '../../../store/IATI/types'
+import { KeyData } from '../../../store/helpers/keys/types'
 
 import { initialise } from '../../../store/IATI/IATIWriter/organisations/actions'
+import { newKey } from '../../../store/helpers/keys/actions'
 import { setOrg } from '../../../store/IATI/IATIWriter/organisations/orgs/actions'
 
 import { TransactionHelper } from '../../io/transactionHelper'
@@ -42,17 +44,21 @@ const orgSchema = Yup.object().shape({
     .required('Required')
 })
 
+interface OrgInfoProps {
+  orgRef: string
+}
+
 interface OrgDispatchProps {
   handleSubmit: (values: any) => void
   initialise: () => void
+  newKey: () => void
 }
 
-type OrgWriterFormProps = WithStyles<typeof styles> & OrgDispatchProps
+type OrgWriterFormProps = WithStyles<typeof styles> & OrgInfoProps & OrgDispatchProps
 
 export class OrgForm extends React.Component<OrgWriterFormProps> {
 
   state = {
-    orgRef: '',
     submitFunc: (function(submit: boolean) { return submit }),
     resetFunc: (function() { return null })
   }
@@ -63,19 +69,14 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
 
   componentDidMount() {
     this.props.initialise()
-    this.initialiseRef()
-  }
-
-  initialiseRef = () => {
-    const orgRef = ethers.utils.formatBytes32String(shortid.generate())
-    this.setState({orgRef: orgRef})
+    this.props.newKey()
   }
 
   handleSubmit = (values: OrgProps, setSubmitting: Function, reset: Function) => {
     this.setState({submitFunc: setSubmitting, resetFunc: reset})
-    this.props.initialise()
     this.props.handleSubmit(values)
-    this.initialiseRef()
+    this.props.initialise()
+    this.props.newKey()
   }
 
   render() {
@@ -85,7 +86,7 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
         <h2>{OrgStrings.headingOrgWriter}</h2>
         <div>
           <Formik
-            initialValues={ {orgRef: this.state.orgRef, name: '', code: '', identifier: ''} }
+            initialValues={ {orgRef: this.props.orgRef, name: '', code: '', identifier: ''} }
             enableReinitialize={true}
             validationSchema={orgSchema}
             onSubmit={(values: OrgProps, actions: any) => {
@@ -97,7 +98,7 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
                   <Field
                     readOnly
                     name='orgRef'
-                    value={this.state.orgRef}
+                    value={this.props.orgRef}
                     label={OrgStrings.orgIdentifier}
                     component={TextField}
                   />
@@ -129,14 +130,22 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
   }
 }
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgDispatchProps => {
+const mapStateToProps = (state: ApplicationState): OrgInfoProps => {
+  //console.log(state.orgReader)
   return {
-    handleSubmit: (ownProps: any) => dispatch(setOrg(ownProps)),
-    initialise: () => dispatch(initialise())
+    orgRef: state.keys.data.newKey
   }
 }
 
-export const Org = withTheme(withStyles(styles)(connect<void, OrgDispatchProps, {}, ApplicationState>(
-  null,
+const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgDispatchProps => {
+  return {
+    handleSubmit: (ownProps: any) => dispatch(setOrg(ownProps)),
+    initialise: () => dispatch(initialise()),
+    newKey: () => dispatch(newKey())
+  }
+}
+
+export const Org = withTheme(withStyles(styles)(connect<OrgInfoProps, OrgDispatchProps, {}, ApplicationState>(
+  mapStateToProps,
   mapDispatchToProps
 )(OrgForm)))
