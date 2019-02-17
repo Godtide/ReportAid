@@ -6,6 +6,7 @@ import ReduxThunk, { ThunkAction } from 'redux-thunk'
 import { ActionProps, TxProps } from './types'
 
 import { KeyProps } from './helpers/keys/types'
+import { FormProps } from './helpers/forms/types'
 
 import { IATIOrgReportProps } from './IATI/IATIReader/organisations/orgs/types'
 import { IATIOrganisationsReportProps } from './IATI/IATIReader/organisations/organisations/types'
@@ -22,8 +23,8 @@ import { ChainDataProps } from  './blockchain/data/types'
 import { AccountProps } from  './blockchain/account/types'
 import { ContractProps } from  './blockchain/contracts/types'
 
-
 import { reducer as keyReducer } from './helpers/keys/reducer'
+import { reducer as formReducer } from './helpers/forms/reducer'
 
 import { reducer as chainDataReducer } from './blockchain/data/reducer'
 import { reducer as accountReducer } from './blockchain/account/reducer'
@@ -50,6 +51,7 @@ export interface ApplicationState {
   chainContracts: ContractProps
   info: InfoPageProps
   keys: KeyProps
+  forms: FormProps
   organisationsWriterForms: TxProps
   orgsReader: IATIOrgReportProps
   organisationsReader: IATIOrganisationsReportProps
@@ -68,6 +70,7 @@ export const rootReducer: Reducer<ApplicationState, ActionProps> = combineReduce
   chainContracts: contractReducer,
   info: infoReducer,
   keys: keyReducer,
+  forms: formReducer,
   organisationsWriterForms: organisationsWriterReducer,
   orgsReader: orgsReaderReducer,
   organisationsReader: organisationsReaderReducer,

@@ -14,9 +14,11 @@ import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
 import { OrgProps } from '../../../store/IATI/types'
 import { KeyData } from '../../../store/helpers/keys/types'
+import { FormData } from '../../../store/helpers/forms/types'
 
 import { initialise } from '../../../store/IATI/IATIWriter/organisations/actions'
 import { newKey } from '../../../store/helpers/keys/actions'
+import { setFormFunctions } from '../../../store/helpers/forms/actions'
 import { setOrg } from '../../../store/IATI/IATIWriter/organisations/orgs/actions'
 
 import { TransactionHelper } from '../../io/transactionHelper'
@@ -41,7 +43,7 @@ const orgSchema = Yup.object().shape({
     .required('Required')
 })
 
-interface OrgKeyProps {
+interface OrgFormProps {
   orgRef: string
 }
 
@@ -49,9 +51,10 @@ interface OrgDispatchProps {
   handleSubmit: (values: any) => void
   initialise: () => void
   newKey: () => void
+  setFormFunctions: (formProps: FormData) => void
 }
 
-type OrgWriterFormProps = WithStyles<typeof styles> & OrgKeyProps & OrgDispatchProps
+type OrgWriterFormProps = WithStyles<typeof styles> & OrgFormProps & OrgDispatchProps
 
 export class OrgForm extends React.Component<OrgWriterFormProps> {
 
@@ -70,10 +73,12 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
   }
 
   handleSubmit = (values: OrgProps, setSubmitting: Function, reset: Function) => {
-    this.setState({submitFunc: setSubmitting, resetFunc: reset})
+    //console.log(setSubmitting)
+    setSubmitting(true)
     this.props.handleSubmit(values)
     this.props.initialise()
     this.props.newKey()
+    this.props.setFormFunctions({submitFunc: setSubmitting, resetFunc: reset})
   }
 
   render() {
@@ -127,7 +132,7 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
   }
 }
 
-const mapStateToProps = (state: ApplicationState): OrgKeyProps => {
+const mapStateToProps = (state: ApplicationState): OrgFormProps => {
   //console.log(state.orgReader)
   return {
     orgRef: state.keys.data.newKey
@@ -138,11 +143,12 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   return {
     handleSubmit: (ownProps: any) => dispatch(setOrg(ownProps)),
     initialise: () => dispatch(initialise()),
-    newKey: () => dispatch(newKey())
+    newKey: () => dispatch(newKey()),
+    setFormFunctions: (formProps: FormData) => dispatch(setFormFunctions(formProps))
   }
 }
 
-export const Org = withTheme(withStyles(styles)(connect<OrgKeyProps, OrgDispatchProps, {}, ApplicationState>(
+export const Org = withTheme(withStyles(styles)(connect<OrgFormProps, OrgDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
 )(OrgForm)))

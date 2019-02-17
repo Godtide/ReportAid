@@ -16,6 +16,8 @@ export interface TransactionFuncs {
 }
 
 interface TransactionProps {
+  submittingFunc: Function,
+  resettingFunc: Function
   tx: TxData
 }
 
@@ -29,8 +31,9 @@ class TX extends React.Component<TxProps> {
 
   componentDidUpdate(previousProps: TxProps) {
     if(previousProps.tx != this.props.tx) {
-      this.props.submitFunc(false)
-      this.props.resetFunc()
+      console.log(this.props.submittingFunc)
+      this.props.submittingFunc(false)
+      this.props.resettingFunc()
     }
   }
 
@@ -69,6 +72,8 @@ class TX extends React.Component<TxProps> {
 const mapStateToProps = (state: ApplicationState): TransactionProps => {
   //console.log(state.orgReader)
   return {
+    submittingFunc: state.forms.data.submitFunc,
+    resettingFunc: state.forms.data.resetFunc,
     tx: state.organisationsWriterForms.data
   }
 }
