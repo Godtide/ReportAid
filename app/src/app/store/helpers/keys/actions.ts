@@ -45,3 +45,23 @@ export const setOrganisationKey = (key: string) => {
     await dispatch(write({data: keyData})(KeyActionTypes.ORGANISATION_SUCCESS))
   }
 }
+
+export const setActivitiesKey = (key: string) => {
+  return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
+    const state = getState()
+    const keyData: KeyData = state.keys.data
+    keyData.activities = key
+    //console.log('Set Organisations Key! ', keyData.organisations)
+    await dispatch(write({data: keyData})(KeyActionTypes.ACTIVITIES_SUCCESS))
+  }
+}
+
+export const setActivityKey = (key: string) => {
+  return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
+    const state = getState()
+    const keyData: KeyData = state.keys.data
+    keyData.activity = key
+    //console.log('Set Organisation Key! ', keyData.organisations)
+    await dispatch(write({data: keyData})(KeyActionTypes.ACTIVITY_SUCCESS))
+  }
+}
