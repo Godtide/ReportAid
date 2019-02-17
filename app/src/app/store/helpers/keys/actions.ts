@@ -31,7 +31,7 @@ export const setOrganisationsKey = (key: string) => {
     const state = getState()
     const keyData: KeyData = state.keys.data
     keyData.organisations = key
-    console.log('Set Organisations Key! ', keyData.organisations)
+    //console.log('Set Organisations Key! ', keyData.organisations)
     await dispatch(write({data: keyData})(KeyActionTypes.ORGANISATIONS_SUCCESS))
   }
 }
@@ -41,7 +41,7 @@ export const setOrganisationKey = (key: string) => {
     const state = getState()
     const keyData: KeyData = state.keys.data
     keyData.organisation = key
-    console.log('Set Organisation Key! ', keyData.organisations)
+    //console.log('Set Organisation Key! ', keyData.organisations)
     await dispatch(write({data: keyData})(KeyActionTypes.ORGANISATION_SUCCESS))
   }
 }

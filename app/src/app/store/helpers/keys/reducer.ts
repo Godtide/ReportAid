@@ -20,8 +20,6 @@ export const reducer = (state: KeyProps = initialState, action: ActionProps): Ke
     case KeyActionTypes.ACTIVITIES_SUCCESS:
     case KeyActionTypes.ACTIVITY_SUCCESS: {
       const data = (action.payload.data as KeyProps)
-      const newData = {...state, ...data}
-      console.log('New key Data! ', newData)
       return {...state, ...data}
     }
     default:
