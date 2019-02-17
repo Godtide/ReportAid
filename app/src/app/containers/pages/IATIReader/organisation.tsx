@@ -33,6 +33,7 @@ const reportSchema = Yup.object().shape({
 })
 
 interface OrgProps {
+  organisationsRef: string
   organisation: IATIOrganisationReport
 }
 
@@ -46,7 +47,6 @@ type OrgReaderProps =  WithStyles<typeof styles> & OrgProps & OrgDispatchProps
 class OrganisationReader extends React.Component<OrgReaderProps> {
 
   state = {
-    organisationsRef: "",
     submitFunc: (function(submit: boolean) { return submit }),
     resetFunc: (function() { return null })
   }
@@ -70,14 +70,6 @@ class OrganisationReader extends React.Component<OrgReaderProps> {
     this.setState({submitFunc: setSubmitting, resetFunc: reset})
     this.props.initialise()
     this.props.handleSubmit(values)
-  }
-
-  handleOrganisationsChange = (value: string) => {
-    this.setState({organisationsRef: value})
-  }
-
-  handleOrganisationChange = (value: string) => {
-    console.log(value)
   }
 
   render() {
@@ -126,7 +118,6 @@ class OrganisationReader extends React.Component<OrgReaderProps> {
               <Form>
                 <FormControl fullWidth={true}>
                   <OrganisationsPicker
-                    changeFunction={this.handleOrganisationsChange}
                     setValue={formProps.setFieldValue}
                     name='organisationsRef'
                     label={OrganisationStrings.organisationsReference}
@@ -163,6 +154,7 @@ class OrganisationReader extends React.Component<OrgReaderProps> {
 const mapStateToProps = (state: ApplicationState): OrgProps => {
   //console.log(state.orgReader)
   return {
+    organisationsRef: state.keys.data.organisations,
     organisation: state.organisationReader.data
   }
 }

@@ -37,6 +37,8 @@ const reportSchema = Yup.object().shape({
 })
 
 interface OrganisationRecipientBudgetProps {
+  organisationsRef: string,
+  organisationRef: string,
   budgets: IATIOrganisationRecipientBudgetReport
 }
 
@@ -50,7 +52,6 @@ type OrganisationRecipientBudgetsReaderProps =  WithStyles<typeof styles> & Orga
 class RecipientBudgets extends React.Component<OrganisationRecipientBudgetsReaderProps> {
 
   state = {
-    organisationsRef: "",
     submitFunc: (function(submit: boolean) { return submit }),
     resetFunc: (function() { return null })
   }
@@ -133,15 +134,12 @@ class RecipientBudgets extends React.Component<OrganisationRecipientBudgetsReade
               <Form>
                 <FormControl fullWidth={true}>
                   <OrganisationsPicker
-                    changeFunction={this.handleOrganisationsChange}
                     setValue={formProps.setFieldValue}
                     name='organisationsRef'
                     label={OrganisationRecipientBudgetStrings.organisationsReference}
                   />
                   <ErrorMessage name='organisationsRef' />
                   <OrganisationPicker
-                    organisationsRef={this.state.organisationsRef}
-                    changeFunction={this.handleOrganisationChange}
                     setValue={formProps.setFieldValue}
                     name='organisationRef'
                     label={OrganisationRecipientBudgetStrings.organisationReference}
@@ -172,6 +170,8 @@ class RecipientBudgets extends React.Component<OrganisationRecipientBudgetsReade
 const mapStateToProps = (state: ApplicationState): OrganisationRecipientBudgetProps => {
   //console.log(state.orgReader)
   return {
+    organisationsRef: state.keys.data.organisations,
+    organisationRef: state.keys.data.organisation,
     budgets: state.organisationRecipientBudgetsReader.data
   }
 }

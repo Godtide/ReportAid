@@ -79,17 +79,21 @@ const EndDatePickerProps = {
   }
 }
 
+interface OrganisationCountryBudgetsKeyProps {
+  organisationsRef: string
+  organisationRef: string
+}
+
 interface OrganisationCountryBudgetsDispatchProps {
   handleSubmit: (values: any) => void
   initialise: () => void
 }
 
-type OrganisationCountryBudgetsFormProps = WithStyles<typeof styles> & OrganisationCountryBudgetsDispatchProps
+type OrganisationCountryBudgetsFormProps = WithStyles<typeof styles> & OrganisationCountryBudgetsKeyProps & OrganisationCountryBudgetsDispatchProps
 
 export class OrganisationCountryBudgetsForm extends React.Component<OrganisationCountryBudgetsFormProps> {
 
   state = {
-    organisationsRef: "",
     submitFunc: (function(submit: boolean) { return submit }),
     resetFunc: (function() { return null })
   }
@@ -106,14 +110,6 @@ export class OrganisationCountryBudgetsForm extends React.Component<Organisation
     this.setState({submitFunc: setSubmitting, resetFunc: reset})
     this.props.initialise()
     this.props.handleSubmit(values)
-  }
-
-  handleOrganisationsChange = (value: string) => {
-    this.setState({organisationsRef: value})
-  }
-
-  handleOrganisationChange = (value: string) => {
-    console.log(value)
   }
 
   render() {
@@ -145,15 +141,12 @@ export class OrganisationCountryBudgetsForm extends React.Component<Organisation
               <Form>
                 <FormControl fullWidth={true}>
                   <OrganisationsPicker
-                    changeFunction={this.handleOrganisationsChange}
                     setValue={formProps.setFieldValue}
                     name='organisationsRef'
                     label={OrganisationCountryBudget.organisationsReference}
                   />
                   <ErrorMessage name='organisationsRef' />
                   <OrganisationPicker
-                    organisationsRef={this.state.organisationsRef}
-                    changeFunction={this.handleOrganisationChange}
                     setValue={formProps.setFieldValue}
                     name='organisationRef'
                     label={OrganisationCountryBudget.organisationReference}
@@ -207,6 +200,14 @@ export class OrganisationCountryBudgetsForm extends React.Component<Organisation
   }
 }
 
+const mapStateToProps = (state: ApplicationState): OrganisationCountryBudgetsKeyProps => {
+  //console.log(state.orgReader)
+  return {
+    organisationsRef: state.keys.data.organisations,
+    organisationRef: state.keys.data.organisation
+  }
+}
+
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrganisationCountryBudgetsDispatchProps => {
   return {
     handleSubmit: (ownProps: any) => dispatch(setCountryBudget(ownProps)),
@@ -214,7 +215,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   }
 }
 
-export const OrganisationCountryBudgets = withTheme(withStyles(styles)(connect<void, OrganisationCountryBudgetsDispatchProps, {}, ApplicationState>(
-  null,
+export const OrganisationCountryBudgets = withTheme(withStyles(styles)(connect<OrganisationCountryBudgetsKeyProps, OrganisationCountryBudgetsDispatchProps, {}, ApplicationState>(
+  mapStateToProps,
   mapDispatchToProps
 )(OrganisationCountryBudgetsForm)))

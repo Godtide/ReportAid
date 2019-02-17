@@ -37,6 +37,8 @@ const reportSchema = Yup.object().shape({
 })
 
 interface OrganisationDocProps {
+  organisationsRef: string,
+  organisationRef: string,
   docs: IATIOrganisationDocReport
 }
 
@@ -50,7 +52,6 @@ type OrganisationDocsReaderProps =  WithStyles<typeof styles> & OrganisationDocP
 class Docs extends React.Component<OrganisationDocsReaderProps> {
 
   state = {
-    organisationsRef: "",
     submitFunc: (function(submit: boolean) { return submit }),
     resetFunc: (function() { return null })
   }
@@ -74,14 +75,6 @@ class Docs extends React.Component<OrganisationDocsReaderProps> {
     this.setState({submitFunc: setSubmitting, resetFunc: reset})
     this.props.initialise()
     this.props.handleSubmit(values)
-  }
-
-  handleOrganisationsChange = (value: string) => {
-    this.setState({organisationsRef: value})
-  }
-
-  handleOrganisationChange = (value: string) => {
-    console.log(value)
   }
 
   render() {
@@ -135,15 +128,12 @@ class Docs extends React.Component<OrganisationDocsReaderProps> {
               <Form>
                 <FormControl fullWidth={true}>
                   <OrganisationsPicker
-                    changeFunction={this.handleOrganisationsChange}
                     setValue={formProps.setFieldValue}
                     name='organisationsRef'
                     label={OrganisationDocStrings.organisationsReference}
                   />
                   <ErrorMessage name='organisationsRef' />
                   <OrganisationPicker
-                    organisationsRef={this.state.organisationsRef}
-                    changeFunction={this.handleOrganisationChange}
                     setValue={formProps.setFieldValue}
                     name='organisationRef'
                     label={OrganisationDocStrings.organisationReference}
@@ -174,6 +164,8 @@ class Docs extends React.Component<OrganisationDocsReaderProps> {
 const mapStateToProps = (state: ApplicationState): OrganisationDocProps => {
   //console.log(state.orgReader)
   return {
+    organisationsRef: state.keys.data.organisations,
+    organisationRef: state.keys.data.organisation,
     docs: state.organisationDocsReader.data
   }
 }

@@ -37,6 +37,8 @@ const reportSchema = Yup.object().shape({
 })
 
 interface OrganisationCountryBudgetProps {
+  organisationsRef: string,
+  organisationRef: string,
   budgets: IATIOrganisationCountryBudgetReport
 }
 
@@ -50,7 +52,6 @@ type OrganisationCountryBudgetsReaderProps =  WithStyles<typeof styles> & Organi
 class CountryBudgets extends React.Component<OrganisationCountryBudgetsReaderProps> {
 
   state = {
-    organisationsRef: "",
     submitFunc: (function(submit: boolean) { return submit }),
     resetFunc: (function() { return null })
   }
@@ -74,14 +75,6 @@ class CountryBudgets extends React.Component<OrganisationCountryBudgetsReaderPro
     this.setState({submitFunc: setSubmitting, resetFunc: reset})
     this.props.initialise()
     this.props.handleSubmit(values)
-  }
-
-  handleOrganisationsChange = (value: string) => {
-    this.setState({organisationsRef: value})
-  }
-
-  handleOrganisationChange = (value: string) => {
-    console.log(value)
   }
 
   render() {
@@ -134,15 +127,12 @@ class CountryBudgets extends React.Component<OrganisationCountryBudgetsReaderPro
               <Form>
                 <FormControl fullWidth={true}>
                   <OrganisationsPicker
-                    changeFunction={this.handleOrganisationsChange}
                     setValue={formProps.setFieldValue}
                     name='organisationsRef'
                     label={OrganisationCountryBudgetStrings.organisationsReference}
                   />
                   <ErrorMessage name='organisationsRef' />
                   <OrganisationPicker
-                    organisationsRef={this.state.organisationsRef}
-                    changeFunction={this.handleOrganisationChange}
                     setValue={formProps.setFieldValue}
                     name='organisationRef'
                     label={OrganisationCountryBudgetStrings.organisationReference}
@@ -173,6 +163,8 @@ class CountryBudgets extends React.Component<OrganisationCountryBudgetsReaderPro
 const mapStateToProps = (state: ApplicationState): OrganisationCountryBudgetProps => {
   //console.log(state.orgReader)
   return {
+    organisationsRef: state.keys.data.organisations,
+    organisationRef: state.keys.data.organisation,
     budgets: state.organisationCountryBudgetsReader.data
   }
 }

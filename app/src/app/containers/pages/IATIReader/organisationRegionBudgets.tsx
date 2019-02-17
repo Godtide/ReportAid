@@ -37,6 +37,8 @@ const reportSchema = Yup.object().shape({
 })
 
 interface OrganisationRegionBudgetProps {
+  organisationsRef: string,
+  organisationRef: string,
   budgets: IATIOrganisationRegionBudgetReport
 }
 
@@ -50,7 +52,6 @@ type OrganisationRegionBudgetsReaderProps =  WithStyles<typeof styles> & Organis
 class RegionBudgets extends React.Component<OrganisationRegionBudgetsReaderProps> {
 
   state = {
-    organisationsRef: "",
     submitFunc: (function(submit: boolean) { return submit }),
     resetFunc: (function() { return null })
   }
@@ -74,14 +75,6 @@ class RegionBudgets extends React.Component<OrganisationRegionBudgetsReaderProps
     this.setState({submitFunc: setSubmitting, resetFunc: reset})
     this.props.initialise()
     this.props.handleSubmit(values)
-  }
-
-  handleOrganisationsChange = (value: string) => {
-    this.setState({organisationsRef: value})
-  }
-
-  handleOrganisationChange = (value: string) => {
-    console.log(value)
   }
 
   render() {
@@ -134,15 +127,12 @@ class RegionBudgets extends React.Component<OrganisationRegionBudgetsReaderProps
               <Form>
                 <FormControl fullWidth={true}>
                   <OrganisationsPicker
-                    changeFunction={this.handleOrganisationsChange}
                     setValue={formProps.setFieldValue}
                     name='organisationsRef'
                     label={OrganisationRegionBudgetStrings.organisationsReference}
                   />
                   <ErrorMessage name='organisationsRef' />
                   <OrganisationPicker
-                    organisationsRef={this.state.organisationsRef}
-                    changeFunction={this.handleOrganisationChange}
                     setValue={formProps.setFieldValue}
                     name='organisationRef'
                     label={OrganisationRegionBudgetStrings.organisationReference}
@@ -173,6 +163,8 @@ class RegionBudgets extends React.Component<OrganisationRegionBudgetsReaderProps
 const mapStateToProps = (state: ApplicationState): OrganisationRegionBudgetProps => {
   //console.log(state.orgReader)
   return {
+    organisationsRef: state.keys.data.organisations,
+    organisationRef: state.keys.data.organisation,
     budgets: state.organisationRegionBudgetsReader.data
   }
 }

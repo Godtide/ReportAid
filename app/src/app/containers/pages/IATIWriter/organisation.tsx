@@ -57,6 +57,7 @@ const organisationSchema = Yup.object().shape({
 })
 
 interface OrganisationKeyProps {
+  organisationsRef: string
   organisationRef: string
 }
 
@@ -71,7 +72,6 @@ type OrganisationFormProps = WithStyles<typeof styles> & OrganisationKeyProps & 
 export class OrganisationForm extends React.Component<OrganisationFormProps> {
 
   state = {
-    organisationsRef: "",
     submitFunc: (function(submit: boolean) { return submit }),
     resetFunc: (function() { return null })
   }
@@ -90,14 +90,6 @@ export class OrganisationForm extends React.Component<OrganisationFormProps> {
     this.props.handleSubmit(values)
     this.props.initialise()
     this.props.newKey()
-  }
-
-  handleOrganisationsChange = (value: string) => {
-    this.setState({organisationsRef: value})
-  }
-
-  handleOrganisationChange = (value: string) => {
-    console.log(value)
   }
 
   render() {
@@ -132,7 +124,6 @@ export class OrganisationForm extends React.Component<OrganisationFormProps> {
                     component={TextField}
                   />
                   <OrganisationsPicker
-                    changeFunction={this.handleOrganisationsChange}
                     setValue={formProps.setFieldValue}
                     name='organisationsRef'
                     label={OrganisationStrings.organisationsReference}
@@ -199,6 +190,7 @@ export class OrganisationForm extends React.Component<OrganisationFormProps> {
 const mapStateToProps = (state: ApplicationState): OrganisationKeyProps => {
   //console.log(state.orgReader)
   return {
+    organisationsRef: state.keys.data.organisations,
     organisationRef: state.keys.data.newKey
   }
 }

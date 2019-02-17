@@ -37,6 +37,8 @@ const reportSchema = Yup.object().shape({
 })
 
 interface OrganisationExpenditureProps {
+  organisationsRef: string,
+  organisationRef: string,
   expenditure: IATIOrganisationExpenditureReport
 }
 
@@ -50,7 +52,6 @@ type OrganisationExpenditureReaderProps =  WithStyles<typeof styles> & Organisat
 class Expenditure extends React.Component<OrganisationExpenditureReaderProps> {
 
   state = {
-    organisationsRef: "",
     submitFunc: (function(submit: boolean) { return submit }),
     resetFunc: (function() { return null })
   }
@@ -74,14 +75,6 @@ class Expenditure extends React.Component<OrganisationExpenditureReaderProps> {
     this.setState({submitFunc: setSubmitting, resetFunc: reset})
     this.props.initialise()
     this.props.handleSubmit(values)
-  }
-
-  handleOrganisationsChange = (value: string) => {
-    this.setState({organisationsRef: value})
-  }
-
-  handleOrganisationChange = (value: string) => {
-    console.log(value)
   }
 
   render() {
@@ -132,15 +125,12 @@ class Expenditure extends React.Component<OrganisationExpenditureReaderProps> {
               <Form>
                 <FormControl fullWidth={true}>
                   <OrganisationsPicker
-                    changeFunction={this.handleOrganisationsChange}
                     setValue={formProps.setFieldValue}
                     name='organisationsRef'
                     label={OrganisationExpenditureStrings.organisationsReference}
                   />
                   <ErrorMessage name='organisationsRef' />
                   <OrganisationPicker
-                    organisationsRef={this.state.organisationsRef}
-                    changeFunction={this.handleOrganisationChange}
                     setValue={formProps.setFieldValue}
                     name='organisationRef'
                     label={OrganisationExpenditureStrings.organisationReference}
@@ -171,6 +161,8 @@ class Expenditure extends React.Component<OrganisationExpenditureReaderProps> {
 const mapStateToProps = (state: ApplicationState): OrganisationExpenditureProps => {
   //console.log(state.orgReader)
   return {
+    organisationsRef: state.keys.data.organisations,
+    organisationRef: state.keys.data.organisation,
     expenditure: state.organisationExpenditureReader.data
   }
 }

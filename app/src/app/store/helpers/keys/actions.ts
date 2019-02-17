@@ -21,7 +21,27 @@ export const newKey = () => {
     const state = getState()
     const keyData: KeyData = state.keys.data
     keyData.newKey = ethers.utils.formatBytes32String(shortid.generate())
-    console.log('New Key! ', keyData.newKey)
+    //console.log('New Key! ', keyData.newKey)
     await dispatch(write({data: keyData})(KeyActionTypes.NEWKEY_SUCCESS))
+  }
+}
+
+export const setOrganisationsKey = (key: string) => {
+  return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
+    const state = getState()
+    const keyData: KeyData = state.keys.data
+    keyData.organisations = key
+    console.log('Set Organisations Key! ', keyData.organisations)
+    await dispatch(write({data: keyData})(KeyActionTypes.ORGANISATIONS_SUCCESS))
+  }
+}
+
+export const setOrganisationKey = (key: string) => {
+  return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
+    const state = getState()
+    const keyData: KeyData = state.keys.data
+    keyData.organisation = key
+    console.log('Set Organisation Key! ', keyData.organisations)
+    await dispatch(write({data: keyData})(KeyActionTypes.ORGANISATION_SUCCESS))
   }
 }

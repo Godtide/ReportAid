@@ -4,7 +4,6 @@ import { KeyActionTypes, KeyProps, KeyData } from './types'
 const initialState: KeyProps = {
   data: {
     newKey: '',
-    org: '',
     organisations: '',
     organisation: '',
     activities: '',
@@ -16,7 +15,6 @@ export const reducer = (state: KeyProps = initialState, action: ActionProps): Ke
 
   switch (action.type) {
     case KeyActionTypes.NEWKEY_SUCCESS:
-    case KeyActionTypes.ORGS_SUCCESS:
     case KeyActionTypes.ORGANISATIONS_SUCCESS:
     case KeyActionTypes.ORGANISATION_SUCCESS:
     case KeyActionTypes.ACTIVITIES_SUCCESS:

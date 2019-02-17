@@ -11,12 +11,12 @@ import { Field, ErrorMessage, FieldProps } from 'formik'
 import { Select } from "material-ui-formik-components"
 //import MuiSelect from '@material-ui/core/Select'
 
+import { setOrganisationsKey } from '../../store/helpers/keys/actions'
 import { getOrganisations } from '../../store/IATI/IATIReader/organisations/organisations/actions'
 
 import { IATIOrganisationsData } from '../../store/IATI/IATIReader/organisations/organisations/types'
 
 interface OrganisationsFormProps {
-  changeFunction: Function
   setValue: Function
   name: string
   label: string
@@ -28,6 +28,7 @@ interface OrganisationsDataProps {
 
 interface OrganisationsDispatchProps {
   getOrganisations: () => void
+  setOrganisationsKey: (organisationsRef: string) => void
 }
 
 type OrganisationsPickerProps = OrganisationsFormProps & OrganisationsDataProps & OrganisationsDispatchProps
@@ -58,7 +59,7 @@ class Organisations extends React.Component<OrganisationsPickerProps> {
           label={this.props.label}
           component={Select}
           onChange={(ev: any) => {
-            this.props.changeFunction(ev.target.value)
+            this.props.setOrganisationsKey(ev.target.value)
             this.props.setValue(this.props.name, ev.target.value)
           }}
           options={organisationsRefs}
@@ -77,7 +78,8 @@ const mapStateToProps = (state: ApplicationState): OrganisationsDataProps => {
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrganisationsDispatchProps => {
   return {
-    getOrganisations: () => dispatch(getOrganisations())
+    getOrganisations: () => dispatch(getOrganisations()),
+    setOrganisationsKey: (organisationsRef: string) => dispatch(setOrganisationsKey(organisationsRef)),
   }
 }
 

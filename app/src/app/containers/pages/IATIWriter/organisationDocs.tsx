@@ -87,17 +87,21 @@ const DatePickerProps = {
   }
 }
 
+interface OrganisationDocsKeyProps {
+  organisationsRef: string
+  organisationRef: string
+}
+
 interface OrgDocsDispatchProps {
   handleSubmit: (values: any) => void
   initialise: () => void
 }
 
-type OrgDocsFormProps = WithStyles<typeof styles> & OrgDocsDispatchProps
+type OrgDocsFormProps = WithStyles<typeof styles> & OrganisationDocsKeyProps & OrgDocsDispatchProps
 
 export class OrgDocsForm extends React.Component<OrgDocsFormProps> {
 
   state = {
-    organisationsRef: "",
     submitFunc: (function(submit: boolean) { return submit }),
     resetFunc: (function() { return null })
   }
@@ -114,14 +118,6 @@ export class OrgDocsForm extends React.Component<OrgDocsFormProps> {
     this.setState({submitFunc: setSubmitting, resetFunc: reset})
     this.props.initialise()
     this.props.handleSubmit(values)
-  }
-
-  handleOrganisationsChange = (value: string) => {
-    this.setState({organisationsRef: value})
-  }
-
-  handleOrganisationChange = (value: string) => {
-    console.log(value)
   }
 
   render() {
@@ -153,15 +149,12 @@ export class OrgDocsForm extends React.Component<OrgDocsFormProps> {
               <Form>
                 <FormControl fullWidth={true}>
                   <OrganisationsPicker
-                    changeFunction={this.handleOrganisationsChange}
                     setValue={formProps.setFieldValue}
                     name='organisationsRef'
                     label={OrganisationDoc.organisationsReference}
                   />
                   <ErrorMessage name='organisationsRef' />
                   <OrganisationPicker
-                    organisationsRef={this.state.organisationsRef}
-                    changeFunction={this.handleOrganisationChange}
                     setValue={formProps.setFieldValue}
                     name='organisationRef'
                     label={OrganisationDoc.organisationReference}
@@ -234,6 +227,13 @@ export class OrgDocsForm extends React.Component<OrgDocsFormProps> {
   }
 }
 
+const mapStateToProps = (state: ApplicationState): OrganisationDocsKeyProps => {
+  return {
+    organisationsRef: state.keys.data.organisations,
+    organisationRef: state.keys.data.organisation
+  }
+}
+
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgDocsDispatchProps => {
   return {
     handleSubmit: (ownProps: any) => dispatch(setOrganisationDoc(ownProps)),
@@ -241,7 +241,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   }
 }
 
-export const OrganisationDocs = withTheme(withStyles(styles)(connect<void, OrgDocsDispatchProps, {}, ApplicationState>(
-  null,
+export const OrganisationDocs = withTheme(withStyles(styles)(connect<OrganisationDocsKeyProps, OrgDocsDispatchProps, {}, ApplicationState>(
+  mapStateToProps,
   mapDispatchToProps
 )(OrgDocsForm)))
