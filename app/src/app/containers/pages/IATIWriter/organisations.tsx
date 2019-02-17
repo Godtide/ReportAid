@@ -2,9 +2,6 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { ThunkDispatch } from 'redux-thunk'
 
-import shortid from 'shortid'
-import { ethers } from 'ethers'
-
 import { Formik, Form, Field, FormikProps, ErrorMessage} from 'formik'
 import * as Yup from 'yup'
 import { LinearProgress } from '@material-ui/core'
@@ -18,6 +15,7 @@ import { ActionProps } from '../../../store/types'
 import { OrganisationsProps } from '../../../store/IATI/types'
 
 import { initialise } from '../../../store/IATI/IATIWriter/organisations/actions'
+import { newKey } from '../../../store/helpers/keys/actions'
 import { setOrganisations } from '../../../store/IATI/IATIWriter/organisations/organisations/actions'
 
 import { TransactionHelper } from '../../io/transactionHelper'
@@ -37,17 +35,21 @@ const organisationsSchema = Yup.object().shape({
     .required('Required')
 })
 
+interface OrganisationsKeyProps {
+  organisationsRef: string
+}
+
 export interface OrganisationsDispatchProps {
   handleSubmit: (values: any) => void
   initialise: () => void
+  newKey: () => void
 }
 
-type OrganisationsFormProps = WithStyles<typeof styles> & OrganisationsDispatchProps
+type OrganisationsFormProps = WithStyles<typeof styles> & OrganisationsKeyProps & OrganisationsDispatchProps
 
 export class OrganisationsForm extends React.Component<OrganisationsFormProps> {
 
   state = {
-    organisationsRef: "",
     submitFunc: (function(submit: boolean) { return submit }),
     resetFunc: (function() { return null })
   }
@@ -58,18 +60,14 @@ export class OrganisationsForm extends React.Component<OrganisationsFormProps> {
 
   componentDidMount() {
     this.props.initialise()
-    this.initialiseRef()
-  }
-
-  initialiseRef = () => {
-    const organisationsRef = ethers.utils.formatBytes32String(shortid.generate())
-    this.setState({organisationsRef: organisationsRef})
+    this.props.newKey()
   }
 
   handleSubmit = (values: OrganisationsProps, setSubmitting: Function, reset: Function) => {
     this.setState({submitFunc: setSubmitting, resetFunc: reset})
-    this.props.initialise()
     this.props.handleSubmit(values)
+    this.props.initialise()
+    this.props.newKey()
   }
 
   render() {
@@ -79,7 +77,7 @@ export class OrganisationsForm extends React.Component<OrganisationsFormProps> {
         <h2>{OrganisationsStrings.headingOrganisationsWriter}</h2>
         <div>
           <Formik
-            initialValues={ {organisationsRef: this.state.organisationsRef, version: ""} }
+            initialValues={ {organisationsRef: this.props.organisationsRef, version: ""} }
             enableReinitialize={true}
             validationSchema={organisationsSchema}
             onSubmit={(values: OrganisationsProps, actions: any) => {
@@ -91,7 +89,7 @@ export class OrganisationsForm extends React.Component<OrganisationsFormProps> {
                   <Field
                     readOnly
                     name='organisationsRef'
-                    value={this.state.organisationsRef}
+                    value={this.props.organisationsRef}
                     label={OrganisationsStrings.organisationsReference}
                     component={TextField}
                   />
@@ -122,14 +120,22 @@ export class OrganisationsForm extends React.Component<OrganisationsFormProps> {
   }
 }
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrganisationsDispatchProps => {
+const mapStateToProps = (state: ApplicationState): OrganisationsKeyProps => {
+  //console.log(state.orgReader)
   return {
-    handleSubmit: (ownProps: any) => dispatch(setOrganisations(ownProps)),
-    initialise: () => dispatch(initialise())
+    organisationsRef: state.keys.data.newKey
   }
 }
 
-export const Organisations = withTheme(withStyles(styles)(connect<void, OrganisationsDispatchProps, {}, ApplicationState>(
-  null,
+const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrganisationsDispatchProps => {
+  return {
+    handleSubmit: (ownProps: any) => dispatch(setOrganisations(ownProps)),
+    initialise: () => dispatch(initialise()),
+    newKey: () => dispatch(newKey())
+  }
+}
+
+export const Organisations = withTheme(withStyles(styles)(connect<OrganisationsKeyProps, OrganisationsDispatchProps, {}, ApplicationState>(
+  mapStateToProps,
   mapDispatchToProps
 )(OrganisationsForm)))

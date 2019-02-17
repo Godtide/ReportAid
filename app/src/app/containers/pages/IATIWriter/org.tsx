@@ -2,9 +2,6 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { ThunkDispatch } from 'redux-thunk'
 
-import shortid from 'shortid'
-import { ethers } from 'ethers'
-
 import { Formik, Form, Field, FormikProps, ErrorMessage} from 'formik'
 import * as Yup from 'yup'
 import { LinearProgress } from '@material-ui/core'
@@ -44,7 +41,7 @@ const orgSchema = Yup.object().shape({
     .required('Required')
 })
 
-interface OrgInfoProps {
+interface OrgKeyProps {
   orgRef: string
 }
 
@@ -54,7 +51,7 @@ interface OrgDispatchProps {
   newKey: () => void
 }
 
-type OrgWriterFormProps = WithStyles<typeof styles> & OrgInfoProps & OrgDispatchProps
+type OrgWriterFormProps = WithStyles<typeof styles> & OrgKeyProps & OrgDispatchProps
 
 export class OrgForm extends React.Component<OrgWriterFormProps> {
 
@@ -130,7 +127,7 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
   }
 }
 
-const mapStateToProps = (state: ApplicationState): OrgInfoProps => {
+const mapStateToProps = (state: ApplicationState): OrgKeyProps => {
   //console.log(state.orgReader)
   return {
     orgRef: state.keys.data.newKey
@@ -145,7 +142,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   }
 }
 
-export const Org = withTheme(withStyles(styles)(connect<OrgInfoProps, OrgDispatchProps, {}, ApplicationState>(
+export const Org = withTheme(withStyles(styles)(connect<OrgKeyProps, OrgDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
 )(OrgForm)))
