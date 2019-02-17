@@ -74,7 +74,7 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
 
   handleSubmit = (values: OrgProps, setSubmitting: Function, reset: Function) => {
     //console.log(setSubmitting)
-    setSubmitting(true)
+    //setSubmitting(true)
     this.props.handleSubmit(values)
     this.props.initialise()
     this.props.newKey()
