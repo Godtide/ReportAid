@@ -17,7 +17,6 @@ import { KeyData } from '../../../store/helpers/keys/types'
 import { FormData } from '../../../store/helpers/forms/types'
 
 import { initialise } from '../../../store/IATI/IATIWriter/organisations/actions'
-import { newKey } from '../../../store/helpers/keys/actions'
 import { setFormFunctions } from '../../../store/helpers/forms/actions'
 import { setOrg } from '../../../store/IATI/IATIWriter/organisations/orgs/actions'
 
@@ -50,7 +49,6 @@ interface OrgFormProps {
 interface OrgDispatchProps {
   handleSubmit: (values: any) => void
   initialise: () => void
-  newKey: () => void
   setFormFunctions: (formProps: FormData) => void
 }
 
@@ -69,16 +67,12 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
 
   componentDidMount() {
     this.props.initialise()
-    this.props.newKey()
   }
 
   handleSubmit = (values: OrgProps, setSubmitting: Function, reset: Function) => {
-    //console.log(setSubmitting)
-    //setSubmitting(true)
+    this.props.setFormFunctions({submitFunc: setSubmitting, resetFunc: reset})
     this.props.handleSubmit(values)
     this.props.initialise()
-    this.props.newKey()
-    this.props.setFormFunctions({submitFunc: setSubmitting, resetFunc: reset})
   }
 
   render() {
@@ -143,7 +137,6 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   return {
     handleSubmit: (ownProps: any) => dispatch(setOrg(ownProps)),
     initialise: () => dispatch(initialise()),
-    newKey: () => dispatch(newKey()),
     setFormFunctions: (formProps: FormData) => dispatch(setFormFunctions(formProps))
   }
 }

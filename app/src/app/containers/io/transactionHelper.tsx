@@ -7,6 +7,8 @@ import Markdown from 'react-markdown'
 import { ApplicationState } from '../../store'
 import { ActionProps, TxData } from '../../store/types'
 
+import { newKey } from '../../store/helpers/keys/actions'
+
 import { Transaction } from '../../utils/strings'
 import { Helpers } from '../../utils/config'
 
@@ -21,7 +23,11 @@ interface TransactionProps {
   tx: TxData
 }
 
-type TxProps = TransactionProps & TransactionFuncs
+interface TransactionDispatchProps {
+  newKey: () => void
+}
+
+type TxProps = TransactionProps & TransactionFuncs & TransactionDispatchProps
 
 class TX extends React.Component<TxProps> {
 
@@ -34,6 +40,7 @@ class TX extends React.Component<TxProps> {
       console.log(this.props.submittingFunc)
       this.props.submittingFunc(false)
       this.props.resettingFunc()
+      this.props.newKey()
     }
   }
 
@@ -78,6 +85,13 @@ const mapStateToProps = (state: ApplicationState): TransactionProps => {
   }
 }
 
-export const TransactionHelper = connect<TransactionProps, {}, {}, ApplicationState>(
-  mapStateToProps
+const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): TransactionDispatchProps => {
+  return {
+    newKey: () => dispatch(newKey())
+  }
+}
+
+export const TransactionHelper = connect<TransactionProps, TransactionDispatchProps, {}, ApplicationState>(
+  mapStateToProps,
+  mapDispatchToProps
 )(TX)

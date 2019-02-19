@@ -15,7 +15,6 @@ import { ActionProps } from '../../../store/types'
 import { OrganisationProps } from '../../../store/IATI/types'
 
 import { initialise } from '../../../store/IATI/IATIWriter/organisations/actions'
-import { newKey } from '../../../store/helpers/keys/actions'
 import { setOrganisation } from '../../../store/IATI/IATIWriter/organisations/organisation/actions'
 
 import { OrganisationsPicker } from '../../../components/io/organisationsPicker'
@@ -64,7 +63,6 @@ interface OrganisationKeyProps {
 export interface OrganisationDispatchProps {
   handleSubmit: (values: any) => void
   initialise: () => void
-  newKey: () => void
 }
 
 type OrganisationFormProps = WithStyles<typeof styles> & OrganisationKeyProps & OrganisationDispatchProps
@@ -82,14 +80,12 @@ export class OrganisationForm extends React.Component<OrganisationFormProps> {
 
   componentDidMount() {
     this.props.initialise()
-    this.props.newKey()
   }
 
   handleSubmit = (values: OrganisationProps, setSubmitting: Function, reset: Function) => {
     this.setState({submitFunc: setSubmitting, resetFunc: reset})
     this.props.handleSubmit(values)
     this.props.initialise()
-    this.props.newKey()
   }
 
   render() {
@@ -198,8 +194,7 @@ const mapStateToProps = (state: ApplicationState): OrganisationKeyProps => {
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrganisationDispatchProps => {
   return {
     handleSubmit: (ownProps: any) => dispatch(setOrganisation(ownProps)),
-    initialise: () => dispatch(initialise()),
-    newKey: () => dispatch(newKey())
+    initialise: () => dispatch(initialise())
   }
 }
 
