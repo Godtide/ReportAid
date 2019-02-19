@@ -14,7 +14,9 @@ import FormControl from '@material-ui/core/FormControl'
 
 import { OrganisationsPicker } from '../../../components/io/organisationsPicker'
 import { OrganisationPicker } from '../../../components/io/organisationPicker'
+import { FormData } from '../../../store/helpers/forms/types'
 
+import { setFormFunctions } from '../../../store/helpers/forms/actions'
 import { initialise, getCountryBudgets } from '../../../store/IATI/IATIReader/organisations/organisationCountryBudgets/actions'
 
 import { ApplicationState } from '../../../store'
@@ -37,6 +39,8 @@ const reportSchema = Yup.object().shape({
 })
 
 interface OrganisationCountryBudgetProps {
+  submittingFunc: Function,
+  resettingFunc: Function
   organisationsRef: string,
   organisationRef: string,
   budgets: IATIOrganisationCountryBudgetReport
@@ -45,16 +49,12 @@ interface OrganisationCountryBudgetProps {
 interface OrganisationCountryBudgetDispatchProps {
   handleSubmit: (values: any) => void
   initialise: () => void
+  setFormFunctions: (formProps: FormData) => void
 }
 
 type OrganisationCountryBudgetsReaderProps =  WithStyles<typeof styles> & OrganisationCountryBudgetProps & OrganisationCountryBudgetDispatchProps
 
 class CountryBudgets extends React.Component<OrganisationCountryBudgetsReaderProps> {
-
-  state = {
-    submitFunc: (function(submit: boolean) { return submit }),
-    resetFunc: (function() { return null })
-  }
 
   constructor (props: OrganisationCountryBudgetsReaderProps) {
     super(props)
@@ -66,13 +66,13 @@ class CountryBudgets extends React.Component<OrganisationCountryBudgetsReaderPro
 
   componentDidUpdate(previousProps: OrganisationCountryBudgetsReaderProps) {
     if(previousProps.budgets != this.props.budgets) {
-      this.state.submitFunc(false)
-      this.state.resetFunc()
+      this.props.submittingFunc(false)
+      this.props.resettingFunc()
     }
   }
 
   handleSubmit = (values: OrganisationsReportProps, setSubmitting: Function, reset: Function) => {
-    this.setState({submitFunc: setSubmitting, resetFunc: reset})
+    this.props.setFormFunctions({submitFunc: setSubmitting, resetFunc: reset})
     this.props.initialise()
     this.props.handleSubmit(values)
   }
@@ -163,6 +163,8 @@ class CountryBudgets extends React.Component<OrganisationCountryBudgetsReaderPro
 const mapStateToProps = (state: ApplicationState): OrganisationCountryBudgetProps => {
   //console.log(state.orgReader)
   return {
+    submittingFunc: state.forms.data.submitFunc,
+    resettingFunc: state.forms.data.resetFunc,
     organisationsRef: state.keys.data.organisations,
     organisationRef: state.keys.data.organisation,
     budgets: state.organisationCountryBudgetsReader.data
@@ -172,7 +174,8 @@ const mapStateToProps = (state: ApplicationState): OrganisationCountryBudgetProp
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrganisationCountryBudgetDispatchProps => {
   return {
     handleSubmit: (ownProps: any) => dispatch(getCountryBudgets(ownProps)),
-    initialise: () => dispatch(initialise())
+    initialise: () => dispatch(initialise()),
+    setFormFunctions: (formProps: FormData) => dispatch(setFormFunctions(formProps))
   }
 }
 

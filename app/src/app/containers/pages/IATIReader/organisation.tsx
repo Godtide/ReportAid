@@ -13,7 +13,9 @@ import Button from '@material-ui/core/Button'
 import FormControl from '@material-ui/core/FormControl'
 
 import { OrganisationsPicker } from '../../../components/io/organisationsPicker'
+import { FormData } from '../../../store/helpers/forms/types'
 
+import { setFormFunctions } from '../../../store/helpers/forms/actions'
 import { initialise, getOrganisation } from '../../../store/IATI/IATIReader/organisations/organisation/actions'
 
 import { ApplicationState } from '../../../store'
@@ -33,6 +35,8 @@ const reportSchema = Yup.object().shape({
 })
 
 interface OrgProps {
+  submittingFunc: Function,
+  resettingFunc: Function
   organisationsRef: string
   organisation: IATIOrganisationReport
 }
@@ -40,16 +44,12 @@ interface OrgProps {
 interface OrgDispatchProps {
   handleSubmit: (values: any) => void
   initialise: () => void
+  setFormFunctions: (formProps: FormData) => void
 }
 
 type OrgReaderProps =  WithStyles<typeof styles> & OrgProps & OrgDispatchProps
 
 class OrganisationReader extends React.Component<OrgReaderProps> {
-
-  state = {
-    submitFunc: (function(submit: boolean) { return submit }),
-    resetFunc: (function() { return null })
-  }
 
   constructor (props: OrgReaderProps) {
     super(props)
@@ -61,13 +61,13 @@ class OrganisationReader extends React.Component<OrgReaderProps> {
 
   componentDidUpdate(previousProps: OrgReaderProps) {
     if(previousProps.organisation != this.props.organisation) {
-      this.state.submitFunc(false)
-      this.state.resetFunc()
+      this.props.submittingFunc(false)
+      this.props.resettingFunc()
     }
   }
 
   handleSubmit = (values: OrganisationsReportProps, setSubmitting: Function, reset: Function) => {
-    this.setState({submitFunc: setSubmitting, resetFunc: reset})
+    this.props.setFormFunctions({submitFunc: setSubmitting, resetFunc: reset})
     this.props.initialise()
     this.props.handleSubmit(values)
   }
@@ -154,6 +154,8 @@ class OrganisationReader extends React.Component<OrgReaderProps> {
 const mapStateToProps = (state: ApplicationState): OrgProps => {
   //console.log(state.orgReader)
   return {
+    submittingFunc: state.forms.data.submitFunc,
+    resettingFunc: state.forms.data.resetFunc,
     organisationsRef: state.keys.data.organisations,
     organisation: state.organisationReader.data
   }
@@ -162,7 +164,8 @@ const mapStateToProps = (state: ApplicationState): OrgProps => {
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgDispatchProps => {
   return {
     handleSubmit: (ownProps: any) => dispatch(getOrganisation(ownProps)),
-    initialise: () => dispatch(initialise())
+    initialise: () => dispatch(initialise()),
+    setFormFunctions: (formProps: FormData) => dispatch(setFormFunctions(formProps))
   }
 }
 

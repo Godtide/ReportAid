@@ -14,7 +14,9 @@ import FormControl from '@material-ui/core/FormControl'
 
 import { OrganisationsPicker } from '../../../components/io/organisationsPicker'
 import { OrganisationPicker } from '../../../components/io/organisationPicker'
+import { FormData } from '../../../store/helpers/forms/types'
 
+import { setFormFunctions } from '../../../store/helpers/forms/actions'
 import { initialise, getDocs } from '../../../store/IATI/IATIReader/organisations/organisationDocs/actions'
 
 import { ApplicationState } from '../../../store'
@@ -37,6 +39,8 @@ const reportSchema = Yup.object().shape({
 })
 
 interface OrganisationDocProps {
+  submittingFunc: Function,
+  resettingFunc: Function
   organisationsRef: string,
   organisationRef: string,
   docs: IATIOrganisationDocReport
@@ -45,16 +49,12 @@ interface OrganisationDocProps {
 interface OrganisationDocDispatchProps {
   handleSubmit: (values: any) => void
   initialise: () => void
+  setFormFunctions: (formProps: FormData) => void
 }
 
 type OrganisationDocsReaderProps =  WithStyles<typeof styles> & OrganisationDocProps & OrganisationDocDispatchProps
 
 class Docs extends React.Component<OrganisationDocsReaderProps> {
-
-  state = {
-    submitFunc: (function(submit: boolean) { return submit }),
-    resetFunc: (function() { return null })
-  }
 
   constructor (props: OrganisationDocsReaderProps) {
     super(props)
@@ -66,13 +66,13 @@ class Docs extends React.Component<OrganisationDocsReaderProps> {
 
   componentDidUpdate(previousProps: OrganisationDocsReaderProps) {
     if(previousProps.docs != this.props.docs) {
-      this.state.submitFunc(false)
-      this.state.resetFunc()
+    this.props.submittingFunc(false)
+    this.props.resettingFunc()
     }
   }
 
   handleSubmit = (values: OrganisationsReportProps, setSubmitting: Function, reset: Function) => {
-    this.setState({submitFunc: setSubmitting, resetFunc: reset})
+    this.props.setFormFunctions({submitFunc: setSubmitting, resetFunc: reset})
     this.props.initialise()
     this.props.handleSubmit(values)
   }
@@ -164,6 +164,8 @@ class Docs extends React.Component<OrganisationDocsReaderProps> {
 const mapStateToProps = (state: ApplicationState): OrganisationDocProps => {
   //console.log(state.orgReader)
   return {
+    submittingFunc: state.forms.data.submitFunc,
+    resettingFunc: state.forms.data.resetFunc,
     organisationsRef: state.keys.data.organisations,
     organisationRef: state.keys.data.organisation,
     docs: state.organisationDocsReader.data
@@ -173,7 +175,8 @@ const mapStateToProps = (state: ApplicationState): OrganisationDocProps => {
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrganisationDocDispatchProps => {
   return {
     handleSubmit: (ownProps: any) => dispatch(getDocs(ownProps)),
-    initialise: () => dispatch(initialise())
+    initialise: () => dispatch(initialise()),
+    setFormFunctions: (formProps: FormData) => dispatch(setFormFunctions(formProps))
   }
 }
 
