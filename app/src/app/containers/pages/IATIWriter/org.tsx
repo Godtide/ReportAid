@@ -18,6 +18,7 @@ import { FormData } from '../../../store/helpers/forms/types'
 
 import { initialise } from '../../../store/IATI/IATIWriter/organisations/actions'
 import { setFormFunctions } from '../../../store/helpers/forms/actions'
+import { newKey } from '../../../store/helpers/keys/actions'
 import { setOrg } from '../../../store/IATI/IATIWriter/organisations/orgs/actions'
 
 import { TransactionHelper } from '../../io/transactionHelper'
@@ -50,16 +51,12 @@ interface OrgDispatchProps {
   handleSubmit: (values: any) => void
   initialise: () => void
   setFormFunctions: (formProps: FormData) => void
+  newKey: () => void
 }
 
 type OrgWriterFormProps = WithStyles<typeof styles> & OrgFormProps & OrgDispatchProps
 
 export class OrgForm extends React.Component<OrgWriterFormProps> {
-
-  state = {
-    submitFunc: (function(submit: boolean) { return submit }),
-    resetFunc: (function() { return null })
-  }
 
   constructor (props: OrgWriterFormProps) {
    super(props)
@@ -67,6 +64,7 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
 
   componentDidMount() {
     this.props.initialise()
+    this.props.newKey()
   }
 
   handleSubmit = (values: OrgProps, setSubmitting: Function, reset: Function) => {
@@ -117,10 +115,7 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
             )}
           />
         </div>
-        <TransactionHelper
-          submitFunc={this.state.submitFunc}
-          resetFunc={this.state.resetFunc}
-        />
+        <TransactionHelper/>
       </div>
     )
   }
@@ -137,7 +132,8 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   return {
     handleSubmit: (ownProps: any) => dispatch(setOrg(ownProps)),
     initialise: () => dispatch(initialise()),
-    setFormFunctions: (formProps: FormData) => dispatch(setFormFunctions(formProps))
+    setFormFunctions: (formProps: FormData) => dispatch(setFormFunctions(formProps)),
+    newKey: () => dispatch(newKey())
   }
 }
 

@@ -12,11 +12,6 @@ import { newKey } from '../../store/helpers/keys/actions'
 import { Transaction } from '../../utils/strings'
 import { Helpers } from '../../utils/config'
 
-export interface TransactionFuncs {
-  submitFunc: (submit: boolean) => boolean
-  resetFunc: () => void
-}
-
 interface TransactionProps {
   submittingFunc: Function,
   resettingFunc: Function
@@ -27,7 +22,7 @@ interface TransactionDispatchProps {
   newKey: () => void
 }
 
-type TxProps = TransactionProps & TransactionFuncs & TransactionDispatchProps
+type TxProps = TransactionProps & TransactionDispatchProps
 
 class TX extends React.Component<TxProps> {
 

@@ -13,8 +13,11 @@ import { Select, TextField } from "material-ui-formik-components"
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
 import { OrganisationDocProps } from '../../../store/IATI/types'
+import { FormData } from '../../../store/helpers/forms/types'
 
+import { setFormFunctions } from '../../../store/helpers/forms/actions'
 import { initialise } from '../../../store/IATI/IATIWriter/organisations/actions'
+import { newKey } from '../../../store/helpers/keys/actions'
 import { setOrganisationDoc } from '../../../store/IATI/IATIWriter/organisations/organisationDocs/actions'
 
 import { FormikDatePicker } from '../../../components/io/datePicker'
@@ -95,16 +98,12 @@ interface OrganisationDocsKeyProps {
 interface OrgDocsDispatchProps {
   handleSubmit: (values: any) => void
   initialise: () => void
+  setFormFunctions: (formProps: FormData) => void
 }
 
 type OrgDocsFormProps = WithStyles<typeof styles> & OrganisationDocsKeyProps & OrgDocsDispatchProps
 
 export class OrgDocsForm extends React.Component<OrgDocsFormProps> {
-
-  state = {
-    submitFunc: (function(submit: boolean) { return submit }),
-    resetFunc: (function() { return null })
-  }
 
   constructor (props: OrgDocsFormProps) {
    super(props)
@@ -115,7 +114,7 @@ export class OrgDocsForm extends React.Component<OrgDocsFormProps> {
   }
 
   handleSubmit = (values: OrganisationDocProps, setSubmitting: Function, reset: Function) => {
-    this.setState({submitFunc: setSubmitting, resetFunc: reset})
+    this.props.setFormFunctions({submitFunc: setSubmitting, resetFunc: reset})
     this.props.initialise()
     this.props.handleSubmit(values)
   }
@@ -218,10 +217,7 @@ export class OrgDocsForm extends React.Component<OrgDocsFormProps> {
             )}
           />
         </div>
-        <TransactionHelper
-          submitFunc={this.state.submitFunc}
-          resetFunc={this.state.resetFunc}
-        />
+        <TransactionHelper/>
       </div>
     )
   }
@@ -237,7 +233,8 @@ const mapStateToProps = (state: ApplicationState): OrganisationDocsKeyProps => {
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgDocsDispatchProps => {
   return {
     handleSubmit: (ownProps: any) => dispatch(setOrganisationDoc(ownProps)),
-    initialise: () => dispatch(initialise())
+    initialise: () => dispatch(initialise()),
+    setFormFunctions: (formProps: FormData) => dispatch(setFormFunctions(formProps))
   }
 }
 

@@ -13,8 +13,11 @@ import { TextField, Select } from "material-ui-formik-components"
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
 import { OrganisationsProps } from '../../../store/IATI/types'
+import { FormData } from '../../../store/helpers/forms/types'
 
+import { setFormFunctions } from '../../../store/helpers/forms/actions'
 import { initialise } from '../../../store/IATI/IATIWriter/organisations/actions'
+import { newKey } from '../../../store/helpers/keys/actions'
 import { setOrganisations } from '../../../store/IATI/IATIWriter/organisations/organisations/actions'
 
 import { TransactionHelper } from '../../io/transactionHelper'
@@ -41,16 +44,13 @@ interface OrganisationsKeyProps {
 export interface OrganisationsDispatchProps {
   handleSubmit: (values: any) => void
   initialise: () => void
+  setFormFunctions: (formProps: FormData) => void
+  newKey: () => void
 }
 
 type OrganisationsFormProps = WithStyles<typeof styles> & OrganisationsKeyProps & OrganisationsDispatchProps
 
 export class OrganisationsForm extends React.Component<OrganisationsFormProps> {
-
-  state = {
-    submitFunc: (function(submit: boolean) { return submit }),
-    resetFunc: (function() { return null })
-  }
 
   constructor (props: OrganisationsFormProps) {
    super(props)
@@ -58,10 +58,11 @@ export class OrganisationsForm extends React.Component<OrganisationsFormProps> {
 
   componentDidMount() {
     this.props.initialise()
+    this.props.newKey()
   }
 
   handleSubmit = (values: OrganisationsProps, setSubmitting: Function, reset: Function) => {
-    this.setState({submitFunc: setSubmitting, resetFunc: reset})
+    this.props.setFormFunctions({submitFunc: setSubmitting, resetFunc: reset})
     this.props.handleSubmit(values)
     this.props.initialise()
   }
@@ -107,10 +108,7 @@ export class OrganisationsForm extends React.Component<OrganisationsFormProps> {
             )}
           />
         </div>
-        <TransactionHelper
-          submitFunc={this.state.submitFunc}
-          resetFunc={this.state.resetFunc}
-        />
+        <TransactionHelper/>
       </div>
     )
   }
@@ -126,7 +124,9 @@ const mapStateToProps = (state: ApplicationState): OrganisationsKeyProps => {
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrganisationsDispatchProps => {
   return {
     handleSubmit: (ownProps: any) => dispatch(setOrganisations(ownProps)),
-    initialise: () => dispatch(initialise())
+    initialise: () => dispatch(initialise()),
+    setFormFunctions: (formProps: FormData) => dispatch(setFormFunctions(formProps)),
+    newKey: () => dispatch(newKey())
   }
 }
 

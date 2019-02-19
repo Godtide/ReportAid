@@ -12,8 +12,11 @@ import { Select, TextField } from "material-ui-formik-components"
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
 import { OrganisationRegionBudgetProps } from '../../../store/IATI/types'
+import { FormData } from '../../../store/helpers/forms/types'
 
+import { setFormFunctions } from '../../../store/helpers/forms/actions'
 import { initialise } from '../../../store/IATI/IATIWriter/organisations/actions'
+import { newKey } from '../../../store/helpers/keys/actions'
 import { setRegionBudget } from '../../../store/IATI/IATIWriter/organisations/organisationRegionBudgets/actions'
 
 import { FormikDatePicker } from '../../../components/io/datePicker'
@@ -87,16 +90,12 @@ interface OrganisationRegionBudgetsKeyProps {
 interface OrganisationRegionBudgetsDispatchProps {
   handleSubmit: (values: any) => void
   initialise: () => void
+  setFormFunctions: (formProps: FormData) => void
 }
 
 type OrganisationRegionBudgetsFormProps = WithStyles<typeof styles> & OrganisationRegionBudgetsKeyProps & OrganisationRegionBudgetsDispatchProps
 
 export class OrganisationRegionBudgetsForm extends React.Component<OrganisationRegionBudgetsFormProps> {
-
-  state = {
-    submitFunc: (function(submit: boolean) { return submit }),
-    resetFunc: (function() { return null })
-  }
 
   constructor (props: OrganisationRegionBudgetsFormProps) {
    super(props)
@@ -107,7 +106,7 @@ export class OrganisationRegionBudgetsForm extends React.Component<OrganisationR
   }
 
   handleSubmit = (values: OrganisationRegionBudgetProps, setSubmitting: Function, reset: Function) => {
-    this.setState({submitFunc: setSubmitting, resetFunc: reset})
+    this.props.setFormFunctions({submitFunc: setSubmitting, resetFunc: reset})
     this.props.initialise()
     this.props.handleSubmit(values)
   }
@@ -191,10 +190,7 @@ export class OrganisationRegionBudgetsForm extends React.Component<OrganisationR
             )}
           />
         </div>
-        <TransactionHelper
-          submitFunc={this.state.submitFunc}
-          resetFunc={this.state.resetFunc}
-        />
+        <TransactionHelper/>
       </div>
     )
   }
@@ -211,11 +207,12 @@ const mapStateToProps = (state: ApplicationState): OrganisationRegionBudgetsKeyP
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrganisationRegionBudgetsDispatchProps => {
   return {
     handleSubmit: (ownProps: any) => dispatch(setRegionBudget(ownProps)),
-    initialise: () => dispatch(initialise())
+    initialise: () => dispatch(initialise()),
+    setFormFunctions: (formProps: FormData) => dispatch(setFormFunctions(formProps))
   }
 }
 
 export const OrganisationRegionBudgets = withTheme(withStyles(styles)(connect<OrganisationRegionBudgetsKeyProps, OrganisationRegionBudgetsDispatchProps, {}, ApplicationState>(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(OrganisationRegionBudgetsForm)))
