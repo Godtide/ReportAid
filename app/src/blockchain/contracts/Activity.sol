@@ -42,6 +42,28 @@ contract Activity {
     MAX
   }
 
+  enum CollaborationType {
+    NONE,
+    BILATERAL,
+    MULTILATERALINFLOWS,
+    BILATERALPRIVATE,
+    MULTILATERALOUTFLOWS,
+    PRIVATEOUTFLOWS,
+    BILATERALCOREFUNDED,
+    TRIANGULAR
+    MAX
+  }
+
+  enum TiedStatus {
+    UNSPECIFIED,
+    UNSPECIFIEDONE,
+    NONE,
+    PARTIALLYTIED,
+    TIED,
+    UNTIED,
+    MAX
+  }
+
   struct ReportingOrg {
     bytes32 orgRef;
     uint8 orgType;
@@ -53,7 +75,6 @@ contract Activity {
     string identifier;
     ReportingOrg reportingOrg;
     string title;
-    string description;
     bytes32 lastUpdated;
     bytes32 lang;
     bytes32 currency;
@@ -62,8 +83,13 @@ contract Activity {
     bytes32 linkedData;
     uint8 budgetNotProvided;
     uint8 status;
-    bytes32 date;
     uint8 scope;
+    uint8 capitalSpend;
+    uint8 collaborationType;
+    uint8 defaultFlowType;
+    uint256 defaultFinanceType;
+    bytes32 defaultAidType;
+    uint8 defaulTiedStatus;
   }
 
   function setActivity(bytes32 _activitiesRef, bytes32 activityRef, OrgActivity memory _activity) public;
@@ -75,7 +101,6 @@ contract Activity {
   function getActivityIdentifier(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (string memory);
   function getReportingOrg(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (ReportingOrg memory);
   function getTitle(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (string memory);
-  function getDescription(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (string memory);
   function getLastUpdatedTime(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32);
   function getLang(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32);
   function getCurrency(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32);
@@ -86,4 +111,10 @@ contract Activity {
   function getStatus(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8);
   function getDate(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32);
   function getScope(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8);
+  function getCapitalSpend(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8);
+  function getCollaborationType(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8);
+  function getDefaultFlowType(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8);
+  function getDefaultFinanceType(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint256);
+  function getDefaultAidType(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32);
+  function getDefaultTiedStatus(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8);
 }

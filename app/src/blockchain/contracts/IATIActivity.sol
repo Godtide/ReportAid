@@ -18,7 +18,6 @@ contract IATIActivity is Activity {
              _activity.reportingOrg.orgRef[0] != 0 &&
              _activity.reportingOrg.orgType > 0 &&
              bytes(_activity.title).length > 0 &&
-             bytes(_activity.description).length > 0 &&
              _activity.lastUpdated[0] != 0 &&
              _activity.lang[0]  != 0 &&
              _activity.currency[0] != 0 &&
@@ -28,9 +27,14 @@ contract IATIActivity is Activity {
              _activity.budgetNotProvided < uint8(BudgetNotProvided.MAX) &&
              _activity.status > uint8(Status.NONE) &&
              _activity.status < uint8(Status.MAX) &&
-             _activity.date[0] != 0 &&
              _activity.scope >= uint8(Scope.NONE) &&
-             _activity.scope < uint8(Scope.MAX));
+             _activity.scope < uint8(Scope.MAX) &&
+             _activity.capitalSpend <= 100 &&
+             _activity.collaborationType > uint8(CollaborationType.NONE) &&
+             _activity.collaborationType < uint8(CollaborationType.MAX) &&
+             bytes(_activity.defaultAidType).length > 0 &&
+             _activity.defaulTiedStatus > uint8(TiedStatus.NONE) &&
+             _activity.defaulTiedStatus < uint8(TiedStatus.MAX));
 
     activities[_activitiesRef][activityRef] = _activity;
 
@@ -75,12 +79,6 @@ contract IATIActivity is Activity {
   	require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
 
   	return activities[_activitiesRef][_activityRef].title;
-  }
-
-  function getDescription(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (string memory) {
-  	require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
-
-  	return activities[_activitiesRef][_activityRef].description;
   }
 
   function getLastUpdatedTime(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32) {
@@ -141,5 +139,16 @@ contract IATIActivity is Activity {
   	require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
 
   	return activities[_activitiesRef][_activityRef].scope;
+  }
+
+  function getCapitalSpend(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8) {
+    require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
+
+  	return activities[_activitiesRef][_activityRef].capitalSpend;
+  }
+
+
+  function getCollaborationType(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8) {
+
   }
 }
