@@ -11,6 +11,8 @@ const IATIOrganisationCountryBudgets = artifacts.require("./IATIOrganisationCoun
 
 const IATIActivities = artifacts.require("./IATIActivities.sol");
 const IATIActivity = artifacts.require("./IATIActivity.sol");
+const IATIActivities = artifacts.require("./IATIActivities.sol");
+const IATIActivityDates = artifacts.require("./IATIActivityDates.sol");
 
 module.exports = function(deployer) {
   deployer.deploy(StringsLib);
@@ -25,6 +27,7 @@ module.exports = function(deployer) {
   deployer.link(StringsLib, IATIOrganisationCountryBudgets);
   deployer.link(StringsLib, IATIActivities);
   deployer.link(StringsLib, IATIActivity);
+  deployer.link(StringsLib, IATIActivityDates);
   deployer.deploy(IATIOrgs);
   deployer.deploy(IATIOrganisations);
   deployer.deploy(IATIOrganisation);
@@ -36,4 +39,5 @@ module.exports = function(deployer) {
   deployer.deploy(IATIOrganisationCountryBudgets);
   deployer.deploy(IATIActivities);
   deployer.deploy(IATIActivity);
+  deployer.deploy(IATIActivityDates);
 };

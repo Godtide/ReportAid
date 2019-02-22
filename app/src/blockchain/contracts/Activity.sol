@@ -50,7 +50,7 @@ contract Activity {
     MULTILATERALOUTFLOWS,
     PRIVATEOUTFLOWS,
     BILATERALCOREFUNDED,
-    TRIANGULAR
+    TRIANGULAR,
     MAX
   }
 
@@ -109,7 +109,6 @@ contract Activity {
   function getLinkedData(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32);
   function getBudgetNotProvided(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8);
   function getStatus(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8);
-  function getDate(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32);
   function getScope(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8);
   function getCapitalSpend(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8);
   function getCollaborationType(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8);
