@@ -19,6 +19,7 @@ contract Budgets {
 
   struct Budget {
     bytes32 budgetLine;
+    bytes32 otherRef;
     Finance finance;
   }
 
@@ -29,6 +30,7 @@ contract Budgets {
 
   function getBudget(bytes32 _topLevelRef, bytes32 _secondLevelRef, bytes32 _budgetRef) public view returns (Budget memory);
   function getBudgetLine(bytes32 _topLevelRef, bytes32 _secondLevelRef, bytes32 _budgetRef) public view returns (bytes32);
+  function getOtherRef(bytes32 _topLevelRef, bytes32 _secondLevelRef, bytes32 _budgetRef) public view returns (bytes32);
   function getBudgetValue(bytes32 _topLevelRef, bytes32 _secondLevelRef, bytes32 _budgetRef) public view returns (uint256);
   function getBudgetStatus(bytes32 _topLevelRef, bytes32 _secondLevelRef, bytes32 _budgetRef) public view returns (uint8);
   function getBudgetStart(bytes32 _topLevelRef, bytes32 _secondLevelRef, bytes32 _budgetRef) public view returns (bytes32);

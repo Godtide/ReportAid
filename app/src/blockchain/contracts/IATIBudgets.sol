@@ -57,6 +57,12 @@ contract IATIBudgets is Budgets {
     return budgets[_topLevelRef][_secondLevelRef][_budgetRef].budgetLine;
   }
 
+  function getOtherRef(bytes32 _topLevelRef, bytes32 _secondLevelRef, bytes32 _budgetRef) public view returns (bytes32) {
+    require (_topLevelRef[0] != 0 && _secondLevelRef[0] != 0 && _budgetRef[0] != 0);
+
+    return budgets[_topLevelRef][_secondLevelRef][_budgetRef].otherRef;
+  }
+
   function getBudgetValue(bytes32 _topLevelRef, bytes32 _secondLevelRef, bytes32 _budgetRef) public view returns (uint256) {
     require (_topLevelRef[0] != 0 && _secondLevelRef[0] != 0 && _budgetRef[0] != 0);
 

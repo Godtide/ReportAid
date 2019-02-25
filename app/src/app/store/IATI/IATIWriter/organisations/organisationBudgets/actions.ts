@@ -29,6 +29,7 @@ export const setOrganisationBudget = (details: OrganisationBudgetProps) => {
 
     const budget: IATIOrganisationBudgetProps = {
       budgetLine: ethers.utils.formatBytes32String(details.budgetLine),
+      otherRef: ethers.utils.formatBytes32String(""),
       finance: {
         value: details.value,
         status: details.status,
@@ -37,7 +38,7 @@ export const setOrganisationBudget = (details: OrganisationBudgetProps) => {
       }
     }
 
-    //console.log('Budget: ', budget)
+    console.log('Budget: ', budget)
 
     let actionType = IATIWriterActionTypes.BUDGET_FAILURE
     let txData: TxData = {}
