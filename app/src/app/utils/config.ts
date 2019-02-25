@@ -229,18 +229,18 @@ class Contract {
     "function getScope(bytes32 _activitiesRef, bytes32 _activityRef) view returns (uint8)"
   ]
 
-  static orgsAddress = "0xB8dAac9256d1470062c491F29371D425ae7c9F9c"
-  static organisationsAddress = "0xe77Ec729B23ab4C91AEDb4Bb84eBA9A04F9F7790"
-  static organisationAddress = "0xD059D0Af1f8f64Dd24aE912AC942573953B9b48D"
-  static organisationDocsAddress = "0xe78799F615A3330A766a0D7579564338Db575155"
-  static organisationBudgetsAddress = "0x4A7b7A2394192Db5Ec4D9107E3d6C301dFee1A22"
-  static organisationExpenditureAddress = "0x00B27619564670c95525596FA5D273A89e0b5548"
-  static organisationRecipientBudgetsAddress = "0x8D06E78Aa759112c5896c7fe8090F1329b8dE237"
-  static organisationRegionBudgetsAddress = "0x9010B8b23530c9e1fC1b31d167F519bb64ff733A"
-  static organisationCountryBudgetsAddress = "0x7F8AAf1a25f629d6022e4B415e8c274cC170d351"
-  static activitiesAddress = "0xfA41f32f94376E1705FC042D4FCF4eD35DFd1b3f"
-  static activityAddress = "0xE99bB5C64538eE51dfB3D2D8eE40Efbe03895B09"
-  static activityDatesAddress = "0xEcEfeE1E16056a47Bd9b5e4457181e8768974d28"
+  static orgsAddress = "0x38172AD1d09e3e3815c2962B8122a1Cc55C6aA8d"
+  static organisationsAddress = "0xa17b6586c5E254039Ae83C9F46c71a99682e63fb"
+  static organisationAddress = "0xd539795974B6b279fb7ce2ce9608d7fBC524FC7D"
+  static organisationDocsAddress = "0xf647cD62d16673a40c99A98c9C0444868F6E5c02"
+  static organisationBudgetsAddress = "0xb2E10F33ACc31B0758e5f048eB6390C1Eb0B125D"
+  static organisationExpenditureAddress = "0xC80C1F9Bd982e4dF93069a646522B6167b62cb1d"
+  static organisationRecipientBudgetsAddress = "0x9089ea8CA4d522AFddd55e0Ae92d99C6d398d92D"
+  static organisationRegionBudgetsAddress = "0x94206500f3731712d2e924b58feb913E3c7f0bFf"
+  static organisationCountryBudgetsAddress = "0x7Dc4877c92Cc35e0EbdCfDc8EFb65cFf19140Db7"
+  static activitiesAddress = "0x67ed281882baFE20044050B2AF6E5466dCeC1dca"
+  static activityAddress = "0xafFC46ffc9B2977AF462E7f22A21B7337d4B7d01"
+  static activityDatesAddress = "0x47Bb9194f9932c837A1C6bb9190FD4E5dA5Fc94a"
 }
 
 class Helpers {

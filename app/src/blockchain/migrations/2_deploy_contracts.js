@@ -41,51 +41,51 @@ module.exports = function(deployer) {
                              IATIActivityDates
                             ]);
 
-  deployer.deploy(IATIOrgs).then(function() {
+  deployer.deploy(IATIOrgs).then(() => {
     orgsAddress = "\"" + IATIOrgs.address + "\"";
 
   });
 
-  deployer.deploy(IATIOrganisations).then(function() {
+  deployer.deploy(IATIOrganisations).then(() => {
     organisationsAddress = "\"" + IATIOrganisations.address + "\"";
   });
 
-  deployer.deploy(IATIOrganisation).then(function() {
+  deployer.deploy(IATIOrganisation).then(() => {
     organisationAddress = "\"" + IATIOrganisation.address + "\"";
   });
 
-  deployer.deploy(IATIOrganisationDocs).then(function() {
+  deployer.deploy(IATIOrganisationDocs).then(() => {
     organisationDocsAddress = "\"" + IATIOrganisationDocs.address + "\"";
   });
 
-  deployer.deploy(IATIBudgets).then(function() {
+  deployer.deploy(IATIBudgets).then(() => {
     //console.log(IATIBudgets.address)
-    deployer.deploy(IATIOrganisationBudgets, IATIBudgets.address).then(function() {
+    deployer.deploy(IATIOrganisationBudgets, IATIBudgets.address).then(() => {
       organisationBudgetsAddress = "\"" + IATIOrganisationBudgets.address + "\"";
     });
-    deployer.deploy(IATIOrganisationExpenditure, IATIBudgets.address).then(function() {
+    deployer.deploy(IATIOrganisationExpenditure, IATIBudgets.address).then(() => {
       organisationExpenditureAddress = "\"" + IATIOrganisationExpenditure.address + "\"";
     });
-    deployer.deploy(IATIOrganisationRecipientBudgets, IATIBudgets.address).then(function() {
+    deployer.deploy(IATIOrganisationRecipientBudgets, IATIBudgets.address).then(() => {
       organisationRecipientBudgetsAddress = "\"" + IATIOrganisationRecipientBudgets.address + "\"";
     });
-    deployer.deploy(IATIOrganisationRegionBudgets, IATIBudgets.address).then(function() {
+    deployer.deploy(IATIOrganisationRegionBudgets, IATIBudgets.address).then(() => {
       organisationRegionBudgetsAddress = "\"" + IATIOrganisationRegionBudgets.address + "\"";
     });
-    deployer.deploy(IATIOrganisationCountryBudgets, IATIBudgets.address).then(function() {
+    deployer.deploy(IATIOrganisationCountryBudgets, IATIBudgets.address).then(() => {
       organisationCountryBudgetsAddress = "\"" + IATIOrganisationCountryBudgets.address + "\"";
     });
   });
 
-  deployer.deploy(IATIActivities).then(function() {
+  deployer.deploy(IATIActivities).then(() => {
     activitiesAddress = "\"" + IATIActivities.address + "\"";
   });
 
-  deployer.deploy(IATIActivity).then(function() {
+  deployer.deploy(IATIActivity).then(() => {
     activityAddress = "\"" + IATIActivity.address + "\"";
   });
 
-  deployer.deploy(IATIActivityDates).then(function() {
+  deployer.deploy(IATIActivityDates).then(() => {
     activityDatesAddress = "\"" + IATIActivityDates.address + "\"";
   });
 
