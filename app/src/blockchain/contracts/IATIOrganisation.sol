@@ -16,8 +16,7 @@ contract IATIOrganisation is Organisation {
              _organisationRef[0] != 0 &&
              _org.orgRef[0] != 0 &&
              _org.reportingOrg.orgRef[0] != 0 &&
-             _org.reportingOrg.orgType > uint8(OrgType.NONE) &&
-             _org.reportingOrg.orgType < uint8(OrgType.MAX) &&
+             _org.reportingOrg.orgType > 0 &&
              _org.lang[0] != 0 &&
              _org.currency[0] != 0 &&
              _org.lastUpdatedTime[0] != 0 );

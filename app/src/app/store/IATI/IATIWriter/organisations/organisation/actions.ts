@@ -19,6 +19,8 @@ export const setOrganisation = (details: OrganisationProps) => {
     const state = getState()
     const organisationContract = state.chainContracts.data.contracts.organisation
 
+    //console.log('Details: ', details)
+
     let organisationRef = details.organisationRef
     if ( organisationRef == "" ) {
       organisationRef = ethers.utils.formatBytes32String(shortid.generate())

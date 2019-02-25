@@ -32,7 +32,7 @@ class TX extends React.Component<TxProps> {
 
   componentDidUpdate(previousProps: TxProps) {
     if(previousProps.tx != this.props.tx) {
-      console.log(this.props.submittingFunc)
+      //console.log(this.props.submittingFunc)
       this.props.submittingFunc(false)
       this.props.resettingFunc()
       this.props.newKey()
