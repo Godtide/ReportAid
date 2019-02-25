@@ -8,7 +8,7 @@ import { ApplicationState } from '../../../../store'
 import { write } from '../actions'
 
 import { ActionProps, TxData } from '../../../../types'
-import { OrganisationBudgetProps, IATIOrganisationBudgetProps } from '../../../types'
+import { OrganisationBudgetProps, IATIBudgetProps } from '../../../types'
 import { IATIWriterActionTypes } from '../types'
 
 import { Transaction } from '../../../../../utils/strings'
@@ -27,7 +27,7 @@ export const setOrganisationBudget = (details: OrganisationBudgetProps) => {
     const start = new Date(details.startYear + '/' + details.startMonth + '/' + details.startDay)
     const end = new Date(details.endYear + '/' + details.endMonth + '/' + details.endDay)
 
-    const budget: IATIOrganisationBudgetProps = {
+    const budget: IATIBudgetProps = {
       budgetLine: ethers.utils.formatBytes32String(details.budgetLine),
       otherRef: ethers.utils.formatBytes32String(""),
       finance: {

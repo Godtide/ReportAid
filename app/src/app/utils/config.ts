@@ -109,8 +109,6 @@ class Contract {
   ]
 
   static organisationBudgetsABI = [
-    "event SetBudget(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _budgetRef, tuple(bytes32 budgetLine, bytes32 otherRef, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)",
-
     "function setBudget(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _budgetRef, tuple(bytes32 budgetLine, bytes32 otherRef, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)@500000",
 
     "function getNumBudgets(bytes32 _organisationsRef, bytes32 _organisationRef) view returns (uint256)",
@@ -126,14 +124,12 @@ class Contract {
   ]
 
   static organisationExpenditureABI = [
-    "event SetExpenditure(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _expenditureRef, tuple(bytes32 expenditureLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) expenditure)",
-
-    "function setExpenditure(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _expenditureRef, tuple(bytes32 expenditureLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) expenditure)@500000",
+    "function setExpenditure(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _budgetRef, tuple(bytes32 budgetLine, bytes32 otherRef, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)@500000",
 
     "function getNumExpenditures(bytes32 _organisationsRef, bytes32 _organisationRef) view returns (uint256)",
     "function getExpenditureReference(bytes32 _organisationsRef, bytes32 _organisationRef, uint256 _index) view returns (bytes32)",
 
-    "function getExpenditure(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _expenditureRef) view returns (tuple(bytes32 expenditureLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) expenditure)",
+    "function getExpenditure(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _budgetRef, tuple(bytes32 budgetLine, bytes32 otherRef, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)",
     "function getExpenditureLine(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _expenditureRef) view returns (bytes32)",
 
     "function getExpenditureValue(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _expenditureRef) view returns (uint256)",
@@ -143,14 +139,14 @@ class Contract {
   ]
 
   static organisationRecipientBudgetsABI = [
-    "event SetRecipientBudget(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _budgetRef, tuple(bytes32 recipientOrgRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)",
+    "event SetRecipientBudget(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _budgetRef, tuple(bytes32 budgetLine, bytes32 otherRef, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)",
 
     "function setRecipientBudget(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _budgetRef, tuple(bytes32 recipientOrgRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)@500000",
 
     "function getNumRecipientBudgets(bytes32 _organisationsRef, bytes32 _organisationRef) view returns (uint256)",
     "function getRecipientBudgetReference(bytes32 _organisationsRef, bytes32 _organisationRef, uint256 _index) view returns (bytes32)",
 
-    "function getRecipientBudget(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _budgetRef) view returns (tuple(bytes32 recipientOrgRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)",
+    "function getRecipientBudget(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _budgetRef, tuple(bytes32 budgetLine, bytes32 otherRef, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)",
 
     "function getRecipientBudgetOrg(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _budgetRef) view returns (bytes32)",
     "function getRecipientBudgetLine(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _budgetRef) view returns (bytes32)",
@@ -161,14 +157,12 @@ class Contract {
   ]
 
   static organisationRegionBudgetsABI = [
-    "event SetRegionBudget(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _budgetRef, tuple(uint256 regionRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)",
-
-    "function setRegionBudget(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _budgetRef, tuple(uint256 regionRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)@500000",
+    "function setRegionBudget(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _budgetRef, tuple(bytes32 budgetLine, bytes32 otherRef, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)@500000",
 
     "function getNumRegionBudgets(bytes32 _organisationsRef, bytes32 _organisationRef) view returns (uint256)",
     "function getRegionBudgetReference(bytes32 _organisationsRef, bytes32 _organisationRef, uint256 _index) view returns (bytes32)",
 
-    "function getRegionsBudget(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _budgetRef) view returns (tuple(uint256 regionRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)",
+    "function getRegionsBudget(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _budgetRef, tuple(bytes32 budgetLine, bytes32 otherRef, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)",
 
     "function getRegionsBudgetRegion(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _budgetRef) view returns (uint256)",
     "function getRegionsBudgetLine(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _budgetRef) view returns (bytes32)",
@@ -179,14 +173,12 @@ class Contract {
   ]
 
   static organisationCountryBudgetsABI = [
-    "event SetCountryBudget(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _budgetRef, tuple(bytes32 countryRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)",
-
-    "function setCountryBudget(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _budgetRef, tuple(bytes32 countryRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)@500000",
+    "function setCountryBudget(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _budgetRef, tuple(bytes32 budgetLine, bytes32 otherRef, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)@500000",
 
     "function getNumCountryBudgets(bytes32 _organisationsRef, bytes32 _organisationRef) view returns (uint256)",
     "function getCountryBudgetReference(bytes32 _organisationsRef, bytes32 _organisationRef, uint256 _index) view returns (bytes32)",
 
-    "function getCountryBudget(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _budgetRef) view returns (tuple(bytes32 countryRef, bytes32 budgetLine, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)",
+    "function getCountryBudget(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _budgetRef, tuple(bytes32 budgetLine, bytes32 otherRef, tuple(uint256 value, uint8 status, bytes32 start, bytes32 end) finance) budget)",
 
     "function getCountryBudgetCountry(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _budgetRef) view returns (bytes32)",
     "function getCountryBudgetLine(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _budgetRef) view returns (bytes32)",
@@ -237,17 +229,18 @@ class Contract {
     "function getScope(bytes32 _activitiesRef, bytes32 _activityRef) view returns (uint8)"
   ]
 
-  static orgsAddress = "0xE687F56C7CC2fBd9a328c4841663EDD533C35d23"
-  static organisationsAddress = "0xde133A00585Ce63aB0FB5eC5995A2e02c91046fe"
-  static organisationAddress = "0xb63c6C4469132cbd27CE0E73D0e789c4Ba452609"
-  static organisationDocsAddress = "0x502A15e9497B631fD3E78d8Df268E049de5D8e97"
-  static organisationBudgetsAddress = "0xeA665f9Dc5C4a6f919ce6874b854c075d60C39F3"
-  static organisationExpenditureAddress = "0xB0976c3089D86d1BEeFFBCc7E9415b9920802574"
-  static organisationRecipientBudgetsAddress = "0xb32aF3AE7cA09DA28c044923feCBC605ae81D678"
-  static organisationRegionBudgetsAddress = "0x6B1d49B6af61Fb55151085EcE05D641eCad4b58f"
-  static organisationCountryBudgetsAddress = "0xF452D0412c793AcFAAD7002a4d10098Dd884e189"
-  static activitiesAddress = "0xa352C1753A8832A1BcAb085C60d4fb1ae3d4eD83"
-  static activityAddress = "0x8A4122ff4dD1C4a97d87DdcB0D8b5D73567f8e02"
+  static orgsAddress = "0xB8dAac9256d1470062c491F29371D425ae7c9F9c"
+  static organisationsAddress = "0xe77Ec729B23ab4C91AEDb4Bb84eBA9A04F9F7790"
+  static organisationAddress = "0xD059D0Af1f8f64Dd24aE912AC942573953B9b48D"
+  static organisationDocsAddress = "0xe78799F615A3330A766a0D7579564338Db575155"
+  static organisationBudgetsAddress = "0x4A7b7A2394192Db5Ec4D9107E3d6C301dFee1A22"
+  static organisationExpenditureAddress = "0x00B27619564670c95525596FA5D273A89e0b5548"
+  static organisationRecipientBudgetsAddress = "0x8D06E78Aa759112c5896c7fe8090F1329b8dE237"
+  static organisationRegionBudgetsAddress = "0x9010B8b23530c9e1fC1b31d167F519bb64ff733A"
+  static organisationCountryBudgetsAddress = "0x7F8AAf1a25f629d6022e4B415e8c274cC170d351"
+  static activitiesAddress = "0xfA41f32f94376E1705FC042D4FCF4eD35DFd1b3f"
+  static activityAddress = "0xE99bB5C64538eE51dfB3D2D8eE40Efbe03895B09"
+  static activityDatesAddress = "0xEcEfeE1E16056a47Bd9b5e4457181e8768974d28"
 }
 
 class Helpers {

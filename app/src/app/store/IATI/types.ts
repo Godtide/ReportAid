@@ -40,32 +40,9 @@ export interface FinanceProps {
   end: string
 }
 
-export interface IATIOrganisationBudgetProps {
+export interface IATIBudgetProps {
   budgetLine: string
   otherRef: string
-  finance: FinanceProps
-}
-
-export interface IATIOrganisationExpenditureProps {
-  expenditureLine: string
-  finance: FinanceProps
-}
-
-export interface IATIOrganisationRecipientBudgetProps {
-  recipientOrgRef: string
-  budgetLine: string
-  finance: FinanceProps
-}
-
-export interface IATIOrganisationRegionBudgetProps {
-  regionRef: number
-  budgetLine: string
-  finance: FinanceProps
-}
-
-export interface IATIOrganisationCountryBudgetProps {
-  countryRef: string
-  budgetLine: string
   finance: FinanceProps
 }
 

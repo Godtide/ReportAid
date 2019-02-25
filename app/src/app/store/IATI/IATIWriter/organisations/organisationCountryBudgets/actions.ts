@@ -8,7 +8,7 @@ import { ApplicationState } from '../../../../store'
 import { write } from '../actions'
 
 import { ActionProps, PayloadProps, TxProps, TxData } from '../../../../types'
-import { OrganisationCountryBudgetProps, IATIOrganisationCountryBudgetProps } from '../../../types'
+import { OrganisationCountryBudgetProps, IATIBudgetProps } from '../../../types'
 import { IATIWriterActionTypes } from '../types'
 
 import { Transaction } from '../../../../../utils/strings'
@@ -27,9 +27,9 @@ export const setCountryBudget = (details: OrganisationCountryBudgetProps) => {
     const start = new Date(details.startYear + '/' + details.startMonth + '/' + details.startDay)
     const end = new Date(details.endYear + '/' + details.endMonth + '/' + details.endDay)
 
-    const countryBudget: IATIOrganisationCountryBudgetProps = {
-      countryRef: ethers.utils.formatBytes32String(details.countryRef),
+    const countryBudget: IATIBudgetProps = {
       budgetLine: ethers.utils.formatBytes32String(details.budgetLine),
+      otherRef: ethers.utils.formatBytes32String(details.countryRef),
       finance: {
         value: details.value,
         status: details.status,

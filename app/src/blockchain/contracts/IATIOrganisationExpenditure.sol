@@ -2,78 +2,50 @@ pragma solidity ^0.5.0;
 pragma experimental ABIEncoderV2;
 
 import "./OrganisationExpenditure.sol";
-import "./Strings.sol";
+import "./IATIBudgets.sol";
 
 contract IATIOrganisationExpenditure is OrganisationExpenditure {
 
-  mapping(bytes32 => mapping(bytes32 => bytes32[])) private expenditureRefs;
-  mapping(bytes32 => mapping(bytes32 => mapping(bytes32 => Expenditure))) private expenditures;
+  IATIBudgets budgets;
 
-  event SetExpenditure(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _expenditureRef, Expenditure _expenditure);
+  constructor(address _budgets) public {
+    require(_budgets != address(0x0));
+    budgets = IATIBudgets(_budgets);
+  }
 
-  function setExpenditure(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _expenditureRef, Expenditure memory _expenditure) public {
-    require (_organisationsRef[0] != 0 &&
-             _organisationRef[0] != 0 &&
-             _expenditureRef[0] != 0 &&
-             _expenditure.expenditureLine[0] != 0 &&
-             _expenditure.finance.status > 0 &&
-             _expenditure.finance.start[0] != 0 &&
-             _expenditure.finance.end[0] != 0 );
-
-     expenditures[_organisationsRef][_organisationRef][_expenditureRef] = _expenditure;
-
-     if(!Strings.getExists(_expenditureRef, expenditureRefs[_organisationsRef][_organisationRef])) {
-       expenditureRefs[_organisationsRef][_organisationRef].push(_expenditureRef);
-     }
-
-     emit SetExpenditure(_organisationsRef, _organisationRef, _expenditureRef, _expenditure);
+  function setExpenditure(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _expenditureRef, Budgets.Budget memory _expenditure) public {
+    budgets.setBudget(_organisationsRef, _organisationRef, _expenditureRef, _expenditure);
   }
 
   function getNumExpenditures(bytes32 _organisationsRef, bytes32 _organisationRef) public view returns (uint256) {
-    require (_organisationsRef[0] != 0 && _organisationRef[0] != 0);
-
-    return expenditureRefs[_organisationsRef][_organisationRef].length;
+    return budgets.getNumBudgets(_organisationsRef, _organisationRef);
   }
 
   function getExpenditureReference(bytes32 _organisationsRef, bytes32 _organisationRef, uint256 _index) public view returns (bytes32) {
-    require (_organisationsRef[0] != 0 && _organisationRef[0] != 0 && _index < expenditureRefs[_organisationsRef][_organisationRef].length);
-
-    return expenditureRefs[_organisationsRef][_organisationRef][_index];
+    return budgets.getBudgetReference(_organisationsRef, _organisationRef, _index);
   }
 
-  function getExpenditure(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _expenditureRef) public view returns (Expenditure memory) {
-    require (_organisationsRef[0] != 0 && _organisationRef[0] != 0 && _expenditureRef[0] != 0);
-
-    return expenditures[_organisationsRef][_organisationRef][_expenditureRef];
+  function getExpenditure(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _expenditureRef) public view returns (Budgets.Budget memory) {
+    return budgets.getBudget(_organisationsRef, _organisationRef, _expenditureRef);
   }
 
   function getExpenditureLine(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _expenditureRef) public view returns (bytes32) {
-    require (_organisationsRef[0] != 0 && _organisationRef[0] != 0 && _expenditureRef[0] != 0);
-
-    return expenditures[_organisationsRef][_organisationRef][_expenditureRef].expenditureLine;
+    return budgets.getBudgetLine(_organisationsRef, _organisationRef, _expenditureRef);
   }
 
   function getExpenditureValue(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _expenditureRef) public view returns (uint256) {
-    require (_organisationsRef[0] != 0 && _organisationRef[0] != 0 && _expenditureRef[0] != 0);
-
-    return expenditures[_organisationsRef][_organisationRef][_expenditureRef].finance.value;
+    return budgets.getBudgetValue(_organisationsRef, _organisationRef, _expenditureRef);
   }
 
   function getExpenditureStatus(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _expenditureRef) public view returns (uint8) {
-    require (_organisationsRef[0] != 0 && _organisationRef[0] != 0 && _expenditureRef[0] != 0);
-
-    return expenditures[_organisationsRef][_organisationRef][_expenditureRef].finance.status;
+    return budgets.getBudgetStatus(_organisationsRef, _organisationRef, _expenditureRef);
   }
 
   function getExpenditureStart(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _expenditureRef) public view returns (bytes32) {
-    require (_organisationsRef[0] != 0 && _organisationRef[0] != 0 && _expenditureRef[0] != 0);
-
-    return expenditures[_organisationsRef][_organisationRef][_expenditureRef].finance.start;
+    return budgets.getBudgetStart(_organisationsRef, _organisationRef, _expenditureRef);
   }
 
   function getExpenditureEnd(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _expenditureRef) public view returns (bytes32) {
-    require (_organisationsRef[0] != 0 && _organisationRef[0] != 0 && _expenditureRef[0] != 0);
-
-    return expenditures[_organisationsRef][_organisationRef][_expenditureRef].finance.end;
+    return budgets.getBudgetEnd(_organisationsRef, _organisationRef, _expenditureRef);
   }
 }

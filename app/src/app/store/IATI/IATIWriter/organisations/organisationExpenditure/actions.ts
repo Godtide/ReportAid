@@ -8,7 +8,7 @@ import { ApplicationState } from '../../../../store'
 import { write } from '../actions'
 
 import { ActionProps, PayloadProps, TxProps, TxData } from '../../../../types'
-import { OrganisationExpenditureProps, IATIOrganisationExpenditureProps } from '../../../types'
+import { OrganisationExpenditureProps, IATIBudgetProps } from '../../../types'
 import { IATIWriterActionTypes } from '../types'
 
 import { Transaction } from '../../../../../utils/strings'
@@ -27,8 +27,9 @@ export const setOrganisationExpenditure = (details: OrganisationExpenditureProps
       expenditureRef = ethers.utils.formatBytes32String(shortid.generate())
     }
 
-    const expenditure: IATIOrganisationExpenditureProps = {
-      expenditureLine: ethers.utils.formatBytes32String(details.expenditureLine),
+    const expenditure: IATIBudgetProps = {
+      budgetLine: ethers.utils.formatBytes32String(details.expenditureLine),
+      otherRef: ethers.utils.formatBytes32String(""),
       finance: {
         value: details.value,
         status: details.status,

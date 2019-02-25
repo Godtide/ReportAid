@@ -8,7 +8,7 @@ import { ApplicationState } from '../../../../store'
 import { write } from '../actions'
 
 import { ActionProps, PayloadProps, TxProps, TxData } from '../../../../types'
-import { OrganisationRegionBudgetProps, IATIOrganisationRegionBudgetProps } from '../../../types'
+import { OrganisationRegionBudgetProps, IATIBudgetProps } from '../../../types'
 import { IATIWriterActionTypes } from '../types'
 
 import { Transaction } from '../../../../../utils/strings'
@@ -27,9 +27,9 @@ export const setRegionBudget = (details: OrganisationRegionBudgetProps) => {
       budgetRef = ethers.utils.formatBytes32String(shortid.generate())
     }
 
-    const regionBudget: IATIOrganisationRegionBudgetProps = {
-      regionRef: details.regionRef,
+    const regionBudget: IATIBudgetProps = {
       budgetLine: ethers.utils.formatBytes32String(details.budgetLine),
+      otherRef: details.regionRef,
       finance: {
         value: details.value,
         status: details.status,
