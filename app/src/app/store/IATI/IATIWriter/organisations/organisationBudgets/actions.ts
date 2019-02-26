@@ -38,7 +38,7 @@ export const setOrganisationBudget = (details: OrganisationBudgetProps) => {
       }
     }
 
-    console.log('Budget: ', budget)
+    //console.log('Budget: ', budget)
 
     let actionType = IATIWriterActionTypes.BUDGET_FAILURE
     let txData: TxData = {}
