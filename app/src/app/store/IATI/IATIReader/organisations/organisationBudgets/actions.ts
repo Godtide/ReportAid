@@ -27,8 +27,8 @@ export const getBudgets = (props: OrganisationsReportProps) => {
     const organisationRef = props.organisationRef
 
     let budgetReports: IATIBudgetReportProps = { data: { organisationsRef: organisationsRef,
-                                                    organisationRef: organisationRef,
-                                                    data: []
+                                                         organisationRef: organisationRef,
+                                                         data: []
                                                   }
                                           }
     let actionType = IATIReportActionTypes.BUDGET_FAILURE
@@ -45,9 +45,7 @@ export const getBudgets = (props: OrganisationsReportProps) => {
 
         budgetReports.data.data[i] = {
           budgetKey: budgetRef,
-          budgetType: budget.budgetType,
           budgetLine: ethers.utils.parseBytes32String(budget.budgetLine),
-          otherRef: ethers.utils.parseBytes32String(budget.otherRef),
           value: ethers.utils.bigNumberify(budget.finance.value).toNumber(),
           status: budget.finance.status,
           start: ethers.utils.parseBytes32String(budget.finance.start),

@@ -2,9 +2,7 @@ import { PayloadProps } from '../../../../types'
 
 export interface IATIBudgetData {
   budgetKey: string
-  budgetType: number
   budgetLine: string,
-  otherRef: string,
   value: number,
   status: number,
   start: string,
