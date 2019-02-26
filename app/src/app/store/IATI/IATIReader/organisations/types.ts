@@ -57,6 +57,27 @@ export interface IATIOrgReportProps extends PayloadProps {
   data: IATIOrgReport
 }
 
+export interface IATIOrganisationDocData {
+  title: string
+  format: string
+  url: string
+  category: string
+  countryRef: string
+  description: string
+  language: string
+  date: string
+}
+
+export interface IATIOrganisationDocReport {
+  organisationsRef: string
+  organisationRef: string
+  data: Array<IATIOrganisationDocData>
+}
+
+export interface IATIOrganisationDocReportProps extends PayloadProps {
+  data: IATIOrganisationDocReport
+}
+
 export const enum IATIReportActionTypes {
   ORGS_INIT = '@@IATIReportActionTypes/READORGS_INIT',
   ORGS_SUCCESS = '@@IATIReportActionTypes/READORGS_SUCCESS',

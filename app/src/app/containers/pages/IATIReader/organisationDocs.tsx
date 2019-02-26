@@ -12,6 +12,7 @@ import Button from '@material-ui/core/Button'
 //import { Date } from 'formik-material-ui'
 import FormControl from '@material-ui/core/FormControl'
 
+import { getDictEntries } from '../../../components/io/dict'
 import { OrganisationsPicker } from '../../../components/io/organisationsPicker'
 import { OrganisationPicker } from '../../../components/io/organisationPicker'
 import { FormData } from '../../../store/helpers/forms/types'
@@ -21,7 +22,7 @@ import { initialise, getDocs } from '../../../store/IATI/IATIReader/organisation
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { IATIOrganisationDocReport } from '../../../store/IATI/IATIReader/organisations/organisationDocs/types'
+import { IATIOrganisationDocReport } from '../../../store/IATI/IATIReader/organisations/types'
 import { OrganisationsReportProps } from '../../../store/IATI/IATIReader/organisations/types'
 
 import { OrganisationDoc as OrganisationDocStrings } from '../../../utils/strings'
@@ -79,38 +80,7 @@ class Docs extends React.Component<OrganisationDocsReaderProps> {
 
   render() {
 
-    const docsData = this.props.docs
-    let xs = ""
-    let num = 0
-    Object.keys(docsData).forEach((organisationsKey) => {
-      //numOrganisations += 1
-      xs += `**${OrganisationDocStrings.organisationsReference}**: ${organisationsKey}<br />`
-      Object.keys(docsData[organisationsKey].data).forEach((organisationKey) => {
-
-        xs += `**${OrganisationDocStrings.organisationReference}**: ${organisationKey}<br />`
-        Object.keys(docsData[organisationsKey].data[organisationKey].data).forEach((docKey) => {
-          if ( docsData[organisationsKey].data[organisationKey].data[docKey].hasOwnProperty('title') &&
-               docsData[organisationsKey].data[organisationKey].data[docKey].title != "" ) {
-
-            num += 1
-            const thisDocData =  docsData[organisationsKey].data[organisationKey].data[docKey]
-            const category = ethers.utils.parseBytes32String(thisDocData.category)
-            const countryRef = ethers.utils.parseBytes32String(thisDocData.countryRef)
-            const lang = ethers.utils.parseBytes32String(thisDocData.lang)
-            const date = ethers.utils.parseBytes32String(thisDocData.date)
-            xs+= `**${OrganisationDocStrings.docReference}**: ${docKey} <br />`
-            xs+= `**${OrganisationDocStrings.documentTitle}**: ${thisDocData.title} <br />`
-            xs+= `**${OrganisationDocStrings.documentFormat}**: ${thisDocData.format} <br />`
-            xs+= `**${OrganisationDocStrings.documentURL}**: ${thisDocData.url} <br />`
-            xs+= `**${OrganisationDocStrings.documentCategory}**: ${category} <br />`
-            xs+= `**${OrganisationDocStrings.documentCountryRef}**: ${countryRef} <br />`
-            xs+= `**${OrganisationDocStrings.documentDesc}**: ${thisDocData.desc} <br />`
-            xs+= `**${OrganisationDocStrings.documentLang}**: ${lang} <br />`
-            xs+= `**${OrganisationDocStrings.documentDate}**: ${date} <br /><br />`
-          }
-        })
-      })
-    })
+    const xs = getDictEntries(this.props.docs)
 
     return (
       <div>
@@ -151,9 +121,6 @@ class Docs extends React.Component<OrganisationDocsReaderProps> {
           />
         </div>
         <hr />
-        <p>
-          <b>{OrganisationDocStrings.numDocs}</b>: {num}
-        </p>
         <h3>{OrganisationDocStrings.organisationDocDetails}</h3>
         <Markdown escapeHtml={false} source={xs} />
       </div>

@@ -1,17 +1,19 @@
 import { ThunkDispatch } from 'redux-thunk'
 
+import { ethers } from 'ethers'
+
 import { ApplicationState } from '../../../../store'
 
 import { ActionProps } from '../../../../types'
 import { IATIOrganisationDocProps } from '../../../types'
 import { IATIReportActionTypes, OrganisationsReportProps } from '../types'
-import { IATIOrganisationDocReportProps } from './types'
+import { IATIOrganisationDocReportProps } from '../types'
 
 import { read } from '../actions'
 
 export const initialise = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
-    const initData: IATIOrganisationDocReportProps = { data: {} }
+    const initData: any = { data: {} }
     await dispatch(read({data: initData})(IATIReportActionTypes.DOCUMENT_INIT))
   }
 }
@@ -25,16 +27,12 @@ export const getDocs = (props: OrganisationsReportProps) => {
     const organisationRef = props.organisationRef
 
     let docReports: IATIOrganisationDocReportProps = {
-      data: {
-        [organisationsRef]: {
-          data: {
-            [organisationRef]: {
-              data: {}
+      data: { organisationsRef: organisationsRef,
+              organisationRef: organisationRef,
+              data: []
             }
-          }
-        }
-      }
     }
+
     let actionType = IATIReportActionTypes.DOCUMENT_FAILURE
     try {
       const num = await docsContract.getNumDocs(props.organisationsRef, props.organisationRef)
@@ -47,7 +45,17 @@ export const getDocs = (props: OrganisationsReportProps) => {
                                                                                 organisationRef,
                                                                                 docRef)
 
-        docReports.data[organisationsRef].data[organisationRef].data[docRef] = doc
+        docReports.data.data[i] = {
+          title: doc.title,
+          format: doc.format,
+          url: doc.url,
+          category: ethers.utils.parseBytes32String(doc.category),
+          countryRef: ethers.utils.parseBytes32String(doc.countryRef),
+          description: doc.desc,
+          language: ethers.utils.parseBytes32String(doc.lang),
+          date: ethers.utils.parseBytes32String(doc.date)
+        }
+
         actionType = IATIReportActionTypes.DOCUMENT_SUCCESS
       }
     } catch (error) {

@@ -8,10 +8,10 @@ import { ActionProps, TxProps } from './types'
 import { KeyProps } from './helpers/keys/types'
 import { FormProps } from './helpers/forms/types'
 
-import { IATIOrgReportProps } from './IATI/IATIReader/organisations/types'
-import { IATIOrganisationsReportProps } from './IATI/IATIReader/organisations/types'
-import { IATIOrganisationReportProps } from './IATI/IATIReader/organisations/types'
-import { IATIOrganisationDocReportProps } from './IATI/IATIReader/organisations/organisationDocs/types'
+import { IATIOrgReportProps,
+         IATIOrganisationsReportProps,
+         IATIOrganisationReportProps,
+         IATIOrganisationDocReportProps } from './IATI/IATIReader/organisations/types'
 import { IATIBudgetReportProps } from './IATI/IATIReader/types'
 
 import { InfoPageProps } from './info/types'
