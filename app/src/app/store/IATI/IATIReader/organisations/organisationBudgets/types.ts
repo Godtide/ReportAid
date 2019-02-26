@@ -1,4 +1,4 @@
-import { PayloadProps, DictData } from '../../../../types'
+import { PayloadProps } from '../../../../types'
 
 export interface IATIBudgetData {
   budgetKey: string
@@ -11,12 +11,12 @@ export interface IATIBudgetData {
   end: string
 }
 
-export interface IATIOrganisationBudgetReport {
+export interface IATIBudgetReport {
   organisationsRef: string
   organisationRef: string
   data: Array<IATIBudgetData>
 }
 
-export interface IATIOrganisationBudgetReportProps extends PayloadProps {
-  data: IATIOrganisationBudgetReport
+export interface IATIBudgetReportProps extends PayloadProps {
+  data: IATIBudgetReport
 }

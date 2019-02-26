@@ -7,7 +7,7 @@ import { ApplicationState } from '../../../../store'
 import { ActionProps } from '../../../../types'
 import { IATIBudgetProps } from '../../../types'
 import { IATIReportActionTypes, OrganisationsReportProps } from '../types'
-import { IATIOrganisationBudgetReportProps, IATIBudgetData } from './types'
+import { IATIBudgetReportProps, IATIBudgetData } from './types'
 
 import { read } from '../actions'
 
@@ -26,12 +26,11 @@ export const getBudgets = (props: OrganisationsReportProps) => {
     const organisationsRef = props.organisationsRef
     const organisationRef = props.organisationRef
 
-    let budgetReports: IATIOrganisationBudgetReportProps = { data: {
-                                                              organisationsRef: organisationsRef,
-                                                              organisationRef: organisationRef,
-                                                              data: []
-                                                            }
-                                                           }
+    let budgetReports: IATIBudgetReportProps = { data: { organisationsRef: organisationsRef,
+                                                    organisationRef: organisationRef,
+                                                    data: []
+                                                  }
+                                          }
     let actionType = IATIReportActionTypes.BUDGET_FAILURE
     try {
       const num = await budgetsContract.getNumBudgets(props.organisationsRef, props.organisationRef)

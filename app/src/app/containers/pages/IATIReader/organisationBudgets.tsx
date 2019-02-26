@@ -21,7 +21,7 @@ import { initialise, getBudgets } from '../../../store/IATI/IATIReader/organisat
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { IATIOrganisationBudgetReport } from '../../../store/IATI/IATIReader/organisations/organisationBudgets/types'
+import { IATIBudgetReport } from '../../../store/IATI/IATIReader/organisations/organisationBudgets/types'
 import { OrganisationsReportProps } from '../../../store/IATI/IATIReader/organisations/types'
 
 import { OrganisationBudget as OrgBudgetStrings } from '../../../utils/strings'
@@ -43,7 +43,7 @@ interface OrgBudgetProps {
   resettingFunc: Function
   organisationsRef: string,
   organisationRef: string,
-  budgets: IATIOrganisationBudgetReport
+  budgets: IATIBudgetReport
 }
 
 interface OrgBudgetDispatchProps {
@@ -87,35 +87,7 @@ class Budgets extends React.Component<OrganisationBudgetsReaderProps> {
 
   render() {
 
-    //const budgetsData = this.props.budgets
     const xs = getDictEntries(this.props.budgets)
-    //let num = 0
-    /*Object.keys(budgetsData).forEach((organisationsKey) => {
-      //numOrganisations += 1
-      xs += `**${OrgBudgetStrings.organisationsReference}**: ${organisationsKey}<br />`
-      Object.keys(budgetsData[organisationsKey].data).forEach((organisationKey) => {
-
-        xs += `**${OrgBudgetStrings.organisationReference}**: ${organisationKey}<br />`
-        Object.keys(budgetsData[organisationsKey].data[organisationKey].data).forEach((budgetKey) => {
-          if ( budgetsData[organisationsKey].data[organisationKey].data[budgetKey].hasOwnProperty('budgetLine') &&
-               budgetsData[organisationsKey].data[organisationKey].data[budgetKey].budgetLine != "" ) {
-
-            num += 1
-            const thisbudgetData =  budgetsData[organisationsKey].data[organisationKey].data[budgetKey]
-
-            const budgetLine = ethers.utils.parseBytes32String(thisbudgetData.budgetLine)
-            const start = ethers.utils.parseBytes32String(thisbudgetData.finance.start)
-            const end = ethers.utils.parseBytes32String(thisbudgetData.finance.end)
-            xs+= `**${OrgBudgetStrings.budgetReference}**: ${budgetKey} <br />`
-            xs+= `**${OrgBudgetStrings.budgetLine}**: ${budgetLine} <br />`
-            xs+= `**${OrgBudgetStrings.value}**: ${thisbudgetData.finance.value} <br />`
-            xs+= `**${OrgBudgetStrings.status}**: ${thisbudgetData.finance.status} <br />`
-            xs+= `**${OrgBudgetStrings.budgetStart}**: ${start} <br />`
-            xs+= `**${OrgBudgetStrings.budgetEnd}**: ${end} <br /><br />`
-          }
-        })
-      })
-    })*/
 
     return (
       <div>
