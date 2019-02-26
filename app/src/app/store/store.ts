@@ -12,11 +12,10 @@ import { IATIOrgReportProps } from './IATI/IATIReader/organisations/orgs/types'
 import { IATIOrganisationsReportProps } from './IATI/IATIReader/organisations/organisations/types'
 import { IATIOrganisationReportProps } from './IATI/IATIReader/organisations/organisation/types'
 import { IATIOrganisationDocReportProps } from './IATI/IATIReader/organisations/organisationDocs/types'
-import { IATIBudgetReportProps } from './IATI/IATIReader/organisations/organisationBudgets/types'
+import { IATIBudgetReportProps } from './IATI/IATIReader/types'
 import { IATIOrganisationExpenditureReportProps } from './IATI/IATIReader/organisations/organisationExpenditure/types'
 import { IATIOrganisationRecipientBudgetReportProps } from './IATI/IATIReader/organisations/organisationRecipientBudgets/types'
 import { IATIOrganisationRegionBudgetReportProps } from './IATI/IATIReader/organisations/organisationRegionBudgets/types'
-import { IATIOrganisationCountryBudgetReportProps } from './IATI/IATIReader/organisations/organisationCountryBudgets/types'
 
 import { InfoPageProps } from './info/types'
 import { ChainDataProps } from  './blockchain/data/types'
@@ -61,7 +60,7 @@ export interface ApplicationState {
   organisationExpenditureReader: IATIOrganisationExpenditureReportProps
   organisationRecipientBudgetsReader: IATIOrganisationRecipientBudgetReportProps
   organisationRegionBudgetsReader: IATIOrganisationRegionBudgetReportProps
-  organisationCountryBudgetsReader: IATIOrganisationCountryBudgetReportProps
+  organisationCountryBudgetsReader: IATIBudgetReportProps
 }
 
 export const rootReducer: Reducer<ApplicationState, ActionProps> = combineReducers<ApplicationState, ActionProps>({

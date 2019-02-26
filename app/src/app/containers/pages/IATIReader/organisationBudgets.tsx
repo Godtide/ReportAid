@@ -21,7 +21,7 @@ import { initialise, getBudgets } from '../../../store/IATI/IATIReader/organisat
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { IATIBudgetReport } from '../../../store/IATI/IATIReader/organisations/organisationBudgets/types'
+import { IATIBudgetReport } from '../../../store/IATI/IATIReader/types'
 import { OrganisationsReportProps } from '../../../store/IATI/IATIReader/organisations/types'
 
 import { OrganisationBudget as OrgBudgetStrings } from '../../../utils/strings'

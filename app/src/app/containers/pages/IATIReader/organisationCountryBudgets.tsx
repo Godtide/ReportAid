@@ -12,6 +12,7 @@ import Button from '@material-ui/core/Button'
 //import { Date } from 'formik-material-ui'
 import FormControl from '@material-ui/core/FormControl'
 
+import { getDictEntries } from '../../../components/io/dict'
 import { OrganisationsPicker } from '../../../components/io/organisationsPicker'
 import { OrganisationPicker } from '../../../components/io/organisationPicker'
 import { FormData } from '../../../store/helpers/forms/types'
@@ -21,7 +22,7 @@ import { initialise, getCountryBudgets } from '../../../store/IATI/IATIReader/or
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { IATIOrganisationCountryBudgetReport } from '../../../store/IATI/IATIReader/organisations/organisationCountryBudgets/types'
+import { IATIBudgetReport } from '../../../store/IATI/IATIReader/types'
 import { OrganisationsReportProps } from '../../../store/IATI/IATIReader/organisations/types'
 
 import { OrganisationCountryBudget as OrganisationCountryBudgetStrings } from '../../../utils/strings'
@@ -43,7 +44,7 @@ interface OrganisationCountryBudgetProps {
   resettingFunc: Function
   organisationsRef: string,
   organisationRef: string,
-  budgets: IATIOrganisationCountryBudgetReport
+  budgets: IATIBudgetReport
 }
 
 interface OrganisationCountryBudgetDispatchProps {
@@ -79,37 +80,7 @@ class CountryBudgets extends React.Component<OrganisationCountryBudgetsReaderPro
 
   render() {
 
-    const budgetsData = this.props.budgets
-    let xs = ""
-    let num = 0
-    Object.keys(budgetsData).forEach((organisationsKey) => {
-      //numOrganisations += 1
-      xs += `**${OrganisationCountryBudgetStrings.organisationsReference}**: ${organisationsKey}<br />`
-      Object.keys(budgetsData[organisationsKey].data).forEach((organisationKey) => {
-
-        xs += `**${OrganisationCountryBudgetStrings.organisationReference}**: ${organisationKey}<br />`
-        Object.keys(budgetsData[organisationsKey].data[organisationKey].data).forEach((budgetKey) => {
-          if ( budgetsData[organisationsKey].data[organisationKey].data[budgetKey].hasOwnProperty('budgetLine') &&
-               budgetsData[organisationsKey].data[organisationKey].data[budgetKey].budgetLine != "" ) {
-
-            num += 1
-            const thisbudgetData =  budgetsData[organisationsKey].data[organisationKey].data[budgetKey]
-
-            const countryRef = ethers.utils.parseBytes32String(thisbudgetData.otherRef)
-            const budgetLine = ethers.utils.parseBytes32String(thisbudgetData.budgetLine)
-            const start = ethers.utils.parseBytes32String(thisbudgetData.finance.start)
-            const end = ethers.utils.parseBytes32String(thisbudgetData.finance.end)
-            xs+= `**${OrganisationCountryBudgetStrings.budgetReference}**: ${budgetKey} <br />`
-            xs+= `**${OrganisationCountryBudgetStrings.countryReference}**: ${countryRef} <br />`
-            xs+= `**${OrganisationCountryBudgetStrings.budgetLine}**: ${budgetLine} <br />`
-            xs+= `**${OrganisationCountryBudgetStrings.value}**: ${thisbudgetData.finance.value} <br />`
-            xs+= `**${OrganisationCountryBudgetStrings.status}**: ${thisbudgetData.finance.status} <br />`
-            xs+= `**${OrganisationCountryBudgetStrings.budgetStart}**: ${start} <br />`
-            xs+= `**${OrganisationCountryBudgetStrings.budgetEnd}**: ${end} <br /><br />`
-          }
-        })
-      })
-    })
+    const xs = getDictEntries(this.props.budgets)
 
     return (
       <div>
@@ -150,9 +121,6 @@ class CountryBudgets extends React.Component<OrganisationCountryBudgetsReaderPro
           />
         </div>
         <hr />
-        <p>
-          <b>{OrganisationCountryBudgetStrings.numBudgets}</b>: {num}
-        </p>
         <h3>{OrganisationCountryBudgetStrings.organisationCountryBudgetDetails}</h3>
         <Markdown escapeHtml={false} source={xs} />
       </div>
