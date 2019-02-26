@@ -3,7 +3,6 @@ import { PayloadProps } from '../../types'
 export interface IATIExpenditureData {
   expenditureKey: string
   expenditureLine: string,
-  recipientOrgRef: string,
   value: number,
   status: number,
   start: string,

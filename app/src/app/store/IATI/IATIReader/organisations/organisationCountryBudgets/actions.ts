@@ -54,7 +54,8 @@ export const getCountryBudgets = (props: OrganisationsReportProps) => {
            start: ethers.utils.parseBytes32String(budget.finance.start),
            end: ethers.utils.parseBytes32String(budget.finance.end)
          }
-     actionType = IATIReportActionTypes.RECIPIENTCOUNTRYBUDGET_SUCCESS
+
+         actionType = IATIReportActionTypes.RECIPIENTCOUNTRYBUDGET_SUCCESS
       }
     } catch (error) {
       console.log('getCountryBudgets error', error)

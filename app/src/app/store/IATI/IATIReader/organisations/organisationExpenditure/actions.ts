@@ -1,17 +1,19 @@
 import { ThunkDispatch } from 'redux-thunk'
 
+import { ethers } from 'ethers'
+
 import { ApplicationState } from '../../../../store'
 
 import { ActionProps } from '../../../../types'
 import { IATIBudgetProps } from '../../../types'
 import { IATIReportActionTypes, OrganisationsReportProps } from '../types'
-import { IATIOrganisationExpenditureReportProps } from './types'
+import { IATIBudgetReportProps, IATIBudgetData } from '../../types'
 
 import { read } from '../actions'
 
 export const initialise = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
-    const initData: IATIOrganisationExpenditureReportProps = { data: {} }
+    const initData: any = { data: {} }
     await dispatch(read({data: initData})(IATIReportActionTypes.TOTALEXPENDITURE_INIT))
   }
 }
@@ -24,17 +26,13 @@ export const getExpenditure = (props: OrganisationsReportProps) => {
     const organisationsRef = props.organisationsRef
     const organisationRef = props.organisationRef
 
-    let expenditureReports: IATIOrganisationExpenditureReportProps = {
-      data: {
-        [organisationsRef]: {
-          data: {
-            [organisationRef]: {
-              data: {}
+    let expenditureReports: IATIBudgetReportProps = {
+      data: { organisationsRef: organisationsRef,
+              organisationRef: organisationRef,
+              data: []
             }
-          }
-        }
-      }
     }
+
     let actionType = IATIReportActionTypes.TOTALEXPENDITURE_FAILURE
     try {
       const num = await expenditureContract.getNumExpenditures(props.organisationsRef, props.organisationRef)
@@ -45,8 +43,16 @@ export const getExpenditure = (props: OrganisationsReportProps) => {
                                                                                   i.toString())
         const expenditure: IATIBudgetProps = await expenditureContract.getExpenditure(organisationsRef, organisationRef, expenditureRef)
 
-        expenditureReports.data[organisationsRef].data[organisationRef].data[expenditureRef] = expenditure
-         actionType = IATIReportActionTypes.TOTALEXPENDITURE_SUCCESS
+        expenditureReports.data.data[i] = {
+          expenditureKey: expenditureRef,
+          expenditureLine: ethers.utils.parseBytes32String(expenditure.budgetLine),
+          value: ethers.utils.bigNumberify(expenditure.finance.value).toNumber(),
+          status: expenditure.finance.status,
+          start: ethers.utils.parseBytes32String(expenditure.finance.start),
+          end: ethers.utils.parseBytes32String(expenditure.finance.end)
+        }
+
+        actionType = IATIReportActionTypes.TOTALEXPENDITURE_SUCCESS
       }
     } catch (error) {
       console.log('getExpenditure error', error)

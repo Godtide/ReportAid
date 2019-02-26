@@ -13,7 +13,6 @@ import { IATIOrganisationsReportProps } from './IATI/IATIReader/organisations/or
 import { IATIOrganisationReportProps } from './IATI/IATIReader/organisations/organisation/types'
 import { IATIOrganisationDocReportProps } from './IATI/IATIReader/organisations/organisationDocs/types'
 import { IATIBudgetReportProps } from './IATI/IATIReader/types'
-import { IATIOrganisationExpenditureReportProps } from './IATI/IATIReader/organisations/organisationExpenditure/types'
 import { IATIOrganisationRecipientBudgetReportProps } from './IATI/IATIReader/organisations/organisationRecipientBudgets/types'
 import { IATIOrganisationRegionBudgetReportProps } from './IATI/IATIReader/organisations/organisationRegionBudgets/types'
 
@@ -57,7 +56,7 @@ export interface ApplicationState {
   organisationReader: IATIOrganisationReportProps
   organisationDocsReader: IATIOrganisationDocReportProps
   organisationBudgetsReader: IATIBudgetReportProps
-  organisationExpenditureReader: IATIOrganisationExpenditureReportProps
+  organisationExpenditureReader: IATIBudgetReportProps
   organisationRecipientBudgetsReader: IATIOrganisationRecipientBudgetReportProps
   organisationRegionBudgetsReader: IATIOrganisationRegionBudgetReportProps
   organisationCountryBudgetsReader: IATIBudgetReportProps

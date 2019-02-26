@@ -12,6 +12,7 @@ import Button from '@material-ui/core/Button'
 //import { Date } from 'formik-material-ui'
 import FormControl from '@material-ui/core/FormControl'
 
+import { getDictEntries } from '../../../components/io/dict'
 import { OrganisationsPicker } from '../../../components/io/organisationsPicker'
 import { OrganisationPicker } from '../../../components/io/organisationPicker'
 import { FormData } from '../../../store/helpers/forms/types'
@@ -21,7 +22,7 @@ import { initialise, getExpenditure } from '../../../store/IATI/IATIReader/organ
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { IATIOrganisationExpenditureReport } from '../../../store/IATI/IATIReader/organisations/organisationExpenditure/types'
+import { IATIBudgetReport } from '../../../store/IATI/IATIReader/types'
 import { OrganisationsReportProps } from '../../../store/IATI/IATIReader/organisations/types'
 
 import { OrganisationExpenditure as OrganisationExpenditureStrings } from '../../../utils/strings'
@@ -43,7 +44,7 @@ interface OrganisationExpenditureProps {
   resettingFunc: Function
   organisationsRef: string,
   organisationRef: string,
-  expenditure: IATIOrganisationExpenditureReport
+  expenditure: IATIBudgetReport
 }
 
 interface OrganisationExpenditureDispatchProps {
@@ -79,35 +80,7 @@ class Expenditure extends React.Component<OrganisationExpenditureReaderProps> {
 
   render() {
 
-    const expenditureData = this.props.expenditure
-    let xs = ""
-    let num = 0
-    Object.keys(expenditureData).forEach((organisationsKey) => {
-      //numOrganisations += 1
-      xs += `**${OrganisationExpenditureStrings.organisationsReference}**: ${organisationsKey}<br />`
-      Object.keys(expenditureData[organisationsKey].data).forEach((organisationKey) => {
-
-        xs += `**${OrganisationExpenditureStrings.organisationReference}**: ${organisationKey}<br />`
-        Object.keys(expenditureData[organisationsKey].data[organisationKey].data).forEach((expenditureKey) => {
-          if ( expenditureData[organisationsKey].data[organisationKey].data[expenditureKey].hasOwnProperty('budgetLine') &&
-               expenditureData[organisationsKey].data[organisationKey].data[expenditureKey].budgetLine != "" ) {
-
-            num += 1
-            const thisExpenditureData =  expenditureData[organisationsKey].data[organisationKey].data[expenditureKey]
-
-            const expenditureLine = ethers.utils.parseBytes32String(thisExpenditureData.budgetLine)
-            const start = ethers.utils.parseBytes32String(thisExpenditureData.finance.start)
-            const end = ethers.utils.parseBytes32String(thisExpenditureData.finance.end)
-            xs += `**${OrganisationExpenditureStrings.expenditureReference}**: ${expenditureKey} <br />`
-            xs += `**${OrganisationExpenditureStrings.expenditureLine}**: ${expenditureLine} <br />`
-            xs += `**${OrganisationExpenditureStrings.value}**: ${thisExpenditureData.finance.value} <br />`
-            xs += `**${OrganisationExpenditureStrings.status}**: ${thisExpenditureData.finance.status} <br />`
-            xs += `**${OrganisationExpenditureStrings.expenditureStart}**: ${start} <br />`
-            xs += `**${OrganisationExpenditureStrings.expenditureEnd}**: ${end} <br /><br />`
-          }
-        })
-      })
-    })
+    const xs = getDictEntries(this.props.expenditure)
 
     return (
       <div>
@@ -148,9 +121,6 @@ class Expenditure extends React.Component<OrganisationExpenditureReaderProps> {
           />
         </div>
         <hr />
-        <p>
-          <b>{OrganisationExpenditureStrings.numExpenditure}</b>: {num}
-        </p>
         <h3>{OrganisationExpenditureStrings.organisationExpenditureDetails}</h3>
         <Markdown escapeHtml={false} source={xs} />
       </div>
