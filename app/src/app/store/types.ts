@@ -9,10 +9,6 @@ export interface TxData {
   [tx: string]: TxInfo
 }
 
-export interface DictData {
-  [key: string]: object
-}
-
 export interface TxProps extends PayloadProps {
   data: TxData
 }
