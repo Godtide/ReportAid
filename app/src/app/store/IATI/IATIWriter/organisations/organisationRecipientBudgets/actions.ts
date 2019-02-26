@@ -27,6 +27,8 @@ export const setRecipientBudget = (details: OrganisationRecipientBudgetProps) =>
       budgetRef = ethers.utils.formatBytes32String(shortid.generate())
     }
 
+    //console.log("Details: ", details)
+
     const recipientBudget: IATIBudgetProps = {
       budgetType: 1,
       budgetLine: ethers.utils.formatBytes32String(details.budgetLine),

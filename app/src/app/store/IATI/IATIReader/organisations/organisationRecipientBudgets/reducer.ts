@@ -1,40 +1,24 @@
-import { IATIOrganisationRecipientBudgetReportProps } from './types'
+import { IATIBudgetReportProps } from '../../types'
 import { IATIReportActionTypes } from '../types'
 import { ActionProps } from '../../../../types'
 
-const initialState: IATIOrganisationRecipientBudgetReportProps = {
+const initialState: IATIBudgetReportProps = {
   data: {
-    '': {
-      data: {
-        '': {
-          data: {
-            '': {
-              budgetType: 1,
-              budgetLine: '',
-              otherRef: '',
-              finance: {
-                value: 0,
-                status: 0,
-                start: '',
-                end: ''
-              }
-            }
-          }
-        }
-      }
-    }
+    organisationsRef: '',
+    organisationRef: '',
+    data: []
   }
 }
 
-export const reducer = (state: IATIOrganisationRecipientBudgetReportProps = initialState, action: ActionProps): IATIOrganisationRecipientBudgetReportProps => {
+export const reducer = (state: IATIBudgetReportProps = initialState, action: ActionProps): IATIBudgetReportProps => {
 
   switch (action.type) {
     case IATIReportActionTypes.RECIPIENTORGBUDGET_INIT: {
-      const data = (action.payload.data as IATIOrganisationRecipientBudgetReportProps)
+      const data = (action.payload.data as IATIBudgetReportProps)
       return data
     }
     case IATIReportActionTypes.RECIPIENTORGBUDGET_SUCCESS: {
-      const data = (action.payload.data as IATIOrganisationRecipientBudgetReportProps)
+      const data = (action.payload.data as IATIBudgetReportProps)
       return {...state, ...data}
     }
     default:
