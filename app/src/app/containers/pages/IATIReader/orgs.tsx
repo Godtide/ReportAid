@@ -8,7 +8,7 @@ import { getOrgs } from '../../../store/IATI/IATIReader/organisations/orgs/actio
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { IATIOrgReport, IATIOrgData } from '../../../store/IATI/IATIReader/organisations/types'
+import { IATIOrgReport } from '../../../store/IATI/IATIReader/organisations/types'
 
 import { Org as OrgStrings } from '../../../utils/strings'
 
