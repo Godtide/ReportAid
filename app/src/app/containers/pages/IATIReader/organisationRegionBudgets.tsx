@@ -98,9 +98,10 @@ class RegionBudgets extends React.Component<OrganisationRegionBudgetsReaderProps
             const budgetLine = ethers.utils.parseBytes32String(thisbudgetData.budgetLine)
             const start = ethers.utils.parseBytes32String(thisbudgetData.finance.start)
             const end = ethers.utils.parseBytes32String(thisbudgetData.finance.end)
+            const region = ethers.utils.parseBytes32String(thisbudgetData.otherRef)
 
             xs += `**${OrganisationRegionBudgetStrings.budgetReference}**: ${budgetKey} <br />`
-            xs += `**${OrganisationRegionBudgetStrings.regionReference}**: ${thisbudgetData.regionRef} <br />`
+            xs += `**${OrganisationRegionBudgetStrings.regionReference}**: ${region} <br />`
             xs += `**${OrganisationRegionBudgetStrings.budgetLine}**: ${budgetLine} <br />`
             xs += `**${OrganisationRegionBudgetStrings.value}**: ${thisbudgetData.finance.value} <br />`
             xs += `**${OrganisationRegionBudgetStrings.status}**: ${thisbudgetData.finance.status} <br />`

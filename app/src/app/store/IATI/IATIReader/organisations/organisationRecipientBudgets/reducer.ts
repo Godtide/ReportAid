@@ -9,8 +9,8 @@ const initialState: IATIOrganisationRecipientBudgetReportProps = {
         '': {
           data: {
             '': {
-              recipientOrgRef: '',
               budgetLine: '',
+              otherRef: '',
               finance: {
                 value: 0,
                 status: 0,

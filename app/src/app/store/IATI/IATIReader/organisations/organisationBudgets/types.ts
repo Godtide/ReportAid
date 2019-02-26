@@ -1,8 +1,8 @@
 import { PayloadProps, DictData } from '../../../../types'
-import { IATIOrganisationBudgetProps } from '../../../types'
+import { IATIBudgetProps as BudgetProps } from '../../../types'
 
 export interface IATIBudgetData {
-  [key: string]: IATIOrganisationBudgetProps
+  [key: string]: BudgetProps
 }
 
 export interface IATIBudgetProps extends PayloadProps {

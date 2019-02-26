@@ -107,7 +107,7 @@ class RecipientBudgets extends React.Component<OrganisationRecipientBudgetsReade
             const start = ethers.utils.parseBytes32String(thisbudgetData.finance.start)
             const end = ethers.utils.parseBytes32String(thisbudgetData.finance.end)
             xs+= `**${OrganisationRecipientBudgetStrings.budgetReference}**: ${budgetKey} <br />`
-            xs+= `**${OrganisationRecipientBudgetStrings.orgReference}**: ${thisbudgetData.recipientOrgRef} <br />`
+            xs+= `**${OrganisationRecipientBudgetStrings.orgReference}**: ${thisbudgetData.otherRef} <br />`
             xs+= `**${OrganisationRecipientBudgetStrings.budgetLine}**: ${budgetLine} <br />`
             xs+= `**${OrganisationRecipientBudgetStrings.value}**: ${thisbudgetData.finance.value} <br />`
             xs+= `**${OrganisationRecipientBudgetStrings.status}**: ${thisbudgetData.finance.status} <br />`

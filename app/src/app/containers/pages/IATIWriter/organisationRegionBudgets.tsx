@@ -121,7 +121,7 @@ export class OrganisationRegionBudgetsForm extends React.Component<OrganisationR
             initialValues={ {organisationsRef: "",
                              organisationRef: "",
                              budgetRef: "",
-                             regionRef: 1,
+                             regionRef: "",
                              budgetLine: "",
                              value: 0,
                              status: 1,

@@ -29,7 +29,7 @@ export const setRegionBudget = (details: OrganisationRegionBudgetProps) => {
 
     const regionBudget: IATIBudgetProps = {
       budgetLine: ethers.utils.formatBytes32String(details.budgetLine),
-      otherRef: details.regionRef,
+      otherRef: ethers.utils.formatBytes32String(details.regionRef),
       finance: {
         value: details.value,
         status: details.status,

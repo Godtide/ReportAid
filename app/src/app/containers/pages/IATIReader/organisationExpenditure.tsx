@@ -89,13 +89,13 @@ class Expenditure extends React.Component<OrganisationExpenditureReaderProps> {
 
         xs += `**${OrganisationExpenditureStrings.organisationReference}**: ${organisationKey}<br />`
         Object.keys(expenditureData[organisationsKey].data[organisationKey].data).forEach((expenditureKey) => {
-          if ( expenditureData[organisationsKey].data[organisationKey].data[expenditureKey].hasOwnProperty('expenditureLine') &&
-               expenditureData[organisationsKey].data[organisationKey].data[expenditureKey].expenditureLine != "" ) {
+          if ( expenditureData[organisationsKey].data[organisationKey].data[expenditureKey].hasOwnProperty('budgetLine') &&
+               expenditureData[organisationsKey].data[organisationKey].data[expenditureKey].budgetLine != "" ) {
 
             num += 1
             const thisExpenditureData =  expenditureData[organisationsKey].data[organisationKey].data[expenditureKey]
 
-            const expenditureLine = ethers.utils.parseBytes32String(thisExpenditureData.expenditureLine)
+            const expenditureLine = ethers.utils.parseBytes32String(thisExpenditureData.budgetLine)
             const start = ethers.utils.parseBytes32String(thisExpenditureData.finance.start)
             const end = ethers.utils.parseBytes32String(thisExpenditureData.finance.end)
             xs += `**${OrganisationExpenditureStrings.expenditureReference}**: ${expenditureKey} <br />`

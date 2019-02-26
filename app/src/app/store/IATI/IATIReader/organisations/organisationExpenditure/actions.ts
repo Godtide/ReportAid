@@ -3,7 +3,7 @@ import { ThunkDispatch } from 'redux-thunk'
 import { ApplicationState } from '../../../../store'
 
 import { ActionProps } from '../../../../types'
-import { IATIOrganisationExpenditureProps } from '../../../types'
+import { IATIBudgetProps } from '../../../types'
 import { IATIReportActionTypes, OrganisationsReportProps } from '../types'
 import { IATIOrganisationExpenditureReportProps } from './types'
 
@@ -43,7 +43,7 @@ export const getExpenditure = (props: OrganisationsReportProps) => {
         const expenditureRef = await expenditureContract.getExpenditureReference(organisationsRef,
                                                                                   organisationRef,
                                                                                   i.toString())
-        const expenditure: IATIOrganisationExpenditureProps = await expenditureContract.getExpenditure(organisationsRef, organisationRef, expenditureRef)
+        const expenditure: IATIBudgetProps = await expenditureContract.getExpenditure(organisationsRef, organisationRef, expenditureRef)
 
         expenditureReports.data[organisationsRef].data[organisationRef].data[expenditureRef] = expenditure
          actionType = IATIReportActionTypes.TOTALEXPENDITURE_SUCCESS

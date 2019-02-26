@@ -3,7 +3,7 @@ import { ThunkDispatch } from 'redux-thunk'
 import { ApplicationState } from '../../../../store'
 
 import { ActionProps } from '../../../../types'
-import { IATIOrganisationCountryBudgetProps } from '../../../types'
+import { IATIBudgetProps } from '../../../types'
 import { IATIReportActionTypes, OrganisationsReportProps } from '../types'
 import { IATIOrganisationCountryBudgetReportProps } from './types'
 
@@ -44,9 +44,9 @@ export const getCountryBudgets = (props: OrganisationsReportProps) => {
          const budgetRef = await countryBudgetsContract.getCountryBudgetReference(organisationsRef,
                                                                                   organisationRef,
                                                                                   i.toString())
-         const budget: IATIOrganisationCountryBudgetProps = await countryBudgetsContract.getCountryBudget(organisationsRef,
-                                                                                                          organisationRef,
-                                                                                                          budgetRef)
+         const budget: IATIBudgetProps = await countryBudgetsContract.getCountryBudget(organisationsRef,
+                                                                                       organisationRef,
+                                                                                       budgetRef)
          budgetReports.data[organisationsRef].data[organisationRef].data[budgetRef] = budget
          actionType = IATIReportActionTypes.RECIPIENTCOUNTRYBUDGET_SUCCESS
       }

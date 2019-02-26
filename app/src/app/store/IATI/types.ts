@@ -135,7 +135,7 @@ export interface OrganisationRegionBudgetProps {
   organisationsRef: string
   organisationRef: string
   budgetRef: string
-  regionRef: number
+  regionRef: string
   budgetLine: string
   value: number
   status: number

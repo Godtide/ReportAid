@@ -95,7 +95,7 @@ class CountryBudgets extends React.Component<OrganisationCountryBudgetsReaderPro
             num += 1
             const thisbudgetData =  budgetsData[organisationsKey].data[organisationKey].data[budgetKey]
 
-            const countryRef = ethers.utils.parseBytes32String(thisbudgetData.countryRef)
+            const countryRef = ethers.utils.parseBytes32String(thisbudgetData.otherRef)
             const budgetLine = ethers.utils.parseBytes32String(thisbudgetData.budgetLine)
             const start = ethers.utils.parseBytes32String(thisbudgetData.finance.start)
             const end = ethers.utils.parseBytes32String(thisbudgetData.finance.end)

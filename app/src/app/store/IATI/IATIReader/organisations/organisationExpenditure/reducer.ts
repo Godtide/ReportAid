@@ -9,7 +9,8 @@ const initialState: IATIOrganisationExpenditureReportProps = {
         '': {
           data: {
             '': {
-              expenditureLine: '',
+              budgetLine: '',
+              otherRef: '',
               finance: {
                 value: 0,
                 status: 0,
