@@ -1,4 +1,4 @@
-import { PayloadProps, DictData } from '../../types'
+import { PayloadProps } from '../../types'
 
 export interface KeyData {
   newKey: string
