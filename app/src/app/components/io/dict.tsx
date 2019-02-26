@@ -1,16 +1,30 @@
-import { DictData } from '../../store/types'
+import { PayloadProps } from '../../store/types'
+import { flatten } from 'flat'
 
-export const getDictEntries = (props: DictData): string => {
+export const getDictEntries = (props: PayloadProps): string => {
   let xs: string = ``
-  Object.keys(props).forEach((key) => {
-    let length = 0
-    xs += `**Key**: ${key}, `
-    const entries = Object.entries(props[key])
-    entries.forEach((entry) => {
-      xs += `**${entry[0]}**: ${entry[1]}`
-      length += 1
-      length == entries.length ? xs += `<br />`: xs += `, `
-    })
+  const flatObject: any = flatten(props)
+  Object.keys(flatObject).forEach((key: string) => {
+    const newKey = key.match(/[a-z]+$/i)
+    console.log(key, newKey, flatObject[key])
+    //const newKey = key
+    xs += `**${newKey}**: `
+    switch (typeof flatObject[key]) {
+      case 'number': {
+        const value: number = flatObject[key] as number
+        xs += `${value} <br />`
+        return
+      }
+      case 'string': {
+        const value: string = flatObject[key] as string
+        xs += `${value} <br />`
+        return
+      }
+      default:
+        console.log("Error!")
+        break
+    }
+
   })
   return xs
 }

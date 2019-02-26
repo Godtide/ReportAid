@@ -4,24 +4,9 @@ import { ActionProps } from '../../../../types'
 
 const initialState: IATIOrganisationBudgetReportProps = {
   data: {
-    '': {
-      data: {
-        '': {
-          data: {
-            '': {
-              budgetLine: '',
-              otherRef: '',
-              finance: {
-                value: 0,
-                status: 0,
-                start: '',
-                end: ''
-              }
-            }
-          }
-        }
-      }
-    }
+    organisationsRef: '',
+    organisationRef: '',
+    data: []
   }
 }
 

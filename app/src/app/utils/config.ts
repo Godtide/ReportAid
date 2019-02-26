@@ -245,6 +245,13 @@ class Contract {
 
 class Helpers {
 
+  static dateCodes = [
+    { value: 1, label: "Planned Start" },
+    { value: 2, label: "Actual Start" },
+    { value: 3, label: "Planned End" },
+    { value: 4, label: "Actual End" }
+  ]
+
   static reportVersions = [
     { value: "2.03", label: "2.03" }
   ]

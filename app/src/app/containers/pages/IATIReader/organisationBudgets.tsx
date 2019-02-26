@@ -11,6 +11,7 @@ import { LinearProgress } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
 import FormControl from '@material-ui/core/FormControl'
 
+import { getDictEntries } from '../../../components/io/dict'
 import { OrganisationsPicker } from '../../../components/io/organisationsPicker'
 import { OrganisationPicker } from '../../../components/io/organisationPicker'
 import { FormData } from '../../../store/helpers/forms/types'
@@ -86,10 +87,10 @@ class Budgets extends React.Component<OrganisationBudgetsReaderProps> {
 
   render() {
 
-    const budgetsData = this.props.budgets
-    let xs = ""
-    let num = 0
-    Object.keys(budgetsData).forEach((organisationsKey) => {
+    //const budgetsData = this.props.budgets
+    const xs = getDictEntries(this.props.budgets)
+    //let num = 0
+    /*Object.keys(budgetsData).forEach((organisationsKey) => {
       //numOrganisations += 1
       xs += `**${OrgBudgetStrings.organisationsReference}**: ${organisationsKey}<br />`
       Object.keys(budgetsData[organisationsKey].data).forEach((organisationKey) => {
@@ -114,7 +115,7 @@ class Budgets extends React.Component<OrganisationBudgetsReaderProps> {
           }
         })
       })
-    })
+    })*/
 
     return (
       <div>
@@ -155,9 +156,6 @@ class Budgets extends React.Component<OrganisationBudgetsReaderProps> {
           />
         </div>
         <hr />
-        <p>
-          <b>{OrgBudgetStrings.numBudgets}</b>: {num}
-        </p>
         <h3>{OrgBudgetStrings.organisationBudgetDetails}</h3>
         <Markdown escapeHtml={false} source={xs} />
       </div>
