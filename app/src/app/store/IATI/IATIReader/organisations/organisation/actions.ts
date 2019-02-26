@@ -43,7 +43,7 @@ export const getOrganisation = (props: OrganisationReportProps) => {
            reportingOrgRef: organisation.reportingOrg.orgRef,
            reportingOrgType: organisation.reportingOrg.orgType,
            reportingOrgIsSecondary: organisation.reportingOrg.isSecondary,
-           lang:  ethers.utils.parseBytes32String(organisation.lang),
+           lang: ethers.utils.parseBytes32String(organisation.lang),
            currency: ethers.utils.parseBytes32String(organisation.currency),
            lastUpdatedTime: ethers.utils.parseBytes32String(organisation.lastUpdatedTime)
          }
