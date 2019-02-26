@@ -1,17 +1,19 @@
 import { ThunkDispatch } from 'redux-thunk'
 
+import { ethers } from 'ethers'
+
 import { ApplicationState } from '../../../../store'
 
 import { ActionProps } from '../../../../types'
 import { IATIBudgetProps } from '../../../types'
 import { IATIReportActionTypes, OrganisationsReportProps } from '../types'
-import { IATIOrganisationRegionBudgetReportProps } from './types'
+import { IATIBudgetReportProps, IATIBudgetData } from '../../types'
 
 import { read } from '../actions'
 
 export const initialise = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
-    const initData: IATIOrganisationRegionBudgetReportProps = { data: {} }
+    const initData: any = { data: {} }
     await dispatch(read({data: initData})(IATIReportActionTypes.RECIPIENTREGIONBUDGET_INIT))
   }
 }
@@ -24,17 +26,13 @@ export const getRegionBudgets = (props: OrganisationsReportProps) => {
     const organisationsRef = props.organisationsRef
     const organisationRef = props.organisationRef
 
-    let budgetReports: IATIOrganisationRegionBudgetReportProps = {
-      data: {
-        [organisationsRef]: {
-          data: {
-            [organisationRef]: {
-              data: {}
+    let budgetReports: IATIBudgetReportProps = {
+      data: { organisationsRef: organisationsRef,
+              organisationRef: organisationRef,
+              data: []
             }
-          }
-        }
-      }
     }
+
     let actionType = IATIReportActionTypes.RECIPIENTREGIONBUDGET_FAILURE
     try {
       const num = await regionBudgetsContract.getNumRegionBudgets(props.organisationsRef, props.organisationRef)
@@ -44,7 +42,17 @@ export const getRegionBudgets = (props: OrganisationsReportProps) => {
                                                                                 organisationRef,
                                                                                 i.toString())
          const budget: IATIBudgetProps = await regionBudgetsContract.getRegionsBudget(organisationsRef,     organisationRef, budgetRef)
-         budgetReports.data[organisationsRef].data[organisationRef].data[budgetRef] = budget
+
+         budgetReports.data.data[i] = {
+           budgetKey: budgetRef,
+           budgetLine: ethers.utils.parseBytes32String(budget.budgetLine),
+           regionRef: ethers.utils.parseBytes32String(budget.otherRef),
+           value: ethers.utils.bigNumberify(budget.finance.value).toNumber(),
+           status: budget.finance.status,
+           start: ethers.utils.parseBytes32String(budget.finance.start),
+           end: ethers.utils.parseBytes32String(budget.finance.end)
+         }
+
          actionType = IATIReportActionTypes.RECIPIENTREGIONBUDGET_SUCCESS
       }
     } catch (error) {
