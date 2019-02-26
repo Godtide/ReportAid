@@ -28,6 +28,7 @@ export const setCountryBudget = (details: OrganisationCountryBudgetProps) => {
     const end = new Date(details.endYear + '/' + details.endMonth + '/' + details.endDay)
 
     const countryBudget: IATIBudgetProps = {
+      budgetType: 1,
       budgetLine: ethers.utils.formatBytes32String(details.budgetLine),
       otherRef: ethers.utils.formatBytes32String(details.countryRef),
       finance: {

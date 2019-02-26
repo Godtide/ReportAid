@@ -41,6 +41,7 @@ export interface FinanceProps {
 }
 
 export interface IATIBudgetProps {
+  budgetType: number
   budgetLine: string
   otherRef: string
   finance: FinanceProps

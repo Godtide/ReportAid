@@ -28,6 +28,7 @@ export const setOrganisationExpenditure = (details: OrganisationExpenditureProps
     }
 
     const expenditure: IATIBudgetProps = {
+      budgetType: 1,
       budgetLine: ethers.utils.formatBytes32String(details.expenditureLine),
       otherRef: ethers.utils.formatBytes32String(""),
       finance: {

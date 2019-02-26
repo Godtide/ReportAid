@@ -28,6 +28,7 @@ export const setOrganisationBudget = (details: OrganisationBudgetProps) => {
     const end = new Date(details.endYear + '/' + details.endMonth + '/' + details.endDay)
 
     const budget: IATIBudgetProps = {
+      budgetType: 1,
       budgetLine: ethers.utils.formatBytes32String(details.budgetLine),
       otherRef: ethers.utils.formatBytes32String(""),
       finance: {

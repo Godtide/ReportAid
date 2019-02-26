@@ -12,11 +12,11 @@ contract IATIBudgets is Budgets {
   mapping(uint8 => mapping(bytes32 => mapping(bytes32 => bytes32[]))) private budgetRefs;
   mapping(uint8 => mapping(bytes32 => mapping(bytes32 => mapping(bytes32 => Budget)))) private budgets;
 
-  event SetBudget(uint8 _budgetType, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef, Budget _budget);
+  event SetBudget(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef, Budget _budget);
 
-  function setBudget(uint8 _budgetType, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef, Budget memory _budget) public {
-    require (_budgetType > uint8(BudgetType.NONE) &&
-             _budgetType < uint8(BudgetType.MAX) &&
+  function setBudget(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef, Budget memory _budget) public {
+    require (_owner > uint8(Owner.NONE) &&
+             _owner < uint8(Owner.MAX) &&
              _firstRef[0] != 0 &&
              _secondRef[0] != 0 &&
              _budgetRef[0] != 0 &&
@@ -26,101 +26,111 @@ contract IATIBudgets is Budgets {
              _budget.finance.start[0] != 0 &&
              _budget.finance.end[0] != 0);
 
-    budgets[_budgetType][_firstRef][_secondRef][_budgetRef] = _budget;
+    budgets[_owner][_firstRef][_secondRef][_budgetRef] = _budget;
 
-    if(!Strings.getExists(_budgetRef, budgetRefs[_budgetType][_firstRef][_secondRef])) {
-      budgetRefs[_budgetType][_firstRef][_secondRef].push(_budgetRef);
+    if(!Strings.getExists(_budgetRef, budgetRefs[_owner][_firstRef][_secondRef])) {
+      budgetRefs[_owner][_firstRef][_secondRef].push(_budgetRef);
     }
 
-    emit SetBudget(_budgetType, _firstRef, _secondRef, _budgetRef, _budget);
+    emit SetBudget(_owner, _firstRef, _secondRef, _budgetRef, _budget);
   }
 
-  function getNumBudgets(uint8 _budgetType, bytes32 _firstRef, bytes32 _secondRef) public view returns (uint256) {
-    require (_budgetType > uint8(BudgetType.NONE) &&
-             _budgetType < uint8(BudgetType.MAX) &&
+  function getNumBudgets(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef) public view returns (uint256) {
+    require (_owner > uint8(Owner.NONE) &&
+             _owner < uint8(Owner.MAX) &&
              _firstRef[0] != 0 &&
              _secondRef[0] != 0);
 
-    return budgetRefs[_budgetType][_firstRef][_secondRef].length;
+    return budgetRefs[_owner][_firstRef][_secondRef].length;
   }
 
-  function getBudgetReference(uint8 _budgetType, bytes32 _firstRef, bytes32 _secondRef, uint256 _index) public view returns (bytes32) {
-    require (_budgetType > uint8(BudgetType.NONE) &&
-             _budgetType < uint8(BudgetType.MAX) &&
+  function getBudgetReference(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, uint256 _index) public view returns (bytes32) {
+    require (_owner > uint8(Owner.NONE) &&
+             _owner < uint8(Owner.MAX) &&
              _firstRef[0] != 0 &&
              _secondRef[0] != 0 &&
-             _index < budgetRefs[_budgetType][_firstRef][_secondRef].length);
+             _index < budgetRefs[_owner][_firstRef][_secondRef].length);
 
-    return budgetRefs[_budgetType][_firstRef][_secondRef][_index];
+    return budgetRefs[_owner][_firstRef][_secondRef][_index];
   }
 
-  function getBudget(uint8 _budgetType, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) public view returns (Budget memory) {
-    require (_budgetType > uint8(BudgetType.NONE) &&
-             _budgetType < uint8(BudgetType.MAX) &&
-             _firstRef[0] != 0 &&
-             _secondRef[0] != 0 &&
-             _budgetRef[0] != 0);
-
-    return budgets[_budgetType][_firstRef][_secondRef][_budgetRef];
-  }
-
-  function getBudgetLine(uint8 _budgetType, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) public view returns (bytes32) {
-    require (_budgetType > uint8(BudgetType.NONE) &&
-             _budgetType < uint8(BudgetType.MAX) &&
+  function getBudget(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) public view returns (Budget memory) {
+    require (_owner > uint8(Owner.NONE) &&
+             _owner < uint8(Owner.MAX) &&
              _firstRef[0] != 0 &&
              _secondRef[0] != 0 &&
              _budgetRef[0] != 0);
 
-    return budgets[_budgetType][_firstRef][_secondRef][_budgetRef].budgetLine;
+    return budgets[_owner][_firstRef][_secondRef][_budgetRef];
   }
 
-  function getOtherRef(uint8 _budgetType, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) public view returns (bytes32) {
-    require (_budgetType > uint8(BudgetType.NONE) &&
-             _budgetType < uint8(BudgetType.MAX) &&
+  function getBudgetType(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) public view returns (uint8) {
+    require (_owner > uint8(Owner.NONE) &&
+             _owner < uint8(Owner.MAX) &&
              _firstRef[0] != 0 &&
              _secondRef[0] != 0 &&
              _budgetRef[0] != 0);
 
-    return budgets[_budgetType][_firstRef][_secondRef][_budgetRef].otherRef;
+    return budgets[_owner][_firstRef][_secondRef][_budgetRef].budgetType;
   }
 
-  function getBudgetValue(uint8 _budgetType, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) public view returns (uint256) {
-    require (_budgetType > uint8(BudgetType.NONE) &&
-             _budgetType < uint8(BudgetType.MAX) &&
+  function getBudgetLine(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) public view returns (bytes32) {
+    require (_owner > uint8(Owner.NONE) &&
+             _owner < uint8(Owner.MAX) &&
              _firstRef[0] != 0 &&
              _secondRef[0] != 0 &&
              _budgetRef[0] != 0);
 
-    return budgets[_budgetType][_firstRef][_secondRef][_budgetRef].finance.value;
+    return budgets[_owner][_firstRef][_secondRef][_budgetRef].budgetLine;
   }
 
-  function getBudgetStatus(uint8 _budgetType, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) public view returns (uint8) {
-    require (_budgetType > uint8(BudgetType.NONE) &&
-             _budgetType < uint8(BudgetType.MAX) &&
+  function getOtherRef(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) public view returns (bytes32) {
+    require (_owner > uint8(Owner.NONE) &&
+             _owner < uint8(Owner.MAX) &&
              _firstRef[0] != 0 &&
              _secondRef[0] != 0 &&
              _budgetRef[0] != 0);
 
-    return budgets[_budgetType][_firstRef][_secondRef][_budgetRef].finance.status;
+    return budgets[_owner][_firstRef][_secondRef][_budgetRef].otherRef;
   }
 
-  function getBudgetStart(uint8 _budgetType, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) public view returns (bytes32) {
-    require (_budgetType > uint8(BudgetType.NONE) &&
-             _budgetType < uint8(BudgetType.MAX) &&
+  function getBudgetValue(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) public view returns (uint256) {
+    require (_owner > uint8(Owner.NONE) &&
+             _owner < uint8(Owner.MAX) &&
              _firstRef[0] != 0 &&
              _secondRef[0] != 0 &&
              _budgetRef[0] != 0);
 
-    return budgets[_budgetType][_firstRef][_secondRef][_budgetRef].finance.start;
+    return budgets[_owner][_firstRef][_secondRef][_budgetRef].finance.value;
   }
 
-  function getBudgetEnd(uint8 _budgetType, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) public view returns (bytes32) {
-    require (_budgetType > uint8(BudgetType.NONE) &&
-             _budgetType < uint8(BudgetType.MAX) &&
+  function getBudgetStatus(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) public view returns (uint8) {
+    require (_owner > uint8(Owner.NONE) &&
+             _owner < uint8(Owner.MAX) &&
              _firstRef[0] != 0 &&
              _secondRef[0] != 0 &&
              _budgetRef[0] != 0);
 
-    return budgets[_budgetType][_firstRef][_secondRef][_budgetRef].finance.end;
+    return budgets[_owner][_firstRef][_secondRef][_budgetRef].finance.status;
+  }
+
+  function getBudgetStart(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) public view returns (bytes32) {
+    require (_owner > uint8(Owner.NONE) &&
+             _owner < uint8(Owner.MAX) &&
+             _firstRef[0] != 0 &&
+             _secondRef[0] != 0 &&
+             _budgetRef[0] != 0);
+
+    return budgets[_owner][_firstRef][_secondRef][_budgetRef].finance.start;
+  }
+
+  function getBudgetEnd(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) public view returns (bytes32) {
+    require (_owner > uint8(Owner.NONE) &&
+             _owner < uint8(Owner.MAX) &&
+             _firstRef[0] != 0 &&
+             _secondRef[0] != 0 &&
+             _budgetRef[0] != 0);
+
+    return budgets[_owner][_firstRef][_secondRef][_budgetRef].finance.end;
   }
 }
