@@ -14,7 +14,8 @@ import { Select } from "material-ui-formik-components"
 import { setOrganisationsKey } from '../../store/helpers/keys/actions'
 import { getOrganisations } from '../../store/IATI/IATIReader/organisations/organisations/actions'
 
-import { IATIOrganisationsData } from '../../store/IATI/IATIReader/organisations/organisations/types'
+import { IATIOrganisationsReport,
+         IATIOrganisationsData } from '../../store/IATI/IATIReader/organisations/types'
 
 interface OrganisationsFormProps {
   setValue: Function
@@ -23,7 +24,7 @@ interface OrganisationsFormProps {
 }
 
 interface OrganisationsDataProps {
-  organisations: IATIOrganisationsData
+  organisations: IATIOrganisationsReport
 }
 
 interface OrganisationsDispatchProps {
@@ -45,12 +46,14 @@ class Organisations extends React.Component<OrganisationsPickerProps> {
 
   render() {
 
+    //console.log ('rendering', this.props.organisation, this.props.organisationsRef)
     let organisationsRefs: any[] = [{ value: "", label: "" }]
-    Object.keys(this.props.organisations).forEach((organisationsKey) => {
-      organisationsRefs.push({ value: organisationsKey, label: organisationsKey })
-    })
-
-    //console.log('Refs: ', reportRefs)
+    const organisations: Array<IATIOrganisationsData> = this.props.organisations.data
+    for (let i = 0; i < organisations.length; i++) {
+     const label = organisations[i].organisationsRef
+     const value = label
+     organisationsRefs.push({ value: value, label: label })
+    }
 
     return (
       <React.Fragment>

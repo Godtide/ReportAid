@@ -1,13 +1,10 @@
-import { IATIOrganisationsReportProps } from './types'
+import { IATIOrganisationsReportProps } from '../types'
 import { IATIReportActionTypes } from '../types'
 import { ActionProps } from '../../../../types'
 
 const initialState: IATIOrganisationsReportProps = {
   data: {
-    '': {
-      version: '',
-      generatedTime: ''
-    }
+    data: []
   }
 }
 

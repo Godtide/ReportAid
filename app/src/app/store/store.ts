@@ -9,7 +9,7 @@ import { KeyProps } from './helpers/keys/types'
 import { FormProps } from './helpers/forms/types'
 
 import { IATIOrgReportProps } from './IATI/IATIReader/organisations/types'
-import { IATIOrganisationsReportProps } from './IATI/IATIReader/organisations/organisations/types'
+import { IATIOrganisationsReportProps } from './IATI/IATIReader/organisations/types'
 import { IATIOrganisationReportProps } from './IATI/IATIReader/organisations/types'
 import { IATIOrganisationDocReportProps } from './IATI/IATIReader/organisations/organisationDocs/types'
 import { IATIBudgetReportProps } from './IATI/IATIReader/types'
