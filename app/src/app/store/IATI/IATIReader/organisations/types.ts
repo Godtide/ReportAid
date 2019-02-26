@@ -9,6 +9,26 @@ export interface OrganisationsReportProps {
  organisationRef: string
 }
 
+export interface IATIOrganisationData {
+    organisationRef: string
+    issuingOrgRef: string
+    reportingOrgRef: string
+    reportingOrgType: number
+    reportingOrgIsSecondary: boolean
+    lang: string
+    currency: string
+    lastUpdatedTime: string
+}
+
+export interface IATIOrganisationReport {
+  organisationsRef: string
+  data: Array<IATIOrganisationData>
+}
+
+export interface IATIOrganisationReportProps extends PayloadProps {
+  data: IATIOrganisationReport
+}
+
 export interface IATIOrgData {
   orgRef: string
   name: string

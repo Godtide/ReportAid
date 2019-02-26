@@ -1,17 +1,19 @@
 import { ThunkDispatch } from 'redux-thunk'
 
+import { ethers } from 'ethers'
+
 import { ApplicationState } from '../../../../store'
 
 import { ActionProps } from '../../../../types'
 import { IATIOrganisationProps } from '../../../types'
 import { IATIReportActionTypes, OrganisationReportProps } from '../types'
-import { IATIOrganisationReportProps } from './types'
+import { IATIOrganisationReportProps } from '../types'
 
 import { read } from '../actions'
 
 export const initialise = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
-    const initData: IATIOrganisationReportProps = { data: {} }
+    const initData: any = { data: {} }
     await dispatch(read({data: initData})(IATIReportActionTypes.ORGANISATION_INIT))
   }
 }
@@ -24,11 +26,7 @@ export const getOrganisation = (props: OrganisationReportProps) => {
     const organisationsRef = props.organisationsRef
 
     let organisationData: IATIOrganisationReportProps = {
-      data: {
-        [organisationsRef]: {
-          data: {}
-        }
-      }
+      data: { organisationsRef: organisationsRef, data: [] }
     }
 
     let actionType = IATIReportActionTypes.ORGANISATION_FAILURE
@@ -38,8 +36,17 @@ export const getOrganisation = (props: OrganisationReportProps) => {
       for (let i = 0; i < numOrganisations; i++) {
          const organisationRef = await organisationContract.getOrganisationReference(organisationsRef, i.toString())
          const organisation: IATIOrganisationProps = await organisationContract.getOrganisation(organisationsRef, organisationRef)
-         organisationData.data[organisationsRef].data[organisationRef] = organisation
 
+         organisationData.data.data[i] = {
+           organisationRef: organisationRef,
+           issuingOrgRef: organisation.orgRef,
+           reportingOrgRef: organisation.reportingOrg.orgRef,
+           reportingOrgType: organisation.reportingOrg.orgType,
+           reportingOrgIsSecondary: organisation.reportingOrg.isSecondary,
+           lang:  ethers.utils.parseBytes32String(organisation.lang),
+           currency: ethers.utils.parseBytes32String(organisation.currency),
+           lastUpdatedTime: ethers.utils.parseBytes32String(organisation.lastUpdatedTime)
+         }
          //console.log(organisationsRef, organisationData.data[organisationsRef].data[organisationRef] )
          actionType = IATIReportActionTypes.ORGANISATION_SUCCESS
       }

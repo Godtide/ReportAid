@@ -15,12 +15,13 @@ import FormControl from '@material-ui/core/FormControl'
 import { OrganisationsPicker } from '../../../components/io/organisationsPicker'
 import { FormData } from '../../../store/helpers/forms/types'
 
+import { getDictEntries } from '../../../components/io/dict'
 import { setFormFunctions } from '../../../store/helpers/forms/actions'
 import { initialise, getOrganisation } from '../../../store/IATI/IATIReader/organisations/organisation/actions'
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { IATIOrganisationReport } from '../../../store/IATI/IATIReader/organisations/organisation/types'
+import { IATIOrganisationReport } from '../../../store/IATI/IATIReader/organisations/types'
 import { OrganisationsReportProps } from '../../../store/IATI/IATIReader/organisations/types'
 
 import { Organisation as OrganisationStrings } from '../../../utils/strings'
@@ -74,33 +75,7 @@ class OrganisationReader extends React.Component<OrgReaderProps> {
 
   render() {
 
-    const organisationData = this.props.organisation
-    let xs = ""
-    //let numOrganisations = 0
-    let numOrganisation = 0
-    Object.keys(organisationData).forEach((organisationsKey) => {
-      //numOrganisations += 1
-      xs += `**${OrganisationStrings.organisationsReference}**: ${organisationsKey}<br />`
-      Object.keys(organisationData[organisationsKey].data).forEach((organisationKey) => {
-        if ( organisationData[organisationsKey].data[organisationKey].hasOwnProperty('lang') &&
-             organisationData[organisationsKey].data[organisationKey].lang != "" ) {
-
-          numOrganisation += 1
-          const thisOrganisationData = organisationData[organisationsKey].data[organisationKey]
-          const language =  ethers.utils.parseBytes32String(thisOrganisationData.lang)
-          const currency =  ethers.utils.parseBytes32String(thisOrganisationData.currency)
-          const lastUpdated =  ethers.utils.parseBytes32String(thisOrganisationData.lastUpdatedTime)
-          xs += `**${OrganisationStrings.organisationReference}**: ${organisationKey}<br />`
-          xs += `**${OrganisationStrings.orgRef}**: ${thisOrganisationData.orgRef}<br />`
-          xs += `**${OrganisationStrings.reportingOrgRef}**: ${thisOrganisationData.reportingOrg.orgRef} <br />`
-          xs += `**${OrganisationStrings.reportingOrgType}**: ${thisOrganisationData.reportingOrg.orgType} <br />`
-          xs += `**${OrganisationStrings.reportingOrgIsSecondary}**: ${thisOrganisationData.reportingOrg.isSecondary} <br />`
-          xs += `**${OrganisationStrings.language}**: ${language} <br />`
-          xs += `**${OrganisationStrings.currency}**: ${currency} <br />`
-          xs += `**${OrganisationStrings.lastUpdated}**: ${lastUpdated} <br /><br />`
-        }
-      })
-    })
+    const xs = getDictEntries(this.props.organisation)
 
     return (
       <div>
@@ -135,9 +110,6 @@ class OrganisationReader extends React.Component<OrgReaderProps> {
           />
         </div>
         <hr />
-        <p>
-          <b>{OrganisationStrings.numOrganisation}</b>: {numOrganisation}
-        </p>
         <h3>{OrganisationStrings.organisationDetails}</h3>
         <Markdown escapeHtml={false} source={xs} />
       </div>
