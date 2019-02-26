@@ -18,12 +18,12 @@ Starting migrations...
 
    Deploying 'Migrations'
    ----------------------
-   > transaction hash:    0x363ca55c06aac783ba1ead14d21fdd68a421620550eaf03dfd131b9e937a0b37
+   > transaction hash:    0x286972e7a3527b8c5548c01c3ea985ee2cc5bbcd96ed1b6c6d67f7986c89661d
 - Blocks: 0            Seconds: 0
    > Blocks: 0            Seconds: 0
-   > contract address:    0xb0C2dDE1fD42Fc6835A2b3084EE35aE9Cbf279FF
+   > contract address:    0x9a905767Eb77aA1dF28F1236459092C7563b97E5
    > account:             0xd400515d7Bb28Ed05d027a3DA14928CEDCeE0DAb
-   > balance:             94.59639722
+   > balance:             83.33760468
    > gas used:            284908
    > gas price:           20 gwei
    > value sent:          0 ETH
@@ -42,12 +42,12 @@ Starting migrations...
 
    Deploying 'Strings'
    -------------------
-   > transaction hash:    0xe3f23ee2ad9d14b4575d49d9c8cd4e3a523251eb83303142df4a1a1128455090
+   > transaction hash:    0xe713ceb05f3ef29b61e5cf6e36f53e8b133155a4ca2d92a305eb35d681f32588
 - Blocks: 0            Seconds: 0
    > Blocks: 0            Seconds: 0
-   > contract address:    0x99356657751072ccD997B7344e3f4098AA9548a4
+   > contract address:    0xB355862B3cC0Ea3b4E0622c7B7Ef190A7EAB252e
    > account:             0xd400515d7Bb28Ed05d027a3DA14928CEDCeE0DAb
-   > balance:             94.57907014
+   > balance:             83.3202776
    > gas used:            824320
    > gas price:           20 gwei
    > value sent:          0 ETH
@@ -56,60 +56,44 @@ Starting migrations...
 
    Linking
    -------
-   * Contract: IATIBudgets <--> Library: Strings (at address: 0x99356657751072ccD997B7344e3f4098AA9548a4)
+   * Contract: IATIBudgets <--> Library: Strings (at address: 0xB355862B3cC0Ea3b4E0622c7B7Ef190A7EAB252e)
 
    Linking
    -------
-   * Contract: IATIOrgs <--> Library: Strings (at address: 0x99356657751072ccD997B7344e3f4098AA9548a4)
+   * Contract: IATIOrgs <--> Library: Strings (at address: 0xB355862B3cC0Ea3b4E0622c7B7Ef190A7EAB252e)
 
    Linking
    -------
-   * Contract: IATIOrganisations <--> Library: Strings (at address: 0x99356657751072ccD997B7344e3f4098AA9548a4)
+   * Contract: IATIOrganisations <--> Library: Strings (at address: 0xB355862B3cC0Ea3b4E0622c7B7Ef190A7EAB252e)
 
    Linking
    -------
-   * Contract: IATIOrganisation <--> Library: Strings (at address: 0x99356657751072ccD997B7344e3f4098AA9548a4)
+   * Contract: IATIOrganisation <--> Library: Strings (at address: 0xB355862B3cC0Ea3b4E0622c7B7Ef190A7EAB252e)
 
    Linking
    -------
-   * Contract: IATIOrganisationDocs <--> Library: Strings (at address: 0x99356657751072ccD997B7344e3f4098AA9548a4)
+   * Contract: IATIOrganisationDocs <--> Library: Strings (at address: 0xB355862B3cC0Ea3b4E0622c7B7Ef190A7EAB252e)
 
    Linking
    -------
-   * Contract: IATIOrganisationExpenditure <--> Library: Strings (at address: 0x99356657751072ccD997B7344e3f4098AA9548a4)
+   * Contract: IATIActivities <--> Library: Strings (at address: 0xB355862B3cC0Ea3b4E0622c7B7Ef190A7EAB252e)
 
    Linking
    -------
-   * Contract: IATIOrganisationRecipientBudgets <--> Library: Strings (at address: 0x99356657751072ccD997B7344e3f4098AA9548a4)
+   * Contract: IATIActivity <--> Library: Strings (at address: 0xB355862B3cC0Ea3b4E0622c7B7Ef190A7EAB252e)
 
    Linking
    -------
-   * Contract: IATIOrganisationRegionBudgets <--> Library: Strings (at address: 0x99356657751072ccD997B7344e3f4098AA9548a4)
-
-   Linking
-   -------
-   * Contract: IATIOrganisationCountryBudgets <--> Library: Strings (at address: 0x99356657751072ccD997B7344e3f4098AA9548a4)
-
-   Linking
-   -------
-   * Contract: IATIActivities <--> Library: Strings (at address: 0x99356657751072ccD997B7344e3f4098AA9548a4)
-
-   Linking
-   -------
-   * Contract: IATIActivity <--> Library: Strings (at address: 0x99356657751072ccD997B7344e3f4098AA9548a4)
-
-   Linking
-   -------
-   * Contract: IATIActivityDates <--> Library: Strings (at address: 0x99356657751072ccD997B7344e3f4098AA9548a4)
+   * Contract: IATIActivityDates <--> Library: Strings (at address: 0xB355862B3cC0Ea3b4E0622c7B7Ef190A7EAB252e)
 
    Deploying 'IATIOrgs'
    --------------------
-   > transaction hash:    0x2acb25b062d179c6c985f28b27c4c5ba84dafdc5d8630cf216f46b2917398f28
+   > transaction hash:    0xdc8374a3a9fafd0b7c290390a00deb3a178099930bcc8cab9a77d65d8b5837c6
 - Blocks: 0            Seconds: 0
    > Blocks: 0            Seconds: 0
-   > contract address:    0x564Fa6D553b63EB24Cc095bEf42d6C2A591E80F9
+   > contract address:    0x38172AD1d09e3e3815c2962B8122a1Cc55C6aA8d
    > account:             0xd400515d7Bb28Ed05d027a3DA14928CEDCeE0DAb
-   > balance:             94.55858176
+   > balance:             83.29978922
    > gas used:            1024419
    > gas price:           20 gwei
    > value sent:          0 ETH
@@ -118,12 +102,12 @@ Starting migrations...
 
    Deploying 'IATIOrganisations'
    -----------------------------
-   > transaction hash:    0x823026146a6487bc5fa6e8d754f5924e6ab501f305f73b0509d402a61a2e6ed2
+   > transaction hash:    0x6b3abbe04e25e07c7bdf148572e97655b48be6667352195590e7cf09a9b8acc6
 - Blocks: 0            Seconds: 0
    > Blocks: 0            Seconds: 0
-   > contract address:    0x71ef2a8f0BB6828Fc831f8D41fbBa34A6772290A
+   > contract address:    0xa17b6586c5E254039Ae83C9F46c71a99682e63fb
    > account:             0xd400515d7Bb28Ed05d027a3DA14928CEDCeE0DAb
-   > balance:             94.54386936
+   > balance:             83.28507682
    > gas used:            735620
    > gas price:           20 gwei
    > value sent:          0 ETH
@@ -132,12 +116,12 @@ Starting migrations...
 
    Deploying 'IATIOrganisation'
    ----------------------------
-   > transaction hash:    0x011a7cb34c7f2dcfc965695dcf4f09e44da6e1cbbed03dcea4f013b0cd094191
+   > transaction hash:    0x8da19311fbff32d01be487c01c4ffd9489429e62e504ed58d5e9ff406268c104
 - Blocks: 0            Seconds: 0
    > Blocks: 0            Seconds: 0
-   > contract address:    0x6131d08c34E0A75EEE35D60F4E0C71DF811f1767
+   > contract address:    0xd539795974B6b279fb7ce2ce9608d7fBC524FC7D
    > account:             0xd400515d7Bb28Ed05d027a3DA14928CEDCeE0DAb
-   > balance:             94.50835626
+   > balance:             83.24956372
    > gas used:            1775655
    > gas price:           20 gwei
    > value sent:          0 ETH
@@ -146,12 +130,12 @@ Starting migrations...
 
    Deploying 'IATIOrganisationDocs'
    --------------------------------
-   > transaction hash:    0xe671c2b65c9cda1e5ec6270f6fe0b7c43ce7b10639e0084be4eaa17b7ad479c3
+   > transaction hash:    0x7384eae6c94deb94fca105ad0bbff74365f5c08bb4b41f0d11bfa3058c7737ea
 - Blocks: 0            Seconds: 0
    > Blocks: 0            Seconds: 0
-   > contract address:    0xaab93aE0Fc69EE5bbE9bF07bECE6D66854861990
+   > contract address:    0xf647cD62d16673a40c99A98c9C0444868F6E5c02
    > account:             0xd400515d7Bb28Ed05d027a3DA14928CEDCeE0DAb
-   > balance:             94.45330802
+   > balance:             83.19451548
    > gas used:            2752412
    > gas price:           20 gwei
    > value sent:          0 ETH
@@ -160,110 +144,110 @@ Starting migrations...
 
    Deploying 'IATIBudgets'
    -----------------------
-   > transaction hash:    0x034731258ab0127aefb22856dca0897955c7577479973b0b46964fbe7e4dc282
+   > transaction hash:    0xc036bf768dddd1fb9241508e218029eb381a19e15ec6ad96fde8a257fc03d6c0
 - Blocks: 0            Seconds: 0
    > Blocks: 0            Seconds: 0
-   > contract address:    0xDd06E5d2bD50E30fe81b9507291947201E332fc2
+   > contract address:    0x2329539D2A9F54F7bc86e8f9c425c21254C277E5
    > account:             0xd400515d7Bb28Ed05d027a3DA14928CEDCeE0DAb
-   > balance:             94.41681588
-   > gas used:            1824607
+   > balance:             83.15504744
+   > gas used:            1973402
    > gas price:           20 gwei
    > value sent:          0 ETH
-   > total cost:          0.03649214 ETH
-
-
-   Deploying 'IATIOrganisationBudgets'
-   -----------------------------------
-   > transaction hash:    0xdf589773f181b163451cffa9ec1f9a178256b01b589efed553cb67a7ecac4aaf
-- Blocks: 0            Seconds: 0
-   > Blocks: 0            Seconds: 0
-   > contract address:    0x5Ac1aa2f7817b97283E06449f3D25E51F8Ac5964
-   > account:             0xd400515d7Bb28Ed05d027a3DA14928CEDCeE0DAb
-   > balance:             94.39232002
-   > gas used:            1224793
-   > gas price:           20 gwei
-   > value sent:          0 ETH
-   > total cost:          0.02449586 ETH
-
-
-   Deploying 'IATIOrganisationExpenditure'
-   ---------------------------------------
-   > transaction hash:    0x75605010b361ede5604becbbe85e5306a4628e0fa3020963e8a592a716feb3cb
-- Blocks: 0            Seconds: 0
-   > Blocks: 0            Seconds: 0
-   > contract address:    0xa85Fb7Bf499256d9bF6655dccc368F26435c77ad
-   > account:             0xd400515d7Bb28Ed05d027a3DA14928CEDCeE0DAb
-   > balance:             94.35609616
-   > gas used:            1811193
-   > gas price:           20 gwei
-   > value sent:          0 ETH
-   > total cost:          0.03622386 ETH
-
-
-   Deploying 'IATIOrganisationRecipientBudgets'
-   --------------------------------------------
-   > transaction hash:    0x9110ad9c6edbe85a35e0bcdef8bf0649e9676462f1f36087f44fca85b3a437a7
-- Blocks: 0            Seconds: 0
-   > Blocks: 0            Seconds: 0
-   > contract address:    0x9786D902C359007AcB458734C356B0944bbac72a
-   > account:             0xd400515d7Bb28Ed05d027a3DA14928CEDCeE0DAb
-   > balance:             94.3162608
-   > gas used:            1991768
-   > gas price:           20 gwei
-   > value sent:          0 ETH
-   > total cost:          0.03983536 ETH
-
-
-   Deploying 'IATIOrganisationRegionBudgets'
-   -----------------------------------------
-   > transaction hash:    0x926e7517449f058d9c3540d91b9f1bf1240e93127d892ba06bab47f9d84de8a3
-- Blocks: 0            Seconds: 0
-   > Blocks: 0            Seconds: 0
-   > contract address:    0xCe8280224a013d6938737a7dcf673bda98FB03c8
-   > account:             0xd400515d7Bb28Ed05d027a3DA14928CEDCeE0DAb
-   > balance:             94.27699122
-   > gas used:            1963479
-   > gas price:           20 gwei
-   > value sent:          0 ETH
-   > total cost:          0.03926958 ETH
-
-
-   Deploying 'IATIOrganisationCountryBudgets'
-   ------------------------------------------
-   > transaction hash:    0x9c233723afdf40e0f8b953a23264d05e52e1374db5b46671ca4a8c8383357e98
-- Blocks: 0            Seconds: 0
-   > Blocks: 0            Seconds: 0
-   > contract address:    0xe40048f7c40271BB1D3CA7536426F64178D8156a
-   > account:             0xd400515d7Bb28Ed05d027a3DA14928CEDCeE0DAb
-   > balance:             94.23715586
-   > gas used:            1991768
-   > gas price:           20 gwei
-   > value sent:          0 ETH
-   > total cost:          0.03983536 ETH
+   > total cost:          0.03946804 ETH
 
 
    Deploying 'IATIActivities'
    --------------------------
-   > transaction hash:    0x7eff458c52473d1930f686f03a927cb0fed9d0dc4a7d48b1121287284e2a8d0b
+
+   Deploying 'IATIOrganisationBudgets'
+   -----------------------------------
+
+   Deploying 'IATIOrganisationExpenditure'
+   ---------------------------------------
+
+   Deploying 'IATIOrganisationRecipientBudgets'
+   --------------------------------------------
+
+   Deploying 'IATIOrganisationRegionBudgets'
+   -----------------------------------------
+
+   Deploying 'IATIOrganisationCountryBudgets'
+   ------------------------------------------
+   > transaction hash:    0x6d01051ab4b915ef3a7a45e088745eff32cc7f25447f9a9669247541cc141d76
+- Blocks: 0            Seconds: 0
+   > transaction hash:    0x370d2a07f136afec34e7cfd2e9feb26ab4ef469e9ee8af87bdfc53b3bee2ed0f
+- Blocks: 0            Seconds: 0
+   > transaction hash:    0x0d9443dd7cdcc4d6cba919dccc1b643fe444fda17ac703e11d28e81c2ed193f5
+- Blocks: 0            Seconds: 0
+   > transaction hash:    0x34b8a5debbd4b52718205bb6f9da0072bc054e91d9d98221b61892eec3bcdd27
+- Blocks: 0            Seconds: 0
+   > transaction hash:    0x36b8b49759854c3ddea44bd6c6d0cdf3337f3aec837953a8b9781428f654dd2d
+- Blocks: 0            Seconds: 0
+   > transaction hash:    0x143daace0a49ecaa1c729eaeab52a3271138dc417886ef360a925653fbe0d48f
 - Blocks: 0            Seconds: 0
    > Blocks: 0            Seconds: 0
-   > contract address:    0x4C499F6b5d1c3867CADE2B78D4cb26344b5CFd3D
+   > contract address:    0x67ed281882baFE20044050B2AF6E5466dCeC1dca
    > account:             0xd400515d7Bb28Ed05d027a3DA14928CEDCeE0DAb
-   > balance:             94.2208864
+   > balance:             83.0099732
    > gas used:            813473
    > gas price:           20 gwei
    > value sent:          0 ETH
    > total cost:          0.01626946 ETH
 
+   > Blocks: 0            Seconds: 0
+   > contract address:    0xb2E10F33ACc31B0758e5f048eB6390C1Eb0B125D
+   > account:             0xd400515d7Bb28Ed05d027a3DA14928CEDCeE0DAb
+   > balance:             83.0099732
+   > gas used:            1243298
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.02486596 ETH
+
+   > Blocks: 0            Seconds: 0
+   > contract address:    0xC80C1F9Bd982e4dF93069a646522B6167b62cb1d
+   > account:             0xd400515d7Bb28Ed05d027a3DA14928CEDCeE0DAb
+   > balance:             83.0099732
+   > gas used:            1243554
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.02487108 ETH
+
+   > Blocks: 0            Seconds: 0
+   > contract address:    0x9089ea8CA4d522AFddd55e0Ae92d99C6d398d92D
+   > account:             0xd400515d7Bb28Ed05d027a3DA14928CEDCeE0DAb
+   > balance:             83.0099732
+   > gas used:            1317817
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.02635634 ETH
+
+   > Blocks: 0            Seconds: 0
+   > contract address:    0x94206500f3731712d2e924b58feb913E3c7f0bFf
+   > account:             0xd400515d7Bb28Ed05d027a3DA14928CEDCeE0DAb
+   > balance:             83.0099732
+   > gas used:            1317817
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.02635634 ETH
+
+   > Blocks: 0            Seconds: 0
+   > contract address:    0x7Dc4877c92Cc35e0EbdCfDc8EFb65cFf19140Db7
+   > account:             0xd400515d7Bb28Ed05d027a3DA14928CEDCeE0DAb
+   > balance:             83.0099732
+   > gas used:            1317753
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.02635506 ETH
+
 
    Deploying 'IATIActivity'
    ------------------------
-   > transaction hash:    0x93fb023c8e088d202412517fc605e18e278144dadbae2656fec16709aad6a0e6
+   > transaction hash:    0x6b3c194fa80f6385a9883ba5716933919cfbdc96ed1d3dd3fe5da8b7759d426f
 - Blocks: 0            Seconds: 0
    > Blocks: 0            Seconds: 0
-   > contract address:    0x84dE31052C6E2136dDB1196C580a70967582D4A2
+   > contract address:    0xafFC46ffc9B2977AF462E7f22A21B7337d4B7d01
    > account:             0xd400515d7Bb28Ed05d027a3DA14928CEDCeE0DAb
-   > balance:             94.146633
+   > balance:             82.9357198
    > gas used:            3712670
    > gas price:           20 gwei
    > value sent:          0 ETH
@@ -272,27 +256,39 @@ Starting migrations...
 
    Deploying 'IATIActivityDates'
    -----------------------------
-   > transaction hash:    0xfb1d34f32ce60dfbdfb83911d8679e067c913ae10c5b601be4c87889aa723d61
+   > transaction hash:    0x7a8df684e0816bd9cfbb5c7b3ecfcfadb78c7901af28781e82f7405e7e5763e0
 - Blocks: 0            Seconds: 0
    > Blocks: 0            Seconds: 0
-   > contract address:    0x4098aC4F9a6AC504E701D4D8bc6Af7760426F5B8
+   > contract address:    0x47Bb9194f9932c837A1C6bb9190FD4E5dA5Fc94a
    > account:             0xd400515d7Bb28Ed05d027a3DA14928CEDCeE0DAb
-   > balance:             94.1131503
+   > balance:             82.9022371
    > gas used:            1674135
    > gas price:           20 gwei
    > value sent:          0 ETH
    > total cost:          0.0334827 ETH
 
+static orgsAddress = "0x38172AD1d09e3e3815c2962B8122a1Cc55C6aA8d"
+static organisationsAddress = "0xa17b6586c5E254039Ae83C9F46c71a99682e63fb"
+static organisationAddress = "0xd539795974B6b279fb7ce2ce9608d7fBC524FC7D"
+static organisationDocsAddress = "0xf647cD62d16673a40c99A98c9C0444868F6E5c02"
+static organisationBudgetsAddress = "0xb2E10F33ACc31B0758e5f048eB6390C1Eb0B125D"
+static organisationExpenditureAddress = "0xC80C1F9Bd982e4dF93069a646522B6167b62cb1d"
+static organisationRecipientBudgetsAddress = "0x9089ea8CA4d522AFddd55e0Ae92d99C6d398d92D"
+static organisationRegionBudgetsAddress = "0x94206500f3731712d2e924b58feb913E3c7f0bFf"
+static organisationCountryBudgetsAddress = "0x7Dc4877c92Cc35e0EbdCfDc8EFb65cFf19140Db7"
+static activitiesAddress = "0x67ed281882baFE20044050B2AF6E5466dCeC1dca"
+static activityAddress = "0xafFC46ffc9B2977AF462E7f22A21B7337d4B7d01"
+static activityDatesAddress = "0x47Bb9194f9932c837A1C6bb9190FD4E5dA5Fc94a"
 
 - Saving migration to chain.
    > Saving migration to chain.
    > Saving artifacts
    -------------------------------------
-   > Total cost:          0.48240624 ETH
+   > Total cost:           0.4345269 ETH
 
 
 Summary
 =======
 > Total deployments:   15
-> Final cost:          0.4881044 ETH
+> Final cost:          0.44022506 ETH
 
