@@ -1,3 +1,5 @@
+import { PayloadProps } from '../../../types'
+
 export interface OrganisationReportProps {
   organisationsRef: string
 }
@@ -5,6 +7,20 @@ export interface OrganisationReportProps {
 export interface OrganisationsReportProps {
  organisationsRef: string
  organisationRef: string
+}
+
+export interface IATIOrgData {
+  orgRef: string
+  name: string
+  identifier: string
+}
+
+export interface IATIOrgReport {
+  data: Array<IATIOrgData>
+}
+
+export interface IATIOrgReportProps extends PayloadProps {
+  data: IATIOrgReport
 }
 
 export const enum IATIReportActionTypes {

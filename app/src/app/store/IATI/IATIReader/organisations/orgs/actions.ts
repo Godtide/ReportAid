@@ -6,7 +6,7 @@ import { ActionProps, PayloadProps} from '../../../../types'
 
 import { IATIOrgProps } from '../../../types'
 import { IATIReportActionTypes } from '../types'
-import { IATIOrgReportProps } from './types'
+import { IATIOrgReportProps } from '../types'
 
 const read = (payload: PayloadProps): Function => {
   return (actionType: IATIReportActionTypes): PayloadProps => {
@@ -28,7 +28,7 @@ export const getOrgs = () => {
     const orgsContract = state.chainContracts.data.contracts.orgs
 
     let orgsData: IATIOrgReportProps = {
-      data: {}
+      data: { data: [] }
     }
     let actionType = IATIReportActionTypes.ORGS_FAILURE
     try {
@@ -40,7 +40,13 @@ export const getOrgs = () => {
          //console.log("OrgRef: ", orgRef)
          const org: IATIOrgProps = await orgsContract.getOrg(orgRef)
          //console.log("Org: ", org)
-         orgsData.data[orgRef] = org
+
+         orgsData.data.data[i] = {
+           orgRef: orgRef,
+           name: org.name,
+           identifier: org.identifier
+         }
+
          actionType = IATIReportActionTypes.ORGS_SUCCESS
       }
     } catch (error) {
