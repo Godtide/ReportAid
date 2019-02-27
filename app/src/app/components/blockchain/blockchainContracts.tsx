@@ -17,6 +17,8 @@ import { IATIOrganisationRegionBudgets } from '../../../blockchain/typechain/IAT
 import { IATIOrganisationCountryBudgets } from '../../../blockchain/typechain/IATIOrganisationCountryBudgets'
 import { IATIActivities } from '../../../blockchain/typechain/IATIActivities'
 import { IATIActivity } from '../../../blockchain/typechain/IATIActivity'
+import { IATIActivityDates } from '../../../blockchain/typechain/IATIActivityDates'
+import { IATIActivityParticipatingOrgs } from '../../../blockchain/typechain/IATIActivityParticipatingOrgs'
 
 interface ChainProps {
   store: Store
@@ -70,6 +72,12 @@ export const setContracts = (props: ChainProps) => {
             activity: new ethers.Contract(Contract.activityAddress,
                                                      Contract.activityABI,
                                                      signer) as IATIActivity,
+            activityDates: new ethers.Contract(Contract.activityDatesAddress,
+                                                     Contract.activityDatesABI,
+                                                     signer) as IATIActivityDates,
+            activityParticipatingOrgs: new ethers.Contract(Contract.activityParticipatingOrgsAddress,
+                                                     Contract.activityParticipatingOrgsABI,
+                                                     signer) as IATIActivityParticipatingOrgs
           }
         }
       }
