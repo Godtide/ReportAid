@@ -5,8 +5,8 @@ import { ethers } from 'ethers'
 import { ApplicationState } from '../../../../store'
 
 import { ActionProps } from '../../../../types'
-import { IATIOrganisationsProps } from '../../../types'
-import { IATIReportActionTypes } from '../types'
+import { IATIOrganisationsProps } from '../../../IATIWriter/organisations/types'
+import { IATIReportActionTypes } from '../../types'
 import { IATIOrganisationsReportProps } from '../types'
 
 import { read } from '../actions'

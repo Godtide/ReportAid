@@ -4,8 +4,8 @@ import { storeAction } from '../../../../actions'
 import { ApplicationState } from '../../../../store'
 import { ActionProps, PayloadProps} from '../../../../types'
 
-import { IATIOrgProps } from '../../../types'
-import { IATIReportActionTypes } from '../types'
+import { IATIOrgProps } from '../../../IATIWriter/organisations/types'
+import { IATIReportActionTypes } from '../../types'
 import { IATIOrgReportProps } from '../types'
 
 const read = (payload: PayloadProps): Function => {

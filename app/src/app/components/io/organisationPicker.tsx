@@ -13,7 +13,7 @@ import { setOrganisationKey } from '../../store/helpers/keys/actions'
 import { getOrganisation } from '../../store/IATI/IATIReader/organisations/organisation/actions'
 
 import { IATIOrganisationReport, IATIOrganisationData } from '../../store/IATI/IATIReader/organisations/types'
-import { OrganisationProps } from '../../store/IATI/types'
+import { OrganisationProps } from '../../store/IATI/IATIWriter/organisations/types'
 
 interface OrganisationFormProps {
   setValue: Function

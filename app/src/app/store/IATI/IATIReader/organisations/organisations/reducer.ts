@@ -1,5 +1,5 @@
 import { IATIOrganisationsReportProps } from '../types'
-import { IATIReportActionTypes } from '../types'
+import { IATIReportActionTypes } from '../../types'
 import { ActionProps } from '../../../../types'
 
 const initialState: IATIOrganisationsReportProps = {

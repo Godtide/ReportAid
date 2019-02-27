@@ -12,7 +12,7 @@ import { TextField, Select } from "material-ui-formik-components"
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { OrganisationProps } from '../../../store/IATI/types'
+import { OrganisationProps } from '../../../store/IATI/IATIWriter/organisations/types'
 import { FormData } from '../../../store/helpers/forms/types'
 
 import { initialise } from '../../../store/IATI/IATIWriter/organisations/actions'

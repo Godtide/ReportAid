@@ -1,5 +1,4 @@
-import { IATIBudgetReportProps } from '../../types'
-import { IATIReportActionTypes } from '../types'
+import { IATIBudgetReportProps, IATIReportActionTypes } from '../../types'
 import { ActionProps } from '../../../../types'
 
 const initialState: IATIBudgetReportProps = {

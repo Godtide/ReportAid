@@ -11,7 +11,7 @@ import { Select, TextField } from "material-ui-formik-components"
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { OrganisationCountryBudgetProps } from '../../../store/IATI/types'
+import { OrganisationCountryBudgetProps } from '../../../store/IATI/IATIWriter/organisations/types'
 import { FormData } from '../../../store/helpers/forms/types'
 
 import { setFormFunctions } from '../../../store/helpers/forms/actions'
