@@ -1,16 +1,16 @@
 import { Action } from 'redux'
 
-export interface TxInfo {
+export interface TxData {
   summary: string,
   info: object
 }
 
-export interface TxData {
-  [tx: string]: TxInfo
+export interface TxReport {
+  [tx: string]: TxData
 }
 
 export interface TxProps extends PayloadProps {
-  data: TxData
+  data: TxReport
 }
 
 export interface PayloadProps {

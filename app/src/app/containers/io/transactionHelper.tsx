@@ -5,7 +5,7 @@ import { ThunkDispatch } from 'redux-thunk'
 import Markdown from 'react-markdown'
 
 import { ApplicationState } from '../../store'
-import { ActionProps, TxData } from '../../store/types'
+import { ActionProps, TxReport } from '../../store/types'
 
 import { newKey } from '../../store/helpers/keys/actions'
 
@@ -15,7 +15,7 @@ import { Helpers } from '../../utils/config'
 interface TransactionProps {
   submittingFunc: Function,
   resettingFunc: Function
-  tx: TxData
+  tx: TxReport
 }
 
 interface TransactionDispatchProps {

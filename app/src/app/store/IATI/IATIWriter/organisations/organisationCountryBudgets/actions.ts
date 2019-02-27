@@ -7,7 +7,7 @@ import { ApplicationState } from '../../../../store'
 
 import { write } from '../actions'
 
-import { ActionProps, PayloadProps, TxProps, TxData } from '../../../../types'
+import { ActionProps, PayloadProps, TxProps, TxReport } from '../../../../types'
 import { OrganisationCountryBudgetProps } from '../types'
 import { IATIWriterActionTypes, IATIBudgetProps } from '../../types'
 
@@ -40,7 +40,7 @@ export const setCountryBudget = (details: OrganisationCountryBudgetProps) => {
     }
     //console.log('CountryBudget: ', countryBudget, ' Contract ', orgCountryBudgetsContract)
     let actionType = IATIWriterActionTypes.RECIPIENTCOUNTRYBUDGET_FAILURE
-    let txData: TxData = {}
+    let txData: TxReport = {}
     try {
       // set(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, bytes32 _version, bytes32 _generatedTime)
       const tx = await countryBudgetsContract.setCountryBudget(details.organisationsRef,

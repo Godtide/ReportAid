@@ -7,7 +7,7 @@ import { ApplicationState } from '../../../../store'
 
 import { write } from '../actions'
 
-import { ActionProps, PayloadProps, TxProps, TxData } from '../../../../types'
+import { ActionProps, PayloadProps, TxProps, TxReport } from '../../../../types'
 import { OrganisationRecipientBudgetProps } from '../types'
 import { IATIWriterActionTypes, IATIBudgetProps } from '../../types'
 
@@ -42,7 +42,7 @@ export const setRecipientBudget = (details: OrganisationRecipientBudgetProps) =>
     }
 
     let actionType = IATIWriterActionTypes.RECIPIENTORGBUDGET_FAILURE
-    let txData: TxData = {}
+    let txData: TxReport = {}
     try {
 
       const tx = await recipientBudgetsContract.setRecipientBudget(details.organisationsRef,

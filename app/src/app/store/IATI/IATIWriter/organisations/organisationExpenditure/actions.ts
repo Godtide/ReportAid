@@ -7,7 +7,7 @@ import { ApplicationState } from '../../../../store'
 
 import { write } from '../actions'
 
-import { ActionProps, PayloadProps, TxProps, TxData } from '../../../../types'
+import { ActionProps, PayloadProps, TxProps, TxReport } from '../../../../types'
 import { OrganisationExpenditureProps } from '../types'
 import { IATIWriterActionTypes, IATIBudgetProps } from '../../types'
 
@@ -41,7 +41,7 @@ export const setOrganisationExpenditure = (details: OrganisationExpenditureProps
 
     //console.log('Budget: ', orgBudget, ' Contract ', orgBudgetsContract)
     let actionType = IATIWriterActionTypes.TOTALEXPENDITURE_FAILURE
-    let txData: TxData = {}
+    let txData: TxReport = {}
     try {
       // set(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, bytes32 _version, bytes32 _generatedTime)
       const tx = await expenditureContract.setExpenditure(details.organisationsRef,

@@ -1,5 +1,5 @@
 import { IATIWriterActionTypes } from '../types'
-import { ActionProps, PayloadProps, TxProps, TxData } from '../../../types'
+import { ActionProps, PayloadProps, TxProps, TxReport } from '../../../types'
 
 const initialState: TxProps = {
   data: {
@@ -35,7 +35,7 @@ export const reducer = (state: TxProps = initialState, action: ActionProps): TxP
     case IATIWriterActionTypes.RECIPIENTCOUNTRYBUDGET_FAILURE:
     case IATIWriterActionTypes.TOTALEXPENDITURE_FAILURE:
     case IATIWriterActionTypes.DOCUMENT_FAILURE: {
-      const data = (action.payload.data as TxData)
+      const data = (action.payload.data as TxReport)
       return {...state, ...data}
     }
     default:

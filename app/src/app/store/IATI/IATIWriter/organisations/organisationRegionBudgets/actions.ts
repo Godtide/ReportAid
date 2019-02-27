@@ -7,7 +7,7 @@ import { ApplicationState } from '../../../../store'
 
 import { write } from '../actions'
 
-import { ActionProps, PayloadProps, TxProps, TxData } from '../../../../types'
+import { ActionProps, PayloadProps, TxProps, TxReport } from '../../../../types'
 import { OrganisationRegionBudgetProps } from '../types'
 import { IATIWriterActionTypes, IATIBudgetProps } from '../../types'
 
@@ -41,7 +41,7 @@ export const setRegionBudget = (details: OrganisationRegionBudgetProps) => {
 
     //console.log('RegionBudget: ', regionBudget, ' Contract ', orgRegionBudgetsContract)
     let actionType = IATIWriterActionTypes.RECIPIENTREGIONBUDGET_FAILURE
-    let txData: TxData = {}
+    let txData: TxReport = {}
     try {
       // set(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, bytes32 _version, bytes32 _generatedTime)
       const tx = await regionBudgetsContract.setRegionBudget(details.organisationsRef,

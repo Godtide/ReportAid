@@ -7,7 +7,7 @@ import { ApplicationState } from '../../../../store'
 
 import { write } from '../actions'
 
-import { ActionProps, TxData } from '../../../../types'
+import { ActionProps, TxReport } from '../../../../types'
 import { OrganisationProps, IATIOrganisationProps } from '../types'
 import { IATIWriterActionTypes } from '../../types'
 
@@ -42,7 +42,7 @@ export const setOrganisation = (details: OrganisationProps) => {
     //console.log ('OrgsRef: ', details.organisationsRef, 'OrgRef', organisationRef, 'Orgs: ', organisation)
 
     let actionType = IATIWriterActionTypes.ORGANISATION_FAILURE
-    let txData: TxData = {}
+    let txData: TxReport = {}
     try {
       // set(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, bytes32 _version, bytes32 _generatedTime)
       const tx = await organisationContract.setOrganisation(details.organisationsRef, organisationRef, organisation)

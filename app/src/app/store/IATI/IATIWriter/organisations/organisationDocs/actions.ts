@@ -7,7 +7,7 @@ import { ApplicationState } from '../../../../store'
 
 import { write } from '../actions'
 
-import { ActionProps, PayloadProps, TxProps, TxData } from '../../../../types'
+import { ActionProps, PayloadProps, TxProps, TxReport } from '../../../../types'
 import { OrganisationDocProps, IATIOrganisationDocProps } from '../types'
 import { IATIWriterActionTypes } from '../../types'
 
@@ -38,7 +38,7 @@ export const setOrganisationDoc = (details: OrganisationDocProps) => {
     }
 
     let actionType = IATIWriterActionTypes.DOCUMENT_FAILURE
-    let txData: TxData = {}
+    let txData: TxReport = {}
     try {
       const tx = await docsContract.setDocument(details.organisationsRef,
                                                    details.organisationRef,
