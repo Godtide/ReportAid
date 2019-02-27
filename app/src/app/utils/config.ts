@@ -278,7 +278,6 @@ class Contract {
     "function getCountryBudgetStart(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _budgetRef) view returns (bytes32)",
     "function getCountryBudgetEnd(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _budgetRef) view returns (bytes32)"
   ]
-
 }
 
 class Helpers {
