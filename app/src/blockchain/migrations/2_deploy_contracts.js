@@ -1,4 +1,5 @@
 const StringsLib = artifacts.require("./Strings.sol");
+
 const IATIBudgets = artifacts.require("./IATIBudgets.sol");
 
 const IATIOrgs = artifacts.require("./IATIOrgs.sol");
@@ -14,6 +15,7 @@ const IATIOrganisationCountryBudgets = artifacts.require("./IATIOrganisationCoun
 const IATIActivities = artifacts.require("./IATIActivities.sol");
 const IATIActivity = artifacts.require("./IATIActivity.sol");
 const IATIActivityDates = artifacts.require("./IATIActivityDates.sol");
+const IATIActivityParticipatingOrgs = artifacts.require("./IATIActivityParticipatingOrgs.sol");
 
 module.exports = function(deployer) {
 
@@ -29,6 +31,7 @@ module.exports = function(deployer) {
   let activitiesAddress;
   let activityAddress;
   let activityDatesAddress;
+  let activityParticipatingOrgsAddress;
 
   deployer.deploy(StringsLib);
   deployer.link(StringsLib, [IATIBudgets,
@@ -38,7 +41,8 @@ module.exports = function(deployer) {
                              IATIOrganisationDocs,
                              IATIActivities,
                              IATIActivity,
-                             IATIActivityDates
+                             IATIActivityDates,
+                             IATIActivityParticipatingOrgs
                             ]);
 
   deployer.deploy(IATIOrgs).then(() => {
@@ -89,6 +93,10 @@ module.exports = function(deployer) {
     activityDatesAddress = "\"" + IATIActivityDates.address + "\"";
   });
 
+  deployer.deploy(IATIActivityParticipatingOrgs).then(() => {
+    activityParticipatingOrgsAddress = "\"" + IATIActivityParticipatingOrgs.address + "\"";
+  });
+
   deployer.then( () => {
     console.log("static orgsAddress =", orgsAddress);
     console.log("static organisationsAddress =", organisationsAddress);
@@ -102,5 +110,6 @@ module.exports = function(deployer) {
     console.log("static activitiesAddress =", activitiesAddress);
     console.log("static activityAddress =", activityAddress);
     console.log("static activityDatesAddress =", activityDatesAddress);
+    console.log("static activityParticipatingOrgsAddress =", activityParticipatingOrgsAddress);
   });
 };

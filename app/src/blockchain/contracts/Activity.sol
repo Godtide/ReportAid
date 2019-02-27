@@ -70,7 +70,6 @@ contract Activity {
     bool isSecondary;
   }
 
-
   struct OrgActivity {
     string identifier;
     ReportingOrg reportingOrg;
@@ -92,13 +91,16 @@ contract Activity {
     uint8 defaulTiedStatus;
   }
 
+  event SetActivity(bytes32 _activitiesRef, bytes32 activityRef, OrgActivity _activity);
+
   function setActivity(bytes32 _activitiesRef, bytes32 activityRef, OrgActivity memory _activity) public;
 
   function getNumActivities(bytes32 _activitiesRef) public view returns (uint256);
-  function getActivityReference(bytes32 _activitiesRef, uint256 _index) public view returns (bytes32);
+  function getReference(bytes32 _activitiesRef, uint256 _index) public view returns (bytes32);
 
   function getActivity(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (OrgActivity memory);
-  function getActivityIdentifier(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (string memory);
+  
+  function getIdentifier(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (string memory);
   function getReportingOrg(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (ReportingOrg memory);
   function getTitle(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (string memory);
   function getLastUpdatedTime(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32);

@@ -9,8 +9,6 @@ contract IATIActivity is Activity {
   mapping(bytes32 => bytes32[]) private activityRefs;
   mapping(bytes32 =>  mapping(bytes32 => OrgActivity)) private activities;
 
-  event SetActivity(bytes32 _activitiesRef, bytes32 activityRef, OrgActivity _activity);
-
   function setActivity(bytes32 _activitiesRef, bytes32 activityRef, OrgActivity memory _activity) public {
     require (_activitiesRef[0] != 0 &&
              activityRef[0] != 0 &&
@@ -51,7 +49,7 @@ contract IATIActivity is Activity {
     return activityRefs[_activitiesRef].length;
   }
 
-  function getActivityReference(bytes32 _activitiesRef, uint256 _index) public view returns (bytes32) {
+  function getReference(bytes32 _activitiesRef, uint256 _index) public view returns (bytes32) {
     require (_activitiesRef[0] != 0 && _index < activityRefs[_activitiesRef].length);
 
     return activityRefs[_activitiesRef][_index];
@@ -63,7 +61,7 @@ contract IATIActivity is Activity {
     return activities[_activitiesRef][_activityRef];
   }
 
-  function getActivityIdentifier(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (string memory) {
+  function getIdentifier(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (string memory) {
   	require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
 
   	return activities[_activitiesRef][_activityRef].identifier;

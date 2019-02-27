@@ -8,6 +8,8 @@ contract Organisations {
     bytes32 generatedTime;
   }
 
+  event SetOrganisations(bytes32 _organisationsRef, Orgs _organisations);
+
   function setOrganisations(bytes32 _organisationsRef, Orgs memory _organisations) public;
 
   function getNumOrganisations() public view returns (uint256);

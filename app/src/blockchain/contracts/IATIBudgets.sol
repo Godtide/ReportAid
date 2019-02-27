@@ -12,8 +12,6 @@ contract IATIBudgets is Budgets {
   mapping(uint8 => mapping(bytes32 => mapping(bytes32 => bytes32[]))) private budgetRefs;
   mapping(uint8 => mapping(bytes32 => mapping(bytes32 => mapping(bytes32 => Budget)))) private budgets;
 
-  event SetBudget(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef, Budget _budget);
-
   function setBudget(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef, Budget memory _budget) public {
     require (_owner > uint8(Owner.NONE) &&
              _owner < uint8(Owner.MAX) &&

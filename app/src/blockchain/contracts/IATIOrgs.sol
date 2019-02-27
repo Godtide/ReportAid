@@ -9,8 +9,6 @@ contract IATIOrgs is Orgs {
   bytes32[] orgReferences;
   mapping(bytes32 => Org) private organisations;
 
-  event SetOrg(bytes32 _orgRef, Org _org);
-
   function setOrg(bytes32 _orgRef, Org memory _org) public {
     require (_orgRef[0] != 0 && bytes(_org.name).length > 0 && bytes(_org.identifier).length > 0);
 

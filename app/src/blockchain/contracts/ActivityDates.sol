@@ -12,19 +12,22 @@ contract ActivityDates {
     MAX
   }
 
-  struct Dates {
+  struct Date {
     uint8 dateType;
     bytes32 date;
     string narrative;
   }
 
-  function setActivitydates(bytes32 _activitiesRef, bytes32 _activityRef,  bytes32 _dateRef, Dates memory _date) public;
+  event SetDate(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _dateRef, Date _date);
 
-  function getNumActivityDates(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint256);
-  function getActivityDatesReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) public view returns (bytes32);
+  function setDate(bytes32 _activitiesRef, bytes32 _activityRef,  bytes32 _dateRef, Date memory _date) public;
 
-  function getActivityDate(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _dateRef) public view returns (Dates memory);
-  function getActivityDateCode(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _dateRef) public view returns (uint8);
-  function getActivityDateISODate(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _dateRef) public view returns (bytes32);
-  function getActivityDateNarrative(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _dateRef) public view returns (string memory);
+  function getNumDates(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint256);
+  function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) public view returns (bytes32);
+
+  function getDate(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _dateRef) public view returns (Date memory);
+
+  function getType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _dateRef) public view returns (uint8);
+  function getISODate(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _dateRef) public view returns (bytes32);
+  function getNarrative(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _dateRef) public view returns (string memory);
 }

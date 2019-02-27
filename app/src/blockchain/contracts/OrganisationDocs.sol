@@ -25,6 +25,8 @@ contract OrganisationDocs {
     bytes32 date;
   }
 
+  event SetDocument(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _docRef, Document _document);
+
   function setDocument(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _docRef, Document memory _document) public;
 
   function getNumDocs(bytes32 _organisationsRef, bytes32 _organisationRef) public view returns (uint256);

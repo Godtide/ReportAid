@@ -8,6 +8,8 @@ contract Orgs {
     string identifier;
   }
 
+  event SetOrg(bytes32 _orgRef, Org _org);
+
   function setOrg(bytes32 _orgRef, Org memory _org) public;
 
   function getNumOrgs() public view returns (uint256);

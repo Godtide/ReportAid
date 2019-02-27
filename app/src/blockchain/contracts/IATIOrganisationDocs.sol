@@ -9,8 +9,6 @@ contract IATIOrganisationDocs is OrganisationDocs {
   mapping(bytes32 => mapping(bytes32 => bytes32[])) private docRefs;
   mapping(bytes32 => mapping(bytes32 => mapping(bytes32 => Document))) private docs;
 
-  event SetDocument(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _docRef, Document _document);
-
   function setDocument(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _docRef, Document memory _document) public {
     require (_organisationsRef[0] != 0 &&
              _organisationRef[0] != 0 &&

@@ -17,6 +17,8 @@ contract Organisation {
     bytes32 lastUpdatedTime;
   }
 
+  event SetOrganisation(bytes32 _organisationsRef, bytes32 _organisationRef, Org _org);
+
   function setOrganisation(bytes32 _organisationsRef, bytes32 _organisationRef, Org memory _org) public;
 
   function getNumOrganisations(bytes32 _organisationsRef) public view returns (uint256);

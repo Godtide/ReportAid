@@ -9,8 +9,6 @@ contract IATIOrganisations is Organisations {
   bytes32[] organisationsRefs;
   mapping(bytes32 =>  Orgs) private organisations;
 
-  event SetOrganisations(bytes32 _organisationsRef, Orgs _organisations);
-
   function setOrganisations(bytes32 _organisationsRef, Orgs memory _organisations) public {
     require (_organisationsRef[0] != 0 &&
              _organisations.version[0] != 0 &&
