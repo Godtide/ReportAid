@@ -5,7 +5,7 @@ import { ethers } from 'ethers'
 
 import { ApplicationState } from '../../../../store'
 
-import { write } from '../actions'
+import { write } from '../../actions'
 
 import { ActionProps, PayloadProps, TxProps, TxReport } from '../../../../types'
 import { OrganisationExpenditureProps } from '../types'

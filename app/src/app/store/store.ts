@@ -37,7 +37,7 @@ import { reducer as organisationRecipientBudgetsReaderReducer } from './IATI/IAT
 import { reducer as organisationRegionBudgetsReaderReducer } from './IATI/IATIReader/organisations/organisationRegionBudgets/reducer'
 import { reducer as organisationCountryBudgetsReaderReducer } from './IATI/IATIReader/organisations/organisationCountryBudgets/reducer'
 
-import { reducer as organisationsWriterReducer } from './IATI/IATIWriter/organisations/reducer'
+import { reducer as writerReducer } from './IATI/IATIWriter/reducer'
 
 export type ThunkResult<R> = ThunkAction<R, ApplicationState, null, any>
 
@@ -48,7 +48,7 @@ export interface ApplicationState {
   info: InfoPageProps
   keys: KeyProps
   forms: FormProps
-  organisationsWriterForms: TxProps
+  writerForms: TxProps
   orgsReader: IATIOrgReportProps
   organisationsReader: IATIOrganisationsReportProps
   organisationReader: IATIOrganisationReportProps
@@ -67,7 +67,7 @@ export const rootReducer: Reducer<ApplicationState, ActionProps> = combineReduce
   info: infoReducer,
   keys: keyReducer,
   forms: formReducer,
-  organisationsWriterForms: organisationsWriterReducer,
+  writerForms: writerReducer,
   orgsReader: orgsReaderReducer,
   organisationsReader: organisationsReaderReducer,
   organisationReader: organisationReaderReducer,

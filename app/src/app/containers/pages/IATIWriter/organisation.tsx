@@ -15,7 +15,7 @@ import { ActionProps } from '../../../store/types'
 import { OrganisationProps } from '../../../store/IATI/IATIWriter/organisations/types'
 import { FormData } from '../../../store/helpers/forms/types'
 
-import { initialise } from '../../../store/IATI/IATIWriter/organisations/actions'
+import { initialise } from '../../../store/IATI/IATIWriter/actions'
 import { setFormFunctions } from '../../../store/helpers/forms/actions'
 import { newKey } from '../../../store/helpers/keys/actions'
 import { setOrganisation } from '../../../store/IATI/IATIWriter/organisations/organisation/actions'

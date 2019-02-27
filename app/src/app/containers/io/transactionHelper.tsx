@@ -76,7 +76,7 @@ const mapStateToProps = (state: ApplicationState): TransactionProps => {
   return {
     submittingFunc: state.forms.data.submitFunc,
     resettingFunc: state.forms.data.resetFunc,
-    tx: state.organisationsWriterForms.data
+    tx: state.writerForms.data
   }
 }
 

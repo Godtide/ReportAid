@@ -16,7 +16,7 @@ import { OrgProps } from '../../../store/IATI/IATIWriter/organisations/types'
 import { KeyData } from '../../../store/helpers/keys/types'
 import { FormData } from '../../../store/helpers/forms/types'
 
-import { initialise } from '../../../store/IATI/IATIWriter/organisations/actions'
+import { initialise } from '../../../store/IATI/IATIWriter/actions'
 import { setFormFunctions } from '../../../store/helpers/forms/actions'
 import { newKey } from '../../../store/helpers/keys/actions'
 import { setOrg } from '../../../store/IATI/IATIWriter/organisations/orgs/actions'

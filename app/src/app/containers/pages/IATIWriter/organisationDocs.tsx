@@ -16,7 +16,7 @@ import { OrganisationDocProps } from '../../../store/IATI/IATIWriter/organisatio
 import { FormData } from '../../../store/helpers/forms/types'
 
 import { setFormFunctions } from '../../../store/helpers/forms/actions'
-import { initialise } from '../../../store/IATI/IATIWriter/organisations/actions'
+import { initialise } from '../../../store/IATI/IATIWriter/actions'
 import { newKey } from '../../../store/helpers/keys/actions'
 import { setOrganisationDoc } from '../../../store/IATI/IATIWriter/organisations/organisationDocs/actions'
 

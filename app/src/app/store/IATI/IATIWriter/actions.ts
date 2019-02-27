@@ -1,10 +1,10 @@
 import { ThunkDispatch } from 'redux-thunk'
-import { ApplicationState } from '../../../store'
+import { ApplicationState } from '../../store'
 
-import { storeAction } from '../../../actions'
+import { storeAction } from '../../actions'
 
-import { ActionProps, PayloadProps, TxProps, TxReport } from '../../../types'
-import { IATIWriterActionTypes } from '../types'
+import { ActionProps, PayloadProps, TxProps, TxReport } from '../../types'
+import { IATIWriterActionTypes } from './types'
 
 export const write = (payload: PayloadProps): Function => {
   return (actionType: IATIWriterActionTypes): TxProps => {

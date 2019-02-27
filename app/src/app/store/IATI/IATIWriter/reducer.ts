@@ -1,5 +1,5 @@
-import { IATIWriterActionTypes } from '../types'
-import { ActionProps, PayloadProps, TxProps, TxReport } from '../../../types'
+import { IATIWriterActionTypes } from './types'
+import { ActionProps, PayloadProps, TxProps, TxReport } from '../../types'
 
 const initialState: TxProps = {
   data: {
