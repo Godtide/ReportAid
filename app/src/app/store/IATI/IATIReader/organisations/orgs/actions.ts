@@ -32,7 +32,7 @@ export const getOrgs = () => {
       //console.log("Num orgs: ", numOrgs)
       for (let i = 0; i < numOrgs; i++) {
          const orgRef = await orgsContract.getOrgReference(i.toString())
-         //console.log("OrgRef: ", orgRef)
+        console.log("OrgRef: ", orgRef)
          const org: IATIOrgProps = await orgsContract.getOrg(orgRef)
          //console.log("Org: ", org)
 

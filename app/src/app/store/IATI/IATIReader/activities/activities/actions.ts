@@ -34,6 +34,7 @@ export const getActivities = () => {
       const numActivities = num.toNumber()
       for (let i = 0; i < numActivities; i++) {
          const activitiesRef = await activitiesContract.getReference(i.toString())
+         console.log('Activities: ', activitiesRef, numActivities)
 
          const activities: IATIActivitiesProps = await activitiesContract.getActivities(activitiesRef)
          activitiesData.data.data[i] = {
