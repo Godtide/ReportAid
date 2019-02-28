@@ -14,6 +14,8 @@ import { IATIOrgReportProps,
          IATIOrganisationDocReportProps } from './IATI/IATIReader/organisations/types'
 import { IATIBudgetReportProps } from './IATI/IATIReader/types'
 
+import { IATIActivitiesReportProps } from './IATI/IATIReader/activities/types'
+
 import { InfoPageProps } from './info/types'
 import { ChainDataProps } from  './blockchain/data/types'
 import { AccountProps } from  './blockchain/account/types'
@@ -37,6 +39,8 @@ import { reducer as organisationRecipientBudgetsReaderReducer } from './IATI/IAT
 import { reducer as organisationRegionBudgetsReaderReducer } from './IATI/IATIReader/organisations/organisationRegionBudgets/reducer'
 import { reducer as organisationCountryBudgetsReaderReducer } from './IATI/IATIReader/organisations/organisationCountryBudgets/reducer'
 
+import { reducer as activitiesReaderReducer } from './IATI/IATIReader/activities/activities/reducer'
+
 import { reducer as writerReducer } from './IATI/IATIWriter/reducer'
 
 export type ThunkResult<R> = ThunkAction<R, ApplicationState, null, any>
@@ -58,6 +62,7 @@ export interface ApplicationState {
   organisationRecipientBudgetsReader: IATIBudgetReportProps
   organisationRegionBudgetsReader: IATIBudgetReportProps
   organisationCountryBudgetsReader: IATIBudgetReportProps
+  activitiesReader: IATIActivitiesReportProps
 }
 
 export const rootReducer: Reducer<ApplicationState, ActionProps> = combineReducers<ApplicationState, ActionProps>({
@@ -76,7 +81,8 @@ export const rootReducer: Reducer<ApplicationState, ActionProps> = combineReduce
   organisationExpenditureReader: organisationExpenditureReaderReducer,
   organisationRecipientBudgetsReader: organisationRecipientBudgetsReaderReducer,
   organisationRegionBudgetsReader: organisationRegionBudgetsReaderReducer,
-  organisationCountryBudgetsReader: organisationCountryBudgetsReaderReducer
+  organisationCountryBudgetsReader: organisationCountryBudgetsReaderReducer,
+  activitiesReader: activitiesReaderReducer
 })
 
 export function configureStore(

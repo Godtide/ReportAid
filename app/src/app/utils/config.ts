@@ -8,6 +8,7 @@ class Paths {
   static readonly writer='/create'
   static readonly reader='/read'
 
+  static readonly activitiesWriter='/create-activities-reports'
   static readonly orgWriter='/create-organisation'
   static readonly organisationsWriter='/create-organisations-report'
   static readonly organisationWriter='/create-organisation-report'
@@ -18,6 +19,7 @@ class Paths {
   static readonly organisationRegionBudgetsWriter = '/create-organisation-report-region-budget'
   static readonly organisationCountryBudgetsWriter = '/create-organisation-report-country-budget'
 
+  static readonly activitiesReader='/read-activities-reports'
   static readonly orgsReader='/read-organisations'
   static readonly organisationsReader='/read-organisations-reports'
   static readonly organisationReader='/read-organisation-reports'
@@ -41,19 +43,19 @@ class Blockchain {
 
 class Contract {
 
-  static orgsAddress = "0xf7eB2476Ea262cAEbA7E03f7cF454e3089b32f5f"
-  static organisationsAddress = "0xF7dc09Bd570D6c75177e351B0ee25A518dD8688a"
-  static organisationAddress = "0xe8e3Ba4C58d84DcF9C70071508ff8Ba1b11FCD0e"
-  static organisationDocsAddress = "0x688841ee6F0C129837bDab0E2a4cA9CdF6C2d881"
-  static organisationBudgetsAddress = "0x9256580A54c54C50F76680D71e7759812BEc3827"
-  static organisationExpenditureAddress = "0x7ffa69F2daF6F945e5B729ed0f0D7428b8E4ADE8"
-  static organisationRecipientBudgetsAddress = "0x6EA3cB87592000A0e225Bf90F2Ad5bFE3C6e5BAD"
-  static organisationRegionBudgetsAddress = "0xdBbC8d2704824C8Ef865dEbcC19ab996fC0aF2Fd"
-  static organisationCountryBudgetsAddress = "0x5A744aEe3BF186b25E43fef90e62322F2c2d122f"
-  static activitiesAddress = "0x3189a20b7246419ecE0A71dBa21718E49671EF36"
-  static activityAddress = "0x5A4668383028ca81dE02780b852Fa1BeD618f3EB"
-  static activityDatesAddress = "0xFe0BFA4E501a42b078a9B2207C3ac1cAC0a81300"
-  static activityParticipatingOrgsAddress = "0x75C2b6c3bc5F38ED75E521a4c17Be804328f2105"
+  static orgsAddress = "0x667CD537e1079044119438B0c8a62d59D557B55A"
+  static organisationsAddress = "0xcA5784A7c10A7CFC6480072FB46f0C54dFbFB989"
+  static organisationAddress = "0x2C433289b8A829AA3F34287039083309F542C8C4"
+  static organisationDocsAddress = "0x0A1E2F79698149724A6f02B549C9FCB216c3845C"
+  static organisationBudgetsAddress = "0xd3Fa22746d7d71f3386718A3F48f7b6a88073a4D"
+  static organisationExpenditureAddress = "0xe97b1Cb304DD13e64AA833061d276F3C40453325"
+  static organisationRecipientBudgetsAddress = "0x33bC4b3D57Df88bFAd0057DFfF2DeC217F5cA917"
+  static organisationRegionBudgetsAddress = "0xF370A3797f3cC16E5420798762B77ec273Cb8a06"
+  static organisationCountryBudgetsAddress = "0x9F0eA05eBa893D2736e1cB1a7295AC962CD274C8"
+  static activitiesAddress = "0x2FB258596E6359b9342E1e4d6617c72c54C893d9"
+  static activityAddress = "0xd95a18e8deb4612089aB9604DeF69ecb9d7B5873"
+  static activityDatesAddress = "0x2DA3eA244771fc59661Be117c0760227b639391F"
+  static activityParticipatingOrgsAddress = "0x97A3F9E0D2971e511D44eF1D7BdC917F3B36098d"
 
   static activitiesABI = [
     "event SetActivities(bytes32 _activitiesRef, tuple(bytes32 version, bytes32 generatedTime, bytes32 linkedData) orgActivities)",

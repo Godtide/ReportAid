@@ -8,12 +8,7 @@ import { IATIOrgProps } from '../../../IATIWriter/organisations/types'
 import { IATIReportActionTypes } from '../../types'
 import { IATIOrgReportProps } from '../types'
 
-const read = (payload: PayloadProps): Function => {
-  return (actionType: IATIReportActionTypes): PayloadProps => {
-    const getProps = storeAction(actionType)(payload) as PayloadProps
-    return getProps
-  }
-}
+import { read } from '../../actions'
 
 export const initialise = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {

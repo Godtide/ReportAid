@@ -7,7 +7,7 @@ import { ApplicationState } from '../../../../store'
 
 import { write } from '../../actions'
 
-import { ActionProps, PayloadProps, TxProps, TxReport } from '../../../../types'
+import { ActionProps, TxReport } from '../../../../types'
 import { OrganisationsProps, IATIOrganisationsProps } from '../types'
 import { IATIWriterActionTypes } from '../../types'
 
@@ -18,7 +18,11 @@ export const setOrganisations = (details: OrganisationsProps) => {
 
     const state = getState()
     const organisationsContract = state.chainContracts.data.contracts.organisations
-    const organisationsRef = ethers.utils.formatBytes32String(shortid.generate())
+
+    let organisationsRef = details.organisationsRef
+    if ( organisationsRef == "" ) {
+      organisationsRef = ethers.utils.formatBytes32String(shortid.generate())
+    }
 
     const organisations: IATIOrganisationsProps = {
       version: ethers.utils.formatBytes32String(details.version),

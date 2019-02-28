@@ -9,7 +9,7 @@ import { IATIBudgetProps } from '../../../IATIWriter/types'
 import { OrganisationsReportProps } from '../types'
 import { IATIReportActionTypes, IATIBudgetReportProps, IATIBudgetData } from '../../types'
 
-import { read } from '../actions'
+import { read } from '../../actions'
 
 export const initialise = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {

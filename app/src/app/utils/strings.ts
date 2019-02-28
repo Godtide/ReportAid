@@ -24,6 +24,7 @@ class Paths {
   static readonly writer='Create Records'
   static readonly reader='Read Records'
 
+  static readonly activitiesWriter='Activities'
   static readonly orgWriter='Org\''
   static readonly organisationsWriter='Organisations'
   static readonly organisationWriter='Organisation Report'
@@ -34,6 +35,7 @@ class Paths {
   static readonly organisationRegionBudgetsWriter='Region Budget'
   static readonly organisationCountryBudgetsWriter='Country Budget'
 
+  static readonly activitiesReader='Activities'
   static readonly orgsReader='Org\'s'
   static readonly organisationsReader='Organisations'
   static readonly organisationReader='Organisation Reports'
@@ -83,14 +85,14 @@ class IATIWriter {
 
   static heading = 'IATI Writer'
 
-  static info = `The _${App.headingOrganisationsWriter}_ menu lets you create IATI Organsations records. The _${App.headingActivitiesWriter}_ menu lets you create IATI Activities records.`
+  static info = `The _${App.headingOrganisationsWriter}_ menu lets you create IATI Organisations records. The _${App.headingActivitiesWriter}_ menu lets you create IATI Activities records.`
 }
 
 class IATIReader {
 
   static heading = 'IATI Reader'
 
-  static info = `The _${App.headingOrganisationsReader}_ menu lets you read IATI Organsations records. The _${App.headingActivitiesReader}_ menu lets you read IATI Activities records.`
+  static info = `The _${App.headingOrganisationsReader}_ menu lets you read IATI Organisations records. The _${App.headingActivitiesReader}_ menu lets you read IATI Activities records.`
 }
 
 class Transaction {
@@ -101,6 +103,21 @@ class Transaction {
   static summary = 'Transaction Summary'
   static success = 'Submitted Successfully!'
   static fail = 'Submission Failed!'
+}
+
+class Activities {
+
+  static headingActivitiesWriter = 'Write Activities'
+  static headingActivitiesReader = 'Read Activities'
+
+  static activitiesReference = "Activities Reference"
+  static reportKey = "Activities Reference"
+  static version = "Version"
+  static generated = "Generated"
+  static linkedData = "Linked Data URL"
+
+  static numActivities = 'Number of Activities Reports'
+  static activitiesDetails = 'Activities Reports Details'
 }
 
 class Org {
@@ -315,6 +332,7 @@ export { App,
          IATIWriter,
          IATIReader,
          Transaction,
+         Activities,
          Org,
          Organisations,
          Organisation,

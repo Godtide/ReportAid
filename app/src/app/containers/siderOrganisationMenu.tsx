@@ -26,6 +26,24 @@ class Sider extends React.Component<WithStyles<typeof styles>> {
       <div>
         <ExpansionPanel className={this.props.classes.siderMenu}>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+            <h4>{App.headingActivitiesWriter}</h4>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails className={this.props.classes.siderMenu}>
+            <MenuList>
+              <Link to={PathConfig.activitiesWriter}>
+                <MenuItem>
+                  <IconButton className={this.props.classes.button} aria-label={Paths.activitiesWriter}>
+                    <Create />
+                  </IconButton>
+                  {Paths.activitiesWriter}
+                </MenuItem>
+              </Link>
+            </MenuList>
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
+
+        <ExpansionPanel className={this.props.classes.siderMenu}>
+          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
             <h4>{App.headingOrganisationsWriter}</h4>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails className={this.props.classes.siderMenu}>
@@ -100,6 +118,24 @@ class Sider extends React.Component<WithStyles<typeof styles>> {
                     <Create />
                   </IconButton>
                   {Paths.organisationCountryBudgetsWriter}
+                </MenuItem>
+              </Link>
+            </MenuList>
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
+
+        <ExpansionPanel className={this.props.classes.siderMenu}>
+          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+            <h4>{App.headingActivitiesReader}</h4>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails className={this.props.classes.siderMenu}>
+            <MenuList>
+              <Link to={PathConfig.activitiesReader}>
+                <MenuItem>
+                  <IconButton className={this.props.classes.button} aria-label={Paths.activitiesReader}>
+                    <Create />
+                  </IconButton>
+                  {Paths.activitiesReader}
                 </MenuItem>
               </Link>
             </MenuList>
