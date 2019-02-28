@@ -12,4 +12,4 @@ Relevant works are in the [docs](/docs) subdirectory.
 
 GNU General Public License v3.0
 
-See [COPYING](/docs/COPYING.txt) to see the full text.
+Please refer to the file: [COPYING](/docs/COPYING.txt) for the full text.
