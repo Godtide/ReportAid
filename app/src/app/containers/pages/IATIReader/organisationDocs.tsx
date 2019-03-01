@@ -136,7 +136,7 @@ const mapStateToProps = (state: ApplicationState): OrganisationDocProps => {
     resettingFunc: state.forms.data.resetFunc,
     organisationsRef: state.keys.data.organisations,
     organisationRef: state.keys.data.organisation,
-    docs: state.organisationDocsReader.data
+    docs: state.report.data as IATIOrganisationDocReport
   }
 }
 

@@ -54,7 +54,7 @@ class ActivitiesReader extends React.Component<ActivitiesReaderProps> {
 const mapStateToProps = (state: ApplicationState): ActivitiesProps => {
   //console.log(state.orgReader)
   return {
-    activities: state.activitiesReader.data
+    activities: state.report.data as IATIActivitiesReport
   }
 }
 

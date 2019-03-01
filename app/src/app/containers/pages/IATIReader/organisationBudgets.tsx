@@ -143,7 +143,7 @@ const mapStateToProps = (state: ApplicationState): OrgBudgetProps => {
     resettingFunc: state.forms.data.resetFunc,
     organisationsRef: state.keys.data.organisations,
     organisationRef: state.keys.data.organisation,
-    budgets: state.organisationBudgetsReader.data
+    budgets: state.report.data as IATIBudgetReport
   }
 }
 

@@ -136,7 +136,7 @@ const mapStateToProps = (state: ApplicationState): OrganisationRegionBudgetProps
     resettingFunc: state.forms.data.resetFunc,
     organisationsRef: state.keys.data.organisations,
     organisationRef: state.keys.data.organisation,
-    budgets: state.organisationRegionBudgetsReader.data
+    budgets: state.report.data as IATIBudgetReport
   }
 }
 

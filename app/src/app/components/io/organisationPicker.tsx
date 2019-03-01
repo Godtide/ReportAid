@@ -12,7 +12,7 @@ import { Select } from "material-ui-formik-components"
 import { setOrganisationKey } from '../../store/helpers/keys/actions'
 import { getOrganisation } from '../../store/IATI/IATIReader/organisations/organisation/actions'
 
-import { IATIOrganisationReport, IATIOrganisationData } from '../../store/IATI/IATIReader/organisations/types'
+import { IATIOrganisationReport, IATIOrganisationData, OrganisationReportProps } from '../../store/IATI/IATIReader/organisations/types'
 import { OrganisationProps } from '../../store/IATI/IATIWriter/organisations/types'
 
 interface OrganisationFormProps {
@@ -27,7 +27,7 @@ interface OrganisationDataProps {
 }
 
 interface OrganisationDispatchProps {
-  getOrganisation: (organisationsRef: string) => void
+  getOrganisation: (organisationProps: OrganisationReportProps) => void
   setOrganisationKey: (organisationRef: string) => void
 }
 
@@ -42,7 +42,7 @@ class Organisation extends React.Component<OrganisationPickerProps> {
   componentDidUpdate(previousProps: OrganisationPickerProps) {
     //console.log('Organisations: ', this.props.organisationsRef)
     if(this.props.organisationsRef != "" &&  previousProps.organisationsRef != this.props.organisationsRef) {
-      this.props.getOrganisation(this.props.organisationsRef)
+      this.props.getOrganisation({isReport: false, organisationsRef: this.props.organisationsRef})
       //console.log('Done Updating: ', this.props.organisationsRef)
     }
   }
@@ -85,14 +85,14 @@ class Organisation extends React.Component<OrganisationPickerProps> {
 const mapStateToProps = (state: ApplicationState): OrganisationDataProps => {
   //console.log(state.orgReader)
   return {
-    organisation: state.organisationReader.data,
+    organisation: state.organisationPicker.data as IATIOrganisationReport,
     organisationsRef: state.keys.data.organisations
   }
 }
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrganisationDispatchProps => {
   return {
-    getOrganisation: (organisationsRef: string) => dispatch(getOrganisation({organisationsRef: organisationsRef})),
+    getOrganisation: (organisationProps: OrganisationReportProps) => dispatch(getOrganisation(organisationProps)),
     setOrganisationKey: (organisationRef: string) => dispatch(setOrganisationKey(organisationRef)),
   }
 }

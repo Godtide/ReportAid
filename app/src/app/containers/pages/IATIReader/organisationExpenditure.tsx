@@ -136,7 +136,7 @@ const mapStateToProps = (state: ApplicationState): OrganisationExpenditureProps 
     resettingFunc: state.forms.data.resetFunc,
     organisationsRef: state.keys.data.organisations,
     organisationRef: state.keys.data.organisation,
-    expenditure: state.organisationExpenditureReader.data
+    expenditure: state.report.data as IATIBudgetReport
   }
 }
 

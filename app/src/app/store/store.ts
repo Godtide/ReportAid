@@ -8,14 +8,6 @@ import { ActionProps, PayloadProps, TxProps } from './types'
 import { KeyProps } from './helpers/keys/types'
 import { FormProps } from './helpers/forms/types'
 
-/*import { IATIOrgReportProps,
-         IATIOrganisationsReportProps,
-         IATIOrganisationReportProps,
-         IATIOrganisationDocReportProps } from './IATI/IATIReader/organisations/types'
-import { IATIBudgetReportProps } from './IATI/IATIReader/types'*/
-
-import { IATIActivitiesReportProps } from './IATI/IATIReader/activities/types'
-
 import { InfoPageProps } from './info/types'
 import { ChainDataProps } from  './blockchain/data/types'
 import { AccountProps } from  './blockchain/account/types'
@@ -29,6 +21,9 @@ import { reducer as accountReducer } from './blockchain/account/reducer'
 import { reducer as contractReducer } from './blockchain/contracts/reducer'
 import { reducer as infoReducer } from './info/reducer'
 
+import { reducer as organisationsPickerReducer } from './IATI/IATIReader/organisations/organisations/reducer'
+import { reducer as organisationPickerReducer } from './IATI/IATIReader/organisations/organisation/reducer'
+import { reducer as orgsPickerReducer } from './IATI/IATIReader/organisations/orgs/reducer'
 import { reducer as readerReducer } from './IATI/IATIReader/reducer'
 import { reducer as writerReducer } from './IATI/IATIWriter/reducer'
 
@@ -42,16 +37,10 @@ export interface ApplicationState {
   keys: KeyProps
   forms: FormProps
   writerForms: PayloadProps
-  orgsReader: PayloadProps
-  organisationsReader: PayloadProps
-  organisationReader: PayloadProps
-  organisationDocsReader: PayloadProps
-  organisationBudgetsReader: PayloadProps
-  organisationExpenditureReader: PayloadProps
-  organisationRecipientBudgetsReader: PayloadProps
-  organisationRegionBudgetsReader: PayloadProps
-  organisationCountryBudgetsReader: PayloadProps
-  activitiesReader: PayloadProps
+  organisationsPicker: PayloadProps
+  organisationPicker: PayloadProps
+  orgsPicker: PayloadProps
+  report: PayloadProps
 }
 
 export const rootReducer: Reducer<ApplicationState, ActionProps> = combineReducers<ApplicationState, ActionProps>({
@@ -62,16 +51,10 @@ export const rootReducer: Reducer<ApplicationState, ActionProps> = combineReduce
   keys: keyReducer,
   forms: formReducer,
   writerForms: writerReducer,
-  orgsReader: readerReducer,
-  organisationsReader: readerReducer,
-  organisationReader: readerReducer,
-  organisationDocsReader: readerReducer,
-  organisationBudgetsReader: readerReducer,
-  organisationExpenditureReader: readerReducer,
-  organisationRecipientBudgetsReader: readerReducer,
-  organisationRegionBudgetsReader: readerReducer,
-  organisationCountryBudgetsReader: readerReducer,
-  activitiesReader: readerReducer
+  organisationsPicker: organisationsPickerReducer,
+  organisationPicker: organisationPickerReducer,
+  orgsPicker: orgsPickerReducer,
+  report: readerReducer
 })
 
 export function configureStore(

@@ -10,7 +10,7 @@ import { IATIOrgReportProps } from '../types'
 
 import { read } from '../../actions'
 
-export const getOrgs = () => {
+export const getOrgs = (isReport: boolean) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
 
     const state = getState()
@@ -34,7 +34,10 @@ export const getOrgs = () => {
            identifier: org.identifier
          }
 
-         actionType = IATIReportActionTypes.ORGS_SUCCESS
+         actionType = IATIReportActionTypes.ORGSPICKER_SUCCESS
+         if(isReport) {
+          actionType = IATIReportActionTypes.ORGS_SUCCESS
+         }
       }
     } catch (error) {
       console.log('getOrgs error', error)

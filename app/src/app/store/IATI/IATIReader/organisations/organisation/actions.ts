@@ -40,8 +40,11 @@ export const getOrganisation = (props: OrganisationReportProps) => {
            currency: ethers.utils.parseBytes32String(organisation.currency),
            lastUpdatedTime: ethers.utils.parseBytes32String(organisation.lastUpdatedTime)
          }
-         //console.log(organisationsRef, organisationData.data[organisationsRef].data[organisationRef] )
-         actionType = IATIReportActionTypes.ORGANISATION_SUCCESS
+
+         actionType = IATIReportActionTypes.ORGANISATIONPICKER_SUCCESS
+         if(props.isReport) {
+          actionType = IATIReportActionTypes.ORGANISATION_SUCCESS
+         }
       }
     } catch (error) {
       console.log('getOrganisation error', error)

@@ -11,7 +11,7 @@ import { IATIOrganisationsReportProps } from '../types'
 
 import { read } from '../../actions'
 
-export const getOrganisations = () => {
+export const getOrganisations = (isReport: boolean) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
 
     const state = getState()
@@ -35,7 +35,11 @@ export const getOrganisations = () => {
            generatedTime:  ethers.utils.parseBytes32String(organisations.generatedTime)
          }
 
-         actionType = IATIReportActionTypes.ORGANISATIONS_SUCCESS
+         actionType = IATIReportActionTypes.ORGANISATIONSPICKER_SUCCESS
+         if(isReport) {
+          actionType = IATIReportActionTypes.ORGANISATIONS_SUCCESS
+         }
+
       }
     } catch (error) {
       console.log('getOrganisations error', error)

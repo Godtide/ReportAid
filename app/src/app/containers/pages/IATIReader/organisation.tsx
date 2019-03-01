@@ -23,7 +23,7 @@ import { getOrganisation } from '../../../store/IATI/IATIReader/organisations/or
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
 import { IATIOrganisationReport } from '../../../store/IATI/IATIReader/organisations/types'
-import { OrganisationsReportProps } from '../../../store/IATI/IATIReader/organisations/types'
+import { OrganisationReportProps } from '../../../store/IATI/IATIReader/organisations/types'
 
 import { Organisation as OrganisationStrings } from '../../../utils/strings'
 
@@ -68,7 +68,7 @@ class OrganisationReader extends React.Component<OrgReaderProps> {
     }
   }
 
-  handleSubmit = (values: OrganisationsReportProps, setSubmitting: Function, reset: Function) => {
+  handleSubmit = (values: OrganisationReportProps, setSubmitting: Function, reset: Function) => {
     this.props.setFormFunctions({submitFunc: setSubmitting, resetFunc: reset})
     this.props.initialise()
     this.props.handleSubmit(values)
@@ -84,13 +84,13 @@ class OrganisationReader extends React.Component<OrgReaderProps> {
         <div>
           <Formik
             initialValues={ {organisationsRef: "",
-                             organisationRef: ""
+                             isReport: true
                             }}
             validationSchema={reportSchema}
-            onSubmit={(values: OrganisationsReportProps, actions: any) => {
+            onSubmit={(values: OrganisationReportProps, actions: any) => {
               this.handleSubmit(values, actions.setSubmitting, actions.resetForm)
             }}
-            render={(formProps: FormikProps<OrganisationsReportProps>) => (
+            render={(formProps: FormikProps<OrganisationReportProps>) => (
               <Form>
                 <FormControl fullWidth={true}>
                   <OrganisationsPicker
@@ -130,13 +130,13 @@ const mapStateToProps = (state: ApplicationState): OrgProps => {
     submittingFunc: state.forms.data.submitFunc,
     resettingFunc: state.forms.data.resetFunc,
     organisationsRef: state.keys.data.organisations,
-    organisation: state.organisationReader.data
+    organisation: state.report.data as IATIOrganisationReport
   }
 }
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgDispatchProps => {
   return {
-    handleSubmit: (ownProps: any) => dispatch(getOrganisation(ownProps)),
+    handleSubmit: (ownProps: OrganisationReportProps) => dispatch(getOrganisation(ownProps)),
     initialise: () => dispatch(initialise()),
     setFormFunctions: (formProps: FormData) => dispatch(setFormFunctions(formProps))
   }

@@ -28,7 +28,7 @@ interface OrganisationsDataProps {
 }
 
 interface OrganisationsDispatchProps {
-  getOrganisations: () => void
+  getOrganisations: (isReport: boolean) => void
   setOrganisationsKey: (organisationsRef: string) => void
 }
 
@@ -41,18 +41,23 @@ class Organisations extends React.Component<OrganisationsPickerProps> {
   }
 
   componentDidMount() {
-    this.props.getOrganisations()
+    this.props.getOrganisations(false)
   }
 
   render() {
 
-    //console.log ('rendering', this.props.organisation, this.props.organisationsRef)
     let organisationsRefs: any[] = [{ value: "", label: "" }]
-    const organisations: Array<IATIOrganisationsData> = this.props.organisations.data
-    for (let i = 0; i < organisations.length; i++) {
-     const label = organisations[i].organisationsRef
-     const value = label
-     organisationsRefs.push({ value: value, label: label })
+    console.log ('rendering', this.props.organisations)
+    if(typeof this.props.organisations != "undefined" &&
+       this.props.organisations.hasOwnProperty('data')) {
+      console.log ('rendering', this.props.organisations)
+
+      const organisations: Array<IATIOrganisationsData> = this.props.organisations.data
+      for (let i = 0; i < organisations.length; i++) {
+       const label = organisations[i].organisationsRef
+       const value = label
+       organisationsRefs.push({ value: value, label: label })
+      }
     }
 
     return (
@@ -75,13 +80,13 @@ class Organisations extends React.Component<OrganisationsPickerProps> {
 const mapStateToProps = (state: ApplicationState): OrganisationsDataProps => {
   //console.log(state.orgReader)
   return {
-    organisations: state.organisationsReader.data
+    organisations: state.organisationsPicker.data as IATIOrganisationsReport
   }
 }
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrganisationsDispatchProps => {
   return {
-    getOrganisations: () => dispatch(getOrganisations()),
+    getOrganisations: (isReport: boolean) => dispatch(getOrganisations(isReport)),
     setOrganisationsKey: (organisationsRef: string) => dispatch(setOrganisationsKey(organisationsRef)),
   }
 }

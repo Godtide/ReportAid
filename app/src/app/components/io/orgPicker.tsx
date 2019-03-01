@@ -22,7 +22,7 @@ interface OrgDataProps {
 }
 
 interface OrgDispatchProps {
-  getOrgs: () => void
+  getOrgs: (isReport: boolean) => void
 }
 
 type OrgPickerProps = OrgProps & OrgDataProps & OrgDispatchProps
@@ -34,18 +34,22 @@ class Org extends React.Component<OrgPickerProps> {
   }
 
   componentDidMount() {
-    this.props.getOrgs()
+    this.props.getOrgs(false)
   }
 
   render() {
 
-    const orgs: Array<IATIOrgData> = this.props.orgs.data
-    console.log('Orgs: ', orgs)
     let orgRefs : any[] = [{ value: "", label: "" }]
-    for (let i = 0; i < orgs.length; i++) {
-      const label = orgs[i].name
-      const value = orgs[i].orgRef
-      orgRefs.push({ value: value, label: label })
+    if(typeof this.props.orgs != "undefined" &&
+       this.props.orgs.hasOwnProperty('data')) {
+         
+      console.log('Orgs: ', this.props.orgs)
+      const orgs: Array<IATIOrgData> = this.props.orgs.data
+      for (let i = 0; i < orgs.length; i++) {
+        const label = orgs[i].name
+        const value = orgs[i].orgRef
+        orgRefs.push({ value: value, label: label })
+      }
     }
 
     return (
@@ -64,13 +68,13 @@ class Org extends React.Component<OrgPickerProps> {
 const mapStateToProps = (state: ApplicationState): OrgDataProps => {
   //console.log(state.orgReader)
   return {
-    orgs: state.orgsReader.data
+    orgs: state.orgsPicker.data as IATIOrgReport
   }
 }
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgDispatchProps => {
   return {
-    getOrgs: () => dispatch(getOrgs())
+    getOrgs: (isReport: boolean) => dispatch(getOrgs(isReport))
   }
 }
 

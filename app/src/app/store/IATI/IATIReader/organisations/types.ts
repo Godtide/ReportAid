@@ -1,6 +1,7 @@
 import { PayloadProps } from '../../../types'
 
 export interface OrganisationReportProps {
+  isReport: boolean
   organisationsRef: string
 }
 

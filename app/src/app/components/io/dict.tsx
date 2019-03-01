@@ -25,7 +25,7 @@ export const getDictEntries = (props: PayloadProps): string => {
         return
       }
       case 'object': {
-        return
+        return xs += ``
       }
       default:
         console.log("Error!")
