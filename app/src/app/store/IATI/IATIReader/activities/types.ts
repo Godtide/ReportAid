@@ -1,6 +1,7 @@
 import { PayloadProps } from '../../../types'
 
 export interface ActivityReportProps {
+  isReport: boolean
   activitiesRef: string
 }
 
@@ -25,6 +26,7 @@ export interface IATIActivitiesReportProps extends PayloadProps {
 }
 
 export interface IATIActivityData {
+  activityRef: string
   identifier: string
   reportingOrgRef: string
   reportingOrgType: number
@@ -44,7 +46,7 @@ export interface IATIActivityData {
   defaultFlowType: number
   defaultFinanceType: number
   defaultAidType: string
-  defaulTiedStatus: number
+  defaultTiedStatus: number
 }
 
 export interface IATIActivityReport {

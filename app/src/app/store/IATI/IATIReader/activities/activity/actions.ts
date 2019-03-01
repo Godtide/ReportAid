@@ -31,13 +31,13 @@ export const getActivity = (props: ActivityReportProps) => {
          const activity: IATIActivityProps = await activityContract.getActivity(activitiesRef, activityRef)
 
          activityData.data.data[i] = {
-           activitiesRef: activitiesRef,
+           activityRef: activityRef,
            identifier: activity.identifier,
            reportingOrgRef: activity.reportingOrg.orgRef,
            reportingOrgType: activity.reportingOrg.orgType,
            reportingOrgIsSecondary: activity.reportingOrg.isSecondary,
            title: activity.title,
-           lastUpdated: ethers.utils.parseBytes32String(activity.lastUpdated)
+           lastUpdated: ethers.utils.parseBytes32String(activity.lastUpdated),
            lang: ethers.utils.parseBytes32String(activity.lang),
            currency: ethers.utils.parseBytes32String(activity.currency),
            humanitarian: activity.humanitarian,
@@ -50,8 +50,8 @@ export const getActivity = (props: ActivityReportProps) => {
            collaborationType: activity.collaborationType,
            defaultFlowType: activity.defaultFlowType,
            defaultFinanceType: activity.defaultFinanceType,
-           defaultAidType: activity.defaultAidType,
-           defaulTiedStatus: activity.defaulTiedStatus
+           defaultAidType: ethers.utils.parseBytes32String(activity.defaultAidType),
+           defaultTiedStatus: activity.defaultTiedStatus
          }
 
          actionType = IATIReportActionTypes.ACTIVITYPICKER_SUCCESS

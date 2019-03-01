@@ -45,8 +45,8 @@ export const setActivity = (details: ActivityProps) => {
       collaborationType: details.collaborationType,
       defaultFlowType: details.defaultFlowType,
       defaultFinanceType: details.defaultFinanceType,
-      defaultAidType: string,
-      defaulTiedStatus: details.defaulTiedStatus,
+      defaultAidType: ethers.utils.formatBytes32String(details.defaultAidType),
+      defaultTiedStatus: details.defaultTiedStatus,
     }
 
     let actionType = IATIWriterActionTypes.ACTIVITY_FAILURE

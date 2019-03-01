@@ -92,7 +92,7 @@ const activitySchema = Yup.object().shape({
   defaultAidType: Yup
     .string()
     .required('Required'),
-  defaulTiedStatus: Yup
+  defaultTiedStatus: Yup
     .number()
     .required('Required')
 })
@@ -155,7 +155,7 @@ export class ActivityForm extends React.Component<ActivityFormProps> {
                              defaultFlowType: 0,
                              defaultFinanceType: 0,
                              defaultAidType: "",
-                             defaulTiedStatus: 0
+                             defaultTiedStatus: 0
                             }}
             enableReinitialize={true}
             validationSchema={activitySchema}
@@ -306,12 +306,12 @@ export class ActivityForm extends React.Component<ActivityFormProps> {
                   />
                   <ErrorMessage name='defaultAidType' />
                   <Field
-                    name="defaulTiedStatus"
-                    label={ActivityStrings.defaulTiedStatus}
+                    name="defaultTiedStatus"
+                    label={ActivityStrings.defaultTiedStatus}
                     component={Select}
-                    options={Helpers.defaulTiedStatus}
+                    options={Helpers.defaultTiedStatus}
                   />
-                  <ErrorMessage name='defaulTiedStatus' />
+                  <ErrorMessage name='defaultTiedStatus' />
                   <br />
                   {formProps.isSubmitting && <LinearProgress />}
                   <br />

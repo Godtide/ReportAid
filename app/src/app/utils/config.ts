@@ -9,6 +9,7 @@ class Paths {
   static readonly reader='/read'
 
   static readonly activitiesWriter='/create-activities-reports'
+  static readonly activityWriter='/create-activity-reports'
   static readonly orgWriter='/create-organisation'
   static readonly organisationsWriter='/create-organisations-report'
   static readonly organisationWriter='/create-organisation-report'
@@ -20,6 +21,7 @@ class Paths {
   static readonly organisationCountryBudgetsWriter = '/create-organisation-report-country-budget'
 
   static readonly activitiesReader='/read-activities-reports'
+  static readonly activityReader='/read-activity-reports'
   static readonly orgsReader='/read-organisations'
   static readonly organisationsReader='/read-organisations-reports'
   static readonly organisationReader='/read-organisation-reports'
@@ -414,7 +416,7 @@ class Helpers {
     { value: 50, label: "Other flows" }
   ]
 
-  static tiedStatus = [
+  static defaultTiedStatus = [
      { value: 1, label: "PARTIALLYTIED" },
      { value: 2, label: "TIED" },
      { value: 3, label: "UNTIED" }

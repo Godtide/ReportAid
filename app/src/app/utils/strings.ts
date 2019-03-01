@@ -25,6 +25,7 @@ class Paths {
   static readonly reader='Read Records'
 
   static readonly activitiesWriter='Activities'
+  static readonly activityWriter='Activity'
   static readonly orgWriter='Org\''
   static readonly organisationsWriter='Organisations'
   static readonly organisationWriter='Organisation Report'
@@ -36,6 +37,7 @@ class Paths {
   static readonly organisationCountryBudgetsWriter='Country Budget'
 
   static readonly activitiesReader='Activities'
+  static readonly activityReader='Activity'
   static readonly orgsReader='Org\'s'
   static readonly organisationsReader='Organisations'
   static readonly organisationReader='Organisation Reports'
@@ -132,6 +134,7 @@ class Activity {
   static reportingOrgRef = 'Reporting Organisation'
   static reportingOrgType = "Reporting Organisation Type"
   static reportingOrgIsSecondary = "Is Reporting Organisation Secondary?"
+  static title = "Title"
   static lastUpdated = "Last Updated"
   static language = "Language"
   static currency = "Currency"
@@ -146,7 +149,9 @@ class Activity {
   static defaultFlowType = "Default Flow Type"
   static defaultFinanceType = "Default Finance Type"
   static defaultAidType = "Default Aid Type"
-  static defaulTiedStatus = "Defaul Tied Status"
+  static defaultTiedStatus = "Defaul Tied Status"
+
+  static activityDetails = 'Activity Reports Details'
 }
 
 class Org {
@@ -362,6 +367,7 @@ export { App,
          IATIReader,
          Transaction,
          Activities,
+         Activity,
          Org,
          Organisations,
          Organisation,

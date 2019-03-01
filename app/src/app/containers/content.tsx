@@ -8,7 +8,9 @@ import { Info } from './pages/info/info'
 import { InfoTypes } from './pages/info/types'
 
 import { BlockchainInfo } from './pages/blockchain/blockchainInfo'
+
 import { Activities as ActivitiesWriter } from './pages/IATIWriter/activities'
+import { Activity as ActivityWriter } from './pages/IATIWriter/activity'
 import { Org as OrgWriter } from './pages/IATIWriter/org'
 import { Organisations as OrganisationsWriter } from './pages/IATIWriter/organisations'
 import { Organisation as OrganisationWriter } from './pages/IATIWriter/organisation'
@@ -20,6 +22,7 @@ import { OrganisationRegionBudgets as OrganisationRegionBudgetsWriter } from './
 import { OrganisationCountryBudgets as OrganisationCountryBudgetsWriter } from './pages/IATIWriter/organisationCountryBudgets'
 
 import { Activities as ActivitiesReader } from './pages/IATIReader/activities'
+import { Activity as ActivityReader } from './pages/IATIReader/activity'
 import { Orgs as OrgsReader } from './pages/IATIReader/orgs'
 import { Organisations as OrganisationsReader } from './pages/IATIReader/organisations'
 import { Organisation as OrganisationReader } from './pages/IATIReader/organisation'
@@ -51,6 +54,11 @@ class AppContent extends React.Component<WithStyles<typeof styles>> {
           name={Paths.activitiesWriter}
           path={PathConfig.activitiesWriter}
           render={() => <ActivitiesWriter />}
+        />
+        <Route
+          name={Paths.activityWriter}
+          path={PathConfig.activityWriter}
+          render={() => <ActivityWriter />}
         />
         <Route
           name={Paths.orgWriter}
@@ -102,6 +110,11 @@ class AppContent extends React.Component<WithStyles<typeof styles>> {
           name={Paths.activitiesReader}
           path={PathConfig.activitiesReader}
           render={() => <ActivitiesReader />}
+        />
+        <Route
+          name={Paths.activityReader}
+          path={PathConfig.activityReader}
+          render={() => <ActivityReader />}
         />
         <Route
           name={Paths.orgsReader}

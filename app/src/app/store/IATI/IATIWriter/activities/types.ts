@@ -34,7 +34,7 @@ export interface IATIActivityProps {
   defaultFlowType: number
   defaultFinanceType: number
   defaultAidType: string
-  defaulTiedStatus: number
+  defaultTiedStatus: number
 }
 
 export interface ActivityProps {
@@ -58,5 +58,5 @@ export interface ActivityProps {
   defaultFlowType: number
   defaultFinanceType: number
   defaultAidType: string
-  defaulTiedStatus: number
+  defaultTiedStatus: number
 }
