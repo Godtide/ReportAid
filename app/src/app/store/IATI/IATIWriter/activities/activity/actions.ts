@@ -17,7 +17,7 @@ export const setActivity = (details: ActivityProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
 
     const state = getState()
-    const activitiesContract = state.chainContracts.data.contracts.activities
+    const activityContract = state.chainContracts.data.contracts.activity
 
     let activityRef = details.activityRef
     if ( activityRef == "" ) {
@@ -52,8 +52,8 @@ export const setActivity = (details: ActivityProps) => {
     let actionType = IATIWriterActionTypes.ACTIVITY_FAILURE
     let txData: TxReport = {}
     try {
-      //console.log("Setting activities: ", activitiesRef, activitiesRef.length, activities)
-      const tx = await activitiesContract.setActivity(details.activitiesRef, activityRef, activity)
+      console.log("Setting activity: ", details.activitiesRef, activityRef, activity)
+      const tx = await activityContract.setActivity(details.activitiesRef, activityRef, activity)
       const key = tx.hash
       txData = {
         [key]: {

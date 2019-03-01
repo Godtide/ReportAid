@@ -256,14 +256,7 @@ export class ActivityForm extends React.Component<ActivityFormProps> {
                     component={Select}
                     options={Helpers.status}
                   />
-                  <ErrorMessage name='scope' />
-                  <Field
-                    name="scope"
-                    label={ActivityStrings.scope}
-                    component={Select}
-                    options={Helpers.scope}
-                  />
-                  <ErrorMessage name='scope' />
+                  <ErrorMessage name='status' />
                   <Field
                     name="scope"
                     label={ActivityStrings.scope}

@@ -31,8 +31,8 @@ contract IATIActivity is Activity {
              _activity.collaborationType > uint8(CollaborationType.NONE) &&
              _activity.collaborationType < uint8(CollaborationType.MAX) &&
              _activity.defaultAidType[0] != 0 &&
-             _activity.defaulTiedStatus > uint8(TiedStatus.NONE) &&
-             _activity.defaulTiedStatus < uint8(TiedStatus.MAX));
+             _activity.defaultTiedStatus > uint8(TiedStatus.NONE) &&
+             _activity.defaultTiedStatus < uint8(TiedStatus.MAX));
 
     activities[_activitiesRef][activityRef] = _activity;
 
@@ -166,7 +166,7 @@ contract IATIActivity is Activity {
   function getDefaultTiedStatus(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
 
-  	return activities[_activitiesRef][_activityRef].defaulTiedStatus;
+  	return activities[_activitiesRef][_activityRef].defaultTiedStatus;
   }
 
 }
