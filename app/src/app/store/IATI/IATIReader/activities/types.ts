@@ -23,3 +23,35 @@ export interface IATIActivitiesReport {
 export interface IATIActivitiesReportProps extends PayloadProps {
   data: IATIActivitiesReport
 }
+
+export interface IATIActivityData {
+  identifier: string
+  reportingOrgRef: string
+  reportingOrgType: number
+  reportingOrgIsSecondary: boolean
+  title: string
+  lastUpdated: string
+  lang: string
+  currency: string
+  humanitarian: boolean
+  hierarchy: number
+  linkedData: string
+  budgetNotProvided: number
+  status: number
+  scope: number
+  capitalSpend: number
+  collaborationType: number
+  defaultFlowType: number
+  defaultFinanceType: number
+  defaultAidType: string
+  defaulTiedStatus: number
+}
+
+export interface IATIActivityReport {
+  activitiesRef: string
+  data: Array<IATIActivityData>
+}
+
+export interface IATIActivityReportProps extends PayloadProps {
+  data: IATIActivityReport
+}

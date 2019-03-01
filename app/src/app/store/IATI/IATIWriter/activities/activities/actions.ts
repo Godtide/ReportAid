@@ -51,7 +51,7 @@ export const setActivities = (details: ActivitiesProps) => {
           info: {}
         }
       }
-      console.log('set error', error)
+      console.log('set activities error', error)
     }
 
     dispatch(write({data: {data: txData}})(actionType))
