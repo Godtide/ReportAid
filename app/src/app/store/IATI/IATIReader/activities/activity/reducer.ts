@@ -8,7 +8,7 @@ const initialState: PayloadProps = {
 export const reducer = (state: PayloadProps = initialState, action: ActionProps): PayloadProps => {
 
   switch (action.type) {
-    case IATIReportActionTypes.ORGANISATIONPICKER_SUCCESS: {
+    case IATIReportActionTypes.ACTIVITYPICKER_SUCCESS: {
       const data = (action.payload.data as PayloadProps)
       return {...state, ...data}
     }
