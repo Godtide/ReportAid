@@ -13,8 +13,8 @@ export const read = (payload: PayloadProps): Function => {
   }
 }
 
-export const initialise = (props: IATIReportActionTypes) => {
+export const initialise = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
-    await dispatch(read({data: { data: {} }})(props))
+    await dispatch(read({data: { data: {} }})(IATIReportActionTypes.REPORT_INIT))
   }
 }

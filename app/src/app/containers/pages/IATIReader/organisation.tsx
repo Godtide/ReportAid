@@ -15,9 +15,10 @@ import FormControl from '@material-ui/core/FormControl'
 import { OrganisationsPicker } from '../../../components/io/organisationsPicker'
 import { FormData } from '../../../store/helpers/forms/types'
 
+import { initialise } from '../../../store/IATI/IATIReader/actions'
 import { getDictEntries } from '../../../components/io/dict'
 import { setFormFunctions } from '../../../store/helpers/forms/actions'
-import { initialise, getOrganisation } from '../../../store/IATI/IATIReader/organisations/organisation/actions'
+import { getOrganisation } from '../../../store/IATI/IATIReader/organisations/organisation/actions'
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'

@@ -11,13 +11,6 @@ import { IATIOrganisationsReportProps } from '../types'
 
 import { read } from '../../actions'
 
-export const initialise = () => {
-  return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
-    const initData: any = { data: {} }
-    await dispatch(read({data: initData})(IATIReportActionTypes.ORGANISATIONS_INIT))
-  }
-}
-
 export const getOrganisations = () => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
 

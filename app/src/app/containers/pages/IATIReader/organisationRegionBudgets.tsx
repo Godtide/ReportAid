@@ -17,8 +17,9 @@ import { OrganisationsPicker } from '../../../components/io/organisationsPicker'
 import { OrganisationPicker } from '../../../components/io/organisationPicker'
 import { FormData } from '../../../store/helpers/forms/types'
 
+import { initialise } from '../../../store/IATI/IATIReader/actions'
 import { setFormFunctions } from '../../../store/helpers/forms/actions'
-import { initialise, getRegionBudgets } from '../../../store/IATI/IATIReader/organisations/organisationRegionBudgets/actions'
+import { getRegionBudgets } from '../../../store/IATI/IATIReader/organisations/organisationRegionBudgets/actions'
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'

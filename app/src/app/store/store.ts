@@ -8,11 +8,11 @@ import { ActionProps, PayloadProps, TxProps } from './types'
 import { KeyProps } from './helpers/keys/types'
 import { FormProps } from './helpers/forms/types'
 
-import { IATIOrgReportProps,
+/*import { IATIOrgReportProps,
          IATIOrganisationsReportProps,
          IATIOrganisationReportProps,
          IATIOrganisationDocReportProps } from './IATI/IATIReader/organisations/types'
-import { IATIBudgetReportProps } from './IATI/IATIReader/types'
+import { IATIBudgetReportProps } from './IATI/IATIReader/types'*/
 
 import { IATIActivitiesReportProps } from './IATI/IATIReader/activities/types'
 
@@ -29,18 +29,7 @@ import { reducer as accountReducer } from './blockchain/account/reducer'
 import { reducer as contractReducer } from './blockchain/contracts/reducer'
 import { reducer as infoReducer } from './info/reducer'
 
-import { reducer as orgsReaderReducer } from './IATI/IATIReader/organisations/orgs/reducer'
-import { reducer as organisationsReaderReducer } from './IATI/IATIReader/organisations/organisations/reducer'
-import { reducer as organisationReaderReducer } from './IATI/IATIReader/organisations/organisation/reducer'
-import { reducer as organisationDocsReaderReducer } from './IATI/IATIReader/organisations/organisationDocs/reducer'
-import { reducer as organisationBudgetsReaderReducer } from './IATI/IATIReader/organisations/organisationBudgets/reducer'
-import { reducer as organisationExpenditureReaderReducer } from './IATI/IATIReader/organisations/organisationExpenditure/reducer'
-import { reducer as organisationRecipientBudgetsReaderReducer } from './IATI/IATIReader/organisations/organisationRecipientBudgets/reducer'
-import { reducer as organisationRegionBudgetsReaderReducer } from './IATI/IATIReader/organisations/organisationRegionBudgets/reducer'
-import { reducer as organisationCountryBudgetsReaderReducer } from './IATI/IATIReader/organisations/organisationCountryBudgets/reducer'
-
-import { reducer as activitiesReaderReducer } from './IATI/IATIReader/activities/activities/reducer'
-
+import { reducer as readerReducer } from './IATI/IATIReader/reducer'
 import { reducer as writerReducer } from './IATI/IATIWriter/reducer'
 
 export type ThunkResult<R> = ThunkAction<R, ApplicationState, null, any>
@@ -53,16 +42,16 @@ export interface ApplicationState {
   keys: KeyProps
   forms: FormProps
   writerForms: PayloadProps
-  orgsReader: IATIOrgReportProps
-  organisationsReader: IATIOrganisationsReportProps
-  organisationReader: IATIOrganisationReportProps
-  organisationDocsReader: IATIOrganisationDocReportProps
-  organisationBudgetsReader: IATIBudgetReportProps
-  organisationExpenditureReader: IATIBudgetReportProps
-  organisationRecipientBudgetsReader: IATIBudgetReportProps
-  organisationRegionBudgetsReader: IATIBudgetReportProps
-  organisationCountryBudgetsReader: IATIBudgetReportProps
-  activitiesReader: IATIActivitiesReportProps
+  orgsReader: PayloadProps
+  organisationsReader: PayloadProps
+  organisationReader: PayloadProps
+  organisationDocsReader: PayloadProps
+  organisationBudgetsReader: PayloadProps
+  organisationExpenditureReader: PayloadProps
+  organisationRecipientBudgetsReader: PayloadProps
+  organisationRegionBudgetsReader: PayloadProps
+  organisationCountryBudgetsReader: PayloadProps
+  activitiesReader: PayloadProps
 }
 
 export const rootReducer: Reducer<ApplicationState, ActionProps> = combineReducers<ApplicationState, ActionProps>({
@@ -73,16 +62,16 @@ export const rootReducer: Reducer<ApplicationState, ActionProps> = combineReduce
   keys: keyReducer,
   forms: formReducer,
   writerForms: writerReducer,
-  orgsReader: orgsReaderReducer,
-  organisationsReader: organisationsReaderReducer,
-  organisationReader: organisationReaderReducer,
-  organisationDocsReader: organisationDocsReaderReducer,
-  organisationBudgetsReader: organisationBudgetsReaderReducer,
-  organisationExpenditureReader: organisationExpenditureReaderReducer,
-  organisationRecipientBudgetsReader: organisationRecipientBudgetsReaderReducer,
-  organisationRegionBudgetsReader: organisationRegionBudgetsReaderReducer,
-  organisationCountryBudgetsReader: organisationCountryBudgetsReaderReducer,
-  activitiesReader: activitiesReaderReducer
+  orgsReader: readerReducer,
+  organisationsReader: readerReducer,
+  organisationReader: readerReducer,
+  organisationDocsReader: readerReducer,
+  organisationBudgetsReader: readerReducer,
+  organisationExpenditureReader: readerReducer,
+  organisationRecipientBudgetsReader: readerReducer,
+  organisationRegionBudgetsReader: readerReducer,
+  organisationCountryBudgetsReader: readerReducer,
+  activitiesReader: readerReducer
 })
 
 export function configureStore(
