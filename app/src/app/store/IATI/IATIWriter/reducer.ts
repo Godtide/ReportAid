@@ -1,20 +1,15 @@
 import { IATIWriterActionTypes } from './types'
-import { ActionProps, PayloadProps, TxProps, TxReport } from '../../types'
+import { ActionProps, PayloadProps } from '../../types'
 
-const initialState: TxProps = {
-  data: {
-    '': {
-      summary: '',
-      info: {}
-    }
-  }
+const initialState: PayloadProps = {
+  data: {}
 }
 
-export const reducer = (state: TxProps = initialState, action: ActionProps): TxProps => {
+export const reducer = (state: PayloadProps = initialState, action: ActionProps): PayloadProps => {
 
   switch (action.type) {
     case IATIWriterActionTypes.TX_INIT: {
-      const data = action.payload.data as TxProps
+      const data = action.payload.data as PayloadProps
       return data
     }
     case IATIWriterActionTypes.ORGS_SUCCESS:
@@ -37,7 +32,7 @@ export const reducer = (state: TxProps = initialState, action: ActionProps): TxP
     case IATIWriterActionTypes.TOTALEXPENDITURE_FAILURE:
     case IATIWriterActionTypes.DOCUMENT_FAILURE:
     case IATIWriterActionTypes.ACTIVITIES_FAILURE: {
-      const data = (action.payload.data as TxReport)
+      const data = (action.payload.data as PayloadProps)
       return {...state, ...data}
     }
     default:

@@ -3,7 +3,7 @@ import { combineReducers, Reducer, Store, createStore, applyMiddleware } from 'r
 //import thunkMiddleware, { ThunkAction } from 'redux-thunk'
 import ReduxThunk, { ThunkAction } from 'redux-thunk'
 
-import { ActionProps, TxProps } from './types'
+import { ActionProps, PayloadProps, TxProps } from './types'
 
 import { KeyProps } from './helpers/keys/types'
 import { FormProps } from './helpers/forms/types'
@@ -52,7 +52,7 @@ export interface ApplicationState {
   info: InfoPageProps
   keys: KeyProps
   forms: FormProps
-  writerForms: TxProps
+  writerForms: PayloadProps
   orgsReader: IATIOrgReportProps
   organisationsReader: IATIOrganisationsReportProps
   organisationReader: IATIOrganisationReportProps
