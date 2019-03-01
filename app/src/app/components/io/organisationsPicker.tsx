@@ -47,11 +47,10 @@ class Organisations extends React.Component<OrganisationsPickerProps> {
   render() {
 
     let organisationsRefs: any[] = [{ value: "", label: "" }]
-    console.log ('rendering', this.props.organisations)
     if(typeof this.props.organisations != "undefined" &&
        this.props.organisations.hasOwnProperty('data')) {
-      console.log ('rendering', this.props.organisations)
 
+      //console.log ('rendering', this.props.organisations)
       const organisations: Array<IATIOrganisationsData> = this.props.organisations.data
       for (let i = 0; i < organisations.length; i++) {
        const label = organisations[i].organisationsRef

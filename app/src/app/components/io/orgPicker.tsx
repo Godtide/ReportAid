@@ -42,8 +42,8 @@ class Org extends React.Component<OrgPickerProps> {
     let orgRefs : any[] = [{ value: "", label: "" }]
     if(typeof this.props.orgs != "undefined" &&
        this.props.orgs.hasOwnProperty('data')) {
-         
-      console.log('Orgs: ', this.props.orgs)
+
+      //console.log('Orgs: ', this.props.orgs)
       const orgs: Array<IATIOrgData> = this.props.orgs.data
       for (let i = 0; i < orgs.length; i++) {
         const label = orgs[i].name
