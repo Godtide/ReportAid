@@ -34,14 +34,13 @@ export const getActivities = () => {
       const numActivities = num.toNumber()
       for (let i = 0; i < numActivities; i++) {
          const activitiesRef = await activitiesContract.getReference(i.toString())
-         console.log('Activities: ', activitiesRef, numActivities)
-
+         //console.log('Activities: ', activitiesRef, activitiesRef.length, numActivities)
          const activities: IATIActivitiesProps = await activitiesContract.getActivities(activitiesRef)
          activitiesData.data.data[i] = {
            activitiesRef: activitiesRef,
            version: ethers.utils.parseBytes32String(activities.version),
            generatedTime:  ethers.utils.parseBytes32String(activities.generatedTime),
-           linkedData: ethers.utils.formatBytes32String(activities.linkedData),
+           linkedData: ethers.utils.parseBytes32String(activities.linkedData),
          }
 
          actionType = IATIReportActionTypes.ACTIVITIES_SUCCESS

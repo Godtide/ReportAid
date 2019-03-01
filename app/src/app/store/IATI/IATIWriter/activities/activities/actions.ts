@@ -24,7 +24,7 @@ export const setActivities = (details: ActivitiesProps) => {
       activitiesRef = ethers.utils.formatBytes32String(shortid.generate())
     }
 
-    const organisations: IATIActivitiesProps = {
+    const activities: IATIActivitiesProps = {
       version: ethers.utils.formatBytes32String(details.version),
       generatedTime: ethers.utils.formatBytes32String(new Date().toISOString()),
       linkedData: ethers.utils.formatBytes32String(details.linkedData),
@@ -33,8 +33,8 @@ export const setActivities = (details: ActivitiesProps) => {
     let actionType = IATIWriterActionTypes.ACTIVITIES_FAILURE
     let txData: TxReport = {}
     try {
-      // set(bytes32 _reference, bytes32 _orgRef, bytes32 _reportingOrgRef, bytes32 _version, bytes32 _generatedTime)
-      const tx = await activitiesContract.setActivities(activitiesRef, organisations)
+      //console.log("Setting activities: ", activitiesRef, activitiesRef.length, activities)
+      const tx = await activitiesContract.setActivities(activitiesRef, activities)
       const key = tx.hash
       txData = {
         [key]: {
@@ -42,6 +42,7 @@ export const setActivities = (details: ActivitiesProps) => {
           info: tx
         }
       }
+
       actionType = IATIWriterActionTypes.ACTIVITIES_SUCCESS
     } catch (error) {
       txData = {

@@ -33,6 +33,7 @@ export const setOrg = (details: OrgProps) => {
     let txData: TxReport = {}
 
     try {
+      //console.log("Setting orgs: ", orgRef, orgRef.length, org)
       const tx = await orgsContract.setOrg(orgRef, org)
       const key = tx.hash
       txData = {

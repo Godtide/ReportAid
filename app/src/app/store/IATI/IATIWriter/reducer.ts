@@ -26,6 +26,7 @@ export const reducer = (state: TxProps = initialState, action: ActionProps): TxP
     case IATIWriterActionTypes.RECIPIENTCOUNTRYBUDGET_SUCCESS:
     case IATIWriterActionTypes.TOTALEXPENDITURE_SUCCESS:
     case IATIWriterActionTypes.DOCUMENT_SUCCESS:
+    case IATIWriterActionTypes.ACTIVITIES_SUCCESS:
     case IATIWriterActionTypes.ORGS_FAILURE:
     case IATIWriterActionTypes.ORGANISATIONS_FAILURE:
     case IATIWriterActionTypes.ORGANISATION_FAILURE:
@@ -34,7 +35,8 @@ export const reducer = (state: TxProps = initialState, action: ActionProps): TxP
     case IATIWriterActionTypes.RECIPIENTREGIONBUDGET_FAILURE:
     case IATIWriterActionTypes.RECIPIENTCOUNTRYBUDGET_FAILURE:
     case IATIWriterActionTypes.TOTALEXPENDITURE_FAILURE:
-    case IATIWriterActionTypes.DOCUMENT_FAILURE: {
+    case IATIWriterActionTypes.DOCUMENT_FAILURE:
+    case IATIWriterActionTypes.ACTIVITIES_FAILURE: {
       const data = (action.payload.data as TxReport)
       return {...state, ...data}
     }
