@@ -11,7 +11,7 @@ import { IATIActivitiesReportProps } from '../types'
 
 import { read } from '../../actions'
 
-export const getActivities = () => {
+export const getActivities = (isReport: boolean) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
 
     const state = getState()
@@ -36,7 +36,10 @@ export const getActivities = () => {
            linkedData: ethers.utils.parseBytes32String(activities.linkedData),
          }
 
-         actionType = IATIReportActionTypes.ACTIVITIES_SUCCESS
+         actionType = IATIReportActionTypes.ACTIVITIESPICKER_SUCCESS
+         if(isReport) {
+          actionType = IATIReportActionTypes.ACTIVITIES_SUCCESS
+         }
       }
     } catch (error) {
       console.log('getActivities error', error)

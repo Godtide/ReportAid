@@ -120,6 +120,35 @@ class Activities {
   static activitiesDetails = 'Activities Reports Details'
 }
 
+class Activity {
+
+  static headingActivityWriter = 'Write Activity'
+  static headingActivityReader = 'Read Activity'
+
+  static activitiesReference = "Activities Reference"
+  static activityReference = "Activity Reference"
+
+  static identifier = "Activity Identifier"
+  static reportingOrgRef = 'Reporting Organisation'
+  static reportingOrgType = "Reporting Organisation Type"
+  static reportingOrgIsSecondary = "Is Reporting Organisation Secondary?"
+  static lastUpdated = "Last Updated"
+  static language = "Language"
+  static currency = "Currency"
+  static humanitarian = "Is Humanitarian?"
+  static hierarchy = "Hierarchy"
+  static linkedData = "Linked Data URL"
+  static budgetNotProvided = "Budget Not Provided"
+  static status = "Status"
+  static scope = "Scope"
+  static capitalSpend = "Capital Spend"
+  static collaborationType = "Collaboration Type"
+  static defaultFlowType = "Default Flow Type"
+  static defaultFinanceType = "Default Finance Type"
+  static defaultAidType = "Default Aid Type"
+  static defaulTiedStatus = "Defaul Tied Status"
+}
+
 class Org {
 
   static headingOrgWriter = 'Create Organisation'

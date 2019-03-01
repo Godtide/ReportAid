@@ -284,6 +284,142 @@ class Contract {
 
 class Helpers {
 
+  static defaultAidType = [
+    { value: 1, label: "OECD DAC" },
+    { value: 2, label: "Earmarking Category" },
+    { value: 3, label: "Earmarking Modality" }
+  ]
+
+  static defaultFinanceType = [
+    { value: 1, label: "GNI: Gross National Income" },
+    { value: 110, label: "Standard grant" },
+    { value: 1100, label: "Guarantees/insurance" },
+    { value: 111, label: "Subsidies to national private investors" },
+    { value: 2, label: "ODA % GNI" },
+    { value: 210, label: "Interest subsidy" },
+    { value: 211, label: "Interest subsidy to national private exporters" },
+    { value: 3, label: "Total Flows % GNI" },
+    { value: 310, label: "Capital subscription on deposit basis" },
+    { value: 311, label: "Capital subscription on encashment basis" },
+    { value: 4, label: "Population" },
+    { value: 410, label: "Aid loan excluding debt reorganisation" },
+    { value: 411, label: "Investment-related loan to developing countries" },
+    { value: 412, label: "Loan in a joint venture with the recipient" },
+    { value: 413, label: "Loan to national private investor" },
+    { value: 414, label: "Loan to national private exporter" },
+    { value: 421, label: "Standard loan" },
+    { value: 422, label: "Reimbursable grant" },
+    { value: 423, label: "Bonds" },
+    { value: 424, label: "Asset-backed securities" },
+    { value: 425, label: "Other debt securities" },
+    { value: 431, label: "Subordinated loan" },
+    { value: 432, label: "Preferred equity" },
+    { value: 433, label: "Other hybrid instruments" },
+    { value: 451, label: "Non-banks guaranteed export credits" },
+    { value: 452, label: "Non-banks non-guaranteed portions of guaranteed export credits" },
+    { value: 453, label: "Bank export credits" },
+    { value: 510, label: "Common equity" },
+    { value: 511, label: "Acquisition of equity not part of joint venture in developing countries" },
+    { value: 512, label: "Other acquisition of equity" },
+    { value: 520, label: "Shares in collective investment vehicles" },
+    { value: 530, label: "Reinvested earnings" },
+    { value: 610, label: "Debt forgiveness: ODA claims (P)" },
+    { value: 611, label: "Debt forgiveness: ODA claims (I)" },
+    { value: 612, label: "Debt forgiveness: OOF claims (P)" },
+    { value: 613, label: "Debt forgiveness: OOF claims (I)" },
+    { value: 614, label: "Debt forgiveness: Private claims (P)" },
+    { value: 615, label: "Debt forgiveness: Private claims (I)" },
+    { value: 616, label: "Debt forgiveness: OOF claims (DSR)" },
+    { value: 617, label: "Debt forgiveness: Private claims (DSR)" },
+    { value: 618, label: "Debt forgiveness: Other" },
+    { value: 620, label: "Debt rescheduling: ODA claims (P)" },
+    { value: 621, label: "Debt rescheduling: ODA claims (I)" },
+    { value: 622, label: "Debt rescheduling: OOF claims (P)" },
+    { value: 623, label: "Debt rescheduling: OOF claims (I)" },
+    { value: 624, label: "Debt rescheduling: Private claims (P)" },
+    { value: 625, label: "Debt rescheduling: Private claims (I)" },
+    { value: 626, label: "Debt rescheduling: OOF claims (DSR)" },
+    { value: 627, label: "Debt rescheduling: Private claims (DSR)" },
+    { value: 630, label: "Debt rescheduling: OOF claim (DSR – original loan principal)" },
+    { value: 631, label: "Debt rescheduling: OOF claim (DSR – original loan interest)" },
+    { value: 632, label: "Debt rescheduling: Private claim (DSR – original loan principal)" },
+    { value: 633, label: "Debt forgiveness/conversion: export credit claims (P)" },
+    { value: 634, label: "Debt forgiveness/conversion: export credit claims (I)" },
+    { value: 635, label: "Debt forgiveness: export credit claims (DSR)" },
+    { value: 636, label: "Debt rescheduling: export credit claims (P)" },
+    { value: 637, label: "Debt rescheduling: export credit claims (I)" },
+    { value: 638, label: "Debt rescheduling: export credit claims (DSR)" },
+    { value: 639, label: "Debt rescheduling: export credit claim (DSR – original loan principal)" },
+    { value: 710, label: "Foreign direct investment, new capital outflow (includes reinvested earnings if separate identification not available)" },
+    { value: 711, label: "Other foreign direct investment, including reinvested earnings" },
+    { value: 712, label: "Foreign direct investment, reinvested earnings" },
+    { value: 810, label: "Bank bonds" },
+    { value: 811, label: "Non-bank bonds" },
+    { value: 910, label: "Other bank securities/claims" },
+    { value: 911, label: "Other non-bank securities/claims" },
+    { value: 912, label: "Purchase of securities from issuing agencies" },
+    { value: 913, label: "Securities and other instruments originally issued by multilateral agencies" }
+  ]
+
+
+  static hierarchy = [
+     { value: 1, label: "ACTIVITY" },
+     { value: 2, label: "SUBACTIVITY" },
+     { value: 3, label: "SUBSUBACTIVITY" }
+  ]
+
+  static budgetNotProvided = [
+     { value: 1, label: "COMMERCIALRESTRICTIONS" },
+     { value: 2, label: "LEGALRESTRICTIONS" },
+     { value: 3, label: "RAPIDONSETEMERGENCY" }
+  ]
+
+  static status = [
+     { value: 1, label: "PIPELINEIDENTIFICATION" },
+     { value: 2, label: "IMPLEMENTATION" },
+     { value: 3, label: "FINALISATION" },
+     { value: 4, label: "CLOSED" },
+     { value: 5, label: "CANCELLED" },
+     { value: 6, label: "SUSPENDED" }
+  ]
+
+  static scope = [
+     { value: 1, label: "GLOBAL" },
+     { value: 2, label: "REGIONAL" },
+     { value: 3, label: "MULTINATIONAL" },
+     { value: 4, label: "NATIONAL" },
+     { value: 5, label: "SUBNATIONALMULTIFIRSTLEVEL" },
+     { value: 6, label: "SUBNATIONALSINGLEFIRSTLEVEL" },
+     { value: 7, label: "SUBNATIONALSINGLESECONDLEVEL" }
+  ]
+
+  static collaborationType = [
+     { value: 1, label: "BILATERAL" },
+     { value: 2, label: "MULTILATERALINFLOWS" },
+     { value: 3, label: "BILATERALPRIVATE" },
+     { value: 4, label: "MULTILATERALOUTFLOWS" },
+     { value: 5, label: "PRIVATEOUTFLOWS" },
+     { value: 6, label: "BILATERALCOREFUNDED" },
+     { value: 7, label: "TRIANGULAR" }
+  ]
+
+  static defaultFlowType = [
+    { value: 10, label: "ODA" },
+    { value: 21, label: "Other Official Flows" },
+    { value: 22, label: "Officially supported export credits" },
+    { value: 30, label: "Private Development Finance" },
+    { value: 36, label: "Private Foreign Direct Investment" },
+    { value: 37, label: "Other Private flows at market terms" },
+    { value: 40, label: "Non flow" },
+    { value: 50, label: "Other flows" }
+  ]
+
+  static tiedStatus = [
+     { value: 1, label: "PARTIALLYTIED" },
+     { value: 2, label: "TIED" },
+     { value: 3, label: "UNTIED" }
+  ]
+
   static dateCodes = [
     { value: 1, label: "Planned Start" },
     { value: 2, label: "Actual Start" },
