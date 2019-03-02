@@ -22,8 +22,7 @@ import { getOrganisation } from '../../../store/IATI/IATIReader/organisations/or
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { IATIOrganisationReport } from '../../../store/IATI/IATIReader/organisations/types'
-import { OrganisationReportProps } from '../../../store/IATI/IATIReader/organisations/types'
+import { IATIOrganisationReport, OrganisationReportProps } from '../../../store/IATI/types'
 
 import { Organisation as OrganisationStrings } from '../../../utils/strings'
 

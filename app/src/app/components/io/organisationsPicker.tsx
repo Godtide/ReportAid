@@ -15,7 +15,7 @@ import { setOrganisationsKey } from '../../store/helpers/keys/actions'
 import { getOrganisations } from '../../store/IATI/IATIReader/organisations/organisations/actions'
 
 import { IATIOrganisationsReport,
-         IATIOrganisationsData } from '../../store/IATI/IATIReader/organisations/types'
+         IATIOrganisationsData } from '../../store/IATI/types'
 
 interface OrganisationsFormProps {
   setValue: Function

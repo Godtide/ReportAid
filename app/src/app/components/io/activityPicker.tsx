@@ -12,8 +12,7 @@ import { Select } from "material-ui-formik-components"
 import { setActivityKey } from '../../store/helpers/keys/actions'
 import { getActivity } from '../../store/IATI/IATIReader/activities/activity/actions'
 
-import { IATIActivityReport, IATIActivityData, ActivityReportProps } from '../../store/IATI/IATIReader/activities/types'
-import { ActivityProps } from '../../store/IATI/IATIWriter/activities/types'
+import { IATIActivityReport, IATIActivityData, ActivityReportProps, ActivityProps } from '../../store/IATI/types'
 
 interface ActivityFormProps {
   setValue: Function

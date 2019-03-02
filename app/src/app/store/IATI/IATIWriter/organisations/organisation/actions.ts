@@ -8,9 +8,7 @@ import { ApplicationState } from '../../../../store'
 import { write } from '../../actions'
 
 import { ActionProps, TxReport } from '../../../../types'
-import { OrganisationProps, IATIOrganisationProps } from '../types'
-import { IATIWriterActionTypes } from '../../types'
-
+import { OrganisationProps, IATIOrganisationProps, IATIWriterActionTypes} from '../../../types'
 
 import { Transaction } from '../../../../../utils/strings'
 

@@ -15,7 +15,7 @@ import { setActivitiesKey } from '../../store/helpers/keys/actions'
 import { getActivities } from '../../store/IATI/IATIReader/activities/activities/actions'
 
 import { IATIActivitiesReport,
-         IATIActivitiesData } from '../../store/IATI/IATIReader/activities/types'
+         IATIActivitiesData } from '../../store/IATI/types'
 
 interface ActivitiesFormProps {
   setValue: Function

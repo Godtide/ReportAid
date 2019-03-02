@@ -10,7 +10,7 @@ import { getOrganisations } from '../../../store/IATI/IATIReader/organisations/o
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { IATIOrganisationsReport } from '../../../store/IATI/IATIReader/organisations/types'
+import { IATIOrganisationsReport } from '../../../store/IATI/types'
 
 import { Organisations as OrganisationsStrings } from '../../../utils/strings'
 

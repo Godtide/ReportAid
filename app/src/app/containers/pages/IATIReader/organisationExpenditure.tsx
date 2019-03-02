@@ -23,8 +23,7 @@ import { getExpenditure } from '../../../store/IATI/IATIReader/organisations/org
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { IATIBudgetReport } from '../../../store/IATI/IATIReader/types'
-import { OrganisationsReportProps } from '../../../store/IATI/IATIReader/organisations/types'
+import { IATIBudgetReport, OrganisationsReportProps } from '../../../store/IATI/types'
 
 import { OrganisationExpenditure as OrganisationExpenditureStrings } from '../../../utils/strings'
 

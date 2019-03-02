@@ -65,33 +65,31 @@ contract Activity {
   }
 
   struct ReportingOrg {
-    bytes32 orgRef;
     uint8 orgType;
     bool isSecondary;
+    bytes32 orgRef;
   }
 
   struct OrgActivity {
-    string identifier;
-    ReportingOrg reportingOrg;
-    string title;
-    bytes32 lastUpdated;
-    bytes32 lang;
-    bytes32 currency;
     bool humanitarian;
     uint8 hierarchy;
-    bytes32 linkedData;
     uint8 budgetNotProvided;
     uint8 status;
     uint8 scope;
     uint8 capitalSpend;
     uint8 collaborationType;
     uint8 defaultFlowType;
-    uint256 defaultFinanceType;
-    bytes32 defaultAidType;
     uint8 defaultTiedStatus;
+    ReportingOrg reportingOrg;
+    uint256 defaultFinanceType;
+    bytes32 lastUpdated;
+    bytes32 lang;
+    bytes32 currency;
+    bytes32 linkedData;
+    bytes32 identifier;
+    bytes32 defaultAidType;
+    string title;
   }
-
-  event SetActivity(bytes32 _activitiesRef, bytes32 activityRef, OrgActivity _activity);
 
   function setActivity(bytes32 _activitiesRef, bytes32 activityRef, OrgActivity memory _activity) public;
 
@@ -100,7 +98,7 @@ contract Activity {
 
   function getActivity(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (OrgActivity memory);
 
-  function getIdentifier(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (string memory);
+  function getIdentifier(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32);
   function getReportingOrg(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (ReportingOrg memory);
   function getTitle(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (string memory);
   function getLastUpdatedTime(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32);

@@ -22,8 +22,7 @@ import { getActivity } from '../../../store/IATI/IATIReader/activities/activity/
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { IATIActivityReport } from '../../../store/IATI/IATIReader/activities/types'
-import { ActivityReportProps } from '../../../store/IATI/IATIReader/activities/types'
+import { IATIActivityReport, ActivityReportProps } from '../../../store/IATI/types'
 
 import { Activity as ActivityStrings } from '../../../utils/strings'
 

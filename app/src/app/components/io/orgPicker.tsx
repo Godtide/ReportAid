@@ -10,7 +10,7 @@ import { Field, ErrorMessage} from 'formik'
 import { Select } from "material-ui-formik-components"
 
 import { getOrgs } from '../../store/IATI/IATIReader/organisations/orgs/actions'
-import { IATIOrgReport, IATIOrgData } from '../../store/IATI/IATIReader/organisations/types'
+import { IATIOrgReport, IATIOrgData } from '../../store/IATI/types'
 
 interface OrgProps {
   name: string

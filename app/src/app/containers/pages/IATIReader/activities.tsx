@@ -10,7 +10,7 @@ import { getActivities } from '../../../store/IATI/IATIReader/activities/activit
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { IATIActivitiesReport } from '../../../store/IATI/IATIReader/activities/types'
+import { IATIActivitiesReport } from '../../../store/IATI/types'
 
 import { Activities as ActivitiesStrings } from '../../../utils/strings'
 

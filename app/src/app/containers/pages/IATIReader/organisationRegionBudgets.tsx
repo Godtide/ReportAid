@@ -23,8 +23,7 @@ import { getRegionBudgets } from '../../../store/IATI/IATIReader/organisations/o
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { IATIBudgetReport } from '../../../store/IATI/IATIReader/types'
-import { OrganisationsReportProps } from '../../../store/IATI/IATIReader/organisations/types'
+import { IATIBudgetReport, OrganisationsReportProps } from '../../../store/IATI/types'
 
 import { OrganisationRegionBudget as OrganisationRegionBudgetStrings } from '../../../utils/strings'
 

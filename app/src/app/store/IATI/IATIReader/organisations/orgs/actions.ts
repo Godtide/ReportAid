@@ -4,9 +4,7 @@ import { storeAction } from '../../../../actions'
 import { ApplicationState } from '../../../../store'
 import { ActionProps, PayloadProps} from '../../../../types'
 
-import { IATIOrgProps } from '../../../IATIWriter/organisations/types'
-import { IATIReportActionTypes } from '../../types'
-import { IATIOrgReportProps } from '../types'
+import { IATIOrgProps, IATIReportActionTypes, IATIOrgReportProps } from '../../../types'
 
 import { read } from '../../actions'
 

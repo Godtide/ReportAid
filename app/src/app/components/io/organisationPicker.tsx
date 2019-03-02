@@ -12,8 +12,7 @@ import { Select } from "material-ui-formik-components"
 import { setOrganisationKey } from '../../store/helpers/keys/actions'
 import { getOrganisation } from '../../store/IATI/IATIReader/organisations/organisation/actions'
 
-import { IATIOrganisationReport, IATIOrganisationData, OrganisationReportProps } from '../../store/IATI/IATIReader/organisations/types'
-import { OrganisationProps } from '../../store/IATI/IATIWriter/organisations/types'
+import { IATIOrganisationReport, IATIOrganisationData, OrganisationReportProps,OrganisationProps } from '../../store/IATI/types'
 
 interface OrganisationFormProps {
   setValue: Function

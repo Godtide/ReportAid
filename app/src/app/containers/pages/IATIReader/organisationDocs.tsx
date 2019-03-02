@@ -23,8 +23,7 @@ import { getDocs } from '../../../store/IATI/IATIReader/organisations/organisati
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { IATIOrganisationDocReport } from '../../../store/IATI/IATIReader/organisations/types'
-import { OrganisationsReportProps } from '../../../store/IATI/IATIReader/organisations/types'
+import { IATIOrganisationDocReport, OrganisationsReportProps } from '../../../store/IATI/types'
 
 import { OrganisationDoc as OrganisationDocStrings } from '../../../utils/strings'
 
