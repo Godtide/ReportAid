@@ -22,7 +22,19 @@ contract IATIActivity is Activity {
              _activity.lang[0]  != 0 &&
              _activity.currency[0] != 0 &&
              _activity.hierarchy > uint8(Hierarchy.NONE) &&
-             _activity.hierarchy < uint8(Hierarchy.MAX));
+             _activity.hierarchy < uint8(Hierarchy.MAX) &&
+             _activity.budgetNotProvided >= uint8(BudgetNotProvided.NONE) &&
+             _activity.budgetNotProvided < uint8(BudgetNotProvided.MAX) &&
+             _activity.status > uint8(Status.NONE) &&
+             _activity.status < uint8(Status.MAX) &&
+             _activity.scope >= uint8(Scope.NONE) &&
+             _activity.scope < uint8(Scope.MAX) &&
+             _activity.capitalSpend <= 100 &&
+             _activity.collaborationType > uint8(CollaborationType.NONE) &&
+             _activity.collaborationType < uint8(CollaborationType.MAX) &&
+             _activity.defaultAidType[0] != 0 &&
+             _activity.defaultTiedStatus > uint8(TiedStatus.NONE) &&
+             _activity.defaultTiedStatus < uint8(TiedStatus.MAX));
 
     activities[_activitiesRef][activityRef] = _activity;
 
@@ -51,12 +63,6 @@ contract IATIActivity is Activity {
     return activities[_activitiesRef][_activityRef];
   }
 
-  function getTitle(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32) {
-  	require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
-
-  	return activities[_activitiesRef][_activityRef].title;
-  }
-
   function getIdentifier(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32) {
   	require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
 
@@ -67,6 +73,12 @@ contract IATIActivity is Activity {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
 
   	return activities[_activitiesRef][_activityRef].reportingOrg;
+  }
+
+  function getTitle(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32) {
+  	require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
+
+  	return activities[_activitiesRef][_activityRef].title;
   }
 
   function getLastUpdatedTime(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32) {
@@ -103,6 +115,60 @@ contract IATIActivity is Activity {
   	require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
 
   	return activities[_activitiesRef][_activityRef].linkedData;
+  }
+
+  function getBudgetNotProvided(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8) {
+  	require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
+
+  	return activities[_activitiesRef][_activityRef].budgetNotProvided;
+  }
+
+  function getStatus(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8) {
+  	require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
+
+  	return activities[_activitiesRef][_activityRef].status;
+  }
+
+  function getScope(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8) {
+  	require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
+
+  	return activities[_activitiesRef][_activityRef].scope;
+  }
+
+  function getCapitalSpend(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8) {
+    require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
+
+  	return activities[_activitiesRef][_activityRef].capitalSpend;
+  }
+
+  function getCollaborationType(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8) {
+    require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
+
+  	return activities[_activitiesRef][_activityRef].collaborationType;
+  }
+
+  function getDefaultFlowType(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8) {
+    require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
+
+  	return activities[_activitiesRef][_activityRef].defaultFlowType;
+  }
+
+  function getDefaultFinanceType(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint256) {
+    require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
+
+  	return activities[_activitiesRef][_activityRef].defaultFinanceType;
+  }
+
+  function getDefaultAidType(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32) {
+    require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
+
+  	return activities[_activitiesRef][_activityRef].defaultAidType;
+  }
+
+  function getDefaultTiedStatus(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8) {
+    require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
+
+  	return activities[_activitiesRef][_activityRef].defaultTiedStatus;
   }
 
 }

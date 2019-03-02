@@ -11,59 +11,6 @@ contract Activity {
     MAX
   }
 
-  enum BudgetNotProvided {
-    NONE,
-    COMMERCIALRESTRICTIONS,
-    LEGALRESTRICTIONS,
-    RAPIDONSETEMERGENCY,
-    MAX
-  }
-
-  enum Status {
-    NONE,
-    PIPELINEIDENTIFICATION,
-    IMPLEMENTATION,
-    FINALISATION,
-    CLOSED,
-    CANCELLED,
-    SUSPENDED,
-    MAX
-  }
-
-  enum Scope {
-    NONE,
-    GLOBAL,
-    REGIONAL,
-    MULTINATIONAL,
-    NATIONAL,
-    SUBNATIONALMULTIFIRSTLEVEL,
-    SUBNATIONALSINGLEFIRSTLEVEL,
-    SUBNATIONALSINGLESECONDLEVEL,
-    MAX
-  }
-
-  enum CollaborationType {
-    NONE,
-    BILATERAL,
-    MULTILATERALINFLOWS,
-    BILATERALPRIVATE,
-    MULTILATERALOUTFLOWS,
-    PRIVATEOUTFLOWS,
-    BILATERALCOREFUNDED,
-    TRIANGULAR,
-    MAX
-  }
-
-  enum TiedStatus {
-    UNSPECIFIED,
-    UNSPECIFIEDONE,
-    NONE,
-    PARTIALLYTIED,
-    TIED,
-    UNTIED,
-    MAX
-  }
-
   struct ReportingOrg {
     uint8 orgType;
     bool isSecondary;
@@ -73,21 +20,12 @@ contract Activity {
   struct OrgActivity {
     bool humanitarian;
     uint8 hierarchy;
-    uint8 budgetNotProvided;
-    uint8 status;
-    uint8 scope;
-    uint8 capitalSpend;
-    uint8 collaborationType;
-    uint8 defaultFlowType;
-    uint8 defaultTiedStatus;
     ReportingOrg reportingOrg;
-    uint256 defaultFinanceType;
     bytes32 lastUpdated;
     bytes32 lang;
     bytes32 currency;
     bytes32 linkedData;
     bytes32 identifier;
-    bytes32 defaultAidType;
     bytes32 title;
   }
 
@@ -107,13 +45,4 @@ contract Activity {
   function getHumanitarian(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bool);
   function getHierarchy(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8);
   function getLinkedData(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32);
-  function getBudgetNotProvided(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8);
-  function getStatus(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8);
-  function getScope(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8);
-  function getCapitalSpend(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8);
-  function getCollaborationType(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8);
-  function getDefaultFlowType(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8);
-  function getDefaultFinanceType(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint256);
-  function getDefaultAidType(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32);
-  function getDefaultTiedStatus(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8);
 }

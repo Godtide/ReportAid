@@ -45,19 +45,19 @@ class Blockchain {
 
 class Contract {
 
-  static orgsAddress = "0x9527224408d58592EF7B409C5e120cBd14d97Ce0"
-  static organisationsAddress = "0x1c30798c737422d15f500d6BA916C5FF8dc7514E"
-  static organisationAddress = "0x081eE3dEC3C8d5d5daD5D2F51D77745C1De3b8Ed"
-  static organisationDocsAddress = "0xEe877231D23C19eA59d942140fF8cff1B94421F0"
-  static organisationBudgetsAddress = "0xd001A763017e90B450E281A87Ac9Aa6F802A0F35"
-  static organisationExpenditureAddress = "0xBbaF76E70063e65c49BCE84212817f117AeDeac9"
-  static organisationRecipientBudgetsAddress = "0xc4E51a73be806BC7C6CFa5E2FB1092B3773F6407"
-  static organisationRegionBudgetsAddress = "0xD408E5a3C5db4C15994497A4DbE9Ed6691E9947c"
-  static organisationCountryBudgetsAddress = "0xca5dCd6182bEd3Caac023E1E037e6D1042af1f85"
-  static activitiesAddress = "0x492d641AEf25Fa2Ca768504D444361CAF29Fd59d"
-  static activityAddress = "0xef0d402a5C8b43cdD99C1e3fFB9e2f5Cb2ECE0cA"
-  static activityDatesAddress = "0x27fCC0F0DfFe999Ea3AE852cF6E9003ba0181aa9"
-  static activityParticipatingOrgsAddress = "0xe02358b7C13Cd6b19c45C2670467696cD4F30006"
+  static orgsAddress = "0x145f725Fdc8B64e573Dc551DA1BcB6121a757cCb"
+static organisationsAddress = "0x40D96FA2919585143ee1Da9D2375c5167dF38834"
+static organisationAddress = "0x13Cb6C06A7864E4fa64F594da220ff5Ebf978217"
+static organisationDocsAddress = "0x3d0C38752a5f08e681760c0763EaD82CBC6c1F7d"
+static organisationBudgetsAddress = "0xf230aa2CC59af639272ba770f56AaBe712Da4fD9"
+static organisationExpenditureAddress = "0xC8F235B29E679e48B6748D92bFd5B26e5Ba40923"
+static organisationRecipientBudgetsAddress = "0x8A67fFb1283ff3FB61f315BFa24F9F06d18Cd8c0"
+static organisationRegionBudgetsAddress = "0x45e8F37FD631Bc6a4cAE56b6cb7e7Cd20dcC340e"
+static organisationCountryBudgetsAddress = "0x73e484E7E2959ade4Ffa18D15906C24698Ccab33"
+static activitiesAddress = "0xE2e5B6f127b9bfF8c26dDc878edBec3083Fa96F9"
+static activityAddress = "0x9cf41eeE47Ee3019Dd412a5dE11c959768aC0eA4"
+static activityDatesAddress = "0x879bc50c6CfdE8A7295D4468B73cB25b181366Fb"
+static activityParticipatingOrgsAddress = "0xb7bAF7B661c1e896275729FCA3B1971f22c1620C"
 
   static activitiesABI = [
     "event SetActivities(bytes32 _activitiesRef, tuple(bytes32 version, bytes32 generatedTime, bytes32 linkedData) orgActivities)",
@@ -109,7 +109,7 @@ class Contract {
   static activityABI = [
     "event SetActivity(bytes32 _activitiesRef, bytes32 activityRef, tuple(bool humanitarian, uint8 hierarchy, uint8 budgetNotProvided, uint8 status, uint8 scope, uint8 capitalSpend, uint8 collaborationType, uint8 defaultFlowType, uint8 defaultTiedStatus, tuple(uint8 orgType, bool isSecondary, bytes32 orgRef) reportingOrg, uint256 defaultFinanceType, bytes32 lastUpdated, bytes32 lang, bytes32 currency, bytes32 linkedData, bytes32 identifier, bytes32 defaultAidType, bytes32 title) orgActivity)",
 
-    "function setActivity(bytes32 _activitiesRef, bytes32 activityRef, tuple(bool humanitarian, uint8 hierarchy, uint8 budgetNotProvided, uint8 status, uint8 scope, uint8 capitalSpend, uint8 collaborationType, uint8 defaultFlowType, uint8 defaultTiedStatus, tuple(uint8 orgType, bool isSecondary, bytes32 orgRef) reportingOrg, uint256 defaultFinanceType, bytes32 lastUpdated, bytes32 lang, bytes32 currency, bytes32 linkedData, bytes32 identifier, bytes32 defaultAidType, bytes32 title) orgActivity)@4000000",
+    "function setActivity(bytes32 _activitiesRef, bytes32 activityRef, tuple(bool humanitarian, uint8 hierarchy, uint8 budgetNotProvided, uint8 status, uint8 scope, uint8 capitalSpend, uint8 collaborationType, uint8 defaultFlowType, uint8 defaultTiedStatus, tuple(uint8 orgType, bool isSecondary, bytes32 orgRef) reportingOrg, uint256 defaultFinanceType, bytes32 lastUpdated, bytes32 lang, bytes32 currency, bytes32 linkedData, bytes32 identifier, bytes32 defaultAidType, bytes32 title) orgActivity)@7000000",
 
   	"function getNumActivities(bytes32 _activitiesRef) view returns (uint256)",
   	"function getReference(bytes32 _activitiesRef, uint256 _index) view returns (bytes32)",
