@@ -20,19 +20,32 @@ export const getActivity = (props: ActivityReportProps) => {
       data: { activitiesRef: activitiesRef, data: [] }
     }
 
+    /*
+    budgetNotProvided: activity.budgetNotProvided,
+    status: activity.status,
+    scope: activity.scope,
+    capitalSpend: activity.capitalSpend,
+    collaborationType: activity.collaborationType,
+    defaultFlowType: activity.defaultFlowType,
+    defaultFinanceType: activity.defaultFinanceType,
+    defaultAidType: ethers.utils.parseBytes32String(activity.defaultAidType),
+    defaultTiedStatus: activity.defaultTiedStatus
+    */
+
     let actionType = IATIReportActionTypes.ACTIVITY_FAILURE
     try {
       const num = await activityContract.getNumActivities(activitiesRef)
       const numActivitys = num.toNumber()
       for (let i = 0; i < numActivitys; i++) {
-         const activityRef = await activityContract.getActivityReference(activitiesRef, i.toString())
+         const activityRef = await activityContract.getReference(activitiesRef, i.toString())
          const activity: IATIActivityProps = await activityContract.getActivity(activitiesRef, activityRef)
 
          activityData.data.data[i] = {
            activityRef: activityRef,
            title: ethers.utils.parseBytes32String(activity.title),
+           description: activity.description,
            identifier: ethers.utils.parseBytes32String(activity.identifier),
-           linkedData: activity.linkedData,
+           linkedData: ethers.utils.parseBytes32String(activity.linkedData),
            lang: ethers.utils.parseBytes32String(activity.lang),
            currency: ethers.utils.parseBytes32String(activity.currency),
            lastUpdated: ethers.utils.parseBytes32String(activity.lastUpdated),
@@ -40,16 +53,7 @@ export const getActivity = (props: ActivityReportProps) => {
            reportingOrgType: activity.reportingOrg.orgType,
            reportingOrgIsSecondary: activity.reportingOrg.isSecondary,
            humanitarian: activity.humanitarian,
-           hierarchy: activity.hierarchy,
-           budgetNotProvided: activity.budgetNotProvided,
-           status: activity.status,
-           scope: activity.scope,
-           capitalSpend: activity.capitalSpend,
-           collaborationType: activity.collaborationType,
-           defaultFlowType: activity.defaultFlowType,
-           defaultFinanceType: activity.defaultFinanceType,
-           defaultAidType: ethers.utils.parseBytes32String(activity.defaultAidType),
-           defaultTiedStatus: activity.defaultTiedStatus
+           hierarchy: activity.hierarchy
          }
 
          actionType = IATIReportActionTypes.ACTIVITYPICKER_SUCCESS

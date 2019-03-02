@@ -140,7 +140,14 @@ class Activity {
   static currency = "Currency"
   static humanitarian = "Is Humanitarian?"
   static hierarchy = "Hierarchy"
+  static description = "Description"
   static linkedData = "Linked Data URL"
+
+  static activityDetails = 'Activity Reports Details'
+}
+
+class ActivitySav {
+
   static budgetNotProvided = "Budget Not Provided"
   static status = "Status"
   static scope = "Scope"
@@ -150,8 +157,6 @@ class Activity {
   static defaultFinanceType = "Default Finance Type"
   static defaultAidType = "Default Aid Type"
   static defaultTiedStatus = "Defaul Tied Status"
-
-  static activityDetails = 'Activity Reports Details'
 }
 
 class Org {

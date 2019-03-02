@@ -27,6 +27,7 @@ contract Activity {
     bytes32 linkedData;
     bytes32 identifier;
     bytes32 title;
+    string description;
   }
 
   function setActivity(bytes32 _activitiesRef, bytes32 activityRef, OrgActivity memory _activity) public;
@@ -45,4 +46,5 @@ contract Activity {
   function getHumanitarian(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bool);
   function getHierarchy(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8);
   function getLinkedData(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32);
+  function getDescription(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (string memory);
 }

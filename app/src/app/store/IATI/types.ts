@@ -10,7 +10,7 @@ export interface OrganisationsReportProps {
  organisationRef: string
 }
 
-/* --- */
+/* IATI Organisation Writer */
 
 export interface IATIOrganisationsData {
   organisationsRef: string
@@ -27,14 +27,14 @@ export interface IATIOrganisationsReportProps extends PayloadProps {
 }
 
 export interface IATIOrganisationData {
-    organisationRef: string
-    issuingOrgRef: string
-    reportingOrgRef: string
-    reportingOrgType: number
-    reportingOrgIsSecondary: boolean
-    lang: string
-    currency: string
-    lastUpdatedTime: string
+  organisationRef: string
+  issuingOrgRef: string
+  reportingOrgRef: string
+  reportingOrgType: number
+  reportingOrgIsSecondary: boolean
+  lang: string
+  currency: string
+  lastUpdatedTime: string
 }
 
 export interface IATIOrganisationReport {
@@ -81,7 +81,7 @@ export interface IATIOrganisationDocReportProps extends PayloadProps {
   data: IATIOrganisationDocReport
 }
 
-/* --- */
+/* IATI Orgnisation Reader */
 
 export interface IATIOrgProps {
   name: string
@@ -235,7 +235,7 @@ export interface OrganisationCountryBudgetProps {
   endYear: number
 }
 
-/* ---- */
+/* IATI Budget Types */
 
 export interface IATIExpenditureData {
   expenditureKey: string
@@ -325,25 +325,29 @@ export interface ActivitiesProps {
   linkedData: string
 }
 
+/*
+budgetNotProvided: number
+status: number
+scope: number
+capitalSpend: number
+collaborationType: number
+defaultFlowType: number
+defaultTiedStatus: number
+defaultFinanceType: number
+defaultAidType: string
+*/
+
 export interface IATIActivityProps {
   humanitarian: boolean
   hierarchy: number
-  budgetNotProvided: number
-  status: number
-  scope: number
-  capitalSpend: number
-  collaborationType: number
-  defaultFlowType: number
-  defaultTiedStatus: number
   reportingOrg: ReportingOrgProps
-  defaultFinanceType: number
   lastUpdated: string
   lang: string
   currency: string
   linkedData: string
   identifier: string
-  defaultAidType: string
   title: string
+  description: string
 }
 
 export interface ActivityProps {
@@ -359,16 +363,20 @@ export interface ActivityProps {
   humanitarian: boolean
   hierarchy: number
   linkedData: string
-  budgetNotProvided: number
-  status: number
-  scope: number
-  capitalSpend: number
-  collaborationType: number
-  defaultFlowType: number
-  defaultFinanceType: number
-  defaultAidType: string
-  defaultTiedStatus: number
+  description: string
 }
+
+/*
+budgetNotProvided: number
+status: number
+scope: number
+capitalSpend: number
+collaborationType: number
+defaultFlowType: number
+defaultFinanceType: number
+defaultAidType: string
+defaultTiedStatus: number
+*/
 
 /* IATI Activities Reader */
 
@@ -400,6 +408,7 @@ export interface IATIActivitiesReportProps extends PayloadProps {
 export interface IATIActivityData {
   activityRef: string
   title: string
+  description: string
   identifier: string
   linkedData: string
   lang: string
@@ -410,16 +419,19 @@ export interface IATIActivityData {
   reportingOrgIsSecondary: boolean
   humanitarian: boolean
   hierarchy: number
-  budgetNotProvided: number
-  status: number
-  scope: number
-  capitalSpend: number
-  collaborationType: number
-  defaultFlowType: number
-  defaultFinanceType: number
-  defaultAidType: string
-  defaultTiedStatus: number
 }
+
+/*
+budgetNotProvided: number
+status: number
+scope: number
+capitalSpend: number
+collaborationType: number
+defaultFlowType: number
+defaultFinanceType: number
+defaultAidType: string
+defaultTiedStatus: number
+*/
 
 export interface IATIActivityReport {
   activitiesRef: string

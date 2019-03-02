@@ -68,8 +68,32 @@ const activitySchema = Yup.object().shape({
   linkedData: Yup
     .string()
     .required('Required'),
-  description: Yup
+  budgetNotProvided: Yup
+    .number()
+    .required('Required'),
+  status: Yup
+    .number()
+    .required('Required'),
+  scope: Yup
+    .number()
+    .required('Required'),
+  capitalSpend: Yup
+    .number()
+    .required('Required'),
+  collaborationType: Yup
+    .number()
+    .required('Required'),
+  defaultFlowType: Yup
+    .number()
+    .required('Required'),
+  defaultFinanceType: Yup
+    .number()
+    .required('Required'),
+  defaultAidType: Yup
     .string()
+    .required('Required'),
+  defaultTiedStatus: Yup
+    .number()
     .required('Required')
 })
 
@@ -123,7 +147,15 @@ export class ActivityForm extends React.Component<ActivityFormProps> {
                              humanitarian: true,
                              hierarchy: 0,
                              linkedData: "",
-                             description: ""
+                             budgetNotProvided: 0,
+                             status: 0,
+                             scope: 0,
+                             capitalSpend: 0,
+                             collaborationType: 0,
+                             defaultFlowType: 0,
+                             defaultFinanceType: 0,
+                             defaultAidType: "",
+                             defaultTiedStatus: 0
                             }}
             enableReinitialize={true}
             validationSchema={activitySchema}
@@ -152,12 +184,6 @@ export class ActivityForm extends React.Component<ActivityFormProps> {
                     component={TextField}
                   />
                   <ErrorMessage name='title' />
-                  <Field
-                    name="description"
-                    label={ActivityStrings.description}
-                    component={TextField}
-                  />
-                  <ErrorMessage name='description' />
                   <Field
                     name='identifier'
                     label={ActivityStrings.identifier}
@@ -217,6 +243,68 @@ export class ActivityForm extends React.Component<ActivityFormProps> {
                     options={Helpers.hierarchy}
                   />
                   <ErrorMessage name='hierarchy' />
+                  <Field
+                    name="budgetNotProvided"
+                    label={ActivityStrings.budgetNotProvided}
+                    component={Select}
+                    options={Helpers.budgetNotProvided}
+                  />
+                  <ErrorMessage name='hierarchy' />
+                  <Field
+                    name="status"
+                    label={ActivityStrings.status}
+                    component={Select}
+                    options={Helpers.status}
+                  />
+                  <ErrorMessage name='status' />
+                  <Field
+                    name="scope"
+                    label={ActivityStrings.scope}
+                    component={Select}
+                    options={Helpers.scope}
+                  />
+                  <ErrorMessage name='scope' />
+                  <Field
+                    name='capitalSpend'
+                    label={ActivityStrings.capitalSpend}
+                    component={TextField}
+                  />
+                  <ErrorMessage name='capitalSpend' />
+                  <Field
+                    name="collaborationType"
+                    label={ActivityStrings.collaborationType}
+                    component={Select}
+                    options={Helpers.collaborationType}
+                  />
+                  <ErrorMessage name='collaborationType' />
+                  <Field
+                    name="defaultFlowType"
+                    label={ActivityStrings.defaultFlowType}
+                    component={Select}
+                    options={Helpers.defaultFlowType}
+                  />
+                  <ErrorMessage name='defaultFlowType' />
+                  <Field
+                    name="defaultFinanceType"
+                    label={ActivityStrings.defaultFinanceType}
+                    component={Select}
+                    options={Helpers.defaultFinanceType}
+                  />
+                  <ErrorMessage name='defaultFinanceType' />
+                  <Field
+                    name="defaultAidType"
+                    label={ActivityStrings.defaultAidType}
+                    component={Select}
+                    options={Helpers.defaultAidType}
+                  />
+                  <ErrorMessage name='defaultAidType' />
+                  <Field
+                    name="defaultTiedStatus"
+                    label={ActivityStrings.defaultTiedStatus}
+                    component={Select}
+                    options={Helpers.defaultTiedStatus}
+                  />
+                  <ErrorMessage name='defaultTiedStatus' />
                   <br />
                   {formProps.isSubmitting && <LinearProgress />}
                   <br />

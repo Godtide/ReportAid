@@ -22,7 +22,8 @@ contract IATIActivity is Activity {
              _activity.lang[0]  != 0 &&
              _activity.currency[0] != 0 &&
              _activity.hierarchy > uint8(Hierarchy.NONE) &&
-             _activity.hierarchy < uint8(Hierarchy.MAX));
+             _activity.hierarchy < uint8(Hierarchy.MAX) &&
+             bytes(_activity.description).length > 0);
 
     activities[_activitiesRef][activityRef] = _activity;
 
@@ -103,6 +104,13 @@ contract IATIActivity is Activity {
   	require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
 
   	return activities[_activitiesRef][_activityRef].linkedData;
+  }
+
+
+  function getDescription(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (string memory) {
+    require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
+
+  	return activities[_activitiesRef][_activityRef].description;
   }
 
 }
