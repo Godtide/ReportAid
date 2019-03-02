@@ -45,7 +45,7 @@ export const setActivity = (details: ActivityProps) => {
       linkedData: ethers.utils.formatBytes32String(details.linkedData),
       identifier: ethers.utils.formatBytes32String(details.identifier),
       defaultAidType: ethers.utils.formatBytes32String(details.defaultAidType),
-      title: details.title
+      title: ethers.utils.formatBytes32String(details.title)
     }
 
     let actionType = IATIWriterActionTypes.ACTIVITY_FAILURE

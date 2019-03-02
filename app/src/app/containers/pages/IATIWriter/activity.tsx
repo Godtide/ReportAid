@@ -144,7 +144,7 @@ export class ActivityForm extends React.Component<ActivityFormProps> {
                              title: "",
                              lang: "",
                              currency: "",
-                             humanitarian: false,
+                             humanitarian: true,
                              hierarchy: 0,
                              linkedData: "",
                              budgetNotProvided: 0,
@@ -179,11 +179,37 @@ export class ActivityForm extends React.Component<ActivityFormProps> {
                   />
                   <ErrorMessage name='activitiesRef' />
                   <Field
+                    name='title'
+                    label={ActivityStrings.title}
+                    component={TextField}
+                  />
+                  <ErrorMessage name='title' />
+                  <Field
                     name='identifier'
                     label={ActivityStrings.identifier}
                     component={TextField}
                   />
                   <ErrorMessage name='identifier' />
+                  <Field
+                    name='linkedData'
+                    label={ActivityStrings.linkedData}
+                    component={TextField}
+                  />
+                  <ErrorMessage name='linkedData' />
+                  <Field
+                    name="lang"
+                    label={ActivityStrings.language}
+                    component={Select}
+                    options={Helpers.languageCodes}
+                  />
+                  <ErrorMessage name='lang' />
+                  <Field
+                    name="currency"
+                    label={ActivityStrings.currency}
+                    component={Select}
+                    options={Helpers.currencyCodes}
+                  />
+                  <ErrorMessage name='currency' />
                   <OrgPicker
                     name='reportingOrgRef'
                     label={ActivityStrings.reportingOrgRef}
@@ -204,26 +230,6 @@ export class ActivityForm extends React.Component<ActivityFormProps> {
                   />
                   <ErrorMessage name='reportingOrgIsSecondary' />
                   <Field
-                    name='title'
-                    label={ActivityStrings.title}
-                    component={TextField}
-                  />
-                  <ErrorMessage name='title' />
-                  <Field
-                    name="lang"
-                    label={ActivityStrings.language}
-                    component={Select}
-                    options={Helpers.languageCodes}
-                  />
-                  <ErrorMessage name='lang' />
-                  <Field
-                    name="currency"
-                    label={ActivityStrings.currency}
-                    component={Select}
-                    options={Helpers.currencyCodes}
-                  />
-                  <ErrorMessage name='currency' />
-                  <Field
                     name="humanitarian"
                     label={ActivityStrings.humanitarian}
                     component={Select}
@@ -237,12 +243,6 @@ export class ActivityForm extends React.Component<ActivityFormProps> {
                     options={Helpers.hierarchy}
                   />
                   <ErrorMessage name='hierarchy' />
-                  <Field
-                    name='linkedData'
-                    label={ActivityStrings.linkedData}
-                    component={TextField}
-                  />
-                  <ErrorMessage name='linkedData' />
                   <Field
                     name="budgetNotProvided"
                     label={ActivityStrings.budgetNotProvided}

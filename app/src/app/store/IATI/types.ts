@@ -399,17 +399,17 @@ export interface IATIActivitiesReportProps extends PayloadProps {
 
 export interface IATIActivityData {
   activityRef: string
+  title: string
   identifier: string
+  linkedData: string
+  lang: string
+  currency: string
+  lastUpdated: string
   reportingOrgRef: string
   reportingOrgType: number
   reportingOrgIsSecondary: boolean
-  title: string
-  lastUpdated: string
-  lang: string
-  currency: string
   humanitarian: boolean
   hierarchy: number
-  linkedData: string
   budgetNotProvided: number
   status: number
   scope: number
