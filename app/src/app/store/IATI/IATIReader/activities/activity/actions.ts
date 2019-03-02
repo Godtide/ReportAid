@@ -30,7 +30,7 @@ export const getActivity = (props: ActivityReportProps) => {
 
          activityData.data.data[i] = {
            activityRef: activityRef,
-           identifier: activity.identifier,
+           identifier: ethers.utils.parseBytes32String(activity.identifier),
            reportingOrgRef: activity.reportingOrg.orgRef,
            reportingOrgType: activity.reportingOrg.orgType,
            reportingOrgIsSecondary: activity.reportingOrg.isSecondary,

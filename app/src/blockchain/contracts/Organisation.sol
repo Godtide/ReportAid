@@ -4,9 +4,9 @@ pragma experimental ABIEncoderV2;
 contract Organisation {
 
   struct ReportingOrg {
-    bytes32 orgRef;
     uint8 orgType;
     bool isSecondary;
+    bytes32 orgRef;
   }
 
   struct Org {

@@ -24,28 +24,28 @@ export const setActivity = (details: ActivityProps) => {
     }
 
     const activity: IATIActivityProps = {
-      identifier: details.identifier,
-      reportingOrg: {
-        orgRef: details.reportingOrgRef,
-        orgType: details.reportingOrgType,
-        isSecondary: details.reportingOrgIsSecondary
-      },
-      title: details.title,
-      lastUpdated: ethers.utils.formatBytes32String(new Date().toISOString()),
-      lang: ethers.utils.formatBytes32String(details.lang),
-      currency: ethers.utils.formatBytes32String(details.currency),
       humanitarian: details.humanitarian,
       hierarchy: details.hierarchy,
-      linkedData: ethers.utils.formatBytes32String(details.linkedData),
       budgetNotProvided: details.budgetNotProvided,
       status: details.status,
       scope: details.scope,
       capitalSpend: details.capitalSpend,
       collaborationType: details.collaborationType,
       defaultFlowType: details.defaultFlowType,
-      defaultFinanceType: details.defaultFinanceType,
-      defaultAidType: ethers.utils.formatBytes32String(details.defaultAidType),
       defaultTiedStatus: details.defaultTiedStatus,
+      reportingOrg: {
+        orgRef: details.reportingOrgRef,
+        orgType: details.reportingOrgType,
+        isSecondary: details.reportingOrgIsSecondary
+      },
+      defaultFinanceType: details.defaultFinanceType,
+      lastUpdated: ethers.utils.formatBytes32String(new Date().toISOString()),
+      lang: ethers.utils.formatBytes32String(details.lang),
+      currency: ethers.utils.formatBytes32String(details.currency),
+      linkedData: ethers.utils.formatBytes32String(details.linkedData),
+      identifier: ethers.utils.formatBytes32String(details.identifier),
+      defaultAidType: ethers.utils.formatBytes32String(details.defaultAidType),
+      title: details.title
     }
 
     let actionType = IATIWriterActionTypes.ACTIVITY_FAILURE
