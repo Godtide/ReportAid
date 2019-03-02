@@ -1,5 +1,7 @@
 import { PayloadProps } from '../types'
 
+/* IATI Organisation Reader */
+
 export interface OrganisationReportProps {
   isReport: boolean
   organisationsRef: string
@@ -9,8 +11,6 @@ export interface OrganisationsReportProps {
  organisationsRef: string
  organisationRef: string
 }
-
-/* IATI Organisation Writer */
 
 export interface IATIOrganisationsData {
   organisationsRef: string
@@ -81,16 +81,86 @@ export interface IATIOrganisationDocReportProps extends PayloadProps {
   data: IATIOrganisationDocReport
 }
 
-/* IATI Orgnisation Reader */
+export interface IATIExpenditureData {
+  expenditureKey: string
+  expenditureLine: string,
+  value: number,
+  status: number,
+  start: string,
+  end: string
+}
+
+export interface IATIRecipientOrgBudgetData {
+  budgetKey: string
+  budgetLine: string,
+  recipientOrgRef: string,
+  value: number,
+  status: number,
+  start: string,
+  end: string
+}
+
+export interface IATIRegionBudgetData {
+  budgetKey: string
+  budgetLine: string,
+  regionRef: string,
+  value: number,
+  status: number,
+  start: string,
+  end: string
+}
+
+export interface IATICountryBudgetData {
+  budgetKey: string
+  budgetLine: string,
+  countryRef: string,
+  value: number,
+  status: number,
+  start: string,
+  end: string
+}
+
+export interface IATIBudgetData {
+  budgetKey: string
+  budgetLine: string,
+  value: number,
+  status: number,
+  start: string,
+  end: string
+}
+
+export interface IATIBudgetReport {
+  organisationsRef: string
+  organisationRef: string
+  data: Array<IATIBudgetData | IATIExpenditureData | IATIRecipientOrgBudgetData | IATIRegionBudgetData | IATICountryBudgetData >
+}
+
+export interface IATIBudgetReportProps extends PayloadProps {
+  data: IATIBudgetReport
+}
+
+/* IATI Organisation Writer */
 
 export interface IATIOrgProps {
   name: string
   identifier: string
 }
 
+export interface OrgProps {
+  orgRef: string
+  name: string
+  code: string
+  identifier: string
+}
+
 export interface IATIOrganisationsProps {
   version: string
   generatedTime: string
+}
+
+export interface OrganisationsProps {
+  organisationsRef: string
+  version: string
 }
 
 export interface ReportingOrgProps {
@@ -107,29 +177,6 @@ export interface IATIOrganisationProps {
   lastUpdatedTime: string
 }
 
-export interface IATIOrganisationDocProps {
-  title: string
-  format: string
-  url: string
-  category: string
-  countryRef: string
-  desc: string
-  lang: string
-  date: string
-}
-
-export interface OrgProps {
-  orgRef: string
-  name: string
-  code: string
-  identifier: string
-}
-
-export interface OrganisationsProps {
-  organisationsRef: string
-  version: string
-}
-
 export interface OrganisationProps {
   organisationsRef: string
   organisationRef: string
@@ -139,6 +186,17 @@ export interface OrganisationProps {
   reportingOrgIsSecondary: boolean
   lang: string
   currency: string
+}
+
+export interface IATIOrganisationDocProps {
+  title: string
+  format: string
+  url: string
+  category: string
+  countryRef: string
+  desc: string
+  lang: string
+  date: string
 }
 
 export interface OrganisationDocProps {
@@ -155,6 +213,20 @@ export interface OrganisationDocProps {
   day: number
   month: number
   year: number
+}
+
+interface FinanceProps {
+  value: number
+  status: number
+  start: string
+  end: string
+}
+
+export interface IATIBudgetProps {
+  budgetType: number
+  budgetLine: string
+  otherRef: string
+  finance: FinanceProps
 }
 
 export interface OrganisationBudgetProps {
@@ -235,82 +307,6 @@ export interface OrganisationCountryBudgetProps {
   endYear: number
 }
 
-/* IATI Budget Types */
-
-export interface IATIExpenditureData {
-  expenditureKey: string
-  expenditureLine: string,
-  value: number,
-  status: number,
-  start: string,
-  end: string
-}
-
-export interface IATIRecipientOrgBudgetData {
-  budgetKey: string
-  budgetLine: string,
-  recipientOrgRef: string,
-  value: number,
-  status: number,
-  start: string,
-  end: string
-}
-
-export interface IATIRegionBudgetData {
-  budgetKey: string
-  budgetLine: string,
-  regionRef: string,
-  value: number,
-  status: number,
-  start: string,
-  end: string
-}
-
-export interface IATICountryBudgetData {
-  budgetKey: string
-  budgetLine: string,
-  countryRef: string,
-  value: number,
-  status: number,
-  start: string,
-  end: string
-}
-
-export interface IATIBudgetData {
-  budgetKey: string
-  budgetLine: string,
-  value: number,
-  status: number,
-  start: string,
-  end: string
-}
-
-export interface IATIBudgetReport {
-  organisationsRef: string
-  organisationRef: string
-  data: Array<IATIBudgetData | IATIExpenditureData | IATIRecipientOrgBudgetData | IATIRegionBudgetData | IATICountryBudgetData >
-}
-
-export interface IATIBudgetReportProps extends PayloadProps {
-  data: IATIBudgetReport
-}
-
-/* --- */
-
-interface FinanceProps {
-  value: number
-  status: number
-  start: string
-  end: string
-}
-
-export interface IATIBudgetProps {
-  budgetType: number
-  budgetLine: string
-  otherRef: string
-  finance: FinanceProps
-}
-
 /* IATI Activities Writer */
 
 export interface IATIActivitiesProps {
@@ -332,9 +328,21 @@ scope: number
 capitalSpend: number
 collaborationType: number
 defaultFlowType: number
-defaultTiedStatus: number
 defaultFinanceType: number
 defaultAidType: string
+defaultTiedStatus: number
+*/
+
+/*
+budgetNotProvided: number
+status: number
+scope: number
+capitalSpend: number
+collaborationType: number
+defaultFlowType: number
+defaultFinanceType: number
+defaultAidType: string
+defaultTiedStatus: number
 */
 
 export interface IATIActivityProps {
@@ -365,18 +373,6 @@ export interface ActivityProps {
   linkedData: string
   description: string
 }
-
-/*
-budgetNotProvided: number
-status: number
-scope: number
-capitalSpend: number
-collaborationType: number
-defaultFlowType: number
-defaultFinanceType: number
-defaultAidType: string
-defaultTiedStatus: number
-*/
 
 /* IATI Activities Reader */
 
