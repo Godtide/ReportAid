@@ -10,6 +10,7 @@ class Paths {
 
   static readonly activitiesWriter='/create-activities-reports'
   static readonly activityWriter='/create-activity-reports'
+  static readonly activityAdditionalWriter='/create-activity-additional-reports'
   static readonly orgWriter='/create-organisation'
   static readonly organisationsWriter='/create-organisations-report'
   static readonly organisationWriter='/create-organisation-report'
@@ -22,6 +23,7 @@ class Paths {
 
   static readonly activitiesReader='/read-activities-reports'
   static readonly activityReader='/read-activity-reports'
+  static readonly activityAdditionalReader='/read-activity-additional-reports'
   static readonly orgsReader='/read-organisations'
   static readonly organisationsReader='/read-organisations-reports'
   static readonly organisationReader='/read-organisation-reports'
@@ -45,19 +47,20 @@ class Blockchain {
 
 class Contract {
 
-  static orgsAddress = "0x09BEBC46cdCeF6E4590716eB74B21dF89D437b9E"
-  static organisationsAddress = "0x607Ba2cdc63D3B4553df09fa976B412DcB17c4B8"
-  static organisationAddress = "0xf5C5203608B78eBaf264f4D0D5eE704181a1515D"
-  static organisationDocsAddress = "0xa68b265e6a58471a8431bF7bD211D7Ba0a1c9cA1"
-  static organisationBudgetsAddress = "0x3fbfD583CaB9F455b2fb2b50C9daE8402742Fb48"
-  static organisationExpenditureAddress = "0x9E8438FF39BA7209d3B5B5142c5ADFC1F4ef7AD9"
-  static organisationRecipientBudgetsAddress = "0xA3C9cC93C5F451CDCbB87eBC516972B8b0De8a45"
-  static organisationRegionBudgetsAddress = "0xede79aE16b86d3F235cE3745Ed6FFf9D7F031309"
-  static organisationCountryBudgetsAddress = "0xE911aC9b1cB395fB561F599865Be168336f98655"
-  static activitiesAddress = "0x8A3Df27E90477f059E94196FD025552a4AF1705a"
-  static activityAddress = "0xEc4AA10B1f8988cB05fC2551844C1d863Ab5C755"
-  static activityDatesAddress = "0x8F9C48C83A1E19c4b3E6EfaB72DCCeE7f279EA2A"
-  static activityParticipatingOrgsAddress = "0x59ad4A1375130eE5968EDD0E3bAD9AeD0BbD372d"
+  static orgsAddress = "0x667CD537e1079044119438B0c8a62d59D557B55A"
+  static organisationsAddress = "0xcA5784A7c10A7CFC6480072FB46f0C54dFbFB989"
+  static organisationAddress = "0x2C433289b8A829AA3F34287039083309F542C8C4"
+  static organisationDocsAddress = "0x0A1E2F79698149724A6f02B549C9FCB216c3845C"
+  static organisationBudgetsAddress = "0xd3Fa22746d7d71f3386718A3F48f7b6a88073a4D"
+  static organisationExpenditureAddress = "0xe97b1Cb304DD13e64AA833061d276F3C40453325"
+  static organisationRecipientBudgetsAddress = "0x33bC4b3D57Df88bFAd0057DFfF2DeC217F5cA917"
+  static organisationRegionBudgetsAddress = "0xF370A3797f3cC16E5420798762B77ec273Cb8a06"
+  static organisationCountryBudgetsAddress = "0x9F0eA05eBa893D2736e1cB1a7295AC962CD274C8"
+  static activitiesAddress = "0x2FB258596E6359b9342E1e4d6617c72c54C893d9"
+  static activityAddress = "0xd95a18e8deb4612089aB9604DeF69ecb9d7B5873"
+  static activityAdditionalAddress = "0x2DA3eA244771fc59661Be117c0760227b639391F"
+  static activityDatesAddress = "0x97A3F9E0D2971e511D44eF1D7BdC917F3B36098d"
+  static activityParticipatingOrgsAddress = "0xcf1b179BC789696558696B54b01832BaA756a1f9"
 
   static activitiesABI = [
     "event SetActivities(bytes32 _activitiesRef, tuple(bytes32 version, bytes32 generatedTime, bytes32 linkedData) orgActivities)",
@@ -72,6 +75,25 @@ class Contract {
     "function getVersion(bytes32 _activitiesRef) view returns (bytes32)",
     "function getGeneratedTime(bytes32 _activitiesRef) view returns (bytes32)",
     "function getLinkedData(bytes32 _activitiesRef) view returns (bytes32)"
+  ]
+
+  static activityAdditionalABI = [
+  	"function setActivityAdditional(bytes32 _activitiesRef, bytes32 activityRef, bytes32 _additionalRef, tuple(uint8 budgetNotProvided, uint8 status, uint8 scope, uint8 capitalSpend, uint8 collaborationType, uint8 defaultFlowType, uint8 defaultTiedStatus, uint256 defaultFinanceType, bytes32 defaultAidType) _activity) public",
+
+  	"function getNumAdditional(bytes32 _activitiesRef, bytes32 activityRef) public view returns (uint256)",
+  	"function getReference(bytes32 _activitiesRef, bytes32 activityRef, uint256 _index) public view returns (bytes32)",
+
+  	"function getActivityAdditional(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (tuple(uint8 budgetNotProvided, uint8 status, uint8 scope, uint8 capitalSpend, uint8 collaborationType, uint8 defaultFlowType, uint8 defaultTiedStatus, uint256 defaultFinanceType, bytes32 defaultAidType))",
+
+  	"function getBudgetNotProvided(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8)",
+  	"function getStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8)",
+  	"function getScope(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8)",
+  	"function getCapitalSpend(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8)",
+  	"function getCollaborationType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8)",
+  	"function getDefaultFlowType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8)",
+  	"function getDefaultFinanceType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint256)",
+  	"function getDefaultAidType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (bytes32)",
+  	"function getDefaultTiedStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8)",
   ]
 
   static activityDatesABI = [

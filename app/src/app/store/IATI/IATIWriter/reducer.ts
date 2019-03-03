@@ -23,6 +23,7 @@ export const reducer = (state: PayloadProps = initialState, action: ActionProps)
     case IATIWriterActionTypes.DOCUMENT_SUCCESS:
     case IATIWriterActionTypes.ACTIVITIES_SUCCESS:
     case IATIWriterActionTypes.ACTIVITY_SUCCESS:
+    case IATIWriterActionTypes.ACTIVITYADDITIONAL_SUCCESS:
     case IATIWriterActionTypes.ORGS_FAILURE:
     case IATIWriterActionTypes.ORGANISATIONS_FAILURE:
     case IATIWriterActionTypes.ORGANISATION_FAILURE:
@@ -33,7 +34,8 @@ export const reducer = (state: PayloadProps = initialState, action: ActionProps)
     case IATIWriterActionTypes.TOTALEXPENDITURE_FAILURE:
     case IATIWriterActionTypes.DOCUMENT_FAILURE:
     case IATIWriterActionTypes.ACTIVITIES_FAILURE:
-    case IATIWriterActionTypes.ACTIVITY_FAILURE: {
+    case IATIWriterActionTypes.ACTIVITY_FAILURE:
+    case IATIWriterActionTypes.ACTIVITYADDITIONAL_FAILURE: {
       const data = (action.payload.data as PayloadProps)
       return {...state, ...data}
     }

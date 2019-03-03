@@ -11,6 +11,7 @@ import { BlockchainInfo } from './pages/blockchain/blockchainInfo'
 
 import { Activities as ActivitiesWriter } from './pages/IATIWriter/activities'
 import { Activity as ActivityWriter } from './pages/IATIWriter/activity'
+import { ActivityAdditional as ActivityAdditionalsWriter } from './pages/IATIWriter/activityAdditionals'
 import { Org as OrgWriter } from './pages/IATIWriter/org'
 import { Organisations as OrganisationsWriter } from './pages/IATIWriter/organisations'
 import { Organisation as OrganisationWriter } from './pages/IATIWriter/organisation'
@@ -23,6 +24,7 @@ import { OrganisationCountryBudgets as OrganisationCountryBudgetsWriter } from '
 
 import { Activities as ActivitiesReader } from './pages/IATIReader/activities'
 import { Activity as ActivityReader } from './pages/IATIReader/activity'
+import { ActivityAdditionals as ActivityAdditionalsReader } from './pages/IATIReader/activityAdditionals'
 import { Orgs as OrgsReader } from './pages/IATIReader/orgs'
 import { Organisations as OrganisationsReader } from './pages/IATIReader/organisations'
 import { Organisation as OrganisationReader } from './pages/IATIReader/organisation'
@@ -60,6 +62,12 @@ class AppContent extends React.Component<WithStyles<typeof styles>> {
           path={PathConfig.activityWriter}
           render={() => <ActivityWriter />}
         />
+        <Route
+          name={Paths.activityAdditionalWriter}
+          path={PathConfig.activityAdditionalWriter}
+          render={() => <ActivityAdditionalsWriter />}
+        />
+
         <Route
           name={Paths.orgWriter}
           path={PathConfig.orgWriter}
@@ -106,6 +114,7 @@ class AppContent extends React.Component<WithStyles<typeof styles>> {
           render={() => <OrganisationCountryBudgetsWriter />}
         />
 
+
         <Route
           name={Paths.activitiesReader}
           path={PathConfig.activitiesReader}
@@ -116,6 +125,12 @@ class AppContent extends React.Component<WithStyles<typeof styles>> {
           path={PathConfig.activityReader}
           render={() => <ActivityReader />}
         />
+        <Route
+          name={Paths.activityAdditionalReader}
+          path={PathConfig.activityAdditionalReader}
+          render={() => <ActivityAdditionalsReader />}
+        />
+
         <Route
           name={Paths.orgsReader}
           path={PathConfig.orgsReader}

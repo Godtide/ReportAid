@@ -40,9 +40,9 @@ export const setOrganisationDoc = (details: OrganisationDocProps) => {
     let txData: TxReport = {}
     try {
       const tx = await docsContract.setDocument(details.organisationsRef,
-                                                   details.organisationRef,
-                                                   docRef,
-                                                   doc)
+                                                 details.organisationRef,
+                                                 docRef,
+                                                 doc)
       const key = tx.hash
       txData = {
         [key]: {

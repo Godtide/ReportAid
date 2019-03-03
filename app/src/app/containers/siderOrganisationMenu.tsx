@@ -46,6 +46,14 @@ class Sider extends React.Component<WithStyles<typeof styles>> {
                   {Paths.activityWriter}
                 </MenuItem>
               </Link>
+              <Link to={PathConfig.activityAdditionalWriter}>
+                <MenuItem>
+                  <IconButton className={this.props.classes.button} aria-label={Paths.activityAdditionalWriter}>
+                    <Create />
+                  </IconButton>
+                  {Paths.activityAdditionalWriter}
+                </MenuItem>
+              </Link>
             </MenuList>
           </ExpansionPanelDetails>
         </ExpansionPanel>
@@ -72,10 +80,18 @@ class Sider extends React.Component<WithStyles<typeof styles>> {
                   {Paths.activityReader}
                 </MenuItem>
               </Link>
+              <Link to={PathConfig.activityAdditionalReader}>
+                <MenuItem>
+                  <IconButton className={this.props.classes.button} aria-label={Paths.activityAdditionalReader}>
+                    <Create />
+                  </IconButton>
+                  {Paths.activityAdditionalReader}
+                </MenuItem>
+              </Link>
             </MenuList>
           </ExpansionPanelDetails>
         </ExpansionPanel>
-        
+
         <ExpansionPanel className={this.props.classes.siderMenu}>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
             <h4>{App.headingOrganisationsWriter}</h4>

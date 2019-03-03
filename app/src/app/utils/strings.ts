@@ -26,6 +26,7 @@ class Paths {
 
   static readonly activitiesWriter='Activities'
   static readonly activityWriter='Activity'
+  static readonly activityAdditionalWriter='Activity Additional Info\''
   static readonly orgWriter='Org\''
   static readonly organisationsWriter='Organisations'
   static readonly organisationWriter='Organisation Report'
@@ -38,6 +39,7 @@ class Paths {
 
   static readonly activitiesReader='Activities'
   static readonly activityReader='Activity'
+  static readonly activityAdditionalReader='Activity Additional Info\''
   static readonly orgsReader='Org\'s'
   static readonly organisationsReader='Organisations'
   static readonly organisationReader='Organisation Reports'
@@ -146,7 +148,13 @@ class Activity {
   static activityDetails = 'Activity Reports Details'
 }
 
-class ActivitySav {
+class ActivityAdditional {
+
+  static headingActivityAdditionalWriter = 'Write Activity Additional Info\''
+  static headingActivityAdditionalReader = 'Read Activity Additional Info\''
+
+  static activitiesReference = "Activities Reference"
+  static activityReference = "Activity Reference"
 
   static budgetNotProvided = "Budget Not Provided"
   static status = "Status"
@@ -157,6 +165,8 @@ class ActivitySav {
   static defaultFinanceType = "Default Finance Type"
   static defaultAidType = "Default Aid Type"
   static defaultTiedStatus = "Defaul Tied Status"
+
+  static activityAdditionalDetails = "Activity Additional Info\' Details"
 }
 
 class Org {
@@ -373,6 +383,7 @@ export { App,
          Transaction,
          Activities,
          Activity,
+         ActivityAdditional,
          Org,
          Organisations,
          Organisation,

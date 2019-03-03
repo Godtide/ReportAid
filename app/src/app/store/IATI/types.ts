@@ -321,30 +321,6 @@ export interface ActivitiesProps {
   linkedData: string
 }
 
-/*
-budgetNotProvided: number
-status: number
-scope: number
-capitalSpend: number
-collaborationType: number
-defaultFlowType: number
-defaultFinanceType: number
-defaultAidType: string
-defaultTiedStatus: number
-*/
-
-/*
-budgetNotProvided: number
-status: number
-scope: number
-capitalSpend: number
-collaborationType: number
-defaultFlowType: number
-defaultFinanceType: number
-defaultAidType: string
-defaultTiedStatus: number
-*/
-
 export interface IATIActivityProps {
   humanitarian: boolean
   hierarchy: number
@@ -372,6 +348,33 @@ export interface ActivityProps {
   hierarchy: number
   linkedData: string
   description: string
+}
+
+export interface IATIActivityAdditionalProps {
+  budgetNotProvided: number
+  status: number
+  scope: number
+  capitalSpend: number
+  collaborationType: number
+  defaultFlowType: number
+  defaultFinanceType: number
+  defaultAidType: string
+  defaultTiedStatus: number
+}
+
+export interface ActivityAdditionalProps {
+  activitiesRef: string
+  activityRef: string
+  additionalRef: string
+  budgetNotProvided: number
+  status: number
+  scope: number
+  capitalSpend: number
+  collaborationType: number
+  defaultFlowType: number
+  defaultFinanceType: number
+  defaultAidType: string
+  defaultTiedStatus: number
 }
 
 /* IATI Activities Reader */
@@ -417,18 +420,6 @@ export interface IATIActivityData {
   hierarchy: number
 }
 
-/*
-budgetNotProvided: number
-status: number
-scope: number
-capitalSpend: number
-collaborationType: number
-defaultFlowType: number
-defaultFinanceType: number
-defaultAidType: string
-defaultTiedStatus: number
-*/
-
 export interface IATIActivityReport {
   activitiesRef: string
   data: Array<IATIActivityData>
@@ -438,7 +429,30 @@ export interface IATIActivityReportProps extends PayloadProps {
   data: IATIActivityReport
 }
 
-/* --- */
+export interface IATIActivityAdditionaData {
+  additionalRef: string
+  budgetNotProvided: number
+  status: number
+  scope: number
+  capitalSpend: number
+  collaborationType: number
+  defaultFlowType: number
+  defaultFinanceType: number
+  defaultAidType: string
+  defaultTiedStatus: number
+}
+
+export interface IATIActivityAdditionalReport {
+  activitiesRef: string
+  activityRef: string
+  data: Array<IATIActivityAdditionaData>
+}
+
+export interface IATIActivityAdditionalReportProps extends PayloadProps {
+  data: IATIActivityAdditionalReport
+}
+
+/* Action Types */
 
 export const enum IATIWriterActionTypes{
   TX_INIT =  '@@IATIWriterActionTypes/TX_INIT',
@@ -463,7 +477,9 @@ export const enum IATIWriterActionTypes{
   ACTIVITIES_SUCCESS = '@@IATIWriterActionTypes/ACTIVITIES_SUCCESS',
   ACTIVITIES_FAILURE = '@@IATIWriterActionTypes/ACTIVITIES_FAILURE',
   ACTIVITY_SUCCESS = '@@IATIWriterActionTypes/ACTIVITY_SUCCESS',
-  ACTIVITY_FAILURE = '@@IATIWriterActionTypes/ACTIVITY_FAILURE'
+  ACTIVITY_FAILURE = '@@IATIWriterActionTypes/ACTIVITY_FAILURE',
+  ACTIVITYADDITIONAL_SUCCESS = '@@IATIWriterActionTypes/ACTIVITYADDITIONAL_SUCCESS',
+  ACTIVITYADDITIONAL_FAILURE = '@@IATIWriterActionTypes/ACTIVITYADDITIONAL_FAILURE'
 }
 
 export const enum IATIReportActionTypes {
@@ -494,5 +510,7 @@ export const enum IATIReportActionTypes {
   ACTIVITIES_FAILURE = '@@IATIReportActionTypes/ACTIVITIES_FAILURE',
   ACTIVITY_SUCCESS = '@@IATIReportActionTypes/ACTIVITY_SUCCESS',
   ACTIVITYPICKER_SUCCESS = '@@IATIReportActionTypes/ACTIVITYPICKER_SUCCESS',
-  ACTIVITY_FAILURE = '@@IATIReportActionTypes/ACTIVITY_FAILURE'
+  ACTIVITY_FAILURE = '@@IATIReportActionTypes/ACTIVITY_FAILURE',
+  ACTIVITYADDITIONAL_SUCCESS = '@@IATIReportActionTypes/ACTIVITYADDITIONAL_SUCCESS',
+  ACTIVITYADDITIONAL_FAILURE = '@@IATIReportActionTypes/ACTIVITYADDITIONAL_FAILURE'
 }

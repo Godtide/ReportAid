@@ -26,7 +26,7 @@ export const getDocs = (props: OrganisationsReportProps) => {
 
     let actionType = IATIReportActionTypes.DOCUMENT_FAILURE
     try {
-      const num = await docsContract.getNumDocs(props.organisationsRef, props.organisationRef)
+      const num = await docsContract.getNumDocs(organisationsRef, organisationRef)
       const numDocs = num.toNumber()
       for (let i = 0; i < numDocs; i++) {
         const docRef = await docsContract.getDocReference(organisationsRef,
