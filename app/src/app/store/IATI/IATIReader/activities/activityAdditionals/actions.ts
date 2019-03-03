@@ -33,6 +33,8 @@ export const getActivityAdditionals = (props: ActivitiesReportProps) => {
         const additionalRef = await activityAdditionalContract.getReference(activitiesRef, activityRef, i.toString())
         const additional: IATIActivityAdditionalProps = await activityAdditionalContract.getActivityAdditional(activitiesRef, activityRef, additionalRef)
 
+        //console.log("Additional: ", additional)
+
         additionalData.data.data[i] = {
            additionalRef: additionalRef,
            budgetNotProvided: additional.budgetNotProvided,
@@ -41,7 +43,7 @@ export const getActivityAdditionals = (props: ActivitiesReportProps) => {
            capitalSpend: additional.capitalSpend,
            collaborationType: additional.collaborationType,
            defaultFlowType: additional.defaultFlowType,
-           defaultFinanceType: additional.defaultFinanceType,
+           defaultFinanceType: ethers.utils.bigNumberify(additional.defaultFinanceType).toNumber(),
            defaultAidType: ethers.utils.parseBytes32String(additional.defaultAidType),
            defaultTiedStatus: additional.defaultTiedStatus
          }

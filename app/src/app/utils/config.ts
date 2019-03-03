@@ -78,9 +78,7 @@ class Contract {
   ]
 
   static activityAdditionalABI = [
-    "function setActivity(bytes32 _activitiesRef, bytes32 activityRef, tuple(bool humanitarian, uint8 hierarchy, tuple(uint8 orgType, bool isSecondary, bytes32 orgRef) reportingOrg, bytes32 lastUpdated, bytes32 lang, bytes32 currency, bytes32 linkedData, bytes32 identifier, bytes32 title, string description) orgActivity)@1000000",
-    
-  	"function setActivityAdditional(bytes32 _activitiesRef, bytes32 activityRef, bytes32 _additionalRef, tuple(uint8 budgetNotProvided, uint8 status, uint8 scope, uint8 capitalSpend, uint8 collaborationType, uint8 defaultFlowType, uint8 defaultTiedStatus, uint256 defaultFinanceType, bytes32 defaultAidType) _additional)@5000000",
+    "function setActivityAdditional(bytes32 _activitiesRef, bytes32 activityRef, bytes32 _additionalRef, tuple(uint8 budgetNotProvided, uint8 status, uint8 scope, uint8 capitalSpend, uint8 collaborationType, uint8 defaultFlowType, uint8 defaultTiedStatus, uint256 defaultFinanceType, bytes32 defaultAidType) _additional)@5000000",
 
   	"function getNumAdditional(bytes32 _activitiesRef, bytes32 activityRef) view returns (uint256)",
   	"function getReference(bytes32 _activitiesRef, bytes32 activityRef, uint256 _index) view returns (bytes32)",

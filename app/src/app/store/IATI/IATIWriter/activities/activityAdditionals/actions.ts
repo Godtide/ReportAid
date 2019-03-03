@@ -38,7 +38,12 @@ export const setActivityAdditional = (details: ActivityAdditionalProps) => {
     let actionType = IATIWriterActionTypes.ACTIVITYADDITIONAL_FAILURE
     let txData: TxReport = {}
     try {
+
+      /*let gasLimit = await state.chainInfo.data.provider.estimateGas(activityAdditionalContract.setActivityAdditional)
+      gasLimit *= 90
       console.log("Additional: ", details.activitiesRef, details.activityRef, additionalRef, additional)
+      console.log("Gas limit: ", gasLimit)
+      const tx = await activityAdditionalContract.setActivityAdditional(details.activitiesRef, details.activityRef, additionalRef, additional, {gasLimit: gasLimit})*/
       const tx = await activityAdditionalContract.setActivityAdditional(details.activitiesRef, details.activityRef, additionalRef, additional)
       const key = tx.hash
       txData = {
