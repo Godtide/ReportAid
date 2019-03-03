@@ -14,6 +14,7 @@ const IATIOrganisationCountryBudgets = artifacts.require("./IATIOrganisationCoun
 
 const IATIActivities = artifacts.require("./IATIActivities.sol");
 const IATIActivity = artifacts.require("./IATIActivity.sol");
+const IATIActivityAdditional = artifacts.require("./IATIActivityAdditional.sol");
 const IATIActivityDates = artifacts.require("./IATIActivityDates.sol");
 const IATIActivityParticipatingOrgs = artifacts.require("./IATIActivityParticipatingOrgs.sol");
 
@@ -30,6 +31,7 @@ module.exports = function(deployer) {
   let organisationCountryBudgetsAddress;
   let activitiesAddress;
   let activityAddress;
+  let activityAdditionalAddress;
   let activityDatesAddress;
   let activityParticipatingOrgsAddress;
 
@@ -41,6 +43,7 @@ module.exports = function(deployer) {
                              IATIOrganisationDocs,
                              IATIActivities,
                              IATIActivity,
+                             IATIActivityAdditional,
                              IATIActivityDates,
                              IATIActivityParticipatingOrgs
                             ]);
@@ -89,6 +92,10 @@ module.exports = function(deployer) {
     activityAddress = "\"" + IATIActivity.address + "\"";
   });
 
+  deployer.deploy(IATIActivityAdditional).then(() => {
+    activityAdditionalAddress = "\"" + IATIActivityAdditional.address + "\"";
+  });
+
   deployer.deploy(IATIActivityDates).then(() => {
     activityDatesAddress = "\"" + IATIActivityDates.address + "\"";
   });
@@ -109,6 +116,7 @@ module.exports = function(deployer) {
     console.log("static organisationCountryBudgetsAddress =", organisationCountryBudgetsAddress);
     console.log("static activitiesAddress =", activitiesAddress);
     console.log("static activityAddress =", activityAddress);
+    console.log("static activityAdditionalAddress =", activityAdditionalAddress);
     console.log("static activityDatesAddress =", activityDatesAddress);
     console.log("static activityParticipatingOrgsAddress =", activityParticipatingOrgsAddress);
   });
