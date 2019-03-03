@@ -357,9 +357,9 @@ export interface IATIActivityAdditionalProps {
   capitalSpend: number
   collaborationType: number
   defaultFlowType: number
+  defaultTiedStatus: number
   defaultFinanceType: number
   defaultAidType: string
-  defaultTiedStatus: number
 }
 
 export interface ActivityAdditionalProps {
@@ -372,9 +372,9 @@ export interface ActivityAdditionalProps {
   capitalSpend: number
   collaborationType: number
   defaultFlowType: number
+  defaultTiedStatus: number
   defaultFinanceType: number
   defaultAidType: string
-  defaultTiedStatus: number
 }
 
 /* IATI Activities Reader */
@@ -437,9 +437,9 @@ export interface IATIActivityAdditionaData {
   capitalSpend: number
   collaborationType: number
   defaultFlowType: number
+  defaultTiedStatus: number
   defaultFinanceType: number
   defaultAidType: string
-  defaultTiedStatus: number
 }
 
 export interface IATIActivityAdditionalReport {

@@ -78,27 +78,29 @@ class Contract {
   ]
 
   static activityAdditionalABI = [
-  	"function setActivityAdditional(bytes32 _activitiesRef, bytes32 activityRef, bytes32 _additionalRef, tuple(uint8 budgetNotProvided, uint8 status, uint8 scope, uint8 capitalSpend, uint8 collaborationType, uint8 defaultFlowType, uint8 defaultTiedStatus, uint256 defaultFinanceType, bytes32 defaultAidType) _activity) public",
+    "function setActivity(bytes32 _activitiesRef, bytes32 activityRef, tuple(bool humanitarian, uint8 hierarchy, tuple(uint8 orgType, bool isSecondary, bytes32 orgRef) reportingOrg, bytes32 lastUpdated, bytes32 lang, bytes32 currency, bytes32 linkedData, bytes32 identifier, bytes32 title, string description) orgActivity)@1000000",
+    
+  	"function setActivityAdditional(bytes32 _activitiesRef, bytes32 activityRef, bytes32 _additionalRef, tuple(uint8 budgetNotProvided, uint8 status, uint8 scope, uint8 capitalSpend, uint8 collaborationType, uint8 defaultFlowType, uint8 defaultTiedStatus, uint256 defaultFinanceType, bytes32 defaultAidType) _additional)@5000000",
 
-  	"function getNumAdditional(bytes32 _activitiesRef, bytes32 activityRef) public view returns (uint256)",
-  	"function getReference(bytes32 _activitiesRef, bytes32 activityRef, uint256 _index) public view returns (bytes32)",
+  	"function getNumAdditional(bytes32 _activitiesRef, bytes32 activityRef) view returns (uint256)",
+  	"function getReference(bytes32 _activitiesRef, bytes32 activityRef, uint256 _index) view returns (bytes32)",
 
-  	"function getActivityAdditional(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (tuple(uint8 budgetNotProvided, uint8 status, uint8 scope, uint8 capitalSpend, uint8 collaborationType, uint8 defaultFlowType, uint8 defaultTiedStatus, uint256 defaultFinanceType, bytes32 defaultAidType))",
+  	"function getActivityAdditional(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) view returns (tuple(uint8 budgetNotProvided, uint8 status, uint8 scope, uint8 capitalSpend, uint8 collaborationType, uint8 defaultFlowType, uint8 defaultTiedStatus, uint256 defaultFinanceType, bytes32 defaultAidType) _additional)",
 
-  	"function getBudgetNotProvided(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8)",
-  	"function getStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8)",
-  	"function getScope(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8)",
-  	"function getCapitalSpend(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8)",
-  	"function getCollaborationType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8)",
-  	"function getDefaultFlowType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8)",
-  	"function getDefaultFinanceType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint256)",
-  	"function getDefaultAidType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (bytes32)",
-  	"function getDefaultTiedStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8)",
+  	"function getBudgetNotProvided(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) view returns (uint8)",
+  	"function getStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) view returns (uint8)",
+  	"function getScope(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) view returns (uint8)",
+  	"function getCapitalSpend(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) view returns (uint8)",
+  	"function getCollaborationType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) view returns (uint8)",
+  	"function getDefaultFlowType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) view returns (uint8)",
+  	"function getDefaultFinanceType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) view returns (uint256)",
+  	"function getDefaultAidType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) view returns (bytes32)",
+  	"function getDefaultTiedStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) view returns (uint8)",
   ]
 
   static activityDatesABI = [
   	"event SetDate(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _dateRef, tuple(uint8 dateType, bytes32 date, string narrative) _date)",
-  	"function setDate(bytes32 _activitiesRef, bytes32 _activityRef,  bytes32 _dateRef, tuple(uint8 dateType, bytes32 date, string narrative) _date) public",
+  	"function setDate(bytes32 _activitiesRef, bytes32 _activityRef,  bytes32 _dateRef, tuple(uint8 dateType, bytes32 date, string narrative) _date)",
 
   	"function getNumDates(bytes32 _activitiesRef, bytes32 _activityRef) view returns (uint256)",
   	"function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) view returns (bytes32)",
@@ -138,16 +140,16 @@ class Contract {
 
   	"function getActivity(bytes32 _activitiesRef, bytes32 _activityRef) view returns (tuple(bool humanitarian, uint8 hierarchy, tuple(uint8 orgType, bool isSecondary, bytes32 orgRef) reportingOrg, bytes32 lastUpdated, bytes32 lang, bytes32 currency, bytes32 linkedData, bytes32 identifier, bytes32 title, string description) orgActivity)",
 
-  	"function getIdentifier(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32)",
-  	"function getReportingOrg(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (ReportingOrg memory)",
-  	"function getTitle(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32)",
-  	"function getLastUpdatedTime(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32)",
-  	"function getLang(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32)",
-  	"function getCurrency(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32)",
-  	"function getHumanitarian(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bool)",
-  	"function getHierarchy(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8)",
-  	"function getLinkedData(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32)",
-  	"function getDescription(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (string memory)"
+  	"function getIdentifier(bytes32 _activitiesRef, bytes32 _activityRef) view returns (bytes32)",
+  	"function getReportingOrg(bytes32 _activitiesRef, bytes32 _activityRef) view returns (ReportingOrg memory)",
+  	"function getTitle(bytes32 _activitiesRef, bytes32 _activityRef) view returns (bytes32)",
+  	"function getLastUpdatedTime(bytes32 _activitiesRef, bytes32 _activityRef) view returns (bytes32)",
+  	"function getLang(bytes32 _activitiesRef, bytes32 _activityRef) view returns (bytes32)",
+  	"function getCurrency(bytes32 _activitiesRef, bytes32 _activityRef) view returns (bytes32)",
+  	"function getHumanitarian(bytes32 _activitiesRef, bytes32 _activityRef) view returns (bool)",
+  	"function getHierarchy(bytes32 _activitiesRef, bytes32 _activityRef) view returns (uint8)",
+  	"function getLinkedData(bytes32 _activitiesRef, bytes32 _activityRef) view returns (bytes32)",
+  	"function getDescription(bytes32 _activitiesRef, bytes32 _activityRef) view returns (string memory)"
   ]
 
   static orgsABI = [
@@ -302,9 +304,24 @@ class Contract {
 class Helpers {
 
   static defaultAidType = [
-    { value: 1, label: "OECD DAC" },
-    { value: 2, label: "Earmarking Category" },
-    { value: 3, label: "Earmarking Modality" }
+    { value: "A01", label: "General budget support" },
+    { value: "A02", label: "Sector budget support" },
+    { value: "B01", label: "Core support to NGOs, other private bodies, PPPs and research institutes" },
+    { value: "B02", label: "Core contributions to multilateral institutions" },
+    { value: "B03", label: "Contributions to specific-purpose programmes and funds managed by implementing partners" },
+    { value: "B04", label: "Basket funds/pooled funding" },
+    { value: "C01", label: "Project-type interventions" },
+    { value: "D01", label: "Donor country personnel" },
+    { value: "D02", label: "Other technical assistance" },
+    { value: "E01", label: "Scholarships/training in donor country" },
+    { value: "E02", label: "Imputed student costs" },
+    { value: "F01", label: "Debt relief" },
+    { value: "G01", label: "Administrative costs not included elsewhere" },
+    { value: "H01", label: "Development awareness" },
+    { value: "H02", label: "Refugees/asylum seekers in donor countries" },
+    { value: "H03", label: "Asylum-seekers ultimately accepted" },
+    { value: "H04", label: "Asylum-seekers ultimately rejected" },
+    { value: "H05", label: "Recognised refugees" }
   ]
 
   static defaultFinanceType = [
@@ -381,18 +398,18 @@ class Helpers {
 
   static hierarchy = [
      { value: 1, label: "ACTIVITY" },
-     { value: 2, label: "SUBACTIVITY" },
-     { value: 3, label: "SUBSUBACTIVITY" }
+     { value: 2, label: "SUB ACTIVITY" },
+     { value: 3, label: "SUB SUB ACTIVITY" }
   ]
 
   static budgetNotProvided = [
-     { value: 1, label: "COMMERCIALRESTRICTIONS" },
-     { value: 2, label: "LEGALRESTRICTIONS" },
-     { value: 3, label: "RAPIDONSETEMERGENCY" }
+     { value: 1, label: "COMMERCIAL RESTRICTIONS" },
+     { value: 2, label: "LEGAL RESTRICTIONS" },
+     { value: 3, label: "RAPID ONSET EMERGENCY" }
   ]
 
   static status = [
-     { value: 1, label: "PIPELINEIDENTIFICATION" },
+     { value: 1, label: "PIPELINE IDENTIFICATION" },
      { value: 2, label: "IMPLEMENTATION" },
      { value: 3, label: "FINALISATION" },
      { value: 4, label: "CLOSED" },
@@ -405,18 +422,18 @@ class Helpers {
      { value: 2, label: "REGIONAL" },
      { value: 3, label: "MULTINATIONAL" },
      { value: 4, label: "NATIONAL" },
-     { value: 5, label: "SUBNATIONALMULTIFIRSTLEVEL" },
-     { value: 6, label: "SUBNATIONALSINGLEFIRSTLEVEL" },
-     { value: 7, label: "SUBNATIONALSINGLESECONDLEVEL" }
+     { value: 5, label: "SUBNATIONAL MULTI FIRST LEVEL" },
+     { value: 6, label: "SUBNATIONAL SINGLE FIRST LEVEL" },
+     { value: 7, label: "SUBNATIONAL SINGLE SECOND LEVEL" }
   ]
 
   static collaborationType = [
      { value: 1, label: "BILATERAL" },
-     { value: 2, label: "MULTILATERALINFLOWS" },
-     { value: 3, label: "BILATERALPRIVATE" },
-     { value: 4, label: "MULTILATERALOUTFLOWS" },
-     { value: 5, label: "PRIVATEOUTFLOWS" },
-     { value: 6, label: "BILATERALCOREFUNDED" },
+     { value: 2, label: "MULTILATERAL INFLOWS" },
+     { value: 3, label: "BILATERAL PRIVATE" },
+     { value: 4, label: "MULTILATERAL OUTFLOWS" },
+     { value: 5, label: "PRIVATE OUTFLOWS" },
+     { value: 6, label: "BILATERAL COR EFUNDED" },
      { value: 7, label: "TRIANGULAR" }
   ]
 

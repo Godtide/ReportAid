@@ -31,13 +31,14 @@ export const setActivityAdditional = (details: ActivityAdditionalProps) => {
       collaborationType: details.collaborationType,
       defaultFlowType: details.defaultFlowType,
       defaultTiedStatus: details.defaultTiedStatus,
-      defaultAidType: ethers.utils.formatBytes32String(details.defaultAidType),
       defaultFinanceType: details.defaultFinanceType,
+      defaultAidType: ethers.utils.formatBytes32String(details.defaultAidType)
     }
 
     let actionType = IATIWriterActionTypes.ACTIVITYADDITIONAL_FAILURE
     let txData: TxReport = {}
     try {
+      console.log("Additional: ", details.activitiesRef, details.activityRef, additionalRef, additional)
       const tx = await activityAdditionalContract.setActivityAdditional(details.activitiesRef, details.activityRef, additionalRef, additional)
       const key = tx.hash
       txData = {
@@ -55,7 +56,7 @@ export const setActivityAdditional = (details: ActivityAdditionalProps) => {
           info: {}
         }
       }
-      console.log('set activity additional error', error)
+      console.log('setActivityAdditional error', error)
     }
 
     dispatch(write({data: {data: txData}})(actionType))

@@ -38,9 +38,6 @@ const activityAdditionalSchema = Yup.object().shape({
   activityRef: Yup
     .string()
     .required('Required'),
-  additionalRef: Yup
-    .string()
-    .required('Required'),
   budgetNotProvided: Yup
     .number()
     .required('Required'),

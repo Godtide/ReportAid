@@ -55,7 +55,7 @@ export const setActivity = (details: ActivityProps) => {
     let actionType = IATIWriterActionTypes.ACTIVITY_FAILURE
     let txData: TxReport = {}
     try {
-      console.log("Setting activity: ", details.activitiesRef, activityRef, activity)
+      //console.log("Setting activity: ", details.activitiesRef, activityRef, activity)
       const tx = await activityContract.setActivity(details.activitiesRef, activityRef, activity)
       const key = tx.hash
       txData = {
