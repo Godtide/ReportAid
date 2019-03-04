@@ -137,6 +137,20 @@ export class ActivityAdditionalForm extends React.Component<ActivityAdditionalFo
                   />
                   <ErrorMessage name='activityRef' />
                   <Field
+                    name="defaultAidType"
+                    label={ActivityAdditionalStrings.defaultAidType}
+                    component={Select}
+                    options={Helpers.defaultAidType}
+                  />
+                  <ErrorMessage name='defaultAidType' />
+                  <Field
+                    name="defaultFinanceType"
+                    label={ActivityAdditionalStrings.defaultFinanceType}
+                    component={Select}
+                    options={Helpers.defaultFinanceType}
+                  />
+                  <ErrorMessage name='defaultFinanceType' />
+                  <Field
                     name="budgetNotProvided"
                     label={ActivityAdditionalStrings.budgetNotProvided}
                     component={Select}
@@ -177,20 +191,6 @@ export class ActivityAdditionalForm extends React.Component<ActivityAdditionalFo
                     options={Helpers.defaultFlowType}
                   />
                   <ErrorMessage name='defaultFlowType' />
-                  <Field
-                    name="defaultFinanceType"
-                    label={ActivityAdditionalStrings.defaultFinanceType}
-                    component={Select}
-                    options={Helpers.defaultFinanceType}
-                  />
-                  <ErrorMessage name='defaultFinanceType' />
-                  <Field
-                    name="defaultAidType"
-                    label={ActivityAdditionalStrings.defaultAidType}
-                    component={Select}
-                    options={Helpers.defaultAidType}
-                  />
-                  <ErrorMessage name='defaultAidType' />
                   <Field
                     name="defaultTiedStatus"
                     label={ActivityAdditionalStrings.defaultTiedStatus}

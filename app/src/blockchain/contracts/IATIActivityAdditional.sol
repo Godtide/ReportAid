@@ -9,17 +9,17 @@ contract IATIActivityAdditional is ActivityAdditional {
   mapping(bytes32 => mapping(bytes32 => bytes32[])) private additionalRefs;
   mapping(bytes32 => mapping(bytes32 => mapping(bytes32 => Additional))) private additionals;
 
-  event SetActivityAdditional(bytes32 _activitiesRef, bytes32 activityRef, bytes32 _additionalRef, Additional _additional);
+  event SetAdditional(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef, Additional _additional);
 
-  function setActivityAdditional(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef, Additional memory _additional) public {
+  function setAdditional(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef, Additional memory _additional) public {
     require (_activitiesRef[0] != 0 &&
              _activityRef[0] != 0 &&
              _additionalRef[0] != 0 &&
-             _additional.budgetNotProvided >= uint8(BudgetNotProvided.NONE) &&
+             _additional.budgetNotProvided > uint8(BudgetNotProvided.NONE) &&
              _additional.budgetNotProvided < uint8(BudgetNotProvided.MAX) &&
              _additional.status > uint8(Status.NONE) &&
              _additional.status < uint8(Status.MAX) &&
-             _additional.scope >= uint8(Scope.NONE) &&
+             _additional.scope > uint8(Scope.NONE) &&
              _additional.scope < uint8(Scope.MAX) &&
              _additional.capitalSpend <= 100 &&
              _additional.collaborationType > uint8(CollaborationType.NONE) &&
@@ -34,7 +34,7 @@ contract IATIActivityAdditional is ActivityAdditional {
       additionalRefs[_activitiesRef][_activityRef].push(_additionalRef);
     }
 
-    emit SetActivityAdditional(_activitiesRef, _activityRef, _additionalRef, _additional);
+    emit SetAdditional(_activitiesRef, _activityRef, _additionalRef, _additional);
   }
 
   function getNumAdditional(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint256) {
@@ -49,10 +49,22 @@ contract IATIActivityAdditional is ActivityAdditional {
     return additionalRefs[_activitiesRef][_activityRef][_index];
   }
 
-  function getActivityAdditional(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (Additional memory) {
+  function getAdditional(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (Additional memory) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _additionalRef[0] != 0);
 
     return additionals[_activitiesRef][_activityRef][_additionalRef];
+  }
+
+  function getDefaultAidType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (bytes32) {
+    require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _additionalRef[0] != 0);
+
+  	return additionals[_activitiesRef][_activityRef][_additionalRef].defaultAidType;
+  }
+
+  function getDefaultFinanceType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint256) {
+    require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _additionalRef[0] != 0);
+
+  	return additionals[_activitiesRef][_activityRef][_additionalRef].defaultFinanceType;
   }
 
   function getBudgetNotProvided(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8) {
@@ -89,18 +101,6 @@ contract IATIActivityAdditional is ActivityAdditional {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _additionalRef[0] != 0);
 
   	return additionals[_activitiesRef][_activityRef][_additionalRef].defaultFlowType;
-  }
-
-  function getDefaultFinanceType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint256) {
-    require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _additionalRef[0] != 0);
-
-  	return additionals[_activitiesRef][_activityRef][_additionalRef].defaultFinanceType;
-  }
-
-  function getDefaultAidType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (bytes32) {
-    require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _additionalRef[0] != 0);
-
-  	return additionals[_activitiesRef][_activityRef][_additionalRef].defaultAidType;
   }
 
   function getDefaultTiedStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8) {

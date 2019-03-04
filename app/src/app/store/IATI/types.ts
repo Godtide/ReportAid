@@ -351,6 +351,8 @@ export interface ActivityProps {
 }
 
 export interface IATIActivityAdditionalProps {
+  defaultAidType: string
+  defaultFinanceType: number
   budgetNotProvided: number
   status: number
   scope: number
@@ -358,14 +360,14 @@ export interface IATIActivityAdditionalProps {
   collaborationType: number
   defaultFlowType: number
   defaultTiedStatus: number
-  defaultFinanceType: number
-  defaultAidType: string
 }
 
 export interface ActivityAdditionalProps {
   activitiesRef: string
   activityRef: string
   additionalRef: string
+  defaultAidType: string
+  defaultFinanceType: number
   budgetNotProvided: number
   status: number
   scope: number
@@ -373,8 +375,6 @@ export interface ActivityAdditionalProps {
   collaborationType: number
   defaultFlowType: number
   defaultTiedStatus: number
-  defaultFinanceType: number
-  defaultAidType: string
 }
 
 /* IATI Activities Reader */
@@ -431,6 +431,8 @@ export interface IATIActivityReportProps extends PayloadProps {
 
 export interface IATIActivityAdditionaData {
   additionalRef: string
+  defaultAidType: string
+  defaultFinanceType: number
   budgetNotProvided: number
   status: number
   scope: number
@@ -438,8 +440,6 @@ export interface IATIActivityAdditionaData {
   collaborationType: number
   defaultFlowType: number
   defaultTiedStatus: number
-  defaultFinanceType: number
-  defaultAidType: string
 }
 
 export interface IATIActivityAdditionalReport {

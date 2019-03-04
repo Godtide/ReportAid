@@ -24,15 +24,15 @@ export const setActivityAdditional = (details: ActivityAdditionalProps) => {
     }
 
     const additional: IATIActivityAdditionalProps = {
+      defaultAidType: ethers.utils.formatBytes32String(details.defaultAidType),
+      defaultFinanceType: details.defaultFinanceType,
       budgetNotProvided: details.budgetNotProvided,
       status: details.status,
       scope: details.scope,
       capitalSpend: details.capitalSpend,
       collaborationType: details.collaborationType,
       defaultFlowType: details.defaultFlowType,
-      defaultTiedStatus: details.defaultTiedStatus,
-      defaultFinanceType: details.defaultFinanceType,
-      defaultAidType: ethers.utils.formatBytes32String(details.defaultAidType)
+      defaultTiedStatus: details.defaultTiedStatus
     }
 
     let actionType = IATIWriterActionTypes.ACTIVITYADDITIONAL_FAILURE
@@ -44,7 +44,7 @@ export const setActivityAdditional = (details: ActivityAdditionalProps) => {
       console.log("Additional: ", details.activitiesRef, details.activityRef, additionalRef, additional)
       console.log("Gas limit: ", gasLimit)
       const tx = await activityAdditionalContract.setActivityAdditional(details.activitiesRef, details.activityRef, additionalRef, additional, {gasLimit: gasLimit})*/
-      const tx = await activityAdditionalContract.setActivityAdditional(details.activitiesRef, details.activityRef, additionalRef, additional)
+      const tx = await activityAdditionalContract.setAdditional(details.activitiesRef, details.activityRef, additionalRef, additional)
       const key = tx.hash
       txData = {
         [key]: {

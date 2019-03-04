@@ -31,6 +31,7 @@ contract ActivityAdditional {
     SUBNATIONALMULTIFIRSTLEVEL,
     SUBNATIONALSINGLEFIRSTLEVEL,
     SUBNATIONALSINGLESECONDLEVEL,
+    SINGLELOCATION,
     MAX
   }
 
@@ -57,6 +58,8 @@ contract ActivityAdditional {
   }
 
   struct Additional {
+    bytes32 defaultAidType;
+    uint256 defaultFinanceType;
     uint8 budgetNotProvided;
     uint8 status;
     uint8 scope;
@@ -64,16 +67,18 @@ contract ActivityAdditional {
     uint8 collaborationType;
     uint8 defaultFlowType;
     uint8 defaultTiedStatus;
-    uint256 defaultFinanceType;
-    bytes32 defaultAidType;
   }
 
-  function setActivityAdditional(bytes32 _activitiesRef, bytes32 activityRef, bytes32 _additionalRef, Additional memory _activity) public;
+  function setAdditional(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef, Additional memory _activity) public;
 
-  function getNumAdditional(bytes32 _activitiesRef, bytes32 activityRef) public view returns (uint256);
-  function getReference(bytes32 _activitiesRef, bytes32 activityRef, uint256 _index) public view returns (bytes32);
+  function getNumAdditional(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint256);
+  function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) public view returns (bytes32);
 
-  function getActivityAdditional(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (Additional memory);
+  function getAdditional(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (Additional memory);
+
+  function getDefaultAidType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (bytes32);
+
+  function getDefaultFinanceType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint256);
 
   function getBudgetNotProvided(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8);
   function getStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8);
@@ -81,7 +86,5 @@ contract ActivityAdditional {
   function getCapitalSpend(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8);
   function getCollaborationType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8);
   function getDefaultFlowType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8);
-  function getDefaultFinanceType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint256);
-  function getDefaultAidType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (bytes32);
   function getDefaultTiedStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8);
 }
