@@ -26,8 +26,6 @@ export const setActivityAdditional = (details: ActivityAdditionalProps) => {
     const additional: IATIActivityAdditionalProps = {
       defaultAidType: ethers.utils.formatBytes32String(details.defaultAidType),
       defaultFinanceType: details.defaultFinanceType,
-      budgetNotProvided: details.budgetNotProvided,
-      status: details.status,
       scope: details.scope,
       capitalSpend: details.capitalSpend,
       collaborationType: details.collaborationType,
@@ -40,7 +38,6 @@ export const setActivityAdditional = (details: ActivityAdditionalProps) => {
     try {
 
       /*let gasLimit = await state.chainInfo.data.provider.estimateGas(activityAdditionalContract.setActivityAdditional)
-      gasLimit *= 90
       console.log("Additional: ", details.activitiesRef, details.activityRef, additionalRef, additional)
       console.log("Gas limit: ", gasLimit)
       const tx = await activityAdditionalContract.setActivityAdditional(details.activitiesRef, details.activityRef, additionalRef, additional, {gasLimit: gasLimit})*/

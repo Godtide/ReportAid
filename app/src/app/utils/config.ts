@@ -47,20 +47,21 @@ class Blockchain {
 
 class Contract {
 
-  static orgsAddress = "0x5fd0bf6818576c58E067749821F1C41aAf97B16A"
-  static organisationsAddress = "0x1dF54fB0bE96038017A1C0563477FabeaEf4A9E3"
-  static organisationAddress = "0xFa9f7680705968660d36F34D080d5fEeD0614221"
-  static organisationDocsAddress = "0xB155E22D9598cC0e635792070A888127Ae349B0c"
-  static organisationBudgetsAddress = "0x7952136EB509C59bFe8393a0BAeB17D3a5E0a400"
-  static organisationExpenditureAddress = "0x391Ef15D0640b87c6Fbaa555CaE2ed29dfd9F5c1"
-  static organisationRecipientBudgetsAddress = "0x69f373FeE4B3E8e807c29C1ae3E9Cf945Eff9Ff9"
-  static organisationRegionBudgetsAddress = "0xd658BCf4D324B313924f1B8CdbB89D4DD06cc81F"
-  static organisationCountryBudgetsAddress = "0x970b377Bd79fA5dfFDca00791AeeF21E49DD661b"
-  static activitiesAddress = "0x7461eB577da59CBEE2618BB82c0d67311AE89960"
-  static activityAddress = "0x8F4E85EB68406E66de7bf056Af7E69b8e8C2B34e"
-  static activityAdditionalAddress = "0xB03F3f635C6F5Ef3F1B3381E2B2c117E781E3494"
-  static activityDatesAddress = "0x945a07036F169Fe7db7797bD940E1E88Ea4f0b7f"
-  static activityParticipatingOrgsAddress = "0x379abC7EDF25A9D0aA8401713657207f56CbEe13"
+  static orgsAddress = "0xe0c591987bc980aC688886E7A34084E282951E9a"
+  static organisationsAddress = "0xE6a0f4838c27024A41e4DAC39354Ad735Ef71E82"
+  static organisationAddress = "0xFDCF04eEA8F126C6CB32a32237AaB0f47b661edF"
+  static organisationDocsAddress = "0xEb6B45ea7f7Ab87ad14bD5a850138afFBba3114f"
+  static organisationBudgetsAddress = "0xA184A82Ba5C878ffb09703cC7595d1f79EdD58bd"
+  static organisationExpenditureAddress = "0x1547F753F2796ABFc83828b5d3FBcAF6c1a248FC"
+  static organisationRecipientBudgetsAddress = "0xE4541732042a460fe92B08D4C4987a6Ec5Ab39D5"
+  static organisationRegionBudgetsAddress = "0x743D008a4f3e551aef508f05396A727e00C5FE14"
+  static organisationCountryBudgetsAddress = "0x24EdA6192972BcE2818d486493f3490b2bFFa41C"
+  static activitiesAddress = "0xaa40f5e2C86a87741a0071Cd5a8a5D1bBe5a43E6"
+  static activityAddress = "0x17bf40A99bA905c2df32a779C3319c68ad4b683D"
+  static activityAdditionalAddress = "0xF716E2EB604a27Ef745D2F206145Db4Bb26C647D"
+  static activityDatesAddress = "0x89c25D6cB3807E04650a504443716C15919FeE36"
+  static activityParticipatingOrgsAddress = "0x0F83144254E8B8Fee0533D2C51e861ADBC869D36"
+
 
   static activitiesABI = [
     "event SetActivities(bytes32 _activitiesRef, tuple(bytes32 version, bytes32 generatedTime, bytes32 linkedData) orgActivities)",
@@ -78,22 +79,20 @@ class Contract {
   ]
 
   static activityAdditionalABI = [
-    "function setAdditional(bytes32 _activitiesRef, bytes32 activityRef, bytes32 _additionalRef, tuple(bytes32 defaultAidType, uint256 defaultFinanceType, uint8 budgetNotProvided, uint8 status, uint8 scope, uint8 capitalSpend, uint8 collaborationType, uint8 defaultFlowType, uint8 defaultTiedStatus) additional)@500000",
+  	"function setAdditional(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef, tuple(bytes32 defaultAidType, uint256 defaultFinanceType, uint8 scope, uint8 capitalSpend, uint8 collaborationType, uint8 defaultFlowType, uint8 defaultTiedStatus) _additional)@500000",
 
-  	"function getNumAdditional(bytes32 _activitiesRef, bytes32 activityRef) view returns (uint256)",
-  	"function getReference(bytes32 _activitiesRef, bytes32 activityRef, uint256 _index) view returns (bytes32)",
+  	"function getNumAdditional(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint256)",
+  	"function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) public view returns (bytes32)",
 
-  	"function getAdditional(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) view returns (tuple(bytes32 defaultAidType, uint256 defaultFinanceType, uint8 budgetNotProvided, uint8 status, uint8 scope, uint8 capitalSpend, uint8 collaborationType, uint8 defaultFlowType, uint8 defaultTiedStatus) _additional)",
+  	"function getAdditional(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (tuple(bytes32 defaultAidType, uint256 defaultFinanceType, uint8 scope, uint8 capitalSpend, uint8 collaborationType, uint8 defaultFlowType, uint8 defaultTiedStatus) _additional)",
 
-  	"function getBudgetNotProvided(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) view returns (uint8)",
-  	"function getStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) view returns (uint8)",
-  	"function getScope(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) view returns (uint8)",
-  	"function getCapitalSpend(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) view returns (uint8)",
-  	"function getCollaborationType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) view returns (uint8)",
-  	"function getDefaultFlowType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) view returns (uint8)",
-  	"function getDefaultFinanceType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) view returns (uint256)",
-  	"function getDefaultAidType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) view returns (bytes32)",
-  	"function getDefaultTiedStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) view returns (uint8)",
+  	"function getDefaultAidType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (bytes32)",
+  	"function getDefaultFinanceType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint256)",
+  	"function getScope(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8)",
+  	"function getCapitalSpend(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8)",
+  	"function getCollaborationType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8)",
+  	"function getDefaultFlowType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8)",
+  	"function getDefaultTiedStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8)",
   ]
 
   static activityDatesABI = [
@@ -129,25 +128,25 @@ class Contract {
   ]
 
   static activityABI = [
-    "event SetActivity(bytes32 _activitiesRef, bytes32 activityRef, tuple(bool humanitarian, uint8 hierarchy, tuple(uint8 orgType, bool isSecondary, bytes32 orgRef) reportingOrg, bytes32 lastUpdated, bytes32 lang, bytes32 currency, bytes32 linkedData, bytes32 identifier, bytes32 title, string description) orgActivity)",
+  	"function setActivity(bytes32 _activitiesRef, bytes32 activityRef, tuple(bool humanitarian, uint8 hierarchy, uint8 status, uint8 budgetNotProvided, tuple(uint8 orgType, bool isSecondary, bytes32 orgRef) reportingOrg, bytes32 lastUpdated, bytes32 lang, bytes32 currency, bytes32 linkedData, bytes32 identifier, bytes32 title, string description) _activity)@500000",
 
-    "function setActivity(bytes32 _activitiesRef, bytes32 activityRef, tuple(bool humanitarian, uint8 hierarchy, tuple(uint8 orgType, bool isSecondary, bytes32 orgRef) reportingOrg, bytes32 lastUpdated, bytes32 lang, bytes32 currency, bytes32 linkedData, bytes32 identifier, bytes32 title, string description) orgActivity)@1000000",
+  	"function getNumActivities(bytes32 _activitiesRef) public view returns (uint256)",
+  	"function getReference(bytes32 _activitiesRef, uint256 _index) public view returns (bytes32)",
 
-  	"function getNumActivities(bytes32 _activitiesRef) view returns (uint256)",
-  	"function getReference(bytes32 _activitiesRef, uint256 _index) view returns (bytes32)",
+  	"function getActivity(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (tuple(bool humanitarian, uint8 hierarchy, uint8 status, uint8 budgetNotProvided, tuple(uint8 orgType, bool isSecondary, bytes32 orgRef) reportingOrg, bytes32 lastUpdated, bytes32 lang, bytes32 currency, bytes32 linkedData, bytes32 identifier, bytes32 title, string description) _activity)",
 
-  	"function getActivity(bytes32 _activitiesRef, bytes32 _activityRef) view returns (tuple(bool humanitarian, uint8 hierarchy, tuple(uint8 orgType, bool isSecondary, bytes32 orgRef) reportingOrg, bytes32 lastUpdated, bytes32 lang, bytes32 currency, bytes32 linkedData, bytes32 identifier, bytes32 title, string description) orgActivity)",
-
-  	"function getIdentifier(bytes32 _activitiesRef, bytes32 _activityRef) view returns (bytes32)",
-  	"function getReportingOrg(bytes32 _activitiesRef, bytes32 _activityRef) view returns (ReportingOrg memory)",
-  	"function getTitle(bytes32 _activitiesRef, bytes32 _activityRef) view returns (bytes32)",
-  	"function getLastUpdatedTime(bytes32 _activitiesRef, bytes32 _activityRef) view returns (bytes32)",
-  	"function getLang(bytes32 _activitiesRef, bytes32 _activityRef) view returns (bytes32)",
-  	"function getCurrency(bytes32 _activitiesRef, bytes32 _activityRef) view returns (bytes32)",
-  	"function getHumanitarian(bytes32 _activitiesRef, bytes32 _activityRef) view returns (bool)",
-  	"function getHierarchy(bytes32 _activitiesRef, bytes32 _activityRef) view returns (uint8)",
-  	"function getLinkedData(bytes32 _activitiesRef, bytes32 _activityRef) view returns (bytes32)",
-  	"function getDescription(bytes32 _activitiesRef, bytes32 _activityRef) view returns (string memory)"
+  	"function getIdentifier(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32)",
+  	"function getReportingOrg(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (ReportingOrg memory)",
+  	"function getTitle(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32)",
+  	"function getLastUpdatedTime(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32)",
+  	"function getLang(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32)",
+  	"function getCurrency(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32)",
+  	"function getHumanitarian(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bool)",
+  	"function getHierarchy(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8)",
+  	"function getStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8)",
+  	"function getBudgetNotProvided(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8)",
+  	"function getLinkedData(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32)",
+  	"function getDescription(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (string memory)",
   ]
 
   static orgsABI = [

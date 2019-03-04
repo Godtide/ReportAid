@@ -324,6 +324,8 @@ export interface ActivitiesProps {
 export interface IATIActivityProps {
   humanitarian: boolean
   hierarchy: number
+  status: number
+  budgetNotProvided: number
   reportingOrg: ReportingOrgProps
   lastUpdated: string
   lang: string
@@ -345,6 +347,8 @@ export interface ActivityProps {
   lang: string
   currency: string
   humanitarian: boolean
+  budgetNotProvided: number
+  status: number
   hierarchy: number
   linkedData: string
   description: string
@@ -353,8 +357,6 @@ export interface ActivityProps {
 export interface IATIActivityAdditionalProps {
   defaultAidType: string
   defaultFinanceType: number
-  budgetNotProvided: number
-  status: number
   scope: number
   capitalSpend: number
   collaborationType: number
@@ -368,8 +370,6 @@ export interface ActivityAdditionalProps {
   additionalRef: string
   defaultAidType: string
   defaultFinanceType: number
-  budgetNotProvided: number
-  status: number
   scope: number
   capitalSpend: number
   collaborationType: number
@@ -416,8 +416,10 @@ export interface IATIActivityData {
   reportingOrgRef: string
   reportingOrgType: number
   reportingOrgIsSecondary: boolean
+  status: number
   humanitarian: boolean
   hierarchy: number
+  budgetNotProvided: number
 }
 
 export interface IATIActivityReport {
@@ -433,8 +435,6 @@ export interface IATIActivityAdditionaData {
   additionalRef: string
   defaultAidType: string
   defaultFinanceType: number
-  budgetNotProvided: number
-  status: number
   scope: number
   capitalSpend: number
   collaborationType: number

@@ -59,6 +59,11 @@ const activitySchema = Yup.object().shape({
   currency: Yup
     .string()
     .required('Required'),
+  budgetNotProvided: Yup
+    .number(),
+  status: Yup
+    .number()
+    .required('Required'),
   humanitarian: Yup
     .boolean()
     .required('Required'),
@@ -66,8 +71,7 @@ const activitySchema = Yup.object().shape({
     .number()
     .required('Required'),
   linkedData: Yup
-    .string()
-    .required('Required'),
+    .string(),
   description: Yup
     .string()
     .required('Required')
@@ -120,6 +124,8 @@ export class ActivityForm extends React.Component<ActivityFormProps> {
                              title: "",
                              lang: "",
                              currency: "",
+                             budgetNotProvided: 0,
+                             status: 0,
                              humanitarian: true,
                              hierarchy: 0,
                              linkedData: "",
@@ -204,6 +210,13 @@ export class ActivityForm extends React.Component<ActivityFormProps> {
                   />
                   <ErrorMessage name='reportingOrgIsSecondary' />
                   <Field
+                    name="status"
+                    label={ActivityStrings.status}
+                    component={Select}
+                    options={Helpers.status}
+                  />
+                  <ErrorMessage name='status' />
+                  <Field
                     name="humanitarian"
                     label={ActivityStrings.humanitarian}
                     component={Select}
@@ -215,6 +228,13 @@ export class ActivityForm extends React.Component<ActivityFormProps> {
                     label={ActivityStrings.hierarchy}
                     component={Select}
                     options={Helpers.hierarchy}
+                  />
+                  <ErrorMessage name='hierarchy' />
+                  <Field
+                    name="budgetNotProvided"
+                    label={ActivityStrings.budgetNotProvided}
+                    component={Select}
+                    options={Helpers.budgetNotProvided}
                   />
                   <ErrorMessage name='hierarchy' />
                   <br />

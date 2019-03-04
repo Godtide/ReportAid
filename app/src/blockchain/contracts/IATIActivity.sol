@@ -23,6 +23,10 @@ contract IATIActivity is Activity {
              _activity.currency[0] != 0 &&
              _activity.hierarchy > uint8(Hierarchy.NONE) &&
              _activity.hierarchy < uint8(Hierarchy.MAX) &&
+             _activity.status > uint8(Status.NONE) &&
+             _activity.status < uint8(Status.MAX) &&
+             _activity.budgetNotProvided > uint8(BudgetNotProvided.NONE) &&
+             _activity.budgetNotProvided < uint8(BudgetNotProvided.MAX) &&
              bytes(_activity.description).length > 0);
 
     activities[_activitiesRef][activityRef] = _activity;
@@ -98,6 +102,18 @@ contract IATIActivity is Activity {
   	require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
 
   	return activities[_activitiesRef][_activityRef].hierarchy;
+  }
+
+  function getStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8) {
+    require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
+
+  	return activities[_activitiesRef][_activityRef].status;
+  }
+
+  function getBudgetNotProvided(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8) {
+    require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
+
+  	return activities[_activitiesRef][_activityRef].budgetNotProvided;
   }
 
   function getLinkedData(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32) {

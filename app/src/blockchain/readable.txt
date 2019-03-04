@@ -15,17 +15,15 @@ static activitiesABI = [
 
 ActivityAdditional.sol
 
-tuple(bytes32 defaultAidType, uint256 defaultFinanceType, uint8 budgetNotProvided, uint8 status, uint8 scope, uint8 capitalSpend, uint8 collaborationType, uint8 defaultFlowType, uint8 defaultTiedStatus)
+tuple(bytes32 defaultAidType, uint256 defaultFinanceType, uint8 scope, uint8 capitalSpend, uint8 collaborationType, uint8 defaultFlowType, uint8 defaultTiedStatus)
 
 static activityAdditionalABI = [
-	"function setAdditional(bytes32 _activitiesRef, bytes32 activityRef, bytes32 _additionalRef, Additional memory _activity) public",
-	"function getNumAdditional(bytes32 _activitiesRef, bytes32 activityRef) public view returns (uint256)",
-	"function getReference(bytes32 _activitiesRef, bytes32 activityRef, uint256 _index) public view returns (bytes32)",
+	"function setAdditional(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef, Additional memory _activity) public",
+	"function getNumAdditional(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint256)",
+	"function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) public view returns (bytes32)",
 	"function getAdditional(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (Additional memory)",
 	"function getDefaultAidType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (bytes32)",
 	"function getDefaultFinanceType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint256)",
-	"function getBudgetNotProvided(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8)",
-	"function getStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8)",
 	"function getScope(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8)",
 	"function getCapitalSpend(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8)",
 	"function getCollaborationType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8)",
@@ -69,7 +67,7 @@ static activityParticipatingOrgsABI = [
 
 Activity.sol
 
-tuple(bool humanitarian, uint8 hierarchy, ReportingOrg reportingOrg, bytes32 lastUpdated, bytes32 lang, bytes32 currency, bytes32 linkedData, bytes32 identifier, bytes32 title, string description)
+tuple(bool humanitarian, uint8 hierarchy, uint8 status, uint8 budgetNotProvided, ReportingOrg reportingOrg, bytes32 lastUpdated, bytes32 lang, bytes32 currency, bytes32 linkedData, bytes32 identifier, bytes32 title, string description)
 
 static activityABI = [
 	"function setActivity(bytes32 _activitiesRef, bytes32 activityRef, OrgActivity memory _activity) public",
@@ -84,6 +82,8 @@ static activityABI = [
 	"function getCurrency(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32)",
 	"function getHumanitarian(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bool)",
 	"function getHierarchy(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8)",
+	"function getStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8)",
+	"function getBudgetNotProvided(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8)",
 	"function getLinkedData(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32)",
 	"function getDescription(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (string memory)",
 ]

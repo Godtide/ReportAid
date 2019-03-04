@@ -15,10 +15,6 @@ contract IATIActivityAdditional is ActivityAdditional {
     require (_activitiesRef[0] != 0 &&
              _activityRef[0] != 0 &&
              _additionalRef[0] != 0 &&
-             _additional.budgetNotProvided > uint8(BudgetNotProvided.NONE) &&
-             _additional.budgetNotProvided < uint8(BudgetNotProvided.MAX) &&
-             _additional.status > uint8(Status.NONE) &&
-             _additional.status < uint8(Status.MAX) &&
              _additional.scope > uint8(Scope.NONE) &&
              _additional.scope < uint8(Scope.MAX) &&
              _additional.capitalSpend <= 100 &&
@@ -67,18 +63,6 @@ contract IATIActivityAdditional is ActivityAdditional {
   	return additionals[_activitiesRef][_activityRef][_additionalRef].defaultFinanceType;
   }
 
-  function getBudgetNotProvided(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8) {
-  	require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _additionalRef[0] != 0);
-
-  	return additionals[_activitiesRef][_activityRef][_additionalRef].budgetNotProvided;
-  }
-
-  function getStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8) {
-  	require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _additionalRef[0] != 0);
-
-  	return additionals[_activitiesRef][_activityRef][_additionalRef].status;
-  }
-
   function getScope(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8) {
   	require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _additionalRef[0] != 0);
 
@@ -108,5 +92,4 @@ contract IATIActivityAdditional is ActivityAdditional {
 
   	return additionals[_activitiesRef][_activityRef][_additionalRef].defaultTiedStatus;
   }
-
 }

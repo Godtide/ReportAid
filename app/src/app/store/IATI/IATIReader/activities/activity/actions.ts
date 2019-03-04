@@ -20,18 +20,6 @@ export const getActivity = (props: ActivityReportProps) => {
       data: { activitiesRef: activitiesRef, data: [] }
     }
 
-    /*
-    budgetNotProvided: activity.budgetNotProvided,
-    status: activity.status,
-    scope: activity.scope,
-    capitalSpend: activity.capitalSpend,
-    collaborationType: activity.collaborationType,
-    defaultFlowType: activity.defaultFlowType,
-    defaultFinanceType: activity.defaultFinanceType,
-    defaultAidType: ethers.utils.parseBytes32String(activity.defaultAidType),
-    defaultTiedStatus: activity.defaultTiedStatus
-    */
-
     let actionType = IATIReportActionTypes.ACTIVITY_FAILURE
     try {
       const num = await activityContract.getNumActivities(activitiesRef)
@@ -52,8 +40,10 @@ export const getActivity = (props: ActivityReportProps) => {
            reportingOrgRef: activity.reportingOrg.orgRef,
            reportingOrgType: activity.reportingOrg.orgType,
            reportingOrgIsSecondary: activity.reportingOrg.isSecondary,
+           status: activity.status,
            humanitarian: activity.humanitarian,
-           hierarchy: activity.hierarchy
+           hierarchy: activity.hierarchy,
+           budgetNotProvided: activity.budgetNotProvided
          }
 
          actionType = IATIReportActionTypes.ACTIVITYPICKER_SUCCESS

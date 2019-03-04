@@ -23,21 +23,11 @@ export const setActivity = (details: ActivityProps) => {
       activityRef = ethers.utils.formatBytes32String(shortid.generate())
     }
 
-    /*
-    budgetNotProvided: details.budgetNotProvided,
-    status: details.status,
-    scope: details.scope,
-    capitalSpend: details.capitalSpend,
-    collaborationType: details.collaborationType,
-    defaultFlowType: details.defaultFlowType,
-    defaultTiedStatus: details.defaultTiedStatus,
-    defaultAidType: ethers.utils.formatBytes32String(details.defaultAidType),
-    defaultFinanceType: details.defaultFinanceType,
-    */
-
     const activity: IATIActivityProps = {
       humanitarian: details.humanitarian,
       hierarchy: details.hierarchy,
+      status: details.status,
+      budgetNotProvided: details.budgetNotProvided,
       reportingOrg: {
         orgRef: details.reportingOrgRef,
         orgType: details.reportingOrgType,

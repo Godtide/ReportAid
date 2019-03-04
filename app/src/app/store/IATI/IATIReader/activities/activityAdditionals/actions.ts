@@ -37,8 +37,6 @@ export const getActivityAdditionals = (props: ActivitiesReportProps) => {
            additionalRef: additionalRef,
            defaultAidType: ethers.utils.parseBytes32String(additional.defaultAidType),
            defaultFinanceType: ethers.utils.bigNumberify(additional.defaultFinanceType).toNumber(),
-           budgetNotProvided: additional.budgetNotProvided,
-           status: additional.status,
            scope: additional.scope,
            capitalSpend: additional.capitalSpend,
            collaborationType: additional.collaborationType,

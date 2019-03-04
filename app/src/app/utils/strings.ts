@@ -140,6 +140,8 @@ class Activity {
   static lastUpdated = "Last Updated"
   static language = "Language"
   static currency = "Currency"
+  static budgetNotProvided = "Budget Not Provided"
+  static status = "Status"
   static humanitarian = "Is Humanitarian?"
   static hierarchy = "Hierarchy"
   static description = "Description"
@@ -156,8 +158,6 @@ class ActivityAdditional {
   static activitiesReference = "Activities Reference"
   static activityReference = "Activity Reference"
 
-  static budgetNotProvided = "Budget Not Provided"
-  static status = "Status"
   static scope = "Scope"
   static capitalSpend = "Capital Spend"
   static collaborationType = "Collaboration Type"

@@ -11,6 +11,25 @@ contract Activity {
     MAX
   }
 
+  enum Status {
+    NONE,
+    PIPELINEIDENTIFICATION,
+    IMPLEMENTATION,
+    FINALISATION,
+    CLOSED,
+    CANCELLED,
+    SUSPENDED,
+    MAX
+  }
+
+  enum BudgetNotProvided {
+    NONE,
+    COMMERCIALRESTRICTIONS,
+    LEGALRESTRICTIONS,
+    RAPIDONSETEMERGENCY,
+    MAX
+  }
+
   struct ReportingOrg {
     uint8 orgType;
     bool isSecondary;
@@ -20,6 +39,8 @@ contract Activity {
   struct OrgActivity {
     bool humanitarian;
     uint8 hierarchy;
+    uint8 status;
+    uint8 budgetNotProvided;
     ReportingOrg reportingOrg;
     bytes32 lastUpdated;
     bytes32 lang;
@@ -45,6 +66,8 @@ contract Activity {
   function getCurrency(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32);
   function getHumanitarian(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bool);
   function getHierarchy(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8);
+  function getStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8);
+  function getBudgetNotProvided(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8);
   function getLinkedData(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32);
   function getDescription(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (string memory);
 }

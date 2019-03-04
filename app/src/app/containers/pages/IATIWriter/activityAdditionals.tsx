@@ -38,33 +38,20 @@ const activityAdditionalSchema = Yup.object().shape({
   activityRef: Yup
     .string()
     .required('Required'),
-  budgetNotProvided: Yup
-    .number()
-    .required('Required'),
-  status: Yup
-    .number()
-    .required('Required'),
   scope: Yup
-    .number()
-    .required('Required'),
+    .number(),
   capitalSpend: Yup
-    .number()
-    .required('Required'),
+    .number(),
   collaborationType: Yup
-    .number()
-    .required('Required'),
+    .number(),
   defaultFlowType: Yup
-    .number()
-    .required('Required'),
+    .number(),
   defaultFinanceType: Yup
-    .number()
-    .required('Required'),
+    .number(),
   defaultAidType: Yup
-    .string()
-    .required('Required'),
+    .string(),
   defaultTiedStatus: Yup
     .number()
-    .required('Required')
 })
 
 interface ActivityAdditionalKeyProps {
@@ -106,8 +93,6 @@ export class ActivityAdditionalForm extends React.Component<ActivityAdditionalFo
             initialValues={ {activitiesRef: "",
                              activityRef: "",
                              additionalRef: "",
-                             budgetNotProvided: 0,
-                             status: 0,
                              scope: 0,
                              capitalSpend: 0,
                              collaborationType: 0,
@@ -150,20 +135,6 @@ export class ActivityAdditionalForm extends React.Component<ActivityAdditionalFo
                     options={Helpers.defaultFinanceType}
                   />
                   <ErrorMessage name='defaultFinanceType' />
-                  <Field
-                    name="budgetNotProvided"
-                    label={ActivityAdditionalStrings.budgetNotProvided}
-                    component={Select}
-                    options={Helpers.budgetNotProvided}
-                  />
-                  <ErrorMessage name='hierarchy' />
-                  <Field
-                    name="status"
-                    label={ActivityAdditionalStrings.status}
-                    component={Select}
-                    options={Helpers.status}
-                  />
-                  <ErrorMessage name='status' />
                   <Field
                     name="scope"
                     label={ActivityAdditionalStrings.scope}
