@@ -38,6 +38,9 @@ const activityAdditionalSchema = Yup.object().shape({
   activityRef: Yup
     .string()
     .required('Required'),
+  additionalRef: Yup
+    .string()
+    .required('Required'),
   scope: Yup
     .number(),
   capitalSpend: Yup
@@ -57,12 +60,14 @@ const activityAdditionalSchema = Yup.object().shape({
 interface ActivityAdditionalKeyProps {
   activitiesRef: string
   activityRef: string
+  additionalRef: string
 }
 
 export interface ActivityAdditionalDispatchProps {
   handleSubmit: (values: any) => void
   initialise: () => void
   setFormFunctions: (formProps: FormData) => void
+  newKey: () => void
 }
 
 type ActivityAdditionalFormProps = WithStyles<typeof styles> & ActivityAdditionalKeyProps & ActivityAdditionalDispatchProps
@@ -75,6 +80,7 @@ export class ActivityAdditionalForm extends React.Component<ActivityAdditionalFo
 
   componentDidMount() {
     this.props.initialise()
+    this.props.newKey()
   }
 
   handleSubmit = (values: ActivityAdditionalProps, setSubmitting: Function, reset: Function) => {
@@ -92,7 +98,7 @@ export class ActivityAdditionalForm extends React.Component<ActivityAdditionalFo
           <Formik
             initialValues={ {activitiesRef: "",
                              activityRef: "",
-                             additionalRef: "",
+                             additionalRef: this.props.additionalRef,
                              scope: 0,
                              capitalSpend: 0,
                              collaborationType: 0,
@@ -109,6 +115,13 @@ export class ActivityAdditionalForm extends React.Component<ActivityAdditionalFo
             render={(formProps: FormikProps<ActivityAdditionalProps>) => (
               <Form>
                 <FormControl fullWidth={true}>
+                  <Field
+                    readOnly
+                    name='additionalRef'
+                    value={this.props.additionalRef}
+                    label={ActivityAdditionalStrings.additionalRef}
+                    component={TextField}
+                  />
                   <ActivitiesPicker
                     setValue={formProps.setFieldValue}
                     name='activitiesRef'
@@ -190,7 +203,8 @@ const mapStateToProps = (state: ApplicationState): ActivityAdditionalKeyProps =>
   //console.log(state.orgReader)
   return {
     activitiesRef: state.keys.data.activities,
-    activityRef: state.keys.data.activity
+    activityRef: state.keys.data.activity,
+    additionalRef: state.keys.data.newKey
   }
 }
 
@@ -198,7 +212,8 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   return {
     handleSubmit: (ownProps: any) => dispatch(setActivityAdditional(ownProps)),
     initialise: () => dispatch(initialise()),
-    setFormFunctions: (formProps: FormData) => dispatch(setFormFunctions(formProps))
+    setFormFunctions: (formProps: FormData) => dispatch(setFormFunctions(formProps)),
+    newKey: () => dispatch(newKey())
   }
 }
 

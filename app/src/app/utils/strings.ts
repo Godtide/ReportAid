@@ -157,6 +157,7 @@ class ActivityAdditional {
 
   static activitiesReference = "Activities Reference"
   static activityReference = "Activity Reference"
+  static additionalRef = "Activity Additional Info\' Reference"
 
   static scope = "Scope"
   static capitalSpend = "Capital Spend"
