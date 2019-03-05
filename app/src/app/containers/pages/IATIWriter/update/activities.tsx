@@ -12,14 +12,14 @@ import { TextField, Select } from "material-ui-formik-components"
 
 import { ApplicationState } from '../../../../store'
 import { ActionProps } from '../../../../store/types'
-import { ActivitiesProps } from '../../../../store/IATI/types'
+import { ActivitiesProps, ActivityReportProps } from '../../../../store/IATI/types'
 import { FormData } from '../../../../store/helpers/forms/types'
 import { Keys, KeyTypes } from '../../../../store/helpers/keys/types'
 
 import { ActivitiesPicker } from '../../../../components/io/activitiesPicker'
 
-import { setKey } from '../../../../store/helpers/keys/actions'
-import { getActivities } from '../../../../store/IATI/IATIReader/activities/activities/actions'
+//import { setKey } from '../../../../store/helpers/keys/actions'
+import { getActivitiesRecord } from '../../../../store/IATI/IATIReader/activities/activities/actions'
 
 import { Activities as ActivitiesStrings } from '../../../../utils/strings'
 import { Helpers } from '../../../../utils/config'
@@ -38,9 +38,7 @@ interface ActivitiesKeyProps {
 }
 
 interface ActivitiesDispatchProps {
-  handleSubmit: (values: any) => void
-  getActivities: (isReport: boolean) => void
-  setKey: (keyProps: Keys) => void
+  handleSubmit: (values: ActivityReportProps) => void
 }
 
 type ActivitiesFormProps = WithStyles<typeof styles> & ActivitiesKeyProps & ActivitiesDispatchProps
@@ -55,8 +53,7 @@ export class ActivitiesForm extends React.Component<ActivitiesFormProps> {
   }
 
   handleSubmit = (values: ActivitiesKeyProps, setSubmitting: Function, reset: Function) => {
-    this.props.handleSubmit(values)
-    this.props.getActivities(true)
+    this.props.handleSubmit({isReport: true, activitiesRef: values.activitiesRef})
   }
 
   render() {
@@ -106,9 +103,7 @@ const mapStateToProps = (state: ApplicationState): ActivitiesKeyProps => {
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): ActivitiesDispatchProps => {
   return {
-    handleSubmit: (ownProps: any) => dispatch(getActivities(ownProps)),
-    getActivities: (isReport: boolean) => dispatch(getActivities(isReport)),
-    setKey: (keyProps: Keys) => dispatch(setKey(keyProps))
+    handleSubmit: (props: ActivityReportProps) => dispatch(getActivitiesRecord(props))
   }
 }
 

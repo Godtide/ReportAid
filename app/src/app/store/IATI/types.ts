@@ -431,7 +431,7 @@ export interface IATIActivityReportProps extends PayloadProps {
   data: IATIActivityReport
 }
 
-export interface IATIActivityAdditionaData {
+export interface IATIActivityAdditionalData {
   additionalRef: string
   defaultAidType: string
   defaultFinanceType: number
@@ -445,7 +445,7 @@ export interface IATIActivityAdditionaData {
 export interface IATIActivityAdditionalReport {
   activitiesRef: string
   activityRef: string
-  data: Array<IATIActivityAdditionaData>
+  data: Array<IATIActivityAdditionalData>
 }
 
 export interface IATIActivityAdditionalReportProps extends PayloadProps {

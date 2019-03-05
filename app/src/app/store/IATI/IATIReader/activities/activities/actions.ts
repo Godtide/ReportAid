@@ -9,6 +9,32 @@ import { IATIActivitiesProps, IATIReportActionTypes, IATIActivitiesReportProps }
 
 import { read } from '../../actions'
 
+export const getActivitiesRecord = (props: ActivitiesProps) => {
+  return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
+
+    let actionType = IATIReportActionTypes.ACTIVITIES_FAILURE
+    try {
+
+       const activities: IATIActivitiesProps = await activitiesContract.getActivities(props.activitiesRef)
+       activitiesData.data.data[i] = {
+         activitiesRef: activitiesRef,
+         version: ethers.utils.parseBytes32String(activities.version),
+         generatedTime:  ethers.utils.parseBytes32String(activities.generatedTime),
+         linkedData: ethers.utils.parseBytes32String(activities.linkedData),
+       }
+
+       actionType = IATIReportActionTypes.ACTIVITIESPICKER_SUCCESS
+       if(props.isReport) {
+        actionType = IATIReportActionTypes.ACTIVITIES_SUCCESS
+       }
+
+    } catch (error) {
+      console.log('getActivities error', error)
+    }
+    dispatch(read({data: activitiesData})(actionType))
+  }
+}
+
 export const getActivities = (isReport: boolean) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
 
@@ -26,18 +52,7 @@ export const getActivities = (isReport: boolean) => {
       for (let i = 0; i < numActivities; i++) {
          const activitiesRef = await activitiesContract.getReference(i.toString())
          //console.log('Activities: ', activitiesRef, activitiesRef.length, numActivities)
-         const activities: IATIActivitiesProps = await activitiesContract.getActivities(activitiesRef)
-         activitiesData.data.data[i] = {
-           activitiesRef: activitiesRef,
-           version: ethers.utils.parseBytes32String(activities.version),
-           generatedTime:  ethers.utils.parseBytes32String(activities.generatedTime),
-           linkedData: ethers.utils.parseBytes32String(activities.linkedData),
-         }
-
-         actionType = IATIReportActionTypes.ACTIVITIESPICKER_SUCCESS
-         if(isReport) {
-          actionType = IATIReportActionTypes.ACTIVITIES_SUCCESS
-         }
+         getActivitiesRecord({isReport: isReport, activitiesRef: activitiesRef})
       }
     } catch (error) {
       console.log('getActivities error', error)
