@@ -6,44 +6,31 @@ import { Formik, Form, Field, FormikProps, ErrorMessage} from 'formik'
 import * as Yup from 'yup'
 import { LinearProgress } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
-//import { Date } from 'formik-material-ui'
 import FormControl from '@material-ui/core/FormControl'
 import { Select, TextField } from "material-ui-formik-components"
+//import { Date } from 'formik-material-ui'
 
-import { ApplicationState } from '../../../store'
-import { ActionProps } from '../../../store/types'
-import { OrganisationBudgetProps } from '../../../store/IATI/types'
-import { FormData } from '../../../store/helpers/forms/types'
+import { ApplicationState } from '../../../../store'
+import { ActionProps, TxData } from '../../../../store/types'
+import { OrganisationExpenditureProps } from '../../../../store/IATI/types'
+import { FormData } from '../../../../store/helpers/forms/types'
 
-import { setFormFunctions } from '../../../store/helpers/forms/actions'
-import { initialise } from '../../../store/IATI/IATIWriter/actions'
-import { newKey } from '../../../store/helpers/keys/actions'
-import { setOrganisationBudget } from '../../../store/IATI/IATIWriter/organisations/organisationBudgets/actions'
+import { setFormFunctions } from '../../../../store/helpers/forms/actions'
+import { initialise } from '../../../../store/IATI/IATIWriter/actions'
+import { newKey } from '../../../../store/helpers/keys/actions'
+import { setOrganisationExpenditure } from '../../../../store/IATI/IATIWriter/organisations/organisationExpenditure/actions'
 
-import { FormikDatePicker } from '../../../components/io/datePicker'
-import { OrganisationsPicker } from '../../../components/io/organisationsPicker'
-import { OrganisationPicker } from '../../../components/io/organisationPicker'
-import { OrgPicker } from '../../../components/io/orgPicker'
-import { TransactionHelper } from '../../io/transactionHelper'
+import { FormikDatePicker } from '../../../../components/io/datePicker'
+import { OrganisationsPicker } from '../../../../components/io/organisationsPicker'
+import { OrganisationPicker } from '../../../../components/io/organisationPicker'
+import { OrgPicker } from '../../../../components/io/orgPicker'
+import { TransactionHelper } from '../../../io/transactionHelper'
 
-import { OrganisationBudget } from '../../../utils/strings'
-import { Helpers } from '../../../utils/config'
+import { OrganisationExpenditure as OrganisationExpenditureStrings } from '../../../../utils/strings'
+import { Helpers } from '../../../../utils/config'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
-import { withTheme, styles } from '../../../styles/theme'
-
-/*const StyledSelect = withStyles({
-  root: {
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-    borderRadius: 3,
-    border: 0,
-    color: 'white',
-    height: 48,
-    padding: '0 30px',
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-    width: '10%'
-  }
-})(Select);*/
+import { withTheme, styles } from '../../../../styles/theme'
 
 const reportSchema = Yup.object().shape({
   organisationsRef: Yup
@@ -52,7 +39,7 @@ const reportSchema = Yup.object().shape({
   organisationRef: Yup
     .string()
     .required('Required'),
-  budgetLine: Yup
+  expenditureLine: Yup
     .string()
     .required('Required'),
   value: Yup
@@ -66,73 +53,73 @@ const reportSchema = Yup.object().shape({
 const StartDatePickerProps = {
   day: {
     name: 'startDay',
-    label: OrganisationBudget.budgetStartDay
+    label: OrganisationExpenditureStrings.expenditureStartDay
   },
   month: {
     name: 'startMonth',
-    label: OrganisationBudget.budgetStartMonth
+    label: OrganisationExpenditureStrings.expenditureStartMonth
   },
   year: {
     name: 'startYear',
-    label: OrganisationBudget.budgetStartYear
+    label: OrganisationExpenditureStrings.expenditureStartYear
   }
 }
 
 const EndDatePickerProps = {
   day: {
     name: 'endDay',
-    label: OrganisationBudget.budgetEndDay
+    label: OrganisationExpenditureStrings.expenditureEndDay
   },
   month: {
     name: 'endMonth',
-    label: OrganisationBudget.budgetEndMonth
+    label: OrganisationExpenditureStrings.expenditureEndMonth
   },
   year: {
     name: 'endYear',
-    label: OrganisationBudget.budgetEndYear
+    label: OrganisationExpenditureStrings.expenditureEndYear
   }
 }
 
-interface OrganisationBudgetsKeyProps {
+interface OrganisationExpenditureKeyProps {
   organisationsRef: string
   organisationRef: string
 }
 
-interface OrganisationBudgetsDispatchProps {
+export interface OrganisationExpenditureDispatchProps {
   handleSubmit: (values: any) => void
   initialise: () => void
   setFormFunctions: (formProps: FormData) => void
 }
 
-type OrganisationBudgetsFormProps = WithStyles<typeof styles> & OrganisationBudgetsKeyProps & OrganisationBudgetsDispatchProps
+type OrganisationExpenditureFormProps = WithStyles<typeof styles> & OrganisationExpenditureKeyProps & OrganisationExpenditureDispatchProps
 
-export class OrganisationBudgetsForm extends React.Component<OrganisationBudgetsFormProps> {
+export class OrganisationExpenditureForm extends React.Component<OrganisationExpenditureFormProps> {
 
-  constructor (props: OrganisationBudgetsFormProps) {
-   super(props)
+  constructor (props: OrganisationExpenditureFormProps) {
+    super(props)
   }
 
   componentDidMount() {
     this.props.initialise()
   }
 
-  handleSubmit = (values: OrganisationBudgetProps, setSubmitting: Function, reset: Function) => {
+  handleSubmit = (values: OrganisationExpenditureProps, setSubmitting: Function, reset: Function) => {
     this.props.setFormFunctions({submitFunc: setSubmitting, resetFunc: reset})
-    this.props.handleSubmit(values)
     this.props.initialise()
+    this.props.handleSubmit(values)
   }
 
   render() {
 
     return (
       <div>
-        <h2>{OrganisationBudget.headingOrganisationBudgetWriter}</h2>
+        <h2>{OrganisationExpenditureStrings.headingOrganisationExpenditureWriter}</h2>
         <div>
           <Formik
             initialValues={ {organisationsRef: "",
                              organisationRef: "",
-                             budgetRef: "",
-                             budgetLine: "",
+                             expenditureRef: "",
+                             expenditureLine: "",
                              value: 0,
                              status: 1,
                              startDay: 0,
@@ -143,39 +130,39 @@ export class OrganisationBudgetsForm extends React.Component<OrganisationBudgets
                              endYear: 0
                             }}
             validationSchema={reportSchema}
-            onSubmit={(values: OrganisationBudgetProps, actions: any) => {
+            onSubmit={(values: OrganisationExpenditureProps, actions: any) => {
               this.handleSubmit(values, actions.setSubmitting, actions.resetForm)
             }}
-            render={(formProps: FormikProps<OrganisationBudgetProps>) => (
+            render={(formProps: FormikProps<OrganisationExpenditureProps>) => (
               <Form>
                 <FormControl fullWidth={true}>
                   <OrganisationsPicker
                     setValue={formProps.setFieldValue}
                     name='organisationsRef'
-                    label={OrganisationBudget.organisationsReference}
+                    label={OrganisationExpenditureStrings.organisationsReference}
                   />
                   <ErrorMessage name='organisationsRef' />
                   <OrganisationPicker
                     setValue={formProps.setFieldValue}
                     name='organisationRef'
-                    label={OrganisationBudget.organisationReference}
+                    label={OrganisationExpenditureStrings.organisationReference}
                   />
                   <ErrorMessage name='organisationRef' />
                   <Field
-                    name='budgetLine'
-                    label={OrganisationBudget.budgetLine}
+                    name='expenditureLine'
+                    label={OrganisationExpenditureStrings.expenditureLine}
                     component={TextField}
                   />
-                  <ErrorMessage name='budgetLine' />
+                  <ErrorMessage name='expenditureLine' />
                   <Field
                     name='value'
-                    label={OrganisationBudget.value}
+                    label={OrganisationExpenditureStrings.value}
                     component={TextField}
                   />
                   <ErrorMessage name='value' />
                   <Field
                     name="status"
-                    label={OrganisationBudget.status}
+                    label={OrganisationExpenditureStrings.status}
                     component={Select}
                     options={Helpers.financeStatus}
                   />
@@ -183,7 +170,7 @@ export class OrganisationBudgetsForm extends React.Component<OrganisationBudgets
                   <FormikDatePicker dates={StartDatePickerProps} />
                   <FormikDatePicker dates={EndDatePickerProps} />
                   <br />
-                  {formProps.isSubmitting && formProps.isValidating && <LinearProgress />}
+                  {formProps.isSubmitting && <LinearProgress />}
                   <br />
                   <Button type='submit' variant="raised" color="primary" disabled={formProps.isSubmitting}>
                     Submit
@@ -199,23 +186,22 @@ export class OrganisationBudgetsForm extends React.Component<OrganisationBudgets
   }
 }
 
-const mapStateToProps = (state: ApplicationState): OrganisationBudgetsKeyProps => {
-  //console.log(state.orgReader)
+const mapStateToProps = (state: ApplicationState): OrganisationExpenditureKeyProps => {
   return {
     organisationsRef: state.keys.data.organisations,
     organisationRef: state.keys.data.organisation
   }
 }
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrganisationBudgetsDispatchProps => {
+const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrganisationExpenditureDispatchProps => {
   return {
-    handleSubmit: (ownProps: any) => dispatch(setOrganisationBudget(ownProps)),
+    handleSubmit: (ownProps: any) => dispatch(setOrganisationExpenditure(ownProps)),
     initialise: () => dispatch(initialise()),
     setFormFunctions: (formProps: FormData) => dispatch(setFormFunctions(formProps))
   }
 }
 
-export const OrganisationBudgets = withTheme(withStyles(styles)(connect<OrganisationBudgetsKeyProps, OrganisationBudgetsDispatchProps, {}, ApplicationState>(
+export const OrganisationExpenditure = withTheme(withStyles(styles)(connect<OrganisationExpenditureKeyProps, OrganisationExpenditureDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(OrganisationBudgetsForm)))
+)(OrganisationExpenditureForm)))

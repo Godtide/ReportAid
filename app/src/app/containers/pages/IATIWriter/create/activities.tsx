@@ -10,23 +10,23 @@ import FormControl from '@material-ui/core/FormControl'
 //import { Select } from 'formik-material-ui'
 import { TextField, Select } from "material-ui-formik-components"
 
-import { ApplicationState } from '../../../store'
-import { ActionProps } from '../../../store/types'
-import { ActivitiesProps } from '../../../store/IATI/types'
-import { FormData } from '../../../store/helpers/forms/types'
+import { ApplicationState } from '../../../../store'
+import { ActionProps } from '../../../../store/types'
+import { ActivitiesProps } from '../../../../store/IATI/types'
+import { FormData } from '../../../../store/helpers/forms/types'
 
-import { setFormFunctions } from '../../../store/helpers/forms/actions'
-import { initialise } from '../../../store/IATI/IATIWriter/actions'
-import { newKey } from '../../../store/helpers/keys/actions'
-import { setActivities } from '../../../store/IATI/IATIWriter/activities/activities/actions'
+import { setFormFunctions } from '../../../../store/helpers/forms/actions'
+import { initialise } from '../../../../store/IATI/IATIWriter/actions'
+import { newKey } from '../../../../store/helpers/keys/actions'
+import { setActivities } from '../../../../store/IATI/IATIWriter/activities/activities/actions'
 
-import { TransactionHelper } from '../../io/transactionHelper'
+import { TransactionHelper } from '../../../io/transactionHelper'
 
-import { Activities as ActivitiesStrings } from '../../../utils/strings'
-import { Helpers } from '../../../utils/config'
+import { Activities as ActivitiesStrings } from '../../../../utils/strings'
+import { Helpers } from '../../../../utils/config'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
-import { withTheme, styles } from '../../../styles/theme'
+import { withTheme, styles } from '../../../../styles/theme'
 
 const activitiesSchema = Yup.object().shape({
   activitiesRef: Yup
@@ -48,7 +48,6 @@ export interface ActivitiesDispatchProps {
   handleSubmit: (values: any) => void
   initialise: () => void
   setFormFunctions: (formProps: FormData) => void
-  newKey: () => void
 }
 
 type ActivitiesFormProps = WithStyles<typeof styles> & ActivitiesKeyProps & ActivitiesDispatchProps
@@ -61,7 +60,6 @@ export class ActivitiesForm extends React.Component<ActivitiesFormProps> {
 
   componentDidMount() {
     this.props.initialise()
-    this.props.newKey()
   }
 
   handleSubmit = (values: ActivitiesProps, setSubmitting: Function, reset: Function) => {
@@ -125,7 +123,7 @@ export class ActivitiesForm extends React.Component<ActivitiesFormProps> {
 const mapStateToProps = (state: ApplicationState): ActivitiesKeyProps => {
   //console.log(state.orgReader)
   return {
-    activitiesRef: state.keys.data.newKey
+    activitiesRef: state.keys.data.activities
   }
 }
 
@@ -133,8 +131,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   return {
     handleSubmit: (ownProps: any) => dispatch(setActivities(ownProps)),
     initialise: () => dispatch(initialise()),
-    setFormFunctions: (formProps: FormData) => dispatch(setFormFunctions(formProps)),
-    newKey: () => dispatch(newKey())
+    setFormFunctions: (formProps: FormData) => dispatch(setFormFunctions(formProps))
   }
 }
 

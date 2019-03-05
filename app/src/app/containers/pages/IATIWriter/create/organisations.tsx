@@ -10,23 +10,23 @@ import FormControl from '@material-ui/core/FormControl'
 //import { Select } from 'formik-material-ui'
 import { TextField, Select } from "material-ui-formik-components"
 
-import { ApplicationState } from '../../../store'
-import { ActionProps } from '../../../store/types'
-import { OrganisationsProps } from '../../../store/IATI/types'
-import { FormData } from '../../../store/helpers/forms/types'
+import { ApplicationState } from '../../../../store'
+import { ActionProps } from '../../../../store/types'
+import { OrganisationsProps } from '../../../../store/IATI/types'
+import { FormData } from '../../../../store/helpers/forms/types'
 
-import { setFormFunctions } from '../../../store/helpers/forms/actions'
-import { initialise } from '../../../store/IATI/IATIWriter/actions'
-import { newKey } from '../../../store/helpers/keys/actions'
-import { setOrganisations } from '../../../store/IATI/IATIWriter/organisations/organisations/actions'
+import { setFormFunctions } from '../../../../store/helpers/forms/actions'
+import { initialise } from '../../../../store/IATI/IATIWriter/actions'
+import { newKey } from '../../../../store/helpers/keys/actions'
+import { setOrganisations } from '../../../../store/IATI/IATIWriter/organisations/organisations/actions'
 
-import { TransactionHelper } from '../../io/transactionHelper'
+import { TransactionHelper } from '../../../io/transactionHelper'
 
-import { Organisations as OrganisationsStrings } from '../../../utils/strings'
-import { Helpers } from '../../../utils/config'
+import { Organisations as OrganisationsStrings } from '../../../../utils/strings'
+import { Helpers } from '../../../../utils/config'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
-import { withTheme, styles } from '../../../styles/theme'
+import { withTheme, styles } from '../../../../styles/theme'
 
 const organisationsSchema = Yup.object().shape({
   organisationsRef: Yup

@@ -10,23 +10,23 @@ import FormControl from '@material-ui/core/FormControl'
 //import { TextField } from 'formik-material-ui'
 import { TextField } from "material-ui-formik-components"
 
-import { ApplicationState } from '../../../store'
-import { ActionProps } from '../../../store/types'
-import { OrgProps } from '../../../store/IATI/types'
-import { KeyData } from '../../../store/helpers/keys/types'
-import { FormData } from '../../../store/helpers/forms/types'
+import { ApplicationState } from '../../../../store'
+import { ActionProps } from '../../../../store/types'
+import { OrgProps } from '../../../../store/IATI/types'
+import { KeyData } from '../../../../store/helpers/keys/types'
+import { FormData } from '../../../../store/helpers/forms/types'
 
-import { initialise } from '../../../store/IATI/IATIWriter/actions'
-import { setFormFunctions } from '../../../store/helpers/forms/actions'
-import { newKey } from '../../../store/helpers/keys/actions'
-import { setOrg } from '../../../store/IATI/IATIWriter/organisations/orgs/actions'
+import { initialise } from '../../../../store/IATI/IATIWriter/actions'
+import { setFormFunctions } from '../../../../store/helpers/forms/actions'
+import { newKey } from '../../../../store/helpers/keys/actions'
+import { setOrg } from '../../../../store/IATI/IATIWriter/organisations/orgs/actions'
 
-import { TransactionHelper } from '../../io/transactionHelper'
+import { TransactionHelper } from '../../../io/transactionHelper'
 
-import { Org as OrgStrings } from '../../../utils/strings'
+import { Org as OrgStrings } from '../../../../utils/strings'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
-import { withTheme, styles } from '../../../styles/theme'
+import { withTheme, styles } from '../../../../styles/theme'
 
 const orgSchema = Yup.object().shape({
   orgRef: Yup

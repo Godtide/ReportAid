@@ -10,26 +10,26 @@ import FormControl from '@material-ui/core/FormControl'
 //import { Select } from 'formik-material-ui'
 import { TextField, Select } from "material-ui-formik-components"
 
-import { ApplicationState } from '../../../store'
-import { ActionProps } from '../../../store/types'
-import { ActivityProps } from '../../../store/IATI/types'
-import { FormData } from '../../../store/helpers/forms/types'
+import { ApplicationState } from '../../../../store'
+import { ActionProps } from '../../../../store/types'
+import { ActivityProps } from '../../../../store/IATI/types'
+import { FormData } from '../../../../store/helpers/forms/types'
 
-import { initialise } from '../../../store/IATI/IATIWriter/actions'
-import { setFormFunctions } from '../../../store/helpers/forms/actions'
-import { newKey } from '../../../store/helpers/keys/actions'
-import { setActivity } from '../../../store/IATI/IATIWriter/activities/activity/actions'
+import { initialise } from '../../../../store/IATI/IATIWriter/actions'
+import { setFormFunctions } from '../../../../store/helpers/forms/actions'
+import { newKey } from '../../../../store/helpers/keys/actions'
+import { setActivity } from '../../../../store/IATI/IATIWriter/activities/activity/actions'
 
-import { ActivitiesPicker } from '../../../components/io/activitiesPicker'
-import { ActivityPicker } from '../../../components/io/activityPicker'
-import { OrgPicker } from '../../../components/io/orgPicker'
-import { TransactionHelper } from '../../io/transactionHelper'
+import { ActivitiesPicker } from '../../../../components/io/activitiesPicker'
+import { ActivityPicker } from '../../../../components/io/activityPicker'
+import { OrgPicker } from '../../../../components/io/orgPicker'
+import { TransactionHelper } from '../../../io/transactionHelper'
 
-import { Activity as ActivityStrings } from '../../../utils/strings'
-import { Helpers } from '../../../utils/config'
+import { Activity as ActivityStrings } from '../../../../utils/strings'
+import { Helpers } from '../../../../utils/config'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
-import { withTheme, styles } from '../../../styles/theme'
+import { withTheme, styles } from '../../../../styles/theme'
 
 const activitySchema = Yup.object().shape({
   activitiesRef: Yup

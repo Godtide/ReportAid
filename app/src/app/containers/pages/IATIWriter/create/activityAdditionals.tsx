@@ -10,26 +10,26 @@ import FormControl from '@material-ui/core/FormControl'
 //import { Select } from 'formik-material-ui'
 import { TextField, Select } from "material-ui-formik-components"
 
-import { ApplicationState } from '../../../store'
-import { ActionProps } from '../../../store/types'
-import { ActivityAdditionalProps } from '../../../store/IATI/types'
-import { FormData } from '../../../store/helpers/forms/types'
+import { ApplicationState } from '../../../../store'
+import { ActionProps } from '../../../../store/types'
+import { ActivityAdditionalProps } from '../../../../store/IATI/types'
+import { FormData } from '../../../../store/helpers/forms/types'
 
-import { initialise } from '../../../store/IATI/IATIWriter/actions'
-import { setFormFunctions } from '../../../store/helpers/forms/actions'
-import { newKey } from '../../../store/helpers/keys/actions'
-import { setActivityAdditional } from '../../../store/IATI/IATIWriter/activities/activityAdditionals/actions'
+import { initialise } from '../../../../store/IATI/IATIWriter/actions'
+import { setFormFunctions } from '../../../../store/helpers/forms/actions'
+import { newKey } from '../../../../store/helpers/keys/actions'
+import { setActivityAdditional } from '../../../../store/IATI/IATIWriter/activities/activityAdditionals/actions'
 
-import { ActivitiesPicker } from '../../../components/io/activitiesPicker'
-import { ActivityPicker } from '../../../components/io/activityPicker'
-import { OrgPicker } from '../../../components/io/orgPicker'
-import { TransactionHelper } from '../../io/transactionHelper'
+import { ActivitiesPicker } from '../../../../components/io/activitiesPicker'
+import { ActivityPicker } from '../../../../components/io/activityPicker'
+import { OrgPicker } from '../../../../components/io/orgPicker'
+import { TransactionHelper } from '../../../io/transactionHelper'
 
-import { ActivityAdditional as ActivityAdditionalStrings } from '../../../utils/strings'
-import { Helpers } from '../../../utils/config'
+import { ActivityAdditional as ActivityAdditionalStrings } from '../../../../utils/strings'
+import { Helpers } from '../../../../utils/config'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
-import { withTheme, styles } from '../../../styles/theme'
+import { withTheme, styles } from '../../../../styles/theme'
 
 const activityAdditionalSchema = Yup.object().shape({
   activitiesRef: Yup
