@@ -22,7 +22,10 @@ const initialState: KeyProps = {
 export const reducer = (state: KeyProps = initialState, action: ActionProps): KeyProps => {
 
   switch (action.type) {
-    case KeyActionTypes.NEW_SUCCESS:
+    case KeyActionTypes.NEW_SUCCESS: {
+      const data = action.payload as KeyProps
+      return data
+    }
     case KeyActionTypes.ORG_SUCCESS:
     case KeyActionTypes.ORGANISATIONS_SUCCESS:
     case KeyActionTypes.ORGANISATION_SUCCESS:
@@ -36,6 +39,7 @@ export const reducer = (state: KeyProps = initialState, action: ActionProps): Ke
     case KeyActionTypes.ACTIVITY_SUCCESS:
     case KeyActionTypes.ACTIVITYADDITIONAL_SUCCESS: {
       const data = (action.payload.data as KeyProps)
+      //console.log('Here!: ', data, action.type)
       return {...state, ...data}
     }
     default:

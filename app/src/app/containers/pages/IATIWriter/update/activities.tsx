@@ -16,12 +16,10 @@ import { ActivitiesProps } from '../../../../store/IATI/types'
 import { FormData } from '../../../../store/helpers/forms/types'
 import { Keys, KeyTypes } from '../../../../store/helpers/keys/types'
 
-import { initialise } from '../../../../store/IATI/IATIWriter/actions'
-import { setFormFunctions } from '../../../../store/helpers/forms/actions'
-import { setKey } from '../../../../store/helpers/keys/actions'
-import { setActivities } from '../../../../store/IATI/IATIWriter/activities/activities/actions'
+import { ActivitiesPicker } from '../../../../components/io/activitiesPicker'
 
-import { TransactionHelper } from '../../../io/transactionHelper'
+import { setKey } from '../../../../store/helpers/keys/actions'
+import { getActivities } from '../../../../store/IATI/IATIReader/activities/activities/actions'
 
 import { Activities as ActivitiesStrings } from '../../../../utils/strings'
 import { Helpers } from '../../../../utils/config'
@@ -32,18 +30,8 @@ import { withTheme, styles } from '../../../../styles/theme'
 const activitiesSchema = Yup.object().shape({
   activitiesRef: Yup
     .string()
-    .required('Required'),
-  version: Yup
-    .string()
-    .required('Required'),
-  linkedData: Yup
-    .string()
-    .required('Required'),
+    .required('Required')
 })
-
-interface CRUDProps {
-  isNewRecord: boolean
-}
 
 interface ActivitiesKeyProps {
   activitiesRef: string
@@ -51,12 +39,11 @@ interface ActivitiesKeyProps {
 
 interface ActivitiesDispatchProps {
   handleSubmit: (values: any) => void
-  initialise: () => void
-  setFormFunctions: (formProps: FormData) => void
+  getActivities: (isReport: boolean) => void
   setKey: (keyProps: Keys) => void
 }
 
-type ActivitiesFormProps = WithStyles<typeof styles> & CRUDProps & ActivitiesKeyProps & ActivitiesDispatchProps
+type ActivitiesFormProps = WithStyles<typeof styles> & ActivitiesKeyProps & ActivitiesDispatchProps
 
 export class ActivitiesForm extends React.Component<ActivitiesFormProps> {
 
@@ -65,54 +52,35 @@ export class ActivitiesForm extends React.Component<ActivitiesFormProps> {
   }
 
   componentDidMount() {
-    if(this.props.isNewRecord) {
-      this.props.initialise()
-      this.props.setKey({key: '', keyType: KeyTypes.ACTIVITIES})
-    }
   }
 
-  handleSubmit = (values: ActivitiesProps, setSubmitting: Function, reset: Function) => {
-    this.props.setFormFunctions({submitFunc: setSubmitting, resetFunc: reset})
+  handleSubmit = (values: ActivitiesKeyProps, setSubmitting: Function, reset: Function) => {
     this.props.handleSubmit(values)
-    this.props.initialise()
+    this.props.getActivities(true)
   }
 
   render() {
 
     return (
       <div>
-        <h2>{ActivitiesStrings.headingActivitiesWriter}</h2>
+        <h2>{ActivitiesStrings.headingActivitiesUpdater}</h2>
         <div>
           <Formik
-            initialValues={ {activitiesRef: this.props.activitiesRef, version: "", linkedData: ""} }
+            initialValues={ {activitiesRef: ""} }
             enableReinitialize={true}
             validationSchema={activitiesSchema}
-            onSubmit={(values: ActivitiesProps, actions: any) => {
+            onSubmit={(values: ActivitiesKeyProps, actions: any) => {
               this.handleSubmit(values, actions.setSubmitting, actions.resetForm)
             }}
-            render={(formProps: FormikProps<ActivitiesProps>) => (
+            render={(formProps: FormikProps<ActivitiesKeyProps>) => (
               <Form>
                 <FormControl fullWidth={true}>
-                  <Field
-                    readOnly
+                  <ActivitiesPicker
+                    setValue={formProps.setFieldValue}
                     name='activitiesRef'
-                    value={this.props.activitiesRef}
                     label={ActivitiesStrings.activitiesReference}
-                    component={TextField}
                   />
-                  <Field
-                    name="version"
-                    label={ActivitiesStrings.version}
-                    component={Select}
-                    options={Helpers.reportVersions}
-                  />
-                  <ErrorMessage name='version' />
-                  <Field
-                    name='linkedData'
-                    label={ActivitiesStrings.linkedData}
-                    component={TextField}
-                  />
-                  <ErrorMessage name='linkedData' />
+                  <ErrorMessage name='activitiesRef' />
                   <br />
                   {formProps.isSubmitting && <LinearProgress />}
                   <br />
@@ -124,7 +92,6 @@ export class ActivitiesForm extends React.Component<ActivitiesFormProps> {
             )}
           />
         </div>
-        <TransactionHelper/>
       </div>
     )
   }
@@ -139,9 +106,8 @@ const mapStateToProps = (state: ApplicationState): ActivitiesKeyProps => {
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): ActivitiesDispatchProps => {
   return {
-    handleSubmit: (ownProps: any) => dispatch(setActivities(ownProps)),
-    initialise: () => dispatch(initialise()),
-    setFormFunctions: (formProps: FormData) => dispatch(setFormFunctions(formProps)),
+    handleSubmit: (ownProps: any) => dispatch(getActivities(ownProps)),
+    getActivities: (isReport: boolean) => dispatch(getActivities(isReport)),
     setKey: (keyProps: Keys) => dispatch(setKey(keyProps))
   }
 }

@@ -22,6 +22,8 @@ import { OrganisationRecipientBudgets as OrganisationRecipientBudgetsWriter } fr
 import { OrganisationRegionBudgets as OrganisationRegionBudgetsWriter } from './pages/IATIWriter/create/organisationRegionBudgets'
 import { OrganisationCountryBudgets as OrganisationCountryBudgetsWriter } from './pages/IATIWriter/create/organisationCountryBudgets'
 
+import { Activities as ActivitiesUpdater } from './pages/IATIWriter/update/activities'
+
 import { Activities as ActivitiesReader } from './pages/IATIReader/activities'
 import { Activity as ActivityReader } from './pages/IATIReader/activity'
 import { ActivityAdditionals as ActivityAdditionalsReader } from './pages/IATIReader/activityAdditionals'
@@ -55,7 +57,7 @@ class AppContent extends React.Component<WithStyles<typeof styles>> {
         <Route
           name={Paths.activitiesWriter}
           path={PathConfig.activitiesWriter}
-          render={() => <ActivitiesWriter />}
+          render={() => <ActivitiesWriter isNewRecord={true}/>}
         />
         <Route
           name={Paths.activityWriter}
@@ -114,6 +116,11 @@ class AppContent extends React.Component<WithStyles<typeof styles>> {
           render={() => <OrganisationCountryBudgetsWriter />}
         />
 
+        <Route
+          name={Paths.activitiesUpdater}
+          path={PathConfig.activitiesUpdater}
+          render={() => <ActivitiesUpdater />}
+        />
 
         <Route
           name={Paths.activitiesReader}

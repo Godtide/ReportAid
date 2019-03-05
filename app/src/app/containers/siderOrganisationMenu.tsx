@@ -60,6 +60,24 @@ class Sider extends React.Component<WithStyles<typeof styles>> {
 
         <ExpansionPanel className={this.props.classes.siderMenu}>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+            <h4>{App.headingActivitiesUpdater}</h4>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails className={this.props.classes.siderMenu}>
+            <MenuList>
+              <Link to={PathConfig.activitiesUpdater}>
+                <MenuItem>
+                  <IconButton className={this.props.classes.button} aria-label={Paths.activitiesUpdater}>
+                    <Create />
+                  </IconButton>
+                  {Paths.activitiesUpdater}
+                </MenuItem>
+              </Link>
+            </MenuList>
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
+
+        <ExpansionPanel className={this.props.classes.siderMenu}>
+          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
             <h4>{App.headingActivitiesReader}</h4>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails className={this.props.classes.siderMenu}>
@@ -67,7 +85,7 @@ class Sider extends React.Component<WithStyles<typeof styles>> {
               <Link to={PathConfig.activitiesReader}>
                 <MenuItem>
                   <IconButton className={this.props.classes.button} aria-label={Paths.activitiesReader}>
-                    <Create />
+                    <List />
                   </IconButton>
                   {Paths.activitiesReader}
                 </MenuItem>
@@ -75,7 +93,7 @@ class Sider extends React.Component<WithStyles<typeof styles>> {
               <Link to={PathConfig.activityReader}>
                 <MenuItem>
                   <IconButton className={this.props.classes.button} aria-label={Paths.activityReader}>
-                    <Create />
+                    <List />
                   </IconButton>
                   {Paths.activityReader}
                 </MenuItem>
@@ -83,7 +101,7 @@ class Sider extends React.Component<WithStyles<typeof styles>> {
               <Link to={PathConfig.activityAdditionalReader}>
                 <MenuItem>
                   <IconButton className={this.props.classes.button} aria-label={Paths.activityAdditionalReader}>
-                    <Create />
+                    <List />
                   </IconButton>
                   {Paths.activityAdditionalReader}
                 </MenuItem>

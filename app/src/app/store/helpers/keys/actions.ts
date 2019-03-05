@@ -7,7 +7,7 @@ import shortid from 'shortid'
 import { ethers } from 'ethers'
 
 import { ActionProps, PayloadProps } from '../../types'
-import { KeyActionTypes, KeyTypes, KeyData,Keys } from './types'
+import { KeyActionTypes, KeyTypes, KeyData, Keys } from './types'
 
 export const write = (payload: PayloadProps): Function => {
   return (actionType: KeyActionTypes): PayloadProps => {
@@ -28,69 +28,90 @@ export const setKey = (props: Keys) => {
     }
 
     switch (props.keyType) {
+      case KeyTypes.NEW: {
+        keyData = {
+          newKey: key,
+          org: key,
+          organisations:  key,
+          organisation:  key,
+          organisationBudget:  key,
+          organisationCountryBudget:  key,
+          organisationDoc:  key,
+          organisationExpenditure:  key,
+          organisationRecipientBudget:  key,
+          organisationRegionBudget:  key,
+          activities:  key,
+          activity:  key,
+          activityAdditional:  key
+        }
+        actionType = KeyActionTypes.NEW_SUCCESS
+        break
+      }
       case KeyTypes.ORG: {
         keyData.org = key
         actionType = KeyActionTypes.ORG_SUCCESS
-        return
+        break
       }
       case KeyTypes.ORGANISATIONS: {
         keyData.organisations = key
         actionType = KeyActionTypes.ORGANISATIONS_SUCCESS
-        return
+        break
       }
       case KeyTypes.ORGANISATION: {
         keyData.organisation = key
         actionType = KeyActionTypes.ORGANISATION_SUCCESS
-        return
+        break
       }
       case KeyTypes.ORGANISATIONBUDGET: {
         keyData.organisationBudget = key
         actionType = KeyActionTypes.ORGANISATIONBUDGET_SUCCESS
-        return
+        break
       }
       case KeyTypes.ORGANISATIONCOUNTRYBUDGET: {
         keyData.organisationCountryBudget = key
         actionType = KeyActionTypes.ORGANISATIONCOUNTRYBUDGET_SUCCESS
-        return
+        break
       }
       case KeyTypes.ORGANISATIONDOC: {
         keyData.organisationDoc = key
         actionType = KeyActionTypes.ORGANISATIONDOC_SUCCESS
-        return
+        break
       }
       case KeyTypes.ORGANISATIONEXPENDITURE: {
         keyData.organisationExpenditure = key
         actionType = KeyActionTypes.ORGANISATIONEXPENDITURE_SUCCESS
-        return
+        break
       }
       case KeyTypes.ORGANISATIONRECIPIENTBUDGET: {
         keyData.organisationRecipientBudget = key
         actionType = KeyActionTypes.ORGANISATIONRECIPIENTBUDGET_SUCCESS
-        return
+        break
       }
       case KeyTypes.ORGANISATIONREGIONBUDGET: {
         keyData.organisationRegionBudget = key
         actionType = KeyActionTypes.ORGANISATIONREGIONBUDGET_SUCCESS
-        return
+        break
       }
       case KeyTypes.ACTIVITIES: {
         keyData.activities = key
         actionType = KeyActionTypes.ACTIVITIES_SUCCESS
-        return
+        break
       }
       case KeyTypes.ACTIVITY: {
         keyData.activity = key
         actionType = KeyActionTypes.ACTIVITY_SUCCESS
-        return
+        break
       }
       case KeyTypes.ACTIVITYADDITIONAL: {
         keyData.activityAdditional = key
         actionType = KeyActionTypes.ACTIVITYADDITIONAL_SUCCESS
-        return
+        break
       }
       default:
-        return
+        break
     }
+
+    console.log('dispatch: ', keyData, actionType)
 
     await dispatch(write({data: keyData})(actionType))
   }
@@ -101,7 +122,7 @@ export const newKey = () => {
     const state = getState()
     const keyData: KeyData = state.keys.data
     keyData.newKey = ethers.utils.formatBytes32String(shortid.generate())
-    //console.log('New Key! ', keyData.newKey)
+    console.log('New Key from here! ', keyData.newKey)
     await dispatch(write({data: keyData})(KeyActionTypes.NEW_SUCCESS))
   }
 }

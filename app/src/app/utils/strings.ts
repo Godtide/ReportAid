@@ -10,6 +10,7 @@ class App {
   static headingOrganisationsWriter = 'Create Organisations Data'
   static headingOrganisationsReader = 'Read Organisations Data'
   static headingActivitiesWriter = 'Create Activities Data'
+  static headingActivitiesUpdater = 'Update Activities Data'
   static headingActivitiesReader = 'Read Activities Data'
 }
 
@@ -36,6 +37,8 @@ class Paths {
   static readonly organisationRecipientBudgetsWriter = "Recipient Budget"
   static readonly organisationRegionBudgetsWriter='Region Budget'
   static readonly organisationCountryBudgetsWriter='Country Budget'
+
+  static readonly activitiesUpdater='Activities'
 
   static readonly activitiesReader='Activities'
   static readonly activityReader='Activity'
@@ -113,6 +116,7 @@ class Activities {
 
   static headingActivitiesWriter = 'Write Activities'
   static headingActivitiesReader = 'Read Activities'
+  static headingActivitiesUpdater = 'Update Activities'
 
   static activitiesReference = "Activities Reference"
   static reportKey = "Activities Reference"

@@ -6,8 +6,10 @@ import Markdown from 'react-markdown'
 
 import { ApplicationState } from '../../store'
 import { ActionProps, TxReport } from '../../store/types'
+import { Keys, KeyTypes } from '../../store/helpers/keys/types'
 
-import { newKey } from '../../store/helpers/keys/actions'
+import { initialise } from '../../store/IATI/IATIWriter/actions'
+import { setKey } from '../../store/helpers/keys/actions'
 
 import { Transaction } from '../../utils/strings'
 import { Helpers } from '../../utils/config'
@@ -19,7 +21,7 @@ interface TransactionProps {
 }
 
 interface TransactionDispatchProps {
-  newKey: () => void
+  setKey: (keyProps: Keys) => void
 }
 
 type TxProps = TransactionProps & TransactionDispatchProps
@@ -31,11 +33,12 @@ class TX extends React.Component<TxProps> {
   }
 
   componentDidUpdate(previousProps: TxProps) {
-    if(previousProps.tx != this.props.tx) {
-      //console.log(this.props.submittingFunc)
+    if(previousProps.tx != this.props.tx &&
+       typeof this.props.tx != 'undefined' ) {
+      //console.log('Type check!: ', typeof this.props.tx)
       this.props.submittingFunc(false)
       this.props.resettingFunc()
-      this.props.newKey()
+      this.props.setKey({key: '', keyType: KeyTypes.NEW})
     }
   }
 
@@ -82,7 +85,7 @@ const mapStateToProps = (state: ApplicationState): TransactionProps => {
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): TransactionDispatchProps => {
   return {
-    newKey: () => dispatch(newKey())
+    setKey: (keyProps: Keys) => dispatch(setKey(keyProps))
   }
 }
 

@@ -1,6 +1,7 @@
 import { PayloadProps } from '../../types'
 
 export const enum KeyTypes {
+  NEW = 'new',
   ORG = 'org',
   ORGANISATIONS = 'organisations',
   ORGANISATION = 'organisation',
