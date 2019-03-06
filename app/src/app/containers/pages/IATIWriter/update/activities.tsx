@@ -57,10 +57,7 @@ export class ActivitiesForm extends React.Component<ActivitiesFormProps> {
 
   handleSubmit = (values: ActivitiesProps, setSubmitting: Function, reset: Function) => {
     this.props.handleSubmit({activitiesRef: values.activitiesRef})
-    history.push({
-      pathname: PathConfig.activitiesWriter,
-      state: { updateRecord: true }
-    })
+    history.push(PathConfig.activitiesWriter)
   }
 
   render() {

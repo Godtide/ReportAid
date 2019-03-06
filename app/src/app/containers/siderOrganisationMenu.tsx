@@ -45,7 +45,7 @@ class Sider extends React.Component<WithStyles<typeof styles> & DispatchProps> {
               <Link
                 to={PathConfig.activitiesWriter}
                 onClick={() => {
-                  console.log('Clicked me!')
+                  //console.log('Clicked me!')
                   this.props.setKey({key: '', keyType: KeyTypes.ACTIVITIES})
                 }} >
                 <MenuItem>

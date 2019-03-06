@@ -63,33 +63,6 @@ class ActivitiesForm extends React.Component<ActivitiesFormProps> {
    super(props)
   }
 
-  /*componentDidUpdate(previousProps: any) {
-    console.log('Updated')
-    if (previousProps !== this.props ) {
-      console.log('History: ', history.location.key)
-      if(!history.location.state.updateRecord) {
-        console.log('New activities')
-        this.props.initialise()
-        this.props.setKey({key: '', keyType: KeyTypes.ACTIVITIES})
-      }
-    }
-    if (prevProps.location.key !== this.props.location.key &&
-        !prevProps.location.state.updateRecord) {
-      console.log('New activities')
-      this.props.initialise()
-      this.props.setKey({key: '', keyType: KeyTypes.ACTIVITIES})
-    }
-  }*/
-
-  /*componentDidMount() {
-    console.log('Activities')
-    if(!history.location.state.updateRecord) {
-      console.log('New activities')
-      this.props.initialise()
-      this.props.setKey({key: '', keyType: KeyTypes.ACTIVITIES})
-    }
-  }*/
-
   handleSubmit = (values: ActivitiesProps, setSubmitting: Function, reset: Function) => {
     this.props.setFormFunctions({submitFunc: setSubmitting, resetFunc: reset})
     this.props.handleSubmit(values)
