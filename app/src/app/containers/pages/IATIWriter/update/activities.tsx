@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { history } from '../../../../utils/history';
+import { history } from '../../../../utils/history'
 
 import { connect } from 'react-redux'
 import { ThunkDispatch } from 'redux-thunk'
@@ -52,11 +52,15 @@ export class ActivitiesForm extends React.Component<ActivitiesFormProps> {
 
   constructor (props: ActivitiesFormProps) {
    super(props)
+   //console.logthis.props.location.state.isNewRecord
   }
 
   handleSubmit = (values: ActivitiesProps, setSubmitting: Function, reset: Function) => {
     this.props.handleSubmit({activitiesRef: values.activitiesRef})
-    history.push(PathConfig.activitiesWriter)
+    history.push({
+      pathname: PathConfig.activitiesWriter,
+      state: { updateRecord: true }
+    })
   }
 
   render() {

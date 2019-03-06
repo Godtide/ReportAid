@@ -1,4 +1,6 @@
 import * as React from 'react'
+import { RouteComponentProps } from 'react-router-dom';
+
 import { connect } from 'react-redux'
 import { ThunkDispatch } from 'redux-thunk'
 
@@ -25,6 +27,7 @@ import { TransactionHelper } from '../../../io/transactionHelper'
 
 import { Activities as ActivitiesStrings } from '../../../../utils/strings'
 import { Helpers } from '../../../../utils/config'
+import { history } from '../../../../utils/history'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../../styles/theme'
@@ -41,9 +44,6 @@ const activitiesSchema = Yup.object().shape({
     .required('Required'),
 })
 
-interface CRUDProps {
-  isNewRecord: boolean
-}
 
 interface ActivitiesKeyProps {
   activitiesRef: string
@@ -56,16 +56,26 @@ interface ActivitiesDispatchProps {
   setKey: (keyProps: Keys) => void
 }
 
-type ActivitiesFormProps = WithStyles<typeof styles> & CRUDProps & ActivitiesKeyProps & ActivitiesDispatchProps
+type ActivitiesFormProps = WithStyles<typeof styles> & ActivitiesKeyProps & ActivitiesDispatchProps
 
-export class ActivitiesForm extends React.Component<ActivitiesFormProps> {
+class ActivitiesForm extends React.Component<ActivitiesFormProps> {
+
+  updateRecord: boolean
 
   constructor (props: ActivitiesFormProps) {
    super(props)
+
+   if( typeof history.location.state != 'undefined' ) {
+     this.updateRecord = history.location.state.updateRecord
+   } else {
+     this.updateRecord = false
+   }
   }
 
   componentDidMount() {
-    if(this.props.isNewRecord) {
+    console.log('Activities')
+    if(!this.updateRecord) {
+      console.log('New activities')
       this.props.initialise()
       this.props.setKey({key: '', keyType: KeyTypes.ACTIVITIES})
     }

@@ -57,7 +57,7 @@ class AppContent extends React.Component<WithStyles<typeof styles>> {
         <Route
           name={Paths.activitiesWriter}
           path={PathConfig.activitiesWriter}
-          render={() => <ActivitiesWriter isNewRecord={true}/>}
+          render={() => <ActivitiesWriter />}
         />
         <Route
           name={Paths.activityWriter}
