@@ -1,8 +1,9 @@
 import * as React from 'react'
 import { render } from "react-dom"
-import { HashRouter } from 'react-router-dom'
+import { Router } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import CssBaseline from '@material-ui/core/CssBaseline'
+import { history } from './app/utils/history'
 
 import { setBlockchain } from './app/components/blockchain/blockchain'
 
@@ -17,9 +18,9 @@ const App = () => (
     <Provider store={store}>
       <React.Fragment>
         <CssBaseline />
-        <HashRouter>
+        <Router history={history}>
           <Main />
-        </HashRouter>
+        </Router>
       </React.Fragment>
     </Provider>
 );

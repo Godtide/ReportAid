@@ -1,4 +1,6 @@
 import * as React from 'react'
+import { history } from '../../../../utils/history';
+
 import { connect } from 'react-redux'
 import { ThunkDispatch } from 'redux-thunk'
 
@@ -12,10 +14,11 @@ import { TextField, Select } from "material-ui-formik-components"
 
 import { ApplicationState } from '../../../../store'
 import { ActionProps } from '../../../../store/types'
-import { ActivitiesProps, ActivityReportProps } from '../../../../store/IATI/types'
+import { IATIActivitiesReport } from '../../../../store/IATI/types'
 import { FormData } from '../../../../store/helpers/forms/types'
 import { Keys, KeyTypes } from '../../../../store/helpers/keys/types'
 
+import { Activities as ActivitiesWriter } from '../create/activities'
 import { ActivitiesPicker } from '../../../../components/io/activitiesPicker'
 
 //import { setKey } from '../../../../store/helpers/keys/actions'
@@ -23,6 +26,8 @@ import { getActivitiesRecord } from '../../../../store/IATI/IATIReader/activitie
 
 import { Activities as ActivitiesStrings } from '../../../../utils/strings'
 import { Helpers } from '../../../../utils/config'
+
+import { Paths as PathConfig } from '../../../../utils/config'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../../styles/theme'
@@ -33,15 +38,15 @@ const activitiesSchema = Yup.object().shape({
     .required('Required')
 })
 
-interface ActivitiesKeyProps {
+interface ActivitiesProps {
   activitiesRef: string
 }
 
 interface ActivitiesDispatchProps {
-  handleSubmit: (values: ActivityReportProps) => void
+  handleSubmit: (values: any) => void
 }
 
-type ActivitiesFormProps = WithStyles<typeof styles> & ActivitiesKeyProps & ActivitiesDispatchProps
+type ActivitiesFormProps = WithStyles<typeof styles> & ActivitiesProps & ActivitiesDispatchProps
 
 export class ActivitiesForm extends React.Component<ActivitiesFormProps> {
 
@@ -49,11 +54,9 @@ export class ActivitiesForm extends React.Component<ActivitiesFormProps> {
    super(props)
   }
 
-  componentDidMount() {
-  }
-
-  handleSubmit = (values: ActivitiesKeyProps, setSubmitting: Function, reset: Function) => {
-    this.props.handleSubmit({isReport: true, activitiesRef: values.activitiesRef})
+  handleSubmit = (values: ActivitiesProps, setSubmitting: Function, reset: Function) => {
+    this.props.handleSubmit({activitiesRef: values.activitiesRef})
+    history.push(PathConfig.activitiesWriter)
   }
 
   render() {
@@ -66,10 +69,10 @@ export class ActivitiesForm extends React.Component<ActivitiesFormProps> {
             initialValues={ {activitiesRef: ""} }
             enableReinitialize={true}
             validationSchema={activitiesSchema}
-            onSubmit={(values: ActivitiesKeyProps, actions: any) => {
+            onSubmit={(values: ActivitiesProps, actions: any) => {
               this.handleSubmit(values, actions.setSubmitting, actions.resetForm)
             }}
-            render={(formProps: FormikProps<ActivitiesKeyProps>) => (
+            render={(formProps: FormikProps<ActivitiesProps>) => (
               <Form>
                 <FormControl fullWidth={true}>
                   <ActivitiesPicker
@@ -94,7 +97,7 @@ export class ActivitiesForm extends React.Component<ActivitiesFormProps> {
   }
 }
 
-const mapStateToProps = (state: ApplicationState): ActivitiesKeyProps => {
+const mapStateToProps = (state: ApplicationState): ActivitiesProps => {
   //console.log(state.orgReader)
   return {
     activitiesRef: state.keys.data.activities
@@ -103,11 +106,11 @@ const mapStateToProps = (state: ApplicationState): ActivitiesKeyProps => {
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): ActivitiesDispatchProps => {
   return {
-    handleSubmit: (props: ActivityReportProps) => dispatch(getActivitiesRecord(props))
+    handleSubmit: (props: any) => dispatch(getActivitiesRecord(props))
   }
 }
 
-export const Activities = withTheme(withStyles(styles)(connect<ActivitiesKeyProps, ActivitiesDispatchProps, {}, ApplicationState>(
+export const Activities = withTheme(withStyles(styles)(connect<ActivitiesProps, ActivitiesDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
 )(ActivitiesForm)))
