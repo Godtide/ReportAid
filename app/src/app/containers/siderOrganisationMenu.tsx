@@ -3,6 +3,14 @@ import { Link } from 'react-router-dom'
 import MenuList from '@material-ui/core/MenuList'
 import MenuItem from '@material-ui/core/MenuItem'
 
+import { connect } from 'react-redux'
+import { ThunkDispatch } from 'redux-thunk'
+import { ApplicationState } from '../store'
+import { ActionProps } from '../store/types'
+
+import { setKey } from '../store/helpers/keys/actions'
+import { Keys, KeyTypes } from '../store/helpers/keys/types'
+
 import IconButton from '@material-ui/core/IconButton'
 import Create from '@material-ui/icons/Create'
 import List from '@material-ui/icons/List'
@@ -18,7 +26,11 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 
-class Sider extends React.Component<WithStyles<typeof styles>> {
+interface DispatchProps {
+  setKey: (keyProps: Keys) => void
+}
+
+class Sider extends React.Component<WithStyles<typeof styles> & DispatchProps> {
 
   render() {
 
@@ -30,7 +42,12 @@ class Sider extends React.Component<WithStyles<typeof styles>> {
           </ExpansionPanelSummary>
           <ExpansionPanelDetails className={this.props.classes.siderMenu}>
             <MenuList>
-              <Link to={PathConfig.activitiesWriter}>
+              <Link
+                to={PathConfig.activitiesWriter}
+                onClick={() => {
+                  console.log('Clicked me!')
+                  this.props.setKey({key: '', keyType: KeyTypes.ACTIVITIES})
+                }} >
                 <MenuItem>
                   <IconButton className={this.props.classes.button} aria-label={Paths.activitiesWriter}>
                     <Create />
@@ -278,4 +295,13 @@ class Sider extends React.Component<WithStyles<typeof styles>> {
   }
 }
 
-export const SiderOrganisationMenu = withTheme(withStyles(styles)(Sider))
+const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): DispatchProps => {
+  return {
+    setKey: (keyProps: Keys) => dispatch(setKey(keyProps))
+  }
+}
+
+export const SiderOrganisationMenu = withTheme(withStyles(styles)(connect<null, DispatchProps, {}, ApplicationState>(
+  null,
+  mapDispatchToProps
+)(Sider)))

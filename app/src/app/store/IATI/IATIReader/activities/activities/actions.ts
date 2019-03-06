@@ -34,7 +34,7 @@ export const getActivitiesRecord = (props: RecordProps) => {
          linkedData: ethers.utils.parseBytes32String(activities.linkedData),
        }
 
-       console.log('Got record: ', activitiesData)
+       //console.log('Got record: ', activitiesData)
 
        actionType = IATIReportActionTypes.ACTIVITIES_SUCCESS
 

@@ -22,6 +22,8 @@ export const setKey = (props: Keys) => {
     let keyData: KeyData = state.keys.data
     let actionType = KeyActionTypes.NEW_FAILURE
 
+    console.log('Setting key!')
+
     let key = props.key
     if (props.key == '') {
       key = ethers.utils.formatBytes32String(shortid.generate())
