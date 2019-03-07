@@ -60,6 +60,7 @@ class Sider extends React.Component<WithStyles<typeof styles> & DispatchProps> {
               <Link
                 to={PathConfig.activityWriter}
                 onClick={() => {
+                  this.props.initialise()
                   this.props.setKey({key: '', keyType: KeyTypes.ACTIVITY})
                 }} >
                 <MenuItem>
@@ -72,7 +73,7 @@ class Sider extends React.Component<WithStyles<typeof styles> & DispatchProps> {
               <Link
                 to={PathConfig.activityAdditionalWriter}
                 onClick={() => {
-                  //console.log('Clicked me!')
+                  this.props.initialise()
                   this.props.setKey({key: '', keyType: KeyTypes.ACTIVITYADDITIONAL})
                 }} >
                 <MenuItem>
@@ -144,7 +145,12 @@ class Sider extends React.Component<WithStyles<typeof styles> & DispatchProps> {
           </ExpansionPanelSummary>
           <ExpansionPanelDetails className={this.props.classes.siderMenu}>
             <MenuList>
-              <Link to={PathConfig.orgWriter}>
+              <Link
+                to={PathConfig.orgWriter}
+                onClick={() => {
+                  this.props.initialise()
+                  this.props.setKey({key: '', keyType: KeyTypes.ORG})
+                }} >
                 <MenuItem>
                   <IconButton className={this.props.classes.button} aria-label={Paths.orgWriter}>
                     <Create />
@@ -152,7 +158,12 @@ class Sider extends React.Component<WithStyles<typeof styles> & DispatchProps> {
                   {Paths.orgWriter}
                 </MenuItem>
               </Link>
-              <Link to={PathConfig.organisationsWriter}>
+              <Link
+                to={PathConfig.organisationsWriter}
+                onClick={() => {
+                  this.props.initialise()
+                  this.props.setKey({key: '', keyType: KeyTypes.ORGANISATIONS})
+                }} >
                 <MenuItem>
                   <IconButton className={this.props.classes.button} aria-label={Paths.organisationsWriter}>
                     <Create />
@@ -160,7 +171,12 @@ class Sider extends React.Component<WithStyles<typeof styles> & DispatchProps> {
                   {Paths.organisationsWriter}
                 </MenuItem>
               </Link>
-              <Link to={PathConfig.organisationWriter}>
+              <Link
+                to={PathConfig.organisationWriter}
+                onClick={() => {
+                  this.props.initialise()
+                  this.props.setKey({key: '', keyType: KeyTypes.ORGANISATION})
+                }} >
                 <MenuItem>
                   <IconButton className={this.props.classes.button} aria-label={Paths.organisationWriter}>
                     <Create />
@@ -168,7 +184,12 @@ class Sider extends React.Component<WithStyles<typeof styles> & DispatchProps> {
                   {Paths.organisationWriter}
                 </MenuItem>
               </Link>
-              <Link to={PathConfig.organisationDocsWriter}>
+              <Link
+                to={PathConfig.organisationDocsWriter}
+                onClick={() => {
+                  this.props.initialise()
+                  this.props.setKey({key: '', keyType: KeyTypes.ORGANISATIONDOC})
+                }} >
                 <MenuItem>
                   <IconButton className={this.props.classes.button} aria-label={Paths.organisationDocsWriter}>
                     <Create />
@@ -176,7 +197,12 @@ class Sider extends React.Component<WithStyles<typeof styles> & DispatchProps> {
                   {Paths.organisationDocsWriter}
                 </MenuItem>
               </Link>
-              <Link to={PathConfig.organisationBudgetsWriter}>
+              <Link
+                to={PathConfig.organisationBudgetsWriter}
+                onClick={() => {
+                  this.props.initialise()
+                  this.props.setKey({key: '', keyType: KeyTypes.ORGANISATIONBUDGET})
+                }} >
                 <MenuItem>
                   <IconButton className={this.props.classes.button} aria-label={Paths.organisationBudgetsWriter}>
                     <Create />
@@ -184,7 +210,12 @@ class Sider extends React.Component<WithStyles<typeof styles> & DispatchProps> {
                   {Paths.organisationBudgetsWriter}
                 </MenuItem>
               </Link>
-              <Link to={PathConfig.organisationExpenditureWriter}>
+              <Link
+                to={PathConfig.organisationExpenditureWriter}
+                onClick={() => {
+                  this.props.initialise()
+                  this.props.setKey({key: '', keyType: KeyTypes.ORGANISATIONEXPENDITURE})
+                }} >
                 <MenuItem>
                   <IconButton className={this.props.classes.button} aria-label={Paths.organisationExpenditureWriter}>
                     <Create />
@@ -192,7 +223,12 @@ class Sider extends React.Component<WithStyles<typeof styles> & DispatchProps> {
                   {Paths.organisationExpenditureWriter}
                 </MenuItem>
               </Link>
-              <Link to={PathConfig.organisationRecipientBudgetsWriter}>
+              <Link
+                to={PathConfig.organisationRecipientBudgetsWriter}
+                onClick={() => {
+                  this.props.initialise()
+                  this.props.setKey({key: '', keyType: KeyTypes.ORGANISATIONRECIPIENTBUDGET})
+                }} >
                 <MenuItem>
                   <IconButton className={this.props.classes.button} aria-label={Paths.organisationRecipientBudgetsWriter}>
                     <Create />
@@ -200,7 +236,12 @@ class Sider extends React.Component<WithStyles<typeof styles> & DispatchProps> {
                   {Paths.organisationRecipientBudgetsWriter}
                 </MenuItem>
               </Link>
-              <Link to={PathConfig.organisationRegionBudgetsWriter}>
+              <Link
+                to={PathConfig.organisationRegionBudgetsWriter}
+                onClick={() => {
+                  this.props.initialise()
+                  this.props.setKey({key: '', keyType: KeyTypes.ORGANISATIONREGIONBUDGET})
+                }} >
                 <MenuItem>
                   <IconButton className={this.props.classes.button} aria-label={Paths.organisationRegionBudgetsWriter}>
                     <Create />
@@ -208,7 +249,12 @@ class Sider extends React.Component<WithStyles<typeof styles> & DispatchProps> {
                   {Paths.organisationRegionBudgetsWriter}
                 </MenuItem>
               </Link>
-              <Link to={PathConfig.organisationCountryBudgetsWriter}>
+              <Link
+                to={PathConfig.organisationCountryBudgetsWriter}
+                onClick={() => {
+                  this.props.initialise()
+                  this.props.setKey({key: '', keyType: KeyTypes.ORGANISATIONCOUNTRYBUDGET})
+                }} >
                 <MenuItem>
                   <IconButton className={this.props.classes.button} aria-label={Paths.organisationCountryBudgetsWriter}>
                     <Create />
