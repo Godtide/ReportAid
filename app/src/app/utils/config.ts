@@ -23,6 +23,7 @@ class Paths {
 
   static readonly activitiesUpdater='/update-activities-records'
   static readonly activityUpdater='/update-activity-records'
+  static readonly orgUpdater='/update-org-records'
 
   static readonly activitiesReader='/read-activities-reports'
   static readonly activityReader='/read-activity-reports'

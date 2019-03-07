@@ -8,6 +8,40 @@ import { IATIOrgProps, IATIReportActionTypes, IATIOrgReportProps } from '../../.
 
 import { read } from '../../actions'
 
+interface RecordProps {
+  orgRef: string
+}
+
+export const getOrgRecord = (props: RecordProps) => {
+  return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
+
+    const state = getState()
+    const orgsContract = state.chainContracts.data.contracts.orgs
+    const orgRef = props.orgRef
+
+    let orgsData: IATIOrgReportProps = {
+      data: { data: [] }
+    }
+    let actionType = IATIReportActionTypes.ORGS_FAILURE
+
+    try {
+      const org: IATIOrgProps = await orgsContract.getOrg(orgRef)
+      orgsData.data.data[0] = {
+       orgRef: orgRef,
+       name: org.name,
+       identifier: org.identifier
+      }
+
+      actionType = IATIReportActionTypes.ORGS_SUCCESS
+    } catch (error) {
+      console.log('getOrgsRecord error', error)
+    }
+
+    dispatch(read({data: orgsData})(actionType))
+
+  }
+}
+
 export const getOrgs = (isReport: boolean) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
 

@@ -25,6 +25,7 @@ import { OrganisationCountryBudgets as OrganisationCountryBudgetsWriter } from '
 
 import { Activities as ActivitiesUpdater } from './pages/IATIWriter/update/activities'
 import { Activity as ActivityUpdater } from './pages/IATIWriter/update/activity'
+import { Org as OrgUpdater } from './pages/IATIWriter/update/org'
 
 import { Activities as ActivitiesReader } from './pages/IATIReader/activities'
 import { Activity as ActivityReader } from './pages/IATIReader/activity'
@@ -127,6 +128,12 @@ class AppContent extends React.Component<WithStyles<typeof styles>> {
           name={Paths.activityUpdater}
           path={PathConfig.activityUpdater}
           render={() => <ActivityUpdater />}
+        />
+
+        <Route
+          name={Paths.orgUpdater}
+          path={PathConfig.orgUpdater}
+          render={() => <OrgUpdater />}
         />
 
         <Route

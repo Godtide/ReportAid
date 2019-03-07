@@ -276,6 +276,24 @@ class Sider extends React.Component<WithStyles<typeof styles> & DispatchProps> {
 
         <ExpansionPanel className={this.props.classes.siderMenu}>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+            <h4>{App.headingOrganisationsUpdater}</h4>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails className={this.props.classes.siderMenu}>
+            <MenuList>
+              <Link to={PathConfig.orgUpdater}>
+                <MenuItem>
+                  <IconButton className={this.props.classes.button} aria-label={Paths.orgUpdater}>
+                    <Create />
+                  </IconButton>
+                  {Paths.orgUpdater}
+                </MenuItem>
+              </Link>
+            </MenuList>
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
+
+        <ExpansionPanel className={this.props.classes.siderMenu}>
+          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
             <h4>{App.headingOrganisationsReader}</h4>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails className={this.props.classes.siderMenu}>

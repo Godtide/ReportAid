@@ -12,7 +12,7 @@ import { TextField } from "material-ui-formik-components"
 
 import { ApplicationState } from '../../../../store'
 import { ActionProps } from '../../../../store/types'
-import { OrgProps } from '../../../../store/IATI/types'
+import { IATIOrgReport, OrgProps } from '../../../../store/IATI/types'
 import { KeyData } from '../../../../store/helpers/keys/types'
 import { FormData } from '../../../../store/helpers/forms/types'
 
@@ -43,6 +43,7 @@ const orgSchema = Yup.object().shape({
 
 interface OrgFormProps {
   orgRef: string
+  orgs: IATIOrgReport
 }
 
 interface OrgDispatchProps {
@@ -64,14 +65,36 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
     //this.props.initialise()
   }
 
+  getOrgData = (orgs: IATIOrgReport): OrgProps => {
+    let newOrg: OrgProps = {
+      orgRef: this.props.orgRef,
+      name: '',
+      code: '',
+      identifier: ''
+    }
+    if ( typeof orgs.data != 'undefined' ) {
+      const identifier = orgs.data[0].identifier
+      newOrg.name = orgs.data[0].name
+      newOrg.code = identifier.substr(0, identifier.indexOf('-'));
+      newOrg.identifier = identifier.split('-')[1]
+    }
+
+    return newOrg
+  }
+
   render() {
+
+    const org: OrgProps = this.getOrgData(this.props.orgs)
 
     return (
       <div>
         <h2>{OrgStrings.headingOrgWriter}</h2>
         <div>
           <Formik
-            initialValues={ {orgRef: this.props.orgRef, name: '', code: '', identifier: ''} }
+            initialValues={ {orgRef: this.props.orgRef,
+                             name: org.name,
+                             code: org.code,
+                             identifier: org.identifier} }
             enableReinitialize={true}
             validationSchema={orgSchema}
             onSubmit={(values: OrgProps, actions: any) => {
@@ -115,7 +138,8 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
 const mapStateToProps = (state: ApplicationState): OrgFormProps => {
   //console.log(state.orgReader)
   return {
-    orgRef: state.keys.data.org
+    orgRef: state.keys.data.org,
+    orgs: state.report.data as IATIOrgReport
   }
 }
 

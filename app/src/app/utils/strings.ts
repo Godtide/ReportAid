@@ -8,6 +8,7 @@ class App {
   static readonly author='Created by [Steven Huckle](https://glowkeeper.github.io/)'
 
   static headingOrganisationsWriter = 'Create Organisations Data'
+  static headingOrganisationsUpdater = 'Update Organisations Data'
   static headingOrganisationsReader = 'Read Organisations Data'
   static headingActivitiesWriter = 'Create Activities Data'
   static headingActivitiesUpdater = 'Update Activities Data'
@@ -40,6 +41,7 @@ class Paths {
 
   static readonly activitiesUpdater='Activities'
   static readonly activityUpdater='Activity'
+  static readonly orgUpdater='Org\''
 
   static readonly activitiesReader='Activities'
   static readonly activityReader='Activity'
@@ -178,10 +180,12 @@ class ActivityAdditional {
 
 class Org {
 
-  static headingOrgWriter = 'Create Organisation'
-  static headingOrgReader = 'Organisations'
+  static headingOrgWriter = 'Create Org\''
+  static headingOrgReader = 'Org\''
+  static headingOrgUpdater = 'Update Org'
 
   static orgIdentifier = "Org\' Reference"
+  static orgReference = "Org\' Reference"
 
   static orgName = 'Name'
   static code = 'Code'
