@@ -4,7 +4,7 @@ import { history } from '../../../../utils/history'
 import { connect } from 'react-redux'
 import { ThunkDispatch } from 'redux-thunk'
 
-import { Formik, Form, Field, FormikProps, ErrorMessage} from 'formik'
+import { Formik, Form, Field, FormikProps, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import { LinearProgress } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
