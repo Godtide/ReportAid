@@ -8,7 +8,9 @@ import { ApplicationState } from '../../store'
 import { ActionProps, TxReport } from '../../store/types'
 import { Keys, KeyTypes } from '../../store/helpers/keys/types'
 
-import { initialise } from '../../store/IATI/IATIWriter/actions'
+import { initialise  as initialiseAll } from '../../store/IATI/actions'
+import { initialise as txInit } from '../../store/IATI/IATIWriter/actions'
+//import { initialise as readDataInit } from '../../store/IATI/IATIReader/actions'
 import { setKey } from '../../store/helpers/keys/actions'
 
 import { Transaction } from '../../utils/strings'
@@ -22,6 +24,8 @@ interface TransactionProps {
 
 interface TransactionDispatchProps {
   setKey: (keyProps: Keys) => void
+  initialiseAll: () => void
+  initialiseTX: () => void
 }
 
 type TxProps = TransactionProps & TransactionDispatchProps
@@ -32,12 +36,17 @@ class TX extends React.Component<TxProps> {
    super(props)
   }
 
+  componentDidMount() {
+    this.props.initialiseTX()
+  }
+
   componentDidUpdate(previousProps: TxProps) {
     if(previousProps.tx != this.props.tx &&
        typeof this.props.tx != 'undefined' ) {
       //console.log('Type check!: ', typeof this.props.tx)
       this.props.submittingFunc(false)
       this.props.resettingFunc()
+      this.props.initialiseAll()
       this.props.setKey({key: '', keyType: KeyTypes.NEW})
     }
   }
@@ -85,6 +94,8 @@ const mapStateToProps = (state: ApplicationState): TransactionProps => {
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): TransactionDispatchProps => {
   return {
+    initialiseTX: () => dispatch(txInit()),
+    initialiseAll: () => dispatch(initialiseAll()),
     setKey: (keyProps: Keys) => dispatch(setKey(keyProps))
   }
 }

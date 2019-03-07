@@ -14,13 +14,11 @@ import { TextField, Select } from "material-ui-formik-components"
 
 import { ApplicationState } from '../../../../store'
 import { ActionProps } from '../../../../store/types'
-import { ActivitiesProps } from '../../../../store/IATI/types'
+import { IATIActivitiesReport, IATIActivitiesData, ActivitiesProps } from '../../../../store/IATI/types'
 import { FormData } from '../../../../store/helpers/forms/types'
 import { Keys, KeyTypes } from '../../../../store/helpers/keys/types'
 
-import { initialise } from '../../../../store/IATI/IATIWriter/actions'
 import { setFormFunctions } from '../../../../store/helpers/forms/actions'
-import { setKey } from '../../../../store/helpers/keys/actions'
 import { setActivities } from '../../../../store/IATI/IATIWriter/activities/activities/actions'
 
 import { TransactionHelper } from '../../../io/transactionHelper'
@@ -44,18 +42,17 @@ const activitiesSchema = Yup.object().shape({
     .required('Required'),
 })
 
-interface ActivitiesKeyProps {
+interface ActivitiesDataProps {
   activitiesRef: string
+  activities: IATIActivitiesReport
 }
 
 interface ActivitiesDispatchProps {
   handleSubmit: (values: any) => void
-  initialise: () => void
   setFormFunctions: (formProps: FormData) => void
-  setKey: (keyProps: Keys) => void
 }
 
-type ActivitiesFormProps = WithStyles<typeof styles> & ActivitiesKeyProps & ActivitiesDispatchProps
+type ActivitiesFormProps = WithStyles<typeof styles> & ActivitiesDataProps & ActivitiesDispatchProps
 
 class ActivitiesForm extends React.Component<ActivitiesFormProps> {
 
@@ -66,17 +63,37 @@ class ActivitiesForm extends React.Component<ActivitiesFormProps> {
   handleSubmit = (values: ActivitiesProps, setSubmitting: Function, reset: Function) => {
     this.props.setFormFunctions({submitFunc: setSubmitting, resetFunc: reset})
     this.props.handleSubmit(values)
-    this.props.initialise()
+  }
+
+  getActivitiesData = (activities: IATIActivitiesReport): IATIActivitiesData => {
+    let newActivities: IATIActivitiesData = {
+      activitiesRef: this.props.activitiesRef,
+      version: '',
+      generatedTime: '',
+      linkedData: ''
+    }
+    if ( typeof activities.data != 'undefined' ) {
+      newActivities.version = activities.data[0].version
+      newActivities.generatedTime = activities.data[0].generatedTime
+      newActivities.linkedData = activities.data[0].linkedData
+    }
+
+    return newActivities
   }
 
   render() {
+
+    const activities: IATIActivitiesData = this.getActivitiesData(this.props.activities)
+    //console.log('Activities: ', activities)
 
     return (
       <div>
         <h2>{ActivitiesStrings.headingActivitiesWriter}</h2>
         <div>
           <Formik
-            initialValues={ {activitiesRef: this.props.activitiesRef, version: "", linkedData: ""} }
+            initialValues={ {activitiesRef: activities.activitiesRef,
+                             version: activities.version,
+                             linkedData: activities.linkedData} }
             enableReinitialize={true}
             validationSchema={activitiesSchema}
             onSubmit={(values: ActivitiesProps, actions: any) => {
@@ -122,23 +139,22 @@ class ActivitiesForm extends React.Component<ActivitiesFormProps> {
   }
 }
 
-const mapStateToProps = (state: ApplicationState): ActivitiesKeyProps => {
+const mapStateToProps = (state: ApplicationState): ActivitiesDataProps => {
   //console.log(state.orgReader)
   return {
-    activitiesRef: state.keys.data.activities
+    activitiesRef: state.keys.data.activities,
+    activities: state.report.data as IATIActivitiesReport
   }
 }
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): ActivitiesDispatchProps => {
   return {
     handleSubmit: (ownProps: any) => dispatch(setActivities(ownProps)),
-    initialise: () => dispatch(initialise()),
-    setFormFunctions: (formProps: FormData) => dispatch(setFormFunctions(formProps)),
-    setKey: (keyProps: Keys) => dispatch(setKey(keyProps))
+    setFormFunctions: (formProps: FormData) => dispatch(setFormFunctions(formProps))
   }
 }
 
-export const Activities = withTheme(withStyles(styles)(connect<ActivitiesKeyProps, ActivitiesDispatchProps, {}, ApplicationState>(
+export const Activities = withTheme(withStyles(styles)(connect<ActivitiesDataProps, ActivitiesDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
 )(ActivitiesForm)))
