@@ -9,11 +9,14 @@ import { ActionProps } from '../../store/types'
 import { Field, ErrorMessage} from 'formik'
 import { Select } from "material-ui-formik-components"
 
-//import { setKey } from '../store/helpers/keys/actions'
+import { setKey } from '../../store/helpers/keys/actions'
 import { getOrgs } from '../../store/IATI/IATIReader/organisations/orgs/actions'
+
+import { Keys, KeyTypes } from '../../store/helpers/keys/types'
 import { IATIOrgReport, IATIOrgData } from '../../store/IATI/types'
 
 interface OrgProps {
+  setValue: Function
   name: string
   label: string
 }
@@ -24,6 +27,7 @@ interface OrgDataProps {
 
 interface OrgDispatchProps {
   getOrgs: (isReport: boolean) => void
+  setOrgKey: (orgRef: string) => void
 }
 
 type OrgPickerProps = OrgProps & OrgDataProps & OrgDispatchProps
@@ -59,6 +63,10 @@ class Org extends React.Component<OrgPickerProps> {
           name={this.props.name}
           label={this.props.label}
           component={Select}
+          onChange={(ev: any) => {
+            this.props.setOrgKey(ev.target.value)
+            this.props.setValue(this.props.name, ev.target.value)
+          }}
           options={orgRefs}
         />
       </React.Fragment>
@@ -75,7 +83,8 @@ const mapStateToProps = (state: ApplicationState): OrgDataProps => {
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgDispatchProps => {
   return {
-    getOrgs: (isReport: boolean) => dispatch(getOrgs(isReport))
+    getOrgs: (isReport: boolean) => dispatch(getOrgs(isReport)),
+    setOrgKey: (orgRef: string) => dispatch(setKey({key: orgRef, keyType: KeyTypes.ORG})),
   }
 }
 

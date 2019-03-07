@@ -118,11 +118,13 @@ export class OrganisationForm extends React.Component<OrganisationFormProps> {
                   />
                   <ErrorMessage name='organisationsRef' />
                   <OrgPicker
+                    setValue={formProps.setFieldValue}
                     name='orgRef'
                     label={OrganisationStrings.orgRef}
                   />
                   <ErrorMessage name='orgRef' />
                   <OrgPicker
+                    setValue={formProps.setFieldValue}
                     name='reportingOrgRef'
                     label={OrganisationStrings.reportingOrgRef}
                   />

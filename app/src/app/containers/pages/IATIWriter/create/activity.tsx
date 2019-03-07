@@ -224,6 +224,7 @@ export class ActivityForm extends React.Component<ActivityFormProps> {
                   />
                   <ErrorMessage name='currency' />
                   <OrgPicker
+                    setValue={formProps.setFieldValue}
                     name='reportingOrgRef'
                     label={ActivityStrings.reportingOrgRef}
                   />

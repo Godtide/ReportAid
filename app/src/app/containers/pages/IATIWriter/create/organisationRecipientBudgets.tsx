@@ -145,6 +145,7 @@ export class OrganisationRecipientBudgetsForm extends React.Component<Organisati
                   />
                   <ErrorMessage name='organisationRef' />
                   <OrgPicker
+                    setValue={formProps.setFieldValue}
                     name='recipientOrgRef'
                     label={OrganisationRecipientBudget.orgReference}
                   />
