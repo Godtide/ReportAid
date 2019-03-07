@@ -26,7 +26,7 @@ export const getActivityRecord = (props: RecordProps) => {
     const activityRef = props.activityRef
 
     let activityData: IATIActivityReportProps = {
-      data: { activitiesRef: props.activitiesRef, data: [] }
+      data: { activitiesRef: activitiesRef, data: [] }
     }
     let actionType = IATIReportActionTypes.ACTIVITIES_FAILURE
     try {
