@@ -8,6 +8,7 @@ import { ThunkDispatch } from 'redux-thunk'
 import { ApplicationState } from '../store'
 import { ActionProps } from '../store/types'
 
+import { initialise } from '../store/IATI/actions'
 import { setKey } from '../store/helpers/keys/actions'
 import { Keys, KeyTypes } from '../store/helpers/keys/types'
 
@@ -27,6 +28,7 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 
 interface DispatchProps {
+  initialise: () => void
   setKey: (keyProps: Keys) => void
 }
 
@@ -45,7 +47,7 @@ class Sider extends React.Component<WithStyles<typeof styles> & DispatchProps> {
               <Link
                 to={PathConfig.activitiesWriter}
                 onClick={() => {
-                  //console.log('Clicked me!')
+                  this.props.initialise()
                   this.props.setKey({key: '', keyType: KeyTypes.ACTIVITIES})
                 }} >
                 <MenuItem>
@@ -55,7 +57,11 @@ class Sider extends React.Component<WithStyles<typeof styles> & DispatchProps> {
                   {Paths.activitiesWriter}
                 </MenuItem>
               </Link>
-              <Link to={PathConfig.activityWriter}>
+              <Link
+                to={PathConfig.activityWriter}
+                onClick={() => {
+                  this.props.setKey({key: '', keyType: KeyTypes.ACTIVITY})
+                }} >
                 <MenuItem>
                   <IconButton className={this.props.classes.button} aria-label={Paths.activityWriter}>
                     <Create />
@@ -63,7 +69,12 @@ class Sider extends React.Component<WithStyles<typeof styles> & DispatchProps> {
                   {Paths.activityWriter}
                 </MenuItem>
               </Link>
-              <Link to={PathConfig.activityAdditionalWriter}>
+              <Link
+                to={PathConfig.activityAdditionalWriter}
+                onClick={() => {
+                  //console.log('Clicked me!')
+                  this.props.setKey({key: '', keyType: KeyTypes.ACTIVITYADDITIONAL})
+                }} >
                 <MenuItem>
                   <IconButton className={this.props.classes.button} aria-label={Paths.activityAdditionalWriter}>
                     <Create />
@@ -297,6 +308,7 @@ class Sider extends React.Component<WithStyles<typeof styles> & DispatchProps> {
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): DispatchProps => {
   return {
+    initialise: () => dispatch(initialise()),
     setKey: (keyProps: Keys) => dispatch(setKey(keyProps))
   }
 }
