@@ -9,23 +9,17 @@ import * as Yup from 'yup'
 import { LinearProgress } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
 import FormControl from '@material-ui/core/FormControl'
-//import { Select } from 'formik-material-ui'
-import { TextField, Select } from "material-ui-formik-components"
 
 import { ApplicationState } from '../../../../store'
 import { ActionProps } from '../../../../store/types'
 import { IATIActivitiesReport } from '../../../../store/IATI/types'
-import { FormData } from '../../../../store/helpers/forms/types'
-import { Keys, KeyTypes } from '../../../../store/helpers/keys/types'
 
 import { Activities as ActivitiesWriter } from '../create/activities'
 import { ActivitiesPicker } from '../../../../components/io/activitiesPicker'
 
-//import { setKey } from '../../../../store/helpers/keys/actions'
 import { getActivitiesRecord } from '../../../../store/IATI/IATIReader/activities/activities/actions'
 
 import { Activities as ActivitiesStrings } from '../../../../utils/strings'
-import { Helpers } from '../../../../utils/config'
 
 import { Paths as PathConfig } from '../../../../utils/config'
 
