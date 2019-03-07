@@ -102,7 +102,7 @@ export class ActivityForm extends React.Component<ActivityFormProps> {
 
   getActivityData = (activity: IATIActivityReport): IATIActivityData => {
 
-    //console.log('Activity!: ', activity)
+    console.log('Activity!: ', activity)
     let newActivity: IATIActivityData = {
       activityRef: this.props.activityRef,
       identifier: "",
