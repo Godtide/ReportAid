@@ -3,7 +3,6 @@ import { KeyActionTypes, KeyProps, KeyData } from './types'
 
 const initialState: KeyProps = {
   data: {
-    newKey: '',
     org: '',
     organisations: '',
     organisation: '',

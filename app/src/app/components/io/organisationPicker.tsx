@@ -9,8 +9,10 @@ import { ActionProps } from '../../store/types'
 import { Field, ErrorMessage} from 'formik'
 import { Select } from "material-ui-formik-components"
 
-import { setOrganisationKey } from '../../store/helpers/keys/actions'
+import { setKey } from '../../store/helpers/keys/actions'
 import { getOrganisation } from '../../store/IATI/IATIReader/organisations/organisation/actions'
+
+import { Keys, KeyTypes } from '../../store/helpers/keys/types'
 
 import { IATIOrganisationReport, IATIOrganisationData, OrganisationReportProps,OrganisationProps } from '../../store/IATI/types'
 
@@ -92,7 +94,7 @@ const mapStateToProps = (state: ApplicationState): OrganisationDataProps => {
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrganisationDispatchProps => {
   return {
     getOrganisation: (organisationProps: OrganisationReportProps) => dispatch(getOrganisation(organisationProps)),
-    setOrganisationKey: (organisationRef: string) => dispatch(setOrganisationKey(organisationRef)),
+    setOrganisationKey: (organisationRef: string) => dispatch(setKey({key: organisationRef, keyType: KeyTypes.ORGANISATION})),
   }
 }
 

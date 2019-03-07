@@ -16,7 +16,6 @@ import { ApplicationState } from '../../../../store'
 import { ActionProps } from '../../../../store/types'
 import { IATIActivitiesReport, IATIActivitiesData, ActivitiesProps } from '../../../../store/IATI/types'
 import { FormData } from '../../../../store/helpers/forms/types'
-import { Keys, KeyTypes } from '../../../../store/helpers/keys/types'
 
 import { setFormFunctions } from '../../../../store/helpers/forms/actions'
 import { setActivities } from '../../../../store/IATI/IATIWriter/activities/activities/actions'

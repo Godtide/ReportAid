@@ -22,6 +22,7 @@ class Paths {
   static readonly organisationCountryBudgetsWriter = '/create-organisation-country-budget-records'
 
   static readonly activitiesUpdater='/update-activities-records'
+  static readonly activityUpdater='/update-activity-records'
 
   static readonly activitiesReader='/read-activities-reports'
   static readonly activityReader='/read-activity-reports'

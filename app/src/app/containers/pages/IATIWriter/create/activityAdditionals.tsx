@@ -15,9 +15,7 @@ import { ActionProps } from '../../../../store/types'
 import { ActivityAdditionalProps } from '../../../../store/IATI/types'
 import { FormData } from '../../../../store/helpers/forms/types'
 
-import { initialise } from '../../../../store/IATI/IATIWriter/actions'
 import { setFormFunctions } from '../../../../store/helpers/forms/actions'
-import { newKey } from '../../../../store/helpers/keys/actions'
 import { setActivityAdditional } from '../../../../store/IATI/IATIWriter/activities/activityAdditionals/actions'
 
 import { ActivitiesPicker } from '../../../../components/io/activitiesPicker'
@@ -65,9 +63,7 @@ interface ActivityAdditionalKeyProps {
 
 export interface ActivityAdditionalDispatchProps {
   handleSubmit: (values: any) => void
-  initialise: () => void
   setFormFunctions: (formProps: FormData) => void
-  newKey: () => void
 }
 
 type ActivityAdditionalFormProps = WithStyles<typeof styles> & ActivityAdditionalKeyProps & ActivityAdditionalDispatchProps
@@ -78,15 +74,10 @@ export class ActivityAdditionalForm extends React.Component<ActivityAdditionalFo
    super(props)
   }
 
-  componentDidMount() {
-    this.props.initialise()
-    this.props.newKey()
-  }
-
   handleSubmit = (values: ActivityAdditionalProps, setSubmitting: Function, reset: Function) => {
     this.props.setFormFunctions({submitFunc: setSubmitting, resetFunc: reset})
     this.props.handleSubmit(values)
-    this.props.initialise()
+    //this.props.initialise()
   }
 
   render() {
@@ -204,16 +195,14 @@ const mapStateToProps = (state: ApplicationState): ActivityAdditionalKeyProps =>
   return {
     activitiesRef: state.keys.data.activities,
     activityRef: state.keys.data.activity,
-    additionalRef: state.keys.data.newKey
+    additionalRef: state.keys.data.activityAdditional
   }
 }
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): ActivityAdditionalDispatchProps => {
   return {
     handleSubmit: (ownProps: any) => dispatch(setActivityAdditional(ownProps)),
-    initialise: () => dispatch(initialise()),
-    setFormFunctions: (formProps: FormData) => dispatch(setFormFunctions(formProps)),
-    newKey: () => dispatch(newKey())
+    setFormFunctions: (formProps: FormData) => dispatch(setFormFunctions(formProps))
   }
 }
 

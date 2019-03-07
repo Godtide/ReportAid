@@ -11,8 +11,10 @@ import { Field, ErrorMessage, FieldProps } from 'formik'
 import { Select } from "material-ui-formik-components"
 //import MuiSelect from '@material-ui/core/Select'
 
-import { setActivitiesKey } from '../../store/helpers/keys/actions'
+import { setKey } from '../../store/helpers/keys/actions'
 import { getActivities } from '../../store/IATI/IATIReader/activities/activities/actions'
+
+import { Keys, KeyTypes } from '../../store/helpers/keys/types'
 
 import { IATIActivitiesReport,
          IATIActivitiesData } from '../../store/IATI/types'
@@ -86,7 +88,7 @@ const mapStateToProps = (state: ApplicationState): ActivitiesDataProps => {
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): ActivitiesDispatchProps => {
   return {
     getActivities: (isReport: boolean) => dispatch(getActivities(isReport)),
-    setActivitiesKey: (activitiesRef: string) => dispatch(setActivitiesKey(activitiesRef)),
+    setActivitiesKey: (activitiesRef: string) => dispatch(setKey({key: activitiesRef, keyType: KeyTypes.ACTIVITIES})),
   }
 }
 

@@ -9,8 +9,10 @@ import { ActionProps } from '../../store/types'
 import { Field, ErrorMessage} from 'formik'
 import { Select } from "material-ui-formik-components"
 
-import { setActivityKey } from '../../store/helpers/keys/actions'
+import { setKey } from '../../store/helpers/keys/actions'
 import { getActivity } from '../../store/IATI/IATIReader/activities/activity/actions'
+
+import { Keys, KeyTypes } from '../../store/helpers/keys/types'
 
 import { IATIActivityReport, IATIActivityData, ActivityReportProps, ActivityProps } from '../../store/IATI/types'
 
@@ -92,7 +94,7 @@ const mapStateToProps = (state: ApplicationState): ActivityDataProps => {
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): ActivityDispatchProps => {
   return {
     getActivity: (activityProps: ActivityReportProps) => dispatch(getActivity(activityProps)),
-    setActivityKey: (activityRef: string) => dispatch(setActivityKey(activityRef)),
+    setActivityKey: (activityRef: string) => dispatch(setKey({key: activityRef, keyType: KeyTypes.ACTIVITY})),
   }
 }
 

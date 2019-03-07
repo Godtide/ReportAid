@@ -22,7 +22,6 @@ export interface Keys {
 }
 
 export interface KeyData {
-  newKey: string
   org: string
   organisations: string
   organisation: string

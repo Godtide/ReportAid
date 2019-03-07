@@ -39,6 +39,7 @@ class Paths {
   static readonly organisationCountryBudgetsWriter='Country Budget'
 
   static readonly activitiesUpdater='Activities'
+  static readonly activityUpdater='Activity'
 
   static readonly activitiesReader='Activities'
   static readonly activityReader='Activity'
@@ -132,6 +133,7 @@ class Activity {
 
   static headingActivityWriter = 'Write Activity'
   static headingActivityReader = 'Read Activity'
+  static headingActivityUpdater = 'Update Activity'
 
   static activitiesReference = "Activities Reference"
   static activityReference = "Activity Reference"

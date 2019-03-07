@@ -16,8 +16,6 @@ import { OrganisationDocProps } from '../../../../store/IATI/types'
 import { FormData } from '../../../../store/helpers/forms/types'
 
 import { setFormFunctions } from '../../../../store/helpers/forms/actions'
-import { initialise } from '../../../../store/IATI/IATIWriter/actions'
-import { newKey } from '../../../../store/helpers/keys/actions'
 import { setOrganisationDoc } from '../../../../store/IATI/IATIWriter/organisations/organisationDocs/actions'
 
 import { FormikDatePicker } from '../../../../components/io/datePicker'
@@ -97,7 +95,6 @@ interface OrganisationDocsKeyProps {
 
 interface OrgDocsDispatchProps {
   handleSubmit: (values: any) => void
-  initialise: () => void
   setFormFunctions: (formProps: FormData) => void
 }
 
@@ -109,13 +106,9 @@ export class OrgDocsForm extends React.Component<OrgDocsFormProps> {
    super(props)
   }
 
-  componentDidMount() {
-    this.props.initialise()
-  }
-
   handleSubmit = (values: OrganisationDocProps, setSubmitting: Function, reset: Function) => {
     this.props.setFormFunctions({submitFunc: setSubmitting, resetFunc: reset})
-    this.props.initialise()
+    //this.props.initialise()
     this.props.handleSubmit(values)
   }
 
@@ -233,7 +226,6 @@ const mapStateToProps = (state: ApplicationState): OrganisationDocsKeyProps => {
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgDocsDispatchProps => {
   return {
     handleSubmit: (ownProps: any) => dispatch(setOrganisationDoc(ownProps)),
-    initialise: () => dispatch(initialise()),
     setFormFunctions: (formProps: FormData) => dispatch(setFormFunctions(formProps))
   }
 }

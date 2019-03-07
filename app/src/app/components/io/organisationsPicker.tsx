@@ -11,8 +11,10 @@ import { Field, ErrorMessage, FieldProps } from 'formik'
 import { Select } from "material-ui-formik-components"
 //import MuiSelect from '@material-ui/core/Select'
 
-import { setOrganisationsKey } from '../../store/helpers/keys/actions'
+import { setKey } from '../../store/helpers/keys/actions'
 import { getOrganisations } from '../../store/IATI/IATIReader/organisations/organisations/actions'
+
+import { Keys, KeyTypes } from '../../store/helpers/keys/types'
 
 import { IATIOrganisationsReport,
          IATIOrganisationsData } from '../../store/IATI/types'
@@ -86,7 +88,7 @@ const mapStateToProps = (state: ApplicationState): OrganisationsDataProps => {
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrganisationsDispatchProps => {
   return {
     getOrganisations: (isReport: boolean) => dispatch(getOrganisations(isReport)),
-    setOrganisationsKey: (organisationsRef: string) => dispatch(setOrganisationsKey(organisationsRef)),
+    setOrganisationsKey: (organisationsRef: string) => dispatch(setKey({key: organisationsRef, keyType: KeyTypes.ORGANISATIONS})),
   }
 }
 

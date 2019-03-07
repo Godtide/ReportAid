@@ -15,8 +15,6 @@ import { OrganisationRegionBudgetProps } from '../../../../store/IATI/types'
 import { FormData } from '../../../../store/helpers/forms/types'
 
 import { setFormFunctions } from '../../../../store/helpers/forms/actions'
-import { initialise } from '../../../../store/IATI/IATIWriter/actions'
-import { newKey } from '../../../../store/helpers/keys/actions'
 import { setRegionBudget } from '../../../../store/IATI/IATIWriter/organisations/organisationRegionBudgets/actions'
 
 import { FormikDatePicker } from '../../../../components/io/datePicker'
@@ -89,7 +87,6 @@ interface OrganisationRegionBudgetsKeyProps {
 
 interface OrganisationRegionBudgetsDispatchProps {
   handleSubmit: (values: any) => void
-  initialise: () => void
   setFormFunctions: (formProps: FormData) => void
 }
 
@@ -101,13 +98,9 @@ export class OrganisationRegionBudgetsForm extends React.Component<OrganisationR
    super(props)
   }
 
-  componentDidMount() {
-    this.props.initialise()
-  }
-
   handleSubmit = (values: OrganisationRegionBudgetProps, setSubmitting: Function, reset: Function) => {
     this.props.setFormFunctions({submitFunc: setSubmitting, resetFunc: reset})
-    this.props.initialise()
+    //this.props.initialise()
     this.props.handleSubmit(values)
   }
 
@@ -207,7 +200,6 @@ const mapStateToProps = (state: ApplicationState): OrganisationRegionBudgetsKeyP
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrganisationRegionBudgetsDispatchProps => {
   return {
     handleSubmit: (ownProps: any) => dispatch(setRegionBudget(ownProps)),
-    initialise: () => dispatch(initialise()),
     setFormFunctions: (formProps: FormData) => dispatch(setFormFunctions(formProps))
   }
 }

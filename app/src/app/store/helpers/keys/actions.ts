@@ -32,7 +32,6 @@ export const setKey = (props: Keys) => {
     switch (props.keyType) {
       case KeyTypes.NEW: {
         keyData = {
-          newKey: key,
           org: key,
           organisations:  key,
           organisation:  key,
@@ -116,55 +115,5 @@ export const setKey = (props: Keys) => {
     console.log('dispatch: ', keyData, actionType)
 
     await dispatch(write({data: keyData})(actionType))
-  }
-}
-
-export const newKey = () => {
-  return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
-    const state = getState()
-    const keyData: KeyData = state.keys.data
-    keyData.newKey = ethers.utils.formatBytes32String(shortid.generate())
-    console.log('New Key from here! ', keyData.newKey)
-    await dispatch(write({data: keyData})(KeyActionTypes.NEW_SUCCESS))
-  }
-}
-
-export const setOrganisationsKey = (key: string) => {
-  return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
-    const state = getState()
-    const keyData: KeyData = state.keys.data
-    keyData.organisations = key
-    //console.log('Set Organisations Key! ', keyData.organisations)
-    await dispatch(write({data: keyData})(KeyActionTypes.ORGANISATIONS_SUCCESS))
-  }
-}
-
-export const setOrganisationKey = (key: string) => {
-  return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
-    const state = getState()
-    const keyData: KeyData = state.keys.data
-    keyData.organisation = key
-    //console.log('Set Organisation Key! ', keyData.organisations)
-    await dispatch(write({data: keyData})(KeyActionTypes.ORGANISATION_SUCCESS))
-  }
-}
-
-export const setActivitiesKey = (key: string) => {
-  return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
-    const state = getState()
-    const keyData: KeyData = state.keys.data
-    keyData.activities = key
-    //console.log('Set Organisations Key! ', keyData.organisations)
-    await dispatch(write({data: keyData})(KeyActionTypes.ACTIVITIES_SUCCESS))
-  }
-}
-
-export const setActivityKey = (key: string) => {
-  return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
-    const state = getState()
-    const keyData: KeyData = state.keys.data
-    keyData.activity = key
-    //console.log('Set Organisation Key! ', keyData.organisations)
-    await dispatch(write({data: keyData})(KeyActionTypes.ACTIVITY_SUCCESS))
   }
 }

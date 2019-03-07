@@ -16,9 +16,7 @@ import { OrgProps } from '../../../../store/IATI/types'
 import { KeyData } from '../../../../store/helpers/keys/types'
 import { FormData } from '../../../../store/helpers/forms/types'
 
-import { initialise } from '../../../../store/IATI/IATIWriter/actions'
 import { setFormFunctions } from '../../../../store/helpers/forms/actions'
-import { newKey } from '../../../../store/helpers/keys/actions'
 import { setOrg } from '../../../../store/IATI/IATIWriter/organisations/orgs/actions'
 
 import { TransactionHelper } from '../../../io/transactionHelper'
@@ -49,9 +47,7 @@ interface OrgFormProps {
 
 interface OrgDispatchProps {
   handleSubmit: (values: any) => void
-  initialise: () => void
   setFormFunctions: (formProps: FormData) => void
-  newKey: () => void
 }
 
 type OrgWriterFormProps = WithStyles<typeof styles> & OrgFormProps & OrgDispatchProps
@@ -62,15 +58,10 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
    super(props)
   }
 
-  componentDidMount() {
-    this.props.initialise()
-    this.props.newKey()
-  }
-
   handleSubmit = (values: OrgProps, setSubmitting: Function, reset: Function) => {
     this.props.setFormFunctions({submitFunc: setSubmitting, resetFunc: reset})
     this.props.handleSubmit(values)
-    this.props.initialise()
+    //this.props.initialise()
   }
 
   render() {
@@ -124,16 +115,14 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
 const mapStateToProps = (state: ApplicationState): OrgFormProps => {
   //console.log(state.orgReader)
   return {
-    orgRef: state.keys.data.newKey
+    orgRef: state.keys.data.org
   }
 }
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgDispatchProps => {
   return {
     handleSubmit: (ownProps: any) => dispatch(setOrg(ownProps)),
-    initialise: () => dispatch(initialise()),
-    setFormFunctions: (formProps: FormData) => dispatch(setFormFunctions(formProps)),
-    newKey: () => dispatch(newKey())
+    setFormFunctions: (formProps: FormData) => dispatch(setFormFunctions(formProps))
   }
 }
 
