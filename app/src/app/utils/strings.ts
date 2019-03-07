@@ -117,8 +117,8 @@ class Transaction {
 
 class Activities {
 
-  static headingActivitiesWriter = 'Write Activities'
-  static headingActivitiesReader = 'Read Activities'
+  static headingActivitiesWriter = 'Create Activities Record'
+  static headingActivitiesReader = 'Read Activities Records'
   static headingActivitiesUpdater = 'Update Activities'
 
   static activitiesReference = "Activities Reference"
@@ -133,8 +133,8 @@ class Activities {
 
 class Activity {
 
-  static headingActivityWriter = 'Write Activity'
-  static headingActivityReader = 'Read Activity'
+  static headingActivityWriter = 'Create Activity Record'
+  static headingActivityReader = 'Read Activity Records'
   static headingActivityUpdater = 'Update Activity'
 
   static activitiesReference = "Activities Reference"
@@ -160,8 +160,8 @@ class Activity {
 
 class ActivityAdditional {
 
-  static headingActivityAdditionalWriter = 'Write Activity Additional Info\''
-  static headingActivityAdditionalReader = 'Read Activity Additional Info\''
+  static headingActivityAdditionalWriter = 'Create Activity Additional Info\' Record'
+  static headingActivityAdditionalReader = 'Read Activity Additional Info\' Records'
 
   static activitiesReference = "Activities Reference"
   static activityReference = "Activity Reference"
@@ -180,9 +180,9 @@ class ActivityAdditional {
 
 class Org {
 
-  static headingOrgWriter = 'Create Org\''
-  static headingOrgReader = 'Org\''
-  static headingOrgUpdater = 'Update Org'
+  static headingOrgWriter = 'Create Org\' Record'
+  static headingOrgReader = 'Read Org\' Records'
+  static headingOrgUpdater = 'Update Org\' Record'
 
   static orgIdentifier = "Org\' Reference"
   static orgReference = "Org\' Reference"
@@ -197,8 +197,8 @@ class Org {
 
 class Organisations {
 
-  static headingOrganisationsWriter = 'Write Organisations'
-  static headingOrganisationsReader = 'Read Organisations'
+  static headingOrganisationsWriter = 'Create Organisations Record'
+  static headingOrganisationsReader = 'Read Organisations Records'
 
   static organisationsReference = "Organisations Reference"
   static reportKey = "Organisations Reference"
@@ -211,8 +211,8 @@ class Organisations {
 
 class Organisation {
 
-  static headingOrganisationWriter = 'Create Organisation'
-  static headingOrganisationReader = 'Organisation'
+  static headingOrganisationWriter = 'Create Organisation Record'
+  static headingOrganisationReader = 'Read Organisation Records'
 
   static organisationsReference = "Organisations Reference"
   static organisationReference = "Organisation Reference"
@@ -231,8 +231,8 @@ class Organisation {
 
 class OrganisationDoc {
 
-  static headingOrganisationDocWriter = 'Create Document'
-  static headingOrganisationDocReader = 'Documents'
+  static headingOrganisationDocWriter = 'Create Document Record'
+  static headingOrganisationDocReader = 'Read Document Records'
 
   static organisationsReference = "Organisations Reference"
   static organisationReference = "Organisation Reference"
@@ -255,8 +255,8 @@ class OrganisationDoc {
 
 class OrganisationBudget {
 
-  static headingOrganisationBudgetWriter = 'Create Report Budget'
-  static headingOrganisationBudgetReader = 'Report Budgets'
+  static headingOrganisationBudgetWriter = 'Create Budget Record'
+  static headingOrganisationBudgetReader = 'Read Budgets Records'
 
   static reportingOrgRef = 'Reporting Organisation'
   static budgetReference = "Budget Reference"
@@ -280,8 +280,8 @@ class OrganisationBudget {
 
 class OrganisationExpenditure {
 
-  static headingOrganisationExpenditureWriter = 'Create Report Expenditure'
-  static headingOrganisationExpenditureReader = 'Report Expenditure'
+  static headingOrganisationExpenditureWriter = 'Create Expenditure Record'
+  static headingOrganisationExpenditureReader = 'Read Expenditure Records'
 
   static reportingOrgRef = 'Reporting Organisation'
   static expenditureReference = "Expenditure Reference"
@@ -305,8 +305,8 @@ class OrganisationExpenditure {
 
 class OrganisationRecipientBudget {
 
-  static headingOrganisationRecipientBudgetWriter = 'Create Report Recipient Budget'
-  static headingOrganisationRecipientBudgetReader = 'Report Recipient Budgets'
+  static headingOrganisationRecipientBudgetWriter = 'Create Recipient Budget Record'
+  static headingOrganisationRecipientBudgetReader = 'REad Recipient Budgets Records'
 
   static reportingOrgRef = 'Reporting Organisation'
   static budgetReference = "Budget Reference"
@@ -331,8 +331,8 @@ class OrganisationRecipientBudget {
 
 class OrganisationRegionBudget {
 
-  static headingOrganisationRegionBudgetWriter = 'Create Report Region Budget'
-  static headingOrganisationRegionBudgetReader = 'Report Region Budgets'
+  static headingOrganisationRegionBudgetWriter = 'Create Region Budget Record'
+  static headingOrganisationRegionBudgetReader = 'Read Region Budgets Records'
 
   static reportingOrgRef = 'Reporting Organisation'
   static budgetReference = "Budget Reference"
@@ -357,8 +357,8 @@ class OrganisationRegionBudget {
 
 class OrganisationCountryBudget {
 
-  static headingOrganisationCountryBudgetWriter = 'Create Report Country Budget'
-  static headingOrganisationCountryBudgetReader = 'Report Country Budgets'
+  static headingOrganisationCountryBudgetWriter = 'Create Country Budget Record'
+  static headingOrganisationCountryBudgetReader = 'Read Country Budgets Records'
 
   static reportingOrgRef = 'Reporting Organisation'
   static budgetReference = "Budget Reference"
