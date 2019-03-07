@@ -6,6 +6,8 @@ import { ethers } from 'ethers'
 import Markdown from 'react-markdown'
 
 import { getDictEntries } from '../../../components/io/dict'
+
+import { initialise } from '../../../store/IATI/IATIReader/actions'
 import { getActivities } from '../../../store/IATI/IATIReader/activities/activities/actions'
 
 import { ApplicationState } from '../../../store'
@@ -22,6 +24,7 @@ interface ActivitiesProps {
 }
 
 interface ActivitiesDispatchProps {
+  initialise: () => void
   getActivities: (isReport: boolean) => void
 }
 
@@ -34,6 +37,7 @@ class ActivitiesReader extends React.Component<ActivitiesReaderProps> {
   }
 
   componentDidMount() {
+    this.props.initialise()
     this.props.getActivities(true)
   }
 
@@ -60,6 +64,7 @@ const mapStateToProps = (state: ApplicationState): ActivitiesProps => {
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): ActivitiesDispatchProps => {
   return {
+    initialise: () => dispatch(initialise()),
     getActivities: (isReport: boolean) => dispatch(getActivities(isReport))
   }
 }
