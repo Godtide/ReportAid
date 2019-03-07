@@ -22,7 +22,7 @@ export const setKey = (props: Keys) => {
     let keyData: KeyData = state.keys.data
     let actionType = KeyActionTypes.NEW_FAILURE
 
-    console.log('Setting key!')
+    //console.log('Setting key!')
 
     let key = props.key
     if (props.key == '') {
@@ -112,7 +112,7 @@ export const setKey = (props: Keys) => {
         break
     }
 
-    console.log('dispatch: ', keyData, actionType)
+    //console.log('dispatch: ', keyData, actionType)
 
     await dispatch(write({data: keyData})(actionType))
   }

@@ -12,8 +12,8 @@ import { TextField, Select } from "material-ui-formik-components"
 
 import { ApplicationState } from '../../../../store'
 import { ActionProps } from '../../../../store/types'
-import { ActivityProps } from '../../../../store/IATI/types'
 import { FormData } from '../../../../store/helpers/forms/types'
+import { IATIActivityReport, IATIActivityData, ActivityProps } from '../../../../store/IATI/types'
 
 import { setFormFunctions } from '../../../../store/helpers/forms/actions'
 import { setActivity } from '../../../../store/IATI/IATIWriter/activities/activity/actions'
@@ -75,9 +75,10 @@ const activitySchema = Yup.object().shape({
     .required('Required')
 })
 
-interface ActivityKeyProps {
+interface ActivityDataProps {
   activitiesRef: string
   activityRef: string
+  activity: IATIActivityReport
 }
 
 export interface ActivityDispatchProps {
@@ -85,7 +86,7 @@ export interface ActivityDispatchProps {
   setFormFunctions: (formProps: FormData) => void
 }
 
-type ActivityFormProps = WithStyles<typeof styles> & ActivityKeyProps & ActivityDispatchProps
+type ActivityFormProps = WithStyles<typeof styles> & ActivityDataProps & ActivityDispatchProps
 
 export class ActivityForm extends React.Component<ActivityFormProps> {
 
@@ -99,28 +100,69 @@ export class ActivityForm extends React.Component<ActivityFormProps> {
     //this.props.initialise()
   }
 
+  getActivityData = (activity: IATIActivityReport): IATIActivityData => {
+
+    //console.log('Activity!: ', activity)
+    let newActivity: IATIActivityData = {
+      activityRef: this.props.activityRef,
+      identifier: "",
+      reportingOrgRef: "",
+      reportingOrgType: 0,
+      reportingOrgIsSecondary: false,
+      title: "",
+      lang: "",
+      currency: "",
+      budgetNotProvided: 0,
+      status: 0,
+      humanitarian: true,
+      hierarchy: 0,
+      linkedData: "",
+      description: "",
+      lastUpdated: ""
+    }
+    if ( typeof activity.data != 'undefined' ) {
+      newActivity.identifier = activity.data[0].identifier
+      newActivity.reportingOrgRef = activity.data[0].reportingOrgRef
+      newActivity.reportingOrgType = activity.data[0].reportingOrgType
+      newActivity.reportingOrgIsSecondary = activity.data[0].reportingOrgIsSecondary
+      newActivity.title = activity.data[0].title
+      newActivity.lang = activity.data[0].lang
+      newActivity.currency = activity.data[0].currency
+      newActivity.budgetNotProvided = activity.data[0].budgetNotProvided
+      newActivity.status = activity.data[0].status
+      newActivity.humanitarian = activity.data[0].humanitarian
+      newActivity.hierarchy = activity.data[0].hierarchy
+      newActivity.linkedData = activity.data[0].linkedData
+      newActivity.description = activity.data[0].description
+    }
+
+    return newActivity
+  }
+
   render() {
+
+    const activity: IATIActivityData = this.getActivityData(this.props.activity)
 
     return (
       <div>
         <h2>{ActivityStrings.headingActivityWriter}</h2>
         <div>
           <Formik
-            initialValues={ {activitiesRef: "",
-                             activityRef: this.props.activityRef,
-                             identifier: "",
-                             reportingOrgRef: "",
-                             reportingOrgType: 0,
-                             reportingOrgIsSecondary: false,
-                             title: "",
-                             lang: "",
-                             currency: "",
-                             budgetNotProvided: 0,
-                             status: 0,
-                             humanitarian: true,
-                             hierarchy: 0,
-                             linkedData: "",
-                             description: ""
+            initialValues={ {activitiesRef: this.props.activitiesRef,
+                             activityRef: activity.activityRef,
+                             identifier: activity.identifier,
+                             reportingOrgRef: activity.reportingOrgRef,
+                             reportingOrgType: activity.reportingOrgType,
+                             reportingOrgIsSecondary: activity.reportingOrgIsSecondary,
+                             title: activity.title,
+                             lang: activity.lang,
+                             currency: activity.currency,
+                             budgetNotProvided: activity.budgetNotProvided,
+                             status: activity.status,
+                             humanitarian: activity.humanitarian,
+                             hierarchy: activity.hierarchy,
+                             linkedData: activity.linkedData,
+                             description: activity.description
                             }}
             enableReinitialize={true}
             validationSchema={activitySchema}
@@ -245,11 +287,12 @@ export class ActivityForm extends React.Component<ActivityFormProps> {
   }
 }
 
-const mapStateToProps = (state: ApplicationState): ActivityKeyProps => {
+const mapStateToProps = (state: ApplicationState): ActivityDataProps => {
   //console.log(state.orgReader)
   return {
     activitiesRef: state.keys.data.activities,
-    activityRef: state.keys.data.activity
+    activityRef: state.keys.data.activity,
+    activity: state.report.data as IATIActivityReport
   }
 }
 
@@ -260,7 +303,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   }
 }
 
-export const Activity = withTheme(withStyles(styles)(connect<ActivityKeyProps, ActivityDispatchProps, {}, ApplicationState>(
+export const Activity = withTheme(withStyles(styles)(connect<ActivityDataProps, ActivityDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
 )(ActivityForm)))
