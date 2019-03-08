@@ -11,7 +11,7 @@ class Paths {
   static readonly activitiesWriter='/create-activities-records'
   static readonly activityWriter='/create-activity-records'
   static readonly activityAdditionalWriter='/create-activity-additional-records'
-  static readonly orgWriter='/create-organisation-records'
+  static readonly orgWriter='/create-org-records'
   static readonly organisationsWriter='/create-organisations-records'
   static readonly organisationWriter='/create-organisation-records'
   static readonly organisationDocsWriter = '/create-organisation-doc-records'
