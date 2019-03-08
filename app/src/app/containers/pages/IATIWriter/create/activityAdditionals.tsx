@@ -12,7 +12,7 @@ import { TextField, Select } from "material-ui-formik-components"
 
 import { ApplicationState } from '../../../../store'
 import { ActionProps } from '../../../../store/types'
-import { ActivityAdditionalProps } from '../../../../store/IATI/types'
+import { IATIActivityAdditionalReport, IATIActivityAdditionalData, ActivityAdditionalProps } from '../../../../store/IATI/types'
 import { FormData } from '../../../../store/helpers/forms/types'
 
 import { setFormFunctions } from '../../../../store/helpers/forms/actions'
@@ -20,7 +20,6 @@ import { setActivityAdditional } from '../../../../store/IATI/IATIWriter/activit
 
 import { ActivitiesPicker } from '../../../../components/io/activitiesPicker'
 import { ActivityPicker } from '../../../../components/io/activityPicker'
-import { OrgPicker } from '../../../../components/io/orgPicker'
 import { TransactionHelper } from '../../../io/transactionHelper'
 
 import { ActivityAdditional as ActivityAdditionalStrings } from '../../../../utils/strings'
@@ -58,7 +57,8 @@ const activityAdditionalSchema = Yup.object().shape({
 interface ActivityAdditionalKeyProps {
   activitiesRef: string
   activityRef: string
-  additionalRef: string
+  additionalRef: string,
+  additionals: IATIActivityAdditionalReport
 }
 
 export interface ActivityAdditionalDispatchProps {
@@ -80,23 +80,50 @@ export class ActivityAdditionalForm extends React.Component<ActivityAdditionalFo
     //this.props.initialise()
   }
 
+  getAdditionalData = (additional: IATIActivityAdditionalReport): IATIActivityAdditionalData => {
+
+    let newAdditional: IATIActivityAdditionalData = {
+       additionalRef: this.props.additionalRef,
+       scope: 0,
+       capitalSpend: 0,
+       collaborationType: 0,
+       defaultFlowType: 0,
+       defaultFinanceType: 0,
+       defaultAidType: "",
+       defaultTiedStatus: 0
+    }
+    if ( typeof additional.data != 'undefined' ) {
+      newAdditional.scope = additional.data[0].scope,
+      newAdditional.capitalSpend = additional.data[0].capitalSpend,
+      newAdditional.collaborationType = additional.data[0].collaborationType,
+      newAdditional.defaultFlowType = additional.data[0].defaultFlowType,
+      newAdditional.defaultFinanceType = additional.data[0].defaultFinanceType,
+      newAdditional.defaultAidType = additional.data[0].defaultAidType,
+      newAdditional.defaultTiedStatus = additional.data[0].defaultTiedStatus
+    }
+
+    return newAdditional
+  }
+
   render() {
+
+    const additional: IATIActivityAdditionalData = this.getAdditionalData(this.props.additionals)
 
     return (
       <div>
         <h2>{ActivityAdditionalStrings.headingActivityAdditionalWriter}</h2>
         <div>
           <Formik
-            initialValues={ {activitiesRef: "",
-                             activityRef: "",
-                             additionalRef: this.props.additionalRef,
-                             scope: 0,
-                             capitalSpend: 0,
-                             collaborationType: 0,
-                             defaultFlowType: 0,
-                             defaultFinanceType: 0,
-                             defaultAidType: "",
-                             defaultTiedStatus: 0
+            initialValues={ {activitiesRef: this.props.activitiesRef,
+                             activityRef: this.props.activityRef,
+                             additionalRef: additional.additionalRef,
+                             scope: additional.scope,
+                             capitalSpend: additional.capitalSpend,
+                             collaborationType: additional.collaborationType,
+                             defaultFlowType: additional.defaultFlowType,
+                             defaultFinanceType: additional.defaultFinanceType,
+                             defaultAidType: additional.defaultAidType,
+                             defaultTiedStatus: additional.defaultTiedStatus
                             }}
             enableReinitialize={true}
             validationSchema={activityAdditionalSchema}
@@ -195,7 +222,8 @@ const mapStateToProps = (state: ApplicationState): ActivityAdditionalKeyProps =>
   return {
     activitiesRef: state.keys.data.activities,
     activityRef: state.keys.data.activity,
-    additionalRef: state.keys.data.activityAdditional
+    additionalRef: state.keys.data.activityAdditional,
+    additionals: state.report.data as IATIActivityAdditionalReport
   }
 }
 

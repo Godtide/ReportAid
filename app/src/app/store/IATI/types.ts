@@ -377,6 +377,17 @@ export interface ActivityAdditionalProps {
   defaultTiedStatus: number
 }
 
+export interface ActivityDateProps {
+  activitiesRef: string
+  activityRef: string
+  dateRef: string
+  dateType: number
+  day: number
+  month: number
+  year: number
+  narrative: string
+}
+
 /* IATI Activities Reader */
 
 export interface ActivityReportProps {
@@ -451,6 +462,25 @@ export interface IATIActivityAdditionalReport {
 export interface IATIActivityAdditionalReportProps extends PayloadProps {
   data: IATIActivityAdditionalReport
 }
+
+export interface IATIActivityDatesData {
+  dateRef: string
+  dateType: number
+  date: string
+  narrative: string
+}
+
+export interface IATIActivityDatesReport {
+  activitiesRef: string
+  activityRef: string
+  data: Array<IATIActivityDatesData>
+}
+
+export interface IATIActivityDatesReportProps extends PayloadProps {
+  data: IATIActivityDatesReport
+}
+
+
 
 /* Action Types */
 
