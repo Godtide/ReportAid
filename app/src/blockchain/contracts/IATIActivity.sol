@@ -104,13 +104,13 @@ contract IATIActivity is Activity {
   	return activities[_activitiesRef][_activityRef].hierarchy;
   }
 
-  function getStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8) {
+  function getStatus(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
 
   	return activities[_activitiesRef][_activityRef].status;
   }
 
-  function getBudgetNotProvided(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8) {
+  function getBudgetNotProvided(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
 
   	return activities[_activitiesRef][_activityRef].budgetNotProvided;

@@ -66,8 +66,8 @@ contract Activity {
   function getCurrency(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32);
   function getHumanitarian(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bool);
   function getHierarchy(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8);
-  function getStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8);
-  function getBudgetNotProvided(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8);
+  function getStatus(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8);
+  function getBudgetNotProvided(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8);
   function getLinkedData(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32);
   function getDescription(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (string memory);
 }

@@ -51,20 +51,21 @@ class Blockchain {
 
 class Contract {
 
-  static orgsAddress = "0x5fd0bf6818576c58E067749821F1C41aAf97B16A"
-  static organisationsAddress = "0x1dF54fB0bE96038017A1C0563477FabeaEf4A9E3"
-  static organisationAddress = "0xFa9f7680705968660d36F34D080d5fEeD0614221"
-  static organisationDocsAddress = "0xB155E22D9598cC0e635792070A888127Ae349B0c"
-  static organisationBudgetsAddress = "0x7952136EB509C59bFe8393a0BAeB17D3a5E0a400"
-  static organisationExpenditureAddress = "0x391Ef15D0640b87c6Fbaa555CaE2ed29dfd9F5c1"
-  static organisationRecipientBudgetsAddress = "0x69f373FeE4B3E8e807c29C1ae3E9Cf945Eff9Ff9"
-  static organisationRegionBudgetsAddress = "0xd658BCf4D324B313924f1B8CdbB89D4DD06cc81F"
-  static organisationCountryBudgetsAddress = "0x970b377Bd79fA5dfFDca00791AeeF21E49DD661b"
-  static activitiesAddress = "0x7461eB577da59CBEE2618BB82c0d67311AE89960"
-  static activityAddress = "0x8F4E85EB68406E66de7bf056Af7E69b8e8C2B34e"
-  static activityAdditionalAddress = "0xB03F3f635C6F5Ef3F1B3381E2B2c117E781E3494"
-  static activityDatesAddress = "0x945a07036F169Fe7db7797bD940E1E88Ea4f0b7f"
-  static activityParticipatingOrgsAddress = "0x379abC7EDF25A9D0aA8401713657207f56CbEe13"
+  static orgsAddress = "0xcf1b179BC789696558696B54b01832BaA756a1f9"
+  static organisationsAddress = "0x795c173D24c07432454afEcCC467D443F9e247b5"
+  static organisationAddress = "0xc47326db84F424814cdC1926822199391cba3944"
+  static organisationDocsAddress = "0x7a5D51049dE2Dfc9EE01C387Bc4AF7D3A9350E3b"
+  static organisationBudgetsAddress = "0x081eE3dEC3C8d5d5daD5D2F51D77745C1De3b8Ed"
+  static organisationExpenditureAddress = "0xEe877231D23C19eA59d942140fF8cff1B94421F0"
+  static organisationRecipientBudgetsAddress = "0x0c0dA685D5E9FF2864df3248FB955910918b000A"
+  static organisationRegionBudgetsAddress = "0x492d641AEf25Fa2Ca768504D444361CAF29Fd59d"
+  static organisationCountryBudgetsAddress = "0xd001A763017e90B450E281A87Ac9Aa6F802A0F35"
+  static activitiesAddress = "0x1c30798c737422d15f500d6BA916C5FF8dc7514E"
+  static activityAddress = "0xBbaF76E70063e65c49BCE84212817f117AeDeac9"
+  static activityAdditionalAddress = "0xc4E51a73be806BC7C6CFa5E2FB1092B3773F6407"
+  static activityDatesAddress = "0xD408E5a3C5db4C15994497A4DbE9Ed6691E9947c"
+  static activityParticipatingOrgsAddress = "0xca5dCd6182bEd3Caac023E1E037e6D1042af1f85"
+
 
   static activitiesABI = [
     "event SetActivities(bytes32 _activitiesRef, tuple(bytes32 version, bytes32 generatedTime, bytes32 linkedData) orgActivities)",
@@ -146,8 +147,8 @@ class Contract {
   	"function getCurrency(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32)",
   	"function getHumanitarian(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bool)",
   	"function getHierarchy(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8)",
-  	"function getStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8)",
-  	"function getBudgetNotProvided(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8)",
+  	"function getStatus(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8)",
+  	"function getBudgetNotProvided(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8)",
   	"function getLinkedData(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32)",
   	"function getDescription(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (string memory)",
   ]
