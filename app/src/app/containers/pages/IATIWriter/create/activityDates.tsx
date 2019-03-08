@@ -20,7 +20,6 @@ import { setActivityDate } from '../../../../store/IATI/IATIWriter/activities/ac
 
 import { ActivitiesPicker } from '../../../../components/io/activitiesPicker'
 import { ActivityPicker } from '../../../../components/io/activityPicker'
-import { OrgPicker } from '../../../../components/io/orgPicker'
 import { TransactionHelper } from '../../../io/transactionHelper'
 
 import { ActivityDate as ActivityDateStrings } from '../../../../utils/strings'
@@ -28,21 +27,6 @@ import { Helpers } from '../../../../utils/config'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../../styles/theme'
-
-export interface ActivityDateProps {
-  activitiesRef: string
-  activityRef: string
-  dateRef: string
-  dateType: number
-  startDay: number
-  startMonth: number
-  startYear: number
-  endDay: number
-  endMonth: number
-  endYear: number
-  narrative: string
-}
-
 
 const activityDateSchema = Yup.object().shape({
   activitiesRef: Yup
