@@ -3,7 +3,6 @@ import { PayloadProps } from '../types'
 /* IATI Organisation Reader */
 
 export interface OrganisationReportProps {
-  isReport: boolean
   organisationsRef: string
 }
 

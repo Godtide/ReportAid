@@ -8,6 +8,7 @@ import { ActionProps } from '../../../../types'
 import { IATIActivityProps,
          IATIReportActionTypes,
          IATIActivityReportProps,
+         IATIActivityData,
          ActivityReportProps } from '../../../types'
 
 import { read } from '../../actions'
@@ -17,25 +18,25 @@ interface RecordProps {
   activityRef: string
 }
 
-interface ReportIndexRecordProps {
-  index: number
+interface ActivityDataProps {
+  data: Array<IATIActivityData>
   successActionType: IATIReportActionTypes
   failureActionType: IATIReportActionTypes
 }
 
-type ActivityIndexedProps = RecordProps & ReportIndexRecordProps
+type ActivityProps = RecordProps & ActivityDataProps
 
-const getThisActivity = (props: ActivityIndexedProps) => {
+const getThisActivity = (props: ActivityProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
 
     const state = getState()
     const activityContract = state.chainContracts.data.contracts.activity
     const activitiesRef = props.activitiesRef
     const activityRef = props.activityRef
-    const index = props.index
+    const data =  props.data
 
     let activityData: IATIActivityReportProps = {
-      data: { activitiesRef: activitiesRef, data: [] }
+      data: { activitiesRef: activitiesRef, data: data }
     }
 
     let actionType = props.failureActionType
@@ -43,7 +44,9 @@ const getThisActivity = (props: ActivityIndexedProps) => {
 
      const activity: IATIActivityProps = await activityContract.getActivity(activitiesRef, activityRef)
 
-     activityData.data.data[index] = {
+     //console.log('Got activity: ', activitiesRef, activityRef, activity)
+
+     activityData.data.data[activityData.data.data.length] = {
        activityRef: activityRef,
        title: ethers.utils.parseBytes32String(activity.title),
        description: activity.description,
@@ -71,17 +74,17 @@ const getThisActivity = (props: ActivityIndexedProps) => {
 }
 
 export const getActivityRecord = (props: RecordProps) => {
-  return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
+  return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>) => {
 
-    let indexRecordProps: ActivityIndexedProps = {
+    let indexRecordProps: ActivityProps = {
       activitiesRef: props.activitiesRef,
       activityRef: props.activityRef,
-      index: 0,
-      successActionType: IATIReportActionTypes.ACTIVITY_FAILURE,
-      failureActionType: IATIReportActionTypes.ACTIVITY_SUCCESS
+      data: [],
+      successActionType: IATIReportActionTypes.ACTIVITY_SUCCESS,
+      failureActionType: IATIReportActionTypes.ACTIVITY_FAILURE
     }
 
-    getThisActivity(indexRecordProps)
+    dispatch(getThisActivity(indexRecordProps))
   }
 }
 
@@ -91,21 +94,20 @@ export const getActivityPicker = (props: ActivityReportProps) => {
     const state = getState()
     const activityContract = state.chainContracts.data.contracts.activity
 
-    let indexRecordProps: ActivityIndexedProps = {
+    let indexRecordProps: ActivityProps = {
       activitiesRef: props.activitiesRef,
       activityRef: "",
-      index: 0,
-      successActionType: IATIReportActionTypes.ACTIVITY_FAILURE,
-      failureActionType: IATIReportActionTypes.ACTIVITYPICKER_SUCCESS
+      data: [],
+      successActionType: IATIReportActionTypes.ACTIVITYPICKER_SUCCESS,
+      failureActionType: IATIReportActionTypes.ACTIVITY_FAILURE
     }
 
     try {
       const num = await activityContract.getNumActivities(indexRecordProps.activitiesRef)
       const numActivitys = num.toNumber()
       for (let i = 0; i < numActivitys; i++) {
-        indexRecordProps.index = i
-        indexRecordProps.activityRef = await activityContract.getReference(indexRecordProps.activitiesRef, indexRecordProps.index.toString())
-        getThisActivity(indexRecordProps)
+        indexRecordProps.activityRef = await activityContract.getReference(indexRecordProps.activitiesRef, i.toString())
+        dispatch(getThisActivity(indexRecordProps))
       }
     } catch (error) {
       console.log('getActivityPicker error', error)
@@ -119,21 +121,20 @@ export const getActivity = (props: ActivityReportProps) => {
     const state = getState()
     const activityContract = state.chainContracts.data.contracts.activity
 
-    let indexRecordProps: ActivityIndexedProps = {
+    let indexRecordProps: ActivityProps = {
       activitiesRef: props.activitiesRef,
       activityRef: "",
-      index: 0,
-      successActionType: IATIReportActionTypes.ACTIVITY_FAILURE,
-      failureActionType: IATIReportActionTypes.ACTIVITY_SUCCESS
+      data: [],
+      successActionType: IATIReportActionTypes.ACTIVITY_SUCCESS,
+      failureActionType: IATIReportActionTypes.ACTIVITY_FAILURE
     }
 
     try {
       const num = await activityContract.getNumActivities(indexRecordProps.activitiesRef)
       const numActivitys = num.toNumber()
       for (let i = 0; i < numActivitys; i++) {
-        indexRecordProps.index = i
-        indexRecordProps.activityRef = await activityContract.getReference(indexRecordProps.activitiesRef, indexRecordProps.index.toString())
-        getThisActivity(indexRecordProps)
+        indexRecordProps.activityRef = await activityContract.getReference(indexRecordProps.activitiesRef, i.toString())
+        dispatch(getThisActivity(indexRecordProps))
       }
     } catch (error) {
       console.log('getActivity error', error)
