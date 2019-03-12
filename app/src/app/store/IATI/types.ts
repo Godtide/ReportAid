@@ -397,7 +397,6 @@ export interface ActivityDateProps {
 /* IATI Activities Reader */
 
 export interface ActivityReportProps {
-  isReport: boolean
   activitiesRef: string
 }
 

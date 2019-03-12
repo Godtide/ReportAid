@@ -12,7 +12,7 @@ import { TextField, Select } from "material-ui-formik-components"
 
 import { ApplicationState } from '../../../../store'
 import { ActionProps } from '../../../../store/types'
-import { ActivityDateProps } from '../../../../store/IATI/types'
+import { IATIActivityDatesReport, ActivityDateProps } from '../../../../store/IATI/types'
 import { FormData } from '../../../../store/helpers/forms/types'
 
 import { setFormFunctions } from '../../../../store/helpers/forms/actions'
@@ -65,6 +65,7 @@ interface ActivityDateKeyProps {
   activitiesRef: string
   activityRef: string
   dateRef: string
+  dates: IATIActivityDatesReport
 }
 
 export interface ActivityDateDispatchProps {
@@ -85,21 +86,48 @@ export class ActivityDateForm extends React.Component<ActivityDateFormProps> {
     this.props.handleSubmit(values)
   }
 
+  getDateData = (dates: IATIActivityDatesReport): ActivityDateProps => {
+
+    let newDate: ActivityDateProps = {
+      activitiesRef: this.props.activitiesRef,
+      activityRef: this.props.activityRef,
+      dateRef: this.props.dateRef,
+      dateType: 0,
+      day: 0,
+      month: 0,
+      year: 0,
+      narrative: ""
+    }
+    if ( typeof dates.data != 'undefined' ) {
+      const thisDate = new Date(dates.data[0].date)
+      //console.log(thisDate.getDay(), thisDate.getMonth(), thisDate.getFullYear())
+      newDate.dateType = dates.data[0].dateType,
+      newDate.day = thisDate.getDay(),
+      newDate.month = thisDate.getMonth(),
+      newDate.year = thisDate.getFullYear(),
+      newDate.narrative = dates.data[0].narrative
+    }
+
+    return newDate
+  }
+
   render() {
+
+    const thisDate: ActivityDateProps = this.getDateData(this.props.dates)
 
     return (
       <div>
         <h2>{ActivityDateStrings.headingActivityDatesWriter}</h2>
         <div>
           <Formik
-            initialValues={ {activitiesRef: "",
-                             activityRef: "",
+            initialValues={ {activitiesRef: this.props.activitiesRef,
+                             activityRef: this.props.activityRef,
                              dateRef: this.props.dateRef,
-                             dateType: 0,
-                             day: 0,
-                             month: 0,
-                             year: 0,
-                             narrative: ""
+                             dateType: thisDate.dateType,
+                             day: thisDate.day,
+                             month: thisDate.month,
+                             year: thisDate.year,
+                             narrative: thisDate.narrative
                             }}
             enableReinitialize={true}
             validationSchema={activityDateSchema}
@@ -164,7 +192,8 @@ const mapStateToProps = (state: ApplicationState): ActivityDateKeyProps => {
   return {
     activitiesRef: state.keys.data.activities,
     activityRef: state.keys.data.activity,
-    dateRef: state.keys.data.activityDate
+    dateRef: state.keys.data.activityDate,
+    dates: state.report.data as IATIActivityDatesReport
   }
 }
 

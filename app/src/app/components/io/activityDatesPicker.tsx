@@ -10,40 +10,41 @@ import { Field, ErrorMessage} from 'formik'
 import { Select } from "material-ui-formik-components"
 
 import { setKey } from '../../store/helpers/keys/actions'
-import { getActivity } from '../../store/IATI/IATIReader/activities/activity/actions'
+import { getActivityDates } from '../../store/IATI/IATIReader/activities/activity/actions'
 
 import { Keys, KeyTypes } from '../../store/helpers/keys/types'
 
-import { IATIActivityReport, IATIActivityData, ActivityReportProps, ActivityProps } from '../../store/IATI/types'
+import { IATIActivityDatesReport, IATIActivityDatesData, ActivityDatesReportProps, ActivityDatesProps } from '../../store/IATI/types'
 
-interface ActivityFormProps {
+interface ActivityDatesFormProps {
   setValue: Function
   name: string
   label: string
 }
 
-interface ActivityDataProps {
+interface ActivityDatesDataProps {
   activitiesRef: string
-  activity: IATIActivityReport
+  activityRef: string
+  activityDates: IATIActivityDatesReport
 }
 
-interface ActivityDispatchProps {
-  getActivity: (activityProps: ActivityReportProps) => void
-  setActivityKey: (activityRef: string) => void
+interface ActivityDatesDispatchProps {
+  getActivityDates: (activityProps: ActivityDatesReportProps) => void
+  setActivityDatesKey: (activityRef: string) => void
 }
 
-type ActivityPickerProps = ActivityFormProps & ActivityDataProps & ActivityDispatchProps
+type ActivityDatesPickerProps = ActivityDatesFormProps & ActivityDatesDataProps & ActivityDatesDispatchProps
 
-class Activity extends React.Component<ActivityPickerProps> {
+class ActivityDates extends React.Component<ActivityDatesPickerProps> {
 
-  constructor (props: ActivityPickerProps) {
+  constructor (props: ActivityDatesPickerProps) {
    super(props)
   }
 
-  componentDidUpdate(previousProps: ActivityPickerProps) {
-    //console.log('Activitys: ', this.props.activitiesRef)
+  componentDidUpdate(previousProps: ActivityDatesPickerProps) {
+    //console.log('ActivityDatess: ', this.props.activitiesRef)
     if(this.props.activitiesRef != "" &&  previousProps.activitiesRef != this.props.activitiesRef) {
-      this.props.getActivity({activitiesRef: this.props.activitiesRef})
+      this.props.getActivityDates({isReport: false, activitiesRef: this.props.activitiesRef})
       //console.log('Done Updating: ', this.props.activitiesRef)
     }
   }
@@ -57,7 +58,7 @@ class Activity extends React.Component<ActivityPickerProps> {
     if ( this.props.activitiesRef != "" &&
          this.props.activity.activitiesRef == this.props.activitiesRef ) {
 
-      const activities: Array<IATIActivityData> = this.props.activity.data
+      const activities: Array<IATIActivityDatesData> = this.props.activity.data
       //console.log('Data: ', activities)
       for (let i = 0; i < activities.length; i++) {
        const label = activities[i].activityRef
@@ -73,7 +74,7 @@ class Activity extends React.Component<ActivityPickerProps> {
           label={this.props.label}
           component={Select}
           onChange={(ev: any) => {
-            this.props.setActivityKey(ev.target.value)
+            this.props.setActivityDatesKey(ev.target.value)
             this.props.setValue(this.props.name, ev.target.value)
           }}
           options={activityRefs}
@@ -83,22 +84,22 @@ class Activity extends React.Component<ActivityPickerProps> {
   }
 }
 
-const mapStateToProps = (state: ApplicationState): ActivityDataProps => {
+const mapStateToProps = (state: ApplicationState): ActivityDatesDataProps => {
   //console.log(state.orgReader)
   return {
-    activity: state.activityPicker.data as IATIActivityReport,
-    activitiesRef: state.keys.data.activities
+    activitiesRef: state.keys.data.activities,
+    activityRef: state.keys.data.activity,
   }
 }
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): ActivityDispatchProps => {
+const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): ActivityDatesDispatchProps => {
   return {
-    getActivity: (activityProps: ActivityReportProps) => dispatch(getActivity(activityProps)),
-    setActivityKey: (activityRef: string) => dispatch(setKey({key: activityRef, keyType: KeyTypes.ACTIVITY})),
+    getActivityDates: (activityProps: ActivityDatesReportProps) => dispatch(getActivityDateRecords(activityProps)),
+    setActivityDatesKey: (activityDateRef: string) => dispatch(setKey({key: activityDateRef, keyType: KeyTypes.ACTIVITYDATES})),
   }
 }
 
-export const ActivityPicker = connect<ActivityDataProps, ActivityDispatchProps, {}, ApplicationState>(
+export const ActivityDatesPicker = connect<ActivityDatesDataProps, ActivityDatesDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(Activity)
+)(ActivityDates)
