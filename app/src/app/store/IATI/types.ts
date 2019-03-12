@@ -377,6 +377,12 @@ export interface ActivityAdditionalProps {
   defaultTiedStatus: number
 }
 
+export interface IATIActivityDateProps {
+  dateType: number
+  date: string
+  narrative: string
+}
+
 export interface ActivityDateProps {
   activitiesRef: string
   activityRef: string
@@ -480,11 +486,9 @@ export interface IATIActivityDatesReportProps extends PayloadProps {
   data: IATIActivityDatesReport
 }
 
-
-
 /* Action Types */
 
-export const enum IATIWriterActionTypes{
+export const enum IATIWriterActionTypes {
   TX_INIT =  '@@IATIWriterActionTypes/TX_INIT',
   ORGS_SUCCESS = '@@IATIWriterActionTypes/ORGS_SUCCESS',
   ORGS_FAILURE = '@@IATIWriterActionTypes/ORGS_FAILURE',
@@ -509,11 +513,13 @@ export const enum IATIWriterActionTypes{
   ACTIVITY_SUCCESS = '@@IATIWriterActionTypes/ACTIVITY_SUCCESS',
   ACTIVITY_FAILURE = '@@IATIWriterActionTypes/ACTIVITY_FAILURE',
   ACTIVITYADDITIONAL_SUCCESS = '@@IATIWriterActionTypes/ACTIVITYADDITIONAL_SUCCESS',
-  ACTIVITYADDITIONAL_FAILURE = '@@IATIWriterActionTypes/ACTIVITYADDITIONAL_FAILURE'
+  ACTIVITYADDITIONAL_FAILURE = '@@IATIWriterActionTypes/ACTIVITYADDITIONAL_FAILURE',
+  ACTIVITYDATE_SUCCESS = '@@IATIWriterActionTypes/ACTIVITYDATE_SUCCESS',
+  ACTIVITYDATE_FAILURE = '@@IATIWriterActionTypes/ACTIVITYDATE_FAILURE'
 }
 
 export const enum IATIReportActionTypes {
-  REPORT_INIT =  '@@IATIReportActionTypes/REPORT_INIT',
+  REPORT_INIT = '@@IATIReportActionTypes/REPORT_INIT',
   ORGS_SUCCESS = '@@IATIReportActionTypes/ORGS_SUCCESS',
   ORGSPICKER_SUCCESS = '@@IATIReportActionTypes/ORGSPICKER_SUCCESS',
   ORGS_FAILURE = '@@IATIReportActionTypes/ORGS_FAILURE',
@@ -542,5 +548,7 @@ export const enum IATIReportActionTypes {
   ACTIVITYPICKER_SUCCESS = '@@IATIReportActionTypes/ACTIVITYPICKER_SUCCESS',
   ACTIVITY_FAILURE = '@@IATIReportActionTypes/ACTIVITY_FAILURE',
   ACTIVITYADDITIONAL_SUCCESS = '@@IATIReportActionTypes/ACTIVITYADDITIONAL_SUCCESS',
-  ACTIVITYADDITIONAL_FAILURE = '@@IATIReportActionTypes/ACTIVITYADDITIONAL_FAILURE'
+  ACTIVITYADDITIONAL_FAILURE = '@@IATIReportActionTypes/ACTIVITYADDITIONAL_FAILURE',
+  ACTIVITYDATE_SUCCESS = '@@IATIReportActionTypes/ACTIVITYDATE_SUCCESS',
+  ACTIVITYDATE_FAILURE = '@@IATIReportActionTypes/ACTIVITYDATE_FAILURE'
 }

@@ -83,6 +83,19 @@ class Sider extends React.Component<WithStyles<typeof styles> & DispatchProps> {
                   {Paths.activityAdditionalWriter}
                 </MenuItem>
               </Link>
+              <Link
+                to={PathConfig.activityDatesWriter}
+                onClick={() => {
+                  this.props.initialise()
+                  this.props.setKey({key: '', keyType: KeyTypes.ACTIVITYDATE})
+                }} >
+                <MenuItem>
+                  <IconButton className={this.props.classes.button} aria-label={Paths.activityDatesWriter}>
+                    <Create />
+                  </IconButton>
+                  {Paths.activityDatesWriter}
+                </MenuItem>
+              </Link>
             </MenuList>
           </ExpansionPanelDetails>
         </ExpansionPanel>

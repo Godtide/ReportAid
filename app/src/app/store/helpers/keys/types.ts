@@ -13,7 +13,8 @@ export const enum KeyTypes {
   ORGANISATIONREGIONBUDGET = 'organisationRegionBudget',
   ACTIVITIES = 'activities',
   ACTIVITY = 'activity',
-  ACTIVITYADDITIONAL = 'activityAdditional'
+  ACTIVITYADDITIONAL = 'activityAdditional',
+  ACTIVITYDATE = 'activityDate'
 }
 
 export interface Keys {
@@ -34,6 +35,7 @@ export interface KeyData {
   activities: string
   activity: string
   activityAdditional: string
+  activityDate: string
 }
 
 export interface KeyProps extends PayloadProps {
@@ -66,5 +68,7 @@ export const enum KeyActionTypes {
   ACTIVITY_SUCCESS = '@@KeyActionTypes/ACTIVITY_SUCCESS',
   ACTIVITY_FAILURE = '@@KeyActionTypes/ACTIVITY_FAILURE',
   ACTIVITYADDITIONAL_SUCCESS = '@@KeyActionTypes/ACTIVITYADDITIONAL_SUCCESS',
-  ACTIVITYADDITIONAL_FAILURE = '@@KeyActionTypes/ACTIVITYADDITIONAL_FAILURE'
+  ACTIVITYADDITIONAL_FAILURE = '@@KeyActionTypes/ACTIVITYADDITIONAL_FAILURE',
+  ACTIVITYDATE_SUCCESS = '@@KeyActionTypes/ACTIVITYDATE_SUCCESS',
+  ACTIVITYDATE_FAILURE = '@@KeyActionTypes/ACTIVITYDATE_FAILURE'
 }

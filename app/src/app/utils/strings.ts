@@ -29,6 +29,7 @@ class Paths {
   static readonly activitiesWriter='Activities'
   static readonly activityWriter='Activity'
   static readonly activityAdditionalWriter='Activity Additional Info\''
+  static readonly activityDatesWriter='Activity Dates'
   static readonly orgWriter='Org\''
   static readonly organisationsWriter='Organisations'
   static readonly organisationWriter='Organisation Report'
@@ -46,6 +47,7 @@ class Paths {
   static readonly activitiesReader='Activities'
   static readonly activityReader='Activity'
   static readonly activityAdditionalReader='Activity Additional Info\''
+  static readonly activityDatesReader='Activity Dates'
   static readonly orgsReader='Org\'s'
   static readonly organisationsReader='Organisations'
   static readonly organisationReader='Organisation Reports'
@@ -177,6 +179,25 @@ class ActivityAdditional {
 
   static activityAdditionalDetails = "Activity Additional Info\' Details"
 }
+
+class ActivityDates {
+
+  static headingActivityDatesWriter = 'Create Activity Date Record'
+  static headingActivityDatesReader = 'Read Activity Dates Records'
+
+  static activitiesReference = "Activities Reference"
+  static activityReference = "Activity Reference"
+  static dateRef = "Activity Date Reference"
+
+  static dateType = "Date Type"
+  static narrative = "Narrative"
+  static day = "Day"
+  static month = "Month"
+  static year = "Year"
+
+  static activityDateDetails = "Activity Date Details"
+}
+
 
 class Org {
 
@@ -395,6 +416,7 @@ export { App,
          Activities,
          Activity,
          ActivityAdditional,
+         ActivityDates,
          Org,
          Organisations,
          Organisation,

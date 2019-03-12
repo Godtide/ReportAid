@@ -16,13 +16,14 @@ import { ActivityDateProps } from '../../../../store/IATI/types'
 import { FormData } from '../../../../store/helpers/forms/types'
 
 import { setFormFunctions } from '../../../../store/helpers/forms/actions'
-import { setActivityDate } from '../../../../store/IATI/IATIWriter/activities/activityAdditionals/actions'
+import { setActivityDate } from '../../../../store/IATI/IATIWriter/activities/activityDates/actions'
 
+import { FormikDatePicker } from '../../../../components/io/datePicker'
 import { ActivitiesPicker } from '../../../../components/io/activitiesPicker'
 import { ActivityPicker } from '../../../../components/io/activityPicker'
 import { TransactionHelper } from '../../../io/transactionHelper'
 
-import { ActivityDate as ActivityDateStrings } from '../../../../utils/strings'
+import { ActivityDates as ActivityDateStrings } from '../../../../utils/strings'
 import { Helpers } from '../../../../utils/config'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
@@ -47,16 +48,16 @@ const activityDateSchema = Yup.object().shape({
 
 const DatePickerProps = {
   day: {
-    name: 'Day',
-    label: OrganisationBudget.budgetStartDay
+    name: 'day',
+    label: ActivityDateStrings.day
   },
   month: {
-    name: 'Month',
-    label: OrganisationBudget.budgetStartMonth
+    name: 'month',
+    label: ActivityDateStrings.month
   },
   year: {
-    name: 'Year',
-    label: OrganisationBudget.budgetStartYear
+    name: 'year',
+    label: ActivityDateStrings.year
   }
 }
 
@@ -88,7 +89,7 @@ export class ActivityDateForm extends React.Component<ActivityDateFormProps> {
 
     return (
       <div>
-        <h2>{ActivityDateStrings.headingActivityDateWriter}</h2>
+        <h2>{ActivityDateStrings.headingActivityDatesWriter}</h2>
         <div>
           <Formik
             initialValues={ {activitiesRef: "",
@@ -101,7 +102,7 @@ export class ActivityDateForm extends React.Component<ActivityDateFormProps> {
                              narrative: ""
                             }}
             enableReinitialize={true}
-            validationSchema={activityAdditionalSchema}
+            validationSchema={activityDateSchema}
             onSubmit={(values: ActivityDateProps, actions: any) => {
               this.handleSubmit(values, actions.setSubmitting, actions.resetForm)
             }}
@@ -163,7 +164,7 @@ const mapStateToProps = (state: ApplicationState): ActivityDateKeyProps => {
   return {
     activitiesRef: state.keys.data.activities,
     activityRef: state.keys.data.activity,
-    dateRef: state.keys.data.activityAdditional
+    dateRef: state.keys.data.activityDate
   }
 }
 
