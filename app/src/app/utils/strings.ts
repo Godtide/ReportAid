@@ -195,7 +195,7 @@ class ActivityDates {
   static month = "Month"
   static year = "Year"
 
-  static activityDateDetails = "Activity Date Details"
+  static datesDetails = "Activity Date Details"
 }
 
 
