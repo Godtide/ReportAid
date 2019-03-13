@@ -30,6 +30,7 @@ class Paths {
   static readonly activityWriter='Activity'
   static readonly activityAdditionalWriter='Activity Additional Info\''
   static readonly activityDatesWriter='Activity Dates'
+  static readonly activityParticipatingOrgWriter='Activity Participating Org\''
   static readonly orgWriter='Org\''
   static readonly organisationsWriter='Organisations'
   static readonly organisationWriter='Organisation Report'
@@ -49,6 +50,7 @@ class Paths {
   static readonly activityReader='Activity'
   static readonly activityAdditionalReader='Activity Additional Info\''
   static readonly activityDatesReader='Activity Dates'
+  static readonly activityParticipatingOrgReader='Activity Participating Org\''
   static readonly orgsReader='Org\'s'
   static readonly organisationsReader='Organisations'
   static readonly organisationReader='Organisation Reports'
@@ -200,6 +202,25 @@ class ActivityDates {
   static datesDetails = "Activity Date Details"
 }
 
+class ActivityParticipatingOrg {
+
+  static headingActivityParticipatingOrgWriter = 'Create Activity Participating Org\' Record'
+  static headingActivityParticipatingOrgReader = 'Read Activity Participating Org\' Records'
+  static headingActivityParticipatingOrgUpdater = 'Update Activity Participating Org\' Record'
+
+  static activitiesReference = "Activities Reference"
+  static activityReference = "Activity Reference"
+  static participatingOrgRef = "Activity Participating Org\' Reference"
+
+  static orgRef = "Participating Org\'"
+  static orgType = "Organisation Type"
+  static role = "Role"
+  static crsChannelCode = "CRS Channel Code"
+  static narrative = "Narrative"
+  static lang = "Language"
+
+  static participatingOrgDetails = "Activity Participating Org\' Details"
+}
 
 class Org {
 
@@ -419,6 +440,7 @@ export { App,
          Activity,
          ActivityAdditional,
          ActivityDates,
+         ActivityParticipatingOrg,
          Org,
          Organisations,
          Organisation,

@@ -393,6 +393,27 @@ export interface ActivityDateProps {
   narrative: string
 }
 
+export interface IATIActivityParticipatingOrgProps {
+  orgType: number
+  role: number
+  crsChannelCode: number
+  lang: string
+  orgRef: string
+  narrative: string
+}
+
+export interface ActivityParticipatingOrgProps {
+  activitiesRef: string
+  activityRef: string
+  participatingOrgRef: string
+  orgRef: string
+  orgType: number
+  role: number
+  crsChannelCode: number
+  narrative: string
+  lang: string
+}
+
 /* IATI Activities Reader */
 
 export interface ActivityReportProps {
@@ -484,6 +505,26 @@ export interface IATIActivityDatesReportProps extends PayloadProps {
   data: IATIActivityDatesReport
 }
 
+export interface IATIActivityParticipatingOrgData {
+  participatingOrgRef: string
+  orgRef: string
+  orgType: number
+  role: number
+  crsChannelCode: number
+  narrative: string
+  lang: string
+}
+
+export interface IATIActivityParticipatingOrgReport {
+  activitiesRef: string
+  activityRef: string
+  data: Array<IATIActivityParticipatingOrgData>
+}
+
+export interface IATIActivityParticipatingOrgReportProps extends PayloadProps {
+  data: IATIActivityParticipatingOrgReport
+}
+
 /* Action Types */
 
 export const enum IATIWriterActionTypes {
@@ -513,7 +554,9 @@ export const enum IATIWriterActionTypes {
   ACTIVITYADDITIONAL_SUCCESS = '@@IATIWriterActionTypes/ACTIVITYADDITIONAL_SUCCESS',
   ACTIVITYADDITIONAL_FAILURE = '@@IATIWriterActionTypes/ACTIVITYADDITIONAL_FAILURE',
   ACTIVITYDATE_SUCCESS = '@@IATIWriterActionTypes/ACTIVITYDATE_SUCCESS',
-  ACTIVITYDATE_FAILURE = '@@IATIWriterActionTypes/ACTIVITYDATE_FAILURE'
+  ACTIVITYDATE_FAILURE = '@@IATIWriterActionTypes/ACTIVITYDATE_FAILURE',
+  ACTIVITYPARTICIPATINGORG_SUCCESS = '@@IATIWriterActionTypes/ACTIVITYPARTICIPATINGORG_SUCCESS',
+  ACTIVITYPARTICIPATINGORG_FAILURE = '@@IATIWriterActionTypes/ACTIVITYPARTICIPATINGORG_FAILURE',
 }
 
 export const enum IATIReportActionTypes {
@@ -549,5 +592,8 @@ export const enum IATIReportActionTypes {
   ACTIVITYADDITIONAL_FAILURE = '@@IATIReportActionTypes/ACTIVITYADDITIONAL_FAILURE',
   ACTIVITYDATE_SUCCESS = '@@IATIReportActionTypes/ACTIVITYDATE_SUCCESS',
   ACTIVITYDATEPICKER_SUCCESS = '@@IATIReportActionTypes/ACTIVITYDATEPICKER_SUCCESS',
-  ACTIVITYDATE_FAILURE = '@@IATIReportActionTypes/ACTIVITYDATE_FAILURE'
+  ACTIVITYDATE_FAILURE = '@@IATIReportActionTypes/ACTIVITYDATE_FAILURE',
+  ACTIVITYPARTICIPATINGORG_SUCCESS = '@@IATIReportActionTypes/ACTIVITYPARTICIPATINGORG_SUCCESS',
+  ACTIVITYPARTICIPATINGORGPICKER_SUCCESS = '@@IATIReportActionTypes/ACTIVITYPARTICIPATINGORGPICKER_SUCCESS',
+  ACTIVITYPARTICIPATINGORG_FAILURE = '@@IATIReportActionTypes/ACTIVITYPARTICIPATINGORG_FAILURE',
 }

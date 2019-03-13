@@ -17,7 +17,6 @@ contract IATIActivityParticipatingOrgs is ActivityParticipatingOrgs {
              _participatingOrg.orgType >= ActivityParticipatingOrgs.minOrgType &&
              _participatingOrg.role > uint8(Role.NONE) &&
              _participatingOrg.role < uint8(Role.MAX) &&
-             _participatingOrg.activityID[0] != 0 &&
              _participatingOrg.crsChannelCode >= ActivityParticipatingOrgs.minCrsChannelCode &&
              bytes(_participatingOrg.narrative).length > 0 &&
              _participatingOrg.lang[0] != 0 );
@@ -65,12 +64,6 @@ contract IATIActivityParticipatingOrgs is ActivityParticipatingOrgs {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _participatingOrgRef[0] != 0);
 
     return participatingOrgs[_activitiesRef][_activityRef][_participatingOrgRef].role;
-  }
-
-  function getActivityID(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _participatingOrgRef) public view returns (bytes32) {
-    require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _participatingOrgRef[0] != 0);
-
-    return participatingOrgs[_activitiesRef][_activityRef][_participatingOrgRef].activityID;
   }
 
   function getCrsChannelCode(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _participatingOrgRef) public view returns (uint256) {

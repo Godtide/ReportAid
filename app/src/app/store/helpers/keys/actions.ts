@@ -44,7 +44,8 @@ export const setKey = (props: Keys) => {
           activities:  key,
           activity:  key,
           activityAdditional:  key,
-          activityDate:  key
+          activityDate:  key,
+          activityParticipatingOrg:  key
         }
         actionType = KeyActionTypes.NEW_SUCCESS
         break
@@ -112,6 +113,11 @@ export const setKey = (props: Keys) => {
       case KeyTypes.ACTIVITYDATE: {
         keyData.activityDate = key
         actionType = KeyActionTypes.ACTIVITYDATE_SUCCESS
+        break
+      }
+      case KeyTypes.ACTIVITYPARTICIPATINGORG: {
+        keyData.activityParticipatingOrg = key
+        actionType = KeyActionTypes.ACTIVITYPARTICIPATINGORG_SUCCESS
         break
       }
       default:

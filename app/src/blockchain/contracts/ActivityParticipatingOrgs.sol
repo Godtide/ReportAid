@@ -16,13 +16,12 @@ contract ActivityParticipatingOrgs {
   }
 
   struct ParticipatingOrg {
-    bytes32 orgRef;
     uint8 orgType;
     uint8 role;
-    bytes32 activityID;
     uint256 crsChannelCode;
-    string narrative;
     bytes32 lang;
+    bytes32 orgRef;
+    string narrative;
   }
 
   event SetParticipatingOrg(bytes32 _activitiesRef, bytes32 _activityRef,  bytes32 _particpatingOrgRef, ParticipatingOrg _participatingOrg);
@@ -37,7 +36,6 @@ contract ActivityParticipatingOrgs {
   function getOrgRef(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _particpatingOrgRef) public view returns (bytes32);
   function getType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _particpatingOrgRef) public view returns (uint8);
   function getRole(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _particpatingOrgRef) public view returns (uint8);
-  function getActivityID(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _particpatingOrgRef) public view returns (bytes32);
   function getCrsChannelCode(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _particpatingOrgRef) public view returns (uint256);
   function getNarrative(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _particpatingOrgRef) public view returns (string memory);
   function getLang(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _particpatingOrgRef) public view returns (bytes32);

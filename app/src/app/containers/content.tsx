@@ -14,6 +14,7 @@ import { Activities as ActivitiesWriter } from './pages/IATIWriter/create/activi
 import { Activity as ActivityWriter } from './pages/IATIWriter/create/activity'
 import { ActivityAdditional as ActivityAdditionalsWriter } from './pages/IATIWriter/create/activityAdditionals'
 import { ActivityDate as ActivityDatesWriter } from './pages/IATIWriter/create/activityDates'
+import { ActivityParticipatingOrg as ActivityParticipatingOrgWriter } from './pages/IATIWriter/create/activityParticipatingOrgs'
 import { Org as OrgWriter } from './pages/IATIWriter/create/org'
 import { Organisations as OrganisationsWriter } from './pages/IATIWriter/create/organisations'
 import { Organisation as OrganisationWriter } from './pages/IATIWriter/create/organisation'
@@ -79,6 +80,11 @@ class AppContent extends React.Component<WithStyles<typeof styles>> {
           name={Paths.activityDatesWriter}
           path={PathConfig.activityDatesWriter}
           render={() => <ActivityDatesWriter />}
+        />
+        <Route
+          name={Paths.activityParticipatingOrgWriter}
+          path={PathConfig.activityParticipatingOrgWriter}
+          render={() => <ActivityParticipatingOrgWriter />}
         />
 
         <Route

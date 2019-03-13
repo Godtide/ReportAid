@@ -14,7 +14,8 @@ export const enum KeyTypes {
   ACTIVITIES = 'activities',
   ACTIVITY = 'activity',
   ACTIVITYADDITIONAL = 'activityAdditional',
-  ACTIVITYDATE = 'activityDate'
+  ACTIVITYDATE = 'activityDate',
+  ACTIVITYPARTICIPATINGORG = 'activityParticipatingOrg'
 }
 
 export interface Keys {
@@ -36,6 +37,7 @@ export interface KeyData {
   activity: string
   activityAdditional: string
   activityDate: string
+  activityParticipatingOrg: string
 }
 
 export interface KeyProps extends PayloadProps {
@@ -70,5 +72,7 @@ export const enum KeyActionTypes {
   ACTIVITYADDITIONAL_SUCCESS = '@@KeyActionTypes/ACTIVITYADDITIONAL_SUCCESS',
   ACTIVITYADDITIONAL_FAILURE = '@@KeyActionTypes/ACTIVITYADDITIONAL_FAILURE',
   ACTIVITYDATE_SUCCESS = '@@KeyActionTypes/ACTIVITYDATE_SUCCESS',
-  ACTIVITYDATE_FAILURE = '@@KeyActionTypes/ACTIVITYDATE_FAILURE'
+  ACTIVITYDATE_FAILURE = '@@KeyActionTypes/ACTIVITYDATE_FAILURE',
+  ACTIVITYPARTICIPATINGORG_SUCCESS = '@@KeyActionTypes/ACTIVITYPARTICIPATINGORG_SUCCESS',
+  ACTIVITYPARTICIPATINGORG_FAILURE = '@@KeyActionTypes/ACTIVITYPARTICIPATINGORG_FAILURE'
 }
