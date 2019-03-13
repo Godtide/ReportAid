@@ -42,6 +42,7 @@ class Paths {
 
   static readonly activitiesUpdater='Activities'
   static readonly activityUpdater='Activity'
+  static readonly activityDateUpdater='Activity Date'
   static readonly orgUpdater='Org\''
 
   static readonly activitiesReader='Activities'
@@ -121,7 +122,7 @@ class Activities {
 
   static headingActivitiesWriter = 'Create Activities Record'
   static headingActivitiesReader = 'Read Activities Records'
-  static headingActivitiesUpdater = 'Update Activities'
+  static headingActivitiesUpdater = 'Update Activities Record'
 
   static activitiesReference = "Activities Reference"
   static reportKey = "Activities Reference"
@@ -137,7 +138,7 @@ class Activity {
 
   static headingActivityWriter = 'Create Activity Record'
   static headingActivityReader = 'Read Activity Records'
-  static headingActivityUpdater = 'Update Activity'
+  static headingActivityUpdater = 'Update Activity Record'
 
   static activitiesReference = "Activities Reference"
   static activityReference = "Activity Reference"
@@ -184,6 +185,7 @@ class ActivityDates {
 
   static headingActivityDatesWriter = 'Create Activity Date Record'
   static headingActivityDatesReader = 'Read Activity Dates Records'
+  static headingActivityUpdater = 'Update Activity Dates Record'
 
   static activitiesReference = "Activities Reference"
   static activityReference = "Activity Reference"

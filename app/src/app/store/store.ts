@@ -26,6 +26,7 @@ import { reducer as organisationPickerReducer } from './IATI/IATIReader/organisa
 import { reducer as orgsPickerReducer } from './IATI/IATIReader/organisations/orgs/reducer'
 import { reducer as activitiesPickerReducer } from './IATI/IATIReader/activities/activities/reducer'
 import { reducer as activityPickerReducer } from './IATI/IATIReader/activities/activity/reducer'
+import { reducer as activityDatesPickerReducer } from './IATI/IATIReader/activities/activityDates/reducer'
 import { reducer as readerReducer } from './IATI/IATIReader/reducer'
 import { reducer as writerReducer } from './IATI/IATIWriter/reducer'
 
@@ -44,6 +45,7 @@ export interface ApplicationState {
   orgsPicker: PayloadProps
   activitiesPicker: PayloadProps
   activityPicker: PayloadProps
+  activityDatesPicker: PayloadProps
   report: PayloadProps
 }
 
@@ -60,6 +62,7 @@ export const rootReducer: Reducer<ApplicationState, ActionProps> = combineReduce
   orgsPicker: orgsPickerReducer,
   activitiesPicker: activitiesPickerReducer,
   activityPicker: activityPickerReducer,
+  activityDatesPicker: activityDatesPickerReducer,
   report: readerReducer
 })
 

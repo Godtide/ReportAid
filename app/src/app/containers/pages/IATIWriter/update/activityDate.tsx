@@ -17,17 +17,18 @@ import { IATIActivityReport } from '../../../../store/IATI/types'
 import { ActivityDate as ActivityDateWriter } from '../create/activityDates'
 import { ActivitiesPicker } from '../../../../components/io/activitiesPicker'
 import { ActivityPicker } from '../../../../components/io/activityPicker'
+import { ActivityDatePicker } from '../../../../components/io/activityDatePicker'
 
 import { getActivityDateRecord } from '../../../../store/IATI/IATIReader/activities/activityDates/actions'
 
-import { Activity as ActivityStrings } from '../../../../utils/strings'
+import { ActivityDates as ActivityDateStrings } from '../../../../utils/strings'
 
 import { Paths as PathConfig } from '../../../../utils/config'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../../styles/theme'
 
-const activitySchema = Yup.object().shape({
+const activityDateSchema = Yup.object().shape({
   activitiesRef: Yup
     .string()
     .required('Required'),
@@ -46,7 +47,7 @@ interface ActivityDateProps {
 }
 
 interface ActivityDateDispatchProps {
-  handleSubmit: (values: any) => void
+  getActivityDateRecord: (values: any) => void
 }
 
 type ActivityDateFormProps = WithStyles<typeof styles> & ActivityDateProps & ActivityDateDispatchProps
@@ -58,7 +59,7 @@ export class ActivityDateForm extends React.Component<ActivityDateFormProps> {
   }
 
   handleSubmit = (values: ActivityDateProps, setSubmitting: Function, reset: Function) => {
-    this.props.handleSubmit({activitiesRef: values.activitiesRef, activityRef: values.activityRef, dateRef: values.dateRef})
+    this.props.getActivityDateRecord({activitiesRef: values.activitiesRef, activityRef: values.activityRef, dateRef: values.dateRef})
     history.push(PathConfig.activityDatesWriter)
   }
 
@@ -66,12 +67,12 @@ export class ActivityDateForm extends React.Component<ActivityDateFormProps> {
 
     return (
       <div>
-        <h2>{ActivityStrings.headingActivityUpdater}</h2>
+        <h2>{ActivityDateStrings.headingActivityDatesUpdater}</h2>
         <div>
           <Formik
             initialValues={ {activitiesRef: "", activityRef: "", dateRef: ""} }
             enableReinitialize={true}
-            validationSchema={activitySchema}
+            validationSchema={activityDateSchema}
             onSubmit={(values: ActivityDateProps, actions: any) => {
               this.handleSubmit(values, actions.setSubmitting, actions.resetForm)
             }}
@@ -81,15 +82,21 @@ export class ActivityDateForm extends React.Component<ActivityDateFormProps> {
                   <ActivitiesPicker
                     setValue={formProps.setFieldValue}
                     name='activitiesRef'
-                    label={ActivityStrings.activitiesReference}
+                    label={ActivityDateStrings.activitiesReference}
                   />
                   <ErrorMessage name='activitiesRef' />
                   <ActivityPicker
                     setValue={formProps.setFieldValue}
                     name='activityRef'
-                    label={ActivityStrings.activityReference}
+                    label={ActivityDateStrings.activityReference}
                   />
-                  <ErrorMessage name='activityReference' />
+                  <ErrorMessage name='activityRef' />
+                  <ActivityDatePicker
+                    setValue={formProps.setFieldValue}
+                    name='dateRef'
+                    label={ActivityDateStrings.dateRef}
+                  />
+                  <ErrorMessage name='dateRef' />
                   <br />
                   {formProps.isSubmitting && <LinearProgress />}
                   <br />
@@ -117,11 +124,11 @@ const mapStateToProps = (state: ApplicationState): ActivityDateProps => {
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): ActivityDateDispatchProps => {
   return {
-    handleSubmit: (props: any) => dispatch(getActivityDateRecord(props))
+    getActivityDateRecord: (props: any) => dispatch(getActivityDateRecord(props))
   }
 }
 
-export const Activity = withTheme(withStyles(styles)(connect<ActivityDateProps, ActivityDateDispatchProps, {}, ApplicationState>(
+export const ActivityDate = withTheme(withStyles(styles)(connect<ActivityDateProps, ActivityDateDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
 )(ActivityDateForm)))

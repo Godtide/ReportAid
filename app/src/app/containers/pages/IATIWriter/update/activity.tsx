@@ -42,7 +42,7 @@ interface ActivityProps {
 }
 
 interface ActivityDispatchProps {
-  handleSubmit: (values: any) => void
+  getActivityRecord: (values: any) => void
 }
 
 type ActivityFormProps = WithStyles<typeof styles> & ActivityProps & ActivityDispatchProps
@@ -54,7 +54,7 @@ export class ActivityForm extends React.Component<ActivityFormProps> {
   }
 
   handleSubmit = (values: ActivityProps, setSubmitting: Function, reset: Function) => {
-    this.props.handleSubmit({activitiesRef: values.activitiesRef, activityRef: values.activityRef})
+    this.props.getActivityRecord({activitiesRef: values.activitiesRef, activityRef: values.activityRef})
     history.push(PathConfig.activityWriter)
   }
 
@@ -112,7 +112,7 @@ const mapStateToProps = (state: ApplicationState): ActivityProps => {
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): ActivityDispatchProps => {
   return {
-    handleSubmit: (props: any) => dispatch(getActivityRecord(props))
+    getActivityRecord: (props: any) => dispatch(getActivityRecord(props))
   }
 }
 
