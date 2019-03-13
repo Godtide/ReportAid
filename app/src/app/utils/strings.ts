@@ -185,7 +185,7 @@ class ActivityDates {
 
   static headingActivityDatesWriter = 'Create Activity Date Record'
   static headingActivityDatesReader = 'Read Activity Dates Records'
-  static headingActivityUpdater = 'Update Activity Dates Record'
+  static headingActivityDatesUpdater = 'Update Activity Dates Record'
 
   static activitiesReference = "Activities Reference"
   static activityReference = "Activity Reference"
