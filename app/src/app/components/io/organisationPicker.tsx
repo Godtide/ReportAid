@@ -10,7 +10,7 @@ import { Field, ErrorMessage} from 'formik'
 import { Select } from "material-ui-formik-components"
 
 import { setKey } from '../../store/helpers/keys/actions'
-import { getOrganisationPicker } from '../../store/IATI/IATIReader/organisations/organisation/actions'
+import { getOrganisationRefs } from '../../store/IATI/IATIReader/organisations/organisation/actions'
 
 import { Keys, KeyTypes } from '../../store/helpers/keys/types'
 
@@ -24,11 +24,11 @@ interface OrganisationFormProps {
 
 interface OrganisationDataProps {
   organisationsRef: string
-  organisation: IATIOrganisationReport
+  organisationRefs: Array<string>
 }
 
 interface OrganisationDispatchProps {
-  getOrganisation: (organisationProps: OrganisationReportProps) => void
+  getOrganisationRefs: (organisationProps: OrganisationReportProps) => void
   setOrganisationKey: (organisationRef: string) => void
 }
 
@@ -43,26 +43,20 @@ class Organisation extends React.Component<OrganisationPickerProps> {
   componentDidUpdate(previousProps: OrganisationPickerProps) {
     //console.log('Organisations: ', this.props.organisationsRef)
     if(this.props.organisationsRef != "" &&  previousProps.organisationsRef != this.props.organisationsRef) {
-      this.props.getOrganisation({organisationsRef: this.props.organisationsRef})
+      this.props.getOrganisationRefs({organisationsRef: this.props.organisationsRef})
       //console.log('Done Updating: ', this.props.organisationsRef)
     }
   }
 
   render() {
-    //console.log ('rendering', this.props.organisation, this.props.organisationsRef)
+
     let organisationRefs: any[] = [{ value: "", label: "" }]
-
-    //console.log(this.props.organisationsRef, this.props.organisation.organisationsRef)
-    if ( this.props.organisationsRef != "" &&
-         this.props.organisation.organisationsRef == this.props.organisationsRef ) {
-
-      const organisations: Array<IATIOrganisationData> = this.props.organisation.data
-      console.log('Data: ', organisations)
-      for (let i = 0; i < organisations.length; i++) {
-       const label = organisations[i].organisationRef
-       const value = label
-       organisationRefs.push({ value: value, label: label })
-      }
+    if ( typeof this.props.organisationRefs != 'undefined' &&
+         typeof this.props.organisationRefs[0] != 'undefined' &&
+         this.props.organisationRefs[0] != "" ) {
+      this.props.organisationRefs.forEach((key: string) => {
+       organisationRefs.push({ value: key, label: key })
+      })
     }
 
     return (
@@ -85,14 +79,14 @@ class Organisation extends React.Component<OrganisationPickerProps> {
 const mapStateToProps = (state: ApplicationState): OrganisationDataProps => {
   //console.log(state.orgReader)
   return {
-    organisation: state.organisationPicker.data as IATIOrganisationReport,
+    organisationRefs: state.organisationPicker.data as Array<string>,
     organisationsRef: state.keys.data.organisations
   }
 }
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrganisationDispatchProps => {
   return {
-    getOrganisation: (organisationProps: OrganisationReportProps) => dispatch(getOrganisationPicker(organisationProps)),
+    getOrganisationRefs: (organisationProps: OrganisationReportProps) => dispatch(getOrganisationRefs(organisationProps)),
     setOrganisationKey: (organisationRef: string) => dispatch(setKey({key: organisationRef, keyType: KeyTypes.ORGANISATION})),
   }
 }

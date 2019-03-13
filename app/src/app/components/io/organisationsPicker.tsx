@@ -12,7 +12,7 @@ import { Select } from "material-ui-formik-components"
 //import MuiSelect from '@material-ui/core/Select'
 
 import { setKey } from '../../store/helpers/keys/actions'
-import { getOrganisations } from '../../store/IATI/IATIReader/organisations/organisations/actions'
+import { getOrganisationsRefs } from '../../store/IATI/IATIReader/organisations/organisations/actions'
 
 import { Keys, KeyTypes } from '../../store/helpers/keys/types'
 
@@ -80,7 +80,7 @@ const mapStateToProps = (state: ApplicationState): OrganisationsDataProps => {
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrganisationsDispatchProps => {
   return {
-    getOrganisationsRefs: () => dispatch(getOrganisations()),
+    getOrganisationsRefs: () => dispatch(getOrganisationsRefs()),
     setOrganisationsKey: (organisationsRef: string) => dispatch(setKey({key: organisationsRef, keyType: KeyTypes.ORGANISATIONS})),
   }
 }

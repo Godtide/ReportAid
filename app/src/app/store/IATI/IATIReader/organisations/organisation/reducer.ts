@@ -9,8 +9,8 @@ export const reducer = (state: PayloadProps = initialState, action: ActionProps)
 
   switch (action.type) {
     case IATIReportActionTypes.ORGANISATIONPICKER_SUCCESS: {
-      const data = (action.payload.data as PayloadProps)
-      console.log('New organisation: ', action.type, data)
+      const data = (action.payload as PayloadProps)
+      //console.log('New organisation: ', action.type, data)
       return {...state, ...data}
     }
     default:

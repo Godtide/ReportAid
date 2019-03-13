@@ -5,7 +5,11 @@ import { ethers } from 'ethers'
 import { ApplicationState } from '../../../../store'
 
 import { ActionProps } from '../../../../types'
-import { IATIOrganisationProps, IATIOrganisationData, IATIReportActionTypes, IATIOrganisationReportProps, OrganisationReportProps } from '../../../types'
+import { IATIOrganisationProps,
+         IATIOrganisationData,
+         IATIReportActionTypes,
+         IATIOrganisationReportProps,
+         OrganisationReportProps } from '../../../types'
 
 import { read } from '../../actions'
 
@@ -42,7 +46,7 @@ const getThisOrganisation = (props: OrganisationProps) => {
       const organisation: IATIOrganisationProps = await organisationContract.getOrganisation(organisationsRef, organisationRef)
 
       //console.log(organisationData.data.data.length)
-      organisationData.data.data[organisationData.data.data.length] = {
+      organisationData.data.data[data.length] = {
         organisationRef: organisationRef,
         issuingOrgRef: organisation.orgRef,
         reportingOrgRef: organisation.reportingOrg.orgRef,
@@ -77,33 +81,6 @@ export const getOrganisationRecord = (props: RecordProps) => {
   }
 }
 
-export const getOrganisationPicker = (props: OrganisationReportProps) => {
-  return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
-
-    const state = getState()
-    const organisationContract = state.chainContracts.data.contracts.organisation
-
-    let indexRecordProps: OrganisationProps = {
-      organisationsRef: props.organisationsRef,
-      organisationRef: "",
-      data: [],
-      successActionType: IATIReportActionTypes.ORGANISATIONPICKER_SUCCESS,
-      failureActionType: IATIReportActionTypes.ORGANISATION_FAILURE
-    }
-
-    try {
-      const num = await organisationContract.getNumOrganisations(indexRecordProps.organisationsRef)
-      const numOrganisations = num.toNumber()
-      for (let i = 0; i < numOrganisations; i++) {
-        indexRecordProps.organisationRef = await organisationContract.getOrganisationReference(indexRecordProps.organisationsRef, i.toString())
-        dispatch(getThisOrganisation(indexRecordProps))
-      }
-    } catch (error) {
-      console.log('getOrganisationPicker error', error)
-    }
-  }
-}
-
 export const getOrganisation = (props: OrganisationReportProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
 
@@ -128,5 +105,30 @@ export const getOrganisation = (props: OrganisationReportProps) => {
     } catch (error) {
       console.log('getOrganisation error', error)
     }
+  }
+}
+
+export const getOrganisationRefs = (props: OrganisationReportProps) => {
+  return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
+
+    const state = getState()
+    const organisationContract = state.chainContracts.data.contracts.organisation
+    const organisationsRef = props.organisationsRef
+
+    let keysData: Array<string> = []
+    let actionType = IATIReportActionTypes.ORGANISATIONPICKER_SUCCESS
+    try {
+      const num = await organisationContract.getNumOrganisations(organisationsRef)
+      const numOrganisations = num.toNumber()
+      for (let i = 0; i < numOrganisations; i++) {
+         const organisationRef = await organisationContract.getOrganisationReference(organisationsRef, i.toString())
+         keysData.push(organisationRef)
+      }
+    } catch (error) {
+      actionType = IATIReportActionTypes.ORGANISATION_FAILURE
+      console.log('getOrganisationRefs error', error)
+    }
+
+    dispatch(read({data: keysData})(actionType))
   }
 }
