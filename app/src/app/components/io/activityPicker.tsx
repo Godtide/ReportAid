@@ -10,11 +10,11 @@ import { Field, ErrorMessage} from 'formik'
 import { Select } from "material-ui-formik-components"
 
 import { setKey } from '../../store/helpers/keys/actions'
-import { getActivityPicker } from '../../store/IATI/IATIReader/activities/activity/actions'
+import { getActivityRefs } from '../../store/IATI/IATIReader/activities/activity/actions'
 
 import { Keys, KeyTypes } from '../../store/helpers/keys/types'
 
-import { IATIActivityReport, IATIActivityData, ActivityReportProps, ActivityProps } from '../../store/IATI/types'
+import { ActivityReportProps, ActivityProps } from '../../store/IATI/types'
 
 interface ActivityFormProps {
   setValue: Function
@@ -24,11 +24,11 @@ interface ActivityFormProps {
 
 interface ActivityDataProps {
   activitiesRef: string
-  activity: IATIActivityReport
+  activityRefs: Array<string>
 }
 
 interface ActivityDispatchProps {
-  getActivity: (activityProps: ActivityReportProps) => void
+  getActivityRefs: (activityProps: ActivityReportProps) => void
   setActivityKey: (activityRef: string) => void
 }
 
@@ -43,27 +43,22 @@ class Activity extends React.Component<ActivityPickerProps> {
   componentDidUpdate(previousProps: ActivityPickerProps) {
     //console.log('Activitys: ', this.props.activitiesRef)
     if(this.props.activitiesRef != "" &&  previousProps.activitiesRef != this.props.activitiesRef) {
-      this.props.getActivity({activitiesRef: this.props.activitiesRef})
+      this.props.getActivityRefs({activitiesRef: this.props.activitiesRef})
       //console.log('Done Updating: ', this.props.activitiesRef)
     }
   }
 
   render() {
 
-    //console.log ('rendering', this.props.activity, this.props.activitiesRef)
+    //console.log ('rendering', this.props.activityRefs, this.props.activitiesRef)
     let activityRefs: any[] = [{ value: "", label: "" }]
-
     //console.log(this.props.activitiesRef, this.props.activity.activitiesRef)
-    if ( this.props.activitiesRef != "" &&
-         this.props.activity.activitiesRef == this.props.activitiesRef ) {
-
-      const activities: Array<IATIActivityData> = this.props.activity.data
-      //console.log('Data: ', activities)
-      for (let i = 0; i < activities.length; i++) {
-       const label = activities[i].activityRef
-       const value = label
-       activityRefs.push({ value: value, label: label })
-      }
+    if ( typeof this.props.activityRefs != 'undefined' &&
+         typeof this.props.activityRefs[0] != 'undefined' &&
+         this.props.activityRefs[0] != "" ) {
+      this.props.activityRefs.forEach((key: string) => {
+       activityRefs.push({ value: key, label: key })
+      })
     }
 
     return (
@@ -84,16 +79,16 @@ class Activity extends React.Component<ActivityPickerProps> {
 }
 
 const mapStateToProps = (state: ApplicationState): ActivityDataProps => {
-  //console.log(state.orgReader)
+  //console.log('New state!: ', state.activityPicker.data)
   return {
-    activity: state.activityPicker.data as IATIActivityReport,
+    activityRefs: state.activityPicker.data as Array<string>,
     activitiesRef: state.keys.data.activities
   }
 }
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): ActivityDispatchProps => {
   return {
-    getActivity: (activityProps: ActivityReportProps) => dispatch(getActivityPicker(activityProps)),
+    getActivityRefs: (activityProps: ActivityReportProps) => dispatch(getActivityRefs(activityProps)),
     setActivityKey: (activityRef: string) => dispatch(setKey({key: activityRef, keyType: KeyTypes.ACTIVITY})),
   }
 }

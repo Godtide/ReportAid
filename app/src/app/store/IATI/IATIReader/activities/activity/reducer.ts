@@ -9,7 +9,7 @@ export const reducer = (state: PayloadProps = initialState, action: ActionProps)
 
   switch (action.type) {
     case IATIReportActionTypes.ACTIVITYPICKER_SUCCESS: {
-      const data = (action.payload.data as PayloadProps)
+      const data = (action.payload as PayloadProps)
       //console.log('New action: ', action.type, data)
       return {...state, ...data}
     }

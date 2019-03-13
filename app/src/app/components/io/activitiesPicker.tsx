@@ -12,12 +12,9 @@ import { Select } from "material-ui-formik-components"
 //import MuiSelect from '@material-ui/core/Select'
 
 import { setKey } from '../../store/helpers/keys/actions'
-import { getActivities } from '../../store/IATI/IATIReader/activities/activities/actions'
+import { getActivitiesRefs } from '../../store/IATI/IATIReader/activities/activities/actions'
 
 import { Keys, KeyTypes } from '../../store/helpers/keys/types'
-
-import { IATIActivitiesReport,
-         IATIActivitiesData } from '../../store/IATI/types'
 
 interface ActivitiesFormProps {
   setValue: Function
@@ -26,11 +23,11 @@ interface ActivitiesFormProps {
 }
 
 interface ActivitiesDataProps {
-  activities: IATIActivitiesReport
+  activitiesRefs: Array<string>
 }
 
 interface ActivitiesDispatchProps {
-  getActivities: (isReport: boolean) => void
+  getActivitiesRefs: () => void
   setActivitiesKey: (activitiesRef: string) => void
 }
 
@@ -43,22 +40,18 @@ class Activities extends React.Component<ActivitiesPickerProps> {
   }
 
   componentDidMount() {
-    this.props.getActivities(false)
+    this.props.getActivitiesRefs()
   }
 
   render() {
 
     let activitiesRefs: any[] = [{ value: "", label: "" }]
-    if(typeof this.props.activities != "undefined" &&
-       this.props.activities.hasOwnProperty('data')) {
-
-      //console.log ('rendering', this.props.activities)
-      const activities: Array<IATIActivitiesData> = this.props.activities.data
-      for (let i = 0; i < activities.length; i++) {
-       const label = activities[i].activitiesRef
-       const value = label
-       activitiesRefs.push({ value: value, label: label })
-      }
+    if ( typeof this.props.activitiesRefs != 'undefined' &&
+         typeof this.props.activitiesRefs[0] != 'undefined' &&
+         this.props.activitiesRefs[0] != "" ) {
+      this.props.activitiesRefs.forEach((key: string) => {
+       activitiesRefs.push({ value: key, label: key })
+      })
     }
 
     return (
@@ -81,13 +74,13 @@ class Activities extends React.Component<ActivitiesPickerProps> {
 const mapStateToProps = (state: ApplicationState): ActivitiesDataProps => {
   //console.log(state.orgReader)
   return {
-    activities: state.activitiesPicker.data as IATIActivitiesReport
+    activitiesRefs: state.activitiesPicker.data  as Array<string>
   }
 }
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): ActivitiesDispatchProps => {
   return {
-    getActivities: (isReport: boolean) => dispatch(getActivities(isReport)),
+    getActivitiesRefs: () => dispatch(getActivitiesRefs()),
     setActivitiesKey: (activitiesRef: string) => dispatch(setKey({key: activitiesRef, keyType: KeyTypes.ACTIVITIES})),
   }
 }

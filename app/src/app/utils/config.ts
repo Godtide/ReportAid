@@ -53,20 +53,20 @@ class Blockchain {
 
 class Contract {
 
-  static orgsAddress = "0x15D6181565677Da4355201D99EcF262667Ae801A"
-  static organisationsAddress = "0xcC1b5DFea0764d5B501ED705e1Bc65076C2fE21d"
-  static organisationAddress = "0xc85DdD83fBb2e5581A5525E085F9D5c08aF0E3C1"
-  static organisationDocsAddress = "0x2343ed14D1c3F13d4a7bF86EF4F270199EEd8613"
-  static organisationBudgetsAddress = "0x9Adc658D9191A5c92De61B530998a6d1D33C35a6"
-  static organisationExpenditureAddress = "0xCBe2f5f10a1f400a6F365176136F118868Ddb601"
-  static organisationRecipientBudgetsAddress = "0x5F3170d8F70Dbceda74E2d7Ea3a165c4aa179353"
-  static organisationRegionBudgetsAddress = "0xC2c5555d5DD64c1F2a82B68D12829c4989c47263"
-  static organisationCountryBudgetsAddress = "0x7f1Ea19620E8e115b3E5b2D426FB6bCb15d6272E"
-  static activitiesAddress = "0x49b18F8e41DFA0C1B1c5E6762B9Fb2Ffc9E13F11"
-  static activityAddress = "0x19E6CC134f30dEc4B6A72f85fA6d55f92d5293e1"
-  static activityAdditionalAddress = "0x8C2ff4B381482142e4333aa5F7927c00f0e80C09"
-  static activityDatesAddress = "0xD9E32437BB4e144223935937399e44E6572f75ea"
-  static activityParticipatingOrgsAddress = "0x908BfB0fA85B7e85dd802e9Bec5FB8C81140f125"
+  static orgsAddress = "0x667CD537e1079044119438B0c8a62d59D557B55A"
+  static organisationsAddress = "0xcA5784A7c10A7CFC6480072FB46f0C54dFbFB989"
+  static organisationAddress = "0x2C433289b8A829AA3F34287039083309F542C8C4"
+  static organisationDocsAddress = "0x0A1E2F79698149724A6f02B549C9FCB216c3845C"
+  static organisationBudgetsAddress = "0xd3Fa22746d7d71f3386718A3F48f7b6a88073a4D"
+  static organisationExpenditureAddress = "0xe97b1Cb304DD13e64AA833061d276F3C40453325"
+  static organisationRecipientBudgetsAddress = "0x33bC4b3D57Df88bFAd0057DFfF2DeC217F5cA917"
+  static organisationRegionBudgetsAddress = "0xF370A3797f3cC16E5420798762B77ec273Cb8a06"
+  static organisationCountryBudgetsAddress = "0x9F0eA05eBa893D2736e1cB1a7295AC962CD274C8"
+  static activitiesAddress = "0x2FB258596E6359b9342E1e4d6617c72c54C893d9"
+  static activityAddress = "0xd95a18e8deb4612089aB9604DeF69ecb9d7B5873"
+  static activityAdditionalAddress = "0x2DA3eA244771fc59661Be117c0760227b639391F"
+  static activityDatesAddress = "0x97A3F9E0D2971e511D44eF1D7BdC917F3B36098d"
+  static activityParticipatingOrgsAddress = "0xcf1b179BC789696558696B54b01832BaA756a1f9"
 
   static activitiesABI = [
     "event SetActivities(bytes32 _activitiesRef, tuple(bytes32 version, bytes32 generatedTime, bytes32 linkedData) orgActivities)",

@@ -39,7 +39,7 @@ const getThisActivity = (props: ActivityProps) => {
       data: { activitiesRef: activitiesRef, data: data }
     }
 
-    let actionType = props.failureActionType
+    let actionType =  props.successActionType
     try {
 
      const activity: IATIActivityProps = await activityContract.getActivity(activitiesRef, activityRef)
@@ -63,9 +63,8 @@ const getThisActivity = (props: ActivityProps) => {
        hierarchy: activity.hierarchy,
        budgetNotProvided: activity.budgetNotProvided
      }
-
-     actionType =  props.successActionType
     } catch (error) {
+      actionType = props.failureActionType
       console.log('getActivity error', error)
     }
 
@@ -85,33 +84,6 @@ export const getActivityRecord = (props: RecordProps) => {
     }
 
     dispatch(getThisActivity(indexRecordProps))
-  }
-}
-
-export const getActivityPicker = (props: ActivityReportProps) => {
-  return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
-
-    const state = getState()
-    const activityContract = state.chainContracts.data.contracts.activity
-
-    let indexRecordProps: ActivityProps = {
-      activitiesRef: props.activitiesRef,
-      activityRef: "",
-      data: [],
-      successActionType: IATIReportActionTypes.ACTIVITYPICKER_SUCCESS,
-      failureActionType: IATIReportActionTypes.ACTIVITY_FAILURE
-    }
-
-    try {
-      const num = await activityContract.getNumActivities(indexRecordProps.activitiesRef)
-      const numActivitys = num.toNumber()
-      for (let i = 0; i < numActivitys; i++) {
-        indexRecordProps.activityRef = await activityContract.getReference(indexRecordProps.activitiesRef, i.toString())
-        dispatch(getThisActivity(indexRecordProps))
-      }
-    } catch (error) {
-      console.log('getActivityPicker error', error)
-    }
   }
 }
 
@@ -139,5 +111,32 @@ export const getActivity = (props: ActivityReportProps) => {
     } catch (error) {
       console.log('getActivity error', error)
     }
+  }
+}
+
+export const getActivityRefs = (props: ActivityReportProps) => {
+  return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
+
+    const state = getState()
+    const activityContract = state.chainContracts.data.contracts.activity
+    const activitiesRef = props.activitiesRef
+
+    let keysData: Array<string> = []
+    let actionType = IATIReportActionTypes.ACTIVITYPICKER_SUCCESS
+
+    try {
+      const num = await activityContract.getNumActivities(activitiesRef)
+      const numActivitys = num.toNumber()
+      for (let i = 0; i < numActivitys; i++) {
+        const activityRef = await activityContract.getReference(activitiesRef, i.toString())
+        keysData.push(activityRef)
+      }
+    } catch (error) {
+      actionType = IATIReportActionTypes.ACTIVITY_FAILURE
+      console.log('getActivityKeys error', error)
+    }
+
+    //console.log('KeysData: ', keysData, actionType)
+    dispatch(read({data: keysData})(actionType))
   }
 }

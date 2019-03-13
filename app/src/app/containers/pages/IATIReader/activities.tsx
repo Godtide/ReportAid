@@ -25,7 +25,7 @@ interface ActivitiesProps {
 
 interface ActivitiesDispatchProps {
   initialise: () => void
-  getActivities: (isReport: boolean) => void
+  getActivities: () => void
 }
 
 type ActivitiesReaderProps =  WithStyles<typeof styles> & ActivitiesProps & ActivitiesDispatchProps
@@ -38,7 +38,7 @@ class ActivitiesReader extends React.Component<ActivitiesReaderProps> {
 
   componentDidMount() {
     this.props.initialise()
-    this.props.getActivities(true)
+    this.props.getActivities()
   }
 
   render() {
@@ -65,7 +65,7 @@ const mapStateToProps = (state: ApplicationState): ActivitiesProps => {
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): ActivitiesDispatchProps => {
   return {
     initialise: () => dispatch(initialise()),
-    getActivities: (isReport: boolean) => dispatch(getActivities(isReport))
+    getActivities: () => dispatch(getActivities())
   }
 }
 
