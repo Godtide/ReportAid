@@ -22,7 +22,7 @@ export const setActivityParticipatingOrg = (details: ActivityParticipatingOrgPro
     if ( participatingOrgRef == "" ) {
       participatingOrgRef = ethers.utils.formatBytes32String(shortid.generate())
     }
-
+    
     const participatingOrgData: IATIActivityParticipatingOrgProps = {
       orgType: details.orgType,
       role: details.role,
