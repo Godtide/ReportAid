@@ -46,7 +46,7 @@ const getThisActivity = (props: ActivityProps) => {
 
      //console.log('Got activity: ', activitiesRef, activityRef, activity)
 
-     activityData.data.data[activityData.data.data.length] = {
+     activityData.data.data[data.length] = {
        activityRef: activityRef,
        title: ethers.utils.parseBytes32String(activity.title),
        description: activity.description,

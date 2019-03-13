@@ -16,9 +16,6 @@ import { getOrganisations } from '../../store/IATI/IATIReader/organisations/orga
 
 import { Keys, KeyTypes } from '../../store/helpers/keys/types'
 
-import { IATIOrganisationsReport,
-         IATIOrganisationsData } from '../../store/IATI/types'
-
 interface OrganisationsFormProps {
   setValue: Function
   name: string
@@ -26,11 +23,11 @@ interface OrganisationsFormProps {
 }
 
 interface OrganisationsDataProps {
-  organisations: IATIOrganisationsReport
+  organisationsRefs: Array<string>
 }
 
 interface OrganisationsDispatchProps {
-  getOrganisations: (isReport: boolean) => void
+  getOrganisationsRefs: () => void
   setOrganisationsKey: (organisationsRef: string) => void
 }
 
@@ -43,22 +40,18 @@ class Organisations extends React.Component<OrganisationsPickerProps> {
   }
 
   componentDidMount() {
-    this.props.getOrganisations(false)
+    this.props.getOrganisationsRefs()
   }
 
   render() {
 
     let organisationsRefs: any[] = [{ value: "", label: "" }]
-    if(typeof this.props.organisations != "undefined" &&
-       this.props.organisations.hasOwnProperty('data')) {
-
-      //console.log ('rendering', this.props.organisations)
-      const organisations: Array<IATIOrganisationsData> = this.props.organisations.data
-      for (let i = 0; i < organisations.length; i++) {
-       const label = organisations[i].organisationsRef
-       const value = label
-       organisationsRefs.push({ value: value, label: label })
-      }
+    if ( typeof this.props.organisationsRefs != 'undefined' &&
+         typeof this.props.organisationsRefs[0] != 'undefined' &&
+         this.props.organisationsRefs[0] != "" ) {
+      this.props.organisationsRefs.forEach((key: string) => {
+       organisationsRefs.push({ value: key, label: key })
+      })
     }
 
     return (
@@ -81,13 +74,13 @@ class Organisations extends React.Component<OrganisationsPickerProps> {
 const mapStateToProps = (state: ApplicationState): OrganisationsDataProps => {
   //console.log(state.orgReader)
   return {
-    organisations: state.organisationsPicker.data as IATIOrganisationsReport
+    organisationsRefs: state.organisationsPicker.data as Array<string>
   }
 }
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrganisationsDispatchProps => {
   return {
-    getOrganisations: (isReport: boolean) => dispatch(getOrganisations(isReport)),
+    getOrganisationsRefs: () => dispatch(getOrganisations()),
     setOrganisationsKey: (organisationsRef: string) => dispatch(setKey({key: organisationsRef, keyType: KeyTypes.ORGANISATIONS})),
   }
 }

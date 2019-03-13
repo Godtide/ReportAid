@@ -40,7 +40,7 @@ const getThisActivitiesRecord = (props: ActivitiesProps) => {
     try {
 
       const activities: IATIActivitiesProps = await activitiesContract.getActivities(props.activitiesRef)
-      activitiesData.data.data[activitiesData.data.data.length] = {
+      activitiesData.data.data[data.length] = {
         activitiesRef: props.activitiesRef,
         version: ethers.utils.parseBytes32String(activities.version),
         generatedTime:  ethers.utils.parseBytes32String(activities.generatedTime),
@@ -115,7 +115,7 @@ export const getActivitiesRefs = () => {
       }
     } catch (error) {
       actionType = IATIReportActionTypes.ACTIVITIES_FAILURE
-      console.log('getActivitiesKeys error', error)
+      console.log('getActivitiesRefs error', error)
     }
 
     //console.log('KeysData: ', keysData, actionType)

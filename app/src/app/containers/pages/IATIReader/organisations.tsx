@@ -22,7 +22,7 @@ interface OrgProps {
 }
 
 interface OrgDispatchProps {
-  getOrganisations: (isReport: boolean) => void
+  getOrganisations: () => void
 }
 
 type OrgReaderProps =  WithStyles<typeof styles> & OrgProps & OrgDispatchProps
@@ -34,7 +34,7 @@ class OrganisationsReader extends React.Component<OrgReaderProps> {
   }
 
   componentDidMount() {
-    this.props.getOrganisations(true)
+    this.props.getOrganisations()
   }
 
   render() {
@@ -60,7 +60,7 @@ const mapStateToProps = (state: ApplicationState): OrgProps => {
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): OrgDispatchProps => {
   return {
-    getOrganisations: (isReport: boolean) => dispatch(getOrganisations(isReport))
+    getOrganisations: () => dispatch(getOrganisations())
   }
 }
 

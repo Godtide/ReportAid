@@ -74,7 +74,7 @@ class Activities extends React.Component<ActivitiesPickerProps> {
 const mapStateToProps = (state: ApplicationState): ActivitiesDataProps => {
   //console.log(state.orgReader)
   return {
-    activitiesRefs: state.activitiesPicker.data  as Array<string>
+    activitiesRefs: state.activitiesPicker.data as Array<string>
   }
 }
 
