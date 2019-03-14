@@ -49,7 +49,7 @@ const getThisActivityDate = (props: ActivityDateProps) => {
 
       const thisDate: IATIActivityDateProps = await activityDatesContract.getDate(activitiesRef, activityRef, dateRef)
 
-      datesData.data.data[0] = {
+      datesData.data.data[data.length] = {
         dateRef: dateRef,
         dateType: thisDate.dateType,
         date: ethers.utils.parseBytes32String(thisDate.date),

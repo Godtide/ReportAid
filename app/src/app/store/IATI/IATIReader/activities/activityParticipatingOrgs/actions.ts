@@ -50,7 +50,7 @@ const getThisActivityParticipatingOrg = (props: ActivityParticipatingOrgProps) =
       const participatingOrg: IATIActivityParticipatingOrgProps = await activityParticipatingOrgsContract.getParticipatingOrg(activitiesRef, activityRef, participatingOrgRef)
 
       // ethers.utils.bigNumberify(var).toNumber()
-      participatingOrgData.data.data[0] = {
+      participatingOrgData.data.data[data.length] = {
         participatingOrgRef: participatingOrgRef,
         orgRef: participatingOrg.orgRef,
         orgType: participatingOrg.orgType,
