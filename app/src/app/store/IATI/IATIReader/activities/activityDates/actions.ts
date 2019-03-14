@@ -72,8 +72,8 @@ export const getActivityDateRecord = (props: RecordProps) => {
       activityRef: props.activityRef,
       dateRef: props.dateRef,
       data: [],
-      successActionType: IATIReportActionTypes.ACTIVITY_SUCCESS,
-      failureActionType: IATIReportActionTypes.ACTIVITY_FAILURE
+      successActionType: IATIReportActionTypes.ACTIVITYDATE_SUCCESS,
+      failureActionType: IATIReportActionTypes.ACTIVITYDATE_FAILURE
     }
 
     dispatch(getThisActivityDate(indexRecordProps))
@@ -97,8 +97,8 @@ export const getActivityDates = (props: ActivitiesReportProps) => {
 
     try {
       const num = await activityDatesContract.getNumDates(indexRecordProps.activitiesRef, indexRecordProps.activityRef)
-      const numAdditionals = num.toNumber()
-      for (let i = 0; i < numAdditionals; i++) {
+      const numDates = num.toNumber()
+      for (let i = 0; i < numDates; i++) {
 
         indexRecordProps.dateRef = await activityDatesContract.getReference(indexRecordProps.activitiesRef, indexRecordProps.activityRef, i.toString())
         dispatch(getThisActivityDate(indexRecordProps))
@@ -122,8 +122,8 @@ export const getActivityDateRefs = (props: ActivitiesReportProps) => {
 
     try {
       const num = await activityDatesContract.getNumDates(activitiesRef, activityRef)
-      const numAdditionals = num.toNumber()
-      for (let i = 0; i < numAdditionals; i++) {
+      const numDates = num.toNumber()
+      for (let i = 0; i < numDates; i++) {
         const dateRef = await activityDatesContract.getReference(activitiesRef, activityRef, i.toString())
         keysData.push(dateRef)
       }

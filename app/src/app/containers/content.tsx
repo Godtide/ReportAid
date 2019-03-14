@@ -34,6 +34,7 @@ import { Activities as ActivitiesReader } from './pages/IATIReader/activities'
 import { Activity as ActivityReader } from './pages/IATIReader/activity'
 import { ActivityAdditionals as ActivityAdditionalsReader } from './pages/IATIReader/activityAdditionals'
 import { ActivityDates as ActivityDatesReader } from './pages/IATIReader/activityDates'
+import { ActivityParticipatingOrg as ActivityParticipatingOrgsReader } from './pages/IATIReader/activityParticipatingOrgs'
 import { Orgs as OrgsReader } from './pages/IATIReader/orgs'
 import { Organisations as OrganisationsReader } from './pages/IATIReader/organisations'
 import { Organisation as OrganisationReader } from './pages/IATIReader/organisation'
@@ -174,6 +175,11 @@ class AppContent extends React.Component<WithStyles<typeof styles>> {
           name={Paths.activityDatesReader}
           path={PathConfig.activityDatesReader}
           render={() => <ActivityDatesReader />}
+        />
+        <Route
+          name={Paths.activityParticipatingOrgReader}
+          path={PathConfig.activityParticipatingOrgReader}
+          render={() => <ActivityParticipatingOrgsReader />}
         />
 
         <Route
