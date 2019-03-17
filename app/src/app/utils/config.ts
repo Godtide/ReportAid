@@ -56,20 +56,21 @@ class Blockchain {
 
 class Contract {
 
-  static orgsAddress = "0x0C4bcFBE938665838c4cdC9E03762A39b6e8Ef2d"
-  static organisationsAddress = "0xFD93D110E7e332Df5b82876A1d110A95Bc487E8C"
-  static organisationAddress = "0xE032a142fE9D51Cbd9a573f816d5Dd7e80205D1f"
-  static organisationDocsAddress = "0xb0aDDC91a805DB3bcd41Ba65047B1375d60dd1ED"
-  static organisationBudgetsAddress = "0x91Ae51FDcd49ED9fA676145402d70883503dbf4F"
-  static organisationExpenditureAddress = "0xB9866DC5CBe7a192a43657792895dC1652f03A34"
-  static organisationRecipientBudgetsAddress = "0x64640e2F510A8F7Ac505951F2d838D91e4BdCfD1"
-  static organisationRegionBudgetsAddress = "0x0b2dBedA363Ff6cB3e86e4eC041c20734AA2e493"
-  static organisationCountryBudgetsAddress = "0x16E45f4Ea4ddCa564D93cBb4324c44BF3ea057fA"
-  static activitiesAddress = "0xB5115d1Fd3b256Fc549ffD344Ad87B1326741d41"
-  static activityAddress = "0x21E6d35fd9B2cDDE0728690b464E1D984e975C83"
-  static activityAdditionalAddress = "0xc999f3304f39349955045261CDAf4defea1841b2"
-  static activityDatesAddress = "0x0E32BA5a34CD36A20D2b701CB5E3F8CF7F4240a7"
-  static activityParticipatingOrgsAddress = "0x2A29E875A50899b187cCd64D97bdc23cfF866a72"
+  static orgsAddress = "0xF9C5592E7570E0e514B7D9a2538Bc65a96a87A57"
+  static organisationsAddress = "0x057A8767fe42fEc1A455b7626b36C21bF18E9D39"
+  static organisationAddress = "0x86f099e15E52C48A82Ef41c5eC724B801408e74d"
+  static organisationDocsAddress = "0x33dce729188C3cA0cA89ac7Bb32FDf7536F2a2fb"
+  static organisationBudgetsAddress = "0xA4EC91B7De178678E479Ccb2bdD75621FBA743D0"
+  static organisationExpenditureAddress = "0x0dD9e1e9cA1b8afb4F06ac5a2Ffb418019239057"
+  static organisationRecipientBudgetsAddress = "0x61cE1c35E4649c5deB3bE22422E05aB869C83CA3"
+  static organisationRegionBudgetsAddress = "0xdFaf6eCB9d562B9FC3A8AC47Dc3FC51C74dD81d6"
+  static organisationCountryBudgetsAddress = "0x5448F34e2125c30E445873c156042B7cB9eCAe8B"
+  static activitiesAddress = "0x0ea947d6414e84c7a7C15ae462437943e9011ebC"
+  static activityAddress = "0xb15f6DCE13Bde1270e257e08fce0C96EaCcC1633"
+  static activityAdditionalAddress = "0x165026Dd4fC39C9eC9DC20cc5792385D600BEad4"
+  static activityDatesAddress = "0xbCc015Cb8B5fC53a2FCa6bb44BD7d02bad99Ea3F"
+  static activityParticipatingOrgsAddress = "0x4beB9E3be925Ea342672381fd3db0016BC0266FD"
+  static activitySectorsAddress = "0xf52e8270DAE8F3CD3B5a5DeB43831c7531dCD74b"
 
   static activitiesABI = [
     "event SetActivities(bytes32 _activitiesRef, tuple(bytes32 version, bytes32 generatedTime, bytes32 linkedData) orgActivities)",
@@ -132,6 +133,18 @@ class Contract {
   	"function getCrsChannelCode(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _particpatingOrgRef) view returns (uint256)",
   	"function getNarrative(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _particpatingOrgRef) view returns (string memory)",
   	"function getLang(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _particpatingOrgRef) view returns (bytes32)"
+  ]
+
+  static activitySectorsABI = [
+  	"function setSector(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _sectorRef, tuple(uint8 percentage, uint256 dacCode) _sector) public",
+
+  	"function getNum(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint256)",
+  	"function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) public view returns (bytes32)",
+
+  	"function getSector(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _sectorRef) public view returns (tuple(uint8 percentage, uint256 dacCode) _sector)",
+    
+  	"function getDACCode(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _sectorRef) public view returns (uint256)",
+  	"function getPercentage(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _sectorRef) public view returns (uint8)",
   ]
 
   static activityABI = [

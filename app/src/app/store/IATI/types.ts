@@ -414,6 +414,19 @@ export interface ActivityParticipatingOrgProps {
   lang: string
 }
 
+export interface IATIActivitySectorProps {
+  percentage: number
+  dacCode: number
+}
+
+export interface ActivitySectorProps {
+  activitiesRef: string
+  activityRef: string
+  sectorRef: string
+  percentage: number
+  dacCode: number
+}
+
 /* IATI Activities Reader */
 
 export interface ActivityReportProps {
@@ -525,6 +538,22 @@ export interface IATIActivityParticipatingOrgReportProps extends PayloadProps {
   data: IATIActivityParticipatingOrgReport
 }
 
+export interface IATIActivitySectorData {
+  sectorRef: string
+  percentage: number
+  dacCode: number
+}
+
+export interface IATIActivitySectorReport {
+  activitiesRef: string
+  activityRef: string
+  data: Array<IATIActivitySectorData>
+}
+
+export interface IATIActivitySectorReportProps extends PayloadProps {
+  data: IATIActivitySectorReport
+}
+
 /* Action Types */
 
 export const enum IATIWriterActionTypes {
@@ -557,6 +586,8 @@ export const enum IATIWriterActionTypes {
   ACTIVITYDATE_FAILURE = '@@IATIWriterActionTypes/ACTIVITYDATE_FAILURE',
   ACTIVITYPARTICIPATINGORG_SUCCESS = '@@IATIWriterActionTypes/ACTIVITYPARTICIPATINGORG_SUCCESS',
   ACTIVITYPARTICIPATINGORG_FAILURE = '@@IATIWriterActionTypes/ACTIVITYPARTICIPATINGORG_FAILURE',
+  ACTIVITYSECTOR_SUCCESS = '@@IATIWriterActionTypes/ACTIVITYSECTOR_SUCCESS',
+  ACTIVITYSECTOR_FAILURE = '@@IATIWriterActionTypes/ACTIVITYSECTOR_FAILURE'
 }
 
 export const enum IATIReportActionTypes {
@@ -595,5 +626,7 @@ export const enum IATIReportActionTypes {
   ACTIVITYDATE_FAILURE = '@@IATIReportActionTypes/ACTIVITYDATE_FAILURE',
   ACTIVITYPARTICIPATINGORG_SUCCESS = '@@IATIReportActionTypes/ACTIVITYPARTICIPATINGORG_SUCCESS',
   ACTIVITYPARTICIPATINGORGPICKER_SUCCESS = '@@IATIReportActionTypes/ACTIVITYPARTICIPATINGORGPICKER_SUCCESS',
-  ACTIVITYPARTICIPATINGORG_FAILURE = '@@IATIReportActionTypes/ACTIVITYPARTICIPATINGORG_FAILURE',
+  ACTIVITYPARTICIPATINGORG_FAILURE = '@@IATIReportActionTypes/ACTIVITYPARTICIPATINGORG_FAILURE',ACTIVITYSECTOR_SUCCESS = '@@IATIReportActionTypes/ACTIVITYSECTOR_SUCCESS',
+  ACTIVITYSECTORPICKER_SUCCESS = '@@IATIReportActionTypes/ACTIVITYSECTORPICKER_SUCCESS',
+  ACTIVITYSECTOR_FAILURE = '@@IATIReportActionTypes/ACTIVITYSECTOR_FAILURE'
 }
