@@ -31,6 +31,7 @@ class Paths {
   static readonly activityAdditionalWriter='Activity Additional Info\''
   static readonly activityDatesWriter='Activity Dates'
   static readonly activityParticipatingOrgWriter='Activity Participating Org\''
+  static readonly activitySectorsWriter='Activity Sectors'
   static readonly orgWriter='Org\''
   static readonly organisationsWriter='Organisations'
   static readonly organisationWriter='Organisation Report'
@@ -51,6 +52,7 @@ class Paths {
   static readonly activityAdditionalReader='Activity Additional Info\''
   static readonly activityDatesReader='Activity Dates'
   static readonly activityParticipatingOrgReader='Activity Participating Org\''
+  static readonly activitySectorsReader='Activity Sectors'
   static readonly orgsReader='Org\'s'
   static readonly organisationsReader='Organisations'
   static readonly organisationReader='Organisation Reports'
@@ -220,6 +222,22 @@ class ActivityParticipatingOrg {
   static lang = "Language"
 
   static participatingOrgDetails = "Activity Participating Org\' Details"
+}
+
+class ActivitySectors {
+
+  static headingActivitySectorsWriter = 'Create Activity Sector Record'
+  static headingActivitySectorsReader = 'Read Activity Sectors Records'
+  static headingActivitySectorsUpsectorr = 'Upsector Activity Sectors Record'
+
+  static activitiesReference = "Activities Reference"
+  static activityReference = "Activity Reference"
+  static sectorRef = "Activity Sector Reference"
+
+  static dacCode = "Sector Code"
+  static percentage = "Percentage Activity"
+
+  static sectorsDetails = "Activity Sector Details"
 }
 
 class Org {
@@ -441,6 +459,7 @@ export { App,
          ActivityAdditional,
          ActivityDates,
          ActivityParticipatingOrg,
+         ActivitySectors,
          Org,
          Organisations,
          Organisation,

@@ -13,6 +13,7 @@ class Paths {
   static readonly activityAdditionalWriter='/create-activity-additional-records'
   static readonly activityDatesWriter='/create-activity-dates-records'
   static readonly activityParticipatingOrgWriter='/create-activity-participating-org-records'
+  static readonly activitySectorsWriter='/create-activity-sectors-records'
   static readonly orgWriter='/create-org-records'
   static readonly organisationsWriter='/create-organisations-records'
   static readonly organisationWriter='/create-organisation-records'
@@ -33,6 +34,7 @@ class Paths {
   static readonly activityAdditionalReader='/read-activity-additional-reports'
   static readonly activityDatesReader='/read-activity-dates-reports'
   static readonly activityParticipatingOrgReader='/read-activity-participating-org-reports'
+  static readonly activitySectorsReader='/read-activity-sectors-records'
   static readonly orgsReader='/read-organisations'
   static readonly organisationsReader='/read-organisations-reports'
   static readonly organisationReader='/read-organisation-reports'
@@ -56,21 +58,21 @@ class Blockchain {
 
 class Contract {
 
-  static orgsAddress = "0xF9C5592E7570E0e514B7D9a2538Bc65a96a87A57"
-  static organisationsAddress = "0x057A8767fe42fEc1A455b7626b36C21bF18E9D39"
-  static organisationAddress = "0x86f099e15E52C48A82Ef41c5eC724B801408e74d"
-  static organisationDocsAddress = "0x33dce729188C3cA0cA89ac7Bb32FDf7536F2a2fb"
-  static organisationBudgetsAddress = "0xA4EC91B7De178678E479Ccb2bdD75621FBA743D0"
-  static organisationExpenditureAddress = "0x0dD9e1e9cA1b8afb4F06ac5a2Ffb418019239057"
-  static organisationRecipientBudgetsAddress = "0x61cE1c35E4649c5deB3bE22422E05aB869C83CA3"
-  static organisationRegionBudgetsAddress = "0xdFaf6eCB9d562B9FC3A8AC47Dc3FC51C74dD81d6"
-  static organisationCountryBudgetsAddress = "0x5448F34e2125c30E445873c156042B7cB9eCAe8B"
-  static activitiesAddress = "0x0ea947d6414e84c7a7C15ae462437943e9011ebC"
-  static activityAddress = "0xb15f6DCE13Bde1270e257e08fce0C96EaCcC1633"
-  static activityAdditionalAddress = "0x165026Dd4fC39C9eC9DC20cc5792385D600BEad4"
-  static activityDatesAddress = "0xbCc015Cb8B5fC53a2FCa6bb44BD7d02bad99Ea3F"
-  static activityParticipatingOrgsAddress = "0x4beB9E3be925Ea342672381fd3db0016BC0266FD"
-  static activitySectorsAddress = "0xf52e8270DAE8F3CD3B5a5DeB43831c7531dCD74b"
+  static orgsAddress = "0x1423b9AB2e3A61d74E9993BEfD556279E5Dd1425"
+  static organisationsAddress = "0xC1817e7AAf2cd087BeEd5Ff1d782bF0f08d4D653"
+  static organisationAddress = "0x4550683d9C706C69e99238546641273715528080"
+  static organisationDocsAddress = "0xc749d4cC5502337479EA597c4eCE4Dc299395771"
+  static organisationBudgetsAddress = "0x45CB1c24064ab0bd500A36F2F3A5c9C49970F457"
+  static organisationExpenditureAddress = "0xF3d870f6BF1Ef4eeD2bB3dE4386740d6aA957B81"
+  static organisationRecipientBudgetsAddress = "0x49ce5600226DfCED46224d32Cb2B7Dc33637AA31"
+  static organisationRegionBudgetsAddress = "0xf75773222058d4217a8d84251D561d8d0a2982E8"
+  static organisationCountryBudgetsAddress = "0x529453aDf3577F2BBaE39eE5e57d3fFceC92aDf7"
+  static activitiesAddress = "0xa763843b812e96B8F0cb842B4FE4C4bbd5ED490a"
+  static activityAddress = "0xA4d46eC75A2240b6Fc4FB4B5bf329598F5C51ADd"
+  static activityAdditionalAddress = "0x96D56977f0D78893b2356A6d2f2475d8aBabc969"
+  static activityDatesAddress = "0x86Ac1092f71FaDAF49925F3C766693bf0ada62f9"
+  static activityParticipatingOrgsAddress = "0x092c7D6aEEa884c85886Da92738e9E29c3c6D540"
+  static activitySectorsAddress = "0x71cf40aC05A9A52eCd10Af7e456e7Eb3532c0c42"
 
   static activitiesABI = [
     "event SetActivities(bytes32 _activitiesRef, tuple(bytes32 version, bytes32 generatedTime, bytes32 linkedData) orgActivities)",
@@ -142,7 +144,7 @@ class Contract {
   	"function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) public view returns (bytes32)",
 
   	"function getSector(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _sectorRef) public view returns (tuple(uint8 percentage, uint256 dacCode) _sector)",
-    
+
   	"function getDACCode(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _sectorRef) public view returns (uint256)",
   	"function getPercentage(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _sectorRef) public view returns (uint8)",
   ]

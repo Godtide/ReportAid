@@ -31,7 +31,7 @@ export const setActivitySector = (details: ActivitySectorProps) => {
     let actionType = IATIWriterActionTypes.ACTIVITYSECTOR_FAILURE
     let txData: TxReport = {}
     try {
-      const tx = await activitySectorsContract.setParticipatingOrg(details.activitiesRef, details.activityRef, sectorRef, sectorData)
+      const tx = await activitySectorsContract.setSector(details.activitiesRef, details.activityRef, sectorRef, sectorData)
       const key = tx.hash
       txData = {
         [key]: {
