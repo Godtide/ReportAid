@@ -20,7 +20,7 @@ interface RecordProps {
 }
 
 interface ActivitySectorsDataProps {
-  data: Array<IATIActivitySectorsData>
+  data: Array<IATIActivitySectorData>
   successActionType: IATIReportActionTypes
   failureActionType: IATIReportActionTypes
 }
@@ -52,7 +52,7 @@ const getThisActivitySector = (props: ActivitySectorProps) => {
       sectorData.data.data[data.length] = {
         sectorRef: sectorRef,
         percentage: thisSector.percentage,
-        dacCode: thisSector.dacCode
+        dacCode: ethers.utils.bigNumberify(thisSector.dacCode).toNumber()
       }
     } catch (error) {
       actionType = props.failureActionType
