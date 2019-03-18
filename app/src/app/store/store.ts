@@ -28,6 +28,7 @@ import { reducer as activitiesPickerReducer } from './IATI/IATIReader/activities
 import { reducer as activityPickerReducer } from './IATI/IATIReader/activities/activity/reducer'
 import { reducer as activityDatesPickerReducer } from './IATI/IATIReader/activities/activityDates/reducer'
 import { reducer as activityParticipatingOrgPickerReducer } from './IATI/IATIReader/activities/activityParticipatingOrgs/reducer'
+import { reducer as activitySectorsPickerReducer } from './IATI/IATIReader/activities/activitySectors/reducer'
 import { reducer as readerReducer } from './IATI/IATIReader/reducer'
 import { reducer as writerReducer } from './IATI/IATIWriter/reducer'
 
@@ -48,6 +49,7 @@ export interface ApplicationState {
   activityPicker: PayloadProps
   activityDatesPicker: PayloadProps
   activityParticipatingOrgPicker: PayloadProps
+  activitySectorsPicker: PayloadProps
   report: PayloadProps
 }
 
@@ -66,6 +68,7 @@ export const rootReducer: Reducer<ApplicationState, ActionProps> = combineReduce
   activityPicker: activityPickerReducer,
   activityDatesPicker: activityDatesPickerReducer,
   activityParticipatingOrgPicker: activityParticipatingOrgPickerReducer,
+  activitySectorsPicker: activitySectorsPickerReducer,
   report: readerReducer
 })
 
