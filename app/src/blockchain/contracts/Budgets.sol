@@ -10,6 +10,7 @@ contract Budgets {
     ORGRECIPIENT,
     ORGREGION,
     ORGCOUNTRY,
+    ACTIVITY,
     MAX
   }
 

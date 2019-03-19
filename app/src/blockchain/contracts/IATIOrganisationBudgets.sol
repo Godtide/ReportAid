@@ -47,6 +47,7 @@ contract IATIOrganisationBudgets is OrganisationBudgets {
   function getBudgetStart(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _budgetRef) public view returns (bytes32) {
     return budgets.getBudgetStart(uint8(Budgets.Owner.ORG), _organisationsRef, _organisationRef, _budgetRef);
   }
+  
   function getBudgetEnd(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _budgetRef) public view returns (bytes32) {
     return budgets.getBudgetEnd(uint8(Budgets.Owner.ORG), _organisationsRef, _organisationRef, _budgetRef);
   }
