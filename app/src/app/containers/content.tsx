@@ -16,6 +16,7 @@ import { ActivityAdditional as ActivityAdditionalsWriter } from './pages/IATIWri
 import { ActivityDate as ActivityDatesWriter } from './pages/IATIWriter/create/activityDates'
 import { ActivityParticipatingOrg as ActivityParticipatingOrgWriter } from './pages/IATIWriter/create/activityParticipatingOrgs'
 import { ActivitySector as ActivitySectorsWriter } from './pages/IATIWriter/create/activitySectors'
+import { ActivityBudgets as ActivityBudgetsWriter } from './pages/IATIWriter/create/activityBudgets'
 import { Org as OrgWriter } from './pages/IATIWriter/create/org'
 import { Organisations as OrganisationsWriter } from './pages/IATIWriter/create/organisations'
 import { Organisation as OrganisationWriter } from './pages/IATIWriter/create/organisation'
@@ -93,6 +94,11 @@ class AppContent extends React.Component<WithStyles<typeof styles>> {
           name={Paths.activitySectorsWriter}
           path={PathConfig.activitySectorsWriter}
           render={() => <ActivitySectorsWriter />}
+        />
+        <Route
+          name={Paths.activityBudgetsWriter}
+          path={PathConfig.activityBudgetsWriter}
+          render={() => <ActivityBudgetsWriter />}
         />
 
         <Route
@@ -192,7 +198,7 @@ class AppContent extends React.Component<WithStyles<typeof styles>> {
           name={Paths.activitySectorsReader}
           path={PathConfig.activitySectorsReader}
           render={() => <ActivitySectorsReader />}
-        />    
+        />
 
         <Route
           name={Paths.orgsReader}

@@ -187,7 +187,7 @@ class ActivityAdditional {
   static activityAdditionalDetails = "Activity Additional Info\' Details"
 }
 
-class ActivityBudgets {
+class ActivityBudget {
 
   static headingActivityBudgetWriter = 'Create Budget Record'
   static headingActivityBudgetReader = 'Read Budgets Records'
@@ -196,6 +196,7 @@ class ActivityBudgets {
   static activitiesReference = "Activities Reference"
   static activityReference = "Activity Reference"
   static value = "Value"
+  static budgetType = "Budget Type"
   static status = "Status"
   static budgetStart = "Start Date"
   static budgetStartDay = "Start Day"
@@ -484,7 +485,7 @@ export { App,
          ActivityDates,
          ActivityParticipatingOrg,
          ActivitySectors,
-         ActivityBudgets,
+         ActivityBudget,
          Org,
          Organisations,
          Organisation,

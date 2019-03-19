@@ -5,7 +5,7 @@ import { ethers } from 'ethers'
 import { ApplicationState } from '../../../../store'
 
 import { ActionProps } from '../../../../types'
-import { OrganisationsReportProps, IATIReportActionTypes, IATIBudgetReportProps, IATIBudgetProps } from '../../../types'
+import { OrganisationsReportProps, IATIReportActionTypes, IATIOrganisationBudgetReportProps, IATIBudgetProps } from '../../../types'
 
 import { read } from '../../actions'
 
@@ -17,7 +17,7 @@ export const getExpenditure = (props: OrganisationsReportProps) => {
     const organisationsRef = props.organisationsRef
     const organisationRef = props.organisationRef
 
-    let expenditureReports: IATIBudgetReportProps = {
+    let expenditureReports: IATIOrganisationBudgetReportProps = {
       data: { organisationsRef: organisationsRef,
               organisationRef: organisationRef,
               data: []

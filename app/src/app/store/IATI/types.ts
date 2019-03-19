@@ -155,24 +155,26 @@ export interface IATIActivityBudgetData {
   end: string
 }
 
-type BudgetData = IATIActivityBudgetData | IATIOrganisationBudgetData | IATIExpenditureData | IATIRecipientOrgBudgetData | IATIRegionBudgetData | IATICountryBudgetData
+type ActivityBudgetData = IATIActivityBudgetData
 
 export interface IATIOrganisationBudgetReport {
   organisationsRef: string
   organisationRef: string
-  data: Array<BudgetData>
+  data: Array<IATIOrganisationBudgetData | IATIExpenditureData | IATIRecipientOrgBudgetData | IATIRegionBudgetData | IATICountryBudgetData>
 }
 
 export interface IATIActivityBudgetReport {
   activitiesRef: string
   activityRef: string
-  data: Array<BudgetData>
+  data: Array<ActivityBudgetData>
 }
 
-type BudgetReport = IATIActivityBudgetReport | IATIOrganisationBudgetReport
+export interface IATIActivityBudgetReportProps extends PayloadProps {
+  data: IATIActivityBudgetReport
+}
 
-export interface IATIBudgetReportProps extends PayloadProps {
-  data: BudgetReport
+export interface IATIOrganisationBudgetReportProps extends PayloadProps {
+  data: IATIOrganisationBudgetReport
 }
 
 /* IATI Organisation Writer */
@@ -627,7 +629,9 @@ export const enum IATIWriterActionTypes {
   ACTIVITYPARTICIPATINGORG_SUCCESS = '@@IATIWriterActionTypes/ACTIVITYPARTICIPATINGORG_SUCCESS',
   ACTIVITYPARTICIPATINGORG_FAILURE = '@@IATIWriterActionTypes/ACTIVITYPARTICIPATINGORG_FAILURE',
   ACTIVITYSECTOR_SUCCESS = '@@IATIWriterActionTypes/ACTIVITYSECTOR_SUCCESS',
-  ACTIVITYSECTOR_FAILURE = '@@IATIWriterActionTypes/ACTIVITYSECTOR_FAILURE'
+  ACTIVITYSECTOR_FAILURE = '@@IATIWriterActionTypes/ACTIVITYSECTOR_FAILURE',
+  ACTIVITYBUDGET_SUCCESS = '@@IATIWriterActionTypes/ACTIVITYBUDGET_SUCCESS',
+  ACTIVITYBUDGET_FAILURE = '@@IATIWriterActionTypes/ACTIVITYBUDGET_FAILURE'
 }
 
 export const enum IATIReportActionTypes {
@@ -669,5 +673,8 @@ export const enum IATIReportActionTypes {
   ACTIVITYPARTICIPATINGORG_FAILURE = '@@IATIReportActionTypes/ACTIVITYPARTICIPATINGORG_FAILURE',
   ACTIVITYSECTOR_SUCCESS = '@@IATIReportActionTypes/ACTIVITYSECTOR_SUCCESS',
   ACTIVITYSECTORPICKER_SUCCESS = '@@IATIReportActionTypes/ACTIVITYSECTORPICKER_SUCCESS',
-  ACTIVITYSECTOR_FAILURE = '@@IATIReportActionTypes/ACTIVITYSECTOR_FAILURE'
+  ACTIVITYSECTOR_FAILURE = '@@IATIReportActionTypes/ACTIVITYSECTOR_FAILURE',
+  ACTIVITYBUDGET_SUCCESS = '@@IATIReportActionTypes/ACTIVITYBUDGET_SUCCESS',
+  ACTIVITYBUDGETPICKER_SUCCESS = '@@IATIReportActionTypes/ACTIVITYBUDGETPICKER_SUCCESS',
+  ACTIVITYBUDGET_FAILURE = '@@IATIReportActionTypes/ACTIVITYBUDGET_FAILURE'
 }
