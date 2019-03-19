@@ -18,7 +18,8 @@ import { ActionProps } from '../../types'
         activityAdditional: {},
         activityDates: {},
         activityParticipatingOrgs: {},
-        activitySectors: {}
+        activitySectors: {},
+        activityBudgets: {}
       }
     }
   }

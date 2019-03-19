@@ -32,6 +32,7 @@ class Paths {
   static readonly activityDatesWriter='Activity Dates'
   static readonly activityParticipatingOrgWriter='Activity Participating Org\''
   static readonly activitySectorsWriter='Activity Sectors'
+  static readonly activityBudgetsWriter='Activity Budgets'
   static readonly orgWriter='Org\''
   static readonly organisationsWriter='Organisations'
   static readonly organisationWriter='Organisation Report'
@@ -53,6 +54,7 @@ class Paths {
   static readonly activityDatesReader='Activity Dates'
   static readonly activityParticipatingOrgReader='Activity Participating Org\''
   static readonly activitySectorsReader='Activity Sectors'
+  static readonly activityBudgetsReader='Activity Budgets'
   static readonly orgsReader='Org\'s'
   static readonly organisationsReader='Organisations'
   static readonly organisationReader='Organisation Reports'
@@ -183,6 +185,28 @@ class ActivityAdditional {
   static defaultTiedStatus = "Defaul Tied Status"
 
   static activityAdditionalDetails = "Activity Additional Info\' Details"
+}
+
+class ActivityBudgets {
+
+  static headingActivityBudgetWriter = 'Create Budget Record'
+  static headingActivityBudgetReader = 'Read Budgets Records'
+
+  static budgetReference = "Budget Reference"
+  static activitiesReference = "Activities Reference"
+  static activityReference = "Activity Reference"
+  static value = "Value"
+  static status = "Status"
+  static budgetStart = "Start Date"
+  static budgetStartDay = "Start Day"
+  static budgetStartMonth = "Start Month"
+  static budgetStartYear = "Start Year"
+  static budgetEnd = "End Date"
+  static budgetEndDay = "End Day"
+  static budgetEndMonth = "End Month"
+  static budgetEndYear = "End Year"
+
+  static activityBudgetDetails = 'Budget Details'
 }
 
 class ActivityDates {
@@ -460,6 +484,7 @@ export { App,
          ActivityDates,
          ActivityParticipatingOrg,
          ActivitySectors,
+         ActivityBudgets,
          Org,
          Organisations,
          Organisation,

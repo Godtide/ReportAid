@@ -18,6 +18,7 @@ export interface ContractProps extends PayloadProps {
       activityDates: object
       activityParticipatingOrgs: object
       activitySectors: object
+      activityBudgets: object
     }
   }
 }
