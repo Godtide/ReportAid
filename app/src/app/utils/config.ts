@@ -60,22 +60,22 @@ class Blockchain {
 
 class Contract {
 
-  static orgsAddress = "0x5d6AF1d47970939bfD640434C1c6df3Fee9D202E"
-  static organisationsAddress = "0x5fa6e4A643C46B1dC970b3dbaFc1bBc169D30Ecd"
-  static organisationAddress = "0xb3271E488Dd836dCd1F4c23C9648a0B1B81BBCB9"
-  static organisationDocsAddress = "0x3f87Af7057043fE68fD0E942180F200EA277aE48"
-  static organisationBudgetsAddress = "0x6B94e44b2f2611963B77E497C96a0B092798651d"
-  static organisationExpenditureAddress = "0x9F86B6145a4216C0AEcbf77ac35659802eFD5F8a"
-  static organisationRecipientBudgetsAddress = "0x66ae9e851D38719495Fc80E331D79CeD107CFB73"
-  static organisationRegionBudgetsAddress = "0x6E2a6576f74c3A795503c7cB592095e889F17640"
-  static organisationCountryBudgetsAddress = "0x9ebE6568eb356a48E21b84e57e8b95da56Ad90Ab"
-  static activitiesAddress = "0x12fe62A7B6fE261f4c2Fe0A849A2369Fa2966860"
-  static activityAddress = "0x8cA96cC847AE03c728d2d8957482B1FE113Ce810"
-  static activityAdditionalAddress = "0x1959a3B64A9b8a246cd4ae3305d29EF2Cf928358"
-  static activityDatesAddress = "0xC7271378FB6a2B8292d09Ba8637197c51fF4d26B"
-  static activityParticipatingOrgsAddress = "0xa5C039515f83982e33Da70210BD74c2a30a7Bd01"
-  static activitySectorsAddress = "0xc414e8AAbbe4753faBCf5180BD8438F99adb3016"
-  static activityBudgetsAddress = "0x8EC9d338E9F990B16cE873629C734FBC658a4Cac"
+  static orgsAddress = "0xb3271E488Dd836dCd1F4c23C9648a0B1B81BBCB9"
+  static organisationsAddress = "0x3f87Af7057043fE68fD0E942180F200EA277aE48"
+  static organisationAddress = "0xe0d8994A35Cf8ea62d3377c8b7793e4b8861C572"
+  static organisationDocsAddress = "0x12fe62A7B6fE261f4c2Fe0A849A2369Fa2966860"
+  static organisationBudgetsAddress = "0x66ae9e851D38719495Fc80E331D79CeD107CFB73"
+  static organisationExpenditureAddress = "0x6E2a6576f74c3A795503c7cB592095e889F17640"
+  static organisationRecipientBudgetsAddress = "0x9ebE6568eb356a48E21b84e57e8b95da56Ad90Ab"
+  static organisationRegionBudgetsAddress = "0x8EC9d338E9F990B16cE873629C734FBC658a4Cac"
+  static organisationCountryBudgetsAddress = "0x8cA96cC847AE03c728d2d8957482B1FE113Ce810"
+  static activitiesAddress = "0x9F86B6145a4216C0AEcbf77ac35659802eFD5F8a"
+  static activityAddress = "0xC7271378FB6a2B8292d09Ba8637197c51fF4d26B"
+  static activityAdditionalAddress = "0xa5C039515f83982e33Da70210BD74c2a30a7Bd01"
+  static activityDatesAddress = "0xc414e8AAbbe4753faBCf5180BD8438F99adb3016"
+  static activityParticipatingOrgsAddress = "0xD63A6e29cc37e2A45ad723220c41dDB1AfC31Ec3"
+  static activitySectorsAddress = "0x5384CFF0018Dd621E579F978F2fF963D0B2Bc652"
+  static activityBudgetsAddress = "0x1959a3B64A9b8a246cd4ae3305d29EF2Cf928358"
 
   static activitiesABI = [
     "event SetActivities(bytes32 _activitiesRef, tuple(bytes32 version, bytes32 generatedTime, bytes32 linkedData) orgActivities)",
@@ -110,7 +110,7 @@ class Contract {
   ]
 
   static activityBudgetsABI = [
-  	"function setBudget(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef, tuple(uint8 budgetType, bytes32 budgetLine, bytes32 otherRef, tuple(uint8 status, uint256 value, bytes32 start, bytes32 end) finance) budget)@500000 public",
+  	"function setBudget(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef, tuple(uint8 budgetType, bytes32 budgetLine, bytes32 otherRef, tuple(uint8 status, uint256 value, bytes32 start, bytes32 end) finance) budget)@500000",
 
   	"function getNum(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint256)",
   	"function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) public view returns (bytes32)",
@@ -155,7 +155,7 @@ class Contract {
   ]
 
   static activitySectorsABI = [
-  	"function setSector(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _sectorRef, tuple(uint8 percentage, uint256 dacCode) _sector) public",
+  	"function setSector(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _sectorRef, tuple(uint8 percentage, uint256 dacCode) _sector)@500000",
 
   	"function getNum(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint256)",
   	"function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) public view returns (bytes32)",
