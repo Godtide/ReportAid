@@ -18,7 +18,6 @@ contract IATIBudgets is Budgets {
              _firstRef[0] != 0 &&
              _secondRef[0] != 0 &&
              _budgetRef[0] != 0 &&
-             _budget.budgetLine[0] != 0 &&
              _budget.finance.status > uint8(Status.NONE) &&
              _budget.finance.status < uint8(Status.MAX) &&
              _budget.finance.start[0] != 0 &&

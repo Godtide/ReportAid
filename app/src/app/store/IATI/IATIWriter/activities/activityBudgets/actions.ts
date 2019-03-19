@@ -38,7 +38,7 @@ export const setActivityBudget = (details: ActivityBudgetProps) => {
       }
     }
 
-    //console.log('Budget: ', budget)
+    //console.log('Budget: ', details.activitiesRef, details.activityRef, budgetRef, budget)
 
     let actionType = IATIWriterActionTypes.BUDGET_FAILURE
     let txData: TxReport = {}
