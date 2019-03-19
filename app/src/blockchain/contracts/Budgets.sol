@@ -29,8 +29,8 @@ contract Budgets {
   }
 
   struct Finance {
-    uint256 value;
     uint8 status;
+    uint256 value;
     bytes32 start;
     bytes32 end;
   }

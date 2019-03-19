@@ -31,8 +31,8 @@ export const setRegionBudget = (details: OrganisationRegionBudgetProps) => {
       budgetLine: ethers.utils.formatBytes32String(details.budgetLine),
       otherRef: ethers.utils.formatBytes32String(details.regionRef),
       finance: {
-        value: details.value,
         status: details.status,
+        value: details.value,
         start: ethers.utils.formatBytes32String(start.toISOString()),
         end: ethers.utils.formatBytes32String(end.toISOString())
       }

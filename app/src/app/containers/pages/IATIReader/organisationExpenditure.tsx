@@ -23,7 +23,7 @@ import { getExpenditure } from '../../../store/IATI/IATIReader/organisations/org
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { IATIBudgetReport, OrganisationsReportProps } from '../../../store/IATI/types'
+import { IATIOrganisationBudgetReport, OrganisationsReportProps } from '../../../store/IATI/types'
 
 import { OrganisationExpenditure as OrganisationExpenditureStrings } from '../../../utils/strings'
 
@@ -44,7 +44,7 @@ interface OrganisationExpenditureProps {
   resettingFunc: Function
   organisationsRef: string,
   organisationRef: string,
-  expenditure: IATIBudgetReport
+  expenditure: IATIOrganisationBudgetReport
 }
 
 interface OrganisationExpenditureDispatchProps {
@@ -135,7 +135,7 @@ const mapStateToProps = (state: ApplicationState): OrganisationExpenditureProps 
     resettingFunc: state.forms.data.resetFunc,
     organisationsRef: state.keys.data.organisations,
     organisationRef: state.keys.data.organisation,
-    expenditure: state.report.data as IATIBudgetReport
+    expenditure: state.report.data as IATIOrganisationBudgetReport
   }
 }
 

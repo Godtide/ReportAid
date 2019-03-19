@@ -23,7 +23,7 @@ import { getCountryBudgets } from '../../../store/IATI/IATIReader/organisations/
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { IATIBudgetReport, OrganisationsReportProps } from '../../../store/IATI/types'
+import { IATIOrganisationBudgetReport, OrganisationsReportProps } from '../../../store/IATI/types'
 
 import { OrganisationCountryBudget as OrganisationCountryBudgetStrings } from '../../../utils/strings'
 
@@ -44,7 +44,7 @@ interface OrganisationCountryBudgetProps {
   resettingFunc: Function
   organisationsRef: string,
   organisationRef: string,
-  budgets: IATIBudgetReport
+  budgets: IATIOrganisationBudgetReport
 }
 
 interface OrganisationCountryBudgetDispatchProps {
@@ -135,7 +135,7 @@ const mapStateToProps = (state: ApplicationState): OrganisationCountryBudgetProp
     resettingFunc: state.forms.data.resetFunc,
     organisationsRef: state.keys.data.organisations,
     organisationRef: state.keys.data.organisation,
-    budgets: state.report.data as IATIBudgetReport
+    budgets: state.report.data as IATIOrganisationBudgetReport
   }
 }
 

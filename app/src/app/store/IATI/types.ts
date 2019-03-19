@@ -1,5 +1,21 @@
 import { PayloadProps } from '../types'
 
+/* IATI Budgets */
+
+interface FinanceProps {
+  status: number
+  value: number
+  start: string
+  end: string
+}
+
+export interface IATIBudgetProps {
+  budgetType: number
+  budgetLine: string
+  otherRef: string
+  finance: FinanceProps
+}
+
 /* IATI Organisation Reader */
 
 export interface OrganisationReportProps {
@@ -80,62 +96,83 @@ export interface IATIOrganisationDocReportProps extends PayloadProps {
   data: IATIOrganisationDocReport
 }
 
+/* IATI Budget Reader */
+
+export interface IATIOrganisationBudgetData  {
+  budgetKey: string
+  budgetLine: string
+  status: number
+  value: number
+  start: string
+  end: string
+}
+
 export interface IATIExpenditureData {
   expenditureKey: string
-  expenditureLine: string,
-  value: number,
-  status: number,
-  start: string,
+  expenditureLine: string
+  status: number
+  value: number
+  start: string
   end: string
 }
 
 export interface IATIRecipientOrgBudgetData {
   budgetKey: string
-  budgetLine: string,
-  recipientOrgRef: string,
-  value: number,
-  status: number,
-  start: string,
+  budgetLine: string
+  recipientOrgRef: string
+  status: number
+  value: number
+  start: string
   end: string
 }
 
 export interface IATIRegionBudgetData {
   budgetKey: string
-  budgetLine: string,
-  regionRef: string,
-  value: number,
-  status: number,
-  start: string,
+  budgetLine: string
+  regionRef: string
+  status: number
+  value: number
+  start: string
   end: string
 }
 
 export interface IATICountryBudgetData {
   budgetKey: string
-  budgetLine: string,
-  countryRef: string,
-  value: number,
-  status: number,
-  start: string,
+  budgetLine: string
+  countryRef: string
+  status: number
+  value: number
+  start: string
   end: string
 }
 
-export interface IATIBudgetData {
+export interface IATIActivityBudgetData {
   budgetKey: string
-  budgetLine: string,
-  value: number,
-  status: number,
-  start: string,
+  budgetType: number
+  status: number
+  value: number
+  start: string
   end: string
 }
 
-export interface IATIBudgetReport {
+type BudgetData = IATIActivityBudgetData | IATIOrganisationBudgetData | IATIExpenditureData | IATIRecipientOrgBudgetData | IATIRegionBudgetData | IATICountryBudgetData
+
+export interface IATIOrganisationBudgetReport {
   organisationsRef: string
   organisationRef: string
-  data: Array<IATIBudgetData | IATIExpenditureData | IATIRecipientOrgBudgetData | IATIRegionBudgetData | IATICountryBudgetData >
+  data: Array<BudgetData>
 }
 
+export interface IATIActivityBudgetReport {
+  activitiesRef: string
+  activityRef: string
+  data: Array<BudgetData>
+}
+
+type BudgetReport = IATIActivityBudgetReport | IATIOrganisationBudgetReport
+
 export interface IATIBudgetReportProps extends PayloadProps {
-  data: IATIBudgetReport
+  data: BudgetReport
 }
 
 /* IATI Organisation Writer */
@@ -214,27 +251,15 @@ export interface OrganisationDocProps {
   year: number
 }
 
-interface FinanceProps {
-  value: number
-  status: number
-  start: string
-  end: string
-}
-
-export interface IATIBudgetProps {
-  budgetType: number
-  budgetLine: string
-  otherRef: string
-  finance: FinanceProps
-}
+/* IATI Budgets Writer */
 
 export interface OrganisationBudgetProps {
   organisationsRef: string
   organisationRef: string
   budgetRef: string
   budgetLine: string
-  value: number
   status: number
+  value: number
   startDay: number
   startMonth: number
   startYear: number
@@ -248,8 +273,8 @@ export interface OrganisationExpenditureProps {
   organisationRef: string
   expenditureRef: string
   expenditureLine: string
-  value: number
   status: number
+  value: number
   startDay: number
   startMonth: number
   startYear: number
@@ -264,8 +289,8 @@ export interface OrganisationRecipientBudgetProps {
   budgetRef: string
   recipientOrgRef: string
   budgetLine: string
-  value: number
   status: number
+  value: number
   startDay: number
   startMonth: number
   startYear: number
@@ -280,8 +305,8 @@ export interface OrganisationRegionBudgetProps {
   budgetRef: string
   regionRef: string
   budgetLine: string
-  value: number
   status: number
+  value: number
   startDay: number
   startMonth: number
   startYear: number
@@ -296,8 +321,23 @@ export interface OrganisationCountryBudgetProps {
   budgetRef: string
   countryRef: string
   budgetLine: string
-  value: number
   status: number
+  value: number
+  startDay: number
+  startMonth: number
+  startYear: number
+  endDay: number
+  endMonth: number
+  endYear: number
+}
+
+export interface ActivityBudgetProps {
+  activitiesRef: string
+  activityRef: string
+  budgetRef: string
+  budgetType: number
+  status: number
+  value: number
   startDay: number
   startMonth: number
   startYear: number

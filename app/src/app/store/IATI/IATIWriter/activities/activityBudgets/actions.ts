@@ -8,15 +8,15 @@ import { ApplicationState } from '../../../../store'
 import { write } from '../../actions'
 
 import { ActionProps, TxReport } from '../../../../types'
-import { OrganisationBudgetProps, IATIWriterActionTypes, IATIBudgetProps } from '../../../types'
+import { ActivityBudgetProps, IATIWriterActionTypes, IATIBudgetProps } from '../../../types'
 
 import { Transaction } from '../../../../../utils/strings'
 
-export const setOrganisationBudget = (details: OrganisationBudgetProps) => {
+export const setActivityBudget = (details: ActivityBudgetProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
 
     const state = getState()
-    const budgetsContract = state.chainContracts.data.contracts.organisationBudgets
+    const budgetsContract = state.chainContracts.data.contracts.activityBudgets
 
     let budgetRef = details.budgetRef
     if ( budgetRef == "" ) {
@@ -27,8 +27,8 @@ export const setOrganisationBudget = (details: OrganisationBudgetProps) => {
     const end = new Date(details.endYear + '/' + details.endMonth + '/' + details.endDay)
 
     const budget: IATIBudgetProps = {
-      budgetType: 1,
-      budgetLine: ethers.utils.formatBytes32String(details.budgetLine),
+      budgetType: details.budgetType,
+      budgetLine: ethers.utils.formatBytes32String(""),
       otherRef: ethers.utils.formatBytes32String(""),
       finance: {
         status: details.status,
@@ -43,8 +43,8 @@ export const setOrganisationBudget = (details: OrganisationBudgetProps) => {
     let actionType = IATIWriterActionTypes.BUDGET_FAILURE
     let txData: TxReport = {}
     try {
-      const tx = await budgetsContract.setBudget(details.organisationsRef,
-                                                 details.organisationRef,
+      const tx = await budgetsContract.setBudget(details.activitiesRef,
+                                                 details.activityRef,
                                                  budgetRef,
                                                  budget)
       const key = tx.hash
