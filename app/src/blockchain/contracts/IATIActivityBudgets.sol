@@ -32,6 +32,10 @@ contract IATIActivityBudgets is ActivityBudgets {
     return budgets.getBudget(uint8(Budgets.Owner.ACTIVITY), _activitiesRef, _activityRef, _budgetRef);
   }
 
+  function getBudgetType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) public view returns (uint8) {
+    return budgets.getBudgetType(uint8(Budgets.Owner.ACTIVITY), _activitiesRef, _activityRef, _budgetRef);
+  }
+
   function getBudgetValue(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) public view returns (uint256) {
     return budgets.getBudgetValue(uint8(Budgets.Owner.ACTIVITY), _activitiesRef, _activityRef, _budgetRef);
   }

@@ -207,7 +207,7 @@ class ActivityBudget {
   static budgetEndMonth = "End Month"
   static budgetEndYear = "End Year"
 
-  static activityBudgetDetails = 'Budget Details'
+  static budgetDetails = 'Budget Details'
 }
 
 class ActivityDates {

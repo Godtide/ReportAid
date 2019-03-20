@@ -117,6 +117,7 @@ class Contract {
 
   	"function getBudget(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) public view returns (tuple(uint8 budgetType, bytes32 budgetLine, bytes32 otherRef, tuple(uint8 status, uint256 value, bytes32 start, bytes32 end) finance) budget)",
 
+    "function getBudgetType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) public view returns (uint8)",
   	"function getBudgetValue(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) public view returns (uint256)",
   	"function getBudgetStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) public view returns (uint8)",
   	"function getBudgetStart(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) public view returns (bytes32)",

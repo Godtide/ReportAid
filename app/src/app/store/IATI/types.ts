@@ -147,7 +147,7 @@ export interface IATICountryBudgetData {
 }
 
 export interface IATIActivityBudgetData {
-  budgetKey: string
+  budgetRef: string
   budgetType: number
   status: number
   value: number

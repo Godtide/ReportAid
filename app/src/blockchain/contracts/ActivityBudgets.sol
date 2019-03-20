@@ -11,6 +11,8 @@ contract ActivityBudgets {
   function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) public view returns (bytes32);
 
   function getBudget(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) public view returns (Budgets.Budget memory);
+
+  function getBudgetType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) public view returns (uint8);  
   function getBudgetValue(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) public view returns (uint256);
   function getBudgetStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) public view returns (uint8);
   function getBudgetStart(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) public view returns (bytes32);
