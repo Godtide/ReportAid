@@ -60,22 +60,23 @@ class Blockchain {
 
 class Contract {
 
-  static orgsAddress = "0x0F83144254E8B8Fee0533D2C51e861ADBC869D36"
-  static organisationsAddress = "0x979a9a1B8037142DB5717f706a65dD4B4Cfeb5ad"
-  static organisationAddress = "0x44cF7fB7A45059e999AD16f371f9287923d2d765"
-  static organisationDocsAddress = "0x237B88267D0D0d994061bc38855c13e38C2aFE22"
-  static organisationBudgetsAddress = "0x8353B3B4742f79dA4eE4D06136bdca95AAf15E87"
-  static organisationExpenditureAddress = "0x675DA3fbD5C521fb15949cb33a4d37bAa8928F27"
-  static organisationRecipientBudgetsAddress = "0x288e3e2c3Fd86b0d29A297002E8d411C931a3Cd1"
-  static organisationRegionBudgetsAddress = "0x675dE750f7179e05DEc7883B2EA5dAA51246D96a"
-  static organisationCountryBudgetsAddress = "0xcF6dF5c21BD0de510EE5564dBbA7adF7e5C0f3aA"
-  static activitiesAddress = "0xCDa5d69a157e8B3a93270e60811dEC46fb0d95Ff"
-  static activityAddress = "0xa35c86290bcB2a8aC1a35c5C04c7d8e5720640a7"
-  static activityAdditionalAddress = "0x701B3b708CF1b4b2B7f6b706Fc9cb2139A19E3c7"
-  static activityDatesAddress = "0x03a42897FbCe5995aD84B63b4B71c304B7252FA8"
-  static activityParticipatingOrgsAddress = "0x52357C639922d9FC5faF2dF82d40C8C52345F79D"
-  static activitySectorsAddress = "0xF9A6F399F29626522A34B2E51895F6626377311b"
-  static activityBudgetsAddress = "0x9C8AF4D1eC824242c1C19A77f027e97f3D181C2D"
+  static orgsAddress = "0xe08946fB6a7a4860c2E519D9Ec1312B9bC49345b"
+  static organisationsAddress = "0x5caddE8f4361D017fe4172449478A98711b3b229"
+  static organisationAddress = "0x92881Ff530bE85FA2Bfbe4886Bf651CD2e3F7aAd"
+  static organisationDocsAddress = "0x4871c094930336b32445bb48789FCB4A94CD6Ea3"
+  static organisationBudgetsAddress = "0x3E900F26a6f632B96745e2ED782067854299027a"
+  static organisationExpenditureAddress = "0x15D6181565677Da4355201D99EcF262667Ae801A"
+  static organisationRecipientBudgetsAddress = "0xcC1b5DFea0764d5B501ED705e1Bc65076C2fE21d"
+  static organisationRegionBudgetsAddress = "0xc85DdD83fBb2e5581A5525E085F9D5c08aF0E3C1"
+  static organisationCountryBudgetsAddress = "0x2343ed14D1c3F13d4a7bF86EF4F270199EEd8613"
+  static activitiesAddress = "0xb5d2646873c8AeC60AD44A504Bb4710E21218743"
+  static activityAddress = "0x49b18F8e41DFA0C1B1c5E6762B9Fb2Ffc9E13F11"
+  static activityAdditionalAddress = "0x9Adc658D9191A5c92De61B530998a6d1D33C35a6"
+  static activityDatesAddress = "0xCBe2f5f10a1f400a6F365176136F118868Ddb601"
+  static activityParticipatingOrgsAddress = "0x5F3170d8F70Dbceda74E2d7Ea3a165c4aa179353"
+  static activitySectorsAddress = "0xC2c5555d5DD64c1F2a82B68D12829c4989c47263"
+  static activityBudgetsAddress = "0x4Af8f05E7920b1a782959Ba2a23d4475EB666ce7"
+  static activityTerritoriesAddress = "0x7f1Ea19620E8e115b3E5b2D426FB6bCb15d6272E"
 
   static activitiesABI = [
     "event SetActivities(bytes32 _activitiesRef, tuple(bytes32 version, bytes32 generatedTime, bytes32 linkedData) orgActivities)",
@@ -187,6 +188,20 @@ class Contract {
   	"function getBudgetNotProvided(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8)",
   	"function getLinkedData(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32)",
   	"function getDescription(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (string memory)",
+  ]
+
+  static activityTerritoriesABI = [
+  	"event SetTerritory(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _territoryRef, tuple(uint8 percentage, bytes32 territory) _territory)",
+
+  	"function setTerritory(bytes32 _activitiesRef, bytes32 _activityRef,  bytes32 _territoryRef, tuple(uint8 percentage, bytes32 territory) _territory) public",
+
+  	"function getNum(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint256)",
+  	"function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) public view returns (bytes32)",
+
+  	"function getTerritory(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _territoryRef) public view returns (tuple(uint8 percentage, bytes32 territory) _territory)",
+
+  	"function getPercentage(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _territoryRef) public view returns (uint8)",
+  	"function getDACTerritory(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _territoryRef) public view returns (bytes32)",
   ]
 
   static orgsABI = [

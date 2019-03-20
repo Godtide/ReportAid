@@ -19,6 +19,7 @@ const IATIActivityDates = artifacts.require("./IATIActivityDates.sol");
 const IATIActivityParticipatingOrgs = artifacts.require("./IATIActivityParticipatingOrgs.sol");
 const IATIActivitySectors = artifacts.require("./IATIActivitySectors.sol");
 const IATIActivityBudgets = artifacts.require("./IATIActivityBudgets.sol");
+const IATIActivityTerritories = artifacts.require("./IATIActivityTerritories.sol");
 
 module.exports = function(deployer) {
 
@@ -38,6 +39,7 @@ module.exports = function(deployer) {
   let activityParticipatingOrgsAddress;
   let activitySectorsAddress;
   let activityBudgetsAddress;
+  let activityTerritoriesAddress;
 
   deployer.deploy(StringsLib);
   deployer.link(StringsLib, [IATIBudgets,
@@ -50,7 +52,8 @@ module.exports = function(deployer) {
                              IATIActivityAdditional,
                              IATIActivityDates,
                              IATIActivityParticipatingOrgs,
-                             IATIActivitySectors
+                             IATIActivitySectors,
+                             IATIActivityTerritories
                             ]);
 
   deployer.deploy(IATIOrgs).then(() => {
@@ -116,6 +119,10 @@ module.exports = function(deployer) {
     activitySectorsAddress = "\"" + IATIActivitySectors.address + "\"";
   });
 
+  deployer.deploy(IATIActivityTerritories).then(() => {
+    activityTerritoriesAddress = "\"" + IATIActivityTerritories.address + "\"";
+  });
+
   deployer.then( () => {
     console.log("static orgsAddress =", orgsAddress);
     console.log("static organisationsAddress =", organisationsAddress);
@@ -133,5 +140,6 @@ module.exports = function(deployer) {
     console.log("static activityParticipatingOrgsAddress =", activityParticipatingOrgsAddress);
     console.log("static activitySectorsAddress =", activitySectorsAddress);
     console.log("static activityBudgetsAddress =", activityBudgetsAddress);
+    console.log("static activityTerritoriesAddress =", activityTerritoriesAddress);
   });
 };
