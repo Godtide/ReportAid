@@ -5,9 +5,12 @@ import { ethers } from 'ethers'
 import { ApplicationState } from '../../../../store'
 
 import { ActionProps } from '../../../../types'
-import { IATIBudgetProps, OrganisationsReportProps, IATIReportActionTypes, IATIOrganisationBudgetReportProps } from '../../../types'
+import { IATIBudgetProps,
+         OrganisationsReportProps,
+         IATIReportActionTypes,
+         IATIOrganisationBudgetReportProps } from '../../../types'
 
-import { read } from '../../actions'
+import { read } from '../../../../actions'
 
 export const getBudgets = (props: OrganisationsReportProps) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {

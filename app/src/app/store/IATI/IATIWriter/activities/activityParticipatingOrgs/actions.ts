@@ -5,7 +5,7 @@ import { ethers } from 'ethers'
 
 import { ApplicationState } from '../../../../store'
 
-import { write } from '../../actions'
+import { write } from '../../../../actions'
 
 import { ActionProps, TxReport } from '../../../../types'
 import { ActivityParticipatingOrgProps, IATIActivityParticipatingOrgProps, IATIWriterActionTypes } from '../../../types'
@@ -22,7 +22,7 @@ export const setActivityParticipatingOrg = (details: ActivityParticipatingOrgPro
     if ( participatingOrgRef == "" ) {
       participatingOrgRef = ethers.utils.formatBytes32String(shortid.generate())
     }
-    
+
     const participatingOrgData: IATIActivityParticipatingOrgProps = {
       orgType: details.orgType,
       role: details.role,

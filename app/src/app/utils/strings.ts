@@ -33,6 +33,7 @@ class Paths {
   static readonly activityParticipatingOrgWriter='Activity Participating Org\''
   static readonly activitySectorsWriter='Activity Sectors'
   static readonly activityBudgetsWriter='Activity Budgets'
+  static readonly activityTerritoriesWriter='Activity Territories'
   static readonly orgWriter='Org\''
   static readonly organisationsWriter='Organisations'
   static readonly organisationWriter='Organisation Report'
@@ -55,6 +56,7 @@ class Paths {
   static readonly activityParticipatingOrgReader='Activity Participating Org\''
   static readonly activitySectorsReader='Activity Sectors'
   static readonly activityBudgetsReader='Activity Budgets'
+  static readonly activityTerritoriesReader='Activity Territories'
   static readonly orgsReader='Org\'s'
   static readonly organisationsReader='Organisations'
   static readonly organisationReader='Organisation Reports'
@@ -253,7 +255,7 @@ class ActivitySectors {
 
   static headingActivitySectorsWriter = 'Create Activity Sector Record'
   static headingActivitySectorsReader = 'Read Activity Sectors Records'
-  static headingActivitySectorsUpsectorr = 'Upsector Activity Sectors Record'
+  static headingActivitySectorsUpdater = 'Update Activity Sectors Record'
 
   static activitiesReference = "Activities Reference"
   static activityReference = "Activity Reference"
@@ -263,6 +265,23 @@ class ActivitySectors {
   static percentage = "Percentage Activity"
 
   static sectorsDetails = "Activity Sector Details"
+}
+
+class ActivityTerritories {
+
+  static headingActivityTerritoriesWriter = 'Create Activity Territory Record'
+  static headingActivityTerritoriesReader = 'Read Activity Territories Records'
+  static headingActivityTerritoriesUpdater = 'Update Activity Territory Record'
+
+  static activitiesReference = "Activities Reference"
+  static activityReference = "Activity Reference"
+  static territoryRef = "Activity Territory Reference"
+
+  static countryCode = "Country Code"
+  static regionCode = "Region Code"
+  static percentage = "Percentage Activity"
+
+  static territoriesDetails = "Activity Territory Details"
 }
 
 class Org {
@@ -486,6 +505,7 @@ export { App,
          ActivityParticipatingOrg,
          ActivitySectors,
          ActivityBudget,
+         ActivityTerritories,
          Org,
          Organisations,
          Organisation,

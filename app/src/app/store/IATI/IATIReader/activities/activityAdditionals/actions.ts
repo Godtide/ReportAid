@@ -7,7 +7,7 @@ import { ApplicationState } from '../../../../store'
 import { ActionProps } from '../../../../types'
 import { IATIActivityAdditionalProps, IATIReportActionTypes, IATIActivityAdditionalReportProps, ActivitiesReportProps } from '../../../types'
 
-import { read } from '../../actions'
+import { read } from '../../../../actions'
 
 interface RecordProps {
   activitiesRef: string

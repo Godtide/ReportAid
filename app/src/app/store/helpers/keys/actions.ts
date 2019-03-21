@@ -1,20 +1,13 @@
 import { ThunkDispatch } from 'redux-thunk'
 import { ApplicationState } from '../../../store'
 
-import { storeAction } from '../../actions'
+import { write } from '../../actions'
 
 import shortid from 'shortid'
 import { ethers } from 'ethers'
 
 import { ActionProps, PayloadProps } from '../../types'
 import { KeyActionTypes, KeyTypes, KeyData, Keys } from './types'
-
-export const write = (payload: PayloadProps): Function => {
-  return (actionType: KeyActionTypes): PayloadProps => {
-    const getProps = storeAction(actionType)(payload) as PayloadProps
-    return getProps
-  }
-}
 
 export const setKey = (props: Keys) => {
   return async (dispatch: ThunkDispatch<ApplicationState, null, ActionProps>, getState: Function) => {
@@ -47,7 +40,8 @@ export const setKey = (props: Keys) => {
           activityDate:  key,
           activityParticipatingOrg:  key,
           activitySector:  key,
-          activityBudget:  key
+          activityBudget:  key,
+          activityTerritory:  key
         }
         actionType = KeyActionTypes.NEW_SUCCESS
         break
@@ -132,11 +126,14 @@ export const setKey = (props: Keys) => {
         actionType = KeyActionTypes.ACTIVITYBUDGET_SUCCESS
         break
       }
+      case KeyTypes.ACTIVITYTERRITORY: {
+        keyData.activityTerritory = key
+        actionType = KeyActionTypes.ACTIVITYTERRITORY_SUCCESS
+        break
+      }
       default:
         break
     }
-
-    //console.log('dispatch: ', keyData, actionType)
 
     await dispatch(write({data: keyData})(actionType))
   }

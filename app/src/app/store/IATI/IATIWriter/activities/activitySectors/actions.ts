@@ -5,7 +5,7 @@ import { ethers } from 'ethers'
 
 import { ApplicationState } from '../../../../store'
 
-import { write } from '../../actions'
+import { write } from '../../../../actions'
 
 import { ActionProps, TxReport } from '../../../../types'
 import { ActivitySectorProps, IATIActivitySectorProps, IATIWriterActionTypes } from '../../../types'

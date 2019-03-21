@@ -5,9 +5,9 @@ import { ethers } from 'ethers'
 
 import { ApplicationState } from '../../../../store'
 
-import { write } from '../../actions'
+import { write } from '../../../../actions'
 
-import { ActionProps, PayloadProps, TxProps, TxReport } from '../../../../types'
+import { ActionProps, TxReport } from '../../../../types'
 import { OrganisationDocProps, IATIOrganisationDocProps, IATIWriterActionTypes } from '../../../types'
 
 import { Transaction } from '../../../../../utils/strings'

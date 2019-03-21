@@ -4,9 +4,11 @@ import { storeAction } from '../../../../actions'
 import { ApplicationState } from '../../../../store'
 import { ActionProps, PayloadProps} from '../../../../types'
 
-import { IATIOrgProps, IATIReportActionTypes, IATIOrgReportProps } from '../../../types'
+import { IATIOrgProps,
+         IATIReportActionTypes,
+         IATIOrgReportProps } from '../../../types'
 
-import { read } from '../../actions'
+import { read } from '../../../../actions'
 
 interface RecordProps {
   orgRef: string

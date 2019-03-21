@@ -10,7 +10,7 @@ import { IATIOrganisationsProps,
          IATIReportActionTypes,
          IATIOrganisationsReportProps } from '../../../types'
 
-import { read } from '../../actions'
+import { read } from '../../../../actions'
 
 interface RecordProps {
   organisationsRef: string
