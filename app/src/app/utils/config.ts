@@ -195,7 +195,7 @@ class Contract {
   static activityTerritoriesABI = [
   	"event SetTerritory(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _territoryRef, tuple(uint8 percentage, bytes32 territory) _territory)",
 
-  	"function setTerritory(bytes32 _activitiesRef, bytes32 _activityRef,  bytes32 _territoryRef, tuple(uint8 percentage, bytes32 territory) _territory) public",
+  	"function setTerritory(bytes32 _activitiesRef, bytes32 _activityRef,  bytes32 _territoryRef, tuple(uint8 percentage, bytes32 territory) _territory)@500000",
 
   	"function getNum(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint256)",
   	"function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) public view returns (bytes32)",
@@ -356,6 +356,26 @@ class Contract {
 }
 
 class Helpers {
+
+  static regionCodes = [
+    { value: "88", label: "States Ex-Yugoslavia" },
+  	{ value: "89", label: "Europe" },
+  	{ value: "189", label: "North of Sahara" },
+  	{ value: "289", label: "South of Sahara" },
+  	{ value: "298", label: "Africa" },
+  	{ value: "380", label: "West Indies" },
+  	{ value: "389", label: "North & Central America" },
+  	{ value: "489", label: "South America" },
+  	{ value: "498", label: "America" },
+  	{ value: "589", label: "Middle East" },
+  	{ value: "619", label: "Central Asia" },
+  	{ value: "679", label: "South Asia" },
+  	{ value: "689", label: "South & Central Asia" },
+  	{ value: "789", label: "Far East Asia" },
+  	{ value: "798", label: "Asia" },
+  	{ value: "889", label: "Oceania" },
+  	{ value: "998", label: "Developing countries" }
+  ]
 
   static budgetType = [
     { value: 1, label: "Original" },

@@ -469,6 +469,20 @@ export interface ActivitySectorProps {
   dacCode: number
 }
 
+export interface IATIActivityTerritoryProps {
+  territory: string
+  percentage: number
+}
+
+export interface ActivityTerritoryProps {
+  activitiesRef: string
+  activityRef: string
+  territoryRef: string
+  countryCode: string
+  regionCode: string
+  percentage: number
+}
+
 /* IATI Activities Reader */
 
 export interface ActivityReportProps {
@@ -596,6 +610,22 @@ export interface IATIActivitySectorReportProps extends PayloadProps {
   data: IATIActivitySectorReport
 }
 
+export interface IATIActivityTerritoryData {
+  territoryRef: string
+  territory: string
+  percentage: number
+}
+
+export interface IATIActivityTerritoryReport {
+  activitiesRef: string
+  activityRef: string
+  data: Array<IATIActivityTerritoryData>
+}
+
+export interface IATIActivityTerritoryReportProps extends PayloadProps {
+  data: IATIActivityTerritoryReport
+}
+
 /* Action Types */
 
 export const enum IATIWriterActionTypes {
@@ -631,7 +661,9 @@ export const enum IATIWriterActionTypes {
   ACTIVITYSECTOR_SUCCESS = '@@IATIWriterActionTypes/ACTIVITYSECTOR_SUCCESS',
   ACTIVITYSECTOR_FAILURE = '@@IATIWriterActionTypes/ACTIVITYSECTOR_FAILURE',
   ACTIVITYBUDGET_SUCCESS = '@@IATIWriterActionTypes/ACTIVITYBUDGET_SUCCESS',
-  ACTIVITYBUDGET_FAILURE = '@@IATIWriterActionTypes/ACTIVITYBUDGET_FAILURE'
+  ACTIVITYBUDGET_FAILURE = '@@IATIWriterActionTypes/ACTIVITYBUDGET_FAILURE',
+  ACTIVITYTERRITORY_SUCCESS = '@@IATIWriterActionTypes/ACTIVITYTERRITORY_SUCCESS',
+  ACTIVITYTERRITORY_FAILURE = '@@IATIWriterActionTypes/ACTIVITYTERRITORY_FAILURE'
 }
 
 export const enum IATIReportActionTypes {
@@ -676,5 +708,8 @@ export const enum IATIReportActionTypes {
   ACTIVITYSECTOR_FAILURE = '@@IATIReportActionTypes/ACTIVITYSECTOR_FAILURE',
   ACTIVITYBUDGET_SUCCESS = '@@IATIReportActionTypes/ACTIVITYBUDGET_SUCCESS',
   ACTIVITYBUDGETPICKER_SUCCESS = '@@IATIReportActionTypes/ACTIVITYBUDGETPICKER_SUCCESS',
-  ACTIVITYBUDGET_FAILURE = '@@IATIReportActionTypes/ACTIVITYBUDGET_FAILURE'
+  ACTIVITYBUDGET_FAILURE = '@@IATIReportActionTypes/ACTIVITYBUDGET_FAILURE',
+  ACTIVITYTERRITORY_SUCCESS = '@@IATIReportActionTypes/ACTIVITYTERRITORY_SUCCESS',
+  ACTIVITYTERRITORYPICKER_SUCCESS = '@@IATIReportActionTypes/ACTIVITYTERRITORYPICKER_SUCCESS',
+  ACTIVITYTERRITORY_FAILURE = '@@IATIReportActionTypes/ACTIVITYTERRITORY_FAILURE'
 }

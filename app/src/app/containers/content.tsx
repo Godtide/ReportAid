@@ -17,6 +17,7 @@ import { ActivityDate as ActivityDatesWriter } from './pages/IATIWriter/create/a
 import { ActivityParticipatingOrg as ActivityParticipatingOrgWriter } from './pages/IATIWriter/create/activityParticipatingOrgs'
 import { ActivitySector as ActivitySectorsWriter } from './pages/IATIWriter/create/activitySectors'
 import { ActivityBudgets as ActivityBudgetsWriter } from './pages/IATIWriter/create/activityBudgets'
+import { ActivityTerritory as ActivityTerritoryWriter } from './pages/IATIWriter/create/activityTerritories'
 import { Org as OrgWriter } from './pages/IATIWriter/create/org'
 import { Organisations as OrganisationsWriter } from './pages/IATIWriter/create/organisations'
 import { Organisation as OrganisationWriter } from './pages/IATIWriter/create/organisation'
@@ -100,6 +101,11 @@ class AppContent extends React.Component<WithStyles<typeof styles>> {
           name={Paths.activityBudgetsWriter}
           path={PathConfig.activityBudgetsWriter}
           render={() => <ActivityBudgetsWriter />}
+        />
+        <Route
+          name={Paths.activityTerritoriesWriter}
+          path={PathConfig.activityTerritoriesWriter}
+          render={() => <ActivityTerritoryWriter />}
         />
 
         <Route
