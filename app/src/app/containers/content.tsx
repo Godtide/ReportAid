@@ -40,6 +40,7 @@ import { ActivityDates as ActivityDatesReader } from './pages/IATIReader/activit
 import { ActivityParticipatingOrg as ActivityParticipatingOrgsReader } from './pages/IATIReader/activityParticipatingOrgs'
 import { ActivitySectors as ActivitySectorsReader } from './pages/IATIReader/activitySectors'
 import { ActivityBudgets as ActivityBudgetsReader } from './pages/IATIReader/activityBudgets'
+import { ActivityTerritories as ActivityTerritoriesReader } from './pages/IATIReader/activityTerritories'
 import { Orgs as OrgsReader } from './pages/IATIReader/orgs'
 import { Organisations as OrganisationsReader } from './pages/IATIReader/organisations'
 import { Organisation as OrganisationReader } from './pages/IATIReader/organisation'
@@ -211,6 +212,13 @@ class AppContent extends React.Component<WithStyles<typeof styles>> {
           path={PathConfig.activityBudgetsReader}
           render={() => <ActivityBudgetsReader />}
         />
+        <Route
+          name={Paths.activityTerritoriesReader}
+          path={PathConfig.activityTerritoriesReader}
+          render={() => <ActivityTerritoriesReader />}
+        />
+
+        ActivityTerritoriesReader
 
         <Route
           name={Paths.orgsReader}

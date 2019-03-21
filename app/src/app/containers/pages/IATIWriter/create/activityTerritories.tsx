@@ -39,11 +39,9 @@ const ActivityTerritorySchema = Yup.object().shape({
     .string()
     .required('Required'),
   countryCode: Yup
-    .string()
-    .required('Required'),
+    .string(),
   regionCode: Yup
-    .string()
-    .required('Required'),
+    .string(),
   percentage: Yup
     .number()
     .required('Required'),
