@@ -207,6 +207,35 @@ class Contract {
   	"function getDACTerritory(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _territoryRef) public view returns (bytes32)",
   ]
 
+  static activityTransactionsABI = [
+  	"function setTransaction(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef, tuple(uint8 transactionType, uint8 disbursementChannel, uint8 flowType, uint8 tiedStatus, uint256 financeType, bytes32 aidType, bytes32 date, tuple(uint256 value, bytes32 date, bytes32 currency) value, tuple(uint8 orgType, bytes32 orgRef, bytes32 activityRef) providerOrg, tuple(uint8 orgType, bytes32 orgRef, bytes32 activityRef) receiverOrg, uint256 sectorDacCode, bytes32 territory, string description) _transaction)@500000",
+
+  	"function getNum(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint256)",
+  	"function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) public view returns (bytes32)",
+
+  	"function getTransaction(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (Transaction memory)",
+
+  	"function getTransactionType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (uint8)",
+  	"function getDisbursementChannel(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (uint8)",
+  	"function getFlowType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (uint8)",
+  	"function getTiedStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (uint8)",
+  	"function getFinanceType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (uint256)",
+  	"function getAidType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (bytes32)",
+  	"function getDate(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (bytes32)",
+  	"function getValue(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (uint256)",
+  	"function getValueDate(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (bytes32)",
+  	"function getValueCurrency(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (bytes32)",
+  	"function getProviderOrgRef(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (bytes32)",
+  	"function getProviderOrgType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (uint8)",
+  	"function getProviderActivityRef(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (bytes32)",
+  	"function getReceiverOrgRef(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (bytes32)",
+  	"function getReceiverOrgType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (uint8)",
+  	"function getReceiverActivityRef(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (bytes32)",
+  	"function getSectorDacCode(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (uint256)",
+  	"function getTerritory(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (bytes32)",
+  	"function getDescription(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (string memory)"
+  ]
+
   static orgsABI = [
     "event SetOrg(bytes32 _orgRef, tuple(string name, string identifier) _org)",
 

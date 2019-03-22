@@ -19,7 +19,8 @@ const initialState: KeyProps = {
     activityParticipatingOrg: '',
     activitySector: '',
     activityBudget: '',
-    activityTerritory: ''
+    activityTerritory: '',
+    activityTransaction: ''
   }
 }
 
@@ -46,7 +47,8 @@ export const reducer = (state: KeyProps = initialState, action: ActionProps): Ke
     case KeyActionTypes.ACTIVITYPARTICIPATINGORG_SUCCESS:
     case KeyActionTypes.ACTIVITYSECTOR_SUCCESS:
     case KeyActionTypes.ACTIVITYBUDGET_SUCCESS:
-    case KeyActionTypes.ACTIVITYTERRITORY_SUCCESS: {
+    case KeyActionTypes.ACTIVITYTERRITORY_SUCCESS:
+    case KeyActionTypes.ACTIVITYTRANSACTION_SUCCESS: {
       const data = (action.payload.data as KeyProps)
       //console.log('Here!: ', data, action.type)
       return {...state, ...data}
