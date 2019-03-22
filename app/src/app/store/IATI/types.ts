@@ -483,6 +483,57 @@ export interface ActivityTerritoryProps {
   percentage: number
 }
 
+export interface IATIActivityTransactionProps {
+  transactionType: number
+  disbursementChannel: number
+  flowType: number
+  tiedStatus: number
+  financeType: number
+  aidType: string
+  date: string
+  value: number
+  valueDate: string
+  currency: string
+  providerOrgType: number
+  providerOrgRef: string
+  providerActivityRef: string
+  receiverOrgType: number
+  receiverOrgRef: string
+  receiverActivityRef: string
+  sectorDacCode: number
+  territory: string
+  description: string
+}
+
+export interface ActivityTransactionProps {
+  activitiesRef: string
+  activityRef: string
+  transactionRef: string
+  transactionType: number
+  disbursementChannel: number
+  flowType: number
+  tiedStatus: number
+  financeType: number
+  aidType: string
+  day: number
+  month: number
+  year: number
+  value: number
+  valueDay: number
+  valueMonth: number
+  valueYear: number
+  currency: string
+  providerOrgType: number
+  providerOrgRef: string
+  providerActivityRef: string
+  receiverOrgType: number
+  receiverOrgRef: string
+  receiverActivityRef: string
+  sectorDacCode: number
+  territory: string
+  description: string
+}
+
 /* IATI Activities Reader */
 
 export interface ActivityReportProps {
@@ -626,6 +677,39 @@ export interface IATIActivityTerritoryReportProps extends PayloadProps {
   data: IATIActivityTerritoryReport
 }
 
+export interface IATIActivityTransactionData {
+  transactionRef: string
+  transactionType: number
+  disbursementChannel: number
+  flowType: number
+  tiedStatus: number
+  financeType: number
+  aidType: string
+  date: string
+  value: number
+  valueDate: string
+  currency: string
+  providerOrgType: number
+  providerOrgRef: string
+  providerActivityRef: string
+  receiverOrgType: number
+  receiverOrgRef: string
+  receiverActivityRef: string
+  sectorDacCode: number
+  territory: string
+  description: string
+}
+
+export interface IATIActivityTransactionReport {
+  activitiesRef: string
+  activityRef: string
+  data: Array<IATIActivityTransactionData>
+}
+
+export interface IATIActivityTransactionReportProps extends PayloadProps {
+  data: IATIActivityTransactionReport
+}
+
 /* Action Types */
 
 export const enum IATIWriterActionTypes {
@@ -663,7 +747,9 @@ export const enum IATIWriterActionTypes {
   ACTIVITYBUDGET_SUCCESS = '@@IATIWriterActionTypes/ACTIVITYBUDGET_SUCCESS',
   ACTIVITYBUDGET_FAILURE = '@@IATIWriterActionTypes/ACTIVITYBUDGET_FAILURE',
   ACTIVITYTERRITORY_SUCCESS = '@@IATIWriterActionTypes/ACTIVITYTERRITORY_SUCCESS',
-  ACTIVITYTERRITORY_FAILURE = '@@IATIWriterActionTypes/ACTIVITYTERRITORY_FAILURE'
+  ACTIVITYTERRITORY_FAILURE = '@@IATIWriterActionTypes/ACTIVITYTERRITORY_FAILURE',
+  ACTIVITYTRANSACTION_SUCCESS = '@@IATIWriterActionTypes/ACTIVITYTRANSACTION_SUCCESS',
+  ACTIVITYTRANSACTION_FAILURE = '@@IATIWriterActionTypes/ACTIVITYTRANSACTION_FAILURE'
 }
 
 export const enum IATIReportActionTypes {
@@ -711,5 +797,8 @@ export const enum IATIReportActionTypes {
   ACTIVITYBUDGET_FAILURE = '@@IATIReportActionTypes/ACTIVITYBUDGET_FAILURE',
   ACTIVITYTERRITORY_SUCCESS = '@@IATIReportActionTypes/ACTIVITYTERRITORY_SUCCESS',
   ACTIVITYTERRITORYPICKER_SUCCESS = '@@IATIReportActionTypes/ACTIVITYTERRITORYPICKER_SUCCESS',
-  ACTIVITYTERRITORY_FAILURE = '@@IATIReportActionTypes/ACTIVITYTERRITORY_FAILURE'
+  ACTIVITYTERRITORY_FAILURE = '@@IATIReportActionTypes/ACTIVITYTERRITORY_FAILURE',
+  ACTIVITYTRANSACTION_SUCCESS = '@@IATIReportActionTypes/ACTIVITYTRANSACTION_SUCCESS',
+  ACTIVITYTRANSACTIONPICKER_SUCCESS = '@@IATIReportActionTypes/ACTIVITYTRANSACTIONPICKER_SUCCESS',
+  ACTIVITYTRANSACTION_FAILURE = '@@IATIReportActionTypes/ACTIVITYTRANSACTION_FAILURE'
 }
