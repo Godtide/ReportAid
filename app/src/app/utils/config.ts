@@ -62,23 +62,24 @@ class Blockchain {
 
 class Contract {
 
-  static orgsAddress = "0xe08946fB6a7a4860c2E519D9Ec1312B9bC49345b"
-  static organisationsAddress = "0x5caddE8f4361D017fe4172449478A98711b3b229"
-  static organisationAddress = "0x92881Ff530bE85FA2Bfbe4886Bf651CD2e3F7aAd"
-  static organisationDocsAddress = "0x4871c094930336b32445bb48789FCB4A94CD6Ea3"
-  static organisationBudgetsAddress = "0x3E900F26a6f632B96745e2ED782067854299027a"
-  static organisationExpenditureAddress = "0x15D6181565677Da4355201D99EcF262667Ae801A"
-  static organisationRecipientBudgetsAddress = "0xcC1b5DFea0764d5B501ED705e1Bc65076C2fE21d"
-  static organisationRegionBudgetsAddress = "0xc85DdD83fBb2e5581A5525E085F9D5c08aF0E3C1"
-  static organisationCountryBudgetsAddress = "0x2343ed14D1c3F13d4a7bF86EF4F270199EEd8613"
-  static activitiesAddress = "0xb5d2646873c8AeC60AD44A504Bb4710E21218743"
-  static activityAddress = "0x49b18F8e41DFA0C1B1c5E6762B9Fb2Ffc9E13F11"
-  static activityAdditionalAddress = "0x9Adc658D9191A5c92De61B530998a6d1D33C35a6"
-  static activityDatesAddress = "0xCBe2f5f10a1f400a6F365176136F118868Ddb601"
-  static activityParticipatingOrgsAddress = "0x5F3170d8F70Dbceda74E2d7Ea3a165c4aa179353"
-  static activitySectorsAddress = "0xC2c5555d5DD64c1F2a82B68D12829c4989c47263"
-  static activityBudgetsAddress = "0x4Af8f05E7920b1a782959Ba2a23d4475EB666ce7"
-  static activityTerritoriesAddress = "0x7f1Ea19620E8e115b3E5b2D426FB6bCb15d6272E"
+  static orgsAddress = "0x0c0dA685D5E9FF2864df3248FB955910918b000A"
+  static organisationsAddress = "0x492d641AEf25Fa2Ca768504D444361CAF29Fd59d"
+  static organisationAddress = "0xd001A763017e90B450E281A87Ac9Aa6F802A0F35"
+  static organisationDocsAddress = "0xBbaF76E70063e65c49BCE84212817f117AeDeac9"
+  static organisationBudgetsAddress = "0xca5dCd6182bEd3Caac023E1E037e6D1042af1f85"
+  static organisationExpenditureAddress = "0xef0d402a5C8b43cdD99C1e3fFB9e2f5Cb2ECE0cA"
+  static organisationRecipientBudgetsAddress = "0x27fCC0F0DfFe999Ea3AE852cF6E9003ba0181aa9"
+  static organisationRegionBudgetsAddress = "0xe02358b7C13Cd6b19c45C2670467696cD4F30006"
+  static organisationCountryBudgetsAddress = "0xC553FE7B1C64D9E01Efe45595C82F13905AEe6A6"
+  static activitiesAddress = "0xD408E5a3C5db4C15994497A4DbE9Ed6691E9947c"
+  static activityAddress = "0x834ffE2EcA00e40C70f4242e41bdA0B0941a75d7"
+  static activityAdditionalAddress = "0x91283F4A2d54823B922fA7cF8c65017D7f5EdC13"
+  static activityDatesAddress = "0xadbc684Dbb5D931B72cED71C312EBcf3b56635B8"
+  static activityParticipatingOrgsAddress = "0x0b3EC01Dc3e538e32f444709E0725df09573a2f5"
+  static activitySectorsAddress = "0xaC68282F256a82a5c50478F94364132cF3D0a3D8"
+  static activityBudgetsAddress = "0xFad115D9f8e7D873a063a29D3873A2Df920e91ff"
+  static activityTerritoriesAddress = "0xAb14DDa441294c3679eAe7f051ca4751bc046bFF"
+  static activityTransactionsAddress = "0xA651F65E1557E27b0a23Bd289171DC0c949F73Bc"
 
   static activitiesABI = [
     "event SetActivities(bytes32 _activitiesRef, tuple(bytes32 version, bytes32 generatedTime, bytes32 linkedData) orgActivities)",
@@ -137,7 +138,7 @@ class Contract {
   	"function getDate(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _dateRef) view returns (tuple(uint8 dateType, bytes32 date, string narrative) date)",
   	"function getType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _dateRef) view returns (uint8)",
   	"function getISODate(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _dateRef) view returns (bytes32)",
-  	"function getNarrative(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _dateRef) view returns (string memory)"
+  	"function getNarrative(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _dateRef) view returns (string)"
   ]
 
   static activityParticipatingOrgsABI = [
@@ -154,7 +155,7 @@ class Contract {
   	"function getType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _particpatingOrgRef) view returns (uint8)",
   	"function getRole(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _particpatingOrgRef) view returns (uint8)",
   	"function getCrsChannelCode(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _particpatingOrgRef) view returns (uint256)",
-  	"function getNarrative(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _particpatingOrgRef) view returns (string memory)",
+  	"function getNarrative(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _particpatingOrgRef) view returns (string)",
   	"function getLang(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _particpatingOrgRef) view returns (bytes32)"
   ]
 
@@ -189,7 +190,7 @@ class Contract {
   	"function getStatus(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8)",
   	"function getBudgetNotProvided(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8)",
   	"function getLinkedData(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32)",
-  	"function getDescription(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (string memory)",
+  	"function getDescription(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (string)",
   ]
 
   static activityTerritoriesABI = [
@@ -264,12 +265,12 @@ class Contract {
 
     "function getDocument(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _docRef) view returns (tuple(string title, string format, string url, bytes32 category, bytes32 countryRef, string desc, bytes32 lang, bytes32 date) doc)",
 
-    "function getDocumentTitle(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _docRef) view returns (string memory)",
-    "function getDocumentFormat(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _docRef) view returns (string memory)",
-    "function getDocumentURL(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _docRef) view returns (string memory)",
+    "function getDocumentTitle(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _docRef) view returns (string)",
+    "function getDocumentFormat(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _docRef) view returns (string)",
+    "function getDocumentURL(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _docRef) view returns (string)",
     "function getDocumentCategory(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _docRef) view returns (bytes32)",
     "function getDocumentCountry(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _docRef) view returns (bytes32)",
-    "function getDocumentDescription(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _docRef) view returns (string memory)",
+    "function getDocumentDescription(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _docRef) view returns (string)",
     "function getDocumentLang(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _docRef) view returns (bytes32)",
     "function getDocumentDate(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _docRef) view returns (bytes32)"
   ]
@@ -356,6 +357,79 @@ class Contract {
 }
 
 class Helpers {
+
+  static financeType = [
+    { value: 1, label: "GNI: Gross National Income" },
+    { value: 2, label: "ODA % GNI" },
+    { value: 3, label: "Total Flows % GNI" },
+    { value: 4, label: "Population" },
+    { value: 110, label: "Standard grant" },
+    { value: 210, label: "Interest subsidy" },
+    { value: 310, label: "Capital subscription on deposit basis" },
+    { value: 311, label: "Capital subscription on encashment basis" },
+    { value: 421, label: "Standard loan" },
+    { value: 422, label: "Reimbursable grant" },
+    { value: 423, label: "Bonds" },
+    { value: 424, label: "Asset-backed securities" },
+    { value: 425, label: "Other debt securities" },
+    { value: 431, label: "Subordinated loan" },
+    { value: 432, label: "Preferred equity" },
+    { value: 433, label: "Other hybrid instruments" },
+    { value: 510, label: "Common equity" },
+    { value: 520, label: "Shares in collective investment vehicles" },
+    { value: 530, label: "Reinvested earnings" },
+    { value: 610, label: "Debt forgiveness: ODA claims (P)" },
+    { value: 611, label: "Debt forgiveness: ODA claims (I)" },
+    { value: 612, label: "Debt forgiveness: OOF claims (P)" },
+    { value: 613, label: "Debt forgiveness: OOF claims (I)" },
+    { value: 614, label: "Debt forgiveness: Private claims (P)" },
+    { value: 615, label: "Debt forgiveness: Private claims (I)" },
+    { value: 616, label: "Debt forgiveness: OOF claims (DSR)" },
+    { value: 617, label: "Debt forgiveness: Private claims (DSR)" },
+    { value: 618, label: "Debt forgiveness: Other" },
+    { value: 620, label: "Debt rescheduling: ODA claims (P)" },
+    { value: 621, label: "Debt rescheduling: ODA claims (I)" },
+    { value: 622, label: "Debt rescheduling: OOF claims (P)" },
+    { value: 623, label: "Debt rescheduling: OOF claims (I)" },
+    { value: 624, label: "Debt rescheduling: Private claims (P)" },
+    { value: 625, label: "Debt rescheduling: Private claims (I)" },
+    { value: 626, label: "Debt rescheduling: OOF claims (DSR)" },
+    { value: 627, label: "Debt rescheduling: Private claims (DSR)" },
+    { value: 630, label: "Debt rescheduling: OOF claim (DSR – original loan principal)" },
+    { value: 631, label: "Debt rescheduling: OOF claim (DSR – original loan interest)" },
+    { value: 632, label: "Debt rescheduling: Private claim (DSR – original loan principal)" },
+    { value: 633, label: "Debt forgiveness/conversion: export credit claims (P)" },
+    { value: 634, label: "Debt forgiveness/conversion: export credit claims (I)" },
+    { value: 635, label: "Debt forgiveness: export credit claims (DSR)" },
+    { value: 636, label: "Debt rescheduling: export credit claims (P)" },
+    { value: 637, label: "Debt rescheduling: export credit claims (I)" },
+    { value: 638, label: "Debt rescheduling: export credit claims (DSR)" },
+    { value: 639, label: "Debt rescheduling: export credit claim (DSR – original loan principal)" },
+    { value: 1100, label: "Guarantees/insurance" }
+  ]
+
+  static disbursementChannel = [
+    { value: 1, label: "Money is disbursed through central Ministry of Finance or Treasury" },
+    { value: 2, label: "Money is disbursed directly to the implementing institution and managed through a separate bank account" },
+    { value: 3, label: "Aid in kind: Donors utilise third party agencies, e.g. NGOs or management companies" },
+    { value: 4, label: "Aid in kind: Donors manage funds themselves" }
+  ]
+
+  static transactionType = [
+    { value: 1, label: "Incoming Funds" },
+    { value: 2, label: "Outgoing Commitment" },
+    { value: 3, label: "Disbursement" },
+    { value: 4, label: "Expenditure" },
+    { value: 5, label: "Interest Payment" },
+    { value: 6, label: "Loan Repayment" },
+    { value: 7, label: "Reimbursement" },
+    { value: 8, label: "Purchase of Equity" },
+    { value: 9, label: "Sale of Equity" },
+    { value: 10, label: "Credit Guarantee" },
+    { value: 11, label: "Incoming Commitment" },
+    { value: 12, label: "Outgoing Pledge" },
+    { value: 13, label: "Incoming Pledge" }
+  ]
 
   static regionCodes = [
     { value: "88", label: "States Ex-Yugoslavia" },
