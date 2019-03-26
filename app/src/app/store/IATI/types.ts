@@ -530,7 +530,8 @@ export interface ActivityTransactionProps {
   receiverOrgRef: string
   receiverActivityRef: string
   sectorDacCode: number
-  territory: string
+  countryCode: string
+  regionCode: string
   description: string
 }
 

@@ -34,6 +34,7 @@ class Paths {
   static readonly activitySectorsWriter='Activity Sectors'
   static readonly activityBudgetsWriter='Activity Budgets'
   static readonly activityTerritoriesWriter='Activity Territories'
+  static readonly activityTransactionsWriter='Activity Transactions'
   static readonly orgWriter='Org\''
   static readonly organisationsWriter='Organisations'
   static readonly organisationWriter='Organisation Report'
@@ -57,6 +58,7 @@ class Paths {
   static readonly activitySectorsReader='Activity Sectors'
   static readonly activityBudgetsReader='Activity Budgets'
   static readonly activityTerritoriesReader='Activity Territories'
+  static readonly activityTransactionsReader='Activity Transactions'
   static readonly orgsReader='Org\'s'
   static readonly organisationsReader='Organisations'
   static readonly organisationReader='Organisation Reports'
@@ -284,6 +286,47 @@ class ActivityTerritories {
   static territoriesDetails = "Activity Territory Details"
 }
 
+class ActivityTransactions {
+
+  static headingActivityTransactionsWriter = 'Create Activity Transaction Record'
+  static headingActivityTransactionsReader = 'Read Activity Transactions Records'
+  static headingActivityTransactionsUpdater = 'Update Activity Transaction Record'
+
+  static activitiesReference = "Activities Reference"
+  static activityReference = "Activity Reference"
+  static transactionRef = "Activity Transaction Reference"
+
+
+  static transactionType = "Transaction Type"
+  static disbursementChannel = "Disbursement Channel"
+  static flowType = "Flow Type"
+  static tiedStatus = "Tied Status"
+  static financeType = "Finance Type"
+  static aidType = "Aid Type"
+  static day = "Activity Day"
+  static month = "Activity Month"
+  static year = "Activity Year"
+  static value = "Value"
+  static valueDay = "Value Day"
+  static valueMonth = "Value Month"
+  static valueYear = "Value Year"
+  static currency = "Currency"
+  static providerOrgType = "Provider Org\' Type"
+  static providerOrgRef = "Provider Org\' Reference"
+  static providerActivityRef = "Provider Org\' Activity Reference"
+  static receiverOrgType = "Receiver Org\' Type"
+  static receiverOrgRef = "Receiver Org\' Reference"
+  static receiverActivityRef = "Receiver Org\' Activity Reference"
+  static sectorDacCode = "Sector Dac Code"
+  static territory = "Territory"
+  static countryCode = "Country Code"
+  static regionCode = "Region Code"
+  static description = "Description"
+
+  static transactionsDetails = "Activity Transaction Details"
+
+}
+
 class Org {
 
   static headingOrgWriter = 'Create Org\' Record'
@@ -506,6 +549,7 @@ export { App,
          ActivitySectors,
          ActivityBudget,
          ActivityTerritories,
+         ActivityTransactions,
          Org,
          Organisations,
          Organisation,
