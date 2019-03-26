@@ -405,13 +405,6 @@ export class ActivityTransactionForm extends React.Component<ActivityTransaction
                   />
                   <ErrorMessage name='tiedStatus' />
                   <Field
-                    name="tiedStatus"
-                    label={ActivityTransactionStrings.tiedStatus}
-                    component={Select}
-                    options={Helpers.defaultTiedStatus}
-                  />
-                  <ErrorMessage name='tiedStatus' />
-                  <Field
                     name="financeType"
                     label={ActivityTransactionStrings.financeType}
                     component={Select}
@@ -447,7 +440,7 @@ const mapStateToProps = (state: ApplicationState): ActivityTransactionKeyProps =
   return {
     activitiesRef: state.keys.data.activities,
     activityRef: state.keys.data.activity,
-    transactionRef: state.keys.data.activityDate,
+    transactionRef: state.keys.data.activityTransaction,
     transactions: state.report.data as IATIActivityTransactionReport
   }
 }

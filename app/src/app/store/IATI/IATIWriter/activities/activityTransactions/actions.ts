@@ -57,7 +57,7 @@ export const setActivityTransaction = (details: ActivityTransactionProps) => {
     let actionType = IATIWriterActionTypes.ACTIVITYTRANSACTION_FAILURE
     let txData: TxReport = {}
     try {
-      const tx = await activityTransactionsContract.setTerritory(details.activitiesRef, details.activityRef, transactionRef, transactionData)
+      const tx = await activityTransactionsContract.setTransaction(details.activitiesRef, details.activityRef, transactionRef, transactionData)
       const key = tx.hash
       txData = {
         [key]: {
