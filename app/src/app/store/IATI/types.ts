@@ -483,6 +483,24 @@ export interface ActivityTerritoryProps {
   percentage: number
 }
 
+interface ActivityTransactionValue {
+  value: number
+  date: string
+  currency: string
+}
+
+interface ActivityTransactionProviderOrg {
+  orgType: number
+  orgRef: string
+  activityRef: string
+}
+
+interface ActivityTransactionReceiverOrg {
+  orgType: number
+  orgRef: string
+  activityRef: string
+}
+
 export interface IATIActivityTransactionProps {
   transactionType: number
   disbursementChannel: number
@@ -491,15 +509,9 @@ export interface IATIActivityTransactionProps {
   financeType: number
   aidType: string
   date: string
-  value: number
-  valueDate: string
-  currency: string
-  providerOrgType: number
-  providerOrgRef: string
-  providerActivityRef: string
-  receiverOrgType: number
-  receiverOrgRef: string
-  receiverActivityRef: string
+  value: ActivityTransactionValue
+  providerOrg: ActivityTransactionProviderOrg
+  receiverOrg: ActivityTransactionReceiverOrg
   sectorDacCode: number
   territory: string
   description: string

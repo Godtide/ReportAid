@@ -19,22 +19,13 @@ contract IATIActivityTransactions is ActivityTransactions {
              _transaction.transactionType < uint8(TransactionType.MAX) &&
              _transaction.disbursementChannel > uint8(DisbursementChannel.NONE) &&
              _transaction.disbursementChannel < uint8(DisbursementChannel.MAX) &&
-             _transaction.flowType >= ActivityTransactions.minFlowType &&
-             _transaction.flowType <= ActivityTransactions.maxFlowType &&
-             _transaction.tiedStatus > uint8(TiedStatus.NONE) &&
-             _transaction.tiedStatus < uint8(TiedStatus.MAX) &&
-             _transaction.financeType >= ActivityTransactions.minFinanceType &&
-             _transaction.financeType <= ActivityTransactions.maxFinanceType &&
-             _transaction.aidType[0] != 0 &&
              _transaction.date[0] != 0 &&
              _transaction.value.date[0] != 0 &&
              _transaction.value.currency[0] != 0 &&
              _transaction.providerOrg.orgType >= ActivityTransactions.minOrgType &&
              _transaction.providerOrg.orgRef[0] != 0 &&
-             _transaction.providerOrg.activityRef[0] != 0 &&
              _transaction.receiverOrg.orgType >= ActivityTransactions.minOrgType &&
              _transaction.receiverOrg.orgRef[0] != 0 &&
-             _transaction.receiverOrg.activityRef[0] != 0 &&
              _transaction.sectorDacCode >= ActivityTransactions.minDACCode &&
              _transaction.sectorDacCode <= ActivityTransactions.maxDACCode &&
              _transaction.territory[0] != 0 &&

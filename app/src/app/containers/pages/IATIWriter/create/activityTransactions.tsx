@@ -124,15 +124,15 @@ const DatePickerProps = {
 const ValueDatePickerProps = {
   day: {
     name: 'valueDay',
-    label: ActivityTransactionStrings.day
+    label: ActivityTransactionStrings.valueDay
   },
   month: {
     name: 'valueMonth',
-    label: ActivityTransactionStrings.month
+    label: ActivityTransactionStrings.valueMonth
   },
   year: {
     name: 'valueYear',
-    label: ActivityTransactionStrings.year
+    label: ActivityTransactionStrings.valueYear
   }
 }
 

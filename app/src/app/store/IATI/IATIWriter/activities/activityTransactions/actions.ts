@@ -29,6 +29,16 @@ export const setActivityTransaction = (details: ActivityTransactionProps) => {
       territory = details.regionCode
     }
 
+    let providerActivityRef = details.providerActivityRef
+    if ( providerActivityRef == "" ) {
+      providerActivityRef = ethers.utils.formatBytes32String("")
+    }
+
+    let receiverActivityRef = details.receiverActivityRef
+    if ( receiverActivityRef == "" ) {
+      receiverActivityRef = ethers.utils.formatBytes32String("")
+    }
+
     const thisDate = new Date(details.year + '/' + details.month + '/' + details.day)
     const valueDate = new Date(details.valueYear + '/' + details.valueMonth + '/' + details.valueDay)
 
@@ -40,19 +50,27 @@ export const setActivityTransaction = (details: ActivityTransactionProps) => {
       financeType: details.financeType,
       aidType: ethers.utils.formatBytes32String(details.aidType),
       date: ethers.utils.formatBytes32String(thisDate.toISOString()),
-      value: details.value,
-      valueDate: ethers.utils.formatBytes32String(valueDate.toISOString()),
-      currency: ethers.utils.formatBytes32String(details.currency),
-      providerOrgType: details.providerOrgType,
-      providerOrgRef: details.providerOrgRef,
-      providerActivityRef: details.providerActivityRef,
-      receiverOrgType: details.receiverOrgType,
-      receiverOrgRef: details.receiverOrgRef,
-      receiverActivityRef: details.receiverActivityRef,
+      value: {
+        value: details.value,
+        date: ethers.utils.formatBytes32String(valueDate.toISOString()),
+        currency: ethers.utils.formatBytes32String(details.currency)
+      },
+      providerOrg: {
+        orgType: details.providerOrgType,
+        orgRef: details.providerOrgRef,
+        activityRef: providerActivityRef,
+      },
+      receiverOrg: {
+        orgType: details.providerOrgType,
+        orgRef: details.providerOrgRef,
+        activityRef: receiverActivityRef,
+      },
       sectorDacCode: details.sectorDacCode,
       territory: ethers.utils.formatBytes32String(territory),
       description: details.description
     }
+
+    //console.log('Activity transaction: ', details.activitiesRef, details.activityRef, transactionRef, transactionData)
 
     let actionType = IATIWriterActionTypes.ACTIVITYTRANSACTION_FAILURE
     let txData: TxReport = {}
