@@ -548,7 +548,6 @@ export interface ActivityTransactionProps {
 }
 
 export interface IATIActivityRelatedActivityProps {
-  relatedActivityRef: string
   relationType: number
   activityRef: string
 }
@@ -556,9 +555,9 @@ export interface IATIActivityRelatedActivityProps {
 export interface ActivityRelatedActivityProps {
   activitiesRef: string
   activityRef: string
-  relatedActivityRef: string
+  activityRelatedActivityRef: string
   relationType: number
-  activityRef: string
+  relatedActivityRef: string
 }
 
 /* IATI Activities Reader */
@@ -738,9 +737,9 @@ export interface IATIActivityTransactionReportProps extends PayloadProps {
 }
 
 export interface IATIActivityRelatedActivityData {
-  relatedActivityRef: string
+  activityRelatedActivityRef: string
   relationType: number
-  activityRef: string
+  relatedActivityRef: string
 }
 
 export interface IATIActivityRelatedActivityReport {
@@ -820,7 +819,7 @@ export const enum IATIReportActionTypes {
   TOTALEXPENDITURE_FAILURE = '@@IATIReportActionTypes/TOTALEXPENDITURE_FAILURE',
   DOCUMENT_SUCCESS = '@@IATIReportActionTypes/DOCUMENT_SUCCESS',
   DOCUMENT_FAILURE = '@@IATIReportActionTypes/DOCUMENT_FAILURE',
-  ACTIVITIES_SUCCESS = '@@IATIReportActionTypes/ACTIVITIES_SUCCESS',
+  ACTIVITIES_SUCCESS = '@@IATIReportAactivityRelatedActivityRefctionTypes/ACTIVITIES_SUCCESS',
   ACTIVITIESPICKER_SUCCESS = '@@IATIReportActionTypes/ACTIVITIESPICKER_SUCCESS',
   ACTIVITIES_FAILURE = '@@IATIReportActionTypes/ACTIVITIES_FAILURE',
   ACTIVITY_SUCCESS = '@@IATIReportActionTypes/ACTIVITY_SUCCESS',

@@ -19,6 +19,8 @@ import { ActivitySector as ActivitySectorsWriter } from './pages/IATIWriter/crea
 import { ActivityBudgets as ActivityBudgetsWriter } from './pages/IATIWriter/create/activityBudgets'
 import { ActivityTerritory as ActivityTerritoryWriter } from './pages/IATIWriter/create/activityTerritories'
 import { ActivityTransaction as ActivityTransactionsWriter } from './pages/IATIWriter/create/activityTransactions'
+import { ActivityRelatedActivity as ActivityRelatedActivitiesWriter } from './pages/IATIWriter/create/activityRelatedActivities'
+
 import { Org as OrgWriter } from './pages/IATIWriter/create/org'
 import { Organisations as OrganisationsWriter } from './pages/IATIWriter/create/organisations'
 import { Organisation as OrganisationWriter } from './pages/IATIWriter/create/organisation'
@@ -43,6 +45,7 @@ import { ActivitySectors as ActivitySectorsReader } from './pages/IATIReader/act
 import { ActivityBudgets as ActivityBudgetsReader } from './pages/IATIReader/activityBudgets'
 import { ActivityTerritories as ActivityTerritoriesReader } from './pages/IATIReader/activityTerritories'
 import { ActivityTransactions as ActivityTransactionsReader } from './pages/IATIReader/activityTransactions'
+
 import { Orgs as OrgsReader } from './pages/IATIReader/orgs'
 import { Organisations as OrganisationsReader } from './pages/IATIReader/organisations'
 import { Organisation as OrganisationReader } from './pages/IATIReader/organisation'
@@ -114,6 +117,11 @@ class AppContent extends React.Component<WithStyles<typeof styles>> {
           name={Paths.activityTransactionsWriter}
           path={PathConfig.activityTransactionsWriter}
           render={() => <ActivityTransactionsWriter />}
+        />
+        <Route
+          name={Paths.activityRelatedActivitiesWriter}
+          path={PathConfig.activityRelatedActivityWriter}
+          render={() => <ActivityRelatedActivitiesWriter />}
         />
 
         <Route

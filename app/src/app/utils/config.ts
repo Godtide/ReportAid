@@ -1,25 +1,27 @@
 class Paths {
 
-  static readonly home='/'
+  static readonly home = '/'
   static readonly blockchain = '/blockchain-data'
-  static readonly about='/about'
-  static readonly overview='/overview'
-  static readonly help='/help'
-  static readonly writer='/create'
-  static readonly reader='/read'
+  static readonly about = '/about'
+  static readonly overview = '/overview'
+  static readonly help = '/help'
+  static readonly writer = '/create'
+  static readonly reader = '/read'
 
-  static readonly activitiesWriter='/create-activities-records'
-  static readonly activityWriter='/create-activity-records'
-  static readonly activityAdditionalWriter='/create-activity-additional-records'
-  static readonly activityDatesWriter='/create-activity-dates-records'
-  static readonly activityParticipatingOrgWriter='/create-activity-participating-org-records'
-  static readonly activitySectorsWriter='/create-activity-sectors-records'
-  static readonly activityBudgetsWriter='/create-activity-budgets-records'
-  static readonly activityTerritoriesWriter='/create-activity-territory-records'
-  static readonly activityTransactionsWriter='/create-activity-transaction-records'
-  static readonly orgWriter='/create-org-records'
-  static readonly organisationsWriter='/create-organisations-records'
-  static readonly organisationWriter='/create-organisation-records'
+  static readonly activitiesWriter = '/create-activities-records'
+  static readonly activityWriter = '/create-activity-records'
+  static readonly activityAdditionalWriter = '/create-activity-additional-records'
+  static readonly activityDatesWriter = '/create-activity-dates-records'
+  static readonly activityParticipatingOrgWriter = '/create-activity-participating-org-records'
+  static readonly activitySectorsWriter = '/create-activity-sectors-records'
+  static readonly activityBudgetsWriter = '/create-activity-budgets-records'
+  static readonly activityTerritoriesWriter = '/create-activity-territory-records'
+  static readonly activityTransactionsWriter = '/create-activity-transaction-records'
+  static readonly activityRelatedActivityWriter = '/create-activity-related-activity-records'
+
+  static readonly orgWriter = '/create-org-records'
+  static readonly organisationsWriter = '/create-organisations-records'
+  static readonly organisationWriter = '/create-organisation-records'
   static readonly organisationDocsWriter = '/create-organisation-doc-records'
   static readonly organisationBudgetsWriter = '/create-organisation-budget-records'
   static readonly organisationExpenditureWriter = '/create-organisation-expenditure-records'
@@ -27,23 +29,25 @@ class Paths {
   static readonly organisationRegionBudgetsWriter = '/create-organisation-region-budget-records'
   static readonly organisationCountryBudgetsWriter = '/create-organisation-country-budget-records'
 
-  static readonly activitiesUpdater='/update-activities-records'
-  static readonly activityUpdater='/update-activity-records'
-  static readonly activityDateUpdater='/update-activity-date-records'
-  static readonly orgUpdater='/update-org-records'
+  static readonly activitiesUpdater = '/update-activities-records'
+  static readonly activityUpdater = '/update-activity-records'
+  static readonly activityDateUpdater = '/update-activity-date-records'
+  static readonly orgUpdater = '/update-org-records'
 
-  static readonly activitiesReader='/read-activities-reports'
-  static readonly activityReader='/read-activity-reports'
-  static readonly activityAdditionalReader='/read-activity-additional-reports'
-  static readonly activityDatesReader='/read-activity-dates-reports'
-  static readonly activityParticipatingOrgReader='/read-activity-participating-org-reports'
-  static readonly activitySectorsReader='/read-activity-sectors-records'
-  static readonly activityBudgetsReader='/read-activity-budgets-records'
-  static readonly activityTerritoriesReader='/read-activity-territory-records'
-  static readonly activityTransactionsReader='/read-activity-transaction-records'
-  static readonly orgsReader='/read-organisations'
-  static readonly organisationsReader='/read-organisations-reports'
-  static readonly organisationReader='/read-organisation-reports'
+  static readonly activitiesReader = '/read-activities-reports'
+  static readonly activityReader = '/read-activity-reports'
+  static readonly activityAdditionalReader = '/read-activity-additional-reports'
+  static readonly activityDatesReader = '/read-activity-dates-reports'
+  static readonly activityParticipatingOrgReader = '/read-activity-participating-org-reports'
+  static readonly activitySectorsReader = '/read-activity-sectors-records'
+  static readonly activityBudgetsReader = '/read-activity-budgets-records'
+  static readonly activityTerritoriesReader = '/read-activity-territory-records'
+  static readonly activityTransactionsReader = '/read-activity-transaction-records'
+  static readonly activityRelatedActivityReader = '/read-activity-related-activity-records'
+
+  static readonly orgsReader = '/read-organisations'
+  static readonly organisationsReader = '/read-organisations-reports'
+  static readonly organisationReader = '/read-organisation-reports'
   static readonly organisationDocsReader = '/read-organisation-docs-report'
   static readonly organisationBudgetsReader = '/read-organisation-budgets-report'
   static readonly organisationExpenditureReader = '/read-organisation-report-expenditure-report'
@@ -102,33 +106,33 @@ class Contract {
   static activityAdditionalABI = [
   	"function setAdditional(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef, tuple(bytes32 defaultAidType, uint256 defaultFinanceType, uint8 scope, uint8 capitalSpend, uint8 collaborationType, uint8 defaultFlowType, uint8 defaultTiedStatus) _additional)@500000",
 
-  	"function getNumAdditional(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint256)",
-  	"function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) public view returns (bytes32)",
+  	"function getNumAdditional(bytes32 _activitiesRef, bytes32 _activityRef) view returns (uint256)",
+  	"function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) view returns (bytes32)",
 
-  	"function getAdditional(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (tuple(bytes32 defaultAidType, uint256 defaultFinanceType, uint8 scope, uint8 capitalSpend, uint8 collaborationType, uint8 defaultFlowType, uint8 defaultTiedStatus) _additional)",
+  	"function getAdditional(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) view returns (tuple(bytes32 defaultAidType, uint256 defaultFinanceType, uint8 scope, uint8 capitalSpend, uint8 collaborationType, uint8 defaultFlowType, uint8 defaultTiedStatus) _additional)",
 
-  	"function getDefaultAidType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (bytes32)",
-  	"function getDefaultFinanceType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint256)",
-  	"function getScope(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8)",
-  	"function getCapitalSpend(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8)",
-  	"function getCollaborationType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8)",
-  	"function getDefaultFlowType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8)",
-  	"function getDefaultTiedStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8)",
+  	"function getDefaultAidType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) view returns (bytes32)",
+  	"function getDefaultFinanceType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) view returns (uint256)",
+  	"function getScope(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) view returns (uint8)",
+  	"function getCapitalSpend(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) view returns (uint8)",
+  	"function getCollaborationType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) view returns (uint8)",
+  	"function getDefaultFlowType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) view returns (uint8)",
+  	"function getDefaultTiedStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) view returns (uint8)",
   ]
 
   static activityBudgetsABI = [
   	"function setBudget(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef, tuple(uint8 budgetType, bytes32 budgetLine, bytes32 otherRef, tuple(uint8 status, uint256 value, bytes32 start, bytes32 end) finance) budget)@500000",
 
-  	"function getNum(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint256)",
-  	"function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) public view returns (bytes32)",
+  	"function getNum(bytes32 _activitiesRef, bytes32 _activityRef) view returns (uint256)",
+  	"function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) view returns (bytes32)",
 
-  	"function getBudget(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) public view returns (tuple(uint8 budgetType, bytes32 budgetLine, bytes32 otherRef, tuple(uint8 status, uint256 value, bytes32 start, bytes32 end) finance) budget)",
+  	"function getBudget(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns (tuple(uint8 budgetType, bytes32 budgetLine, bytes32 otherRef, tuple(uint8 status, uint256 value, bytes32 start, bytes32 end) finance) budget)",
 
-    "function getBudgetType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) public view returns (uint8)",
-  	"function getBudgetValue(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) public view returns (uint256)",
-  	"function getBudgetStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) public view returns (uint8)",
-  	"function getBudgetStart(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) public view returns (bytes32)",
-  	"function getBudgetEnd(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) public view returns (bytes32)",
+    "function getBudgetType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns (uint8)",
+  	"function getBudgetValue(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns (uint256)",
+  	"function getBudgetStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns (uint8)",
+  	"function getBudgetStart(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns (bytes32)",
+  	"function getBudgetEnd(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns (bytes32)",
   ]
 
   static activityDatesABI = [
@@ -163,49 +167,49 @@ class Contract {
   ]
 
   static activityRelatedActivitiesABI = [
-  	"function setRelatedActivity(bytes32 _activitiesRef, bytes32 _activityRef,  bytes32 _relatedActivityRef, tuple(uint8 relationType, bytes32 activityRef) relatedActivity) public",
+  	"function setRelatedActivity(bytes32 _activitiesRef, bytes32 _activityRef,  bytes32 _relatedActivityRef, tuple(uint8 relationType, bytes32 activityRef) relatedActivity)@500000",
 
-  	"function getNum(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint256)",
-  	"function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) public view returns (bytes32)",
+  	"function getNum(bytes32 _activitiesRef, bytes32 _activityRef) view returns (uint256)",
+  	"function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) view returns (bytes32)",
 
-  	"function getRelatedActivity(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _relatedActivityRef) public view returns (tuple(uint8 relationType, bytes32 activityRef) relatedActivity)",
+  	"function getRelatedActivity(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _relatedActivityRef) view returns (tuple(uint8 relationType, bytes32 activityRef) relatedActivity)",
 
-  	"function getActivityRef(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _relatedActivityRef) public view returns (bytes32)",
-  	"function getRelationType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _relatedActivityRef) public view returns (uint8)",
+  	"function getActivityRef(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _relatedActivityRef) view returns (bytes32)",
+  	"function getRelationType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _relatedActivityRef) view returns (uint8)",
   ]
 
   static activitySectorsABI = [
   	"function setSector(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _sectorRef, tuple(uint8 percentage, uint256 dacCode) _sector)@500000",
 
-  	"function getNum(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint256)",
-  	"function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) public view returns (bytes32)",
+  	"function getNum(bytes32 _activitiesRef, bytes32 _activityRef) view returns (uint256)",
+  	"function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) view returns (bytes32)",
 
-  	"function getSector(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _sectorRef) public view returns (tuple(uint8 percentage, uint256 dacCode) _sector)",
+  	"function getSector(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _sectorRef) view returns (tuple(uint8 percentage, uint256 dacCode) _sector)",
 
-  	"function getDACCode(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _sectorRef) public view returns (uint256)",
-  	"function getPercentage(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _sectorRef) public view returns (uint8)",
+  	"function getDACCode(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _sectorRef) view returns (uint256)",
+  	"function getPercentage(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _sectorRef) view returns (uint8)",
   ]
 
   static activityABI = [
   	"function setActivity(bytes32 _activitiesRef, bytes32 activityRef, tuple(bool humanitarian, uint8 hierarchy, uint8 status, uint8 budgetNotProvided, tuple(uint8 orgType, bool isSecondary, bytes32 orgRef) reportingOrg, bytes32 lastUpdated, bytes32 lang, bytes32 currency, bytes32 linkedData, bytes32 identifier, bytes32 title, string description) _activity)@500000",
 
-  	"function getNumActivities(bytes32 _activitiesRef) public view returns (uint256)",
-  	"function getReference(bytes32 _activitiesRef, uint256 _index) public view returns (bytes32)",
+  	"function getNumActivities(bytes32 _activitiesRef) view returns (uint256)",
+  	"function getReference(bytes32 _activitiesRef, uint256 _index) view returns (bytes32)",
 
-  	"function getActivity(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (tuple(bool humanitarian, uint8 hierarchy, uint8 status, uint8 budgetNotProvided, tuple(uint8 orgType, bool isSecondary, bytes32 orgRef) reportingOrg, bytes32 lastUpdated, bytes32 lang, bytes32 currency, bytes32 linkedData, bytes32 identifier, bytes32 title, string description) _activity)",
+  	"function getActivity(bytes32 _activitiesRef, bytes32 _activityRef) view returns (tuple(bool humanitarian, uint8 hierarchy, uint8 status, uint8 budgetNotProvided, tuple(uint8 orgType, bool isSecondary, bytes32 orgRef) reportingOrg, bytes32 lastUpdated, bytes32 lang, bytes32 currency, bytes32 linkedData, bytes32 identifier, bytes32 title, string description) _activity)",
 
-  	"function getIdentifier(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32)",
-  	"function getReportingOrg(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (ReportingOrg memory)",
-  	"function getTitle(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32)",
-  	"function getLastUpdatedTime(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32)",
-  	"function getLang(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32)",
-  	"function getCurrency(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32)",
-  	"function getHumanitarian(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bool)",
-  	"function getHierarchy(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8)",
-  	"function getStatus(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8)",
-  	"function getBudgetNotProvided(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8)",
-  	"function getLinkedData(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32)",
-  	"function getDescription(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (string)",
+  	"function getIdentifier(bytes32 _activitiesRef, bytes32 _activityRef) view returns (bytes32)",
+  	"function getReportingOrg(bytes32 _activitiesRef, bytes32 _activityRef) view returns (ReportingOrg memory)",
+  	"function getTitle(bytes32 _activitiesRef, bytes32 _activityRef) view returns (bytes32)",
+  	"function getLastUpdatedTime(bytes32 _activitiesRef, bytes32 _activityRef) view returns (bytes32)",
+  	"function getLang(bytes32 _activitiesRef, bytes32 _activityRef) view returns (bytes32)",
+  	"function getCurrency(bytes32 _activitiesRef, bytes32 _activityRef) view returns (bytes32)",
+  	"function getHumanitarian(bytes32 _activitiesRef, bytes32 _activityRef) view returns (bool)",
+  	"function getHierarchy(bytes32 _activitiesRef, bytes32 _activityRef) view returns (uint8)",
+  	"function getStatus(bytes32 _activitiesRef, bytes32 _activityRef) view returns (uint8)",
+  	"function getBudgetNotProvided(bytes32 _activitiesRef, bytes32 _activityRef) view returns (uint8)",
+  	"function getLinkedData(bytes32 _activitiesRef, bytes32 _activityRef) view returns (bytes32)",
+  	"function getDescription(bytes32 _activitiesRef, bytes32 _activityRef) view returns (string)",
   ]
 
   static activityTerritoriesABI = [
@@ -213,42 +217,42 @@ class Contract {
 
   	"function setTerritory(bytes32 _activitiesRef, bytes32 _activityRef,  bytes32 _territoryRef, tuple(uint8 percentage, bytes32 territory) _territory)@500000",
 
-  	"function getNum(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint256)",
-  	"function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) public view returns (bytes32)",
+  	"function getNum(bytes32 _activitiesRef, bytes32 _activityRef) view returns (uint256)",
+  	"function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) view returns (bytes32)",
 
-  	"function getTerritory(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _territoryRef) public view returns (tuple(uint8 percentage, bytes32 territory) _territory)",
+  	"function getTerritory(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _territoryRef) view returns (tuple(uint8 percentage, bytes32 territory) _territory)",
 
-  	"function getPercentage(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _territoryRef) public view returns (uint8)",
-  	"function getDACTerritory(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _territoryRef) public view returns (bytes32)",
+  	"function getPercentage(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _territoryRef) view returns (uint8)",
+  	"function getDACTerritory(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _territoryRef) view returns (bytes32)",
   ]
 
   static activityTransactionsABI = [
   	"function setTransaction(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef, tuple(uint8 transactionType, uint8 disbursementChannel, uint8 flowType, uint8 tiedStatus, uint256 financeType, bytes32 aidType, bytes32 date, tuple(uint256 value, bytes32 date, bytes32 currency) value, tuple(uint8 orgType, bytes32 orgRef, bytes32 activityRef) providerOrg, tuple(uint8 orgType, bytes32 orgRef, bytes32 activityRef) receiverOrg, uint256 sectorDacCode, bytes32 territory, string description) _transaction)@500000",
 
-  	"function getNum(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint256)",
-  	"function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) public view returns (bytes32)",
+  	"function getNum(bytes32 _activitiesRef, bytes32 _activityRef) view returns (uint256)",
+  	"function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) view returns (bytes32)",
 
-  	"function getTransaction(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (tuple(uint8 transactionType, uint8 disbursementChannel, uint8 flowType, uint8 tiedStatus, uint256 financeType, bytes32 aidType, bytes32 date, tuple(uint256 value, bytes32 date, bytes32 currency) value, tuple(uint8 orgType, bytes32 orgRef, bytes32 activityRef) providerOrg, tuple(uint8 orgType, bytes32 orgRef, bytes32 activityRef) receiverOrg, uint256 sectorDacCode, bytes32 territory, string description) _transaction)",
+  	"function getTransaction(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) view returns (tuple(uint8 transactionType, uint8 disbursementChannel, uint8 flowType, uint8 tiedStatus, uint256 financeType, bytes32 aidType, bytes32 date, tuple(uint256 value, bytes32 date, bytes32 currency) value, tuple(uint8 orgType, bytes32 orgRef, bytes32 activityRef) providerOrg, tuple(uint8 orgType, bytes32 orgRef, bytes32 activityRef) receiverOrg, uint256 sectorDacCode, bytes32 territory, string description) _transaction)",
 
-  	"function getTransactionType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (uint8)",
-  	"function getDisbursementChannel(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (uint8)",
-  	"function getFlowType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (uint8)",
-  	"function getTiedStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (uint8)",
-  	"function getFinanceType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (uint256)",
-  	"function getAidType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (bytes32)",
-  	"function getDate(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (bytes32)",
-  	"function getValue(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (uint256)",
-  	"function getValueDate(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (bytes32)",
-  	"function getValueCurrency(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (bytes32)",
-  	"function getProviderOrgRef(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (bytes32)",
-  	"function getProviderOrgType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (uint8)",
-  	"function getProviderActivityRef(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (bytes32)",
-  	"function getReceiverOrgRef(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (bytes32)",
-  	"function getReceiverOrgType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (uint8)",
-  	"function getReceiverActivityRef(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (bytes32)",
-  	"function getSectorDacCode(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (uint256)",
-  	"function getTerritory(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (bytes32)",
-  	"function getDescription(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (string memory)"
+  	"function getTransactionType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) view returns (uint8)",
+  	"function getDisbursementChannel(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) view returns (uint8)",
+  	"function getFlowType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) view returns (uint8)",
+  	"function getTiedStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) view returns (uint8)",
+  	"function getFinanceType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) view returns (uint256)",
+  	"function getAidType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) view returns (bytes32)",
+  	"function getDate(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) view returns (bytes32)",
+  	"function getValue(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) view returns (uint256)",
+  	"function getValueDate(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) view returns (bytes32)",
+  	"function getValueCurrency(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) view returns (bytes32)",
+  	"function getProviderOrgRef(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) view returns (bytes32)",
+  	"function getProviderOrgType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) view returns (uint8)",
+  	"function getProviderActivityRef(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) view returns (bytes32)",
+  	"function getReceiverOrgRef(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) view returns (bytes32)",
+  	"function getReceiverOrgType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) view returns (uint8)",
+  	"function getReceiverActivityRef(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) view returns (bytes32)",
+  	"function getSectorDacCode(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) view returns (uint256)",
+  	"function getTerritory(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) view returns (bytes32)",
+  	"function getDescription(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) view returns (string memory)"
   ]
 
   static orgsABI = [

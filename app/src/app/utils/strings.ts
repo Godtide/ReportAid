@@ -18,56 +18,61 @@ class App {
 class Paths {
 
   // AppBar
-  static readonly home='Home'
+  static readonly home = 'Home'
   static readonly blockchain = 'Blockchain Data'
-  static readonly about='About'
-  static readonly overview='Overview'
-  static readonly help='Help'
-  static readonly writer='Create Records'
-  static readonly reader='Read Records'
+  static readonly about = 'About'
+  static readonly overview = 'Overview'
+  static readonly help = 'Help'
+  static readonly writer = 'Create Records'
+  static readonly reader = 'Read Records'
 
-  static readonly activitiesWriter='Activities'
-  static readonly activityWriter='Activity'
-  static readonly activityAdditionalWriter='Activity Additional Info\''
-  static readonly activityDatesWriter='Activity Dates'
-  static readonly activityParticipatingOrgWriter='Activity Participating Org\''
-  static readonly activitySectorsWriter='Activity Sectors'
-  static readonly activityBudgetsWriter='Activity Budgets'
-  static readonly activityTerritoriesWriter='Activity Territories'
-  static readonly activityTransactionsWriter='Activity Transactions'
-  static readonly orgWriter='Org\''
-  static readonly organisationsWriter='Organisations'
-  static readonly organisationWriter='Organisation Report'
-  static readonly organisationDocsWriter='Document'
+  static readonly activitiesWriter = 'Activities'
+  static readonly activityWriter = 'Activity'
+  static readonly activityAdditionalWriter = 'Activity Additional Info\''
+  static readonly activityDatesWriter = 'Activity Dates'
+  static readonly activityParticipatingOrgWriter = 'Activity Participating Org\''
+  static readonly activitySectorsWriter = 'Activity Sectors'
+  static readonly activityBudgetsWriter = 'Activity Budgets'
+  static readonly activityTerritoriesWriter = 'Activity Territories'
+  static readonly activityTransactionsWriter = 'Activity Transactions'
+  static readonly activityRelatedActivitiesWriter = 'Activity Related Activities'
+
+  static readonly orgWriter = 'Org\''
+  static readonly organisationsWriter = 'Organisations'
+  static readonly organisationWriter = 'Organisation Report'
+  static readonly organisationDocsWriter = 'Document'
   static readonly organisationBudgetsWriter="Budget"
   static readonly organisationExpenditureWriter = "Expenditure"
   static readonly organisationRecipientBudgetsWriter = "Recipient Budget"
-  static readonly organisationRegionBudgetsWriter='Region Budget'
-  static readonly organisationCountryBudgetsWriter='Country Budget'
+  static readonly organisationRegionBudgetsWriter = 'Region Budget'
+  static readonly organisationCountryBudgetsWriter = 'Country Budget'
 
-  static readonly activitiesUpdater='Activities'
-  static readonly activityUpdater='Activity'
-  static readonly activityDateUpdater='Activity Date'
-  static readonly orgUpdater='Org\''
+  static readonly activitiesUpdater = 'Activities'
+  static readonly activityUpdater = 'Activity'
+  static readonly activityDateUpdater = 'Activity Date'
 
-  static readonly activitiesReader='Activities'
-  static readonly activityReader='Activity'
-  static readonly activityAdditionalReader='Activity Additional Info\''
-  static readonly activityDatesReader='Activity Dates'
-  static readonly activityParticipatingOrgReader='Activity Participating Org\''
-  static readonly activitySectorsReader='Activity Sectors'
-  static readonly activityBudgetsReader='Activity Budgets'
-  static readonly activityTerritoriesReader='Activity Territories'
-  static readonly activityTransactionsReader='Activity Transactions'
-  static readonly orgsReader='Org\'s'
-  static readonly organisationsReader='Organisations'
-  static readonly organisationReader='Organisation Reports'
-  static readonly organisationDocsReader='Documents'
-  static readonly organisationBudgetsReader='Budgets'
-  static readonly organisationExpenditureReader='Expenditures'
-  static readonly organisationRecipientBudgetsReader='Recipient Budgets'
-  static readonly organisationRegionBudgetsReader='Region Budgets'
-  static readonly organisationCountryBudgetsReader='Country Budgets'
+  static readonly orgUpdater = 'Org\''
+
+  static readonly activitiesReader = 'Activities'
+  static readonly activityReader = 'Activity'
+  static readonly activityAdditionalReader = 'Activity Additional Info\''
+  static readonly activityDatesReader = 'Activity Dates'
+  static readonly activityParticipatingOrgReader = 'Activity Participating Org\''
+  static readonly activitySectorsReader = 'Activity Sectors'
+  static readonly activityBudgetsReader = 'Activity Budgets'
+  static readonly activityTerritoriesReader = 'Activity Territories'
+  static readonly activityTransactionsReader = 'Activity Transactions'
+  static readonly activityRelatedActivitiesReader = 'Activity Related Activities'
+
+  static readonly orgsReader = 'Org\'s'
+  static readonly organisationsReader = 'Organisations'
+  static readonly organisationReader = 'Organisation Reports'
+  static readonly organisationDocsReader = 'Documents'
+  static readonly organisationBudgetsReader = 'Budgets'
+  static readonly organisationExpenditureReader = 'Expenditures'
+  static readonly organisationRecipientBudgetsReader = 'Recipient Budgets'
+  static readonly organisationRegionBudgetsReader = 'Region Budgets'
+  static readonly organisationCountryBudgetsReader = 'Country Budgets'
 }
 
 class Blockchain {
@@ -251,6 +256,22 @@ class ActivityParticipatingOrg {
   static lang = "Language"
 
   static participatingOrgDetails = "Activity Participating Org\' Details"
+}
+
+class ActivityRelatedActivity {
+
+  static headingActivityRelatedActivityWriter = 'Create Activity Related Activity Record'
+  static headingActivityRelatedActivityReader = 'Read Activity Related Activity Records'
+  static headingActivityRelatedActivityUpdater = 'Update Activity Related Activity Record'
+
+  static activitiesReference = "Activities Reference"
+  static activityReference = "Activity Reference"
+  static activityRelatedActivityRef = "Activity Related Activity Reference"
+
+  static relationType = "Relation Type"
+  static relatedActivityReference = "Related Activity"
+
+  static relatedActivityDetails = "Activity Related Activity Details"
 }
 
 class ActivitySectors {
@@ -550,6 +571,7 @@ export { App,
          ActivityBudget,
          ActivityTerritories,
          ActivityTransactions,
+         ActivityRelatedActivity,
          Org,
          Organisations,
          Organisation,

@@ -161,6 +161,19 @@ class Sider extends React.Component<WithStyles<typeof styles> & DispatchProps> {
                   {Paths.activityTransactionsWriter}
                 </MenuItem>
               </Link>
+              <Link
+                to={PathConfig.activityRelatedActivityWriter}
+                onClick={() => {
+                  this.props.initialise()
+                  this.props.setKey({key: '', keyType: KeyTypes.ACTIVITYRELATEDACTIVITY})
+                }} >
+                <MenuItem>
+                  <IconButton className={this.props.classes.button} aria-label={Paths.activityRelatedActivitiesWriter}>
+                    <Create />
+                  </IconButton>
+                  {Paths.activityRelatedActivitiesWriter}
+                </MenuItem>
+              </Link>
             </MenuList>
           </ExpansionPanelDetails>
         </ExpansionPanel>
