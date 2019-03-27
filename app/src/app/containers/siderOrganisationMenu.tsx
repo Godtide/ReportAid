@@ -269,6 +269,14 @@ class Sider extends React.Component<WithStyles<typeof styles> & DispatchProps> {
                   {Paths.activityTerritoriesReader}
                 </MenuItem>
               </Link>
+              <Link to={PathConfig.activityTransactionsReader}>
+                <MenuItem>
+                  <IconButton className={this.props.classes.button} aria-label={Paths.activityTransactionsReader}>
+                    <List />
+                  </IconButton>
+                  {Paths.activityTransactionsReader}
+                </MenuItem>
+              </Link>
             </MenuList>
           </ExpansionPanelDetails>
         </ExpansionPanel>
