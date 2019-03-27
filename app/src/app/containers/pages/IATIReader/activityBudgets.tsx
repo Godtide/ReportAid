@@ -55,7 +55,7 @@ interface ActivityBudgetsDispatchProps {
 
 type ActivityBudgetsReaderProps =  WithStyles<typeof styles> & ActivityBudgetsProps & ActivityBudgetsDispatchProps
 
-class Additionals extends React.Component<ActivityBudgetsReaderProps> {
+class Budgets extends React.Component<ActivityBudgetsReaderProps> {
 
   constructor (props: ActivityBudgetsReaderProps) {
     super(props)
@@ -150,4 +150,4 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
 export const ActivityBudgets = withTheme(withStyles(styles)(connect<ActivityBudgetsProps, ActivityBudgetsDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(Additionals)))
+)(Budgets)))

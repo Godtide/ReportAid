@@ -55,7 +55,7 @@ interface ActivityDatesDispatchProps {
 
 type ActivityDatesReaderProps =  WithStyles<typeof styles> & ActivityDatesProps & ActivityDatesDispatchProps
 
-class Additionals extends React.Component<ActivityDatesReaderProps> {
+class Dates extends React.Component<ActivityDatesReaderProps> {
 
   constructor (props: ActivityDatesReaderProps) {
     super(props)
@@ -150,4 +150,4 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
 export const ActivityDates = withTheme(withStyles(styles)(connect<ActivityDatesProps, ActivityDatesDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(Additionals)))
+)(Dates)))

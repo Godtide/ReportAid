@@ -55,7 +55,7 @@ interface ActivityTransactionsDispatchProps {
 
 type ActivityTransactionsReaderProps =  WithStyles<typeof styles> & ActivityTransactionsProps & ActivityTransactionsDispatchProps
 
-class Additionals extends React.Component<ActivityTransactionsReaderProps> {
+class Transactions extends React.Component<ActivityTransactionsReaderProps> {
 
   constructor (props: ActivityTransactionsReaderProps) {
     super(props)
@@ -150,4 +150,4 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
 export const ActivityTransactions = withTheme(withStyles(styles)(connect<ActivityTransactionsProps, ActivityTransactionsDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(Additionals)))
+)(Transactions)))

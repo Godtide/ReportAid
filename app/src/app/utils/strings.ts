@@ -260,18 +260,18 @@ class ActivityParticipatingOrg {
 
 class ActivityRelatedActivity {
 
-  static headingActivityRelatedActivityWriter = 'Create Activity Related Activity Record'
-  static headingActivityRelatedActivityReader = 'Read Activity Related Activity Records'
-  static headingActivityRelatedActivityUpdater = 'Update Activity Related Activity Record'
+  static headingActivityRelatedActivityWriter = 'Create Related Activity Record'
+  static headingActivityRelatedActivityReader = 'Read Related Activity Records'
+  static headingActivityRelatedActivityUpdater = 'Update Related Activity Record'
 
   static activitiesReference = "Activities Reference"
   static activityReference = "Activity Reference"
-  static activityRelatedActivityRef = "Activity Related Activity Reference"
+  static activityRelatedActivityRef = "Reference"
 
   static relationType = "Relation Type"
   static relatedActivityReference = "Related Activity"
 
-  static relatedActivityDetails = "Activity Related Activity Details"
+  static relatedActivityDetails = "Related Activity Details"
 }
 
 class ActivitySectors {

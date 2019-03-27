@@ -19,13 +19,13 @@ import { FormData } from '../../../store/helpers/forms/types'
 
 import { initialise } from '../../../store/IATI/IATIReader/actions'
 import { setFormFunctions } from '../../../store/helpers/forms/actions'
-import { getActivityTerritories } from '../../../store/IATI/IATIReader/activities/activityTerritories/actions'
+import { getRelatedActivities } from '../../../store/IATI/IATIReader/activities/activityRelatedActivities/actions'
 
 import { ApplicationState } from '../../../store'
 import { ActionProps } from '../../../store/types'
-import { IATIActivityTerritoryReport, ActivitiesReportProps } from '../../../store/IATI/types'
+import { IATIActivityRelatedActivityReport, ActivitiesReportProps } from '../../../store/IATI/types'
 
-import { ActivityTerritories as ActivityTerritoriesStrings } from '../../../utils/strings'
+import { ActivityRelatedActivity as ActivityRelatedActivityStrings } from '../../../utils/strings'
 
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
 import { withTheme, styles } from '../../../styles/theme'
@@ -39,25 +39,25 @@ const reportSchema = Yup.object().shape({
     .required('Required')
 })
 
-interface ActivityTerritoriesProps {
+interface ActivityRelatedActivitysProps {
   submittingFunc: Function,
   resettingFunc: Function
   activitiesRef: string,
   activityRef: string,
-  territories: IATIActivityTerritoryReport
+  relatedActivities: IATIActivityRelatedActivityReport
 }
 
-interface ActivityTerritoriesDispatchProps {
+interface ActivityRelatedActivitysDispatchProps {
   handleSubmit: (values: any) => void
   initialise: () => void
   setFormFunctions: (formProps: FormData) => void
 }
 
-type ActivityTerritoriesReaderProps =  WithStyles<typeof styles> & ActivityTerritoriesProps & ActivityTerritoriesDispatchProps
+type ActivityRelatedActivitysReaderProps =  WithStyles<typeof styles> & ActivityRelatedActivitysProps & ActivityRelatedActivitysDispatchProps
 
-class Territories extends React.Component<ActivityTerritoriesReaderProps> {
+class RelatedActivities extends React.Component<ActivityRelatedActivitysReaderProps> {
 
-  constructor (props: ActivityTerritoriesReaderProps) {
+  constructor (props: ActivityRelatedActivitysReaderProps) {
     super(props)
   }
 
@@ -65,8 +65,8 @@ class Territories extends React.Component<ActivityTerritoriesReaderProps> {
     this.props.initialise()
   }
 
-  componentDidUpdate(previousProps: ActivityTerritoriesReaderProps) {
-    if(previousProps.territories != this.props.territories) {
+  componentDidUpdate(previousProps: ActivityRelatedActivitysReaderProps) {
+    if(previousProps.relatedActivities != this.props.relatedActivities) {
     this.props.submittingFunc(false)
     this.props.resettingFunc()
     }
@@ -80,11 +80,11 @@ class Territories extends React.Component<ActivityTerritoriesReaderProps> {
 
   render() {
 
-    const xs = getDictEntries(this.props.territories)
+    const xs = getDictEntries(this.props.relatedActivities)
 
     return (
       <div>
-        <h2>{ActivityTerritoriesStrings.headingActivityTerritoriesReader}</h2>
+        <h2>{ActivityRelatedActivityStrings.headingActivityRelatedActivityReader}</h2>
         <div>
           <Formik
             initialValues={ {activitiesRef: "",
@@ -100,13 +100,13 @@ class Territories extends React.Component<ActivityTerritoriesReaderProps> {
                   <ActivitiesPicker
                     setValue={formProps.setFieldValue}
                     name='activitiesRef'
-                    label={ActivityTerritoriesStrings.activitiesReference}
+                    label={ActivityRelatedActivityStrings.activitiesReference}
                   />
                   <ErrorMessage name='activitiesRef' />
                   <ActivityPicker
                     setValue={formProps.setFieldValue}
                     name='activityRef'
-                    label={ActivityTerritoriesStrings.activityReference}
+                    label={ActivityRelatedActivityStrings.activityReference}
                   />
                   <ErrorMessage name='activityRef' />
                   <br />
@@ -121,33 +121,33 @@ class Territories extends React.Component<ActivityTerritoriesReaderProps> {
           />
         </div>
         <hr />
-        <h3>{ActivityTerritoriesStrings.territoriesDetails}</h3>
+        <h3>{ActivityRelatedActivityStrings.relatedActivityDetails}</h3>
         <Markdown escapeHtml={false} source={xs} />
       </div>
     )
   }
 }
 
-const mapStateToProps = (state: ApplicationState): ActivityTerritoriesProps => {
+const mapStateToProps = (state: ApplicationState): ActivityRelatedActivitysProps => {
   //console.log(state.orgReader)
   return {
     submittingFunc: state.forms.data.submitFunc,
     resettingFunc: state.forms.data.resetFunc,
     activitiesRef: state.keys.data.activities,
     activityRef: state.keys.data.activity,
-    territories: state.report.data as IATIActivityTerritoryReport
+    relatedActivities: state.report.data as IATIActivityRelatedActivityReport
   }
 }
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): ActivityTerritoriesDispatchProps => {
+const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): ActivityRelatedActivitysDispatchProps => {
   return {
-    handleSubmit: (values: ActivitiesReportProps) => dispatch(getActivityTerritories(values)),
+    handleSubmit: (values: ActivitiesReportProps) => dispatch(getRelatedActivities(values)),
     initialise: () => dispatch(initialise()),
     setFormFunctions: (formProps: FormData) => dispatch(setFormFunctions(formProps))
   }
 }
 
-export const ActivityTerritories = withTheme(withStyles(styles)(connect<ActivityTerritoriesProps, ActivityTerritoriesDispatchProps, {}, ApplicationState>(
+export const ActivityRelatedActivities = withTheme(withStyles(styles)(connect<ActivityRelatedActivitysProps, ActivityRelatedActivitysDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(Territories)))
+)(RelatedActivities)))

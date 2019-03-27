@@ -55,7 +55,7 @@ interface ActivitySectorsDispatchProps {
 
 type ActivitySectorsReaderProps =  WithStyles<typeof styles> & ActivitySectorsProps & ActivitySectorsDispatchProps
 
-class Additionals extends React.Component<ActivitySectorsReaderProps> {
+class Sectors extends React.Component<ActivitySectorsReaderProps> {
 
   constructor (props: ActivitySectorsReaderProps) {
     super(props)
@@ -150,4 +150,4 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
 export const ActivitySectors = withTheme(withStyles(styles)(connect<ActivitySectorsProps, ActivitySectorsDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(Additionals)))
+)(Sectors)))

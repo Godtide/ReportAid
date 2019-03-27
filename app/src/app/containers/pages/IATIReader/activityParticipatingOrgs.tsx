@@ -55,7 +55,7 @@ interface ActivityParticipatingOrgDispatchProps {
 
 type ActivityParticipatingOrgReaderProps =  WithStyles<typeof styles> & ActivityParticipatingOrgProps & ActivityParticipatingOrgDispatchProps
 
-class Additionals extends React.Component<ActivityParticipatingOrgReaderProps> {
+class ParticipatingOrgs extends React.Component<ActivityParticipatingOrgReaderProps> {
 
   constructor (props: ActivityParticipatingOrgReaderProps) {
     super(props)
@@ -150,4 +150,4 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
 export const ActivityParticipatingOrg = withTheme(withStyles(styles)(connect<ActivityParticipatingOrgProps, ActivityParticipatingOrgDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(Additionals)))
+)(ParticipatingOrgs)))
