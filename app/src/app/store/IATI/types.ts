@@ -547,6 +547,20 @@ export interface ActivityTransactionProps {
   description: string
 }
 
+export interface IATIActivityRelatedActivityProps {
+  relatedActivityRef: string
+  relationType: number
+  activityRef: string
+}
+
+export interface ActivityRelatedActivityProps {
+  activitiesRef: string
+  activityRef: string
+  relatedActivityRef: string
+  relationType: number
+  activityRef: string
+}
+
 /* IATI Activities Reader */
 
 export interface ActivityReportProps {
@@ -723,6 +737,22 @@ export interface IATIActivityTransactionReportProps extends PayloadProps {
   data: IATIActivityTransactionReport
 }
 
+export interface IATIActivityRelatedActivityData {
+  relatedActivityRef: string
+  relationType: number
+  activityRef: string
+}
+
+export interface IATIActivityRelatedActivityReport {
+  activitiesRef: string
+  activityRef: string
+  data: Array<IATIActivityRelatedActivityData>
+}
+
+export interface IATIActivityRelatedActivityReportProps extends PayloadProps {
+  data: IATIActivityRelatedActivityReport
+}
+
 /* Action Types */
 
 export const enum IATIWriterActionTypes {
@@ -762,7 +792,9 @@ export const enum IATIWriterActionTypes {
   ACTIVITYTERRITORY_SUCCESS = '@@IATIWriterActionTypes/ACTIVITYTERRITORY_SUCCESS',
   ACTIVITYTERRITORY_FAILURE = '@@IATIWriterActionTypes/ACTIVITYTERRITORY_FAILURE',
   ACTIVITYTRANSACTION_SUCCESS = '@@IATIWriterActionTypes/ACTIVITYTRANSACTION_SUCCESS',
-  ACTIVITYTRANSACTION_FAILURE = '@@IATIWriterActionTypes/ACTIVITYTRANSACTION_FAILURE'
+  ACTIVITYTRANSACTION_FAILURE = '@@IATIWriterActionTypes/ACTIVITYTRANSACTION_FAILURE',
+  ACTIVITYRELATEDACTIVITY_SUCCESS = '@@IATIWriterActionTypes/ACTIVITYRELATEDACTIVITY_SUCCESS',
+  ACTIVITYRELATEDACTIVITY_FAILURE = '@@IATIWriterActionTypes/ACTIVITYRELATEDACTIVITY_FAILURE'
 }
 
 export const enum IATIReportActionTypes {
@@ -813,5 +845,8 @@ export const enum IATIReportActionTypes {
   ACTIVITYTERRITORY_FAILURE = '@@IATIReportActionTypes/ACTIVITYTERRITORY_FAILURE',
   ACTIVITYTRANSACTION_SUCCESS = '@@IATIReportActionTypes/ACTIVITYTRANSACTION_SUCCESS',
   ACTIVITYTRANSACTIONPICKER_SUCCESS = '@@IATIReportActionTypes/ACTIVITYTRANSACTIONPICKER_SUCCESS',
-  ACTIVITYTRANSACTION_FAILURE = '@@IATIReportActionTypes/ACTIVITYTRANSACTION_FAILURE'
+  ACTIVITYTRANSACTION_FAILURE = '@@IATIReportActionTypes/ACTIVITYTRANSACTION_FAILURE',
+  ACTIVITYRELATEDACTIVITY_SUCCESS = '@@IATIReportActionTypes/ACTIVITYRELATEDACTIVITY_SUCCESS',
+  ACTIVITYRELATEDACTIVITYPICKER_SUCCESS = '@@IATIReportActionTypes/ACTIVITYRELATEDACTIVITYPICKER_SUCCESS',
+  ACTIVITYRELATEDACTIVITY_FAILURE = '@@IATIReportActionTypes/ACTIVITYRELATEDACTIVITY_FAILURE'
 }
