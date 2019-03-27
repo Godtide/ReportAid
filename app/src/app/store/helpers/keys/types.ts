@@ -19,7 +19,8 @@ export const enum KeyTypes {
   ACTIVITYSECTOR = 'activitySector',
   ACTIVITYBUDGET = 'activityBudget',
   ACTIVITYTERRITORY = 'activityTerritory',
-  ACTIVITYTRANSACTION = 'activityTransactions'
+  ACTIVITYTRANSACTION = 'activityTransactions',
+  ACTIVITYRELATEDACTIVITY = 'activityRelatedActivities'
 }
 
 export interface Keys {
@@ -46,6 +47,7 @@ export interface KeyData {
   activityBudget: string
   activityTerritory: string
   activityTransaction: string
+  activityRelatedActivity: string
 }
 
 export interface KeyProps extends PayloadProps {
@@ -90,5 +92,7 @@ export const enum KeyActionTypes {
   ACTIVITYTERRITORY_SUCCESS = '@@KeyActionTypes/ACTIVITYTERRITORY_SUCCESS',
   ACTIVITYTERRITORY_FAILURE = '@@KeyActionTypes/ACTIVITYTERRITORY_FAILURE',
   ACTIVITYTRANSACTION_SUCCESS = '@@KeyActionTypes/ACTIVITYTRANSACTION_SUCCESS',
-  ACTIVITYTRANSACTION_FAILURE = '@@KeyActionTypes/ACTIVITYTRANSACTION_FAILURE'
+  ACTIVITYTRANSACTION_FAILURE = '@@KeyActionTypes/ACTIVITYTRANSACTION_FAILURE',
+  ACTIVITYRELATEDACTIVITY_SUCCESS = '@@KeyActionTypes/ACTIVITYRELATEDACTIVITY_SUCCESS',
+  ACTIVITYRELATEDACTIVITY_FAILURE = '@@KeyActionTypes/ACTIVITYRELATEDACTIVITY_FAILURE'
 }

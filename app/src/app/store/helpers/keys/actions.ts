@@ -42,7 +42,8 @@ export const setKey = (props: Keys) => {
           activitySector:  key,
           activityBudget:  key,
           activityTerritory:  key,
-          activityTransaction: key
+          activityTransaction: key,
+          activityRelatedActivity: key
         }
         actionType = KeyActionTypes.NEW_SUCCESS
         break
@@ -135,6 +136,11 @@ export const setKey = (props: Keys) => {
       case KeyTypes.ACTIVITYTRANSACTION: {
         keyData.activityTransaction = key
         actionType = KeyActionTypes.ACTIVITYTRANSACTION_SUCCESS
+        break
+      }
+      case KeyTypes.ACTIVITYRELATEDACTIVITY: {
+        keyData.activityRelatedActivity = key
+        actionType = KeyActionTypes.ACTIVITYRELATEDACTIVITY_SUCCESS
         break
       }
       default:

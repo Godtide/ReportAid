@@ -21,7 +21,8 @@ import { ActionProps } from '../../types'
         activitySectors: {},
         activityBudgets: {},
         activityTerritories: {},
-        activityTransactions: {}
+        activityTransactions: {},
+        activityRelatedActivities: {}
       }
     }
   }

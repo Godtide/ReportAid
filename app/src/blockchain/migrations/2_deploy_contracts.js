@@ -21,6 +21,7 @@ const IATIActivitySectors = artifacts.require("./IATIActivitySectors.sol");
 const IATIActivityBudgets = artifacts.require("./IATIActivityBudgets.sol");
 const IATIActivityTerritories = artifacts.require("./IATIActivityTerritories.sol");
 const IATIActivityTransactions = artifacts.require("./IATIActivityTransactions.sol");
+const IATIActivityRelatedActivities = artifacts.require("./IATIActivityRelatedActivities.sol");
 
 module.exports = function(deployer) {
 
@@ -42,6 +43,7 @@ module.exports = function(deployer) {
   let activityBudgetsAddress;
   let activityTerritoriesAddress;
   let activityTransactionsAddress;
+  let activityRelatedActivitiesAddress;
 
   deployer.deploy(StringsLib);
   deployer.link(StringsLib, [IATIBudgets,
@@ -56,7 +58,8 @@ module.exports = function(deployer) {
                              IATIActivityParticipatingOrgs,
                              IATIActivitySectors,
                              IATIActivityTerritories,
-                             IATIActivityTransactions
+                             IATIActivityTransactions,
+                             IATIActivityRelatedActivities
                             ]);
 
   deployer.deploy(IATIOrgs).then(() => {
@@ -130,6 +133,10 @@ module.exports = function(deployer) {
     activityTransactionsAddress = "\"" + IATIActivityTransactions.address + "\"";
   });
 
+  deployer.deploy(IATIActivityRelatedActivities).then(() => {
+    activityRelatedActivitiesAddress = "\"" + IATIActivityRelatedActivities.address + "\"";
+  });
+
   deployer.then( () => {
     console.log("static orgsAddress =", orgsAddress);
     console.log("static organisationsAddress =", organisationsAddress);
@@ -148,6 +155,7 @@ module.exports = function(deployer) {
     console.log("static activitySectorsAddress =", activitySectorsAddress);
     console.log("static activityBudgetsAddress =", activityBudgetsAddress);
     console.log("static activityTerritoriesAddress =", activityTerritoriesAddress);
-    console.log("static activityTransactionsAddress =", activityTransactionsAddress);    
+    console.log("static activityTransactionsAddress =", activityTransactionsAddress);
+    console.log("static activityRelatedActivitiesAddress =", activityRelatedActivitiesAddress);    
   });
 };
