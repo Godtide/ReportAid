@@ -64,24 +64,24 @@ class Blockchain {
 
 class Contract {
 
-  static orgsAddress = "0x9F86B6145a4216C0AEcbf77ac35659802eFD5F8a"
-  static organisationsAddress = "0x66ae9e851D38719495Fc80E331D79CeD107CFB73"
-  static organisationAddress = "0x6E2a6576f74c3A795503c7cB592095e889F17640"
-  static organisationDocsAddress = "0x9ebE6568eb356a48E21b84e57e8b95da56Ad90Ab"
-  static organisationBudgetsAddress = "0x1959a3B64A9b8a246cd4ae3305d29EF2Cf928358"
-  static organisationExpenditureAddress = "0xC7271378FB6a2B8292d09Ba8637197c51fF4d26B"
-  static organisationRecipientBudgetsAddress = "0xa5C039515f83982e33Da70210BD74c2a30a7Bd01"
-  static organisationRegionBudgetsAddress = "0xc414e8AAbbe4753faBCf5180BD8438F99adb3016"
-  static organisationCountryBudgetsAddress = "0xD63A6e29cc37e2A45ad723220c41dDB1AfC31Ec3"
-  static activitiesAddress = "0x8cA96cC847AE03c728d2d8957482B1FE113Ce810"
-  static activityAddress = "0x2fe5E47B4F85740FCE65EAD551812379A590EE94"
-  static activityAdditionalAddress = "0x6eaF25A60512381a3CFA388cbEa91cfe643B838f"
-  static activityDatesAddress = "0xe0c591987bc980aC688886E7A34084E282951E9a"
-  static activityParticipatingOrgsAddress = "0xE6a0f4838c27024A41e4DAC39354Ad735Ef71E82"
-  static activitySectorsAddress = "0xFDCF04eEA8F126C6CB32a32237AaB0f47b661edF"
-  static activityBudgetsAddress = "0x5384CFF0018Dd621E579F978F2fF963D0B2Bc652"
-  static activityTerritoriesAddress = "0xEb6B45ea7f7Ab87ad14bD5a850138afFBba3114f"
-  static activityTransactionsAddress = "0x177E971581e17d783bF9f4e9b49729Dd08755091"
+  static orgsAddress = "0x667CD537e1079044119438B0c8a62d59D557B55A"
+  static organisationsAddress = "0xcA5784A7c10A7CFC6480072FB46f0C54dFbFB989"
+  static organisationAddress = "0x2C433289b8A829AA3F34287039083309F542C8C4"
+  static organisationDocsAddress = "0x0A1E2F79698149724A6f02B549C9FCB216c3845C"
+  static organisationBudgetsAddress = "0xd3Fa22746d7d71f3386718A3F48f7b6a88073a4D"
+  static organisationExpenditureAddress = "0xe97b1Cb304DD13e64AA833061d276F3C40453325"
+  static organisationRecipientBudgetsAddress = "0x33bC4b3D57Df88bFAd0057DFfF2DeC217F5cA917"
+  static organisationRegionBudgetsAddress = "0xF370A3797f3cC16E5420798762B77ec273Cb8a06"
+  static organisationCountryBudgetsAddress = "0x9F0eA05eBa893D2736e1cB1a7295AC962CD274C8"
+  static activitiesAddress = "0x2FB258596E6359b9342E1e4d6617c72c54C893d9"
+  static activityAddress = "0x2DA3eA244771fc59661Be117c0760227b639391F"
+  static activityAdditionalAddress = "0x97A3F9E0D2971e511D44eF1D7BdC917F3B36098d"
+  static activityDatesAddress = "0xcf1b179BC789696558696B54b01832BaA756a1f9"
+  static activityParticipatingOrgsAddress = "0x795c173D24c07432454afEcCC467D443F9e247b5"
+  static activitySectorsAddress = "0xc47326db84F424814cdC1926822199391cba3944"
+  static activityBudgetsAddress = "0xd95a18e8deb4612089aB9604DeF69ecb9d7B5873"
+  static activityTerritoriesAddress = "0x7a5D51049dE2Dfc9EE01C387Bc4AF7D3A9350E3b"
+  static activityTransactionsAddress = "0x9527224408d58592EF7B409C5e120cBd14d97Ce0"
 
   static activitiesABI = [
     "event SetActivities(bytes32 _activitiesRef, tuple(bytes32 version, bytes32 generatedTime, bytes32 linkedData) orgActivities)",
@@ -215,7 +215,7 @@ class Contract {
   	"function getNum(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint256)",
   	"function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) public view returns (bytes32)",
 
-  	"function getTransaction(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (tuple(uint8 transactionType, uint8 disbursementChannel, uint8 flowType, uint8 tiedStatus, uint256 financeType, bytes32 aidType, bytes32 date, tuple(uint256 value, bytes32 date, bytes32 currency) _value, tuple(uint8 orgType, bytes32 orgRef, bytes32 activityRef) providerOrg, tuple(uint8 orgType, bytes32 orgRef, bytes32 activityRef) receiverOrg, uint256 sectorDacCode, bytes32 territory, string description) _transaction)",
+  	"function getTransaction(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (tuple(uint8 transactionType, uint8 disbursementChannel, uint8 flowType, uint8 tiedStatus, uint256 financeType, bytes32 aidType, bytes32 date, tuple(uint256 value, bytes32 date, bytes32 currency) value, tuple(uint8 orgType, bytes32 orgRef, bytes32 activityRef) providerOrg, tuple(uint8 orgType, bytes32 orgRef, bytes32 activityRef) receiverOrg, uint256 sectorDacCode, bytes32 territory, string description) _transaction)",
 
   	"function getTransactionType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (uint8)",
   	"function getDisbursementChannel(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (uint8)",

@@ -28,7 +28,8 @@ export const reducer = (state: PayloadProps = initialState, action: ActionProps)
     case IATIReportActionTypes.ACTIVITYPARTICIPATINGORG_SUCCESS:
     case IATIReportActionTypes.ACTIVITYSECTOR_SUCCESS:
     case IATIReportActionTypes.ACTIVITYBUDGET_SUCCESS:
-    case IATIReportActionTypes.ACTIVITYTERRITORY_SUCCESS: {
+    case IATIReportActionTypes.ACTIVITYTERRITORY_SUCCESS:
+    case IATIReportActionTypes.ACTIVITYTRANSACTION_SUCCESS: {
       const data = (action.payload.data as PayloadProps)
       return {...state, ...data}
     }
@@ -49,6 +50,7 @@ export const reducer = (state: PayloadProps = initialState, action: ActionProps)
     case IATIReportActionTypes.ACTIVITYSECTOR_FAILURE:
     case IATIReportActionTypes.ACTIVITYBUDGET_FAILURE:
     case IATIReportActionTypes.ACTIVITYTERRITORY_FAILURE:
+    case IATIReportActionTypes.ACTIVITYTRANSACTION_FAILURE:
     default:
       return state
   }

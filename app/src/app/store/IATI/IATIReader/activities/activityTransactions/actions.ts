@@ -49,16 +49,18 @@ const getThisActivityTransaction = (props: ActivityTransactionProps) => {
 
       const thisTransaction: IATIActivityTransactionProps = await activityTransactionsContract.getTransaction(activitiesRef, activityRef, transactionRef)
 
+      //console.log('Transaction: ', thisTransaction)
+
       transactionData.data.data[data.length] = {
         transactionRef: transactionRef,
         transactionType: thisTransaction.transactionType,
         disbursementChannel: thisTransaction.disbursementChannel,
         flowType: thisTransaction.flowType,
         tiedStatus: thisTransaction.tiedStatus,
-        financeType: thisTransaction.financeType,
+        financeType: ethers.utils.bigNumberify(thisTransaction.financeType).toNumber(),
         aidType: ethers.utils.parseBytes32String(thisTransaction.aidType),
         date: ethers.utils.parseBytes32String(thisTransaction.date),
-        value: thisTransaction.value.value,
+        value: ethers.utils.bigNumberify(thisTransaction.value.value).toNumber(),
         valueDate: ethers.utils.parseBytes32String(thisTransaction.value.date),
         currency: ethers.utils.parseBytes32String(thisTransaction.value.currency),
         providerOrgType: thisTransaction.providerOrg.orgType,
@@ -67,7 +69,7 @@ const getThisActivityTransaction = (props: ActivityTransactionProps) => {
         receiverOrgType: thisTransaction.receiverOrg.orgType,
         receiverOrgRef: thisTransaction.receiverOrg.orgRef,
         receiverActivityRef: thisTransaction.receiverOrg.activityRef,
-        sectorDacCode: thisTransaction.sectorDacCode,
+        sectorDacCode: ethers.utils.bigNumberify(thisTransaction.sectorDacCode).toNumber(),
         territory: ethers.utils.parseBytes32String(thisTransaction.territory),
         description: thisTransaction.description
       }
