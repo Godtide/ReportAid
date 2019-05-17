@@ -4,7 +4,7 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](/docs/prs.md)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](/docs/COPYING.txt)
 
-Repository for work on ReportAid - a tool for using blockchains for reporting on humanitarian aid.
+Repository for work on ReportAid - a blockchain implementation of the [IATI Standard](https://iatistandard.org/en/), with a frontend intending to represent the [UN's Finanical Tracking Service](https://fts.unocha.org). Hence, Reportaid is a tool for reporting on humanitarian aid.
 
 Relevant works are in the [docs](/docs) subdirectory.
 
