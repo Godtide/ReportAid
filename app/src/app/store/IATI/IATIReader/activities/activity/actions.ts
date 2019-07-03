@@ -48,7 +48,7 @@ const getThisActivity = (props: ActivityProps) => {
 
      activityData.data.data[data.length] = {
        activityRef: activityRef,
-       title: ethers.utils.parseBytes32String(activity.title),
+       title: activity.title,
        description: activity.description,
        identifier: ethers.utils.parseBytes32String(activity.identifier),
        linkedData: ethers.utils.parseBytes32String(activity.linkedData),

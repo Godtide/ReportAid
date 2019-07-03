@@ -38,7 +38,7 @@ export const setActivity = (details: ActivityProps) => {
       currency: ethers.utils.formatBytes32String(details.currency),
       linkedData: ethers.utils.formatBytes32String(details.linkedData),
       identifier: ethers.utils.formatBytes32String(details.identifier),
-      title: ethers.utils.formatBytes32String(details.title),
+      title: details.title,
       description: details.description
     }
 

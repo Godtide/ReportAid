@@ -17,7 +17,7 @@ contract IATIActivity is Activity {
              _activity.identifier[0] != 0 &&
              _activity.reportingOrg.orgRef[0] != 0 &&
              _activity.reportingOrg.orgType > 0 &&
-             _activity.title[0] != 0 &&
+             bytes(_activity.title).length > 0 &&
              _activity.lastUpdated[0] != 0 &&
              _activity.lang[0]  != 0 &&
              _activity.currency[0] != 0 &&
@@ -56,7 +56,7 @@ contract IATIActivity is Activity {
     return activities[_activitiesRef][_activityRef];
   }
 
-  function getTitle(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32) {
+  function getTitle(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (string memory) {
   	require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
 
   	return activities[_activitiesRef][_activityRef].title;
