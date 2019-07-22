@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/glowkeeper/HumanitarianBlockchain.git"
+    "url": "git+https://github.com/glowkeeper/ReportAid.git"
   },
   "scripts": {
     "generate": "cd ./src/blockchain && mkdir -p ./build/contracts && touch ./build/contracts/fooBar.json && rm ./build/contracts/*json && truffle compile --all && ./typechainBuild.sh",
