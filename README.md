@@ -38,7 +38,7 @@ After cloning this repository, download and install the dependencies (if you hav
 
 Follow the instructions in the [Ganache](https://github.com/trufflesuite/ganache) repository for downloading and installing Ganache; tl;dr - you need to clone the [Ganache](https://github.com/trufflesuite/ganache) repository, then run `npm install && npm start`.
 
-In the **ReportAid** repository's app directory, type `npm install`. That should install everything listed in [package.json](app/package.json), which form the components of the REACT-based web frontend to this application.
+In the **ReportAid** repository's [/app](/app) directory, type `npm install`. That should install everything listed in [package.json](/app/package.json), which form the components of the REACT-based web frontend to this application.
 
 Now, publish the contracts to your local blockchain (via [Ganache](https://github.com/trufflesuite/ganache)):
 
@@ -72,7 +72,7 @@ Have a look at [future work](#future) for some ideas as to how you may contribut
 ## Future work
 
 1. <a name="future">Block</a> explorers to display all updates to the [IATI Standard](https://iatistandard.org/en/) records
-2. Implement all of the [IATI Standard](https://iatistandard.org/en/
+2. Implement all of the [IATI Standard](https://iatistandard.org/en/)
 3. ...other ideas welcome ;)
 
 ## Credits
