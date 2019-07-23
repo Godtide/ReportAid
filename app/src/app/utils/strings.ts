@@ -84,7 +84,7 @@ class Home {
 
   static heading = 'Home'
 
-  static info = `Use this application to record humanitarian aid data and to get humanitarian aid information.<br /><br />Read the [Overview](#${configPaths.overview}) section to learn about the origins of **ReportAid**.<br /><br />The [Help](#${configPaths.help}) section gives brief instructions as to how to use **ReportAid** - in essence, to create a humanitarian aid record, click on the [Create Record](#${configPaths.writer}) link and fill in all fields. To retrieve a humanitarian aid record, click on the [Read Record](#${configPaths.reader}) link. You must have [MetaMask](https://metamask.io/) installed.`
+  static info = `Use this application to record humanitarian aid data and to get humanitarian aid information.<br /><br />Read the _${Paths.overview}_ section to learn about the origins of **ReportAid**.<br /><br />The _${Paths.help}_  section gives brief instructions as to how to use **ReportAid** - in essence, to create a humanitarian aid record, click on the _${Paths.writer}_ link. To retrieve a humanitarian aid record, click on the _${Paths.reader}_ link. You must have [MetaMask](https://metamask.io/) installed.`
 }
 
 class About {
@@ -99,14 +99,14 @@ class Overview {
 
   static heading = 'Overview of ReportAid'
 
-  static info = '**ReportAid** is the result of an academic paper titled: _Humanitarian Aid - a Blockchain Application That Adds Trust to Aid Provisioning_. The article discusses how the trust mechanisms of blockchain technology might be used to promote transparanecy in humanitarian aid provisioning. The general idea is that blockchains can add trust to the reporting of humanitarian aid funding.<br /><br />For more information about **ReportAid**, please contact s dot huckle at sussex dot ac dot uk.'
+  static info = '**ReportAid** is the result of a (still to be published) academic paper titled: _Humanitarian Aid - a Blockchain Application That Adds Trust to Aid Provisioning_. The article will discuss how the trust mechanisms of blockchain technology might be used to promote transparanecy in humanitarian aid provisioning. The general idea is that blockchains can add trust to the reporting of humanitarian aid funding.<br /><br />For more information about **ReportAid**, please contact s dot huckle at sussex dot ac dot uk.'
 }
 
 class Help {
 
   static heading = 'ReportAid Help'
 
-  static info = `**ReportAid** allows humanitarian aid organisations to record information about funding.<br /><br />Have a read of the [Overview](#${configPaths.overview}) section, which gives some background about the app\'. <br /><br />The _${App.headingOrganisationsWriter}_ menu lets you create IATI Organsations records. The _${App.headingActivitiesWriter}_ menu lets you create IATI Activities records. The _${App.headingOrganisationsUpdater}_ menu lets you update IATI Organisations records. The _${App.headingActivitiesUpdater}_ menu lets you update IATI Activities records. Finally, the _${App.headingOrganisationsReader}_ menu lets you read IATI Organsations records and the _${App.headingActivitiesReader}_ menu lets you read IATI Activities records.<br /><br />This app' relies on [MetaMask](https://metamask.io/).`
+  static info = `**ReportAid** allows humanitarian aid organisations to record information about funding.<br /><br />Have a read of the _${Paths.overview}_ section, which gives some background about the app\'. <br /><br />The _${App.headingOrganisationsWriter}_ menu lets you create IATI Organsations records. The _${App.headingActivitiesWriter}_ menu lets you create IATI Activities records. The _${App.headingOrganisationsUpdater}_ menu lets you update IATI Organisations records. The _${App.headingActivitiesUpdater}_ menu lets you update IATI Activities records. Finally, the _${App.headingOrganisationsReader}_ menu lets you read IATI Organsations records and the _${App.headingActivitiesReader}_ menu lets you read IATI Activities records.<br /><br />This app' relies on [MetaMask](https://metamask.io/).`
 }
 
 class IATIWriter {
