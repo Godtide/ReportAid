@@ -47,7 +47,7 @@ contract Activity {
     bytes32 currency;
     bytes32 linkedData;
     bytes32 identifier;
-    bytes32 title;
+    string title;
     string description;
   }
 
@@ -60,7 +60,7 @@ contract Activity {
 
   function getIdentifier(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32);
   function getReportingOrg(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (ReportingOrg memory);
-  function getTitle(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32);
+  function getTitle(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (string memory);
   function getLastUpdatedTime(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32);
   function getLang(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32);
   function getCurrency(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32);

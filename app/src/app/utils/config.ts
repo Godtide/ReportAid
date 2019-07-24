@@ -191,12 +191,12 @@ class Contract {
   ]
 
   static activityABI = [
-  	"function setActivity(bytes32 _activitiesRef, bytes32 activityRef, tuple(bool humanitarian, uint8 hierarchy, uint8 status, uint8 budgetNotProvided, tuple(uint8 orgType, bool isSecondary, bytes32 orgRef) reportingOrg, bytes32 lastUpdated, bytes32 lang, bytes32 currency, bytes32 linkedData, bytes32 identifier, bytes32 title, string description) _activity)@500000",
+  	"function setActivity(bytes32 _activitiesRef, bytes32 activityRef, tuple(bool humanitarian, uint8 hierarchy, uint8 status, uint8 budgetNotProvided, tuple(uint8 orgType, bool isSecondary, bytes32 orgRef) reportingOrg, bytes32 lastUpdated, bytes32 lang, bytes32 currency, bytes32 linkedData, bytes32 identifier, string title, string description) _activity)@500000",
 
   	"function getNumActivities(bytes32 _activitiesRef) view returns (uint256)",
   	"function getReference(bytes32 _activitiesRef, uint256 _index) view returns (bytes32)",
 
-  	"function getActivity(bytes32 _activitiesRef, bytes32 _activityRef) view returns (tuple(bool humanitarian, uint8 hierarchy, uint8 status, uint8 budgetNotProvided, tuple(uint8 orgType, bool isSecondary, bytes32 orgRef) reportingOrg, bytes32 lastUpdated, bytes32 lang, bytes32 currency, bytes32 linkedData, bytes32 identifier, bytes32 title, string description) _activity)",
+  	"function getActivity(bytes32 _activitiesRef, bytes32 _activityRef) view returns (tuple(bool humanitarian, uint8 hierarchy, uint8 status, uint8 budgetNotProvided, tuple(uint8 orgType, bool isSecondary, bytes32 orgRef) reportingOrg, bytes32 lastUpdated, bytes32 lang, bytes32 currency, bytes32 linkedData, bytes32 identifier, string title, string description) _activity)",
 
   	"function getIdentifier(bytes32 _activitiesRef, bytes32 _activityRef) view returns (bytes32)",
   	"function getReportingOrg(bytes32 _activitiesRef, bytes32 _activityRef) view returns (ReportingOrg memory)",
