@@ -71,7 +71,13 @@ const theme = createMuiTheme({
       hint: "rgba(0, 0, 0, 0.38)"
     },
     background: {
-      default: '#E3F2FD',
+      default: '#FFFFFF',
+    },
+    surface: {
+      default: '#FFFFFF',
+    },
+    error: {
+      default: '#B00020',
     },
     primary: {
       light: '#BBDEFB',
