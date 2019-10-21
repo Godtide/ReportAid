@@ -16,7 +16,7 @@ This is the repository of **ReportAid** - a tool for reporting on humanitarian a
   - [Dependencies](#dependencies)    
   - [Detailed Instructions](#detailed-instructions)     
   - [Built Using](#built-using)  
-- [Maintainers](#maintainers)
+- [Maintainer](#maintainer)
 - [Contributing](#contributing)
 - [License](#license)
 
