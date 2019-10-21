@@ -4,9 +4,31 @@
 
 This is the repository of **ReportAid** - a tool for reporting on humanitarian aid. **ReportAid** is a blockchain implementation of the [IATI Standard](https://iatistandard.org/en/).
 
-## Demo'
+## Table of Contents
+
+- [Usage](#usage)
+  - [Demo](#demo)
+  - [Demo Dependencies](#demo-dependencies)   
+- [About](#about-reportaid)
+- [A Proof of concept](#a-proof-of-concept)
+- [Install](#install)
+  - [Getting Started](#getting-started)
+  - [Dependencies](#dependencies)    
+  - [Detailed Instructions](#detailed-instructions)     
+  - [Built Using](#built-using)  
+- [Maintainers](#maintainers)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Usage
+
+Below shows you how to use the demo' [ReportAid](http://4b1bdf7b0f6beeadab5dadaf019cddbc94f618792ea30b8a2f5d957267d5bd92/) application.
+
+### Demo
 
 A live demo' of [ReportAid](http://4b1bdf7b0f6beeadab5dadaf019cddbc94f618792ea30b8a2f5d957267d5bd92/) is running on the [Rinkeby Ethereum Testnet](https://www.rinkeby.io/), via the [dat://](https://dat.foundation/) peer-to-peer network. You can find it at http://4b1bdf7b0f6beeadab5dadaf019cddbc94f618792ea30b8a2f5d957267d5bd92/.
+
+#### Demo Dependencies
 
 To see the demo' (and use it), you will need to be running [Firefox](https://www.mozilla.org/) with the [DAT P2P Protocol](https://addons.mozilla.org/en-GB/firefox/addon/dat-p2p-protocol/) and [MetaMask](https://metamask.io/) extensions installed. [MetaMask](https://metamask.io/) should be pointing at the Rinkeby Test Network, and you will need a few test Ether in your [MetaMask](https://metamask.io/) wallet, which you can get from the [Rinkeby Faucet](https://faucet.rinkeby.io/). Those test Ether will allow you to sign the transactions necessary to create [IATI Standard](https://iatistandard.org/en/) records that update the blockchain.
 
@@ -20,7 +42,7 @@ The intention is to explain the ideas behind **ReportAid** in an academic paper 
 
 [ReportAid](http://4b1bdf7b0f6beeadab5dadaf019cddbc94f618792ea30b8a2f5d957267d5bd92/) is an early proof of concept, so apologies in advance - help for using the app' is currently 'minimal', at best. You should expect some bugs, too (if you find any, feel free to raise an [issue](https://github.com/glowkeeper/ReportAid/issues)). Furthermore, the app' is missing some functionality as it does not, currently, implement all of the [IATI Standard](https://iatistandard.org/en/). That said, as a proof of concept, the app' serves its purpose well. Hopefully, you agree and want to get involved - if so, please get in touch with s dot huckle at sussex dot ac dot uk.
 
-## Installing ReportAid Locally
+## Install
 
 The instruction below enable you to run **ReportAid** on a local, private, Ethereum test network (via [Ganache](https://github.com/trufflesuite/ganache)).
 
@@ -28,7 +50,7 @@ The instruction below enable you to run **ReportAid** on a local, private, Ether
 
 After cloning this repository, install the prerequisites listed and follow the instructions below to get the project up and running on your local machine (for development and testing purposes).
 
-### Prerequisites
+### Dependencies
 
 After cloning this repository, download and install the dependencies (if you have not already done so):
 
@@ -38,7 +60,7 @@ After cloning this repository, download and install the dependencies (if you hav
 - [Truffle](https://github.com/trufflesuite/truffle)
 - [http-server](https://www.npmjs.com/package/http-server)
 
-### Install
+### Detailed Instructions
 
 Follow the instructions in the [Ganache](https://github.com/trufflesuite/ganache) repository for downloading and installing Ganache; tl;dr - you need to clone the [Ganache](https://github.com/trufflesuite/ganache) repository, then run `npm install && npm start`.
 
@@ -61,7 +83,7 @@ Now create the web application:
 
 Then fire up a [Firefox](https://www.mozilla.org/) browser and go to the URL [http://localhost:8081](http://localhost:8081). You must have the [Firefox](https://www.mozilla.org/) extension [MetaMask](https://metamask.io/) installed. [Ganache](https://github.com/trufflesuite/ganache) will have generated some test addresses with 100 test Ether that will allow you to sign the transactions necessary to create [IATI Standard](https://iatistandard.org/en/) records that update the blockchain. You need to import one of those addresses' private keys into [MetaMask](https://metamask.io/).
 
-### Built Using...
+### Built Using
 
 - [node](https://nodejs.org/en/)
 - [npm](https://www.npmjs.com/)
@@ -69,21 +91,15 @@ Then fire up a [Firefox](https://www.mozilla.org/) browser and go to the URL [ht
 - [Truffle](https://github.com/trufflesuite/truffle)
 - [REACT](https://reactjs.org/) + [Redux](https://redux.js.org/) + [TypeScript](https://www.typescriptlang.org/)
 
+## Maintainer
+
+[Steve Huckle](https://glowkeeper.github.io/).
+
 ## Contributing
 
-Have a look at [future work](#future) for some ideas as to how you may contribute. However, other suggestions are very welcome!
+Contributions welcome - please email [Steve Huckle](https://glowkeeper.github.io/).
 
-## Future work
-
-1. <a name="future">Block</a> explorers to display all updates to the [IATI Standard](https://iatistandard.org/en/) records
-2. Implement all of the [IATI Standard](https://iatistandard.org/en/)
-3. ...other ideas welcome ;)
-
-## Credits
-
-Original author: Steve Huckle, s dot huckle at sussex dot ac dot uk.
-
-## Licensing
+## License
 
 GNU General Public License v3.0
 
