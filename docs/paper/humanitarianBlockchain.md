@@ -14,9 +14,7 @@ This article describes a blockchain-based application for increasing the transpa
 
 ## Introduction
 
-...blah...
-
-First, this paper provides some background to the application, which, at the time of writing, is called [ReportAid](https://github.com/glowkeeper/ReportAid) [^1]. Described next is the design of [ReportAid](https://github.com/glowkeeper/ReportAid), after which, an example use of the application is given via an imagined scenario where it is used to document the European Commission's 2015 response to the Ebola crisis in West Africa. The paper then analyses that scenario, before describing the application's limitations and proposals for future work.
+First, this paper provides some background to the application. Described next is the design of [ReportAid](https://github.com/glowkeeper/ReportAid), after which, an example use of the application is given via an imagined scenario where it is used to document the European Commission's 2015 response to the Ebola crisis in West Africa. The paper then analyses that scenario, before describing the application's limitations and proposals for future work.
 
 ## Background
 
@@ -96,11 +94,28 @@ The AWARE activity recorded on [d-portal](http://d-portal.org) contains more inf
 
 ## Analysis
 
-yada yada yada
+This analysis section constitutes the evaluation and conclusion stage from DSR. The fourth of the subordinate questions of the research objective asks whether blockchains can address criticisms of humanitarian aid? The DSR artefact [ReportAid](https://github.com/glowkeeper/ReportAid), described above through examples, suggests the answer must be yes. Coppi says, "few advanced use cases of blockchain exist in the humanitarian sector. Instead, much discussion relates to potential and anticipated uses of the technology" [@Coppi_BlockchainDistributedLedger_2019]. Although Coppi goes on to describe the use of blockchains in the humanitarian realm, each of the cases he mentions describes direct aid delivery, via the technology's currency capabilities. Therefore, [ReportAid](https://github.com/glowkeeper/ReportAid), as an application that adds trust to transparent aid reporting, is a unique and advanced humanitarian use-case of blockchains that realises some of Coppi's supposed potential of the technology.
+
+Even before the Grand Bargain made at the 2016 World Health Summit (described in the [Literature Review](./literatureReview.md)), the Inter-Agency Standing Committee's Humanitarian Financing Task Team (HFTT) [^707] were busy researching financial transparency because they believed it helped fight corruption through providing the keys to understand, "why, how, what, and how much" [@TransparencyInternational_WhatCorruption_2018]. The HFTT define the '3Ts' of transparent reporting:
+
+1. **Traceability**. The entire transaction chain of aid data must be traceable.
+2. **Totality**. Financial information must be complete and relevant.
+3. **Timeliness**. Aid information should be up-to-date [@DevelopmentInitiatives_ImprovingHumanitarianTransparency_2017].
+
+However, might the HFTT have missed a 'T', namely, trust? Trust is the glue binding society together because it gives us confidence in situations that might otherwise harbour unknown risks [@Botsman_WhoCanYou_2018]. Indeed, society does not necessarily achieve prosperity as the result of an abundance of natural resources or brilliance of intellect. Neither is that an inevitable result of systemic ideologies, such as frictionless free markets or the communitarian approach of commons-based peer production. Those things may have an important role to play, but ultimately, prosperity, in any form, comes as a result of "spontaneous sociability", achieved through trust because that is the crucial ingredient of any relationship and healthy relationships lead to success [@Fukuyama_TrustSocialVirtues_1996]. [ReportAid](https://github.com/glowkeeper/ReportAid) is an example of an application for humanitarian aid reporting that, by using blockchains, adds that vital ingredient of trust. When an aid organisation adds a record to its implementation of the IATI standard, users can trust that it is that organisation that has created that record because they have digitally signed the transaction that did so.
+
+Furthermore, blockchains address those remaining '3Ts' of transparency, too. After all, its records are publicly viewable and practically impossible to change, and all transactions created are traceable algorithmically [@Savelyev_CopyrightBlockchainEra_2018]. Additionally, the present state of the blockchain is a deterministic function of the genesis block and its ensuing transaction history [@Ethereum_ShardingFAQs_2018]. In other words, a blockchain represent a historical record of all transactions ever recorded on their network, so they are total and timely, too.
 
 ## Conclusion
 
-...yada yada yada...
+This chapter asks the second of four subordinate questions that help answer the research objective. That asks whether blockchains can address criticisms of humanitarian aid? This chapter examines that fourth question through the lens of the DSR artefact [ReportAid](https://github.com/glowkeeper/ReportAid), which is a blockchain-based application for implementing the IATI standard for aid reporting. The chapter gave some background to [ReportAid](https://github.com/glowkeeper/ReportAid) and described its design. It showed examples of that artefact in use and how it might have been used to document the European Commission's response to the Ebola outbreak in West Africa. That example shows how [ReportAid](https://github.com/glowkeeper/ReportAid) helps address criticism of humanitarian aid by providing the mechanisms for the '4Ts' of transparent humanitarian aid reporting, namely:
+
+1. **Traceability**.
+2. **Totality**.
+3. **Timeliness**.
+4. **Trustworthiness**.
+
+Hence, this chapter concludes that blockchains do indeed contain the necessary properties for addressing criticisms of humanitarian aid.
 
 [^1]: ReportAid is available at the GitHub repository https://github.com/glowkeeper/ReportAid)
 [^2]: You can read more about the Agenda for Humanity at https://www.agendaforhumanity.org
