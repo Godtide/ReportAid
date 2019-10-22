@@ -16,20 +16,83 @@ This article describes a blockchain-based application for increasing the transpa
 
 ...blah...
 
-
-First...blah...
+First, this paper provides some background to the application, which, at the time of writing, is called [ReportAid](https://github.com/glowkeeper/ReportAid) [^1]. Described next is the design of [ReportAid](https://github.com/glowkeeper/ReportAid), after which, an example use of the application is given via an imagined scenario where it is used to document the European Commission's 2015 response to the Ebola crisis in West Africa. The paper then analyses that scenario, before describing the application's limitations and proposals for future work.
 
 ## Background
 
-....
+The "Grand Bargain" (GB) made at the 2016 World Health Summit (WHS), committed to enhancing the transparency of mutual aid reporting [@WorldHumanitarianSummit_CommitmentsActionWorld_2016].
+
+The amount of humanitarian financing contributed by the U.K. is a result of the official development assistance target of 0.7% of gross national income [@GOV.UK_OfficialDevelopmentAssistance_2018]. In 2015, that amounted to the U.K. spending £12.1bn [@Morris_RealityCheckHow_2017], a degree of funding that has received much criticism. For example, while giving evidence to a U.S. Senate Committee on foreign relations, ex-UK Prime Minister David Cameron suggested that much of the money goes to corrupt regimes, "If what we do is just have continued programs for countries that sometimes fail year after year after year, we just keep going, maybe that's not a good use of our money" [@MailOnline_StripAidMoney_2018].
+
+Their have been efforts to address such criticisms. The 2016 World Humanitarian Summit (WHS) described five 'commitments to action', which outline the key responsibilities for aid:
+
+1. Uphold the norms that safeguard humanity by enhancing compliance and accountability to international law.
+2. Implement a new approach to forced displacement so that no one is left behind.
+3. Achieve gender equality and greater inclusivity.
+4. Instead of replacing local systems, reinforce them so that, eventually, there is no need for aid.
+5. Invest in humanity by diversifying the resource base and increasing cost-efficiency [@WorldHumanitarianSummit_CommitmentsActionWorld_2016].
+
+The WHS described those five key responsibilities as an 'Agenda for Humanity' [^2], whose aim was to transform the lives of 130 million people living in crisis-affected areas around the world  @WorldHumanitarianSummit_CommitmentsActionWorld_2016]. As a result, large humanitarian donors and aid organisations agreed to a "Grand Bargain" (GB) to improve the lives of people living in fragile situations because of crises [@WorldHumanitarianSummit_CommitmentsActionWorld_2016]. The GB made many commitments, including enhancing the transparency of mutual aid reporting, thereby strengthening accountability, helping decision-making and ultimately, improving the effectiveness of humanitarian efforts. The Inter-Agency Standing Committee (IASC), a forum that was founded by UN and non-UN humanitarian partners in 1992 to strengthen mutual assistance, formed a 'workstream' to carry out the GB's transparency commitment [^3]. The workstream's baseline report acknowledged that, while more information on aid funding had become available, there was still a need for more organisations to produce better quality humanitarian data [@DevelopmentInitiatives_BaselineReportImplementing_2017].
+
+Consequently, the International Aid Transparency Initiative (IATI) was adopted as the United Nation's standard open-data format for documenting aid finance [@DevelopmentInitiatives_BaselineReportImplementing_2017]. Established in 2008, IATI became part of the movement for improving the reporting of charitable actions. Then, in 2013, various bodies of the United Nations (UN) began hosting IATI [@DevelopmentInitiatives_ImprovingHumanitarianTransparency_2017], after which it became the international framework for publishing open data on development cooperation and humanitarian assistance [@DevelopmentInitiatives_BaselineReportImplementing_2017]. Indeed, as of January 2017, over 500 humanitarian organisations are using IATI, including the governments of Japan, Sweden, the U.K. and the U.S., the European Commission's Humanitarian Aid and Civil Protection department, Oxfam, Save the Children, UNICEF and the World Food Programme [@DevelopmentInitiatives_ImprovingHumanitarianTransparency_2017].
+
+The IASC's GB workstream identified the Financial Tracking Service (FTS) of the U.N. Office for the Coordination of Humanitarian Affairs (OCHA), as the humanitarian reporting platform where IATI data from different organisations, and various platforms, could be amalgamated and published for analysis by global actors [@DevelopmentInitiatives_ImprovingHumanitarianTransparency_2017]. The FTS came into being in 1992 as a result of a set of guiding principles for strengthening the coordination of humanitarian emergency assistance under U.N. General Assembly Resolution 46/182 [^4]. As of the end of 2016, three hundred and fifty humanitarian organisations reported financial information to FTS, including all significant government donors, all U.N. humanitarian agencies, Red Cross organisations, as well as 250 NGOs and private organisations [@DevelopmentInitiatives_ImprovingHumanitarianTransparency_2017]. FTS can import the latest versions of the IATI standard; thus IATI complements FTS by providing the technical publishing framework by which FTS can make available structured reports on aid efforts.
+
+This paper examines whether blockchains have capabilities that can enhance the FTS and add further succour to the transparency initiative of the WHS. It does so through [ReportAid](https://github.com/glowkeeper/ReportAid), an appliucation that implements IATA on the blockchain.
 
 ## Application Design
 
-...
+The IATI open data standard defines specific entities that need recording. Figure 1, below, shows [ReportAid](https://github.com/glowkeeper/ReportAid) as a blockchain-based application that allows users to input, amend, and read IATA standard organisation and activity records. Hence, [ReportAid](https://github.com/glowkeeper/ReportAid) is a blockchain-based proof of concept that represents an implementation of OCHA's FTS.
+
+![Figure 1: A Use Case Diagram for ReportAid](images/reportaidUseCaseDiagram.png)
+
+Figure 2 shows [ReportAid](https://github.com/glowkeeper/ReportAid) implementing the IATI organisations standard via blockchain smart contracts. That standard is used to describe planned future budget information for aid funding [^5]. Described is a top-level IATIOrganisations element (this contains information such as the generation date of the report), which has at least one IATIOrganisation element (containing the report's language and currency type). That IATIOrganisation element links to other information describing the aid, such as the reporting organisation, associated country budgets and any supporting documentation.
+
+![Figure 2: Organisations Smart Contracts](images/organisationsClassDiagram.png)
+
+Figure 3 shows [ReportAid](https://github.com/glowkeeper/ReportAid)  implementing the IATI activities standard via blockchain smart contracts. A large number of fields describe IATI activities, and [ReportAid](https://github.com/glowkeeper/ReportAid), at the time of writing, has not implemented all of those; however, it does support all the mandatory fields, as well as one or two that are recommended [^6]. Figure 3 shows a top-level IATIActivies element (which contains information such as the generation date of the report). That features at least one IATIActivity element (containing information such as the default currency type and the degree to which the activity relates to humanitarian aid), which links to information such as the organisation participating in the activity, the sector and territory to which the activity belongs, as well as budgetary data. A single reporting organisation produces an activity report.
+
+![Figure 3: Activities Smart Contracts](images/reportaidActivitiesClassDiagram.png)
 
 ## A Humanitarian Aid Report
 
-...
+The baseline report of the IASC GB transparency workstream cites the recent Ebola crises as an example of incomplete, inaccurate, inconsistent and often inaccessible information that impacted the humanitarian effort in the diseases' epicentre in West-Africa [@DevelopmentInitiatives_ImprovingHumanitarianTransparency_2017]. Indeed, the report says that the lack of an adequately planned response hindered attempts to alleviate the outbreak because, at the time, no donor, government or aid agency was able to gain an overarching overview of available resources. The suggestion is that, were all the Ebola humanitarian aid efforts documented using the IATI standard and published to the UN's FTS, organisations would have had a more accurate picture of what was needed, thus improving the effectiveness of their response.
+
+Despite such shortcomings, many of the organisations that are already using IATI make information about their development contributions available through existing aid information portals; a widely-used example is an open-source platform called [d-portal](http://d-portal.org/) [^7]. That includes several IATI activities related to the world's response to the Ebola outbreak in West Africa. Hence, it contains data that [ReportAid](https://github.com/glowkeeper/ReportAid) can import, thereby demonstrating its suitability as a proof of concept for blockchain-based humanitarian aid reporting. One such activity documented on [d-portal](http://d-portal.org) was that carried out by the European Commission's Directorate-General for International Cooperation and Development (DEVCO), titled "A West African Response to Ebola" (AWARE), with IATI activity identifier XI-IATI-EC_DEVCO-2014/37785/0. That had a planned start date of 15th December 2015 and planned end date of 27th November 2018. The outgoing commitments of the activity totalled US$39,957,400. Its overall objective was to mitigate the harmful effects of the diseases' outbreak. Additionally, it was to contribute to the recovery of the most affected countries. Its specific purpose was to increase awareness of the diseases' symptoms and strengthen the resilience of primary healthcare systems. [Appendix A](./appendixAWAREXML.md) includes the XML describing AWARE.
+
+Figure 4, below, shows [ReportAid](https://github.com/glowkeeper/ReportAid) creating the organisation record for AWARE.  
+
+![Figure 4: Creating the organisation record for DEVCO](images/devcoOrgRecord.png)
+
+The smart contract implementation of IATI Activities depends on a single top-level activities record. [ReportAid](https://github.com/glowkeeper/ReportAid) must create that before it can record any specific activity. Figure 7.5, below, shows [ReportAid](https://github.com/glowkeeper/ReportAid) using MetaMask to sign the transaction creating the necessary top-level activities record [^705].
+
+![Figure 5: Creating the overarching activities record for the DEVCO Ebola activity](images/devcoActivitiesRecord.png)
+
+Now the specific activity can be recorded. Figure 7.6, below, shows [ReportAid](https://github.com/glowkeeper/ReportAid) signing the transaction creating the activity relating to AWARE.
+
+![Figure 6: Creating the activity record for DEVCO's AWARE activity](images/devcoActivityRecord.png)
+
+Subsequently, anyone can read that activity record. Furthermore, that data can be trusted because the transaction that created that record was digitally signed. Figure 7, below, shows [ReportAid](https://github.com/glowkeeper/ReportAid) retrieving the information created in Figure 7.6.
+
+![Figure 7: Reading the activity record for DEVCO's AWARE activity](images/devcoReadActivityRecord.png)
+
+The AWARE activity had a planned start date of 15th December 2015, an actual start date of 9th March 2015 and a planned end date of 27th November 2018. Figure 8, below, shows [ReportAid](https://github.com/glowkeeper/ReportAid) recording the planned start date.
+
+![Figure 8: Creating the planned start date for DEVCO's AWARE activity](images/devcoPlannedStartDate.png)
+
+Figure 9, below, shows [ReportAid](https://github.com/glowkeeper/ReportAid) subsequently retrieving those dates.
+
+![Figure 9: Retrieving the activity dates for DEVCO's AWARE activity](images/devcoReadActivityDates.png)
+
+Figure 10, below, shows [ReportAid](https://github.com/glowkeeper/ReportAid) recording AWARE's budget commitment of  US$28,000,000.
+
+![Figure 10: Recording the primary transaction record of DEVCO's AWARE activity](images/devcoTransaction.png)
+
+Figure 11, below, shows [ReportAid](https://github.com/glowkeeper/ReportAid) subsequently retrieving that record.
+
+![Figure 11:  Retrieving the primary transaction of DEVCO's AWARE activity](images/devcoReadTransaction.png)
+
+The AWARE activity recorded on [d-portal](http://d-portal.org) contains more information, such as other budgetary disbursements, administrative contact information and links to other activities related to AWARE. At the time of writing, [ReportAid](https://github.com/glowkeeper/ReportAid) was able to model most of that data, however showing that here would add little to the discussion.
 
 ## Analysis
 
@@ -38,3 +101,12 @@ yada yada yada
 ## Conclusion
 
 ...yada yada yada...
+
+[^1]: ReportAid is available at the GitHub repository https://github.com/glowkeeper/ReportAid)
+[^2]: You can read more about the Agenda for Humanity at https://www.agendaforhumanity.org
+[^3]: The IASC Grand Bargain Workstream is available at <https://interagencystandingcommittee.org/greater-transparency>
+[^4]: U.N. General Assembly Resolution 46/182 is available at <http://www.un.org/documents/ga/res/46/a46r182.htm>
+[^5]: What goes in an organisation file is described at https://iatistandard.org/en/guidance/preparing-data/organisation-information/what-goes-on-your-organisation-file/
+[^6]: The activity information that must be published is described at <https://iatistandard.org/en/guidance/preparing-data/activity-information/activity-information-you-can-publish/>
+[^7]: d-portal is available at <http://d-portal.org/>
+[^211]: More information about the work of HFTT is available at <https://interagencystandingcommittee.org/humanitarian-financing-task-team>
