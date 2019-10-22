@@ -29,7 +29,7 @@ Below describes a demo' of **ReportAid**.
 
 ## Demo
 
-Before you can see the demo , you must install the [demo dependencies](#demo-dependencies).
+Before you can see the demo, you must install the [demo dependencies](#demo-dependencies).
 
 A live demo' of [ReportAid](http://4b1bdf7b0f6beeadab5dadaf019cddbc94f618792ea30b8a2f5d957267d5bd92/) is running on the [Rinkeby Ethereum Testnet](https://www.rinkeby.io/), via the [dat://](https://dat.foundation/) peer-to-peer network. It is available at [http://4b1bdf7b0f6beeadab5dadaf019cddbc94f618792ea30b8a2f5d957267d5bd92/](http://4b1bdf7b0f6beeadab5dadaf019cddbc94f618792ea30b8a2f5d957267d5bd92/).
 
