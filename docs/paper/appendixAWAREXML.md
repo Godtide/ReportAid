@@ -1,6 +1,6 @@
 # Appendix H: The AWARE XML
 
-Below is the source XML modelled in [Blockchains and Humanitarian Aid Reporting](./reportAid.md).
+Below is the the source XML of the European Commission's Directorate-General for International Cooperation and Development 2015 West African Response to Ebola.
 
 <?xml version="1.0" encoding="UTF-8"?>
 <iati-activities xmlns:iati-extra="http://datastore.iatistandard.org/ns">
