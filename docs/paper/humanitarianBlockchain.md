@@ -79,13 +79,13 @@ The IATI open data standard defines specific entities that need recording. Figur
 
 Figure 2, below, shows the [ReportAid](https://github.com/glowkeeper/ReportAid) smart contract implementation of the IATI organisations standard. That standard describes planned future budget information for aid funding [^6]. Described is a top-level IATIOrganisations element (this contains information such as the generation date of the report), which has at least one IATIOrganisation element (containing the report's language and currency type). That IATIOrganisation element links to other information describing the aid, such as the reporting organisation, associated country budgets and any supporting documentation.
 
-![Figure 2: Organisations Smart Contracts](images/organisationsClassDiagram.png)
+![Figure 2: IATI Organisations Smart Contracts](images/organisationsClassDiagram.png)
 
 Figure 3, below, shows the [ReportAid](https://github.com/glowkeeper/ReportAid) smart contract implementation of the IATI activities standard. A large number of fields describe IATI activities, and [ReportAid](https://github.com/glowkeeper/ReportAid), at the time of writing, has not implemented all of those; however, it does support all the mandatory fields, as well as one or two that are recommended [^7]. Figure 3 shows a top-level IATIActivies element (which contains information such as the generation date of the report). That features at least one IATIActivity element (containing information such as the default currency type and the degree to which the activity relates to humanitarian aid), which links to information such as the organisation participating in the activity, the sector and territory to which the activity belongs, as well as budgetary data. A single reporting organisation produces an activity report.
 
-![Figure 3: Activities Smart Contracts](images/activitiesClassDiagram.png)
+![Figure 3: IATI Activities Smart Contracts](images/activitiesClassDiagram.png)
 
-## A Humanitarian Aid Report
+## The European Commission's West African Response to Ebola
 
 The baseline report of the IASC GB transparency workstream cites the recent Ebola crises as an example of incomplete, inaccurate, inconsistent and often inaccessible information that impacted the humanitarian effort in the diseases' epicentre in West-Africa [@DevelopmentInitiatives_ImprovingHumanitarianTransparency_2017]. Indeed, the report says that the lack of an adequately planned response hindered attempts to alleviate the outbreak because, at the time, no donor, government or aid agency was able to gain an overarching overview of available resources. The suggestion is that, were all the Ebola humanitarian aid efforts documented using the IATI standard and published to the UN's FTS, organisations would have had a more accurate picture of what was needed, thus improving the effectiveness of their response.
 
@@ -155,10 +155,10 @@ As well as barriers to uptake, the current version of [ReportAid](https://github
 
 This paper discusses [ReportAid](https://github.com/glowkeeper/ReportAid), which is a blockchain-based application for implementing the IATI standard for humanitarian aid reporting. That paper gave some background to IATI and described the functionality of blockchains that make it an ideal tool for implementing that standard, which it showed by way of an imagined scenario where the application is used to document the European Commission's response to the Ebola outbreak in West Africa. That example shows how [ReportAid](https://github.com/glowkeeper/ReportAid) helps address criticism of humanitarian aid by providing the mechanisms for the _4Ts_ of transparent humanitarian aid reporting, namely:
 
-1. **Traceability**.
-2. **Totality**.
-3. **Timeliness**.
-4. **Trustworthiness**.
+1. **Traceability**
+2. **Totality**
+3. **Timeliness**
+4. **Trustworthiness**
 
 Finally, this paper proposes a test pilot of [ReportAid](https://github.com/glowkeeper/ReportAid). That might help address the technological obstacles and challenge organisational concerns, discussed above. A pilot scheme would also aid a greater understanding of the technology and should help unearth any additional hurdles to overcome. Were that to happen, [ReportAid](https://github.com/glowkeeper/ReportAid), as a unique and advanced humanitarian use-case of blockchains, would help realise some of Coppi's supposed potential of blockchain technology [@Coppi_BlockchainDistributedLedger_2019].
 
