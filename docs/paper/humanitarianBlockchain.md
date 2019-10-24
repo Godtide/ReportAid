@@ -75,7 +75,7 @@ This paper examines whether blockchains have capabilities that can enhance the F
 
 The IATI open data standard defines specific entities that need recording. Figure 1, below, shows [ReportAid](https://github.com/glowkeeper/ReportAid) as a blockchain-based application that allows users to input, amend, and read IATA standard organisation and activity records. Hence, [ReportAid](https://github.com/glowkeeper/ReportAid) is a blockchain-based proof of concept that represents an implementation of OCHA's FTS.
 
-![Figure 1: A Use Case Diagram for ReportAid](images/reportaidUseCaseDiagram.png)
+![Figure 1: A Use Case Diagram for ReportAid](images/useCaseDiagram.png)
 
 Figure 2, below, shows the [ReportAid](https://github.com/glowkeeper/ReportAid) smart contract implementation of the IATI organisations standard. That standard describes planned future budget information for aid funding [^6]. Described is a top-level IATIOrganisations element (this contains information such as the generation date of the report), which has at least one IATIOrganisation element (containing the report's language and currency type). That IATIOrganisation element links to other information describing the aid, such as the reporting organisation, associated country budgets and any supporting documentation.
 
@@ -83,7 +83,7 @@ Figure 2, below, shows the [ReportAid](https://github.com/glowkeeper/ReportAid) 
 
 Figure 3, below, shows the [ReportAid](https://github.com/glowkeeper/ReportAid) smart contract implementation of the IATI activities standard. A large number of fields describe IATI activities, and [ReportAid](https://github.com/glowkeeper/ReportAid), at the time of writing, has not implemented all of those; however, it does support all the mandatory fields, as well as one or two that are recommended [^7]. Figure 3 shows a top-level IATIActivies element (which contains information such as the generation date of the report). That features at least one IATIActivity element (containing information such as the default currency type and the degree to which the activity relates to humanitarian aid), which links to information such as the organisation participating in the activity, the sector and territory to which the activity belongs, as well as budgetary data. A single reporting organisation produces an activity report.
 
-![Figure 3: Activities Smart Contracts](images/reportaidActivitiesClassDiagram.png)
+![Figure 3: Activities Smart Contracts](images/activitiesClassDiagram.png)
 
 ## A Humanitarian Aid Report
 
@@ -141,9 +141,9 @@ However, might the HFTT have missed a 'T', namely, trust? Trust is the glue bind
 
 ## Limitations and Future Work
 
-The WHS recognised that OCHA's FTS needed enhancing [@UNOfficefortheCoordinationofHumanitarian_Improvinghumanitariantransparency_2017], and this paper proposes [ReportAid](https://github.com/glowkeeper/ReportAid), as a blockchain implementation of IATI that adds trust to the traceability of humanitarian aid reporting, might be one such enhancement. However, there are significant barriers that might prevent the uptake of blockchain-based technology, such as [ReportAid](https://github.com/glowkeeper/ReportAid):
+The WHS recognised that OCHA's FTS needed enhancing [@UNOfficefortheCoordinationofHumanitarian_ImprovingHumanitarianTransparency_2017], and this paper proposes [ReportAid](https://github.com/glowkeeper/ReportAid), as a blockchain implementation of IATI that adds trust to the traceability of humanitarian aid reporting, might be one such enhancement. However, there are significant barriers that might prevent the uptake of blockchain-based technology, such as [ReportAid](https://github.com/glowkeeper/ReportAid):
 
-1. **Technological**. Aid organisations using [ReportAid](https://github.com/glowkeeper/ReportAid) would have to get used to bleeding-edge technology [@Coppi_Pensebetehumanitariansexploring_2018], whereas traditional databases have been around much longer and are, therefore, much better understood. There is likely to be pushback from IT departments too, because blockchains could, potentially, make them redundant.
+1. **Technological**. Aid organisations using [ReportAid](https://github.com/glowkeeper/ReportAid) would have to get used to new technology, whereas traditional databases have been around much longer and are, therefore, much better understood. There is likely to be pushback from IT departments too, because blockchains could, potentially, make them redundant.
 
 2. **Organisational**. Public blockchains are inherently non-hierarchical, so they cannot be controlled by any single entity [@Huckle_FakeNewsTechnological_2017]. However, the FTS is a reporting platform run by OCHA. Hence, a fully-public blockchain-based system may challenge centralised, top-down governance and related assumptions the UN have about reporting on their aid funding.
 
