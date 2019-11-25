@@ -27,9 +27,6 @@ import { IATIActivityParticipatingOrgReport, ActivitiesReportProps } from '../..
 
 import { ActivityParticipatingOrg as ActivityParticipatingOrgStrings } from '../../../utils/strings'
 
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
-import { withTheme, styles } from '../../../styles/theme'
-
 const reportSchema = Yup.object().shape({
   activitiesRef: Yup
     .string()
@@ -53,7 +50,7 @@ interface ActivityParticipatingOrgDispatchProps {
   setFormFunctions: (formProps: FormData) => void
 }
 
-type ActivityParticipatingOrgReaderProps =  WithStyles<typeof styles> & ActivityParticipatingOrgProps & ActivityParticipatingOrgDispatchProps
+type ActivityParticipatingOrgReaderProps = ActivityParticipatingOrgProps & ActivityParticipatingOrgDispatchProps
 
 class ParticipatingOrgs extends React.Component<ActivityParticipatingOrgReaderProps> {
 
@@ -112,7 +109,7 @@ class ParticipatingOrgs extends React.Component<ActivityParticipatingOrgReaderPr
                   <br />
                   {formProps.isSubmitting && <LinearProgress />}
                   <br />
-                  <Button type='submit' variant="raised" color="primary" disabled={formProps.isSubmitting}>
+                  <Button type='submit' color="primary" disabled={formProps.isSubmitting}>
                     Submit
                   </Button>
                 </FormControl>
@@ -147,7 +144,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   }
 }
 
-export const ActivityParticipatingOrg = withTheme(withStyles(styles)(connect<ActivityParticipatingOrgProps, ActivityParticipatingOrgDispatchProps, {}, ApplicationState>(
+export const ActivityParticipatingOrg = connect<ActivityParticipatingOrgProps, ActivityParticipatingOrgDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(ParticipatingOrgs)))
+)(ParticipatingOrgs)

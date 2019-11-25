@@ -26,9 +26,6 @@ import { TransactionHelper } from '../../../io/transactionHelper'
 import { ActivityDates as ActivityDateStrings } from '../../../../utils/strings'
 import { Helpers } from '../../../../utils/config'
 
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
-import { withTheme, styles } from '../../../../styles/theme'
-
 const activityDateSchema = Yup.object().shape({
   activitiesRef: Yup
     .string()
@@ -73,7 +70,7 @@ export interface ActivityDateDispatchProps {
   setFormFunctions: (formProps: FormData) => void
 }
 
-type ActivityDateFormProps = WithStyles<typeof styles> & ActivityDateKeyProps & ActivityDateDispatchProps
+type ActivityDateFormProps = ActivityDateKeyProps & ActivityDateDispatchProps
 
 export class ActivityDateForm extends React.Component<ActivityDateFormProps> {
 
@@ -173,7 +170,7 @@ export class ActivityDateForm extends React.Component<ActivityDateFormProps> {
                   <br />
                   {formProps.isSubmitting && <LinearProgress />}
                   <br />
-                  <Button type='submit' variant="raised" color="primary" disabled={formProps.isSubmitting}>
+                  <Button type='submit' color="primary" disabled={formProps.isSubmitting}>
                     Submit
                   </Button>
                 </FormControl>
@@ -204,7 +201,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   }
 }
 
-export const ActivityDate = withTheme(withStyles(styles)(connect<ActivityDateKeyProps, ActivityDateDispatchProps, {}, ApplicationState>(
+export const ActivityDate = connect<ActivityDateKeyProps, ActivityDateDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(ActivityDateForm)))
+)(ActivityDateForm)

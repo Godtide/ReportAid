@@ -27,9 +27,6 @@ import { IATIActivityAdditionalReport, ActivitiesReportProps } from '../../../st
 
 import { ActivityAdditional as ActivityAdditionalStrings } from '../../../utils/strings'
 
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
-import { withTheme, styles } from '../../../styles/theme'
-
 const reportSchema = Yup.object().shape({
   activitiesRef: Yup
     .string()
@@ -53,7 +50,7 @@ interface ActivityAdditionalDispatchProps {
   setFormFunctions: (formProps: FormData) => void
 }
 
-type ActivityAdditionalsReaderProps =  WithStyles<typeof styles> & ActivityAdditionalProps & ActivityAdditionalDispatchProps
+type ActivityAdditionalsReaderProps =  ActivityAdditionalProps & ActivityAdditionalDispatchProps
 
 class Additionals extends React.Component<ActivityAdditionalsReaderProps> {
 
@@ -112,7 +109,7 @@ class Additionals extends React.Component<ActivityAdditionalsReaderProps> {
                   <br />
                   {formProps.isSubmitting && <LinearProgress />}
                   <br />
-                  <Button type='submit' variant="raised" color="primary" disabled={formProps.isSubmitting}>
+                  <Button type='submit' color="primary" disabled={formProps.isSubmitting}>
                     Submit
                   </Button>
                 </FormControl>
@@ -147,7 +144,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   }
 }
 
-export const ActivityAdditionals = withTheme(withStyles(styles)(connect<ActivityAdditionalProps, ActivityAdditionalDispatchProps, {}, ApplicationState>(
+export const ActivityAdditionals = connect<ActivityAdditionalProps, ActivityAdditionalDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(Additionals)))
+)(Additionals)

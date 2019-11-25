@@ -26,9 +26,6 @@ import { IATIOrganisationReport, OrganisationReportProps } from '../../../store/
 
 import { Organisation as OrganisationStrings } from '../../../utils/strings'
 
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
-import { withTheme, styles } from '../../../styles/theme'
-
 const reportSchema = Yup.object().shape({
   organisationsRef: Yup
     .string()
@@ -48,7 +45,7 @@ interface OrgDispatchProps {
   setFormFunctions: (formProps: FormData) => void
 }
 
-type OrgReaderProps =  WithStyles<typeof styles> & OrgProps & OrgDispatchProps
+type OrgReaderProps = OrgProps & OrgDispatchProps
 
 class OrganisationReader extends React.Component<OrgReaderProps> {
 
@@ -82,8 +79,7 @@ class OrganisationReader extends React.Component<OrgReaderProps> {
         <h2>{OrganisationStrings.headingOrganisationReader}</h2>
         <div>
           <Formik
-            initialValues={ {organisationsRef: "",
-                             isReport: true
+            initialValues={ {organisationsRef: ""
                             }}
             validationSchema={reportSchema}
             onSubmit={(values: OrganisationReportProps, actions: any) => {
@@ -101,7 +97,7 @@ class OrganisationReader extends React.Component<OrgReaderProps> {
                   <br />
                   {formProps.isSubmitting && <LinearProgress />}
                   <br />
-                  <Button type='submit' variant="raised" color="primary" disabled={formProps.isSubmitting}>
+                  <Button type='submit' color="primary" disabled={formProps.isSubmitting}>
                     Submit
                   </Button>
                 </FormControl>
@@ -141,7 +137,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   }
 }
 
-export const Organisation = withTheme(withStyles(styles)(connect<OrgProps, OrgDispatchProps, {}, ApplicationState>(
+export const Organisation = connect<OrgProps, OrgDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(OrganisationReader)))
+)(OrganisationReader)

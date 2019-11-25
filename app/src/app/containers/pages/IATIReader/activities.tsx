@@ -16,9 +16,6 @@ import { IATIActivitiesReport } from '../../../store/IATI/types'
 
 import { Activities as ActivitiesStrings } from '../../../utils/strings'
 
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
-import { withTheme, styles } from '../../../styles/theme'
-
 interface ActivitiesProps {
   activities: IATIActivitiesReport
 }
@@ -28,7 +25,7 @@ interface ActivitiesDispatchProps {
   getActivities: () => void
 }
 
-type ActivitiesReaderProps =  WithStyles<typeof styles> & ActivitiesProps & ActivitiesDispatchProps
+type ActivitiesReaderProps =  ActivitiesProps & ActivitiesDispatchProps
 
 class ActivitiesReader extends React.Component<ActivitiesReaderProps> {
 
@@ -69,7 +66,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   }
 }
 
-export const Activities = withTheme(withStyles(styles)(connect<ActivitiesProps, ActivitiesDispatchProps, {}, ApplicationState>(
+export const Activities = connect<ActivitiesProps, ActivitiesDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(ActivitiesReader)))
+)(ActivitiesReader)

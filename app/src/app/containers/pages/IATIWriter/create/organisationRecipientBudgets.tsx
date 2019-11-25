@@ -26,9 +26,6 @@ import { TransactionHelper } from '../../../io/transactionHelper'
 import { OrganisationRecipientBudget } from '../../../../utils/strings'
 import { Helpers } from '../../../../utils/config'
 
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
-import { withTheme, styles } from '../../../../styles/theme'
-
 const reportSchema = Yup.object().shape({
   organisationsRef: Yup
     .string()
@@ -90,7 +87,7 @@ interface OrganisationRecipientBudgetsDispatchProps {
   setFormFunctions: (formProps: FormData) => void
 }
 
-type OrganisationRecipientBudgetsFormProps = WithStyles<typeof styles> & OrganisationRecipientBudgetsKeyProps & OrganisationRecipientBudgetsDispatchProps
+type OrganisationRecipientBudgetsFormProps = OrganisationRecipientBudgetsKeyProps & OrganisationRecipientBudgetsDispatchProps
 
 export class OrganisationRecipientBudgetsForm extends React.Component<OrganisationRecipientBudgetsFormProps> {
 
@@ -174,7 +171,7 @@ export class OrganisationRecipientBudgetsForm extends React.Component<Organisati
                   <br />
                   {formProps.isSubmitting && <LinearProgress />}
                   <br />
-                  <Button type='submit' variant="raised" color="primary" disabled={formProps.isSubmitting}>
+                  <Button type='submit' color="primary" disabled={formProps.isSubmitting}>
                     Submit
                   </Button>
                 </FormControl>
@@ -203,7 +200,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   }
 }
 
-export const OrganisationRecipientBudgets = withTheme(withStyles(styles)(connect<OrganisationRecipientBudgetsKeyProps, OrganisationRecipientBudgetsDispatchProps, {}, ApplicationState>(
+export const OrganisationRecipientBudgets = connect<OrganisationRecipientBudgetsKeyProps, OrganisationRecipientBudgetsDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(OrganisationRecipientBudgetsForm)))
+)(OrganisationRecipientBudgetsForm)

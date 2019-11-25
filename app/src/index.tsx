@@ -2,8 +2,12 @@ import * as React from 'react'
 import { render } from "react-dom"
 import { Router } from 'react-router-dom'
 import { Provider } from 'react-redux'
-import CssBaseline from '@material-ui/core/CssBaseline'
 import { history } from './app/utils/history'
+
+import CssBaseline from '@material-ui/core/CssBaseline'
+import { ThemeProvider } from '@material-ui/styles'
+
+import { theme } from './app/styles/theme'
 
 import { setBlockchain } from './app/components/blockchain/blockchain'
 
@@ -17,10 +21,12 @@ setBlockchain({store: store})
 const App = () => (
     <Provider store={store}>
       <React.Fragment>
-        <CssBaseline />
-        <Router history={history}>
-          <Main />
-        </Router>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Router history={history}>
+            <Main />
+          </Router>
+        </ThemeProvider>
       </React.Fragment>
     </Provider>
 );

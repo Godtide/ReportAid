@@ -26,9 +26,6 @@ import { IATIActivityReport, ActivityReportProps } from '../../../store/IATI/typ
 
 import { Activity as ActivityStrings } from '../../../utils/strings'
 
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
-import { withTheme, styles } from '../../../styles/theme'
-
 const reportSchema = Yup.object().shape({
   activitiesRef: Yup
     .string()
@@ -48,7 +45,7 @@ interface ActivityDispatchProps {
   setFormFunctions: (formProps: FormData) => void
 }
 
-type ActivityReaderProps =  WithStyles<typeof styles> & ActivityProps & ActivityDispatchProps
+type ActivityReaderProps = ActivityProps & ActivityDispatchProps
 
 class ActivityReader extends React.Component<ActivityReaderProps> {
 
@@ -82,8 +79,7 @@ class ActivityReader extends React.Component<ActivityReaderProps> {
         <h2>{ActivityStrings.headingActivityReader}</h2>
         <div>
           <Formik
-            initialValues={ {activitiesRef: "",
-                             isReport: true
+            initialValues={ {activitiesRef: ""
                             }}
             validationSchema={reportSchema}
             onSubmit={(values: ActivityReportProps, actions: any) => {
@@ -101,7 +97,7 @@ class ActivityReader extends React.Component<ActivityReaderProps> {
                   <br />
                   {formProps.isSubmitting && <LinearProgress />}
                   <br />
-                  <Button type='submit' variant="raised" color="primary" disabled={formProps.isSubmitting}>
+                  <Button type='submit' color="primary" disabled={formProps.isSubmitting}>
                     Submit
                   </Button>
                 </FormControl>
@@ -141,7 +137,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   }
 }
 
-export const Activity = withTheme(withStyles(styles)(connect<ActivityProps, ActivityDispatchProps, {}, ApplicationState>(
+export const Activity = connect<ActivityProps, ActivityDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(ActivityReader)))
+)(ActivityReader)

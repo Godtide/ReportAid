@@ -27,9 +27,6 @@ import { IATIActivityTerritoryReport, ActivitiesReportProps } from '../../../sto
 
 import { ActivityTerritories as ActivityTerritoriesStrings } from '../../../utils/strings'
 
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
-import { withTheme, styles } from '../../../styles/theme'
-
 const reportSchema = Yup.object().shape({
   activitiesRef: Yup
     .string()
@@ -53,7 +50,7 @@ interface ActivityTerritoriesDispatchProps {
   setFormFunctions: (formProps: FormData) => void
 }
 
-type ActivityTerritoriesReaderProps =  WithStyles<typeof styles> & ActivityTerritoriesProps & ActivityTerritoriesDispatchProps
+type ActivityTerritoriesReaderProps = ActivityTerritoriesProps & ActivityTerritoriesDispatchProps
 
 class Territories extends React.Component<ActivityTerritoriesReaderProps> {
 
@@ -112,7 +109,7 @@ class Territories extends React.Component<ActivityTerritoriesReaderProps> {
                   <br />
                   {formProps.isSubmitting && <LinearProgress />}
                   <br />
-                  <Button type='submit' variant="raised" color="primary" disabled={formProps.isSubmitting}>
+                  <Button type='submit' color="primary" disabled={formProps.isSubmitting}>
                     Submit
                   </Button>
                 </FormControl>
@@ -147,7 +144,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   }
 }
 
-export const ActivityTerritories = withTheme(withStyles(styles)(connect<ActivityTerritoriesProps, ActivityTerritoriesDispatchProps, {}, ApplicationState>(
+export const ActivityTerritories = connect<ActivityTerritoriesProps, ActivityTerritoriesDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(Territories)))
+)(Territories)

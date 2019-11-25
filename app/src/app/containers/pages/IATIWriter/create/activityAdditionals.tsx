@@ -25,9 +25,6 @@ import { TransactionHelper } from '../../../io/transactionHelper'
 import { ActivityAdditional as ActivityAdditionalStrings } from '../../../../utils/strings'
 import { Helpers } from '../../../../utils/config'
 
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
-import { withTheme, styles } from '../../../../styles/theme'
-
 const activityAdditionalSchema = Yup.object().shape({
   activitiesRef: Yup
     .string()
@@ -66,7 +63,7 @@ export interface ActivityAdditionalDispatchProps {
   setFormFunctions: (formProps: FormData) => void
 }
 
-type ActivityAdditionalFormProps = WithStyles<typeof styles> & ActivityAdditionalKeyProps & ActivityAdditionalDispatchProps
+type ActivityAdditionalFormProps = ActivityAdditionalKeyProps & ActivityAdditionalDispatchProps
 
 export class ActivityAdditionalForm extends React.Component<ActivityAdditionalFormProps> {
 
@@ -203,7 +200,7 @@ export class ActivityAdditionalForm extends React.Component<ActivityAdditionalFo
                   <br />
                   {formProps.isSubmitting && <LinearProgress />}
                   <br />
-                  <Button type='submit' variant="raised" color="primary" disabled={formProps.isSubmitting}>
+                  <Button type='submit' color="primary" disabled={formProps.isSubmitting}>
                     Submit
                   </Button>
                 </FormControl>
@@ -234,7 +231,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   }
 }
 
-export const ActivityAdditional = withTheme(withStyles(styles)(connect<ActivityAdditionalKeyProps, ActivityAdditionalDispatchProps, {}, ApplicationState>(
+export const ActivityAdditional = connect<ActivityAdditionalKeyProps, ActivityAdditionalDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(ActivityAdditionalForm)))
+)(ActivityAdditionalForm)

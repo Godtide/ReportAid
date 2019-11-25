@@ -25,9 +25,6 @@ import { TransactionHelper } from '../../../io/transactionHelper'
 import { ActivitySectors as ActivitySectorStrings } from '../../../../utils/strings'
 import { Helpers } from '../../../../utils/config'
 
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
-import { withTheme, styles } from '../../../../styles/theme'
-
 const activitySectorSchema = Yup.object().shape({
   activitiesRef: Yup
     .string()
@@ -58,7 +55,7 @@ export interface ActivitySectorDispatchProps {
   setFormFunctions: (formProps: FormData) => void
 }
 
-type ActivitySectorFormProps = WithStyles<typeof styles> & ActivitySectorKeyProps & ActivitySectorDispatchProps
+type ActivitySectorFormProps = ActivitySectorKeyProps & ActivitySectorDispatchProps
 
 export class ActivitySectorForm extends React.Component<ActivitySectorFormProps> {
 
@@ -146,7 +143,7 @@ export class ActivitySectorForm extends React.Component<ActivitySectorFormProps>
                   <br />
                   {formProps.isSubmitting && <LinearProgress />}
                   <br />
-                  <Button type='submit' variant="raised" color="primary" disabled={formProps.isSubmitting}>
+                  <Button type='submit' color="primary" disabled={formProps.isSubmitting}>
                     Submit
                   </Button>
                 </FormControl>
@@ -177,7 +174,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   }
 }
 
-export const ActivitySector = withTheme(withStyles(styles)(connect<ActivitySectorKeyProps, ActivitySectorDispatchProps, {}, ApplicationState>(
+export const ActivitySector = connect<ActivitySectorKeyProps, ActivitySectorDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(ActivitySectorForm)))
+)(ActivitySectorForm)

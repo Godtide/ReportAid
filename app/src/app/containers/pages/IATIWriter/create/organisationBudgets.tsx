@@ -27,22 +27,6 @@ import { TransactionHelper } from '../../../io/transactionHelper'
 import { OrganisationBudget } from '../../../../utils/strings'
 import { Helpers } from '../../../../utils/config'
 
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
-import { withTheme, styles } from '../../../../styles/theme'
-
-/*const StyledSelect = withStyles({
-  root: {
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-    borderRadius: 3,
-    border: 0,
-    color: 'white',
-    height: 48,
-    padding: '0 30px',
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-    width: '10%'
-  }
-})(Select);*/
-
 const reportSchema = Yup.object().shape({
   organisationsRef: Yup
     .string()
@@ -101,7 +85,7 @@ interface OrganisationBudgetsDispatchProps {
   setFormFunctions: (formProps: FormData) => void
 }
 
-type OrganisationBudgetsFormProps = WithStyles<typeof styles> & OrganisationBudgetsKeyProps & OrganisationBudgetsDispatchProps
+type OrganisationBudgetsFormProps = OrganisationBudgetsKeyProps & OrganisationBudgetsDispatchProps
 
 export class OrganisationBudgetsForm extends React.Component<OrganisationBudgetsFormProps> {
 
@@ -178,7 +162,7 @@ export class OrganisationBudgetsForm extends React.Component<OrganisationBudgets
                   <br />
                   {formProps.isSubmitting && formProps.isValidating && <LinearProgress />}
                   <br />
-                  <Button type='submit' variant="raised" color="primary" disabled={formProps.isSubmitting}>
+                  <Button type='submit' color="primary" disabled={formProps.isSubmitting}>
                     Submit
                   </Button>
                 </FormControl>
@@ -207,7 +191,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   }
 }
 
-export const OrganisationBudgets = withTheme(withStyles(styles)(connect<OrganisationBudgetsKeyProps, OrganisationBudgetsDispatchProps, {}, ApplicationState>(
+export const OrganisationBudgets = connect<OrganisationBudgetsKeyProps, OrganisationBudgetsDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(OrganisationBudgetsForm)))
+)(OrganisationBudgetsForm)

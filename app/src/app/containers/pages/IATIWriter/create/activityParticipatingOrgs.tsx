@@ -26,9 +26,6 @@ import { TransactionHelper } from '../../../io/transactionHelper'
 import { ActivityParticipatingOrg as ActivityParticipatingOrgStrings } from '../../../../utils/strings'
 import { Helpers } from '../../../../utils/config'
 
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
-import { withTheme, styles } from '../../../../styles/theme'
-
 const activityDateSchema = Yup.object().shape({
   activitiesRef: Yup
     .string()
@@ -71,7 +68,7 @@ export interface ActivityParticipatingOrgDispatchProps {
   setFormFunctions: (formProps: FormData) => void
 }
 
-type ActivityParticipatingOrgFormProps = WithStyles<typeof styles> & ActivityParticipatingOrgKeyProps & ActivityParticipatingOrgDispatchProps
+type ActivityParticipatingOrgFormProps = ActivityParticipatingOrgKeyProps & ActivityParticipatingOrgDispatchProps
 
 export class ActivityParticipatingOrgForm extends React.Component<ActivityParticipatingOrgFormProps> {
 
@@ -198,7 +195,7 @@ export class ActivityParticipatingOrgForm extends React.Component<ActivityPartic
                   <br />
                   {formProps.isSubmitting && <LinearProgress />}
                   <br />
-                  <Button type='submit' variant="raised" color="primary" disabled={formProps.isSubmitting}>
+                  <Button type='submit' color="primary" disabled={formProps.isSubmitting}>
                     Submit
                   </Button>
                 </FormControl>
@@ -234,7 +231,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   }
 }
 
-export const ActivityParticipatingOrg = withTheme(withStyles(styles)(connect<ActivityParticipatingOrgKeyProps, ActivityParticipatingOrgDispatchProps, {}, ApplicationState>(
+export const ActivityParticipatingOrg = connect<ActivityParticipatingOrgKeyProps, ActivityParticipatingOrgDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(ActivityParticipatingOrgForm)))
+)(ActivityParticipatingOrgForm)

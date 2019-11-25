@@ -27,9 +27,6 @@ import { IATIActivityBudgetReport, ActivitiesReportProps } from '../../../store/
 
 import { ActivityBudget as ActivityBudgetsStrings } from '../../../utils/strings'
 
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
-import { withTheme, styles } from '../../../styles/theme'
-
 const reportSchema = Yup.object().shape({
   activitiesRef: Yup
     .string()
@@ -53,7 +50,7 @@ interface ActivityBudgetsDispatchProps {
   setFormFunctions: (formProps: FormData) => void
 }
 
-type ActivityBudgetsReaderProps =  WithStyles<typeof styles> & ActivityBudgetsProps & ActivityBudgetsDispatchProps
+type ActivityBudgetsReaderProps = ActivityBudgetsProps & ActivityBudgetsDispatchProps
 
 class Budgets extends React.Component<ActivityBudgetsReaderProps> {
 
@@ -112,7 +109,7 @@ class Budgets extends React.Component<ActivityBudgetsReaderProps> {
                   <br />
                   {formProps.isSubmitting && <LinearProgress />}
                   <br />
-                  <Button type='submit' variant="raised" color="primary" disabled={formProps.isSubmitting}>
+                  <Button type='submit' color="primary" disabled={formProps.isSubmitting}>
                     Submit
                   </Button>
                 </FormControl>
@@ -147,7 +144,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   }
 }
 
-export const ActivityBudgets = withTheme(withStyles(styles)(connect<ActivityBudgetsProps, ActivityBudgetsDispatchProps, {}, ApplicationState>(
+export const ActivityBudgets = connect<ActivityBudgetsProps, ActivityBudgetsDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(Budgets)))
+)(Budgets)

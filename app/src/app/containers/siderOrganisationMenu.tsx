@@ -16,8 +16,7 @@ import IconButton from '@material-ui/core/IconButton'
 import Create from '@material-ui/icons/Create'
 import List from '@material-ui/icons/List'
 
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
-import { withTheme, styles } from '../styles/theme'
+import { useStyles } from '../styles/theme';
 
 import { Paths, App } from '../utils/strings'
 import { Paths as PathConfig } from '../utils/config'
@@ -32,505 +31,509 @@ interface DispatchProps {
   setKey: (keyProps: Keys) => void
 }
 
-class Sider extends React.Component<WithStyles<typeof styles> & DispatchProps> {
+const defaultProps: DispatchProps = {
+  initialise: () => {},
+  setKey: (keyProps: Keys) => {}
+}
 
-  render() {
+const Sider = (props: DispatchProps = defaultProps) => {
 
-    return (
-      <div>
-        <ExpansionPanel className={this.props.classes.siderMenu}>
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <h4>{App.headingActivitiesWriter}</h4>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails className={this.props.classes.siderMenu}>
-            <MenuList>
-              <Link
-                to={PathConfig.activitiesWriter}
-                onClick={() => {
-                  this.props.initialise()
-                  this.props.setKey({key: '', keyType: KeyTypes.ACTIVITIES})
-                }} >
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.activitiesWriter}>
-                    <Create />
-                  </IconButton>
-                  {Paths.activitiesWriter}
-                </MenuItem>
-              </Link>
-              <Link
-                to={PathConfig.activityWriter}
-                onClick={() => {
-                  this.props.initialise()
-                  this.props.setKey({key: '', keyType: KeyTypes.ACTIVITY})
-                }} >
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.activityWriter}>
-                    <Create />
-                  </IconButton>
-                  {Paths.activityWriter}
-                </MenuItem>
-              </Link>
-              <Link
-                to={PathConfig.activityAdditionalWriter}
-                onClick={() => {
-                  this.props.initialise()
-                  this.props.setKey({key: '', keyType: KeyTypes.ACTIVITYADDITIONAL})
-                }} >
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.activityAdditionalWriter}>
-                    <Create />
-                  </IconButton>
-                  {Paths.activityAdditionalWriter}
-                </MenuItem>
-              </Link>
-              <Link
-                to={PathConfig.activityDatesWriter}
-                onClick={() => {
-                  this.props.initialise()
-                  this.props.setKey({key: '', keyType: KeyTypes.ACTIVITYDATE})
-                }} >
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.activityDatesWriter}>
-                    <Create />
-                  </IconButton>
-                  {Paths.activityDatesWriter}
-                </MenuItem>
-              </Link>
-              <Link
-                to={PathConfig.activityParticipatingOrgWriter}
-                onClick={() => {
-                  this.props.initialise()
-                  this.props.setKey({key: '', keyType: KeyTypes.ACTIVITYPARTICIPATINGORG})
-                }} >
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.activityParticipatingOrgWriter}>
-                    <Create />
-                  </IconButton>
-                  {Paths.activityParticipatingOrgWriter}
-                </MenuItem>
-              </Link>
-              <Link
-                to={PathConfig.activitySectorsWriter}
-                onClick={() => {
-                  this.props.initialise()
-                  this.props.setKey({key: '', keyType: KeyTypes.ACTIVITYSECTOR})
-                }} >
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.activitySectorsWriter}>
-                    <Create />
-                  </IconButton>
-                  {Paths.activitySectorsWriter}
-                </MenuItem>
-              </Link>
-              <Link
-                to={PathConfig.activityBudgetsWriter}
-                onClick={() => {
-                  this.props.initialise()
-                  this.props.setKey({key: '', keyType: KeyTypes.ACTIVITYBUDGET})
-                }} >
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.activityBudgetsWriter}>
-                    <Create />
-                  </IconButton>
-                  {Paths.activityBudgetsWriter}
-                </MenuItem>
-              </Link>
-              <Link
-                to={PathConfig.activityTerritoriesWriter}
-                onClick={() => {
-                  this.props.initialise()
-                  this.props.setKey({key: '', keyType: KeyTypes.ACTIVITYTERRITORY})
-                }} >
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.activityTerritoriesWriter}>
-                    <Create />
-                  </IconButton>
-                  {Paths.activityTerritoriesWriter}
-                </MenuItem>
-              </Link>
-              <Link
-                to={PathConfig.activityTransactionsWriter}
-                onClick={() => {
-                  this.props.initialise()
-                  this.props.setKey({key: '', keyType: KeyTypes.ACTIVITYTRANSACTION})
-                }} >
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.activityTransactionsWriter}>
-                    <Create />
-                  </IconButton>
-                  {Paths.activityTransactionsWriter}
-                </MenuItem>
-              </Link>
-              <Link
-                to={PathConfig.activityRelatedActivityWriter}
-                onClick={() => {
-                  this.props.initialise()
-                  this.props.setKey({key: '', keyType: KeyTypes.ACTIVITYRELATEDACTIVITY})
-                }} >
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.activityRelatedActivitiesWriter}>
-                    <Create />
-                  </IconButton>
-                  {Paths.activityRelatedActivitiesWriter}
-                </MenuItem>
-              </Link>
-            </MenuList>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
+  const classes = useStyles()
 
-        <ExpansionPanel className={this.props.classes.siderMenu}>
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <h4>{App.headingActivitiesUpdater}</h4>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails className={this.props.classes.siderMenu}>
-            <MenuList>
-              <Link to={PathConfig.activitiesUpdater}>
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.activitiesUpdater}>
-                    <Create />
-                  </IconButton>
-                  {Paths.activitiesUpdater}
-                </MenuItem>
-              </Link>
-              <Link to={PathConfig.activityUpdater}>
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.activityUpdater}>
-                    <Create />
-                  </IconButton>
-                  {Paths.activityUpdater}
-                </MenuItem>
-              </Link>
-              <Link to={PathConfig.activityDateUpdater}>
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.activityDateUpdater}>
-                    <Create />
-                  </IconButton>
-                  {Paths.activityDateUpdater}
-                </MenuItem>
-              </Link>
-            </MenuList>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
+  return (
+    <div>
+      <ExpansionPanel className={classes.siderMenu}>
+        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <h4>{App.headingActivitiesWriter}</h4>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails className={classes.siderMenu}>
+          <MenuList>
+            <Link
+              to={PathConfig.activitiesWriter}
+              onClick={() => {
+                props.initialise()
+                props.setKey({key: '', keyType: KeyTypes.ACTIVITIES})
+              }} >
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.activitiesWriter}>
+                  <Create />
+                </IconButton>
+                {Paths.activitiesWriter}
+              </MenuItem>
+            </Link>
+            <Link
+              to={PathConfig.activityWriter}
+              onClick={() => {
+                props.initialise()
+                props.setKey({key: '', keyType: KeyTypes.ACTIVITY})
+              }} >
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.activityWriter}>
+                  <Create />
+                </IconButton>
+                {Paths.activityWriter}
+              </MenuItem>
+            </Link>
+            <Link
+              to={PathConfig.activityAdditionalWriter}
+              onClick={() => {
+                props.initialise()
+                props.setKey({key: '', keyType: KeyTypes.ACTIVITYADDITIONAL})
+              }} >
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.activityAdditionalWriter}>
+                  <Create />
+                </IconButton>
+                {Paths.activityAdditionalWriter}
+              </MenuItem>
+            </Link>
+            <Link
+              to={PathConfig.activityDatesWriter}
+              onClick={() => {
+                props.initialise()
+                props.setKey({key: '', keyType: KeyTypes.ACTIVITYDATE})
+              }} >
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.activityDatesWriter}>
+                  <Create />
+                </IconButton>
+                {Paths.activityDatesWriter}
+              </MenuItem>
+            </Link>
+            <Link
+              to={PathConfig.activityParticipatingOrgWriter}
+              onClick={() => {
+                props.initialise()
+                props.setKey({key: '', keyType: KeyTypes.ACTIVITYPARTICIPATINGORG})
+              }} >
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.activityParticipatingOrgWriter}>
+                  <Create />
+                </IconButton>
+                {Paths.activityParticipatingOrgWriter}
+              </MenuItem>
+            </Link>
+            <Link
+              to={PathConfig.activitySectorsWriter}
+              onClick={() => {
+                props.initialise()
+                props.setKey({key: '', keyType: KeyTypes.ACTIVITYSECTOR})
+              }} >
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.activitySectorsWriter}>
+                  <Create />
+                </IconButton>
+                {Paths.activitySectorsWriter}
+              </MenuItem>
+            </Link>
+            <Link
+              to={PathConfig.activityBudgetsWriter}
+              onClick={() => {
+                props.initialise()
+                props.setKey({key: '', keyType: KeyTypes.ACTIVITYBUDGET})
+              }} >
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.activityBudgetsWriter}>
+                  <Create />
+                </IconButton>
+                {Paths.activityBudgetsWriter}
+              </MenuItem>
+            </Link>
+            <Link
+              to={PathConfig.activityTerritoriesWriter}
+              onClick={() => {
+                props.initialise()
+                props.setKey({key: '', keyType: KeyTypes.ACTIVITYTERRITORY})
+              }} >
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.activityTerritoriesWriter}>
+                  <Create />
+                </IconButton>
+                {Paths.activityTerritoriesWriter}
+              </MenuItem>
+            </Link>
+            <Link
+              to={PathConfig.activityTransactionsWriter}
+              onClick={() => {
+                props.initialise()
+                props.setKey({key: '', keyType: KeyTypes.ACTIVITYTRANSACTION})
+              }} >
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.activityTransactionsWriter}>
+                  <Create />
+                </IconButton>
+                {Paths.activityTransactionsWriter}
+              </MenuItem>
+            </Link>
+            <Link
+              to={PathConfig.activityRelatedActivityWriter}
+              onClick={() => {
+                props.initialise()
+                props.setKey({key: '', keyType: KeyTypes.ACTIVITYRELATEDACTIVITY})
+              }} >
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.activityRelatedActivitiesWriter}>
+                  <Create />
+                </IconButton>
+                {Paths.activityRelatedActivitiesWriter}
+              </MenuItem>
+            </Link>
+          </MenuList>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
 
-        <ExpansionPanel className={this.props.classes.siderMenu}>
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <h4>{App.headingActivitiesReader}</h4>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails className={this.props.classes.siderMenu}>
-            <MenuList>
-              <Link to={PathConfig.activitiesReader}>
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.activitiesReader}>
-                    <List />
-                  </IconButton>
-                  {Paths.activitiesReader}
-                </MenuItem>
-              </Link>
-              <Link to={PathConfig.activityReader}>
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.activityReader}>
-                    <List />
-                  </IconButton>
-                  {Paths.activityReader}
-                </MenuItem>
-              </Link>
-              <Link to={PathConfig.activityAdditionalReader}>
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.activityAdditionalReader}>
-                    <List />
-                  </IconButton>
-                  {Paths.activityAdditionalReader}
-                </MenuItem>
-              </Link>
-              <Link to={PathConfig.activityDatesReader}>
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.activityDatesReader}>
-                    <List />
-                  </IconButton>
-                  {Paths.activityDatesReader}
-                </MenuItem>
-              </Link>
-              <Link to={PathConfig.activityParticipatingOrgReader}>
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.activityParticipatingOrgReader}>
-                    <List />
-                  </IconButton>
-                  {Paths.activityParticipatingOrgReader}
-                </MenuItem>
-              </Link>
-              <Link to={PathConfig.activitySectorsReader}>
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.activitySectorsReader}>
-                    <List />
-                  </IconButton>
-                  {Paths.activitySectorsReader}
-                </MenuItem>
-              </Link>
-              <Link to={PathConfig.activityBudgetsReader}>
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.activityBudgetsReader}>
-                    <List />
-                  </IconButton>
-                  {Paths.activityBudgetsReader}
-                </MenuItem>
-              </Link>
-              <Link to={PathConfig.activityTerritoriesReader}>
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.activityTerritoriesReader}>
-                    <List />
-                  </IconButton>
-                  {Paths.activityTerritoriesReader}
-                </MenuItem>
-              </Link>
-              <Link to={PathConfig.activityTransactionsReader}>
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.activityTransactionsReader}>
-                    <List />
-                  </IconButton>
-                  {Paths.activityTransactionsReader}
-                </MenuItem>
-              </Link>
-              <Link to={PathConfig.activityRelatedActivityReader}>
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.activityRelatedActivitiesReader}>
-                    <List />
-                  </IconButton>
-                  {Paths.activityRelatedActivitiesReader}
-                </MenuItem>
-              </Link>
-            </MenuList>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
+      <ExpansionPanel className={classes.siderMenu}>
+        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <h4>{App.headingActivitiesUpdater}</h4>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails className={classes.siderMenu}>
+          <MenuList>
+            <Link to={PathConfig.activitiesUpdater}>
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.activitiesUpdater}>
+                  <Create />
+                </IconButton>
+                {Paths.activitiesUpdater}
+              </MenuItem>
+            </Link>
+            <Link to={PathConfig.activityUpdater}>
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.activityUpdater}>
+                  <Create />
+                </IconButton>
+                {Paths.activityUpdater}
+              </MenuItem>
+            </Link>
+            <Link to={PathConfig.activityDateUpdater}>
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.activityDateUpdater}>
+                  <Create />
+                </IconButton>
+                {Paths.activityDateUpdater}
+              </MenuItem>
+            </Link>
+          </MenuList>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
 
-        <ExpansionPanel className={this.props.classes.siderMenu}>
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <h4>{App.headingOrganisationsWriter}</h4>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails className={this.props.classes.siderMenu}>
-            <MenuList>
-              <Link
-                to={PathConfig.orgWriter}
-                onClick={() => {
-                  this.props.initialise()
-                  this.props.setKey({key: '', keyType: KeyTypes.ORG})
-                }} >
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.orgWriter}>
-                    <Create />
-                  </IconButton>
-                  {Paths.orgWriter}
-                </MenuItem>
-              </Link>
-              <Link
-                to={PathConfig.organisationsWriter}
-                onClick={() => {
-                  this.props.initialise()
-                  this.props.setKey({key: '', keyType: KeyTypes.ORGANISATIONS})
-                }} >
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.organisationsWriter}>
-                    <Create />
-                  </IconButton>
-                  {Paths.organisationsWriter}
-                </MenuItem>
-              </Link>
-              <Link
-                to={PathConfig.organisationWriter}
-                onClick={() => {
-                  this.props.initialise()
-                  this.props.setKey({key: '', keyType: KeyTypes.ORGANISATION})
-                }} >
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.organisationWriter}>
-                    <Create />
-                  </IconButton>
-                  {Paths.organisationWriter}
-                </MenuItem>
-              </Link>
-              <Link
-                to={PathConfig.organisationDocsWriter}
-                onClick={() => {
-                  this.props.initialise()
-                  this.props.setKey({key: '', keyType: KeyTypes.ORGANISATIONDOC})
-                }} >
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.organisationDocsWriter}>
-                    <Create />
-                  </IconButton>
-                  {Paths.organisationDocsWriter}
-                </MenuItem>
-              </Link>
-              <Link
-                to={PathConfig.organisationBudgetsWriter}
-                onClick={() => {
-                  this.props.initialise()
-                  this.props.setKey({key: '', keyType: KeyTypes.ORGANISATIONBUDGET})
-                }} >
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.organisationBudgetsWriter}>
-                    <Create />
-                  </IconButton>
-                  {Paths.organisationBudgetsWriter}
-                </MenuItem>
-              </Link>
-              <Link
-                to={PathConfig.organisationExpenditureWriter}
-                onClick={() => {
-                  this.props.initialise()
-                  this.props.setKey({key: '', keyType: KeyTypes.ORGANISATIONEXPENDITURE})
-                }} >
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.organisationExpenditureWriter}>
-                    <Create />
-                  </IconButton>
-                  {Paths.organisationExpenditureWriter}
-                </MenuItem>
-              </Link>
-              <Link
-                to={PathConfig.organisationRecipientBudgetsWriter}
-                onClick={() => {
-                  this.props.initialise()
-                  this.props.setKey({key: '', keyType: KeyTypes.ORGANISATIONRECIPIENTBUDGET})
-                }} >
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.organisationRecipientBudgetsWriter}>
-                    <Create />
-                  </IconButton>
-                  {Paths.organisationRecipientBudgetsWriter}
-                </MenuItem>
-              </Link>
-              <Link
-                to={PathConfig.organisationRegionBudgetsWriter}
-                onClick={() => {
-                  this.props.initialise()
-                  this.props.setKey({key: '', keyType: KeyTypes.ORGANISATIONREGIONBUDGET})
-                }} >
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.organisationRegionBudgetsWriter}>
-                    <Create />
-                  </IconButton>
-                  {Paths.organisationRegionBudgetsWriter}
-                </MenuItem>
-              </Link>
-              <Link
-                to={PathConfig.organisationCountryBudgetsWriter}
-                onClick={() => {
-                  this.props.initialise()
-                  this.props.setKey({key: '', keyType: KeyTypes.ORGANISATIONCOUNTRYBUDGET})
-                }} >
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.organisationCountryBudgetsWriter}>
-                    <Create />
-                  </IconButton>
-                  {Paths.organisationCountryBudgetsWriter}
-                </MenuItem>
-              </Link>
-            </MenuList>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
+      <ExpansionPanel className={classes.siderMenu}>
+        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <h4>{App.headingActivitiesReader}</h4>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails className={classes.siderMenu}>
+          <MenuList>
+            <Link to={PathConfig.activitiesReader}>
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.activitiesReader}>
+                  <List />
+                </IconButton>
+                {Paths.activitiesReader}
+              </MenuItem>
+            </Link>
+            <Link to={PathConfig.activityReader}>
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.activityReader}>
+                  <List />
+                </IconButton>
+                {Paths.activityReader}
+              </MenuItem>
+            </Link>
+            <Link to={PathConfig.activityAdditionalReader}>
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.activityAdditionalReader}>
+                  <List />
+                </IconButton>
+                {Paths.activityAdditionalReader}
+              </MenuItem>
+            </Link>
+            <Link to={PathConfig.activityDatesReader}>
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.activityDatesReader}>
+                  <List />
+                </IconButton>
+                {Paths.activityDatesReader}
+              </MenuItem>
+            </Link>
+            <Link to={PathConfig.activityParticipatingOrgReader}>
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.activityParticipatingOrgReader}>
+                  <List />
+                </IconButton>
+                {Paths.activityParticipatingOrgReader}
+              </MenuItem>
+            </Link>
+            <Link to={PathConfig.activitySectorsReader}>
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.activitySectorsReader}>
+                  <List />
+                </IconButton>
+                {Paths.activitySectorsReader}
+              </MenuItem>
+            </Link>
+            <Link to={PathConfig.activityBudgetsReader}>
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.activityBudgetsReader}>
+                  <List />
+                </IconButton>
+                {Paths.activityBudgetsReader}
+              </MenuItem>
+            </Link>
+            <Link to={PathConfig.activityTerritoriesReader}>
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.activityTerritoriesReader}>
+                  <List />
+                </IconButton>
+                {Paths.activityTerritoriesReader}
+              </MenuItem>
+            </Link>
+            <Link to={PathConfig.activityTransactionsReader}>
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.activityTransactionsReader}>
+                  <List />
+                </IconButton>
+                {Paths.activityTransactionsReader}
+              </MenuItem>
+            </Link>
+            <Link to={PathConfig.activityRelatedActivityReader}>
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.activityRelatedActivitiesReader}>
+                  <List />
+                </IconButton>
+                {Paths.activityRelatedActivitiesReader}
+              </MenuItem>
+            </Link>
+          </MenuList>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
 
-        <ExpansionPanel className={this.props.classes.siderMenu}>
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <h4>{App.headingOrganisationsUpdater}</h4>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails className={this.props.classes.siderMenu}>
-            <MenuList>
-              <Link to={PathConfig.orgUpdater}>
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.orgUpdater}>
-                    <Create />
-                  </IconButton>
-                  {Paths.orgUpdater}
-                </MenuItem>
-              </Link>
-            </MenuList>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
+      <ExpansionPanel className={classes.siderMenu}>
+        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <h4>{App.headingOrganisationsWriter}</h4>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails className={classes.siderMenu}>
+          <MenuList>
+            <Link
+              to={PathConfig.orgWriter}
+              onClick={() => {
+                props.initialise()
+                props.setKey({key: '', keyType: KeyTypes.ORG})
+              }} >
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.orgWriter}>
+                  <Create />
+                </IconButton>
+                {Paths.orgWriter}
+              </MenuItem>
+            </Link>
+            <Link
+              to={PathConfig.organisationsWriter}
+              onClick={() => {
+                props.initialise()
+                props.setKey({key: '', keyType: KeyTypes.ORGANISATIONS})
+              }} >
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.organisationsWriter}>
+                  <Create />
+                </IconButton>
+                {Paths.organisationsWriter}
+              </MenuItem>
+            </Link>
+            <Link
+              to={PathConfig.organisationWriter}
+              onClick={() => {
+                props.initialise()
+                props.setKey({key: '', keyType: KeyTypes.ORGANISATION})
+              }} >
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.organisationWriter}>
+                  <Create />
+                </IconButton>
+                {Paths.organisationWriter}
+              </MenuItem>
+            </Link>
+            <Link
+              to={PathConfig.organisationDocsWriter}
+              onClick={() => {
+                props.initialise()
+                props.setKey({key: '', keyType: KeyTypes.ORGANISATIONDOC})
+              }} >
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.organisationDocsWriter}>
+                  <Create />
+                </IconButton>
+                {Paths.organisationDocsWriter}
+              </MenuItem>
+            </Link>
+            <Link
+              to={PathConfig.organisationBudgetsWriter}
+              onClick={() => {
+                props.initialise()
+                props.setKey({key: '', keyType: KeyTypes.ORGANISATIONBUDGET})
+              }} >
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.organisationBudgetsWriter}>
+                  <Create />
+                </IconButton>
+                {Paths.organisationBudgetsWriter}
+              </MenuItem>
+            </Link>
+            <Link
+              to={PathConfig.organisationExpenditureWriter}
+              onClick={() => {
+                props.initialise()
+                props.setKey({key: '', keyType: KeyTypes.ORGANISATIONEXPENDITURE})
+              }} >
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.organisationExpenditureWriter}>
+                  <Create />
+                </IconButton>
+                {Paths.organisationExpenditureWriter}
+              </MenuItem>
+            </Link>
+            <Link
+              to={PathConfig.organisationRecipientBudgetsWriter}
+              onClick={() => {
+                props.initialise()
+                props.setKey({key: '', keyType: KeyTypes.ORGANISATIONRECIPIENTBUDGET})
+              }} >
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.organisationRecipientBudgetsWriter}>
+                  <Create />
+                </IconButton>
+                {Paths.organisationRecipientBudgetsWriter}
+              </MenuItem>
+            </Link>
+            <Link
+              to={PathConfig.organisationRegionBudgetsWriter}
+              onClick={() => {
+                props.initialise()
+                props.setKey({key: '', keyType: KeyTypes.ORGANISATIONREGIONBUDGET})
+              }} >
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.organisationRegionBudgetsWriter}>
+                  <Create />
+                </IconButton>
+                {Paths.organisationRegionBudgetsWriter}
+              </MenuItem>
+            </Link>
+            <Link
+              to={PathConfig.organisationCountryBudgetsWriter}
+              onClick={() => {
+                props.initialise()
+                props.setKey({key: '', keyType: KeyTypes.ORGANISATIONCOUNTRYBUDGET})
+              }} >
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.organisationCountryBudgetsWriter}>
+                  <Create />
+                </IconButton>
+                {Paths.organisationCountryBudgetsWriter}
+              </MenuItem>
+            </Link>
+          </MenuList>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
 
-        <ExpansionPanel className={this.props.classes.siderMenu}>
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <h4>{App.headingOrganisationsReader}</h4>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails className={this.props.classes.siderMenu}>
-            <MenuList>
-              <Link to={PathConfig.orgsReader}>
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.orgsReader}>
-                    <List />
-                  </IconButton>
-                  {Paths.orgsReader}
-                </MenuItem>
-              </Link>
-              <Link to={PathConfig.organisationsReader}>
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.organisationsReader}>
-                    <List />
-                  </IconButton>
-                  {Paths.organisationsReader}
-                </MenuItem>
-              </Link>
-              <Link to={PathConfig.organisationReader}>
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.organisationReader}>
-                    <List />
-                  </IconButton>
-                  {Paths.organisationReader}
-                </MenuItem>
-              </Link>
-              <Link to={PathConfig.organisationDocsReader}>
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.organisationDocsReader}>
-                    <List />
-                  </IconButton>
-                  {Paths.organisationDocsReader}
-                </MenuItem>
-              </Link>
-              <Link to={PathConfig.organisationBudgetsReader}>
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.organisationBudgetsReader}>
-                    <List />
-                  </IconButton>
-                  {Paths.organisationBudgetsReader}
-                </MenuItem>
-              </Link>
-              <Link to={PathConfig.organisationExpenditureReader}>
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.organisationExpenditureReader}>
-                    <List />
-                  </IconButton>
-                  {Paths.organisationExpenditureReader}
-                </MenuItem>
-              </Link>
-              <Link to={PathConfig.organisationRecipientBudgetsReader}>
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.organisationRecipientBudgetsReader}>
-                    <List />
-                  </IconButton>
-                  {Paths.organisationRecipientBudgetsReader}
-                </MenuItem>
-              </Link>
-              <Link to={PathConfig.organisationRegionBudgetsReader}>
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.organisationRegionBudgetsReader}>
-                    <List />
-                  </IconButton>
-                  {Paths.organisationRegionBudgetsReader}
-                </MenuItem>
-              </Link>
-              <Link to={PathConfig.organisationCountryBudgetsReader}>
-                <MenuItem>
-                  <IconButton className={this.props.classes.button} aria-label={Paths.organisationCountryBudgetsReader}>
-                    <List />
-                  </IconButton>
-                  {Paths.organisationCountryBudgetsReader}
-                </MenuItem>
-              </Link>
-            </MenuList>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
-      </div>
-    )
-  }
+      <ExpansionPanel className={classes.siderMenu}>
+        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <h4>{App.headingOrganisationsUpdater}</h4>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails className={classes.siderMenu}>
+          <MenuList>
+            <Link to={PathConfig.orgUpdater}>
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.orgUpdater}>
+                  <Create />
+                </IconButton>
+                {Paths.orgUpdater}
+              </MenuItem>
+            </Link>
+          </MenuList>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+
+      <ExpansionPanel className={classes.siderMenu}>
+        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <h4>{App.headingOrganisationsReader}</h4>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails className={classes.siderMenu}>
+          <MenuList>
+            <Link to={PathConfig.orgsReader}>
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.orgsReader}>
+                  <List />
+                </IconButton>
+                {Paths.orgsReader}
+              </MenuItem>
+            </Link>
+            <Link to={PathConfig.organisationsReader}>
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.organisationsReader}>
+                  <List />
+                </IconButton>
+                {Paths.organisationsReader}
+              </MenuItem>
+            </Link>
+            <Link to={PathConfig.organisationReader}>
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.organisationReader}>
+                  <List />
+                </IconButton>
+                {Paths.organisationReader}
+              </MenuItem>
+            </Link>
+            <Link to={PathConfig.organisationDocsReader}>
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.organisationDocsReader}>
+                  <List />
+                </IconButton>
+                {Paths.organisationDocsReader}
+              </MenuItem>
+            </Link>
+            <Link to={PathConfig.organisationBudgetsReader}>
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.organisationBudgetsReader}>
+                  <List />
+                </IconButton>
+                {Paths.organisationBudgetsReader}
+              </MenuItem>
+            </Link>
+            <Link to={PathConfig.organisationExpenditureReader}>
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.organisationExpenditureReader}>
+                  <List />
+                </IconButton>
+                {Paths.organisationExpenditureReader}
+              </MenuItem>
+            </Link>
+            <Link to={PathConfig.organisationRecipientBudgetsReader}>
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.organisationRecipientBudgetsReader}>
+                  <List />
+                </IconButton>
+                {Paths.organisationRecipientBudgetsReader}
+              </MenuItem>
+            </Link>
+            <Link to={PathConfig.organisationRegionBudgetsReader}>
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.organisationRegionBudgetsReader}>
+                  <List />
+                </IconButton>
+                {Paths.organisationRegionBudgetsReader}
+              </MenuItem>
+            </Link>
+            <Link to={PathConfig.organisationCountryBudgetsReader}>
+              <MenuItem>
+                <IconButton className={classes.button} aria-label={Paths.organisationCountryBudgetsReader}>
+                  <List />
+                </IconButton>
+                {Paths.organisationCountryBudgetsReader}
+              </MenuItem>
+            </Link>
+          </MenuList>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+    </div>
+  )
 }
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, ActionProps>): DispatchProps => {
@@ -540,7 +543,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   }
 }
 
-export const SiderOrganisationMenu = withTheme(withStyles(styles)(connect<null, DispatchProps, {}, ApplicationState>(
+export const SiderOrganisationMenu = connect<null, DispatchProps, {}, ApplicationState>(
   null,
   mapDispatchToProps
-)(Sider)))
+)(Sider)

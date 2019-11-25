@@ -27,9 +27,6 @@ import { IATIActivitySectorReport, ActivitiesReportProps } from '../../../store/
 
 import { ActivitySectors as ActivitySectorsStrings } from '../../../utils/strings'
 
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
-import { withTheme, styles } from '../../../styles/theme'
-
 const reportSchema = Yup.object().shape({
   activitiesRef: Yup
     .string()
@@ -53,7 +50,7 @@ interface ActivitySectorsDispatchProps {
   setFormFunctions: (formProps: FormData) => void
 }
 
-type ActivitySectorsReaderProps =  WithStyles<typeof styles> & ActivitySectorsProps & ActivitySectorsDispatchProps
+type ActivitySectorsReaderProps = ActivitySectorsProps & ActivitySectorsDispatchProps
 
 class Sectors extends React.Component<ActivitySectorsReaderProps> {
 
@@ -112,7 +109,7 @@ class Sectors extends React.Component<ActivitySectorsReaderProps> {
                   <br />
                   {formProps.isSubmitting && <LinearProgress />}
                   <br />
-                  <Button type='submit' variant="raised" color="primary" disabled={formProps.isSubmitting}>
+                  <Button type='submit' color="primary" disabled={formProps.isSubmitting}>
                     Submit
                   </Button>
                 </FormControl>
@@ -147,7 +144,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   }
 }
 
-export const ActivitySectors = withTheme(withStyles(styles)(connect<ActivitySectorsProps, ActivitySectorsDispatchProps, {}, ApplicationState>(
+export const ActivitySectors = connect<ActivitySectorsProps, ActivitySectorsDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(Sectors)))
+)(Sectors)

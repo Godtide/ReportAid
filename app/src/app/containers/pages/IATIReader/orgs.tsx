@@ -12,9 +12,6 @@ import { IATIOrgReport } from '../../../store/IATI/types'
 
 import { Org as OrgStrings } from '../../../utils/strings'
 
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
-import { withTheme, styles } from '../../../styles/theme'
-
 interface OrgProps {
   orgs: IATIOrgReport
 }
@@ -23,7 +20,7 @@ interface OrgDispatchProps {
   getOrgs: (isReport: boolean) => void
 }
 
-type OrgReaderProps =  WithStyles<typeof styles> & OrgProps & OrgDispatchProps
+type OrgReaderProps = OrgProps & OrgDispatchProps
 
 class OrgsReader extends React.Component<OrgReaderProps> {
 
@@ -63,7 +60,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   }
 }
 
-export const Orgs = withTheme(withStyles(styles)(connect<OrgProps, OrgDispatchProps, {}, ApplicationState>(
+export const Orgs = connect<OrgProps, OrgDispatchProps, {}, ApplicationState> (
   mapStateToProps,
   mapDispatchToProps
-)(OrgsReader)))
+)(OrgsReader)

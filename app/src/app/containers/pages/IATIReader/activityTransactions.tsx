@@ -27,9 +27,6 @@ import { IATIActivityTransactionReport, ActivitiesReportProps } from '../../../s
 
 import { ActivityTransactions as ActivityTransactionsStrings } from '../../../utils/strings'
 
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
-import { withTheme, styles } from '../../../styles/theme'
-
 const reportSchema = Yup.object().shape({
   activitiesRef: Yup
     .string()
@@ -53,7 +50,7 @@ interface ActivityTransactionsDispatchProps {
   setFormFunctions: (formProps: FormData) => void
 }
 
-type ActivityTransactionsReaderProps =  WithStyles<typeof styles> & ActivityTransactionsProps & ActivityTransactionsDispatchProps
+type ActivityTransactionsReaderProps = ActivityTransactionsProps & ActivityTransactionsDispatchProps
 
 class Transactions extends React.Component<ActivityTransactionsReaderProps> {
 
@@ -112,7 +109,7 @@ class Transactions extends React.Component<ActivityTransactionsReaderProps> {
                   <br />
                   {formProps.isSubmitting && <LinearProgress />}
                   <br />
-                  <Button type='submit' variant="raised" color="primary" disabled={formProps.isSubmitting}>
+                  <Button type='submit' color="primary" disabled={formProps.isSubmitting}>
                     Submit
                   </Button>
                 </FormControl>
@@ -147,7 +144,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   }
 }
 
-export const ActivityTransactions = withTheme(withStyles(styles)(connect<ActivityTransactionsProps, ActivityTransactionsDispatchProps, {}, ApplicationState>(
+export const ActivityTransactions = connect<ActivityTransactionsProps, ActivityTransactionsDispatchProps, {}, ApplicationState> (
   mapStateToProps,
   mapDispatchToProps
-)(Transactions)))
+)(Transactions)

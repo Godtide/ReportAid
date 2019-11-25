@@ -23,9 +23,6 @@ import { TransactionHelper } from '../../../io/transactionHelper'
 
 import { Org as OrgStrings } from '../../../../utils/strings'
 
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
-import { withTheme, styles } from '../../../../styles/theme'
-
 const orgSchema = Yup.object().shape({
   orgRef: Yup
     .string()
@@ -51,7 +48,7 @@ interface OrgDispatchProps {
   setFormFunctions: (formProps: FormData) => void
 }
 
-type OrgWriterFormProps = WithStyles<typeof styles> & OrgFormProps & OrgDispatchProps
+type OrgWriterFormProps = OrgFormProps & OrgDispatchProps
 
 export class OrgForm extends React.Component<OrgWriterFormProps> {
 
@@ -121,7 +118,7 @@ export class OrgForm extends React.Component<OrgWriterFormProps> {
                   <br />
                   {formProps.isSubmitting && <LinearProgress />}
                   <br />
-                  <Button type='submit' variant="raised" color="primary" disabled={formProps.isSubmitting}>
+                  <Button type='submit' color="primary" disabled={formProps.isSubmitting}>
                     Submit
                   </Button>
                 </FormControl>
@@ -150,7 +147,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   }
 }
 
-export const Org = withTheme(withStyles(styles)(connect<OrgFormProps, OrgDispatchProps, {}, ApplicationState>(
+export const Org = connect<OrgFormProps, OrgDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(OrgForm)))
+)(OrgForm)

@@ -5,9 +5,6 @@ import Markdown from 'react-markdown'
 
 import { ApplicationState } from '../../../store'
 
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
-import { withTheme, styles } from '../../../styles/theme'
-
 //import { fetchRequest, RequestDataAction } from '../../../store/helpers/about/actions'
 import { InfoProps } from '../../../store/info/types'
 import { InfoTypes } from './types'
@@ -18,7 +15,7 @@ interface StateProps {
 
 type AllProps = InfoProps & StateProps
 
-class AppInfo extends React.Component<WithStyles<typeof styles> & AllProps> {
+class AppInfo extends React.Component<AllProps> {
 
   render() {
 
@@ -50,6 +47,6 @@ const mapStateToProps = (state: ApplicationState, ownProps: StateProps): InfoPro
   }
 }
 
-export const Info = withTheme(withStyles(styles)(connect<InfoProps, {}, StateProps, ApplicationState>(
+export const Info = connect<InfoProps, {}, StateProps, ApplicationState>(
   mapStateToProps
-)(AppInfo)))
+)(AppInfo)

@@ -27,9 +27,6 @@ import { IATIOrganisationDocReport, OrganisationsReportProps } from '../../../st
 
 import { OrganisationDoc as OrganisationDocStrings } from '../../../utils/strings'
 
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
-import { withTheme, styles } from '../../../styles/theme'
-
 const reportSchema = Yup.object().shape({
   organisationsRef: Yup
     .string()
@@ -53,7 +50,7 @@ interface OrganisationDocDispatchProps {
   setFormFunctions: (formProps: FormData) => void
 }
 
-type OrganisationDocsReaderProps =  WithStyles<typeof styles> & OrganisationDocProps & OrganisationDocDispatchProps
+type OrganisationDocsReaderProps = OrganisationDocProps & OrganisationDocDispatchProps
 
 class Docs extends React.Component<OrganisationDocsReaderProps> {
 
@@ -112,7 +109,7 @@ class Docs extends React.Component<OrganisationDocsReaderProps> {
                   <br />
                   {formProps.isSubmitting && <LinearProgress />}
                   <br />
-                  <Button type='submit' variant="raised" color="primary" disabled={formProps.isSubmitting}>
+                  <Button type='submit' color="primary" disabled={formProps.isSubmitting}>
                     Submit
                   </Button>
                 </FormControl>
@@ -147,7 +144,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   }
 }
 
-export const OrganisationDocs = withTheme(withStyles(styles)(connect<OrganisationDocProps, OrganisationDocDispatchProps, {}, ApplicationState>(
+export const OrganisationDocs = connect<OrganisationDocProps, OrganisationDocDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(Docs)))
+)(Docs)

@@ -1,34 +1,53 @@
 import * as React from 'react'
 
-import createStyles from '@material-ui/core/styles/createStyles'
-import { Theme } from '@material-ui/core/styles/createMuiTheme'
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
+import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/styles';
 
 // A theme with custom primary and secondary color.
 // It's optional.
-const theme = createMuiTheme({
+let theme = createMuiTheme ({
+
+  spacing: 8,
   typography: {
-    fontFamily: "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif",
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
     fontSize: 14,
+    htmlFontSize: 10,
     fontWeightLight: 300,
     fontWeightRegular: 400,
     fontWeightMedium: 500,
-    headline: {
-      fontSize: "1.2rem",
+    h1: {
+      fontSize: "2rem",
       fontWeight: 400,
-      fontFamily: "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif",
-      lineHeight: "1.7em",
-      color: "rgba(0, 0, 0, 1)"
+      fontFamily: "\"Roboto\", \"Helvetica Neue\", \"Arial\", sans-serif"
     },
-    title: {
-      fontSize: "1.1125rem",
-      fontWeight: 500,
-      fontFamily: "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif",
-      lineHeight: "1.6em",
-      color: "rgba(0, 0, 0, 0.97)"
+    h2: {
+      fontSize: "1.5rem",
+      fontWeight: 400,
+      fontFamily: "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif"
     },
-    subheading: {
-      fontSize: "1rem",
+    h3: {
+      fontSize: "1.25rem",
+      fontWeight: 400,
+      fontFamily: "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif"
+    },
+    h4: {
+      fontSize: "1.1rem",
+      fontWeight: 400,
+      fontFamily: "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif"
+    },
+    subtitle1: {
+      fontSize: "0.9rem",
       fontWeight: 400,
       fontFamily: "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif",
       lineHeight: "1.5em",
@@ -64,165 +83,98 @@ const theme = createMuiTheme({
     }
   },
   palette: {
-    text: {
-      primary: "rgba(0, 0, 0, 0.87)",
-      secondary: "rgba(0, 0, 0, 0.54)",
-      disabled: "rgba(0, 0, 0, 0.38)",
-      hint: "rgba(0, 0, 0, 0.38)"
-    },
+    type: 'light',
     background: {
-      default: '#FFFFFF',
-    },
-    surface: {
-      default: '#FFFFFF',
-    },
-    error: {
-      default: '#B00020',
+      default: '##BBDEFB',
     },
     primary: {
       light: '#BBDEFB',
       main: '#42A5F5',
-      dark: '#2962FF',
-      contrastText: '#000000',
+      dark: '#2962FF'
     },
     secondary: {
       light: '#C8E6C9',
       main: '#66BB6A',
-      dark: '#2E7D32',
-      contrastText: '#000000',
+      dark: '#2E7D32'
     },
-  },
+    error: {
+      light: '#f05545',
+      main: '#B00020',
+      dark: '#7f0000'
+    }
+  }
 })
 
-const styles = (theme: Theme) =>
-  createStyles({
-    root: {
-      padding: theme.spacing.unit * 2,
-      backgroundColor: theme.palette.background.default,
-      flexGrow: 1
-    },
-    paper: {
-      padding: theme.spacing.unit,
-      margin: theme.spacing.unit,
-      textAlign: 'center',
-      fontSize: theme.typography.body1.fontSize,
-      fontWeight: theme.typography.body1.fontWeight,
-      fontFamily: theme.typography.body1.fontFamily,
-      lineHeight: theme.typography.body1.lineHeight,
-      color: theme.typography.body1.color
-    },
-    header: {
-      padding: theme.spacing.unit,
-      margin: theme.spacing.unit,
-      fontSize: theme.typography.headline.fontSize,
-      fontWeight: theme.typography.headline.fontWeight,
-      fontFamily: theme.typography.headline.fontFamily,
-      lineHeight: theme.typography.headline.lineHeight,
-      textAlign: 'center',
-      color: theme.typography.title.color,
-      backgroundColor: theme.palette.primary.main
-    },
-    title: {
-      padding: theme.spacing.unit,
-      margin: theme.spacing.unit,
-      fontSize: theme.typography.headline.fontSize,
-      fontWeight: theme.typography.headline.fontWeight,
-      fontFamily: theme.typography.headline.fontFamily,
-      lineHeight: theme.typography.headline.lineHeight,
-      textAlign: 'center',
-      color: theme.typography.title.color,
-      backgroundColor: theme.palette.primary.main
-    },
-    subHeader: {
-      padding: theme.spacing.unit,
-      margin: theme.spacing.unit,
-      fontSize: theme.typography.subheading.fontSize,
-      fontWeight: theme.typography.subheading.fontWeight,
-      fontFamily: theme.typography.subheading.fontFamily,
-      lineHeight: theme.typography.subheading.lineHeight,
-      textAlign: 'center',
-      color: theme.typography.subheading.color,
-      backgroundColor: theme.palette.primary.main
-    },
-    content: {
-      padding: theme.spacing.unit * 2,
-      margin: theme.spacing.unit,
-      fontSize: theme.typography.body1.fontSize,
-      fontWeight: theme.typography.body1.fontWeight,
-      fontFamily: theme.typography.body1.fontFamily,
-      lineHeight: theme.typography.body1.lineHeight,
-      color: theme.typography.body1.color,
-      backgroundColor: theme.palette.primary.light
-    },
-    sider: {
-      padding: theme.spacing.unit,
-      margin: theme.spacing.unit,
-      textAlign: 'left',
-      fontSize: theme.typography.title.fontSize,
-      fontWeight: theme.typography.subheading.fontWeight,
-      fontFamily: theme.typography.subheading.fontFamily,
-      lineHeight: theme.typography.subheading.lineHeight,
-      color: theme.typography.subheading.color,
-      backgroundColor: theme.palette.primary.light
-    },
-    siderMenu: {
-      padding: 0,
-      margin: 0,
-      textAlign: 'left',
-      fontSize: theme.typography.title.fontSize,
-      fontWeight: theme.typography.subheading.fontWeight,
-      fontFamily: theme.typography.subheading.fontFamily,
-      lineHeight: theme.typography.subheading.lineHeight,
-      color: theme.typography.subheading.color,
-      backgroundColor: theme.palette.primary.light
-    },
-    appBar: {
-      padding: theme.spacing.unit,
-      margin: theme.spacing.unit,
-      textAlign: 'left',
-      fontSize: theme.typography.title.fontSize,
-      fontWeight: theme.typography.subheading.fontWeight,
-      fontFamily: theme.typography.subheading.fontFamily,
-      lineHeight: theme.typography.subheading.lineHeight,
-      color: theme.typography.subheading.color,
-      backgroundColor: theme.palette.primary.main
-    },
-    caption: {
-      padding: theme.spacing.unit,
-      margin: theme.spacing.unit,
-      textAlign: 'center',
-      fontSize: theme.typography.caption.fontSize,
-      fontWeight: theme.typography.caption.fontWeight,
-      fontFamily: theme.typography.caption.fontFamily,
-      lineHeight: theme.typography.caption.lineHeight,
-      color: theme.typography.caption.color,
-      backgroundColor: theme.palette.primary.light
-    },
-    footer: {
-      padding: theme.spacing.unit,
-      margin: theme.spacing.unit,
-      textAlign: 'center',
-      fontSize: theme.typography.subheading.fontSize,
-      fontWeight: theme.typography.subheading.fontWeight,
-      fontFamily: theme.typography.subheading.fontFamily,
-      lineHeight: theme.typography.subheading.lineHeight,
-      backgroundColor: theme.palette.primary.main
-    },
-    button: {
-      margin: theme.spacing.unit
-    },
-  })
+theme = responsiveFontSizes(theme)
+theme.spacing(4)
 
-function withTheme<P>(Component: React.ComponentType<P>) {
-  function WithTheme(props: P) {
-    return (
-      <MuiThemeProvider theme={theme}>
-        <Component {...props} />
-      </MuiThemeProvider>
-    )
-  }
+const useStyles = makeStyles({
+  root: {
+    padding: theme.spacing(2),
+    background: 'linear-gradient(45deg, #BBDEFB 30%, #BBDEFB 90%)'
+  },
+  paper: {
+    padding: theme.spacing(1),
+    margin: theme.spacing(1),
+    textAlign: 'center',
+  },
+  header: {
+    padding: theme.spacing(1),
+    margin: theme.spacing(1),
+    textAlign: 'center',
+    background: 'linear-gradient(45deg, #42A5F5 30%, #42A5F5 90%)'
+  },
+  title: {
+    padding: theme.spacing(1),
+    margin: theme.spacing(1),
+    textAlign: 'center',
+    background: 'linear-gradient(45deg, #42A5F5 30%, #42A5F5 90%)'
+  },
+  subTitle: {
+    padding: theme.spacing(1),
+    margin: theme.spacing(1),
+    textAlign: 'center',
+    background: 'linear-gradient(45deg, #42A5F5 30%, #42A5F5 90%)'
+  },
+  content: {
+    padding: theme.spacing(2),
+    margin: theme.spacing(1),
+    background: 'linear-gradient(45deg, #BBDEFB 30%, #BBDEFB 90%)'
+  },
+  sider: {
+    padding: theme.spacing(1),
+    margin: theme.spacing(1),
+    textAlign: 'left',
+    background: 'linear-gradient(45deg, #BBDEFB 30%, #BBDEFB 90%)'
+  },
+  siderMenu: {
+    padding: 0,
+    margin: 0,
+    textAlign: 'left',
+    background: 'linear-gradient(45deg, #BBDEFB 30%, #BBDEFB 90%)'
+  },
+  appBar: {
+    padding: theme.spacing(1),
+    margin: theme.spacing(1),
+    textAlign: 'left',
+    background: 'linear-gradient(45deg, #42A5F5 30%, #42A5F5 90%)'
+  },
+  caption: {
+    padding: theme.spacing(1),
+    margin: theme.spacing(1),
+    textAlign: 'center',
+    background: 'linear-gradient(45deg, #BBDEFB 30%, #BBDEFB 90%)'
+  },
+  footer: {
+    padding: theme.spacing(1),
+    margin: theme.spacing(1),
+    textAlign: 'center',
+    background: 'linear-gradient(45deg, #42A5F5 30%, #42A5F5 90%)'
+  },
+  button: {
+    margin: theme.spacing(1),
+  },
 
-  return WithTheme
-}
+})
 
-export { withTheme, styles }
+export { theme, useStyles }

@@ -27,9 +27,6 @@ import { IATIOrganisationBudgetReport, OrganisationsReportProps } from '../../..
 
 import { OrganisationExpenditure as OrganisationExpenditureStrings } from '../../../utils/strings'
 
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
-import { withTheme, styles } from '../../../styles/theme'
-
 const reportSchema = Yup.object().shape({
   organisationsRef: Yup
     .string()
@@ -53,7 +50,7 @@ interface OrganisationExpenditureDispatchProps {
   setFormFunctions: (formProps: FormData) => void
 }
 
-type OrganisationExpenditureReaderProps =  WithStyles<typeof styles> & OrganisationExpenditureProps & OrganisationExpenditureDispatchProps
+type OrganisationExpenditureReaderProps = OrganisationExpenditureProps & OrganisationExpenditureDispatchProps
 
 class Expenditure extends React.Component<OrganisationExpenditureReaderProps> {
 
@@ -112,7 +109,7 @@ class Expenditure extends React.Component<OrganisationExpenditureReaderProps> {
                   <br />
                   {formProps.isSubmitting && <LinearProgress />}
                   <br />
-                  <Button type='submit' variant="raised" color="primary" disabled={formProps.isSubmitting}>
+                  <Button type='submit' color="primary" disabled={formProps.isSubmitting}>
                     Submit
                   </Button>
                 </FormControl>
@@ -147,7 +144,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   }
 }
 
-export const OrganisationExpenditure = withTheme(withStyles(styles)(connect<OrganisationExpenditureProps, OrganisationExpenditureDispatchProps, {}, ApplicationState>(
+export const OrganisationExpenditure = connect<OrganisationExpenditureProps, OrganisationExpenditureDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(Expenditure)))
+)(Expenditure)

@@ -23,9 +23,6 @@ import { Activities as ActivitiesStrings } from '../../../../utils/strings'
 
 import { Paths as PathConfig } from '../../../../utils/config'
 
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
-import { withTheme, styles } from '../../../../styles/theme'
-
 const activitiesSchema = Yup.object().shape({
   activitiesRef: Yup
     .string()
@@ -40,7 +37,7 @@ interface ActivitiesDispatchProps {
   handleSubmit: (values: any) => void
 }
 
-type ActivitiesFormProps = WithStyles<typeof styles> & ActivitiesProps & ActivitiesDispatchProps
+type ActivitiesFormProps = ActivitiesProps & ActivitiesDispatchProps
 
 export class ActivitiesForm extends React.Component<ActivitiesFormProps> {
 
@@ -79,7 +76,7 @@ export class ActivitiesForm extends React.Component<ActivitiesFormProps> {
                   <br />
                   {formProps.isSubmitting && <LinearProgress />}
                   <br />
-                  <Button type='submit' variant="raised" color="primary" disabled={formProps.isSubmitting}>
+                  <Button type='submit' color="primary" disabled={formProps.isSubmitting}>
                     Submit
                   </Button>
                 </FormControl>
@@ -105,7 +102,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   }
 }
 
-export const Activities = withTheme(withStyles(styles)(connect<ActivitiesProps, ActivitiesDispatchProps, {}, ApplicationState>(
+export const Activities = connect<ActivitiesProps, ActivitiesDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(ActivitiesForm)))
+)(ActivitiesForm)

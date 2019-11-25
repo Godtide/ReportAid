@@ -25,9 +25,6 @@ import { TransactionHelper } from '../../../io/transactionHelper'
 import { ActivityTerritories as ActivityTerritoryStrings } from '../../../../utils/strings'
 import { Helpers } from '../../../../utils/config'
 
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
-import { withTheme, styles } from '../../../../styles/theme'
-
 const ActivityTerritorySchema = Yup.object().shape({
   activitiesRef: Yup
     .string()
@@ -59,7 +56,7 @@ export interface ActivityTerritoryDispatchProps {
   setFormFunctions: (formProps: FormData) => void
 }
 
-type ActivityTerritoryFormProps = WithStyles<typeof styles> & ActivityTerritoryKeyProps & ActivityTerritoryDispatchProps
+type ActivityTerritoryFormProps = ActivityTerritoryKeyProps & ActivityTerritoryDispatchProps
 
 export class ActivityTerritoryForm extends React.Component<ActivityTerritoryFormProps> {
 
@@ -165,7 +162,7 @@ export class ActivityTerritoryForm extends React.Component<ActivityTerritoryForm
                   <br />
                   {formProps.isSubmitting && <LinearProgress />}
                   <br />
-                  <Button type='submit' variant="raised" color="primary" disabled={formProps.isSubmitting}>
+                  <Button type='submit' color="primary" disabled={formProps.isSubmitting}>
                     Submit
                   </Button>
                 </FormControl>
@@ -196,7 +193,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   }
 }
 
-export const ActivityTerritory = withTheme(withStyles(styles)(connect<ActivityTerritoryKeyProps, ActivityTerritoryDispatchProps, {}, ApplicationState>(
+export const ActivityTerritory = connect<ActivityTerritoryKeyProps, ActivityTerritoryDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(ActivityTerritoryForm)))
+)(ActivityTerritoryForm)

@@ -27,9 +27,6 @@ import { TransactionHelper } from '../../../io/transactionHelper'
 import { ActivityTransactions as ActivityTransactionStrings } from '../../../../utils/strings'
 import { Helpers } from '../../../../utils/config'
 
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
-import { withTheme, styles } from '../../../../styles/theme'
-
 const activityTransactionSchema = Yup.object().shape({
   activitiesRef: Yup
     .string()
@@ -148,7 +145,7 @@ export interface ActivityTransactionDispatchProps {
   setFormFunctions: (formProps: FormData) => void
 }
 
-type ActivityTransactionFormProps = WithStyles<typeof styles> & ActivityTransactionKeyProps & ActivityTransactionDispatchProps
+type ActivityTransactionFormProps = ActivityTransactionKeyProps & ActivityTransactionDispatchProps
 
 export class ActivityTransactionForm extends React.Component<ActivityTransactionFormProps> {
 
@@ -421,7 +418,7 @@ export class ActivityTransactionForm extends React.Component<ActivityTransaction
                   <br />
                   {formProps.isSubmitting && <LinearProgress />}
                   <br />
-                  <Button type='submit' variant="raised" color="primary" disabled={formProps.isSubmitting}>
+                  <Button type='submit' color="primary" disabled={formProps.isSubmitting}>
                     Submit
                   </Button>
                 </FormControl>
@@ -452,7 +449,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   }
 }
 
-export const ActivityTransaction = withTheme(withStyles(styles)(connect<ActivityTransactionKeyProps, ActivityTransactionDispatchProps, {}, ApplicationState>(
+export const ActivityTransaction = connect<ActivityTransactionKeyProps, ActivityTransactionDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(ActivityTransactionForm)))
+)(ActivityTransactionForm)

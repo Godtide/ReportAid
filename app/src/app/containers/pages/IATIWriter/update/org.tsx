@@ -22,9 +22,6 @@ import { Org as OrgStrings } from '../../../../utils/strings'
 
 import { Paths as PathConfig } from '../../../../utils/config'
 
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
-import { withTheme, styles } from '../../../../styles/theme'
-
 const activitySchema = Yup.object().shape({
   orgRef: Yup
     .string()
@@ -39,7 +36,7 @@ interface OrgDispatchProps {
   handleSubmit: (values: any) => void
 }
 
-type OrgFormProps = WithStyles<typeof styles> & OrgProps & OrgDispatchProps
+type OrgFormProps =OrgProps & OrgDispatchProps
 
 export class OrgForm extends React.Component<OrgFormProps> {
 
@@ -77,7 +74,7 @@ export class OrgForm extends React.Component<OrgFormProps> {
                   <br />
                   {formProps.isSubmitting && <LinearProgress />}
                   <br />
-                  <Button type='submit' variant="raised" color="primary" disabled={formProps.isSubmitting}>
+                  <Button type='submit' color="primary" disabled={formProps.isSubmitting}>
                     Submit
                   </Button>
                 </FormControl>
@@ -103,7 +100,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   }
 }
 
-export const Org = withTheme(withStyles(styles)(connect<OrgProps, OrgDispatchProps, {}, ApplicationState>(
+export const Org = connect<OrgProps, OrgDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(OrgForm)))
+)(OrgForm)

@@ -26,10 +26,6 @@ import { TransactionHelper } from '../../../io/transactionHelper'
 import { ActivityBudget } from '../../../../utils/strings'
 import { Helpers } from '../../../../utils/config'
 
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles'
-import { withTheme, styles } from '../../../../styles/theme'
-
-
 const reportSchema = Yup.object().shape({
   activitiesRef: Yup
     .string()
@@ -90,7 +86,7 @@ interface ActivityBudgetsDispatchProps {
   setFormFunctions: (formProps: FormData) => void
 }
 
-type ActivityBudgetsFormProps = WithStyles<typeof styles> & ActivityBudgetsKeyProps & ActivityBudgetsDispatchProps
+type ActivityBudgetsFormProps = ActivityBudgetsKeyProps & ActivityBudgetsDispatchProps
 
 export class ActivityBudgetsForm extends React.Component<ActivityBudgetsFormProps> {
 
@@ -204,7 +200,7 @@ export class ActivityBudgetsForm extends React.Component<ActivityBudgetsFormProp
                   <br />
                   {formProps.isSubmitting && formProps.isValidating && <LinearProgress />}
                   <br />
-                  <Button type='submit' variant="raised" color="primary" disabled={formProps.isSubmitting}>
+                  <Button type='submit' color="primary" disabled={formProps.isSubmitting}>
                     Submit
                   </Button>
                 </FormControl>
@@ -235,7 +231,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<ApplicationState, any, Actio
   }
 }
 
-export const ActivityBudgets = withTheme(withStyles(styles)(connect<ActivityBudgetsKeyProps, ActivityBudgetsDispatchProps, {}, ApplicationState>(
+export const ActivityBudgets = connect<ActivityBudgetsKeyProps, ActivityBudgetsDispatchProps, {}, ApplicationState>(
   mapStateToProps,
   mapDispatchToProps
-)(ActivityBudgetsForm)))
+)(ActivityBudgetsForm)
