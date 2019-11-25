@@ -109,7 +109,7 @@ class RegionBudgets extends React.Component<OrganisationRegionBudgetsReaderProps
                   <br />
                   {formProps.isSubmitting && <LinearProgress />}
                   <br />
-                  <Button type='submit' color="primary" disabled={formProps.isSubmitting}>
+                  <Button type='submit' variant="contained" color="primary" disabled={formProps.isSubmitting}>
                     Submit
                   </Button>
                 </FormControl>

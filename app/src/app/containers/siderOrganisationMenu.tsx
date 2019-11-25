@@ -13,6 +13,7 @@ import { setKey } from '../store/helpers/keys/actions'
 import { Keys, KeyTypes } from '../store/helpers/keys/types'
 
 import IconButton from '@material-ui/core/IconButton'
+import Update from '@material-ui/icons/Update'
 import Create from '@material-ui/icons/Create'
 import List from '@material-ui/icons/List'
 
@@ -44,6 +45,9 @@ const Sider = (props: DispatchProps = defaultProps) => {
     <div>
       <ExpansionPanel className={classes.siderMenu}>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+        <IconButton aria-label={App.headingActivitiesWriter}>
+          <Create />
+        </IconButton>
           <h4>{App.headingActivitiesWriter}</h4>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails className={classes.siderMenu}>
@@ -55,9 +59,6 @@ const Sider = (props: DispatchProps = defaultProps) => {
                 props.setKey({key: '', keyType: KeyTypes.ACTIVITIES})
               }} >
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.activitiesWriter}>
-                  <Create />
-                </IconButton>
                 {Paths.activitiesWriter}
               </MenuItem>
             </Link>
@@ -68,9 +69,6 @@ const Sider = (props: DispatchProps = defaultProps) => {
                 props.setKey({key: '', keyType: KeyTypes.ACTIVITY})
               }} >
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.activityWriter}>
-                  <Create />
-                </IconButton>
                 {Paths.activityWriter}
               </MenuItem>
             </Link>
@@ -81,9 +79,6 @@ const Sider = (props: DispatchProps = defaultProps) => {
                 props.setKey({key: '', keyType: KeyTypes.ACTIVITYADDITIONAL})
               }} >
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.activityAdditionalWriter}>
-                  <Create />
-                </IconButton>
                 {Paths.activityAdditionalWriter}
               </MenuItem>
             </Link>
@@ -94,9 +89,6 @@ const Sider = (props: DispatchProps = defaultProps) => {
                 props.setKey({key: '', keyType: KeyTypes.ACTIVITYDATE})
               }} >
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.activityDatesWriter}>
-                  <Create />
-                </IconButton>
                 {Paths.activityDatesWriter}
               </MenuItem>
             </Link>
@@ -107,9 +99,6 @@ const Sider = (props: DispatchProps = defaultProps) => {
                 props.setKey({key: '', keyType: KeyTypes.ACTIVITYPARTICIPATINGORG})
               }} >
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.activityParticipatingOrgWriter}>
-                  <Create />
-                </IconButton>
                 {Paths.activityParticipatingOrgWriter}
               </MenuItem>
             </Link>
@@ -120,9 +109,6 @@ const Sider = (props: DispatchProps = defaultProps) => {
                 props.setKey({key: '', keyType: KeyTypes.ACTIVITYSECTOR})
               }} >
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.activitySectorsWriter}>
-                  <Create />
-                </IconButton>
                 {Paths.activitySectorsWriter}
               </MenuItem>
             </Link>
@@ -133,9 +119,6 @@ const Sider = (props: DispatchProps = defaultProps) => {
                 props.setKey({key: '', keyType: KeyTypes.ACTIVITYBUDGET})
               }} >
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.activityBudgetsWriter}>
-                  <Create />
-                </IconButton>
                 {Paths.activityBudgetsWriter}
               </MenuItem>
             </Link>
@@ -146,9 +129,6 @@ const Sider = (props: DispatchProps = defaultProps) => {
                 props.setKey({key: '', keyType: KeyTypes.ACTIVITYTERRITORY})
               }} >
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.activityTerritoriesWriter}>
-                  <Create />
-                </IconButton>
                 {Paths.activityTerritoriesWriter}
               </MenuItem>
             </Link>
@@ -159,9 +139,6 @@ const Sider = (props: DispatchProps = defaultProps) => {
                 props.setKey({key: '', keyType: KeyTypes.ACTIVITYTRANSACTION})
               }} >
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.activityTransactionsWriter}>
-                  <Create />
-                </IconButton>
                 {Paths.activityTransactionsWriter}
               </MenuItem>
             </Link>
@@ -172,9 +149,6 @@ const Sider = (props: DispatchProps = defaultProps) => {
                 props.setKey({key: '', keyType: KeyTypes.ACTIVITYRELATEDACTIVITY})
               }} >
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.activityRelatedActivitiesWriter}>
-                  <Create />
-                </IconButton>
                 {Paths.activityRelatedActivitiesWriter}
               </MenuItem>
             </Link>
@@ -184,31 +158,25 @@ const Sider = (props: DispatchProps = defaultProps) => {
 
       <ExpansionPanel className={classes.siderMenu}>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <IconButton aria-label={App.headingActivitiesUpdater}>
+            <Update />
+          </IconButton>
           <h4>{App.headingActivitiesUpdater}</h4>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails className={classes.siderMenu}>
           <MenuList>
             <Link to={PathConfig.activitiesUpdater}>
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.activitiesUpdater}>
-                  <Create />
-                </IconButton>
                 {Paths.activitiesUpdater}
               </MenuItem>
             </Link>
             <Link to={PathConfig.activityUpdater}>
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.activityUpdater}>
-                  <Create />
-                </IconButton>
                 {Paths.activityUpdater}
               </MenuItem>
             </Link>
             <Link to={PathConfig.activityDateUpdater}>
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.activityDateUpdater}>
-                  <Create />
-                </IconButton>
                 {Paths.activityDateUpdater}
               </MenuItem>
             </Link>
@@ -218,87 +186,60 @@ const Sider = (props: DispatchProps = defaultProps) => {
 
       <ExpansionPanel className={classes.siderMenu}>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <IconButton aria-label={App.headingActivitiesReader}>
+            <List />
+          </IconButton>
           <h4>{App.headingActivitiesReader}</h4>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails className={classes.siderMenu}>
           <MenuList>
             <Link to={PathConfig.activitiesReader}>
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.activitiesReader}>
-                  <List />
-                </IconButton>
                 {Paths.activitiesReader}
               </MenuItem>
             </Link>
             <Link to={PathConfig.activityReader}>
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.activityReader}>
-                  <List />
-                </IconButton>
                 {Paths.activityReader}
               </MenuItem>
             </Link>
             <Link to={PathConfig.activityAdditionalReader}>
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.activityAdditionalReader}>
-                  <List />
-                </IconButton>
                 {Paths.activityAdditionalReader}
               </MenuItem>
             </Link>
             <Link to={PathConfig.activityDatesReader}>
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.activityDatesReader}>
-                  <List />
-                </IconButton>
                 {Paths.activityDatesReader}
               </MenuItem>
             </Link>
             <Link to={PathConfig.activityParticipatingOrgReader}>
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.activityParticipatingOrgReader}>
-                  <List />
-                </IconButton>
                 {Paths.activityParticipatingOrgReader}
               </MenuItem>
             </Link>
             <Link to={PathConfig.activitySectorsReader}>
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.activitySectorsReader}>
-                  <List />
-                </IconButton>
                 {Paths.activitySectorsReader}
               </MenuItem>
             </Link>
             <Link to={PathConfig.activityBudgetsReader}>
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.activityBudgetsReader}>
-                  <List />
-                </IconButton>
                 {Paths.activityBudgetsReader}
               </MenuItem>
             </Link>
             <Link to={PathConfig.activityTerritoriesReader}>
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.activityTerritoriesReader}>
-                  <List />
-                </IconButton>
                 {Paths.activityTerritoriesReader}
               </MenuItem>
             </Link>
             <Link to={PathConfig.activityTransactionsReader}>
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.activityTransactionsReader}>
-                  <List />
-                </IconButton>
                 {Paths.activityTransactionsReader}
               </MenuItem>
             </Link>
             <Link to={PathConfig.activityRelatedActivityReader}>
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.activityRelatedActivitiesReader}>
-                  <List />
-                </IconButton>
                 {Paths.activityRelatedActivitiesReader}
               </MenuItem>
             </Link>
@@ -308,6 +249,9 @@ const Sider = (props: DispatchProps = defaultProps) => {
 
       <ExpansionPanel className={classes.siderMenu}>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <IconButton aria-label={App.headingOrganisationsWriter}>
+            <Create />
+          </IconButton>
           <h4>{App.headingOrganisationsWriter}</h4>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails className={classes.siderMenu}>
@@ -319,9 +263,6 @@ const Sider = (props: DispatchProps = defaultProps) => {
                 props.setKey({key: '', keyType: KeyTypes.ORG})
               }} >
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.orgWriter}>
-                  <Create />
-                </IconButton>
                 {Paths.orgWriter}
               </MenuItem>
             </Link>
@@ -332,9 +273,6 @@ const Sider = (props: DispatchProps = defaultProps) => {
                 props.setKey({key: '', keyType: KeyTypes.ORGANISATIONS})
               }} >
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.organisationsWriter}>
-                  <Create />
-                </IconButton>
                 {Paths.organisationsWriter}
               </MenuItem>
             </Link>
@@ -345,9 +283,6 @@ const Sider = (props: DispatchProps = defaultProps) => {
                 props.setKey({key: '', keyType: KeyTypes.ORGANISATION})
               }} >
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.organisationWriter}>
-                  <Create />
-                </IconButton>
                 {Paths.organisationWriter}
               </MenuItem>
             </Link>
@@ -358,9 +293,6 @@ const Sider = (props: DispatchProps = defaultProps) => {
                 props.setKey({key: '', keyType: KeyTypes.ORGANISATIONDOC})
               }} >
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.organisationDocsWriter}>
-                  <Create />
-                </IconButton>
                 {Paths.organisationDocsWriter}
               </MenuItem>
             </Link>
@@ -371,9 +303,6 @@ const Sider = (props: DispatchProps = defaultProps) => {
                 props.setKey({key: '', keyType: KeyTypes.ORGANISATIONBUDGET})
               }} >
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.organisationBudgetsWriter}>
-                  <Create />
-                </IconButton>
                 {Paths.organisationBudgetsWriter}
               </MenuItem>
             </Link>
@@ -384,9 +313,6 @@ const Sider = (props: DispatchProps = defaultProps) => {
                 props.setKey({key: '', keyType: KeyTypes.ORGANISATIONEXPENDITURE})
               }} >
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.organisationExpenditureWriter}>
-                  <Create />
-                </IconButton>
                 {Paths.organisationExpenditureWriter}
               </MenuItem>
             </Link>
@@ -397,9 +323,6 @@ const Sider = (props: DispatchProps = defaultProps) => {
                 props.setKey({key: '', keyType: KeyTypes.ORGANISATIONRECIPIENTBUDGET})
               }} >
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.organisationRecipientBudgetsWriter}>
-                  <Create />
-                </IconButton>
                 {Paths.organisationRecipientBudgetsWriter}
               </MenuItem>
             </Link>
@@ -410,9 +333,6 @@ const Sider = (props: DispatchProps = defaultProps) => {
                 props.setKey({key: '', keyType: KeyTypes.ORGANISATIONREGIONBUDGET})
               }} >
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.organisationRegionBudgetsWriter}>
-                  <Create />
-                </IconButton>
                 {Paths.organisationRegionBudgetsWriter}
               </MenuItem>
             </Link>
@@ -423,9 +343,6 @@ const Sider = (props: DispatchProps = defaultProps) => {
                 props.setKey({key: '', keyType: KeyTypes.ORGANISATIONCOUNTRYBUDGET})
               }} >
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.organisationCountryBudgetsWriter}>
-                  <Create />
-                </IconButton>
                 {Paths.organisationCountryBudgetsWriter}
               </MenuItem>
             </Link>
@@ -435,15 +352,15 @@ const Sider = (props: DispatchProps = defaultProps) => {
 
       <ExpansionPanel className={classes.siderMenu}>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <IconButton aria-label={App.headingOrganisationsUpdater}>
+            <Update />
+          </IconButton>
           <h4>{App.headingOrganisationsUpdater}</h4>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails className={classes.siderMenu}>
           <MenuList>
             <Link to={PathConfig.orgUpdater}>
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.orgUpdater}>
-                  <Create />
-                </IconButton>
                 {Paths.orgUpdater}
               </MenuItem>
             </Link>
@@ -453,79 +370,55 @@ const Sider = (props: DispatchProps = defaultProps) => {
 
       <ExpansionPanel className={classes.siderMenu}>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <IconButton aria-label={App.headingOrganisationsReader}>
+            <List />
+          </IconButton>
           <h4>{App.headingOrganisationsReader}</h4>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails className={classes.siderMenu}>
           <MenuList>
             <Link to={PathConfig.orgsReader}>
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.orgsReader}>
-                  <List />
-                </IconButton>
                 {Paths.orgsReader}
               </MenuItem>
             </Link>
             <Link to={PathConfig.organisationsReader}>
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.organisationsReader}>
-                  <List />
-                </IconButton>
                 {Paths.organisationsReader}
               </MenuItem>
             </Link>
             <Link to={PathConfig.organisationReader}>
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.organisationReader}>
-                  <List />
-                </IconButton>
                 {Paths.organisationReader}
               </MenuItem>
             </Link>
             <Link to={PathConfig.organisationDocsReader}>
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.organisationDocsReader}>
-                  <List />
-                </IconButton>
                 {Paths.organisationDocsReader}
               </MenuItem>
             </Link>
             <Link to={PathConfig.organisationBudgetsReader}>
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.organisationBudgetsReader}>
-                  <List />
-                </IconButton>
                 {Paths.organisationBudgetsReader}
               </MenuItem>
             </Link>
             <Link to={PathConfig.organisationExpenditureReader}>
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.organisationExpenditureReader}>
-                  <List />
-                </IconButton>
                 {Paths.organisationExpenditureReader}
               </MenuItem>
             </Link>
             <Link to={PathConfig.organisationRecipientBudgetsReader}>
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.organisationRecipientBudgetsReader}>
-                  <List />
-                </IconButton>
                 {Paths.organisationRecipientBudgetsReader}
               </MenuItem>
             </Link>
             <Link to={PathConfig.organisationRegionBudgetsReader}>
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.organisationRegionBudgetsReader}>
-                  <List />
-                </IconButton>
                 {Paths.organisationRegionBudgetsReader}
               </MenuItem>
             </Link>
             <Link to={PathConfig.organisationCountryBudgetsReader}>
               <MenuItem>
-                <IconButton className={classes.button} aria-label={Paths.organisationCountryBudgetsReader}>
-                  <List />
-                </IconButton>
                 {Paths.organisationCountryBudgetsReader}
               </MenuItem>
             </Link>

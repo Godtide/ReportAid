@@ -200,7 +200,7 @@ export class ActivityBudgetsForm extends React.Component<ActivityBudgetsFormProp
                   <br />
                   {formProps.isSubmitting && formProps.isValidating && <LinearProgress />}
                   <br />
-                  <Button type='submit' color="primary" disabled={formProps.isSubmitting}>
+                  <Button type='submit' variant="contained" color="primary" disabled={formProps.isSubmitting}>
                     Submit
                   </Button>
                 </FormControl>

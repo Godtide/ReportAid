@@ -162,7 +162,7 @@ export class OrganisationExpenditureForm extends React.Component<OrganisationExp
                   <br />
                   {formProps.isSubmitting && <LinearProgress />}
                   <br />
-                  <Button type='submit' color="primary" disabled={formProps.isSubmitting}>
+                  <Button type='submit' variant="contained" color="primary" disabled={formProps.isSubmitting}>
                     Submit
                   </Button>
                 </FormControl>
