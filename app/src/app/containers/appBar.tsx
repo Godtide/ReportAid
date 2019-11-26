@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 
+import Grid from '@material-ui/core/Grid'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import MenuItem from '@material-ui/core/MenuItem'
@@ -25,67 +26,107 @@ export const ApplicationBar = () => {
 
   return (
 
-    <div>
-      <AppBar position='static'>
-        <Toolbar variant="dense">
-          <Link to={PathConfig.home}>
-            <MenuItem>
-              <IconButton className={classes.button} aria-label={Paths.home}>
-                <Home />
-              </IconButton>
-              {Paths.home}
-            </MenuItem>
-          </Link>
-          <Link to={PathConfig.blockchain}>
-            <MenuItem>
-              <IconButton className={classes.button} aria-label={Paths.blockchain}>
-                <ListAlt />
-              </IconButton>
-              {Paths.blockchain}
-            </MenuItem>
-          </Link>
-          <Link to={PathConfig.writer}>
-            <MenuItem>
-              <IconButton className={classes.button} aria-label={Paths.writer}>
-                <Create />
-              </IconButton>
-              {Paths.writer}
-            </MenuItem>
-          </Link>
-          <Link to={PathConfig.reader}>
-            <MenuItem>
-              <IconButton className={classes.button} aria-label={Paths.reader}>
-                <List />
-              </IconButton>
-              {Paths.reader}
-            </MenuItem>
-          </Link>
-          <Link to={PathConfig.overview}>
-            <MenuItem>
-              <IconButton className={classes.button} aria-label={Paths.overview}>
-                <Panorama />
-              </IconButton>
-              {Paths.overview}
-            </MenuItem>
-          </Link>
-          <Link to={PathConfig.help}>
-            <MenuItem>
-              <IconButton className={classes.button} aria-label={Paths.help}>
-                <Help />
-              </IconButton>
-              {Paths.help}
-            </MenuItem>
-          </Link>
-          <Link to={PathConfig.about}>
-            <MenuItem>
-              <IconButton className={classes.button} aria-label={Paths.about}>
-                <Info />
-              </IconButton>
-              {Paths.about}
-            </MenuItem>
-          </Link>
-        </Toolbar>
-      </AppBar>
-    </div>
+    <AppBar position='relative' >
+      <Toolbar variant='regular' >
+        <Link to={PathConfig.home}>
+          <MenuItem>
+            <Grid container direction="column" alignItems="center">
+              <Grid item>
+                <IconButton className={classes.button} aria-label={Paths.home}>
+                  <Home />
+                </IconButton>
+              </Grid>
+              <Grid item>
+                {Paths.home}
+              </Grid>
+            </Grid>
+          </MenuItem>
+        </Link>
+        <Link to={PathConfig.blockchain}>
+          <MenuItem>
+            <Grid container direction="column" alignItems="center">
+              <Grid item>
+                <IconButton className={classes.button} aria-label={Paths.blockchain}>
+                  <ListAlt />
+                </IconButton>
+              </Grid>
+              <Grid item>
+                {Paths.blockchain}
+              </Grid>
+            </Grid>
+          </MenuItem>
+        </Link>
+        <Link to={PathConfig.writer}>
+          <MenuItem>
+            <Grid container direction="column" alignItems="center">
+              <Grid item>
+                <IconButton className={classes.button} aria-label={Paths.writer}>
+                  <Create />
+                </IconButton>
+              </Grid>
+              <Grid item>
+                {Paths.writer}
+              </Grid>
+            </Grid>
+          </MenuItem>
+        </Link>
+        <Link to={PathConfig.reader}>
+          <MenuItem>
+            <Grid container direction="column" alignItems="center">
+              <Grid item>
+                <IconButton className={classes.button} aria-label={Paths.reader}>
+                  <List />
+                </IconButton>
+              </Grid>
+              <Grid item>
+                {Paths.reader}
+              </Grid>
+            </Grid>
+          </MenuItem>
+        </Link>
+        <Link to={PathConfig.overview}>
+          <MenuItem>
+            <Grid container direction="column" alignItems="center">
+              <Grid item>
+                <IconButton className={classes.button} aria-label={Paths.overview}>
+                  <Panorama />
+                </IconButton>
+              </Grid>
+              <Grid item>
+                {Paths.overview}
+              </Grid>
+            </Grid>
+          </MenuItem>
+        </Link>
+        <Link to={PathConfig.help}>
+          <MenuItem>
+            <Grid container direction="column" alignItems="center">
+              <Grid item>
+                <IconButton className={classes.button} aria-label={Paths.help}>
+                  <Help />
+                </IconButton>
+              </Grid>
+              <Grid item>
+                {Paths.help}
+              </Grid>
+            </Grid>
+          </MenuItem>
+        </Link>
+        <Link to={PathConfig.about}>
+          <MenuItem>
+            <Grid container direction="column" alignItems="center">
+              <Grid item>
+                <IconButton className={classes.button} aria-label={Paths.about}>
+                  <Info />
+                </IconButton>
+              </Grid>
+              <Grid item>
+                {Paths.about}
+              </Grid>
+            </Grid>
+          </MenuItem>
+        </Link>
+      </Toolbar>
+    </AppBar>
   )
 }

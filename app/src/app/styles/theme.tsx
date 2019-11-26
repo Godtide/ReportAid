@@ -142,7 +142,7 @@ const useStyles = makeStyles({
     background: 'linear-gradient(45deg, #BBDEFB 30%, #BBDEFB 90%)'
   },
   sider: {
-    padding: theme.spacing(1),
+    padding: 0,
     margin: theme.spacing(1),
     textAlign: 'left',
     background: 'linear-gradient(45deg, #BBDEFB 30%, #BBDEFB 90%)'
@@ -154,9 +154,9 @@ const useStyles = makeStyles({
     background: 'linear-gradient(45deg, #BBDEFB 30%, #BBDEFB 90%)'
   },
   appBar: {
-    padding: theme.spacing(1),
+    padding: 0,
     margin: theme.spacing(1),
-    textAlign: 'left',
+    textAlign: 'center',
     background: 'linear-gradient(45deg, #42A5F5 30%, #42A5F5 90%)'
   },
   caption: {
