@@ -23,7 +23,7 @@ export const Main = () => {
       <Paper className={classes.root}>
         <Paper className={classes.header}>
           <Grid container>
-            <Grid item xs={12} sm={2}>
+            <Grid item xs={12} sm={1}>
               <img className={classes.button} src={logo}/>
             </Grid>
             <Grid item xs={12} sm={8}>
@@ -31,7 +31,7 @@ export const Main = () => {
                 <ApplicationBar />
               </Paper>
             </Grid>
-            <Grid item xs={12} sm={2}>
+            <Grid item xs={12} sm={3}>
               <Paper className={classes.header}>
                 <h1>{App.title}</h1>
               </Paper>
