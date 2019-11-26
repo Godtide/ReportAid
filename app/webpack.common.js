@@ -1,6 +1,7 @@
 const path = require('path')
 const fs  = require('fs');
 const htmlWebpackPlugin = require('html-webpack-plugin');
+const htmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
 const cleanWebpackPlugin = require('clean-webpack-plugin');
 const { CheckerPlugin } = require('awesome-typescript-loader')
 const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
@@ -19,18 +20,19 @@ var config = {
     ]
   },
   output: {
-    path: path.resolve(__dirname, 'build'),
-    filename: 'bundle.js'
+    path: path.resolve(__dirname, 'build')
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".json"]
   },
   plugins: [
-    new cleanWebpackPlugin(['build']),
+    new cleanWebpackPlugin([ 'build' ]),
     new htmlWebpackPlugin({
       template: './src/index.html',
       inject: 'body',
+      inlineSource: '.(js|css)$'
     }),
+    new htmlWebpackInlineSourcePlugin(),
     new CheckerPlugin(),
     new TsConfigPathsPlugin(/* { configFileName, compiler } */)
   ],

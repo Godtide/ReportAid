@@ -12,10 +12,9 @@
     "develMigrate": "cd ./src/blockchain && truffle migrate --network development",
     "rinkebyMigrate": "cd ./src/blockchain && truffle migrate --network rinkeby",
     "ropstenMigrate": "cd ./src/blockchain && truffle migrate --network ropsten",
-    "compile": "./node_modules/.bin/webpack --config ./webpack.dev.js --mode development",
+    "compile": "./node_modules/.bin/webpack --config ./webpack.dev.js --mode development && rm ./build/app.js && rm ./build/app.js.map",
     "watch": "./node_modules/.bin/webpack --config ./webpack.dev.js --watch --mode development",
-    "dev": "./node_modules/.bin/webpack --config ./webpack.dev.js --mode development",
-    "prod": "./node_modules/.bin/webpack --config ./webpack.prod.js --mode production",
+    "prod": "./node_modules/.bin/webpack --config ./webpack.prod.js --mode production && rm ./build/app.js && rm ./build/app.js.map",
     "test": "./node_modules/.bin/mocha",
     "start": "http-server -p 8083 build/"
   },
@@ -43,7 +42,7 @@
     "redux-thunk": "2.3.0",
     "shortid": "2.2.14",
     "typesafe-actions": "2.0.4",
-    "web3": "1.0.0-beta.36",
+    "web3": "^1.2.4",
     "yup": "0.26.6"
   },
   "devDependencies": {
@@ -75,6 +74,7 @@
     "babel-preset-stage-0": "6.24.1",
     "clean-webpack-plugin": "0.1.19",
     "file-loader": "2.0.0",
+    "html-webpack-inline-source-plugin": "0.0.10",
     "html-webpack-plugin": "3.2.0",
     "mocha": "5.2.0",
     "redux": "4.0.0",
