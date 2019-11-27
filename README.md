@@ -29,7 +29,13 @@ Below describes a demo' of **ReportAid**.
 
 ## Demo
 
-A demo of **ReportAid** is running on both [arweave](https://www.arweave.org/) and [dat](https://dat.foundation/). Why both? Although [arweave](https://www.arweave.org/) is open source, it costs money to post dApps there. However, once a dApp is hosted on [arweave](https://www.arweave.org/), no additional [Firefox](https://www.mozilla.org/) extension is required to load [arweave](https://www.arweave.org/) resources. Unfortunately, [dat](https://dat.foundation/) requires an additional [Firefox](https://www.mozilla.org/) extension. However, [dat](https://dat.foundation/) is both open source and it costs nothing to post dApps there. Furthermore, [dat](https://dat.foundation/) has some nice features for the developer, not least of which is that it is possible to update a [dat](https://dat.foundation/) directory and maintain the same URL. That makes upgrading easy. Such features mean [dat](https://dat.foundation/) is well worth supporting. And because [arweave](https://www.arweave.org/) reduces complexity for the user, that is worth supporting, too.
+A demo of **ReportAid** is running on both [arweave](https://www.arweave.org/), and [dat](https://dat.foundation/), both of which are peer-to-peer filesystems, but [arweave](https://www.arweave.org/) is also blockchain-based. Below explains why **ReportAid** is running on both.
+
+Although [arweave](https://www.arweave.org/) is open source, because it is blockchain-based, it costs money to post dApps there. However, once a dApp is hosted on [arweave](https://www.arweave.org/), the user requires no additional [Firefox](https://www.mozilla.org/) extension.
+
+Unfortunately, for a user to see a [dat](https://dat.foundation/) resource, they need an additional [Firefox](https://www.mozilla.org/) extension ([detailed below](#dat)). However, [dat](https://dat.foundation/) is both open source and it costs nothing to post dApps there. Furthermore, [dat](https://dat.foundation/) has some nice features for the developer, not least is that it is possible to update a [dat](https://dat.foundation/) directory and maintain the same URL. That makes upgrading easy. 
+
+Such features mean that both [dat](https://dat.foundation/) and [arweave](https://www.arweave.org/) are well worth supporting.
 
 **ReportAid** is an early proof of concept, so apologies in advance - help for using the app' is currently 'minimal', at best. You should expect some bugs, too (if you find any, feel free to raise an [issue](https://github.com/glowkeeper/ReportAid/issues)). Furthermore, the app' is missing some functionality as it does not, currently, implement all of the [IATI Standard](https://iatistandard.org/en/). That said, as a proof of concept, the app' serves its purpose well. Hopefully, you agree and want to get involved - if so, please get in touch with s dot huckle at sussex dot ac dot uk.
 
