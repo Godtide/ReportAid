@@ -42,15 +42,15 @@ export const setBlockchain = async (props: SetBlockchainProps) => {
   const store = props.store
   setProvider({store: store})
 
-  let accountInterval = setInterval(() => {
+  let accountInterval = window.setInterval(() => {
     setAccount({store: store})
   }, Blockchain.checkInterval)
 
-  let contractsInterval = setInterval(() => {
+  let contractsInterval = window.setInterval(() => {
     setContracts({store:store})
   }, Blockchain.checkInterval)
 
-  let stopInterval = setInterval(() => {
+  let stopInterval = window.setInterval(() => {
     stop({store: store, accountCheck: accountInterval, contractsCheck: contractsInterval, stopCheck: stopInterval})
   }, Blockchain.checkInterval)
 

@@ -4,14 +4,18 @@ const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
-  devtool: 'cheap-module-source-map',
   plugins: [
+    new webpack.DefinePlugin({
+     'process.env': {
+       'NODE_ENV': JSON.stringify('production')
+      }
+    }),
     new uglifyJSPlugin({
       "test": /\.js$/i,
       "extractComments": false,
-      "sourceMap": true,
-      "cache": false,
-      "parallel": false,
+      "sourceMap": false,
+      "cache": true,
+      "parallel": true,
       "uglifyOptions": {
         "output": {
           "ascii_only": true,
@@ -21,13 +25,17 @@ module.exports = merge(common, {
         "warnings": false,
         "ie8": false,
         "mangle": true,
-        "compress": {}
+        "compress": {
+          sequences: true,
+      		dead_code: true,
+      		conditionals: true,
+      		booleans: true,
+      		unused: true,
+      		if_return: true,
+      		join_vars: true,
+      		drop_console: true
+        }
       }
-    }),
-    new webpack.DefinePlugin({
-     'process.env': {
-       'NODE_ENV': JSON.stringify('production')
-     }
     })
   ]
 });

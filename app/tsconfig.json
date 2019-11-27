@@ -14,10 +14,8 @@
     "strict": true,
     "outDir": "build",
     "lib": [
-      "es5",
       "es2015",
-      "es6",
-      "esnext",
+      "es2017.object",
       "dom"
     ]
   },

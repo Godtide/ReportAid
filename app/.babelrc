@@ -1,17 +1,17 @@
 {
   "presets": [
-    "babel-preset-env",
     [
-      "env", {
-        "production": {},
-        "development": {},
+      "@babel/preset-env",
+      {
         "targets": {
-          "browsers": ["last 2 versions"]
+          "browsers": [
+            "last 2 versions"
+          ]
         },
-        "modules": false
+        "modules": false,
+        "useBuiltIns": "usage"
       }
     ],
-    "stage-0",
-    "react"
+    "@babel/preset-react"
   ]
 }

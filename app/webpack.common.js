@@ -1,10 +1,10 @@
 const path = require('path')
-const fs  = require('fs');
-const htmlWebpackPlugin = require('html-webpack-plugin');
-const htmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
-const cleanWebpackPlugin = require('clean-webpack-plugin');
+const fs = require('fs')
+const htmlWebpackPlugin = require('html-webpack-plugin')
+const htmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin')
+const cleanWebpackPlugin = require('clean-webpack-plugin')
 const { CheckerPlugin } = require('awesome-typescript-loader')
-const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
+const { TsConfigPathsPlugin } = require('awesome-typescript-loader')
 
 var config = {
   node: {
@@ -15,7 +15,7 @@ var config = {
   },
   entry: {
     app: [
-      'babel-polyfill',
+      '@babel/polyfill',
       './src/index.tsx'
     ]
   },
