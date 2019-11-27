@@ -1,8 +1,9 @@
 const path = require('path')
 const fs = require('fs')
+const webpack = require('webpack')
 const htmlWebpackPlugin = require('html-webpack-plugin')
 const htmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin')
-const cleanWebpackPlugin = require('clean-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const { CheckerPlugin } = require('awesome-typescript-loader')
 const { TsConfigPathsPlugin } = require('awesome-typescript-loader')
 
@@ -15,6 +16,7 @@ var config = {
   },
   entry: {
     app: [
+      '@babel/polyfill',
       './src/index.tsx'
     ]
   },
@@ -25,7 +27,8 @@ var config = {
     extensions: [".ts", ".tsx", ".js", ".json"]
   },
   plugins: [
-    new cleanWebpackPlugin([ 'build' ]),
+    new webpack.ProgressPlugin(),
+    new CleanWebpackPlugin(),
     new htmlWebpackPlugin({
       template: './src/index.html',
       inject: 'body',
