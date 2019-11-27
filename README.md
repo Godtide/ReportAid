@@ -43,7 +43,7 @@ Start [Firefox](https://www.mozilla.org/), ensure [MetaMask](https://metamask.io
 
 #### DAT
 
-In addition to the [MetaMask](https://metamask.io/), you will also need the [Firefox](https://www.mozilla.org/) [DAT P2P Protocol](https://addons.mozilla.org/en-GB/firefox/addon/dat-p2p-protocol/) extension installed. Once you have those, ensure [MetaMask](https://metamask.io/) is pointing at [Rinkeby](https://www.rinkeby.io/), then load the following URL: http://4b1bdf7b0f6beeadab5dadaf019cddbc94f618792ea30b8a2f5d957267d5bd92/
+In addition to [MetaMask](https://metamask.io/), you will also need the [Firefox](https://www.mozilla.org/) [DAT P2P Protocol](https://addons.mozilla.org/en-GB/firefox/addon/dat-p2p-protocol/) extension installed. Once you have those, ensure [MetaMask](https://metamask.io/) is pointing at [Rinkeby](https://www.rinkeby.io/), then load the following URL: http://4b1bdf7b0f6beeadab5dadaf019cddbc94f618792ea30b8a2f5d957267d5bd92/
 
 ## Built Using
 
