@@ -35,8 +35,6 @@ Although [arweave](https://www.arweave.org/) is open source, because it is block
 
 Unfortunately, for a user to see a [dat](https://dat.foundation/) resource, they need an additional [Firefox](https://www.mozilla.org/) extension ([detailed below](#dat)). However, [dat](https://dat.foundation/) is both open source and it costs nothing to post dApps there. Furthermore, [dat](https://dat.foundation/) has some nice features for the developer, not least is that it is possible to update a [dat](https://dat.foundation/) directory and maintain the same URL. That makes upgrading easy.
 
-**ReportAid** is an early proof of concept, so apologies in advance - help for using the app' is currently 'minimal', at best. You should expect some bugs, too (if you find any, feel free to raise an [issue](https://github.com/glowkeeper/ReportAid/issues)). Furthermore, the app' is missing some functionality as it does not, currently, implement all of the [IATI Standard](https://iatistandard.org/en/). That said, as a proof of concept, the app' serves its purpose well. Hopefully, you agree and want to get involved - if so, please get in touch with s dot huckle at sussex dot ac dot uk.
-
 Below explains the dependencies that must be fulfilled before you can load either the [arweave](https://www.arweave.org/) or [dat](https://dat.foundation/) instances of **ReportAid**.
 
 ### Demo Dependencies
@@ -50,6 +48,8 @@ Start [Firefox](https://www.mozilla.org/), ensure [MetaMask](https://metamask.io
 #### DAT
 
 In addition to [MetaMask](https://metamask.io/), you will also need the [Firefox](https://www.mozilla.org/) [DAT P2P Protocol](https://addons.mozilla.org/en-GB/firefox/addon/dat-p2p-protocol/) extension installed. Ensure [MetaMask](https://metamask.io/) is pointing at [Rinkeby](https://www.rinkeby.io/), then load the following URL: http://4b1bdf7b0f6beeadab5dadaf019cddbc94f618792ea30b8a2f5d957267d5bd92/
+
+**ReportAid** is an early proof of concept, so apologies in advance - help for using the app' is currently 'minimal', at best. You should expect some bugs, too (if you find any, feel free to raise an [issue](https://github.com/glowkeeper/ReportAid/issues)). Furthermore, the app' is missing some functionality as it does not, currently, implement all of the [IATI Standard](https://iatistandard.org/en/). That said, as a proof of concept, the app' serves its purpose well. Hopefully, you agree and want to get involved - if so, please get in touch with s dot huckle at sussex dot ac dot uk.
 
 ## Built Using
 
