@@ -12,6 +12,8 @@ Received: (date); Accepted: (date); Published: (date)
 
 This article describes a blockchain-based application for increasing the transparency of humanitarian financing. At the 2016 World Humanitarian Summit in Istanbul, humanitarian organisations made a 'Grand Bargain' to publish timely and transparent information about their funding - the summit proposed meeting the requirements of that bargain through a financial tracking system that satisfied the _3Ts_ of transparency, namely traceability, totality and timeliness. Aid organisations have been investigating direct delivery of aid through blockchains. Still, there appears very little research, if any, into the use of blockchains to improve the transparency of their aid reporting. This paper fills that gap when discussing a prototype application that uses blockchains for aid reporting. It argues that blockchains include mechanisms ideally suited to meet the Grand Bargain's _3Ts_ while adding a fourth - trust. This paper describes the prototype by demonstrating its use to report on the European Commission's 2015 response to the Ebola crisis in West Africa. The hope is that, ultimately, this paper, and the software it describes, leads to the deployment of a blockchain-based humanitarian aid reporting system that helps the UN Office for the Coordination of Humanitarian Affairs increase the transparency of humanitarian aid.
 
+**Keywords**: The International Aid Transparency Initiative, Blockchains, Ethereum, Humanitarian Aid, Trust
+
 ## Introduction
 
 In her 2015 book about the promise of blockchain technology, Swan wrote that blockchains could usher in an era that revolutionises all aspects of society [@Swan_BlockchainBlueprintNew_2015]. She saw its potential for transforming not just the economy, but also political, social and scientific domains. She defined such potential as Blockchain 1.0, 2.0 and 3.0, where 1.0 represents cryptocurrencies, 2.0 represents financial applications, and 3.0 represents applications beyond finance. This paper examines a blockchain 3.0 application for humanitarian aid reporting, which, at the time of writing, is called [ReportAid](https://github.com/glowkeeper/ReportAid) [^1]. Coppi says, "few advanced use cases of blockchain exist in the humanitarian sector. Instead, much discussion relates to potential and anticipated uses of the technology" [@Coppi_BlockchainDistributedLedger_2019]. [ReportAid](https://github.com/glowkeeper/ReportAid) is a proof of concept that attempts to fill that gap.
@@ -86,7 +88,7 @@ Figure 3, below, shows the [ReportAid](https://github.com/glowkeeper/ReportAid) 
 
 The baseline report of the IASC GB transparency workstream cites the recent Ebola crises as an example of incomplete, inaccurate, inconsistent and often inaccessible information that impacted the humanitarian effort in the diseases' epicentre in West-Africa [@DevelopmentInitiatives_ImprovingHumanitarianTransparency_2017]. Indeed, the report says that the lack of an adequately planned response hindered attempts to alleviate the outbreak because, at the time, no donor, government or aid agency was able to gain an overarching overview of available resources. The suggestion is that, were all the Ebola humanitarian aid efforts documented using the IATI standard and published to the UN's FTS, organisations would have had a more accurate picture of what was needed, thus improving the effectiveness of their response.
 
-Despite such shortcomings, many of the organisations that are already using IATI make information about their development contributions available through existing aid information portals; a widely-used example is an open-source platform called [d-portal](http://d-portal.org/) [^8]. That includes several IATI activities related to the world's response to the Ebola outbreak in West Africa. Hence, it contains data that [ReportAid](https://github.com/glowkeeper/ReportAid) can import, thereby demonstrating its suitability as a proof of concept for blockchain-based humanitarian aid reporting. One such activity documented on [d-portal](http://d-portal.org) was that carried out by the European Commission's Directorate-General for International Cooperation and Development (DEVCO), titled "A West African Response to Ebola" (AWARE), with IATI activity identifier XI-IATI-EC_DEVCO-2014/37785/0. That had a planned start date of 15th December 2015 and planned end date of 27th November 2018. The commitments of the activity totalled US$39,957,400. Its overall objective was to mitigate the harmful effects of the diseases' outbreak. Additionally, it was to contribute to the recovery of the most affected countries. Its specific purpose was to increase awareness of the diseases' symptoms and strengthen the resilience of primary healthcare systems. [Appendix A](./appendixAWAREXML.md) includes the XML describing AWARE.
+Despite such shortcomings, many of the organisations that are already using IATI make information about their development contributions available through existing aid information portals; a widely-used example is an open-source platform called [d-portal](http://d-portal.org/) [^8]. That includes several IATI activities related to the world's response to the Ebola outbreak in West Africa. Hence, it contains data that [ReportAid](https://github.com/glowkeeper/ReportAid) can import, thereby demonstrating its suitability as a proof of concept for blockchain-based humanitarian aid reporting. One such activity documented on [d-portal](http://d-portal.org) was that carried out by the European Commission's Directorate-General for International Cooperation and Development (DEVCO), titled "A West African Response to Ebola" (AWARE), with IATI activity identifier XI-IATI-EC_DEVCO-2014/37785/0. That had a planned start date of 15th December 2015 and planned end date of 27th November 2018. The commitments of the activity totalled US$39,957,400. Its overall objective was to mitigate the harmful effects of the diseases' outbreak. Additionally, it was to contribute to the recovery of the most affected countries. Its specific purpose was to increase awareness of the diseases' symptoms and strengthen the resilience of primary healthcare systems. The Appendix includes the XML describing AWARE.
 
 Figure 4, below, shows [ReportAid](https://github.com/glowkeeper/ReportAid) creating the organisation record for AWARE.  
 
@@ -168,3 +170,185 @@ Finally, this paper proposes a test pilot of [ReportAid](https://github.com/glow
 [^7]: The activity information that must be published is described at <https://iatistandard.org/en/guidance/preparing-data/activity-information/activity-information-you-can-publish/>
 [^8]: d-portal is available at <http://d-portal.org/>
 [^9]: More information about the work of the Humanitarian Financing Task Team is available at <https://interagencystandingcommittee.org/humanitarian-financing-task-team>
+
+## References
+
+&nbsp;
+
+##  Appendix: The AWARE XML
+
+Below is the source XML modelled in Chapter 9.
+
+<?xml version="1.0" encoding="UTF-8"?>
+<iati-activities xmlns:iati-extra="http://datastore.iatistandard.org/ns">
+  <iati-activity last-updated-datetime="2019-10-11T13:39:21" xml:lang="en" default-currency="EUR" humanitarian="0" hierarchy="1" generated-datetime="2019-10-11T12:53:35" version="2.02">
+    <iati-identifier>XI-IATI-EC_DEVCO-2014/37785/0</iati-identifier>
+    <reporting-org ref="XI-IATI-EC_DEVCO" type="15">
+      <narrative xml:lang="en">European Commission - Development and Cooperation-EuropeAid</narrative>
+    </reporting-org>
+    <title>
+      <narrative xml:lang="en">A West African Response to Ebola (AWARE)</narrative>
+    </title>
+    <description type="1">
+      <narrative>The overall obj: to mitigate negative effects of the Ebola outbreak&contribute to the recovery of the most affected countries in West-Africa. The specific obj: to strengthen health systems to improve access to quality PHC, resilience&awareness.</narrative>
+    </description>
+    <participating-org ref="XI-IATI-EC_DEVCO" role="1" type="15" activity-id="XI-IATI-EC_DEVCO-2014/37785/0">
+      <narrative xml:lang="en">European Commission - Directorate-General for International Cooperation and Development (DEVCO)</narrative>
+    </participating-org>
+    <participating-org ref="XI-IATI-EC_DEVCO" role="3" type="15" activity-id="XI-IATI-EC_DEVCO-2014/37785/0">
+      <narrative xml:lang="en">European Commission - Directorate-General for International Cooperation and Development (DEVCO)</narrative>
+    </participating-org>
+    <participating-org ref="20000" role="2" activity-id="XI-IATI-EC_DEVCO-2014/37785/0">
+      <narrative xml:lang="en">NON-GOVERNMENTAL ORGANISATIONS (NGOs) AND CIVIL SOCIETY</narrative>
+    </participating-org>
+    <participating-org ref="N/A" role="4" type="N/A" activity-id="XI-IATI-EC_DEVCO-2014/37785/0">
+      <narrative xml:lang="en">NON-GOVERNMENTAL ORGANISATIONS (NGOs) AND CIVIL SOCIETY</narrative>
+    </participating-org>
+    <activity-status code="2"/>
+    <activity-date iso-date="2015-12-15" type="1">
+      <narrative xml:lang="en">Planned Start: 15-DEC-15</narrative>
+    </activity-date>
+    <activity-date iso-date="2015-03-09" type="2">
+      <narrative xml:lang="en">Actual Start: 09-MAR-15</narrative>
+    </activity-date>
+    <activity-date iso-date="2018-11-27" type="3">
+      <narrative xml:lang="en">Planned End: 27-NOV-18</narrative>
+    </activity-date>
+    <activity-date iso-date="2050-12-31" type="4">
+      <narrative xml:lang="en">Actual End: 31-DEC-50</narrative>
+    </activity-date>
+    <contact-info>
+      <organisation>
+        <narrative xml:lang="en">Delegation of the European Union to Nigeria</narrative>
+      </organisation>
+      <department>
+        <narrative xml:lang="en">Delegation of the European Union to Nigeria</narrative>
+      </department>
+      <telephone>+234 9-4617800</telephone>
+      <email>delegation-nigeria@ec.europa.eu</email>
+      <website>http://eeas.europa.eu/delegations/nigeria/index_en.htm</website>
+    </contact-info>
+    <activity-scope code="1"/>
+    <recipient-region code="289" vocabulary="1">
+      <narrative xml:lang="en">South of Sahara, regional</narrative>
+    </recipient-region>
+    <sector code="12250" vocabulary="1">
+      <narrative xml:lang="en">Infectious disease control</narrative>
+    </sector>
+    <policy-marker code="01" significance="0" vocabulary="DAC">
+      <narrative xml:lang="en">Gender Equality</narrative>
+    </policy-marker>
+    <policy-marker code="02" significance="0" vocabulary="DAC">
+      <narrative xml:lang="en">Aid to Environment</narrative>
+    </policy-marker>
+    <policy-marker code="03" significance="0" vocabulary="DAC">
+      <narrative xml:lang="en">Participatory Development/Good</narrative>
+    </policy-marker>
+    <policy-marker code="04" significance="0" vocabulary="DAC">
+      <narrative xml:lang="en">Trade Development</narrative>
+    </policy-marker>
+    <policy-marker code="05" significance="0" vocabulary="DAC">
+      <narrative xml:lang="en">Aid Targeting the Objectives of the Convention on Biological Diversity</narrative>
+    </policy-marker>
+    <policy-marker code="06" significance="0" vocabulary="DAC">
+      <narrative xml:lang="en">Aid Targeting the Objectives of the Framework Convention on Climate Change - Mitigation</narrative>
+    </policy-marker>
+    <policy-marker code="07" significance="0" vocabulary="DAC">
+      <narrative xml:lang="en">Aid Targeting the Objectives of the Framework Convention on Climate Change - Adaptation</narrative>
+    </policy-marker>
+    <policy-marker code="08" significance="0" vocabulary="DAC">
+      <narrative xml:lang="en">Aid Targeting the Objectives of the Convention to Combat Desertification</narrative>
+    </policy-marker>
+    <policy-marker code="09" significance="0" vocabulary="DAC">
+      <narrative xml:lang="en">Contributions To Reproductive, Maternal, Newborn and Child Health¿</narrative>
+    </policy-marker>
+    <collaboration-type code="1"/>
+    <default-flow-type code="10"/>
+    <default-finance-type code="110"/>
+    <default-aid-type code="D02"/>
+    <default-tied-status code="5"/>
+    <budget type="1" status="2">
+      <period-start iso-date="2020-01-01"/>
+      <period-end iso-date="2020-12-31"/>
+      <value currency="EUR" value-date="2019-10-11">0</value>
+    </budget>
+    <budget type="1" status="2">
+      <period-start iso-date="2019-01-01"/>
+      <period-end iso-date="2019-12-31"/>
+      <value currency="EUR" value-date="2019-10-11">0</value>
+    </budget>
+    <planned-disbursement type="1">
+      <period-start iso-date="20191900-01-01"/>
+      <period-end iso-date="2017-12-01"/>
+      <value currency="EUR" value-date="2019-10-11">150000</value>
+      <provider-org provider-activity-id="XI-IATI-EC_DEVCO-2014/37785/0" type="15">
+        <narrative>XI-IATI-EC_DEVCO</narrative>
+      </provider-org>
+      <receiver-org receiver-activity-id="XI-IATI-EC_DEVCO-2014/37785/0"/>
+    </planned-disbursement>
+    <planned-disbursement type="1">
+      <period-start iso-date="20191900-01-01"/>
+      <period-end iso-date="2017-12-01"/>
+      <value currency="EUR" value-date="2019-10-11">150000</value>
+      <provider-org provider-activity-id="XI-IATI-EC_DEVCO-2014/37785/0" type="15">
+        <narrative>XI-IATI-EC_DEVCO</narrative>
+      </provider-org>
+      <receiver-org receiver-activity-id="XI-IATI-EC_DEVCO-2014/37785/0"/>
+    </planned-disbursement>
+    <planned-disbursement type="1">
+      <period-start iso-date="20191900-01-01"/>
+      <period-end iso-date="2017-12-01"/>
+      <value currency="EUR" value-date="2019-10-11">150000</value>
+      <provider-org provider-activity-id="XI-IATI-EC_DEVCO-2014/37785/0" type="15">
+        <narrative>XI-IATI-EC_DEVCO</narrative>
+      </provider-org>
+      <receiver-org receiver-activity-id="XI-IATI-EC_DEVCO-2014/37785/0"/>
+    </planned-disbursement>
+    <planned-disbursement type="1">
+      <period-start iso-date="20191900-01-01"/>
+      <period-end iso-date="2017-12-01"/>
+      <value currency="EUR" value-date="2019-10-11">150000</value>
+      <provider-org provider-activity-id="XI-IATI-EC_DEVCO-2014/37785/0" type="15">
+        <narrative>XI-IATI-EC_DEVCO</narrative>
+      </provider-org>
+      <receiver-org receiver-activity-id="XI-IATI-EC_DEVCO-2014/37785/0"/>
+    </planned-disbursement>
+    <capital-spend percentage="0"/>
+    <transaction ref="XI-IATI-EC_DEVCO-2014/37785/0/0" humanitarian="0">
+      <transaction-type code="2"/>
+      <transaction-date iso-date="2014-12-11"/>
+      <value currency="EUR" value-date="2019-10-11">28000000</value>
+      <provider-org ref="XI-IATI-EC_DEVCO" provider-activity-id="XI-IATI-EC_DEVCO-2014/37785/0" type="15"/>
+      <receiver-org>
+        <narrative xml:lang="en"/>
+      </receiver-org>
+      <disbursement-channel code="2"/>
+      <sector vocabulary="1" code="12250">
+        <narrative xml:lang="en">Infectious disease control</narrative>
+      </sector>
+      <recipient-region code="289" vocabulary="1">
+        <narrative xml:lang="en">South of Sahara, regional</narrative>
+      </recipient-region>
+      <tied-status code="5"/>
+    </transaction>
+    <related-activity ref="XI-IATI-EC_DEVCO-2015/358-184" type="2"/>
+    <related-activity ref="XI-IATI-EC_DEVCO-2015/358-191" type="2"/>
+    <related-activity ref="XI-IATI-EC_DEVCO-2015/358-224" type="2"/>
+    <related-activity ref="XI-IATI-EC_DEVCO-2015/358-227" type="2"/>
+    <related-activity ref="XI-IATI-EC_DEVCO-2015/358-232" type="2"/>
+    <related-activity ref="XI-IATI-EC_DEVCO-2015/359-047" type="2"/>
+    <related-activity ref="XI-IATI-EC_DEVCO-2015/363-727" type="2"/>
+    <related-activity ref="XI-IATI-EC_DEVCO-2015/365-129" type="2"/>
+    <related-activity ref="XI-IATI-EC_DEVCO-2015/369-334" type="2"/>
+    <related-activity ref="XI-IATI-EC_DEVCO-2015/370-891" type="2"/>
+    <related-activity ref="XI-IATI-EC_DEVCO-2015/370-908" type="2"/>
+    <related-activity ref="XI-IATI-EC_DEVCO-2015/371-138" type="2"/>
+    <related-activity ref="XI-IATI-EC_DEVCO-2015/371-573" type="2"/>
+    <related-activity ref="XI-IATI-EC_DEVCO-2015/371-640" type="2"/>
+    <related-activity ref="XI-IATI-EC_DEVCO-2015/371-653" type="2"/>
+    <related-activity ref="XI-IATI-EC_DEVCO-2015/371-655" type="2"/>
+    <related-activity ref="XI-IATI-EC_DEVCO-2015/371-880" type="2"/>
+    <related-activity ref="XI-IATI-EC_DEVCO-2015/372-110" type="2"/>
+    <related-activity ref="XI-IATI-EC_DEVCO-2018/398-579" type="2"/>
+  </iati-activity>
+</iati-activities>
