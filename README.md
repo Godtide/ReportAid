@@ -21,15 +21,13 @@ This is the repository of **ReportAid**, a blockchain implementation of the [IAT
 
 ## Usage
 
-Below describes a demo' of **ReportAid**.
+Below describes hot to run a demo' of **ReportAid**.
 
 ## Demo
 
-![](/docs/paper/images/reportaidWriteSector.png)
-
 A demo of **ReportAid** is running on [dat](https://dat.foundation/). 
 
-Below explains the dependencies that must be fulfilled before you can load [dat](https://dat.foundation/) instances of **ReportAid**.
+![](/docs/paper/images/reportaidWriteSector.png)
 
 ### Demo Dependencies
 
