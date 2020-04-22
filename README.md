@@ -25,7 +25,6 @@ Below describes a demo' of **ReportAid**.
 
 ## Demo
 
-
 ![](/docs/paper/images/reportaidWriteSector.png)
 
 A demo of **ReportAid** is running on [dat](https://dat.foundation/). 
@@ -34,11 +33,9 @@ Below explains the dependencies that must be fulfilled before you can load [dat]
 
 ### Demo Dependencies
 
-The [dat](https://dat.foundation/) instance of **ReportAid** requires the [Firefox](https://www.mozilla.org/) browser with the [MetaMask](https://metamask.io/) extension. The smart contracts of **ReportAid** are running on the [Rinkeby Ethereum Testnet](https://www.rinkeby.io/); hence, for **ReportAid** to interact with those, [MetaMask](https://metamask.io/) should be pointing at [Rinkeby](https://www.rinkeby.io/). You will need a few test Ether in your [MetaMask](https://metamask.io/) wallet, which you can get from the [Rinkeby Faucet](https://faucet.rinkeby.io/). Those test Ether will allow you to sign the transactions necessary to create [IATI Standard](https://iatistandard.org/en/) records that **ReportAid**  supports.
+**ReportAid** requires the [Firefox](https://www.mozilla.org/) browser with the [MetaMask](https://metamask.io/) extension. The smart contracts of **ReportAid** are running on the [Rinkeby Ethereum Testnet](https://www.rinkeby.io/); hence, for **ReportAid** to interact with those, [MetaMask](https://metamask.io/) should be pointing at [Rinkeby](https://www.rinkeby.io/). You will need a few test Ether in your [MetaMask](https://metamask.io/) wallet, which you can get from the [Rinkeby Faucet](https://faucet.rinkeby.io/). Those test Ether will allow you to sign the transactions necessary to create [IATI Standard](https://iatistandard.org/en/) records that **ReportAid**  supports.
 
-#### DAT
-
-In addition to [MetaMask](https://metamask.io/), you will also need the [Firefox](https://www.mozilla.org/) [DAT P2P Protocol](https://addons.mozilla.org/en-GB/firefox/addon/dat-p2p-protocol/) extension installed. Ensure [MetaMask](https://metamask.io/) is pointing at [Rinkeby](https://www.rinkeby.io/), then load the following URL: http://4b1bdf7b0f6beeadab5dadaf019cddbc94f618792ea30b8a2f5d957267d5bd92/
+You will also need the [Firefox](https://www.mozilla.org/) [DAT P2P Protocol](https://addons.mozilla.org/en-GB/firefox/addon/dat-p2p-protocol/) extension installed. Ensure [MetaMask](https://metamask.io/) is pointing at [Rinkeby](https://www.rinkeby.io/), then load the following URL: http://4b1bdf7b0f6beeadab5dadaf019cddbc94f618792ea30b8a2f5d957267d5bd92/
 
 **ReportAid** is an early proof of concept, so apologies in advance - help for using the app' is currently 'minimal', at best. You should expect some bugs, too (if you find any, feel free to raise an [issue](https://github.com/glowkeeper/ReportAid/issues)). Furthermore, the app' is missing some functionality as it does not, currently, implement all of the [IATI Standard](https://iatistandard.org/en/). That said, as a proof of concept, the app' serves its purpose well. Hopefully, you agree and want to get involved - if so, please get in touch with s dot huckle at sussex dot ac dot uk.
 
