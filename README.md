@@ -3,7 +3,7 @@
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](/docs/prs.md) [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](/docs/COPYING.txt)
 
-This is the repository of **ReportAid** - a tool for reporting on humanitarian aid. **ReportAid** is a blockchain implementation of the [IATI Standard](https://iatistandard.org/en/).
+This is the repository of **ReportAid**, a blockchain implementation of the [IATI Standard](https://iatistandard.org/en/), an international standard for reporting on humanitarian aid.
 
 ## Table of Contents
 
@@ -25,21 +25,16 @@ Below describes a demo' of **ReportAid**.
 
 ## Demo
 
-A demo of **ReportAid** is running on [arweave](https://www.arweave.org/) and [dat](https://dat.foundation/), both of which are peer-to-peer filesystems, but [arweave](https://www.arweave.org/) is also blockchain-based. **ReportAid** is running on both because they have advantages and disadvantages.
 
-Although [arweave](https://www.arweave.org/) is open source, because it is blockchain-based, it costs money to post dApps there. However, a user requires no additional [Firefox](https://www.mozilla.org/) extension to load [arweave](https://www.arweave.org/) resources.
+![](/docs/paper/images/reportaidWriteSector.png)
 
-Unfortunately, for a user to see a [dat](https://dat.foundation/) resource, they need an additional [Firefox](https://www.mozilla.org/) extension ([detailed below](#dat)). However, [dat](https://dat.foundation/) is both open source and it costs nothing to post dApps there. Furthermore, [dat](https://dat.foundation/) has some nice features for the developer, not least is that it is possible to update a [dat](https://dat.foundation/) directory and maintain the same URL. That makes upgrading easy.
+A demo of **ReportAid** is running on [dat](https://dat.foundation/). 
 
-Below explains the dependencies that must be fulfilled before you can load either the [arweave](https://www.arweave.org/) or [dat](https://dat.foundation/) instances of **ReportAid**.
+Below explains the dependencies that must be fulfilled before you can load [dat](https://dat.foundation/) instances of **ReportAid**.
 
 ### Demo Dependencies
 
-Both the [arweave](https://www.arweave.org/) and [dat](https://dat.foundation/) instances of **ReportAid** require the [Firefox](https://www.mozilla.org/) browser with the [MetaMask](https://metamask.io/) extension. The smart contracts of **ReportAid** are running on the [Rinkeby Ethereum Testnet](https://www.rinkeby.io/); hence, for **ReportAid** to interact with those, [MetaMask](https://metamask.io/) should be pointing at [Rinkeby](https://www.rinkeby.io/). You will need a few test Ether in your [MetaMask](https://metamask.io/) wallet, which you can get from the [Rinkeby Faucet](https://faucet.rinkeby.io/). Those test Ether will allow you to sign the transactions necessary to create [IATI Standard](https://iatistandard.org/en/) records that **ReportAid**  supports.
-
-#### Arweave
-
-Start [Firefox](https://www.mozilla.org/), ensure [MetaMask](https://metamask.io/) is pointing at [Rinkeby](https://www.rinkeby.io/), then load the following URL: https://arweave.net/iPVuaXTpQO5Th1oxQDTG8I4MF6FycNkoJSj9cIw3BLA
+The [dat](https://dat.foundation/) instance of **ReportAid** requires the [Firefox](https://www.mozilla.org/) browser with the [MetaMask](https://metamask.io/) extension. The smart contracts of **ReportAid** are running on the [Rinkeby Ethereum Testnet](https://www.rinkeby.io/); hence, for **ReportAid** to interact with those, [MetaMask](https://metamask.io/) should be pointing at [Rinkeby](https://www.rinkeby.io/). You will need a few test Ether in your [MetaMask](https://metamask.io/) wallet, which you can get from the [Rinkeby Faucet](https://faucet.rinkeby.io/). Those test Ether will allow you to sign the transactions necessary to create [IATI Standard](https://iatistandard.org/en/) records that **ReportAid**  supports.
 
 #### DAT
 
