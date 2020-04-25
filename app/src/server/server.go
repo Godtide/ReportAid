@@ -6,7 +6,7 @@ import (
   "math/big"
 	"encoding/xml"
 
-	"abi/activities"
+	"github.com/ReportAid/app/src/server/internal/contracts"
 
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
@@ -27,7 +27,7 @@ func main() {
 		log.Fatalf("Failed to connect to Rinkeby: %v", err)
 	}
 
-	contract, err := activities.NewIATIActivities(common.HexToAddress("0x1b61bE4D8f631afE6F24F595Df73D5275050B231"), conn)
+	contract, err := contracts.NewIATIActivities(common.HexToAddress("0x1b61bE4D8f631afE6F24F595Df73D5275050B231"), conn)
 	if err != nil {
 		log.Fatalf("Failed to instantiate contract: %v", err)
 	}
