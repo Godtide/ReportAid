@@ -7,6 +7,7 @@ import (
 
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/ethclient"
 )
 
@@ -27,7 +28,7 @@ func main() {
 		log.Fatalf("GetNumActivities Failed: %v", err)
 	}
 	smallNum := num.Int64()
-	fmt.Println("Number activities:", smallNum)
+	fmt.Printf("Number activities: %v\n\n", smallNum)
 
 	var i int64 = 0
 	for ; i < smallNum; i++ {
@@ -35,13 +36,30 @@ func main() {
 		if err != nil {
 			log.Fatalf("GetReference Failed: %v", err)
 		}
-		pass := fmt.Sprintf("%x", ref)
-		fmt.Println(pass)
+		fmt.Printf("Activities: %x\n", ref)
 
-		orgActivities, err := contract.GetActivities(&bind.CallOpts{}, ref)
+		activities, err := contract.GetActivities(&bind.CallOpts{}, ref)
 		if err != nil {
 			log.Fatalf("GetActivities Failed: %v", err)
 		}
-		fmt.Println("Activities:", orgActivities)
+
+		thisVersion := activities.Version
+		sliceVersion := thisVersion[:]
+		version := hexutil.Encode(sliceVersion)
+		stringVersion, _ := hexutil.Decode(version)
+
+		thisTime := activities.GeneratedTime
+		sliceTime := thisTime[:]
+		time := hexutil.Encode(sliceTime)
+		stringTime, _ := hexutil.Decode(time)
+
+		thisLink := activities.LinkedData
+		sliceLink := thisLink[:]
+		link := hexutil.Encode(sliceLink)
+		stringLink, _ := hexutil.Decode(link)
+
+		fmt.Printf("Version: %s\n", stringVersion)
+		fmt.Printf("Generated Time: %s\n", stringTime)
+		fmt.Printf("Linked Data: %s\n\n", stringLink)
 	}
 }
