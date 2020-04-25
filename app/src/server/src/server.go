@@ -4,12 +4,19 @@ import (
 	"fmt"
 	"log"
   "math/big"
+	"encoding/xml"
 
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/ethclient"
 )
+
+type XMLActivities struct {
+	Version 		string `xml:"version"`
+	Time 				string `xml:"time"`
+	LinkedData  string `xml:"linkedData"`
+}
 
 func main() {
 
@@ -45,21 +52,28 @@ func main() {
 
 		thisVersion := activities.Version
 		sliceVersion := thisVersion[:]
-		version := hexutil.Encode(sliceVersion)
+		trimmedVersion := common.TrimRightZeroes(sliceVersion)
+		version := hexutil.Encode(trimmedVersion)
 		stringVersion, _ := hexutil.Decode(version)
 
 		thisTime := activities.GeneratedTime
 		sliceTime := thisTime[:]
-		time := hexutil.Encode(sliceTime)
+		trimmedTime := common.TrimRightZeroes(sliceTime)
+		time := hexutil.Encode(trimmedTime)
 		stringTime, _ := hexutil.Decode(time)
 
 		thisLink := activities.LinkedData
 		sliceLink := thisLink[:]
-		link := hexutil.Encode(sliceLink)
+		trimmedLink := common.TrimRightZeroes(sliceLink)
+		link := hexutil.Encode(trimmedLink)
 		stringLink, _ := hexutil.Decode(link)
 
 		fmt.Printf("Version: %s\n", stringVersion)
 		fmt.Printf("Generated Time: %s\n", stringTime)
 		fmt.Printf("Linked Data: %s\n\n", stringLink)
+
+		activitiesXML := &XMLActivities{Version: string(stringVersion), Time: string(stringTime), LinkedData: string(stringLink)}
+		thisXML, _ := xml.MarshalIndent(activitiesXML, "", " ")
+		fmt.Printf("%s\n\n", thisXML)
 	}
 }
