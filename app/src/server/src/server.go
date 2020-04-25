@@ -36,7 +36,7 @@ func main() {
 		if err != nil {
 			log.Fatalf("GetReference Failed: %v", err)
 		}
-		fmt.Printf("Activities: %x\n", ref)
+		fmt.Printf("Activities Reference: %x\n", ref)
 
 		activities, err := contract.GetActivities(&bind.CallOpts{}, ref)
 		if err != nil {
