@@ -7,44 +7,56 @@ import (
   	"math/big"
 	"encoding/xml"
 
-	"github.com/ReportAid/app/src/server/internal/contracts"
-	"github.com/ReportAid/app/src/server/internal/configs"
-
+	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/ethereum/go-ethereum/ethclient"
+
+	"github.com/ReportAid/app/src/server/internal/contracts"
+	"github.com/ReportAid/app/src/server/internal/configs"
 )
 
-// Activities is a struct for holding the XML for the activities file
+// Activities - the XML for the activities file
 type Activities struct {
 	Version 		string `xml:"version"`
 	Time 				string `xml:"time"`
 	LinkedData  string `xml:"linkedData"`
 }
 
-// GetActivites - output activies XML
-func GetActivites(w http.ResponseWriter, r *http.Request) {
+// NumActivities - get the total number of activities
+type NumActivities struct {
+	Total 		int64 `xml:"total"`
+}
 
-	conn, err := ethclient.Dial(string(configs.RinkebyAddr))
-	if err != nil {
-		log.Fatalf("Failed to connect to Rinkeby: %v", err)
-	}
-
-	contract, err := contracts.NewIATIActivities(common.HexToAddress(string(configs.ActivitiesContractAddr)), conn)
-	if err != nil {
-		log.Fatalf("Failed to instantiate activities contract: %v", err)
-	}
+// GetNumActivites - Get the total number of activities
+func numActivites(contract *contracts.IATIActivities) (int64) {
 
 	num, err := contract.GetNumActivities(&bind.CallOpts{})
 	if err != nil {
 		log.Fatalf("GetNumActivities Failed: %v", err)
+		return 0
 	}
 	smallNum := num.Int64()
-	//fmt.Printf("Number activities: %v\n\n", smallNum)
+	return smallNum
+}
+
+// NumActivites - get total activities
+func NumActivites (c *ethclient.Client, contract *contracts.IATIActivities, w http.ResponseWriter, r *http.Request) {
+
+	num := numActivites(contract)
+	activitiesXML := &NumActivities{Total: num}
+	thisXML, _ := xml.MarshalIndent(activitiesXML, "", " ")
+
+	fmt.Fprintf(w, "%s\n\n", thisXML)
+}
+
+// AllActivites - output activies XML
+func AllActivites (c *ethclient.Client, contract *contracts.IATIActivities, w http.ResponseWriter, r *http.Request) {
+
+	num := numActivites(contract)
 
 	var i int64
-	for ; i < smallNum; i++ {
+	for ; i < num; i++ {
 		ref, err := contract.GetReference(&bind.CallOpts{}, big.NewInt(i))
 		if err != nil {
 			log.Fatalf("GetReference Failed: %v", err)
@@ -83,4 +95,15 @@ func GetActivites(w http.ResponseWriter, r *http.Request) {
 
 		fmt.Fprintf(w, "%s\n\n", thisXML)
 	}
+}
+
+// ActivitesContract - get activities contract address
+func ActivitesContract (c *ethclient.Client) (*contracts.IATIActivities){
+
+	contract, err := contracts.NewIATIActivities(common.HexToAddress(string(configs.ActivitiesContractAddr)), c)
+	if err != nil {
+		log.Fatalf("Failed to instantiate activities contract: %v", err)
+		return nil
+	}
+	return contract
 }
