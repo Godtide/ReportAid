@@ -50,6 +50,45 @@ func NumActivites (c *ethclient.Client, contract *contracts.IATIActivities, w ht
 	fmt.Fprintf(w, "%s\n\n", thisXML)
 }
 
+// AnActivitie get specific acvtitie
+func AnActivitie (c *ethclient.Client, contract *contracts.IATIActivities, ref [32]byte, w http.ResponseWriter, r *http.Request) {
+
+	//fmt.Printf("Activities Reference: %x\n", ref)
+
+	activities, err := contract.GetActivities(&bind.CallOpts{}, ref)
+	if err != nil {
+		log.Fatalf("GetActivities Failed: %v", err)
+	}
+
+	thisVersion := activities.Version
+	sliceVersion := thisVersion[:]
+	trimmedVersion := common.TrimRightZeroes(sliceVersion)
+	version := hexutil.Encode(trimmedVersion)
+	stringVersion, _ := hexutil.Decode(version)
+
+	thisTime := activities.GeneratedTime
+	sliceTime := thisTime[:]
+	trimmedTime := common.TrimRightZeroes(sliceTime)
+	time := hexutil.Encode(trimmedTime)
+	stringTime, _ := hexutil.Decode(time)
+
+	thisLink := activities.LinkedData
+	sliceLink := thisLink[:]
+	trimmedLink := common.TrimRightZeroes(sliceLink)
+	link := hexutil.Encode(trimmedLink)
+	stringLink, _ := hexutil.Decode(link)
+
+	/* fmt.Printf("Version: %s\n", stringVersion)
+	fmt.Printf("Generated Time: %s\n", stringTime)
+	fmt.Printf("Linked Data: %s\n\n", stringLink)*/
+
+	activitiesXML := &Activities{Version: string(stringVersion), Time: string(stringTime), LinkedData: string(stringLink)}
+	thisXML, _ := xml.MarshalIndent(activitiesXML, "", " ")
+
+	fmt.Fprintf(w, "%s\n\n", thisXML)
+}
+
+
 // AllActivites - output activies XML
 func AllActivites (c *ethclient.Client, contract *contracts.IATIActivities, w http.ResponseWriter, r *http.Request) {
 
@@ -61,39 +100,8 @@ func AllActivites (c *ethclient.Client, contract *contracts.IATIActivities, w ht
 		if err != nil {
 			log.Fatalf("GetReference Failed: %v", err)
 		}
-		//fmt.Printf("Activities Reference: %x\n", ref)
 
-		activities, err := contract.GetActivities(&bind.CallOpts{}, ref)
-		if err != nil {
-			log.Fatalf("GetActivities Failed: %v", err)
-		}
-
-		thisVersion := activities.Version
-		sliceVersion := thisVersion[:]
-		trimmedVersion := common.TrimRightZeroes(sliceVersion)
-		version := hexutil.Encode(trimmedVersion)
-		stringVersion, _ := hexutil.Decode(version)
-
-		thisTime := activities.GeneratedTime
-		sliceTime := thisTime[:]
-		trimmedTime := common.TrimRightZeroes(sliceTime)
-		time := hexutil.Encode(trimmedTime)
-		stringTime, _ := hexutil.Decode(time)
-
-		thisLink := activities.LinkedData
-		sliceLink := thisLink[:]
-		trimmedLink := common.TrimRightZeroes(sliceLink)
-		link := hexutil.Encode(trimmedLink)
-		stringLink, _ := hexutil.Decode(link)
-
-		/* fmt.Printf("Version: %s\n", stringVersion)
-		fmt.Printf("Generated Time: %s\n", stringTime)
-		fmt.Printf("Linked Data: %s\n\n", stringLink)*/
-
-		activitiesXML := &Activities{Version: string(stringVersion), Time: string(stringTime), LinkedData: string(stringLink)}
-		thisXML, _ := xml.MarshalIndent(activitiesXML, "", " ")
-
-		fmt.Fprintf(w, "%s\n\n", thisXML)
+		AnActivitie(c, contract, ref, w, r)
 	}
 }
 

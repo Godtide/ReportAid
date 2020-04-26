@@ -6,6 +6,7 @@ import (
     "net/http"
     "github.com/gorilla/mux"
 	"github.com/ethereum/go-ethereum/ethclient"
+	"github.com/ethereum/go-ethereum/common"
 
 	"github.com/ReportAid/app/src/server/internal/xml"
 	"github.com/ReportAid/app/src/server/internal/contracts"
@@ -21,6 +22,15 @@ func activities (c *ethclient.Client, contract *contracts.IATIActivities, w http
     xml.AllActivites(c, contract, w, r)
 }
 
+func singleActivitie (c *ethclient.Client, contract *contracts.IATIActivities, w http.ResponseWriter, r *http.Request) {
+
+	params := mux.Vars(r)
+	value := params["ref"]
+	convertedValue := common.HexToHash(value)
+	xml.AnActivitie(c, contract, convertedValue, w, r)
+}
+
+
 func numActivities (c *ethclient.Client, contract *contracts.IATIActivities, w http.ResponseWriter, r *http.Request) {
     xml.NumActivites(c, contract, w, r)
 }
@@ -33,6 +43,10 @@ func handleRequests(c *ethclient.Client) {
 	})
 
 	contract := xml.ActivitesContract(c)
+	router.HandleFunc("/activities/{ref}", func(w http.ResponseWriter, r *http.Request) {
+    	singleActivitie(c, contract, w, r)
+	})
+
 	router.HandleFunc("/activities", func(w http.ResponseWriter, r *http.Request) {
     	activities(c, contract, w, r)
 	})
