@@ -17,21 +17,23 @@ import (
 )
 
 // ActivitiesList - a list if all activities
-type ActivitiesList struct {
-	ID	[]string `xml:"activities-id"`
+type activitiesList struct {
+	XMLName   	xml.Name `xml:"iati-activities-ids"`
+	ID			[]string `xml:"id"`
 }
 
 // Activities - the XML for the activities file
-type Activities struct {
-	XMLName   xml.Name `xml:"iati-activities"`
-	Version 		string `xml:"version,attr"`
-	Time 				string `xml:"generated-datetime,attr"`
+type iatiActivities struct {
+	XMLName   	xml.Name `xml:"iati-activities"`
+	Version 	string `xml:"version,attr"`
+	Time 		string `xml:"generated-datetime,attr"`
 	LinkedData  string `xml:"linked-data-default,attr"`
 }
 
 // TotalActivities - get the total number of activities
-type TotalActivities struct {
-	Total 		int64 `xml:"total-activities"`
+type totalActivities struct {
+	XMLName   	xml.Name `xml:"iati-total-activities"`
+	Total 		int64 `xml:"total"`
 }
 
 // GetNumActivites - Get the total number of activities
@@ -39,7 +41,7 @@ func numActivites(contract *contracts.IATIActivities) (int64) {
 
 	num, err := contract.GetNumActivities(&bind.CallOpts{})
 	if err != nil {
-		log.Fatalf("GetNumActivities Failed: %v", err)
+		log.Fatalf("%s: %v", configs.ErrorNumActivities, err)
 		return 0
 	}
 	smallNum := num.Int64()
@@ -50,10 +52,9 @@ func numActivites(contract *contracts.IATIActivities) (int64) {
 func NumActivites (c *ethclient.Client, contract *contracts.IATIActivities, w http.ResponseWriter, r *http.Request) {
 
 	num := numActivites(contract)
-	totalXML := &TotalActivities{Total: num}
+	totalXML := &totalActivities{Total: num}
 	thisXML, _ := xml.MarshalIndent(totalXML, "", " ")
 	w.Write(thisXML)
-	w.Write([]byte("\n"))
 }
 
 // ActivitiesID get specific acvtitie
@@ -63,7 +64,7 @@ func ActivitiesID (c *ethclient.Client, contract *contracts.IATIActivities, ref 
 
 	activities, err := contract.GetActivities(&bind.CallOpts{}, ref)
 	if err != nil {
-		log.Fatalf("GetActivities Failed: %v", err)
+		log.Fatalf("%s: %v", configs.ErrorActivities, err)
 	}
 
 	thisVersion := activities.Version
@@ -88,7 +89,11 @@ func ActivitiesID (c *ethclient.Client, contract *contracts.IATIActivities, ref 
 	fmt.Printf("Generated Time: %s\n", stringTime)
 	fmt.Printf("Linked Data: %s\n\n", stringLink)*/
 
-	activitiesXML := &Activities{Version: string(stringVersion), Time: string(stringTime), LinkedData: string(stringLink)}
+	activitiesXML := &iatiActivities{
+                                        Version: string(stringVersion),
+                                        Time: string(stringTime),
+                                        LinkedData: string(stringLink),
+                                    }
 	thisXML, _ := xml.MarshalIndent(activitiesXML, " ", " ")
 	w.Write(thisXML)
 }
@@ -97,14 +102,13 @@ func ActivitiesID (c *ethclient.Client, contract *contracts.IATIActivities, ref 
 // ListActivities - list all activities
 func ListActivities (c *ethclient.Client, contract *contracts.IATIActivities, w http.ResponseWriter, r *http.Request) {
 
-	w.Write([]byte("\n"))
-	num := numActivites(contract)
+    num := numActivites(contract)
 	var i int64
-	activitiesIDs := &ActivitiesList{}
+	activitiesIDs := &activitiesList{}
 	for ; i < num; i++ {
 		ref, err := contract.GetReference(&bind.CallOpts{}, big.NewInt(i))
 		if err != nil {
-			log.Fatalf("GetReference Failed: %v", err)
+			log.Fatalf("%s: %v", configs.ErrorActivitiesID, err)
 		}
 		thisRef := fmt.Sprintf("%x", ref)
 		activitiesIDs.ID = append(activitiesIDs.ID, thisRef)
@@ -116,9 +120,9 @@ func ListActivities (c *ethclient.Client, contract *contracts.IATIActivities, w 
 // ActivitesContract - get activities contract address
 func ActivitesContract (c *ethclient.Client) (*contracts.IATIActivities){
 
-	contract, err := contracts.NewIATIActivities(common.HexToAddress(string(configs.ActivitiesContractAddr)), c)
+	contract, err := contracts.NewIATIActivities(common.HexToAddress(string(configs.AddrActivitiesContract)), c)
 	if err != nil {
-		log.Fatalf("Failed to instantiate activities contract: %v", err)
+		log.Fatalf("%s: %v", configs.ErrorActivitiesContract, err)
 		return nil
 	}
 	return contract

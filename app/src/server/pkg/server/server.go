@@ -1,7 +1,6 @@
 package server
 
 import (
-    "fmt"
     "log"
     "net/http"
     "github.com/gorilla/mux"
@@ -14,11 +13,13 @@ import (
 )
 
 func homePage(w http.ResponseWriter, r *http.Request){
-    //fmt.Fprintf(w, "Welcome to the HomePage!")
-    fmt.Fprintf(w, "ReportAid home")
+
+    xml.First(w, r)
+    xml.Home(w, r)
 }
 
 func listActivities (c *ethclient.Client, contract *contracts.IATIActivities, w http.ResponseWriter, r *http.Request) {
+
     xml.First(w, r)
     xml.ListActivities(c, contract, w, r)
 }
@@ -34,6 +35,7 @@ func singleActivities (c *ethclient.Client, contract *contracts.IATIActivities, 
 
 
 func numActivities (c *ethclient.Client, contract *contracts.IATIActivities, w http.ResponseWriter, r *http.Request) {
+
     xml.First(w, r)
     xml.NumActivites(c, contract, w, r)
 }
@@ -41,32 +43,34 @@ func numActivities (c *ethclient.Client, contract *contracts.IATIActivities, w h
 func handleRequests(c *ethclient.Client) {
 
 	router := mux.NewRouter().StrictSlash(true)
-    router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+    router.HandleFunc(configs.URLHome, func(w http.ResponseWriter, r *http.Request) {
     	homePage(w, r)
 	})
 
 	contract := xml.ActivitesContract(c)
-	router.HandleFunc("/activities/{ref}", func(w http.ResponseWriter, r *http.Request) {
+	router.HandleFunc(configs.URLActivities, func(w http.ResponseWriter, r *http.Request) {
         singleActivities(c, contract, w, r)
 	})
+    //configs.URLActivities
+    // "/activities/{ref}"
 
-	router.HandleFunc("/list-activities", func(w http.ResponseWriter, r *http.Request) {
+	router.HandleFunc(configs.URLListActivities, func(w http.ResponseWriter, r *http.Request) {
     	listActivities(c, contract, w, r)
 	})
 
-	router.HandleFunc("/total-activities", func(w http.ResponseWriter, r *http.Request) {
+	router.HandleFunc(configs.URLTotalActivities, func(w http.ResponseWriter, r *http.Request) {
     	numActivities(c, contract, w, r)
 	})
 
-    log.Fatal(http.ListenAndServe(":8080", router))
+    log.Fatal(http.ListenAndServe(configs.ServerPort, router))
 }
 
 // Start - fire up the server
 func Start() {
 
-	conn, err := ethclient.Dial(string(configs.RinkebyAddr))
+	conn, err := ethclient.Dial(string(configs.AddrRinkeby))
 	if err != nil {
-		log.Fatalf("Failed to connect to Rinkeby: %v", err)
+		log.Fatalf("%s: %v", configs.ErrorRinkeby, err)
 	}
     handleRequests(conn)
 }
