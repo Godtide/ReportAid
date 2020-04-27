@@ -1,7 +1,7 @@
 package xml
 
 import (
-	"fmt"
+    "fmt"
 	"log"
     "net/http"
   	"math/big"
@@ -16,16 +16,22 @@ import (
 	"github.com/ReportAid/app/src/server/internal/configs"
 )
 
-// Activities - the XML for the activities file
-type Activities struct {
-	Version 		string `xml:"version"`
-	Time 				string `xml:"time"`
-	LinkedData  string `xml:"linkedData"`
+// ActivitiesList - a list if all activities
+type ActivitiesList struct {
+	ID	[]string `xml:"activities-id"`
 }
 
-// NumActivities - get the total number of activities
-type NumActivities struct {
-	Total 		int64 `xml:"total"`
+// Activities - the XML for the activities file
+type Activities struct {
+	XMLName   xml.Name `xml:"iati-activities"`
+	Version 		string `xml:"version,attr"`
+	Time 				string `xml:"generated-datetime,attr"`
+	LinkedData  string `xml:"linked-data-default,attr"`
+}
+
+// TotalActivities - get the total number of activities
+type TotalActivities struct {
+	Total 		int64 `xml:"total-activities"`
 }
 
 // GetNumActivites - Get the total number of activities
@@ -44,14 +50,14 @@ func numActivites(contract *contracts.IATIActivities) (int64) {
 func NumActivites (c *ethclient.Client, contract *contracts.IATIActivities, w http.ResponseWriter, r *http.Request) {
 
 	num := numActivites(contract)
-	activitiesXML := &NumActivities{Total: num}
-	thisXML, _ := xml.MarshalIndent(activitiesXML, "", " ")
-
-	fmt.Fprintf(w, "%s\n\n", thisXML)
+	totalXML := &TotalActivities{Total: num}
+	thisXML, _ := xml.MarshalIndent(totalXML, "", " ")
+	w.Write(thisXML)
+	w.Write([]byte("\n"))
 }
 
-// AnActivitie get specific acvtitie
-func AnActivitie (c *ethclient.Client, contract *contracts.IATIActivities, ref [32]byte, w http.ResponseWriter, r *http.Request) {
+// ActivitiesID get specific acvtitie
+func ActivitiesID (c *ethclient.Client, contract *contracts.IATIActivities, ref [32]byte, w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Printf("Activities Reference: %x\n", ref)
 
@@ -83,26 +89,28 @@ func AnActivitie (c *ethclient.Client, contract *contracts.IATIActivities, ref [
 	fmt.Printf("Linked Data: %s\n\n", stringLink)*/
 
 	activitiesXML := &Activities{Version: string(stringVersion), Time: string(stringTime), LinkedData: string(stringLink)}
-	thisXML, _ := xml.MarshalIndent(activitiesXML, "", " ")
-
-	fmt.Fprintf(w, "%s\n\n", thisXML)
+	thisXML, _ := xml.MarshalIndent(activitiesXML, " ", " ")
+	w.Write(thisXML)
 }
 
 
-// AllActivites - output activies XML
-func AllActivites (c *ethclient.Client, contract *contracts.IATIActivities, w http.ResponseWriter, r *http.Request) {
+// ListActivities - list all activities
+func ListActivities (c *ethclient.Client, contract *contracts.IATIActivities, w http.ResponseWriter, r *http.Request) {
 
+	w.Write([]byte("\n"))
 	num := numActivites(contract)
-
 	var i int64
+	activitiesIDs := &ActivitiesList{}
 	for ; i < num; i++ {
 		ref, err := contract.GetReference(&bind.CallOpts{}, big.NewInt(i))
 		if err != nil {
 			log.Fatalf("GetReference Failed: %v", err)
 		}
-
-		AnActivitie(c, contract, ref, w, r)
+		thisRef := fmt.Sprintf("%x", ref)
+		activitiesIDs.ID = append(activitiesIDs.ID, thisRef)
 	}
+	thisXML, _ := xml.MarshalIndent(activitiesIDs, " ", " ")
+	w.Write(thisXML)
 }
 
 // ActivitesContract - get activities contract address

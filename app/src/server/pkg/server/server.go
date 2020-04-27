@@ -18,20 +18,23 @@ func homePage(w http.ResponseWriter, r *http.Request){
     fmt.Fprintf(w, "ReportAid home")
 }
 
-func activities (c *ethclient.Client, contract *contracts.IATIActivities, w http.ResponseWriter, r *http.Request) {
-    xml.AllActivites(c, contract, w, r)
+func listActivities (c *ethclient.Client, contract *contracts.IATIActivities, w http.ResponseWriter, r *http.Request) {
+    xml.First(w, r)
+    xml.ListActivities(c, contract, w, r)
 }
 
-func singleActivitie (c *ethclient.Client, contract *contracts.IATIActivities, w http.ResponseWriter, r *http.Request) {
+func singleActivities (c *ethclient.Client, contract *contracts.IATIActivities, w http.ResponseWriter, r *http.Request) {
 
+    xml.First(w, r)
 	params := mux.Vars(r)
 	value := params["ref"]
 	convertedValue := common.HexToHash(value)
-	xml.AnActivitie(c, contract, convertedValue, w, r)
+	xml.ActivitiesID(c, contract, convertedValue, w, r)
 }
 
 
 func numActivities (c *ethclient.Client, contract *contracts.IATIActivities, w http.ResponseWriter, r *http.Request) {
+    xml.First(w, r)
     xml.NumActivites(c, contract, w, r)
 }
 
@@ -44,14 +47,14 @@ func handleRequests(c *ethclient.Client) {
 
 	contract := xml.ActivitesContract(c)
 	router.HandleFunc("/activities/{ref}", func(w http.ResponseWriter, r *http.Request) {
-    	singleActivitie(c, contract, w, r)
+        singleActivities(c, contract, w, r)
 	})
 
-	router.HandleFunc("/activities", func(w http.ResponseWriter, r *http.Request) {
-    	activities(c, contract, w, r)
+	router.HandleFunc("/list-activities", func(w http.ResponseWriter, r *http.Request) {
+    	listActivities(c, contract, w, r)
 	})
 
-	router.HandleFunc("/num-activities", func(w http.ResponseWriter, r *http.Request) {
+	router.HandleFunc("/total-activities", func(w http.ResponseWriter, r *http.Request) {
     	numActivities(c, contract, w, r)
 	})
 
