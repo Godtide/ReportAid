@@ -49,72 +49,94 @@ func numActivites(contract *activities.IATIActivities) (int64) {
 }
 
 // NumActivites - get total activities
-func NumActivites (c *ethclient.Client, contract *activities.IATIActivities, w http.ResponseWriter, r *http.Request) {
+func NumActivites (c *ethclient.Client, contract interface{}, w http.ResponseWriter, r *http.Request) {
 
-	num := numActivites(contract)
-	totalXML := &totalActivities{Total: num}
-	thisXML, _ := xml.MarshalIndent(totalXML, "", " ")
-	w.Write(thisXML)
+    if thisContract, ok := contract.(*activities.IATIActivities); ok {
+
+        num := numActivites(thisContract)
+    	totalXML := &totalActivities{Total: num}
+    	thisXML, _ := xml.MarshalIndent(totalXML, "", " ")
+    	w.Write(thisXML)
+
+    } else {
+
+        log.Fatalf("%s", configs.ErrorActivitiesContractType)
+
+    }
 }
 
 // ActivitiesID get specific acvtitie
-func ActivitiesID (c *ethclient.Client, contract *activities.IATIActivities, ref [32]byte, w http.ResponseWriter, r *http.Request) {
+func ActivitiesID (c *ethclient.Client, contract interface{}, ref [32]byte, w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Printf("Activities Reference: %x\n", ref)
+    if thisContract, ok := contract.(*activities.IATIActivities); ok {
 
-	activities, err := contract.GetActivities(&bind.CallOpts{}, ref)
-	if err != nil {
-		log.Fatalf("%s: %v", configs.ErrorActivities, err)
-	}
+        activities, err := thisContract.GetActivities(&bind.CallOpts{}, ref)
+    	if err != nil {
+    		log.Fatalf("%s: %v", configs.ErrorActivities, err)
+    	}
 
-	thisVersion := activities.Version
-	sliceVersion := thisVersion[:]
-	trimmedVersion := common.TrimRightZeroes(sliceVersion)
-	version := hexutil.Encode(trimmedVersion)
-	stringVersion, _ := hexutil.Decode(version)
+    	thisVersion := activities.Version
+    	sliceVersion := thisVersion[:]
+    	trimmedVersion := common.TrimRightZeroes(sliceVersion)
+    	version := hexutil.Encode(trimmedVersion)
+    	stringVersion, _ := hexutil.Decode(version)
 
-	thisTime := activities.GeneratedTime
-	sliceTime := thisTime[:]
-	trimmedTime := common.TrimRightZeroes(sliceTime)
-	time := hexutil.Encode(trimmedTime)
-	stringTime, _ := hexutil.Decode(time)
+    	thisTime := activities.GeneratedTime
+    	sliceTime := thisTime[:]
+    	trimmedTime := common.TrimRightZeroes(sliceTime)
+    	time := hexutil.Encode(trimmedTime)
+    	stringTime, _ := hexutil.Decode(time)
 
-	thisLink := activities.LinkedData
-	sliceLink := thisLink[:]
-	trimmedLink := common.TrimRightZeroes(sliceLink)
-	link := hexutil.Encode(trimmedLink)
-	stringLink, _ := hexutil.Decode(link)
+    	thisLink := activities.LinkedData
+    	sliceLink := thisLink[:]
+    	trimmedLink := common.TrimRightZeroes(sliceLink)
+    	link := hexutil.Encode(trimmedLink)
+    	stringLink, _ := hexutil.Decode(link)
 
-	/* fmt.Printf("Version: %s\n", stringVersion)
-	fmt.Printf("Generated Time: %s\n", stringTime)
-	fmt.Printf("Linked Data: %s\n\n", stringLink)*/
+    	/* fmt.Printf("Version: %s\n", stringVersion)
+    	fmt.Printf("Generated Time: %s\n", stringTime)
+    	fmt.Printf("Linked Data: %s\n\n", stringLink)*/
 
-	activitiesXML := &iatiActivities{
-                                        Version: string(stringVersion),
-                                        Time: string(stringTime),
-                                        LinkedData: string(stringLink),
-                                    }
-	thisXML, _ := xml.MarshalIndent(activitiesXML, " ", " ")
-	w.Write(thisXML)
+    	activitiesXML := &iatiActivities{
+                                            Version: string(stringVersion),
+                                            Time: string(stringTime),
+                                            LinkedData: string(stringLink),
+                                        }
+    	thisXML, _ := xml.MarshalIndent(activitiesXML, " ", " ")
+    	w.Write(thisXML)
+
+    } else {
+
+        log.Fatalf("%s", configs.ErrorActivitiesContractType)
+
+    }
 }
 
 
 // ListActivities - list all activities
-func ListActivities (c *ethclient.Client, contract *activities.IATIActivities, w http.ResponseWriter, r *http.Request) {
+func ListActivities (c *ethclient.Client, contract interface{}, w http.ResponseWriter, r *http.Request) {
 
-    num := numActivites(contract)
-	var i int64
-	activitiesIDs := &activitiesList{}
-	for ; i < num; i++ {
-		ref, err := contract.GetReference(&bind.CallOpts{}, big.NewInt(i))
-		if err != nil {
-			log.Fatalf("%s: %v", configs.ErrorActivitiesID, err)
-		}
-		thisRef := fmt.Sprintf("%x", ref)
-		activitiesIDs.ID = append(activitiesIDs.ID, thisRef)
-	}
-	thisXML, _ := xml.MarshalIndent(activitiesIDs, " ", " ")
-	w.Write(thisXML)
+    if thisContract, ok := contract.(*activities.IATIActivities); ok {
+
+        num := numActivites(thisContract)
+    	var i int64
+    	activitiesIDs := &activitiesList{}
+    	for ; i < num; i++ {
+    		ref, err := thisContract.GetReference(&bind.CallOpts{}, big.NewInt(i))
+    		if err != nil {
+    			log.Fatalf("%s: %v", configs.ErrorActivitiesID, err)
+    		}
+    		thisRef := fmt.Sprintf("%x", ref)
+    		activitiesIDs.ID = append(activitiesIDs.ID, thisRef)
+    	}
+    	thisXML, _ := xml.MarshalIndent(activitiesIDs, " ", " ")
+    	w.Write(thisXML)
+
+    } else {
+
+        log.Fatalf("%s", configs.ErrorActivitiesContractType)
+    }
 }
 
 // ActivitesContract - get activities contract address
