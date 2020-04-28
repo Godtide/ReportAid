@@ -1,4 +1,4 @@
-pragma solidity ^0.5.0;
+pragma solidity >=0.4.16 <0.7.0;
 pragma experimental ABIEncoderV2;
 
 import "./OrganisationDocs.sol";
@@ -9,7 +9,7 @@ contract IATIOrganisationDocs is OrganisationDocs {
   mapping(bytes32 => mapping(bytes32 => bytes32[])) private docRefs;
   mapping(bytes32 => mapping(bytes32 => mapping(bytes32 => Document))) private docs;
 
-  function setDocument(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _docRef, Document memory _document) public {
+  function setDocument(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _docRef, Document memory _document) override virtual public {
     require (_organisationsRef[0] != 0 &&
              _organisationRef[0] != 0 &&
              _docRef[0] != 0 &&
@@ -31,13 +31,13 @@ contract IATIOrganisationDocs is OrganisationDocs {
     emit SetDocument(_organisationsRef, _organisationRef, _docRef, _document);
   }
 
-  function getNumDocs(bytes32 _organisationsRef, bytes32 _organisationRef) public view returns (uint256) {
+  function getNumDocs(bytes32 _organisationsRef, bytes32 _organisationRef) override virtual public view returns (uint256) {
     require (_organisationsRef[0] != 0 && _organisationRef[0] != 0);
 
     return docRefs[_organisationsRef][_organisationRef].length;
   }
 
-  function getDocReference(bytes32 _organisationsRef, bytes32 _organisationRef, uint256 _index) public view returns (bytes32) {
+  function getDocReference(bytes32 _organisationsRef, bytes32 _organisationRef, uint256 _index) override virtual public view returns (bytes32) {
     require (_organisationsRef[0] != 0 &&
              _organisationRef[0] != 0 &&
              _index < docRefs[_organisationsRef][_organisationRef].length);
@@ -45,7 +45,7 @@ contract IATIOrganisationDocs is OrganisationDocs {
     return docRefs[_organisationsRef][_organisationRef][_index];
   }
 
-  function getDocument(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _docRef) public view returns (Document memory) {
+  function getDocument(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _docRef) override virtual public view returns (Document memory) {
     require (_organisationsRef[0] != 0 &&
              _organisationRef[0] != 0 &&
              _docRef[0] != 0);
@@ -53,7 +53,7 @@ contract IATIOrganisationDocs is OrganisationDocs {
     return docs[_organisationsRef][_organisationRef][_docRef];
   }
 
-  function getDocumentTitle(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _docRef) public view returns (string memory) {
+  function getDocumentTitle(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _docRef) override virtual public view returns (string memory) {
     require (_organisationsRef[0] != 0 &&
              _organisationRef[0] != 0 &&
              _docRef[0] != 0);
@@ -61,7 +61,7 @@ contract IATIOrganisationDocs is OrganisationDocs {
     return docs[_organisationsRef][_organisationRef][_docRef].title;
   }
 
-  function getDocumentFormat(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _docRef) public view returns (string memory) {
+  function getDocumentFormat(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _docRef) override virtual public view returns (string memory) {
     require (_organisationsRef[0] != 0 &&
              _organisationRef[0] != 0 &&
              _docRef[0] != 0);
@@ -69,7 +69,7 @@ contract IATIOrganisationDocs is OrganisationDocs {
     return docs[_organisationsRef][_organisationRef][_docRef].format;
   }
 
-  function getDocumentURL(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _docRef) public view returns (string memory){
+  function getDocumentURL(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _docRef) override virtual public view returns (string memory){
     require (_organisationsRef[0] != 0 &&
              _organisationRef[0] != 0 &&
              _docRef[0] != 0);
@@ -77,7 +77,7 @@ contract IATIOrganisationDocs is OrganisationDocs {
     return docs[_organisationsRef][_organisationRef][_docRef].url;
   }
 
-  function getDocumentCategory(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _docRef) public view returns (bytes32) {
+  function getDocumentCategory(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _docRef) override virtual public view returns (bytes32) {
     require (_organisationsRef[0] != 0 &&
              _organisationRef[0] != 0 &&
              _docRef[0] != 0);
@@ -85,7 +85,7 @@ contract IATIOrganisationDocs is OrganisationDocs {
     return docs[_organisationsRef][_organisationRef][_docRef].category;
   }
 
-  function getDocumentCountry(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _docRef) public view returns (bytes32) {
+  function getDocumentCountry(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _docRef) override virtual public view returns (bytes32) {
     require (_organisationsRef[0] != 0 &&
              _organisationRef[0] != 0 &&
              _docRef[0] != 0);
@@ -93,7 +93,7 @@ contract IATIOrganisationDocs is OrganisationDocs {
     return docs[_organisationsRef][_organisationRef][_docRef].countryRef;
   }
 
-  function getDocumentDescription(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _docRef) public view returns (string memory) {
+  function getDocumentDescription(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _docRef) override virtual public view returns (string memory) {
     require (_organisationsRef[0] != 0 &&
              _organisationRef[0] != 0 &&
              _docRef[0] != 0);
@@ -101,7 +101,7 @@ contract IATIOrganisationDocs is OrganisationDocs {
     return docs[_organisationsRef][_organisationRef][_docRef].desc;
   }
 
-  function getDocumentLang(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _docRef) public view returns (bytes32) {
+  function getDocumentLang(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _docRef) override virtual public view returns (bytes32) {
     require (_organisationsRef[0] != 0 &&
              _organisationRef[0] != 0 &&
              _docRef[0] != 0);
@@ -109,7 +109,7 @@ contract IATIOrganisationDocs is OrganisationDocs {
     return docs[_organisationsRef][_organisationRef][_docRef].lang;
   }
 
-  function getDocumentDate(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _docRef) public view returns (bytes32) {
+  function getDocumentDate(bytes32 _organisationsRef, bytes32 _organisationRef, bytes32 _docRef) override virtual public view returns (bytes32) {
     require (_organisationsRef[0] != 0 &&
              _organisationRef[0] != 0 &&
              _docRef[0] != 0);

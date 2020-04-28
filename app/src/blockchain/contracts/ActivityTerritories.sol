@@ -1,7 +1,7 @@
-pragma solidity ^0.5.0;
+pragma solidity >=0.4.16 <0.7.0;
 pragma experimental ABIEncoderV2;
 
-contract ActivityTerritories {
+abstract contract ActivityTerritories {
 
   struct Territory {
     uint8 percentage;
@@ -10,13 +10,13 @@ contract ActivityTerritories {
 
   event SetTerritory(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _territoryRef, Territory _territory);
 
-  function setTerritory(bytes32 _activitiesRef, bytes32 _activityRef,  bytes32 _territoryRef, Territory memory _territory) public;
+  function setTerritory(bytes32 _activitiesRef, bytes32 _activityRef,  bytes32 _territoryRef, Territory memory _territory) virtual public;
 
-  function getNum(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint256);
-  function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) public view returns (bytes32);
+  function getNum(bytes32 _activitiesRef, bytes32 _activityRef) virtual public view returns (uint256);
+  function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) virtual public view returns (bytes32);
 
-  function getTerritory(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _territoryRef) public view returns (Territory memory);
+  function getTerritory(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _territoryRef) virtual public view returns (Territory memory);
 
-  function getPercentage(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _territoryRef) public view returns (uint8);
-  function getDACTerritory(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _territoryRef) public view returns (bytes32);
+  function getPercentage(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _territoryRef) virtual public view returns (uint8);
+  function getDACTerritory(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _territoryRef) virtual public view returns (bytes32);
 }

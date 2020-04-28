@@ -1,7 +1,7 @@
-pragma solidity ^0.5.0;
+pragma solidity >=0.4.16 <0.7.0;
 pragma experimental ABIEncoderV2;
 
-contract Activity {
+abstract contract Activity {
 
   enum Hierarchy {
     NONE,
@@ -51,23 +51,23 @@ contract Activity {
     string description;
   }
 
-  function setActivity(bytes32 _activitiesRef, bytes32 activityRef, OrgActivity memory _activity) public;
+  function setActivity(bytes32 _activitiesRef, bytes32 activityRef, OrgActivity memory _activity) virtual public;
 
-  function getNumActivities(bytes32 _activitiesRef) public view returns (uint256);
-  function getReference(bytes32 _activitiesRef, uint256 _index) public view returns (bytes32);
+  function getNumActivities(bytes32 _activitiesRef) virtual public view returns (uint256);
+  function getReference(bytes32 _activitiesRef, uint256 _index) virtual public view returns (bytes32);
 
-  function getActivity(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (OrgActivity memory);
+  function getActivity(bytes32 _activitiesRef, bytes32 _activityRef) virtual public view returns (OrgActivity memory);
 
-  function getIdentifier(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32);
-  function getReportingOrg(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (ReportingOrg memory);
-  function getTitle(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (string memory);
-  function getLastUpdatedTime(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32);
-  function getLang(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32);
-  function getCurrency(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32);
-  function getHumanitarian(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bool);
-  function getHierarchy(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8);
-  function getStatus(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8);
-  function getBudgetNotProvided(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8);
-  function getLinkedData(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32);
-  function getDescription(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (string memory);
+  function getIdentifier(bytes32 _activitiesRef, bytes32 _activityRef) virtual public view returns (bytes32);
+  function getReportingOrg(bytes32 _activitiesRef, bytes32 _activityRef) virtual public view returns (ReportingOrg memory);
+  function getTitle(bytes32 _activitiesRef, bytes32 _activityRef) virtual public view returns (string memory);
+  function getLastUpdatedTime(bytes32 _activitiesRef, bytes32 _activityRef) virtual public view returns (bytes32);
+  function getLang(bytes32 _activitiesRef, bytes32 _activityRef) virtual public view returns (bytes32);
+  function getCurrency(bytes32 _activitiesRef, bytes32 _activityRef) virtual public view returns (bytes32);
+  function getHumanitarian(bytes32 _activitiesRef, bytes32 _activityRef) virtual public view returns (bool);
+  function getHierarchy(bytes32 _activitiesRef, bytes32 _activityRef) virtual public view returns (uint8);
+  function getStatus(bytes32 _activitiesRef, bytes32 _activityRef) virtual public view returns (uint8);
+  function getBudgetNotProvided(bytes32 _activitiesRef, bytes32 _activityRef) virtual public view returns (uint8);
+  function getLinkedData(bytes32 _activitiesRef, bytes32 _activityRef) virtual public view returns (bytes32);
+  function getDescription(bytes32 _activitiesRef, bytes32 _activityRef) virtual public view returns (string memory);
 }

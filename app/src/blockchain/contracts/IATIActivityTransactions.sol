@@ -1,4 +1,4 @@
-pragma solidity ^0.5.0;
+pragma solidity >=0.4.16 <0.7.0;
 pragma experimental ABIEncoderV2;
 
 import "./ActivityTransactions.sol";
@@ -11,7 +11,7 @@ contract IATIActivityTransactions is ActivityTransactions {
 
   event SetTransaction(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef, Transaction _transaction);
 
-  function setTransaction(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef, Transaction memory _transaction) public {
+  function setTransaction(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef, Transaction memory _transaction) override virtual public {
     require (_activitiesRef[0] != 0 &&
              _activityRef[0] != 0 &&
              _transactionRef[0] != 0 &&
@@ -40,134 +40,134 @@ contract IATIActivityTransactions is ActivityTransactions {
     emit SetTransaction(_activitiesRef, _activityRef, _transactionRef, _transaction);
   }
 
-  function getNum(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint256) {
+  function getNum(bytes32 _activitiesRef, bytes32 _activityRef) override virtual public view returns (uint256) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0);
 
     return transactionRefs[_activitiesRef][_activityRef].length;
   }
 
-  function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) public view returns (bytes32) {
+  function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) override virtual public view returns (bytes32) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _index < transactionRefs[_activitiesRef][_activityRef].length);
 
     return transactionRefs[_activitiesRef][_activityRef][_index];
   }
 
-  function getTransaction(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (Transaction memory) {
+  function getTransaction(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) override virtual public view returns (Transaction memory) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _transactionRef[0] != 0);
 
     return transactions[_activitiesRef][_activityRef][_transactionRef];
   }
 
 
-  function getTransactionType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (uint8) {
+  function getTransactionType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) override virtual public view returns (uint8) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _transactionRef[0] != 0);
 
     return transactions[_activitiesRef][_activityRef][_transactionRef].transactionType;
   }
 
-  function getDisbursementChannel(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (uint8) {
+  function getDisbursementChannel(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) override virtual public view returns (uint8) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _transactionRef[0] != 0);
 
     return transactions[_activitiesRef][_activityRef][_transactionRef].disbursementChannel;
   }
 
-  function getFlowType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (uint8) {
+  function getFlowType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) override virtual public view returns (uint8) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _transactionRef[0] != 0);
 
     return transactions[_activitiesRef][_activityRef][_transactionRef].flowType;
   }
 
-  function getTiedStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (uint8) {
+  function getTiedStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) override virtual public view returns (uint8) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _transactionRef[0] != 0);
 
     return transactions[_activitiesRef][_activityRef][_transactionRef].tiedStatus;
   }
 
-  function getFinanceType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (uint256) {
+  function getFinanceType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) override virtual public view returns (uint256) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _transactionRef[0] != 0);
 
     return transactions[_activitiesRef][_activityRef][_transactionRef].financeType;
   }
 
-  function getAidType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (bytes32) {
+  function getAidType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) override virtual public view returns (bytes32) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _transactionRef[0] != 0);
 
     return transactions[_activitiesRef][_activityRef][_transactionRef].aidType;
   }
 
-  function getDate(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (bytes32) {
+  function getDate(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) override virtual public view returns (bytes32) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _transactionRef[0] != 0);
 
     return transactions[_activitiesRef][_activityRef][_transactionRef].date;
   }
 
-  function getValue(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (uint256) {
+  function getValue(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) override virtual public view returns (uint256) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _transactionRef[0] != 0);
 
     return transactions[_activitiesRef][_activityRef][_transactionRef].value.value;
   }
 
-  function getValueDate(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (bytes32) {
+  function getValueDate(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) override virtual public view returns (bytes32) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _transactionRef[0] != 0);
 
     return transactions[_activitiesRef][_activityRef][_transactionRef].value.date;
   }
 
-  function getValueCurrency(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (bytes32) {
+  function getValueCurrency(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) override virtual public view returns (bytes32) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _transactionRef[0] != 0);
 
     return transactions[_activitiesRef][_activityRef][_transactionRef].value.currency;
   }
 
-  function getProviderOrgRef(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (bytes32) {
+  function getProviderOrgRef(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) override virtual public view returns (bytes32) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _transactionRef[0] != 0);
 
     return transactions[_activitiesRef][_activityRef][_transactionRef].providerOrg.orgRef;
   }
 
-  function getProviderOrgType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (uint8) {
+  function getProviderOrgType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) override virtual public view returns (uint8) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _transactionRef[0] != 0);
 
     return transactions[_activitiesRef][_activityRef][_transactionRef].providerOrg.orgType;
   }
 
-  function getProviderActivityRef(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (bytes32) {
+  function getProviderActivityRef(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) override virtual public view returns (bytes32) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _transactionRef[0] != 0);
 
     return transactions[_activitiesRef][_activityRef][_transactionRef].providerOrg.activityRef;
   }
 
-  function getReceiverOrgRef(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (bytes32) {
+  function getReceiverOrgRef(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) override virtual public view returns (bytes32) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _transactionRef[0] != 0);
 
     return transactions[_activitiesRef][_activityRef][_transactionRef].receiverOrg.orgRef;
   }
 
-  function getReceiverOrgType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (uint8) {
+  function getReceiverOrgType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) override virtual public view returns (uint8) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _transactionRef[0] != 0);
 
     return transactions[_activitiesRef][_activityRef][_transactionRef].receiverOrg.orgType;
   }
 
-  function getReceiverActivityRef(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (bytes32) {
+  function getReceiverActivityRef(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) override virtual public view returns (bytes32) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _transactionRef[0] != 0);
 
     return transactions[_activitiesRef][_activityRef][_transactionRef].receiverOrg.activityRef;
   }
 
-  function getSectorDacCode(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (uint256) {
+  function getSectorDacCode(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) override virtual public view returns (uint256) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _transactionRef[0] != 0);
 
     return transactions[_activitiesRef][_activityRef][_transactionRef].sectorDacCode;
   }
 
-  function getTerritory(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (bytes32) {
+  function getTerritory(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) override virtual public view returns (bytes32) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _transactionRef[0] != 0);
 
     return transactions[_activitiesRef][_activityRef][_transactionRef].territory;
   }
 
-  function getDescription(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (string memory) {
+  function getDescription(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) override virtual public view returns (string memory) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _transactionRef[0] != 0);
 
     return transactions[_activitiesRef][_activityRef][_transactionRef].description;

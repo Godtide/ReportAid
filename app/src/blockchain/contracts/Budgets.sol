@@ -1,7 +1,7 @@
-pragma solidity ^0.5.0;
+pragma solidity >=0.4.16 <0.7.0;
 pragma experimental ABIEncoderV2;
 
-contract Budgets {
+abstract contract Budgets {
 
   enum Owner {
     NONE,
@@ -44,17 +44,17 @@ contract Budgets {
 
   event SetBudget(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef, Budget _budget);
 
-  function setBudget(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef, Budget memory _budget) public;
+  function setBudget(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef, Budget memory _budget) virtual public;
 
-  function getNumBudgets(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef) public view returns (uint256);
-  function getBudgetReference(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, uint256 _index) public view returns (bytes32);
+  function getNumBudgets(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef) virtual public view returns (uint256);
+  function getBudgetReference(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, uint256 _index) virtual public view returns (bytes32);
 
-  function getBudget(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) public view returns (Budget memory);
-  function getBudgetType(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) public view returns (uint8);
-  function getBudgetLine(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) public view returns (bytes32);
-  function getOtherRef(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) public view returns (bytes32);
-  function getBudgetValue(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) public view returns (uint256);
-  function getBudgetStatus(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) public view returns (uint8);
-  function getBudgetStart(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) public view returns (bytes32);
-  function getBudgetEnd(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) public view returns (bytes32);
+  function getBudget(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) virtual public view returns (Budget memory);
+  function getBudgetType(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) virtual public view returns (uint8);
+  function getBudgetLine(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) virtual public view returns (bytes32);
+  function getOtherRef(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) virtual public view returns (bytes32);
+  function getBudgetValue(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) virtual public view returns (uint256);
+  function getBudgetStatus(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) virtual public view returns (uint8);
+  function getBudgetStart(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) virtual public view returns (bytes32);
+  function getBudgetEnd(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) virtual public view returns (bytes32);
 }

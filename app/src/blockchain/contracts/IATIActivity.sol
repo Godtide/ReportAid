@@ -1,4 +1,4 @@
-pragma solidity ^0.5.0;
+pragma solidity >=0.4.16 <0.7.0;
 pragma experimental ABIEncoderV2;
 
 import "./Activity.sol";
@@ -11,7 +11,7 @@ contract IATIActivity is Activity {
 
   event SetActivity(bytes32 _activitiesRef, bytes32 activityRef, OrgActivity _activity);
 
-  function setActivity(bytes32 _activitiesRef, bytes32 activityRef, OrgActivity memory _activity) public {
+  function setActivity(bytes32 _activitiesRef, bytes32 activityRef, OrgActivity memory _activity) override virtual public  {
     require (_activitiesRef[0] != 0 &&
              activityRef[0] != 0 &&
              _activity.identifier[0] != 0 &&
@@ -38,92 +38,92 @@ contract IATIActivity is Activity {
     emit SetActivity(_activitiesRef, activityRef, _activity);
   }
 
-  function getNumActivities(bytes32 _activitiesRef) public view returns (uint256) {
+  function getNumActivities(bytes32 _activitiesRef) override virtual public  view returns (uint256) {
     require (_activitiesRef[0] != 0);
 
     return activityRefs[_activitiesRef].length;
   }
 
-  function getReference(bytes32 _activitiesRef, uint256 _index) public view returns (bytes32) {
+  function getReference(bytes32 _activitiesRef, uint256 _index) override virtual public  view returns (bytes32) {
     require (_activitiesRef[0] != 0 && _index < activityRefs[_activitiesRef].length);
 
     return activityRefs[_activitiesRef][_index];
   }
 
-  function getActivity(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (OrgActivity memory) {
+  function getActivity(bytes32 _activitiesRef, bytes32 _activityRef) override virtual public  view returns (OrgActivity memory) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
 
     return activities[_activitiesRef][_activityRef];
   }
 
-  function getTitle(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (string memory) {
+  function getTitle(bytes32 _activitiesRef, bytes32 _activityRef) override virtual public  view returns (string memory) {
   	require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
 
   	return activities[_activitiesRef][_activityRef].title;
   }
 
-  function getIdentifier(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32) {
+  function getIdentifier(bytes32 _activitiesRef, bytes32 _activityRef) override virtual public  view returns (bytes32) {
   	require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
 
   	return activities[_activitiesRef][_activityRef].identifier;
   }
 
-  function getReportingOrg(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (ReportingOrg memory) {
+  function getReportingOrg(bytes32 _activitiesRef, bytes32 _activityRef) override virtual public  view returns (ReportingOrg memory) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
 
   	return activities[_activitiesRef][_activityRef].reportingOrg;
   }
 
-  function getLastUpdatedTime(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32) {
+  function getLastUpdatedTime(bytes32 _activitiesRef, bytes32 _activityRef) override virtual public  view returns (bytes32) {
   	require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
 
   	return activities[_activitiesRef][_activityRef].lastUpdated;
   }
 
-  function getLang(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32) {
+  function getLang(bytes32 _activitiesRef, bytes32 _activityRef) override virtual public  view returns (bytes32) {
   	require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
 
   	return activities[_activitiesRef][_activityRef].lang;
   }
 
-  function getCurrency(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32) {
+  function getCurrency(bytes32 _activitiesRef, bytes32 _activityRef) override virtual public  view returns (bytes32) {
   	require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
 
   	return activities[_activitiesRef][_activityRef].currency;
   }
 
-  function getHumanitarian(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bool) {
+  function getHumanitarian(bytes32 _activitiesRef, bytes32 _activityRef) override virtual public  view returns (bool) {
   	require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
 
   	return activities[_activitiesRef][_activityRef].humanitarian;
   }
 
-  function getHierarchy(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8) {
+  function getHierarchy(bytes32 _activitiesRef, bytes32 _activityRef) override virtual public  view returns (uint8) {
   	require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
 
   	return activities[_activitiesRef][_activityRef].hierarchy;
   }
 
-  function getStatus(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8) {
+  function getStatus(bytes32 _activitiesRef, bytes32 _activityRef) override virtual public  view returns (uint8) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
 
   	return activities[_activitiesRef][_activityRef].status;
   }
 
-  function getBudgetNotProvided(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint8) {
+  function getBudgetNotProvided(bytes32 _activitiesRef, bytes32 _activityRef) override virtual public  view returns (uint8) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
 
   	return activities[_activitiesRef][_activityRef].budgetNotProvided;
   }
 
-  function getLinkedData(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (bytes32) {
+  function getLinkedData(bytes32 _activitiesRef, bytes32 _activityRef) override virtual public  view returns (bytes32) {
   	require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
 
   	return activities[_activitiesRef][_activityRef].linkedData;
   }
 
 
-  function getDescription(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (string memory) {
+  function getDescription(bytes32 _activitiesRef, bytes32 _activityRef) override virtual public  view returns (string memory) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 );
 
   	return activities[_activitiesRef][_activityRef].description;

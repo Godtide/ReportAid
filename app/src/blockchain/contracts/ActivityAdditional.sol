@@ -1,7 +1,7 @@
-pragma solidity ^0.5.0;
+pragma solidity >=0.4.16 <0.7.0;
 pragma experimental ABIEncoderV2;
 
-contract ActivityAdditional {
+abstract contract ActivityAdditional {
 
   enum Scope {
     NONE,
@@ -48,20 +48,20 @@ contract ActivityAdditional {
     uint8 defaultTiedStatus;
   }
 
-  function setAdditional(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef, Additional memory _additional) public;
+  function setAdditional(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef, Additional memory _additional) virtual public;
 
-  function getNumAdditional(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint256);
-  function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) public view returns (bytes32);
+  function getNumAdditional(bytes32 _activitiesRef, bytes32 _activityRef) virtual public view returns (uint256);
+  function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) virtual public view returns (bytes32);
 
-  function getAdditional(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (Additional memory);
+  function getAdditional(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) virtual public view returns (Additional memory);
 
-  function getDefaultAidType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (bytes32);
+  function getDefaultAidType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) virtual public view returns (bytes32);
 
-  function getDefaultFinanceType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint256);
+  function getDefaultFinanceType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) virtual public view returns (uint256);
 
-  function getScope(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8);
-  function getCapitalSpend(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8);
-  function getCollaborationType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8);
-  function getDefaultFlowType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8);
-  function getDefaultTiedStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8);
+  function getScope(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) virtual public view returns (uint8);
+  function getCapitalSpend(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) virtual public view returns (uint8);
+  function getCollaborationType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) virtual public view returns (uint8);
+  function getDefaultFlowType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) virtual public view returns (uint8);
+  function getDefaultTiedStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) virtual public view returns (uint8);
 }

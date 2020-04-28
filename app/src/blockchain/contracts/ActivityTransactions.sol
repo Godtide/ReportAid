@@ -1,7 +1,7 @@
-pragma solidity ^0.5.0;
+pragma solidity >=0.4.16 <0.7.0;
 pragma experimental ABIEncoderV2;
 
-contract ActivityTransactions {
+abstract contract ActivityTransactions {
 
   uint8 constant minFlowType = 10;
   uint8 constant maxFlowType = 50;
@@ -79,30 +79,30 @@ contract ActivityTransactions {
     string description;
   }
 
-  function setTransaction(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef, Transaction memory _transaction) public;
+  function setTransaction(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef, Transaction memory _transaction) virtual public;
 
-  function getNum(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint256);
-  function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) public view returns (bytes32);
+  function getNum(bytes32 _activitiesRef, bytes32 _activityRef) virtual public view returns (uint256);
+  function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) virtual public view returns (bytes32);
 
-  function getTransaction(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (Transaction memory);
+  function getTransaction(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) virtual public view returns (Transaction memory);
 
-  function getTransactionType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (uint8);
-  function getDisbursementChannel(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (uint8);
-  function getFlowType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (uint8);
-  function getTiedStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (uint8);
-  function getFinanceType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (uint256);
-  function getAidType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (bytes32);
-  function getDate(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (bytes32);
-  function getValue(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (uint256);
-  function getValueDate(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (bytes32);
-  function getValueCurrency(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (bytes32);
-  function getProviderOrgRef(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (bytes32);
-  function getProviderOrgType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (uint8);
-  function getProviderActivityRef(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (bytes32);
-  function getReceiverOrgRef(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (bytes32);
-  function getReceiverOrgType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (uint8);
-  function getReceiverActivityRef(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (bytes32);
-  function getSectorDacCode(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (uint256);
-  function getTerritory(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (bytes32);
-  function getDescription(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) public view returns (string memory);
+  function getTransactionType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) virtual public view returns (uint8);
+  function getDisbursementChannel(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) virtual public view returns (uint8);
+  function getFlowType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) virtual public view returns (uint8);
+  function getTiedStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) virtual public view returns (uint8);
+  function getFinanceType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) virtual public view returns (uint256);
+  function getAidType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) virtual public view returns (bytes32);
+  function getDate(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) virtual public view returns (bytes32);
+  function getValue(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) virtual public view returns (uint256);
+  function getValueDate(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) virtual public view returns (bytes32);
+  function getValueCurrency(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) virtual public view returns (bytes32);
+  function getProviderOrgRef(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) virtual public view returns (bytes32);
+  function getProviderOrgType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) virtual public view returns (uint8);
+  function getProviderActivityRef(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) virtual public view returns (bytes32);
+  function getReceiverOrgRef(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) virtual public view returns (bytes32);
+  function getReceiverOrgType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) virtual public view returns (uint8);
+  function getReceiverActivityRef(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) virtual public view returns (bytes32);
+  function getSectorDacCode(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) virtual public view returns (uint256);
+  function getTerritory(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) virtual public view returns (bytes32);
+  function getDescription(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _transactionRef) virtual public view returns (string memory);
 }

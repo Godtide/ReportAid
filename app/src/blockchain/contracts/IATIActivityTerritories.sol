@@ -1,4 +1,4 @@
-pragma solidity ^0.5.0;
+pragma solidity >=0.4.16 <0.7.0;
 pragma experimental ABIEncoderV2;
 
 import "./ActivityTerritories.sol";
@@ -11,7 +11,7 @@ contract IATIActivityTerritories is ActivityTerritories {
 
   event SetTerritory(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _territoryRef, Territory _territory);
 
-  function setTerritory(bytes32 _activitiesRef, bytes32 _activityRef,  bytes32 _territoryRef, Territory memory _territory) public {
+  function setTerritory(bytes32 _activitiesRef, bytes32 _activityRef,  bytes32 _territoryRef, Territory memory _territory) override virtual public {
     require (_activitiesRef[0] != 0 &&
              _activityRef[0] != 0 &&
              _territoryRef[0] != 0 &&
@@ -27,31 +27,31 @@ contract IATIActivityTerritories is ActivityTerritories {
     emit SetTerritory(_activitiesRef, _activityRef, _territoryRef, _territory);
   }
 
-  function getNum(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint256) {
+  function getNum(bytes32 _activitiesRef, bytes32 _activityRef) override virtual public view returns (uint256) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0);
 
     return territoryRefs[_activitiesRef][_activityRef].length;
   }
 
-  function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) public view returns (bytes32) {
+  function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) override virtual public view returns (bytes32) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _index < territoryRefs[_activitiesRef][_activityRef].length);
 
     return territoryRefs[_activitiesRef][_activityRef][_index];
   }
 
-  function getTerritory(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _territoryRef) public view returns (Territory memory) {
+  function getTerritory(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _territoryRef) override virtual public view returns (Territory memory) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _territoryRef[0] != 0);
 
     return territories[_activitiesRef][_activityRef][_territoryRef];
   }
 
-  function getPercentage(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _territoryRef) public view returns (uint8) {
+  function getPercentage(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _territoryRef) override virtual public view returns (uint8) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _territoryRef[0] != 0);
 
     return territories[_activitiesRef][_activityRef][_territoryRef].percentage;
   }
 
-  function getDACTerritory(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _territoryRef) public view returns (bytes32) {
+  function getDACTerritory(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _territoryRef) override virtual public view returns (bytes32) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _territoryRef[0] != 0);
 
     return territories[_activitiesRef][_activityRef][_territoryRef].territory;

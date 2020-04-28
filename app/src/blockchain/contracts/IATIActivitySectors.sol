@@ -1,4 +1,4 @@
-pragma solidity ^0.5.0;
+pragma solidity >=0.4.16 <0.7.0;
 pragma experimental ABIEncoderV2;
 
 
@@ -12,7 +12,7 @@ contract IATIActivitySectors is ActivitySectors {
 
   event SetSector(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _sectorRef, Sector _sector);
 
-  function setSector(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _sectorRef, Sector memory _sector) public {
+  function setSector(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _sectorRef, Sector memory _sector) override virtual public {
     require (_activitiesRef[0] != 0 &&
              _activityRef[0] != 0 &&
              _sectorRef[0] != 0 &&
@@ -29,31 +29,31 @@ contract IATIActivitySectors is ActivitySectors {
     emit SetSector(_activitiesRef, _activityRef, _sectorRef, _sector);
   }
 
-  function getNum(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint256) {
+  function getNum(bytes32 _activitiesRef, bytes32 _activityRef) override virtual public view returns (uint256) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0);
 
     return sectorRefs[_activitiesRef][_activityRef].length;
   }
 
-  function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) public view returns (bytes32)  {
+  function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) override virtual public view returns (bytes32)  {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _index < sectorRefs[_activitiesRef][_activityRef].length);
 
     return sectorRefs[_activitiesRef][_activityRef][_index];
   }
 
-  function getSector(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _sectorRef) public view returns (Sector memory) {
+  function getSector(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _sectorRef) override virtual public view returns (Sector memory) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _sectorRef[0] != 0);
 
     return sectors[_activitiesRef][_activityRef][_sectorRef];
   }
 
-  function getDACCode(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _sectorRef) public view returns (uint256) {
+  function getDACCode(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _sectorRef) override virtual public view returns (uint256) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _sectorRef[0] != 0);
 
     return sectors[_activitiesRef][_activityRef][_sectorRef].dacCode;
   }
 
-  function getPercentage(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _sectorRef) public view returns (uint8) {
+  function getPercentage(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _sectorRef) override virtual public view returns (uint8) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _sectorRef[0] != 0);
 
     return sectors[_activitiesRef][_activityRef][_sectorRef].percentage;

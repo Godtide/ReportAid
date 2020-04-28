@@ -1,4 +1,4 @@
-pragma solidity ^0.5.0;
+pragma solidity >=0.4.16 <0.7.0;
 pragma experimental ABIEncoderV2;
 
 import "./ActivityParticipatingOrgs.sol";
@@ -9,7 +9,7 @@ contract IATIActivityParticipatingOrgs is ActivityParticipatingOrgs {
   mapping(bytes32 => mapping(bytes32 => bytes32[])) private participatingOrgRefs;
   mapping(bytes32 => mapping(bytes32 => mapping(bytes32 => ParticipatingOrg))) private participatingOrgs;
 
-  function setParticipatingOrg(bytes32 _activitiesRef, bytes32 _activityRef,  bytes32 _participatingOrgRef, ParticipatingOrg memory _participatingOrg) public {
+  function setParticipatingOrg(bytes32 _activitiesRef, bytes32 _activityRef,  bytes32 _participatingOrgRef, ParticipatingOrg memory _participatingOrg) override virtual public {
     require (_activitiesRef[0] != 0 &&
              _activityRef[0] != 0 &&
              _participatingOrgRef[0] != 0 &&
@@ -30,55 +30,55 @@ contract IATIActivityParticipatingOrgs is ActivityParticipatingOrgs {
     emit SetParticipatingOrg(_activitiesRef, _activityRef, _participatingOrgRef, _participatingOrg);
   }
 
-  function getNumParticipatingOrgs(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint256) {
+  function getNumParticipatingOrgs(bytes32 _activitiesRef, bytes32 _activityRef) override virtual public view returns (uint256) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0);
 
     return participatingOrgRefs[_activitiesRef][_activityRef].length;
   }
 
-  function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) public view returns (bytes32) {
+  function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) override virtual public view returns (bytes32) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _index < participatingOrgRefs[_activitiesRef][_activityRef].length);
 
     return participatingOrgRefs[_activitiesRef][_activityRef][_index];
   }
 
-  function getParticipatingOrg(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _participatingOrgRef) public view returns (ParticipatingOrg memory) {
+  function getParticipatingOrg(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _participatingOrgRef) override virtual public view returns (ParticipatingOrg memory) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _participatingOrgRef[0] != 0);
 
     return participatingOrgs[_activitiesRef][_activityRef][_participatingOrgRef];
   }
 
-  function getOrgRef(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _participatingOrgRef) public view returns (bytes32) {
+  function getOrgRef(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _participatingOrgRef) override virtual public view returns (bytes32) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _participatingOrgRef[0] != 0);
 
     return participatingOrgs[_activitiesRef][_activityRef][_participatingOrgRef].orgRef;
   }
 
-  function getType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _participatingOrgRef) public view returns (uint8) {
+  function getType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _participatingOrgRef) override virtual public view returns (uint8) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _participatingOrgRef[0] != 0);
 
     return participatingOrgs[_activitiesRef][_activityRef][_participatingOrgRef].orgType;
   }
 
-  function getRole(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _participatingOrgRef) public view returns (uint8) {
+  function getRole(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _participatingOrgRef) override virtual public view returns (uint8) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _participatingOrgRef[0] != 0);
 
     return participatingOrgs[_activitiesRef][_activityRef][_participatingOrgRef].role;
   }
 
-  function getCrsChannelCode(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _participatingOrgRef) public view returns (uint256) {
+  function getCrsChannelCode(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _participatingOrgRef) override virtual public view returns (uint256) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _participatingOrgRef[0] != 0);
 
     return participatingOrgs[_activitiesRef][_activityRef][_participatingOrgRef].crsChannelCode;
   }
 
-  function getNarrative(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _participatingOrgRef) public view returns (string memory) {
+  function getNarrative(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _participatingOrgRef) override virtual public view returns (string memory) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _participatingOrgRef[0] != 0);
 
     return participatingOrgs[_activitiesRef][_activityRef][_participatingOrgRef].narrative;
   }
 
-  function getLang(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _participatingOrgRef) public view returns (bytes32) {
+  function getLang(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _participatingOrgRef) override virtual public view returns (bytes32) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _participatingOrgRef[0] != 0);
 
     return participatingOrgs[_activitiesRef][_activityRef][_participatingOrgRef].lang;

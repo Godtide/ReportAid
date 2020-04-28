@@ -1,7 +1,7 @@
-pragma solidity ^0.5.0;
+pragma solidity >=0.4.16 <0.7.0;
 pragma experimental ABIEncoderV2;
 
-contract Organisations {
+abstract contract Organisations {
 
   struct Orgs {
     bytes32 version;
@@ -10,13 +10,13 @@ contract Organisations {
 
   event SetOrganisations(bytes32 _organisationsRef, Orgs _organisations);
 
-  function setOrganisations(bytes32 _organisationsRef, Orgs memory _organisations) public;
+  function setOrganisations(bytes32 _organisationsRef, Orgs memory _organisations) virtual public;
 
-  function getNumOrganisations() public view returns (uint256);
-  function getOrganisationsReference(uint256 _index) public view returns (bytes32);
+  function getNumOrganisations() virtual public view returns (uint256);
+  function getOrganisationsReference(uint256 _index) virtual public view returns (bytes32);
 
-  function getOrganisations(bytes32 _organisationsRef) public view returns (Orgs memory);
+  function getOrganisations(bytes32 _organisationsRef) virtual public view returns (Orgs memory);
 
-  function getVersion(bytes32 _organisationsRef) public view returns (bytes32);
-  function getGeneratedTime(bytes32 _organisationsRef) public view returns (bytes32);
+  function getVersion(bytes32 _organisationsRef) virtual public view returns (bytes32);
+  function getGeneratedTime(bytes32 _organisationsRef) virtual public view returns (bytes32);
 }

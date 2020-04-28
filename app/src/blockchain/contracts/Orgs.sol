@@ -1,7 +1,7 @@
-pragma solidity ^0.5.0;
+pragma solidity >=0.4.16 <0.7.0;
 pragma experimental ABIEncoderV2;
 
-contract Orgs {
+abstract contract Orgs {
 
   struct Org {
     string name;
@@ -10,13 +10,13 @@ contract Orgs {
 
   event SetOrg(bytes32 _orgRef, Org _org);
 
-  function setOrg(bytes32 _orgRef, Org memory _org) public;
+  function setOrg(bytes32 _orgRef, Org memory _org) virtual public;
 
-  function getNumOrgs() public view returns (uint256);
-  function getOrgReference(uint256 _index) public view returns (bytes32);
+  function getNumOrgs() virtual public view returns (uint256);
+  function getOrgReference(uint256 _index) virtual public view returns (bytes32);
 
-  function getOrg(bytes32 _orgRef) public view returns (Org memory);
+  function getOrg(bytes32 _orgRef) virtual public view returns (Org memory);
 
-  function getOrgName(bytes32 _orgRef) public view returns (string memory);
-  function getOrgIdentifier(bytes32 _orgRef) public view returns (string memory);
+  function getOrgName(bytes32 _orgRef) virtual public view returns (string memory);
+  function getOrgIdentifier(bytes32 _orgRef) virtual public view returns (string memory);
 }

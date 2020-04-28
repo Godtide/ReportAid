@@ -1,4 +1,4 @@
-pragma solidity ^0.5.0;
+pragma solidity >=0.4.16 <0.7.0;
 pragma experimental ABIEncoderV2;
 
 // IATI Organisation Reports
@@ -12,7 +12,7 @@ contract IATIBudgets is Budgets {
   mapping(uint8 => mapping(bytes32 => mapping(bytes32 => bytes32[]))) private budgetRefs;
   mapping(uint8 => mapping(bytes32 => mapping(bytes32 => mapping(bytes32 => Budget)))) private budgets;
 
-  function setBudget(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef, Budget memory _budget) public {
+  function setBudget(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef, Budget memory _budget) override virtual public {
     require (_owner > uint8(Owner.NONE) &&
              _owner < uint8(Owner.MAX) &&
              _firstRef[0] != 0 &&
@@ -32,7 +32,7 @@ contract IATIBudgets is Budgets {
     emit SetBudget(_owner, _firstRef, _secondRef, _budgetRef, _budget);
   }
 
-  function getNumBudgets(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef) public view returns (uint256) {
+  function getNumBudgets(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef) override virtual public view returns (uint256) {
     require (_owner > uint8(Owner.NONE) &&
              _owner < uint8(Owner.MAX) &&
              _firstRef[0] != 0 &&
@@ -41,7 +41,7 @@ contract IATIBudgets is Budgets {
     return budgetRefs[_owner][_firstRef][_secondRef].length;
   }
 
-  function getBudgetReference(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, uint256 _index) public view returns (bytes32) {
+  function getBudgetReference(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, uint256 _index) override virtual public view returns (bytes32) {
     require (_owner > uint8(Owner.NONE) &&
              _owner < uint8(Owner.MAX) &&
              _firstRef[0] != 0 &&
@@ -51,7 +51,7 @@ contract IATIBudgets is Budgets {
     return budgetRefs[_owner][_firstRef][_secondRef][_index];
   }
 
-  function getBudget(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) public view returns (Budget memory) {
+  function getBudget(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) override virtual public view returns (Budget memory) {
     require (_owner > uint8(Owner.NONE) &&
              _owner < uint8(Owner.MAX) &&
              _firstRef[0] != 0 &&
@@ -61,7 +61,7 @@ contract IATIBudgets is Budgets {
     return budgets[_owner][_firstRef][_secondRef][_budgetRef];
   }
 
-  function getBudgetType(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) public view returns (uint8) {
+  function getBudgetType(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) override virtual public view returns (uint8) {
     require (_owner > uint8(Owner.NONE) &&
              _owner < uint8(Owner.MAX) &&
              _firstRef[0] != 0 &&
@@ -71,7 +71,7 @@ contract IATIBudgets is Budgets {
     return budgets[_owner][_firstRef][_secondRef][_budgetRef].budgetType;
   }
 
-  function getBudgetLine(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) public view returns (bytes32) {
+  function getBudgetLine(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) override virtual public view returns (bytes32) {
     require (_owner > uint8(Owner.NONE) &&
              _owner < uint8(Owner.MAX) &&
              _firstRef[0] != 0 &&
@@ -81,7 +81,7 @@ contract IATIBudgets is Budgets {
     return budgets[_owner][_firstRef][_secondRef][_budgetRef].budgetLine;
   }
 
-  function getOtherRef(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) public view returns (bytes32) {
+  function getOtherRef(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) override virtual public view returns (bytes32) {
     require (_owner > uint8(Owner.NONE) &&
              _owner < uint8(Owner.MAX) &&
              _firstRef[0] != 0 &&
@@ -91,7 +91,7 @@ contract IATIBudgets is Budgets {
     return budgets[_owner][_firstRef][_secondRef][_budgetRef].otherRef;
   }
 
-  function getBudgetValue(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) public view returns (uint256) {
+  function getBudgetValue(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) override virtual public view returns (uint256) {
     require (_owner > uint8(Owner.NONE) &&
              _owner < uint8(Owner.MAX) &&
              _firstRef[0] != 0 &&
@@ -101,7 +101,7 @@ contract IATIBudgets is Budgets {
     return budgets[_owner][_firstRef][_secondRef][_budgetRef].finance.value;
   }
 
-  function getBudgetStatus(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) public view returns (uint8) {
+  function getBudgetStatus(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) override virtual public view returns (uint8) {
     require (_owner > uint8(Owner.NONE) &&
              _owner < uint8(Owner.MAX) &&
              _firstRef[0] != 0 &&
@@ -111,7 +111,7 @@ contract IATIBudgets is Budgets {
     return budgets[_owner][_firstRef][_secondRef][_budgetRef].finance.status;
   }
 
-  function getBudgetStart(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) public view returns (bytes32) {
+  function getBudgetStart(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) override virtual public view returns (bytes32) {
     require (_owner > uint8(Owner.NONE) &&
              _owner < uint8(Owner.MAX) &&
              _firstRef[0] != 0 &&
@@ -121,7 +121,7 @@ contract IATIBudgets is Budgets {
     return budgets[_owner][_firstRef][_secondRef][_budgetRef].finance.start;
   }
 
-  function getBudgetEnd(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) public view returns (bytes32) {
+  function getBudgetEnd(uint8 _owner, bytes32 _firstRef, bytes32 _secondRef, bytes32 _budgetRef) override virtual public view returns (bytes32) {
     require (_owner > uint8(Owner.NONE) &&
              _owner < uint8(Owner.MAX) &&
              _firstRef[0] != 0 &&

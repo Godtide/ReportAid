@@ -1,4 +1,4 @@
-pragma solidity ^0.5.0;
+pragma solidity >=0.4.16 <0.7.0;
 pragma experimental ABIEncoderV2;
 
 import "./ActivityAdditional.sol";
@@ -11,7 +11,7 @@ contract IATIActivityAdditional is ActivityAdditional {
 
   event SetAdditional(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef, Additional _additional);
 
-  function setAdditional(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef, Additional memory _additional) public {
+  function setAdditional(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef, Additional memory _additional) override virtual public {
     require (_activitiesRef[0] != 0 &&
              _activityRef[0] != 0 &&
              _additionalRef[0] != 0 &&
@@ -33,61 +33,61 @@ contract IATIActivityAdditional is ActivityAdditional {
     emit SetAdditional(_activitiesRef, _activityRef, _additionalRef, _additional);
   }
 
-  function getNumAdditional(bytes32 _activitiesRef, bytes32 _activityRef) public view returns (uint256) {
+  function getNumAdditional(bytes32 _activitiesRef, bytes32 _activityRef) override virtual public view returns (uint256) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0);
 
     return additionalRefs[_activitiesRef][_activityRef].length;
   }
 
-  function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) public view returns (bytes32) {
+  function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) override virtual public view returns (bytes32) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _index < additionalRefs[_activitiesRef][_activityRef].length);
 
     return additionalRefs[_activitiesRef][_activityRef][_index];
   }
 
-  function getAdditional(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (Additional memory) {
+  function getAdditional(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) override virtual public view returns (Additional memory) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _additionalRef[0] != 0);
 
     return additionals[_activitiesRef][_activityRef][_additionalRef];
   }
 
-  function getDefaultAidType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (bytes32) {
+  function getDefaultAidType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) override virtual public view returns (bytes32) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _additionalRef[0] != 0);
 
   	return additionals[_activitiesRef][_activityRef][_additionalRef].defaultAidType;
   }
 
-  function getDefaultFinanceType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint256) {
+  function getDefaultFinanceType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) override virtual public view returns (uint256) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _additionalRef[0] != 0);
 
   	return additionals[_activitiesRef][_activityRef][_additionalRef].defaultFinanceType;
   }
 
-  function getScope(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8) {
+  function getScope(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) override virtual public view returns (uint8) {
   	require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _additionalRef[0] != 0);
 
   	return additionals[_activitiesRef][_activityRef][_additionalRef].scope;
   }
 
-  function getCapitalSpend(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8) {
+  function getCapitalSpend(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) override virtual public view returns (uint8) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _additionalRef[0] != 0);
 
   	return additionals[_activitiesRef][_activityRef][_additionalRef].capitalSpend;
   }
 
-  function getCollaborationType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8) {
+  function getCollaborationType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) override virtual public view returns (uint8) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _additionalRef[0] != 0);
 
   	return additionals[_activitiesRef][_activityRef][_additionalRef].collaborationType;
   }
 
-  function getDefaultFlowType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8) {
+  function getDefaultFlowType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) override virtual public view returns (uint8) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _additionalRef[0] != 0);
 
   	return additionals[_activitiesRef][_activityRef][_additionalRef].defaultFlowType;
   }
 
-  function getDefaultTiedStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) public view returns (uint8) {
+  function getDefaultTiedStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _additionalRef) override virtual public view returns (uint8) {
     require (_activitiesRef[0] != 0 && _activityRef[0] != 0 && _additionalRef[0] != 0);
 
   	return additionals[_activitiesRef][_activityRef][_additionalRef].defaultTiedStatus;

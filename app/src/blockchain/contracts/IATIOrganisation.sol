@@ -1,4 +1,4 @@
-pragma solidity ^0.5.0;
+pragma solidity >=0.4.16 <0.7.0;
 pragma experimental ABIEncoderV2;
 
 import "./Organisation.sol";
@@ -9,7 +9,7 @@ contract IATIOrganisation is Organisation {
   mapping(bytes32 => bytes32[]) private orgRefs;
   mapping(bytes32 =>  mapping(bytes32 => Org)) private organisations;
 
-  function setOrganisation(bytes32 _organisationsRef, bytes32 _organisationRef, Org memory _org) public {
+  function setOrganisation(bytes32 _organisationsRef, bytes32 _organisationRef, Org memory _org) override virtual public {
     require (_organisationsRef[0] != 0 &&
              _organisationRef[0] != 0 &&
              _org.orgRef[0] != 0 &&
@@ -28,61 +28,61 @@ contract IATIOrganisation is Organisation {
     emit SetOrganisation(_organisationsRef, _organisationRef, _org);
   }
 
-  function getNumOrganisations(bytes32 _organisationsRef) public view returns (uint256) {
+  function getNumOrganisations(bytes32 _organisationsRef) override virtual public view returns (uint256) {
     require (_organisationsRef[0] != 0);
 
     return orgRefs[_organisationsRef].length;
   }
 
-  function getOrganisationReference(bytes32 _organisationsRef, uint256 _index) public view returns (bytes32) {
+  function getOrganisationReference(bytes32 _organisationsRef, uint256 _index) override virtual public view returns (bytes32) {
     require (_organisationsRef[0] != 0 && _index < orgRefs[_organisationsRef].length);
 
     return orgRefs[_organisationsRef][_index];
   }
 
-  function getOrganisation(bytes32 _organisationsRef, bytes32 _organisationRef) public view returns (Org memory) {
+  function getOrganisation(bytes32 _organisationsRef, bytes32 _organisationRef) override virtual public view returns (Org memory) {
     require (_organisationsRef[0] != 0 && _organisationRef[0] != 0);
 
     return organisations[_organisationsRef][_organisationRef];
   }
 
-  function getOrganisationOrg(bytes32 _organisationsRef, bytes32 _organisationRef) public view returns (bytes32) {
+  function getOrganisationOrg(bytes32 _organisationsRef, bytes32 _organisationRef) override virtual public view returns (bytes32) {
     require (_organisationsRef[0] != 0 && _organisationRef[0] != 0);
 
     return organisations[_organisationsRef][_organisationRef].orgRef;
   }
 
-  function getReportingOrg(bytes32 _organisationsRef, bytes32 _organisationRef) public view returns (bytes32) {
+  function getReportingOrg(bytes32 _organisationsRef, bytes32 _organisationRef) override virtual public view returns (bytes32) {
     require (_organisationsRef[0] != 0 && _organisationRef[0] != 0);
 
     return organisations[_organisationsRef][_organisationRef].reportingOrg.orgRef;
   }
 
-  function getReportingOrgType(bytes32 _organisationsRef, bytes32 _organisationRef) public view returns (uint8) {
+  function getReportingOrgType(bytes32 _organisationsRef, bytes32 _organisationRef) override virtual public view returns (uint8) {
     require (_organisationsRef[0] != 0 && _organisationRef[0] != 0);
 
     return organisations[_organisationsRef][_organisationRef].reportingOrg.orgType;
   }
 
-  function getReportingOrgIsSecondary(bytes32 _organisationsRef, bytes32 _organisationRef) public view returns (bool) {
+  function getReportingOrgIsSecondary(bytes32 _organisationsRef, bytes32 _organisationRef) override virtual public view returns (bool) {
     require (_organisationsRef[0] != 0 && _organisationRef[0] != 0);
 
     return organisations[_organisationsRef][_organisationRef].reportingOrg.isSecondary;
   }
 
-  function getLang(bytes32 _organisationsRef, bytes32 _organisationRef) public view returns (bytes32) {
+  function getLang(bytes32 _organisationsRef, bytes32 _organisationRef) override virtual public view returns (bytes32) {
     require (_organisationsRef[0] != 0 && _organisationRef[0] != 0);
 
     return organisations[_organisationsRef][_organisationRef].lang;
   }
 
-  function getCurrency(bytes32 _organisationsRef, bytes32 _organisationRef) public view returns (bytes32) {
+  function getCurrency(bytes32 _organisationsRef, bytes32 _organisationRef) override virtual public view returns (bytes32) {
     require (_organisationsRef[0] != 0 && _organisationRef[0] != 0);
 
     return organisations[_organisationsRef][_organisationRef].currency;
   }
 
-  function getLastUpdatedTime(bytes32 _organisationsRef, bytes32 _organisationRef) public view returns (bytes32) {
+  function getLastUpdatedTime(bytes32 _organisationsRef, bytes32 _organisationRef) override virtual public view returns (bytes32) {
     require (_organisationsRef[0] != 0 && _organisationRef[0] != 0);
 
     return organisations[_organisationsRef][_organisationRef].lastUpdatedTime;
