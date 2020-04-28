@@ -1,22 +1,77 @@
-#!/bin/sh
+#!/bin/bash
 
-abigen --sol=./contracts/IATIActivities.sol --pkg=contracts --out=../server/internal/contracts/activities.go
-abigen --sol=./contracts/IATIActivity.sol --pkg=contracts --out=../server/internal/contracts/activity.go
-abigen --sol=./contracts/IATIActivityAdditional.sol --pkg=contracts --out=../server/internal/contracts/activityAdditional.go
-abigen --sol=./contracts/IATIActivityBudgets.sol --pkg=contracts --out=../server/internal/contracts/activityBudgets.go
-abigen --sol=./contracts/IATIActivityDates.sol --pkg=contracts --out=../server/internal/contracts/activityDates.go
-abigen --sol=./contracts/IATIActivityParticipatingOrgs.sol --pkg=contracts --out=../server/internal/contracts/activityParticipatingOrgs.go
-abigen --sol=./contracts/IATIActivityRelatedActivities.sol --pkg=contracts --out=../server/internal/contracts/activityRelatedActivities.go
-abigen --sol=./contracts/IATIActivitySectors.sol --pkg=contracts --out=../server/internal/contracts/activitySectors.go
-abigen --sol=./contracts/IATIActivityTerritories.sol --pkg=contracts --out=../server/internal/contracts/activityTerritories.go
-abigen --sol=./contracts/IATIActivityTransactions.sol --pkg=contracts --out=../server/internal/contracts/activityTransactions.go
-abigen --sol=./contracts/IATIBudgets.sol --pkg=contracts --out=../server/internal/contracts/budgets.go
-abigen --sol=./contracts/IATIOrganisation.sol --pkg=contracts --out=../server/internal/contracts/organisation.go
-abigen --sol=./contracts/IATIOrganisationBudgets.sol --pkg=contracts --out=../server/internal/contracts/organisationBudgets.go
-abigen --sol=./contracts/IATIOrganisationCountryBudgets.sol --pkg=contracts --out=../server/internal/contracts/organisationCountryBudgets.go
-abigen --sol=./contracts/IATIOrganisationDocs.sol --pkg=contracts --out=../server/internal/contracts/organisationDocs.go
-abigen --sol=./contracts/IATIOrganisationExpenditure.sol --pkg=contracts --out=../server/internal/contracts/organisationExpenditure.go
-abigen --sol=./contracts/IATIOrganisationRecipientBudgets.sol --pkg=contracts --out=../server/internal/contracts/organisationRecipientBudgets.go
-abigen --sol=./contracts/IATIOrganisationRegionBudgets.sol --pkg=contracts --out=../server/internal/contracts/organisationRegionBudgets.go
-abigen --sol=./contracts/IATIOrganisations.sol --pkg=contracts --out=../server/internal/contracts/organisations.go
-abigen --sol=./contracts/IATIOrgs.sol --pkg=contracts --out=../server/internal/contracts/orgs.go
+BASEDIR="../server/internal/contracts"
+
+# Just change the names here, the rest will take care of itself
+ACTIVITIES="activities"
+ACTIVITY="activity"
+ACTIVITYADDITIONAL="activityAdditional"
+ACTIVITYBUDGETS="activityBudgets"
+ACTIVITYDATES="activityDates"
+ACTIVITYPARTICIPATINGORGS="activityParticipatingOrgs"
+ACTIVITYRELATEDACTIVITIES="activityRelatedActivities"
+ACTIVITYSECTORS="activitySectors"
+ACTIVITYTERRITORIES="activityTerritories"
+ACTIVITYTRANSACTIONS="activityTransactions"
+BUDGETS="budgets"
+ORGANISATION="organisation"
+ORGANISATIONBUDGETS="organisationBudgets"
+ORGANISATIONCOUNTRYBUDGETS="organisationCountryBudgets"
+ORGANISATIONDOCS="contracts"
+ORGANISATIONEXPENDITURE="organisationExpenditure"
+ORGANISATIONRECIPIENTBUDGETS="organisationRecipientBudgets"
+ORGANISATIONREGIONBUDGETS="organisationRegionBudgets"
+ORGANISATIONS="organisations"
+ORGS="orgs"
+
+# Need to stick each contract in its own directory, unfortunately, due to Strings library
+ACTIVITIESDIR="${BASEDIR}/${ACTIVITIES}/"
+ACTIVITYDIR="${BASEDIR}/${ACTIVITY}/"
+ACTIVITYADDITIONALDIR="${BASEDIR}/${ACTIVITYADDITIONAL}/"
+ACTIVITYBUDGETSDIR="${BASEDIR}/${ACTIVITYBUDGETS}/"
+ACTIVITYDATESDIR="${BASEDIR}/${ACTIVITYDATES}/"
+ACTIVITYPARTICIPATINGORGSDIR="${BASEDIR}/${ACTIVITYPARTICIPATINGORGS}/"
+ACTIVITYRELATEDACTIVITIESDIR="${BASEDIR}/${ACTIVITYRELATEDACTIVITIES}/"
+ACTIVITYSECTORSDIR="${BASEDIR}/${ACTIVITYSECTORS}/"
+ACTIVITYTERRITORIESDIR="${BASEDIR}/${ACTIVITYTERRITORIES}/"
+ACTIVITYTRANSACTIONSDIR="${BASEDIR}/${ACTIVITYTRANSACTIONS}/"
+BUDGETSDIR="${BASEDIR}/${BUDGETS}/"
+ORGANISATIONDIR="${BASEDIR}/${ORGANISATION}/"
+ORGANISATIONBUDGETSDIR="${BASEDIR}/${ORGANISATIONBUDGETS}/"
+ORGANISATIONCOUNTRYBUDGETSDIR="${BASEDIR}/${ORGANISATIONCOUNTRYBUDGETS}/"
+ORGANISATIONDOCSDIR="${BASEDIR}/${ORGANISATIONDOCS}/"
+ORGANISATIONEXPENDITUREDIR="${BASEDIR}/${ORGANISATIONEXPENDITURE}/"
+ORGANISATIONRECIPIENTBUDGETSDIR="${BASEDIR}/${ORGANISATIONRECIPIENTBUDGETS}/"
+ORGANISATIONREGIONBUDGETSDIR="${BASEDIR}/${ORGANISATIONREGIONBUDGETS}/"
+ORGANISATIONSDIR="${BASEDIR}/${ORGANISATIONS}/"
+ORGSDIR="${BASEDIR}/${ORGS}/"
+
+CONTRACTSDIR=(${ACTIVITIESDIR} ${ACTIVITYDIR} ${ACTIVITYADDITIONALDIR} ${ACTIVITYBUDGETSDIR} ${ACTIVITYDATESDIR} ${ACTIVITYPARTICIPATINGORGSDIR} ${ACTIVITYRELATEDACTIVITIESDIR} ${ACTIVITYSECTORSDIR} ${ACTIVITYTERRITORIESDIR} ${ACTIVITYTRANSACTIONSDIR} ${BUDGETSDIR} ${ORGANISATIONDIR} ${ORGANISATIONBUDGETSDIR} ${ORGANISATIONCOUNTRYBUDGETSDIR} ${ORGANISATIONDOCSDIR} ${ORGANISATIONEXPENDITUREDIR} ${ORGANISATIONRECIPIENTBUDGETSDIR} ${ORGANISATIONREGIONBUDGETSDIR} ${ORGANISATIONSDIR} ${ORGSDIR})
+
+# Clean up first
+for DIR in "${CONTRACTSDIR[@]}"
+do
+    rm -rf $DIR 2>/dev/null
+    mkdir $DIR
+done
+
+abigen --sol=./contracts/IATIActivities.sol --pkg="${ACTIVITIES}" --out="${ACTIVITIESDIR}/${ACTIVITIES}.go"
+abigen --sol=./contracts/IATIActivity.sol --pkg="${ACTIVITY}" --out="${ACTIVITYDIR}/${ACTIVITY}.go"
+abigen --sol=./contracts/IATIActivityAdditional.sol --pkg=${ACTIVITYADDITIONAL} --out="${ACTIVITYADDITIONALDIR}/${ACTIVITYADDITIONAL}.go"
+abigen --sol=./contracts/IATIActivityBudgets.sol --pkg=${ACTIVITYBUDGETS} --out="${ACTIVITYBUDGETSDIR}/${ACTIVITYBUDGETS}.go"
+abigen --sol=./contracts/IATIActivityDates.sol --pkg=${ACTIVITYDATES} --out="${ACTIVITYDATESDIR}/${ACTIVITYDATES}.go"
+abigen --sol=./contracts/IATIActivityParticipatingOrgs.sol --pkg=${ACTIVITYPARTICIPATINGORGS} --out="${ACTIVITYPARTICIPATINGORGSDIR}/${ACTIVITYPARTICIPATINGORGS}.go"
+abigen --sol=./contracts/IATIActivityRelatedActivities.sol --pkg=${ACTIVITYRELATEDACTIVITIES} --out="${ACTIVITYRELATEDACTIVITIESDIR}/${ACTIVITYRELATEDACTIVITIES}.go"
+abigen --sol=./contracts/IATIActivitySectors.sol --pkg=${ACTIVITYSECTORS} --out="${ACTIVITYSECTORSDIR}/${ACTIVITYSECTORS}.go"
+abigen --sol=./contracts/IATIActivityTerritories.sol --pkg=${ACTIVITYTERRITORIES} --out="${ACTIVITYTERRITORIESDIR}/${ACTIVITYTERRITORIES}.go"
+abigen --sol=./contracts/IATIActivityTransactions.sol --pkg=${ACTIVITYTRANSACTIONS} --out="${ACTIVITYTRANSACTIONSDIR}/${ACTIVITYTRANSACTIONS}.go"
+abigen --sol=./contracts/IATIBudgets.sol --pkg=${BUDGETS} --out="${BUDGETSDIR}/${BUDGETS}.go"
+abigen --sol=./contracts/IATIOrganisation.sol --pkg=${ORGANISATION} --out="${ORGANISATIONDIR}/${ORGANISATION}.go"
+abigen --sol=./contracts/IATIOrganisationBudgets.sol --pkg=${ORGANISATIONBUDGETS} --out="${ORGANISATIONBUDGETSDIR}/${ORGANISATIONBUDGETS}.go"
+abigen --sol=./contracts/IATIOrganisationCountryBudgets.sol --pkg=${ORGANISATIONCOUNTRYBUDGETS} --out="${ORGANISATIONCOUNTRYBUDGETSDIR}/${ORGANISATIONCOUNTRYBUDGETS}.go"
+abigen --sol=./contracts/IATIOrganisationDocs.sol --pkg=${ORGANISATIONDOCS} --out="${ORGANISATIONDOCSDIR}/${ORGANISATIONDOCS}.go"
+abigen --sol=./contracts/IATIOrganisationExpenditure.sol --pkg=${ORGANISATIONEXPENDITURE} --out="${ORGANISATIONEXPENDITUREDIR}/${ORGANISATIONEXPENDITURE}.go"
+abigen --sol=./contracts/IATIOrganisationRecipientBudgets.sol --pkg=${ORGANISATIONRECIPIENTBUDGETS} --out="${ORGANISATIONRECIPIENTBUDGETSDIR}/${ORGANISATIONRECIPIENTBUDGETS}.go"
+abigen --sol=./contracts/IATIOrganisationRegionBudgets.sol --pkg=${ORGANISATIONREGIONBUDGETS} --out="${ORGANISATIONREGIONBUDGETSDIR}/${ORGANISATIONREGIONBUDGETS}.go"
+abigen --sol=./contracts/IATIOrganisations.sol --pkg=${ORGANISATIONS} --out="${ORGANISATIONSDIR}/${ORGANISATIONS}.go"
+abigen --sol=./contracts/IATIOrgs.sol --pkg=${ORGS} --out="${ORGSDIR}/${ORGS}.go"

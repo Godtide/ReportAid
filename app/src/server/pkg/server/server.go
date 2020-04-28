@@ -8,7 +8,7 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 
 	"github.com/ReportAid/app/src/server/internal/xml"
-	"github.com/ReportAid/app/src/server/internal/contracts"
+	"github.com/ReportAid/app/src/server/internal/contracts/activities"
 	"github.com/ReportAid/app/src/server/internal/configs"
 )
 
@@ -18,13 +18,13 @@ func homePage(w http.ResponseWriter, r *http.Request){
     xml.Home(w, r)
 }
 
-func listActivities (c *ethclient.Client, contract *contracts.IATIActivities, w http.ResponseWriter, r *http.Request) {
+func listActivities (c *ethclient.Client, contract *activities.IATIActivities, w http.ResponseWriter, r *http.Request) {
 
     xml.First(w, r)
     xml.ListActivities(c, contract, w, r)
 }
 
-func singleActivities (c *ethclient.Client, contract *contracts.IATIActivities, w http.ResponseWriter, r *http.Request) {
+func singleActivities (c *ethclient.Client, contract *activities.IATIActivities, w http.ResponseWriter, r *http.Request) {
 
     xml.First(w, r)
 	params := mux.Vars(r)
@@ -34,7 +34,7 @@ func singleActivities (c *ethclient.Client, contract *contracts.IATIActivities, 
 }
 
 
-func numActivities (c *ethclient.Client, contract *contracts.IATIActivities, w http.ResponseWriter, r *http.Request) {
+func numActivities (c *ethclient.Client, contract *activities.IATIActivities, w http.ResponseWriter, r *http.Request) {
 
     xml.First(w, r)
     xml.NumActivites(c, contract, w, r)

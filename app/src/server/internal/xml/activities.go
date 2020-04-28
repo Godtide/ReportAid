@@ -12,7 +12,7 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 
-	"github.com/ReportAid/app/src/server/internal/contracts"
+	"github.com/ReportAid/app/src/server/internal/contracts/activities"
 	"github.com/ReportAid/app/src/server/internal/configs"
 )
 
@@ -37,7 +37,7 @@ type totalActivities struct {
 }
 
 // GetNumActivites - Get the total number of activities
-func numActivites(contract *contracts.IATIActivities) (int64) {
+func numActivites(contract *activities.IATIActivities) (int64) {
 
 	num, err := contract.GetNumActivities(&bind.CallOpts{})
 	if err != nil {
@@ -49,7 +49,7 @@ func numActivites(contract *contracts.IATIActivities) (int64) {
 }
 
 // NumActivites - get total activities
-func NumActivites (c *ethclient.Client, contract *contracts.IATIActivities, w http.ResponseWriter, r *http.Request) {
+func NumActivites (c *ethclient.Client, contract *activities.IATIActivities, w http.ResponseWriter, r *http.Request) {
 
 	num := numActivites(contract)
 	totalXML := &totalActivities{Total: num}
@@ -58,7 +58,7 @@ func NumActivites (c *ethclient.Client, contract *contracts.IATIActivities, w ht
 }
 
 // ActivitiesID get specific acvtitie
-func ActivitiesID (c *ethclient.Client, contract *contracts.IATIActivities, ref [32]byte, w http.ResponseWriter, r *http.Request) {
+func ActivitiesID (c *ethclient.Client, contract *activities.IATIActivities, ref [32]byte, w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Printf("Activities Reference: %x\n", ref)
 
@@ -100,7 +100,7 @@ func ActivitiesID (c *ethclient.Client, contract *contracts.IATIActivities, ref 
 
 
 // ListActivities - list all activities
-func ListActivities (c *ethclient.Client, contract *contracts.IATIActivities, w http.ResponseWriter, r *http.Request) {
+func ListActivities (c *ethclient.Client, contract *activities.IATIActivities, w http.ResponseWriter, r *http.Request) {
 
     num := numActivites(contract)
 	var i int64
@@ -118,9 +118,9 @@ func ListActivities (c *ethclient.Client, contract *contracts.IATIActivities, w 
 }
 
 // ActivitesContract - get activities contract address
-func ActivitesContract (c *ethclient.Client) (*contracts.IATIActivities){
+func ActivitesContract (c *ethclient.Client) (*activities.IATIActivities){
 
-	contract, err := contracts.NewIATIActivities(common.HexToAddress(string(configs.AddrActivitiesContract)), c)
+	contract, err := activities.NewIATIActivities(common.HexToAddress(string(configs.AddrActivitiesContract)), c)
 	if err != nil {
 		log.Fatalf("%s: %v", configs.ErrorActivitiesContract, err)
 		return nil

@@ -1,7 +1,7 @@
 // Code generated - DO NOT EDIT.
 // This file is a generated binding and any manual changes will be lost.
 
-package contracts
+package activityBudgets
 
 import (
 	"math/big"
@@ -41,6 +41,393 @@ type BudgetsFinance struct {
 	Value  *big.Int
 	Start  [32]byte
 	End    [32]byte
+}
+
+// ActivityBudgetsABI is the input ABI used to generate the binding from.
+const ActivityBudgetsABI = "[{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_activitiesRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_activityRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_budgetRef\",\"type\":\"bytes32\"}],\"name\":\"getBudget\",\"outputs\":[{\"components\":[{\"internalType\":\"uint8\",\"name\":\"budgetType\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"budgetLine\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"otherRef\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"uint8\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"start\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"end\",\"type\":\"bytes32\"}],\"internalType\":\"structBudgets.Finance\",\"name\":\"finance\",\"type\":\"tuple\"}],\"internalType\":\"structBudgets.Budget\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_activitiesRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_activityRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_budgetRef\",\"type\":\"bytes32\"}],\"name\":\"getBudgetEnd\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_activitiesRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_activityRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_budgetRef\",\"type\":\"bytes32\"}],\"name\":\"getBudgetStart\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_activitiesRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_activityRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_budgetRef\",\"type\":\"bytes32\"}],\"name\":\"getBudgetStatus\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_activitiesRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_activityRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_budgetRef\",\"type\":\"bytes32\"}],\"name\":\"getBudgetType\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_activitiesRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_activityRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_budgetRef\",\"type\":\"bytes32\"}],\"name\":\"getBudgetValue\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_activitiesRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_activityRef\",\"type\":\"bytes32\"}],\"name\":\"getNum\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_activitiesRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_activityRef\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"_index\",\"type\":\"uint256\"}],\"name\":\"getReference\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_activitiesRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_activityRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_budgetRef\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"uint8\",\"name\":\"budgetType\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"budgetLine\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"otherRef\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"uint8\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"start\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"end\",\"type\":\"bytes32\"}],\"internalType\":\"structBudgets.Finance\",\"name\":\"finance\",\"type\":\"tuple\"}],\"internalType\":\"structBudgets.Budget\",\"name\":\"_budget\",\"type\":\"tuple\"}],\"name\":\"setBudget\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]"
+
+// ActivityBudgetsFuncSigs maps the 4-byte function signature to its string representation.
+var ActivityBudgetsFuncSigs = map[string]string{
+	"2272411c": "getBudget(bytes32,bytes32,bytes32)",
+	"903be1ac": "getBudgetEnd(bytes32,bytes32,bytes32)",
+	"e7f49f2e": "getBudgetStart(bytes32,bytes32,bytes32)",
+	"0ec3f5dc": "getBudgetStatus(bytes32,bytes32,bytes32)",
+	"a60cdf57": "getBudgetType(bytes32,bytes32,bytes32)",
+	"7a47d816": "getBudgetValue(bytes32,bytes32,bytes32)",
+	"47cdae01": "getNum(bytes32,bytes32)",
+	"eef67d78": "getReference(bytes32,bytes32,uint256)",
+	"2a5a247c": "setBudget(bytes32,bytes32,bytes32,(uint8,bytes32,bytes32,(uint8,uint256,bytes32,bytes32)))",
+}
+
+// ActivityBudgets is an auto generated Go binding around an Ethereum contract.
+type ActivityBudgets struct {
+	ActivityBudgetsCaller     // Read-only binding to the contract
+	ActivityBudgetsTransactor // Write-only binding to the contract
+	ActivityBudgetsFilterer   // Log filterer for contract events
+}
+
+// ActivityBudgetsCaller is an auto generated read-only Go binding around an Ethereum contract.
+type ActivityBudgetsCaller struct {
+	contract *bind.BoundContract // Generic contract wrapper for the low level calls
+}
+
+// ActivityBudgetsTransactor is an auto generated write-only Go binding around an Ethereum contract.
+type ActivityBudgetsTransactor struct {
+	contract *bind.BoundContract // Generic contract wrapper for the low level calls
+}
+
+// ActivityBudgetsFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
+type ActivityBudgetsFilterer struct {
+	contract *bind.BoundContract // Generic contract wrapper for the low level calls
+}
+
+// ActivityBudgetsSession is an auto generated Go binding around an Ethereum contract,
+// with pre-set call and transact options.
+type ActivityBudgetsSession struct {
+	Contract     *ActivityBudgets  // Generic contract binding to set the session for
+	CallOpts     bind.CallOpts     // Call options to use throughout this session
+	TransactOpts bind.TransactOpts // Transaction auth options to use throughout this session
+}
+
+// ActivityBudgetsCallerSession is an auto generated read-only Go binding around an Ethereum contract,
+// with pre-set call options.
+type ActivityBudgetsCallerSession struct {
+	Contract *ActivityBudgetsCaller // Generic contract caller binding to set the session for
+	CallOpts bind.CallOpts          // Call options to use throughout this session
+}
+
+// ActivityBudgetsTransactorSession is an auto generated write-only Go binding around an Ethereum contract,
+// with pre-set transact options.
+type ActivityBudgetsTransactorSession struct {
+	Contract     *ActivityBudgetsTransactor // Generic contract transactor binding to set the session for
+	TransactOpts bind.TransactOpts          // Transaction auth options to use throughout this session
+}
+
+// ActivityBudgetsRaw is an auto generated low-level Go binding around an Ethereum contract.
+type ActivityBudgetsRaw struct {
+	Contract *ActivityBudgets // Generic contract binding to access the raw methods on
+}
+
+// ActivityBudgetsCallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
+type ActivityBudgetsCallerRaw struct {
+	Contract *ActivityBudgetsCaller // Generic read-only contract binding to access the raw methods on
+}
+
+// ActivityBudgetsTransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
+type ActivityBudgetsTransactorRaw struct {
+	Contract *ActivityBudgetsTransactor // Generic write-only contract binding to access the raw methods on
+}
+
+// NewActivityBudgets creates a new instance of ActivityBudgets, bound to a specific deployed contract.
+func NewActivityBudgets(address common.Address, backend bind.ContractBackend) (*ActivityBudgets, error) {
+	contract, err := bindActivityBudgets(address, backend, backend, backend)
+	if err != nil {
+		return nil, err
+	}
+	return &ActivityBudgets{ActivityBudgetsCaller: ActivityBudgetsCaller{contract: contract}, ActivityBudgetsTransactor: ActivityBudgetsTransactor{contract: contract}, ActivityBudgetsFilterer: ActivityBudgetsFilterer{contract: contract}}, nil
+}
+
+// NewActivityBudgetsCaller creates a new read-only instance of ActivityBudgets, bound to a specific deployed contract.
+func NewActivityBudgetsCaller(address common.Address, caller bind.ContractCaller) (*ActivityBudgetsCaller, error) {
+	contract, err := bindActivityBudgets(address, caller, nil, nil)
+	if err != nil {
+		return nil, err
+	}
+	return &ActivityBudgetsCaller{contract: contract}, nil
+}
+
+// NewActivityBudgetsTransactor creates a new write-only instance of ActivityBudgets, bound to a specific deployed contract.
+func NewActivityBudgetsTransactor(address common.Address, transactor bind.ContractTransactor) (*ActivityBudgetsTransactor, error) {
+	contract, err := bindActivityBudgets(address, nil, transactor, nil)
+	if err != nil {
+		return nil, err
+	}
+	return &ActivityBudgetsTransactor{contract: contract}, nil
+}
+
+// NewActivityBudgetsFilterer creates a new log filterer instance of ActivityBudgets, bound to a specific deployed contract.
+func NewActivityBudgetsFilterer(address common.Address, filterer bind.ContractFilterer) (*ActivityBudgetsFilterer, error) {
+	contract, err := bindActivityBudgets(address, nil, nil, filterer)
+	if err != nil {
+		return nil, err
+	}
+	return &ActivityBudgetsFilterer{contract: contract}, nil
+}
+
+// bindActivityBudgets binds a generic wrapper to an already deployed contract.
+func bindActivityBudgets(address common.Address, caller bind.ContractCaller, transactor bind.ContractTransactor, filterer bind.ContractFilterer) (*bind.BoundContract, error) {
+	parsed, err := abi.JSON(strings.NewReader(ActivityBudgetsABI))
+	if err != nil {
+		return nil, err
+	}
+	return bind.NewBoundContract(address, parsed, caller, transactor, filterer), nil
+}
+
+// Call invokes the (constant) contract method with params as input values and
+// sets the output to result. The result type might be a single field for simple
+// returns, a slice of interfaces for anonymous returns and a struct for named
+// returns.
+func (_ActivityBudgets *ActivityBudgetsRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+	return _ActivityBudgets.Contract.ActivityBudgetsCaller.contract.Call(opts, result, method, params...)
+}
+
+// Transfer initiates a plain transaction to move funds to the contract, calling
+// its default method if one is available.
+func (_ActivityBudgets *ActivityBudgetsRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _ActivityBudgets.Contract.ActivityBudgetsTransactor.contract.Transfer(opts)
+}
+
+// Transact invokes the (paid) contract method with params as input values.
+func (_ActivityBudgets *ActivityBudgetsRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _ActivityBudgets.Contract.ActivityBudgetsTransactor.contract.Transact(opts, method, params...)
+}
+
+// Call invokes the (constant) contract method with params as input values and
+// sets the output to result. The result type might be a single field for simple
+// returns, a slice of interfaces for anonymous returns and a struct for named
+// returns.
+func (_ActivityBudgets *ActivityBudgetsCallerRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+	return _ActivityBudgets.Contract.contract.Call(opts, result, method, params...)
+}
+
+// Transfer initiates a plain transaction to move funds to the contract, calling
+// its default method if one is available.
+func (_ActivityBudgets *ActivityBudgetsTransactorRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _ActivityBudgets.Contract.contract.Transfer(opts)
+}
+
+// Transact invokes the (paid) contract method with params as input values.
+func (_ActivityBudgets *ActivityBudgetsTransactorRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _ActivityBudgets.Contract.contract.Transact(opts, method, params...)
+}
+
+// GetBudget is a free data retrieval call binding the contract method 0x2272411c.
+//
+// Solidity: function getBudget(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns(BudgetsBudget)
+func (_ActivityBudgets *ActivityBudgetsCaller) GetBudget(opts *bind.CallOpts, _activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte) (BudgetsBudget, error) {
+	var (
+		ret0 = new(BudgetsBudget)
+	)
+	out := ret0
+	err := _ActivityBudgets.contract.Call(opts, out, "getBudget", _activitiesRef, _activityRef, _budgetRef)
+	return *ret0, err
+}
+
+// GetBudget is a free data retrieval call binding the contract method 0x2272411c.
+//
+// Solidity: function getBudget(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns(BudgetsBudget)
+func (_ActivityBudgets *ActivityBudgetsSession) GetBudget(_activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte) (BudgetsBudget, error) {
+	return _ActivityBudgets.Contract.GetBudget(&_ActivityBudgets.CallOpts, _activitiesRef, _activityRef, _budgetRef)
+}
+
+// GetBudget is a free data retrieval call binding the contract method 0x2272411c.
+//
+// Solidity: function getBudget(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns(BudgetsBudget)
+func (_ActivityBudgets *ActivityBudgetsCallerSession) GetBudget(_activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte) (BudgetsBudget, error) {
+	return _ActivityBudgets.Contract.GetBudget(&_ActivityBudgets.CallOpts, _activitiesRef, _activityRef, _budgetRef)
+}
+
+// GetBudgetEnd is a free data retrieval call binding the contract method 0x903be1ac.
+//
+// Solidity: function getBudgetEnd(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns(bytes32)
+func (_ActivityBudgets *ActivityBudgetsCaller) GetBudgetEnd(opts *bind.CallOpts, _activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte) ([32]byte, error) {
+	var (
+		ret0 = new([32]byte)
+	)
+	out := ret0
+	err := _ActivityBudgets.contract.Call(opts, out, "getBudgetEnd", _activitiesRef, _activityRef, _budgetRef)
+	return *ret0, err
+}
+
+// GetBudgetEnd is a free data retrieval call binding the contract method 0x903be1ac.
+//
+// Solidity: function getBudgetEnd(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns(bytes32)
+func (_ActivityBudgets *ActivityBudgetsSession) GetBudgetEnd(_activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte) ([32]byte, error) {
+	return _ActivityBudgets.Contract.GetBudgetEnd(&_ActivityBudgets.CallOpts, _activitiesRef, _activityRef, _budgetRef)
+}
+
+// GetBudgetEnd is a free data retrieval call binding the contract method 0x903be1ac.
+//
+// Solidity: function getBudgetEnd(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns(bytes32)
+func (_ActivityBudgets *ActivityBudgetsCallerSession) GetBudgetEnd(_activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte) ([32]byte, error) {
+	return _ActivityBudgets.Contract.GetBudgetEnd(&_ActivityBudgets.CallOpts, _activitiesRef, _activityRef, _budgetRef)
+}
+
+// GetBudgetStart is a free data retrieval call binding the contract method 0xe7f49f2e.
+//
+// Solidity: function getBudgetStart(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns(bytes32)
+func (_ActivityBudgets *ActivityBudgetsCaller) GetBudgetStart(opts *bind.CallOpts, _activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte) ([32]byte, error) {
+	var (
+		ret0 = new([32]byte)
+	)
+	out := ret0
+	err := _ActivityBudgets.contract.Call(opts, out, "getBudgetStart", _activitiesRef, _activityRef, _budgetRef)
+	return *ret0, err
+}
+
+// GetBudgetStart is a free data retrieval call binding the contract method 0xe7f49f2e.
+//
+// Solidity: function getBudgetStart(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns(bytes32)
+func (_ActivityBudgets *ActivityBudgetsSession) GetBudgetStart(_activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte) ([32]byte, error) {
+	return _ActivityBudgets.Contract.GetBudgetStart(&_ActivityBudgets.CallOpts, _activitiesRef, _activityRef, _budgetRef)
+}
+
+// GetBudgetStart is a free data retrieval call binding the contract method 0xe7f49f2e.
+//
+// Solidity: function getBudgetStart(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns(bytes32)
+func (_ActivityBudgets *ActivityBudgetsCallerSession) GetBudgetStart(_activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte) ([32]byte, error) {
+	return _ActivityBudgets.Contract.GetBudgetStart(&_ActivityBudgets.CallOpts, _activitiesRef, _activityRef, _budgetRef)
+}
+
+// GetBudgetStatus is a free data retrieval call binding the contract method 0x0ec3f5dc.
+//
+// Solidity: function getBudgetStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns(uint8)
+func (_ActivityBudgets *ActivityBudgetsCaller) GetBudgetStatus(opts *bind.CallOpts, _activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte) (uint8, error) {
+	var (
+		ret0 = new(uint8)
+	)
+	out := ret0
+	err := _ActivityBudgets.contract.Call(opts, out, "getBudgetStatus", _activitiesRef, _activityRef, _budgetRef)
+	return *ret0, err
+}
+
+// GetBudgetStatus is a free data retrieval call binding the contract method 0x0ec3f5dc.
+//
+// Solidity: function getBudgetStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns(uint8)
+func (_ActivityBudgets *ActivityBudgetsSession) GetBudgetStatus(_activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte) (uint8, error) {
+	return _ActivityBudgets.Contract.GetBudgetStatus(&_ActivityBudgets.CallOpts, _activitiesRef, _activityRef, _budgetRef)
+}
+
+// GetBudgetStatus is a free data retrieval call binding the contract method 0x0ec3f5dc.
+//
+// Solidity: function getBudgetStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns(uint8)
+func (_ActivityBudgets *ActivityBudgetsCallerSession) GetBudgetStatus(_activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte) (uint8, error) {
+	return _ActivityBudgets.Contract.GetBudgetStatus(&_ActivityBudgets.CallOpts, _activitiesRef, _activityRef, _budgetRef)
+}
+
+// GetBudgetType is a free data retrieval call binding the contract method 0xa60cdf57.
+//
+// Solidity: function getBudgetType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns(uint8)
+func (_ActivityBudgets *ActivityBudgetsCaller) GetBudgetType(opts *bind.CallOpts, _activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte) (uint8, error) {
+	var (
+		ret0 = new(uint8)
+	)
+	out := ret0
+	err := _ActivityBudgets.contract.Call(opts, out, "getBudgetType", _activitiesRef, _activityRef, _budgetRef)
+	return *ret0, err
+}
+
+// GetBudgetType is a free data retrieval call binding the contract method 0xa60cdf57.
+//
+// Solidity: function getBudgetType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns(uint8)
+func (_ActivityBudgets *ActivityBudgetsSession) GetBudgetType(_activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte) (uint8, error) {
+	return _ActivityBudgets.Contract.GetBudgetType(&_ActivityBudgets.CallOpts, _activitiesRef, _activityRef, _budgetRef)
+}
+
+// GetBudgetType is a free data retrieval call binding the contract method 0xa60cdf57.
+//
+// Solidity: function getBudgetType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns(uint8)
+func (_ActivityBudgets *ActivityBudgetsCallerSession) GetBudgetType(_activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte) (uint8, error) {
+	return _ActivityBudgets.Contract.GetBudgetType(&_ActivityBudgets.CallOpts, _activitiesRef, _activityRef, _budgetRef)
+}
+
+// GetBudgetValue is a free data retrieval call binding the contract method 0x7a47d816.
+//
+// Solidity: function getBudgetValue(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns(uint256)
+func (_ActivityBudgets *ActivityBudgetsCaller) GetBudgetValue(opts *bind.CallOpts, _activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte) (*big.Int, error) {
+	var (
+		ret0 = new(*big.Int)
+	)
+	out := ret0
+	err := _ActivityBudgets.contract.Call(opts, out, "getBudgetValue", _activitiesRef, _activityRef, _budgetRef)
+	return *ret0, err
+}
+
+// GetBudgetValue is a free data retrieval call binding the contract method 0x7a47d816.
+//
+// Solidity: function getBudgetValue(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns(uint256)
+func (_ActivityBudgets *ActivityBudgetsSession) GetBudgetValue(_activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte) (*big.Int, error) {
+	return _ActivityBudgets.Contract.GetBudgetValue(&_ActivityBudgets.CallOpts, _activitiesRef, _activityRef, _budgetRef)
+}
+
+// GetBudgetValue is a free data retrieval call binding the contract method 0x7a47d816.
+//
+// Solidity: function getBudgetValue(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns(uint256)
+func (_ActivityBudgets *ActivityBudgetsCallerSession) GetBudgetValue(_activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte) (*big.Int, error) {
+	return _ActivityBudgets.Contract.GetBudgetValue(&_ActivityBudgets.CallOpts, _activitiesRef, _activityRef, _budgetRef)
+}
+
+// GetNum is a free data retrieval call binding the contract method 0x47cdae01.
+//
+// Solidity: function getNum(bytes32 _activitiesRef, bytes32 _activityRef) view returns(uint256)
+func (_ActivityBudgets *ActivityBudgetsCaller) GetNum(opts *bind.CallOpts, _activitiesRef [32]byte, _activityRef [32]byte) (*big.Int, error) {
+	var (
+		ret0 = new(*big.Int)
+	)
+	out := ret0
+	err := _ActivityBudgets.contract.Call(opts, out, "getNum", _activitiesRef, _activityRef)
+	return *ret0, err
+}
+
+// GetNum is a free data retrieval call binding the contract method 0x47cdae01.
+//
+// Solidity: function getNum(bytes32 _activitiesRef, bytes32 _activityRef) view returns(uint256)
+func (_ActivityBudgets *ActivityBudgetsSession) GetNum(_activitiesRef [32]byte, _activityRef [32]byte) (*big.Int, error) {
+	return _ActivityBudgets.Contract.GetNum(&_ActivityBudgets.CallOpts, _activitiesRef, _activityRef)
+}
+
+// GetNum is a free data retrieval call binding the contract method 0x47cdae01.
+//
+// Solidity: function getNum(bytes32 _activitiesRef, bytes32 _activityRef) view returns(uint256)
+func (_ActivityBudgets *ActivityBudgetsCallerSession) GetNum(_activitiesRef [32]byte, _activityRef [32]byte) (*big.Int, error) {
+	return _ActivityBudgets.Contract.GetNum(&_ActivityBudgets.CallOpts, _activitiesRef, _activityRef)
+}
+
+// GetReference is a free data retrieval call binding the contract method 0xeef67d78.
+//
+// Solidity: function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) view returns(bytes32)
+func (_ActivityBudgets *ActivityBudgetsCaller) GetReference(opts *bind.CallOpts, _activitiesRef [32]byte, _activityRef [32]byte, _index *big.Int) ([32]byte, error) {
+	var (
+		ret0 = new([32]byte)
+	)
+	out := ret0
+	err := _ActivityBudgets.contract.Call(opts, out, "getReference", _activitiesRef, _activityRef, _index)
+	return *ret0, err
+}
+
+// GetReference is a free data retrieval call binding the contract method 0xeef67d78.
+//
+// Solidity: function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) view returns(bytes32)
+func (_ActivityBudgets *ActivityBudgetsSession) GetReference(_activitiesRef [32]byte, _activityRef [32]byte, _index *big.Int) ([32]byte, error) {
+	return _ActivityBudgets.Contract.GetReference(&_ActivityBudgets.CallOpts, _activitiesRef, _activityRef, _index)
+}
+
+// GetReference is a free data retrieval call binding the contract method 0xeef67d78.
+//
+// Solidity: function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) view returns(bytes32)
+func (_ActivityBudgets *ActivityBudgetsCallerSession) GetReference(_activitiesRef [32]byte, _activityRef [32]byte, _index *big.Int) ([32]byte, error) {
+	return _ActivityBudgets.Contract.GetReference(&_ActivityBudgets.CallOpts, _activitiesRef, _activityRef, _index)
+}
+
+// SetBudget is a paid mutator transaction binding the contract method 0x2a5a247c.
+//
+// Solidity: function setBudget(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef, BudgetsBudget _budget) returns()
+func (_ActivityBudgets *ActivityBudgetsTransactor) SetBudget(opts *bind.TransactOpts, _activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte, _budget BudgetsBudget) (*types.Transaction, error) {
+	return _ActivityBudgets.contract.Transact(opts, "setBudget", _activitiesRef, _activityRef, _budgetRef, _budget)
+}
+
+// SetBudget is a paid mutator transaction binding the contract method 0x2a5a247c.
+//
+// Solidity: function setBudget(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef, BudgetsBudget _budget) returns()
+func (_ActivityBudgets *ActivityBudgetsSession) SetBudget(_activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte, _budget BudgetsBudget) (*types.Transaction, error) {
+	return _ActivityBudgets.Contract.SetBudget(&_ActivityBudgets.TransactOpts, _activitiesRef, _activityRef, _budgetRef, _budget)
+}
+
+// SetBudget is a paid mutator transaction binding the contract method 0x2a5a247c.
+//
+// Solidity: function setBudget(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef, BudgetsBudget _budget) returns()
+func (_ActivityBudgets *ActivityBudgetsTransactorSession) SetBudget(_activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte, _budget BudgetsBudget) (*types.Transaction, error) {
+	return _ActivityBudgets.Contract.SetBudget(&_ActivityBudgets.TransactOpts, _activitiesRef, _activityRef, _budgetRef, _budget)
 }
 
 // BudgetsABI is the input ABI used to generate the binding from.
@@ -621,6 +1008,410 @@ func (_Budgets *BudgetsFilterer) ParseSetBudget(log types.Log) (*BudgetsSetBudge
 	return event, nil
 }
 
+// IATIActivityBudgetsABI is the input ABI used to generate the binding from.
+const IATIActivityBudgetsABI = "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_budgets\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_activitiesRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_activityRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_budgetRef\",\"type\":\"bytes32\"}],\"name\":\"getBudget\",\"outputs\":[{\"components\":[{\"internalType\":\"uint8\",\"name\":\"budgetType\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"budgetLine\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"otherRef\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"uint8\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"start\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"end\",\"type\":\"bytes32\"}],\"internalType\":\"structBudgets.Finance\",\"name\":\"finance\",\"type\":\"tuple\"}],\"internalType\":\"structBudgets.Budget\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_activitiesRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_activityRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_budgetRef\",\"type\":\"bytes32\"}],\"name\":\"getBudgetEnd\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_activitiesRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_activityRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_budgetRef\",\"type\":\"bytes32\"}],\"name\":\"getBudgetStart\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_activitiesRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_activityRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_budgetRef\",\"type\":\"bytes32\"}],\"name\":\"getBudgetStatus\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_activitiesRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_activityRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_budgetRef\",\"type\":\"bytes32\"}],\"name\":\"getBudgetType\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_activitiesRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_activityRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_budgetRef\",\"type\":\"bytes32\"}],\"name\":\"getBudgetValue\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_activitiesRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_activityRef\",\"type\":\"bytes32\"}],\"name\":\"getNum\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_activitiesRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_activityRef\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"_index\",\"type\":\"uint256\"}],\"name\":\"getReference\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_activitiesRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_activityRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_budgetRef\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"uint8\",\"name\":\"budgetType\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"budgetLine\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"otherRef\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"uint8\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"start\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"end\",\"type\":\"bytes32\"}],\"internalType\":\"structBudgets.Finance\",\"name\":\"finance\",\"type\":\"tuple\"}],\"internalType\":\"structBudgets.Budget\",\"name\":\"_budget\",\"type\":\"tuple\"}],\"name\":\"setBudget\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]"
+
+// IATIActivityBudgetsFuncSigs maps the 4-byte function signature to its string representation.
+var IATIActivityBudgetsFuncSigs = map[string]string{
+	"2272411c": "getBudget(bytes32,bytes32,bytes32)",
+	"903be1ac": "getBudgetEnd(bytes32,bytes32,bytes32)",
+	"e7f49f2e": "getBudgetStart(bytes32,bytes32,bytes32)",
+	"0ec3f5dc": "getBudgetStatus(bytes32,bytes32,bytes32)",
+	"a60cdf57": "getBudgetType(bytes32,bytes32,bytes32)",
+	"7a47d816": "getBudgetValue(bytes32,bytes32,bytes32)",
+	"47cdae01": "getNum(bytes32,bytes32)",
+	"eef67d78": "getReference(bytes32,bytes32,uint256)",
+	"2a5a247c": "setBudget(bytes32,bytes32,bytes32,(uint8,bytes32,bytes32,(uint8,uint256,bytes32,bytes32)))",
+}
+
+// IATIActivityBudgetsBin is the compiled bytecode used for deploying new contracts.
+var IATIActivityBudgetsBin = "0x608060405234801561001057600080fd5b506040516108c73803806108c783398101604081905261002f91610067565b6001600160a01b03811661004257600080fd5b600080546001600160a01b0319166001600160a01b0392909216919091179055610095565b600060208284031215610078578081fd5b81516001600160a01b038116811461008e578182fd5b9392505050565b610823806100a46000396000f3fe608060405234801561001057600080fd5b50600436106100935760003560e01c80637a47d816116100665780637a47d81614610116578063903be1ac14610129578063a60cdf571461013c578063e7f49f2e1461014f578063eef67d781461016257610093565b80630ec3f5dc146100985780632272411c146100c15780632a5a247c146100e157806347cdae01146100f6575b600080fd5b6100ab6100a6366004610511565b610175565b6040516100b89190610733565b60405180910390f35b6100d46100cf366004610511565b610204565b6040516100b89190610725565b6100f46100ef36600461053c565b610291565b005b6101096101043660046104f0565b610300565b6040516100b8919061071c565b610109610124366004610511565b61038d565b610109610137366004610511565b610414565b6100ab61014a366004610511565b61042d565b61010961015d366004610511565b610446565b610109610170366004610603565b61045f565b600080546001600160a01b0316639541246c60065b8686866040518563ffffffff1660e01b81526004016101ac949392919061075c565b60206040518083038186803b1580156101c457600080fd5b505afa1580156101d8573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906101fc91906106ac565b949350505050565b61020c610478565b6000546001600160a01b03166366cf0ca960068686866040518563ffffffff1660e01b8152600401610241949392919061075c565b60e06040518083038186803b15801561025957600080fd5b505afa15801561026d573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906101fc9190610617565b6000546001600160a01b031663f1e527796006868686866040518663ffffffff1660e01b81526004016102c895949392919061077c565b600060405180830381600087803b1580156102e257600080fd5b505af11580156102f6573d6000803e3d6000fd5b5050505050505050565b600080546001600160a01b031663366b6701600685856040518463ffffffff1660e01b815260040161033493929190610741565b60206040518083038186803b15801561034c57600080fd5b505afa158015610360573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061038491906104d8565b90505b92915050565b600080546001600160a01b031663c3bc348260065b8686866040518563ffffffff1660e01b81526004016103c4949392919061075c565b60206040518083038186803b1580156103dc57600080fd5b505afa1580156103f0573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906101fc91906104d8565b600080546001600160a01b031663193a4c6c60066103a2565b600080546001600160a01b03166398530d3b600661018a565b600080546001600160a01b0316634b917df560066103a2565b600080546001600160a01b0316636be5d01360066103a2565b6040805160808101825260008082526020820181905291810191909152606081016104a16104a6565b905290565b60408051608081018252600080825260208201819052918101829052606081019190915290565b8051610387816107db565b6000602082840312156104e9578081fd5b5051919050565b60008060408385031215610502578081fd5b50508035926020909101359150565b600080600060608486031215610525578081fd5b505081359360208301359350604090920135919050565b600080600080848603610140811215610553578182fd5b85359450602086013593506040860135925060e0605f1982011215610576578182fd5b61058060806107b4565b606087013561058e816107db565b8152608087810135602083015260a0880135604083015260bf19830112156105b4578283fd5b6105be60806107b4565b915060c08701356105ce816107db565b825260e08701356020830152610100870135604083015261012090960135606080830191909152860152509194909350909190565b600080600060608486031215610525578283fd5b600081830360e0811215610629578182fd5b61063360806107b4565b835161063e816107db565b815260208481015190820152604080850151908201526080605f1983011215610665578283fd5b61066f60806107b4565b915061067e85606086016104cd565b82526080840151602083015260a0840151604083015260c09093015160608083019190915283015250919050565b6000602082840312156106bd578081fd5b81516106c8816107db565b9392505050565b60ff81511682526020810151602083015260408101516040830152606081015160ff815116606084015260208101516080840152604081015160a0840152606081015160c0840152505050565b90815260200190565b60e0810161038782846106cf565b60ff91909116815260200190565b60ff9390931683526020830191909152604082015260600190565b60ff94909416845260208401929092526040830152606082015260800190565b60006101608201905060ff871682528560208301528460408301528360608301526107aa60808301846106cf565b9695505050505050565b60405181810167ffffffffffffffff811182821017156107d357600080fd5b604052919050565b60ff811681146107ea57600080fd5b5056fea26469706673582212203f8be35fd0934430a7c84ad604e2980c2625b2df11ca45e5dac8b977d6f3015864736f6c63430006060033"
+
+// DeployIATIActivityBudgets deploys a new Ethereum contract, binding an instance of IATIActivityBudgets to it.
+func DeployIATIActivityBudgets(auth *bind.TransactOpts, backend bind.ContractBackend, _budgets common.Address) (common.Address, *types.Transaction, *IATIActivityBudgets, error) {
+	parsed, err := abi.JSON(strings.NewReader(IATIActivityBudgetsABI))
+	if err != nil {
+		return common.Address{}, nil, nil, err
+	}
+
+	address, tx, contract, err := bind.DeployContract(auth, parsed, common.FromHex(IATIActivityBudgetsBin), backend, _budgets)
+	if err != nil {
+		return common.Address{}, nil, nil, err
+	}
+	return address, tx, &IATIActivityBudgets{IATIActivityBudgetsCaller: IATIActivityBudgetsCaller{contract: contract}, IATIActivityBudgetsTransactor: IATIActivityBudgetsTransactor{contract: contract}, IATIActivityBudgetsFilterer: IATIActivityBudgetsFilterer{contract: contract}}, nil
+}
+
+// IATIActivityBudgets is an auto generated Go binding around an Ethereum contract.
+type IATIActivityBudgets struct {
+	IATIActivityBudgetsCaller     // Read-only binding to the contract
+	IATIActivityBudgetsTransactor // Write-only binding to the contract
+	IATIActivityBudgetsFilterer   // Log filterer for contract events
+}
+
+// IATIActivityBudgetsCaller is an auto generated read-only Go binding around an Ethereum contract.
+type IATIActivityBudgetsCaller struct {
+	contract *bind.BoundContract // Generic contract wrapper for the low level calls
+}
+
+// IATIActivityBudgetsTransactor is an auto generated write-only Go binding around an Ethereum contract.
+type IATIActivityBudgetsTransactor struct {
+	contract *bind.BoundContract // Generic contract wrapper for the low level calls
+}
+
+// IATIActivityBudgetsFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
+type IATIActivityBudgetsFilterer struct {
+	contract *bind.BoundContract // Generic contract wrapper for the low level calls
+}
+
+// IATIActivityBudgetsSession is an auto generated Go binding around an Ethereum contract,
+// with pre-set call and transact options.
+type IATIActivityBudgetsSession struct {
+	Contract     *IATIActivityBudgets // Generic contract binding to set the session for
+	CallOpts     bind.CallOpts        // Call options to use throughout this session
+	TransactOpts bind.TransactOpts    // Transaction auth options to use throughout this session
+}
+
+// IATIActivityBudgetsCallerSession is an auto generated read-only Go binding around an Ethereum contract,
+// with pre-set call options.
+type IATIActivityBudgetsCallerSession struct {
+	Contract *IATIActivityBudgetsCaller // Generic contract caller binding to set the session for
+	CallOpts bind.CallOpts              // Call options to use throughout this session
+}
+
+// IATIActivityBudgetsTransactorSession is an auto generated write-only Go binding around an Ethereum contract,
+// with pre-set transact options.
+type IATIActivityBudgetsTransactorSession struct {
+	Contract     *IATIActivityBudgetsTransactor // Generic contract transactor binding to set the session for
+	TransactOpts bind.TransactOpts              // Transaction auth options to use throughout this session
+}
+
+// IATIActivityBudgetsRaw is an auto generated low-level Go binding around an Ethereum contract.
+type IATIActivityBudgetsRaw struct {
+	Contract *IATIActivityBudgets // Generic contract binding to access the raw methods on
+}
+
+// IATIActivityBudgetsCallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
+type IATIActivityBudgetsCallerRaw struct {
+	Contract *IATIActivityBudgetsCaller // Generic read-only contract binding to access the raw methods on
+}
+
+// IATIActivityBudgetsTransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
+type IATIActivityBudgetsTransactorRaw struct {
+	Contract *IATIActivityBudgetsTransactor // Generic write-only contract binding to access the raw methods on
+}
+
+// NewIATIActivityBudgets creates a new instance of IATIActivityBudgets, bound to a specific deployed contract.
+func NewIATIActivityBudgets(address common.Address, backend bind.ContractBackend) (*IATIActivityBudgets, error) {
+	contract, err := bindIATIActivityBudgets(address, backend, backend, backend)
+	if err != nil {
+		return nil, err
+	}
+	return &IATIActivityBudgets{IATIActivityBudgetsCaller: IATIActivityBudgetsCaller{contract: contract}, IATIActivityBudgetsTransactor: IATIActivityBudgetsTransactor{contract: contract}, IATIActivityBudgetsFilterer: IATIActivityBudgetsFilterer{contract: contract}}, nil
+}
+
+// NewIATIActivityBudgetsCaller creates a new read-only instance of IATIActivityBudgets, bound to a specific deployed contract.
+func NewIATIActivityBudgetsCaller(address common.Address, caller bind.ContractCaller) (*IATIActivityBudgetsCaller, error) {
+	contract, err := bindIATIActivityBudgets(address, caller, nil, nil)
+	if err != nil {
+		return nil, err
+	}
+	return &IATIActivityBudgetsCaller{contract: contract}, nil
+}
+
+// NewIATIActivityBudgetsTransactor creates a new write-only instance of IATIActivityBudgets, bound to a specific deployed contract.
+func NewIATIActivityBudgetsTransactor(address common.Address, transactor bind.ContractTransactor) (*IATIActivityBudgetsTransactor, error) {
+	contract, err := bindIATIActivityBudgets(address, nil, transactor, nil)
+	if err != nil {
+		return nil, err
+	}
+	return &IATIActivityBudgetsTransactor{contract: contract}, nil
+}
+
+// NewIATIActivityBudgetsFilterer creates a new log filterer instance of IATIActivityBudgets, bound to a specific deployed contract.
+func NewIATIActivityBudgetsFilterer(address common.Address, filterer bind.ContractFilterer) (*IATIActivityBudgetsFilterer, error) {
+	contract, err := bindIATIActivityBudgets(address, nil, nil, filterer)
+	if err != nil {
+		return nil, err
+	}
+	return &IATIActivityBudgetsFilterer{contract: contract}, nil
+}
+
+// bindIATIActivityBudgets binds a generic wrapper to an already deployed contract.
+func bindIATIActivityBudgets(address common.Address, caller bind.ContractCaller, transactor bind.ContractTransactor, filterer bind.ContractFilterer) (*bind.BoundContract, error) {
+	parsed, err := abi.JSON(strings.NewReader(IATIActivityBudgetsABI))
+	if err != nil {
+		return nil, err
+	}
+	return bind.NewBoundContract(address, parsed, caller, transactor, filterer), nil
+}
+
+// Call invokes the (constant) contract method with params as input values and
+// sets the output to result. The result type might be a single field for simple
+// returns, a slice of interfaces for anonymous returns and a struct for named
+// returns.
+func (_IATIActivityBudgets *IATIActivityBudgetsRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+	return _IATIActivityBudgets.Contract.IATIActivityBudgetsCaller.contract.Call(opts, result, method, params...)
+}
+
+// Transfer initiates a plain transaction to move funds to the contract, calling
+// its default method if one is available.
+func (_IATIActivityBudgets *IATIActivityBudgetsRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _IATIActivityBudgets.Contract.IATIActivityBudgetsTransactor.contract.Transfer(opts)
+}
+
+// Transact invokes the (paid) contract method with params as input values.
+func (_IATIActivityBudgets *IATIActivityBudgetsRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _IATIActivityBudgets.Contract.IATIActivityBudgetsTransactor.contract.Transact(opts, method, params...)
+}
+
+// Call invokes the (constant) contract method with params as input values and
+// sets the output to result. The result type might be a single field for simple
+// returns, a slice of interfaces for anonymous returns and a struct for named
+// returns.
+func (_IATIActivityBudgets *IATIActivityBudgetsCallerRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+	return _IATIActivityBudgets.Contract.contract.Call(opts, result, method, params...)
+}
+
+// Transfer initiates a plain transaction to move funds to the contract, calling
+// its default method if one is available.
+func (_IATIActivityBudgets *IATIActivityBudgetsTransactorRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _IATIActivityBudgets.Contract.contract.Transfer(opts)
+}
+
+// Transact invokes the (paid) contract method with params as input values.
+func (_IATIActivityBudgets *IATIActivityBudgetsTransactorRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _IATIActivityBudgets.Contract.contract.Transact(opts, method, params...)
+}
+
+// GetBudget is a free data retrieval call binding the contract method 0x2272411c.
+//
+// Solidity: function getBudget(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns(BudgetsBudget)
+func (_IATIActivityBudgets *IATIActivityBudgetsCaller) GetBudget(opts *bind.CallOpts, _activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte) (BudgetsBudget, error) {
+	var (
+		ret0 = new(BudgetsBudget)
+	)
+	out := ret0
+	err := _IATIActivityBudgets.contract.Call(opts, out, "getBudget", _activitiesRef, _activityRef, _budgetRef)
+	return *ret0, err
+}
+
+// GetBudget is a free data retrieval call binding the contract method 0x2272411c.
+//
+// Solidity: function getBudget(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns(BudgetsBudget)
+func (_IATIActivityBudgets *IATIActivityBudgetsSession) GetBudget(_activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte) (BudgetsBudget, error) {
+	return _IATIActivityBudgets.Contract.GetBudget(&_IATIActivityBudgets.CallOpts, _activitiesRef, _activityRef, _budgetRef)
+}
+
+// GetBudget is a free data retrieval call binding the contract method 0x2272411c.
+//
+// Solidity: function getBudget(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns(BudgetsBudget)
+func (_IATIActivityBudgets *IATIActivityBudgetsCallerSession) GetBudget(_activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte) (BudgetsBudget, error) {
+	return _IATIActivityBudgets.Contract.GetBudget(&_IATIActivityBudgets.CallOpts, _activitiesRef, _activityRef, _budgetRef)
+}
+
+// GetBudgetEnd is a free data retrieval call binding the contract method 0x903be1ac.
+//
+// Solidity: function getBudgetEnd(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns(bytes32)
+func (_IATIActivityBudgets *IATIActivityBudgetsCaller) GetBudgetEnd(opts *bind.CallOpts, _activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte) ([32]byte, error) {
+	var (
+		ret0 = new([32]byte)
+	)
+	out := ret0
+	err := _IATIActivityBudgets.contract.Call(opts, out, "getBudgetEnd", _activitiesRef, _activityRef, _budgetRef)
+	return *ret0, err
+}
+
+// GetBudgetEnd is a free data retrieval call binding the contract method 0x903be1ac.
+//
+// Solidity: function getBudgetEnd(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns(bytes32)
+func (_IATIActivityBudgets *IATIActivityBudgetsSession) GetBudgetEnd(_activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte) ([32]byte, error) {
+	return _IATIActivityBudgets.Contract.GetBudgetEnd(&_IATIActivityBudgets.CallOpts, _activitiesRef, _activityRef, _budgetRef)
+}
+
+// GetBudgetEnd is a free data retrieval call binding the contract method 0x903be1ac.
+//
+// Solidity: function getBudgetEnd(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns(bytes32)
+func (_IATIActivityBudgets *IATIActivityBudgetsCallerSession) GetBudgetEnd(_activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte) ([32]byte, error) {
+	return _IATIActivityBudgets.Contract.GetBudgetEnd(&_IATIActivityBudgets.CallOpts, _activitiesRef, _activityRef, _budgetRef)
+}
+
+// GetBudgetStart is a free data retrieval call binding the contract method 0xe7f49f2e.
+//
+// Solidity: function getBudgetStart(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns(bytes32)
+func (_IATIActivityBudgets *IATIActivityBudgetsCaller) GetBudgetStart(opts *bind.CallOpts, _activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte) ([32]byte, error) {
+	var (
+		ret0 = new([32]byte)
+	)
+	out := ret0
+	err := _IATIActivityBudgets.contract.Call(opts, out, "getBudgetStart", _activitiesRef, _activityRef, _budgetRef)
+	return *ret0, err
+}
+
+// GetBudgetStart is a free data retrieval call binding the contract method 0xe7f49f2e.
+//
+// Solidity: function getBudgetStart(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns(bytes32)
+func (_IATIActivityBudgets *IATIActivityBudgetsSession) GetBudgetStart(_activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte) ([32]byte, error) {
+	return _IATIActivityBudgets.Contract.GetBudgetStart(&_IATIActivityBudgets.CallOpts, _activitiesRef, _activityRef, _budgetRef)
+}
+
+// GetBudgetStart is a free data retrieval call binding the contract method 0xe7f49f2e.
+//
+// Solidity: function getBudgetStart(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns(bytes32)
+func (_IATIActivityBudgets *IATIActivityBudgetsCallerSession) GetBudgetStart(_activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte) ([32]byte, error) {
+	return _IATIActivityBudgets.Contract.GetBudgetStart(&_IATIActivityBudgets.CallOpts, _activitiesRef, _activityRef, _budgetRef)
+}
+
+// GetBudgetStatus is a free data retrieval call binding the contract method 0x0ec3f5dc.
+//
+// Solidity: function getBudgetStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns(uint8)
+func (_IATIActivityBudgets *IATIActivityBudgetsCaller) GetBudgetStatus(opts *bind.CallOpts, _activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte) (uint8, error) {
+	var (
+		ret0 = new(uint8)
+	)
+	out := ret0
+	err := _IATIActivityBudgets.contract.Call(opts, out, "getBudgetStatus", _activitiesRef, _activityRef, _budgetRef)
+	return *ret0, err
+}
+
+// GetBudgetStatus is a free data retrieval call binding the contract method 0x0ec3f5dc.
+//
+// Solidity: function getBudgetStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns(uint8)
+func (_IATIActivityBudgets *IATIActivityBudgetsSession) GetBudgetStatus(_activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte) (uint8, error) {
+	return _IATIActivityBudgets.Contract.GetBudgetStatus(&_IATIActivityBudgets.CallOpts, _activitiesRef, _activityRef, _budgetRef)
+}
+
+// GetBudgetStatus is a free data retrieval call binding the contract method 0x0ec3f5dc.
+//
+// Solidity: function getBudgetStatus(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns(uint8)
+func (_IATIActivityBudgets *IATIActivityBudgetsCallerSession) GetBudgetStatus(_activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte) (uint8, error) {
+	return _IATIActivityBudgets.Contract.GetBudgetStatus(&_IATIActivityBudgets.CallOpts, _activitiesRef, _activityRef, _budgetRef)
+}
+
+// GetBudgetType is a free data retrieval call binding the contract method 0xa60cdf57.
+//
+// Solidity: function getBudgetType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns(uint8)
+func (_IATIActivityBudgets *IATIActivityBudgetsCaller) GetBudgetType(opts *bind.CallOpts, _activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte) (uint8, error) {
+	var (
+		ret0 = new(uint8)
+	)
+	out := ret0
+	err := _IATIActivityBudgets.contract.Call(opts, out, "getBudgetType", _activitiesRef, _activityRef, _budgetRef)
+	return *ret0, err
+}
+
+// GetBudgetType is a free data retrieval call binding the contract method 0xa60cdf57.
+//
+// Solidity: function getBudgetType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns(uint8)
+func (_IATIActivityBudgets *IATIActivityBudgetsSession) GetBudgetType(_activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte) (uint8, error) {
+	return _IATIActivityBudgets.Contract.GetBudgetType(&_IATIActivityBudgets.CallOpts, _activitiesRef, _activityRef, _budgetRef)
+}
+
+// GetBudgetType is a free data retrieval call binding the contract method 0xa60cdf57.
+//
+// Solidity: function getBudgetType(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns(uint8)
+func (_IATIActivityBudgets *IATIActivityBudgetsCallerSession) GetBudgetType(_activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte) (uint8, error) {
+	return _IATIActivityBudgets.Contract.GetBudgetType(&_IATIActivityBudgets.CallOpts, _activitiesRef, _activityRef, _budgetRef)
+}
+
+// GetBudgetValue is a free data retrieval call binding the contract method 0x7a47d816.
+//
+// Solidity: function getBudgetValue(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns(uint256)
+func (_IATIActivityBudgets *IATIActivityBudgetsCaller) GetBudgetValue(opts *bind.CallOpts, _activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte) (*big.Int, error) {
+	var (
+		ret0 = new(*big.Int)
+	)
+	out := ret0
+	err := _IATIActivityBudgets.contract.Call(opts, out, "getBudgetValue", _activitiesRef, _activityRef, _budgetRef)
+	return *ret0, err
+}
+
+// GetBudgetValue is a free data retrieval call binding the contract method 0x7a47d816.
+//
+// Solidity: function getBudgetValue(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns(uint256)
+func (_IATIActivityBudgets *IATIActivityBudgetsSession) GetBudgetValue(_activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte) (*big.Int, error) {
+	return _IATIActivityBudgets.Contract.GetBudgetValue(&_IATIActivityBudgets.CallOpts, _activitiesRef, _activityRef, _budgetRef)
+}
+
+// GetBudgetValue is a free data retrieval call binding the contract method 0x7a47d816.
+//
+// Solidity: function getBudgetValue(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef) view returns(uint256)
+func (_IATIActivityBudgets *IATIActivityBudgetsCallerSession) GetBudgetValue(_activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte) (*big.Int, error) {
+	return _IATIActivityBudgets.Contract.GetBudgetValue(&_IATIActivityBudgets.CallOpts, _activitiesRef, _activityRef, _budgetRef)
+}
+
+// GetNum is a free data retrieval call binding the contract method 0x47cdae01.
+//
+// Solidity: function getNum(bytes32 _activitiesRef, bytes32 _activityRef) view returns(uint256)
+func (_IATIActivityBudgets *IATIActivityBudgetsCaller) GetNum(opts *bind.CallOpts, _activitiesRef [32]byte, _activityRef [32]byte) (*big.Int, error) {
+	var (
+		ret0 = new(*big.Int)
+	)
+	out := ret0
+	err := _IATIActivityBudgets.contract.Call(opts, out, "getNum", _activitiesRef, _activityRef)
+	return *ret0, err
+}
+
+// GetNum is a free data retrieval call binding the contract method 0x47cdae01.
+//
+// Solidity: function getNum(bytes32 _activitiesRef, bytes32 _activityRef) view returns(uint256)
+func (_IATIActivityBudgets *IATIActivityBudgetsSession) GetNum(_activitiesRef [32]byte, _activityRef [32]byte) (*big.Int, error) {
+	return _IATIActivityBudgets.Contract.GetNum(&_IATIActivityBudgets.CallOpts, _activitiesRef, _activityRef)
+}
+
+// GetNum is a free data retrieval call binding the contract method 0x47cdae01.
+//
+// Solidity: function getNum(bytes32 _activitiesRef, bytes32 _activityRef) view returns(uint256)
+func (_IATIActivityBudgets *IATIActivityBudgetsCallerSession) GetNum(_activitiesRef [32]byte, _activityRef [32]byte) (*big.Int, error) {
+	return _IATIActivityBudgets.Contract.GetNum(&_IATIActivityBudgets.CallOpts, _activitiesRef, _activityRef)
+}
+
+// GetReference is a free data retrieval call binding the contract method 0xeef67d78.
+//
+// Solidity: function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) view returns(bytes32)
+func (_IATIActivityBudgets *IATIActivityBudgetsCaller) GetReference(opts *bind.CallOpts, _activitiesRef [32]byte, _activityRef [32]byte, _index *big.Int) ([32]byte, error) {
+	var (
+		ret0 = new([32]byte)
+	)
+	out := ret0
+	err := _IATIActivityBudgets.contract.Call(opts, out, "getReference", _activitiesRef, _activityRef, _index)
+	return *ret0, err
+}
+
+// GetReference is a free data retrieval call binding the contract method 0xeef67d78.
+//
+// Solidity: function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) view returns(bytes32)
+func (_IATIActivityBudgets *IATIActivityBudgetsSession) GetReference(_activitiesRef [32]byte, _activityRef [32]byte, _index *big.Int) ([32]byte, error) {
+	return _IATIActivityBudgets.Contract.GetReference(&_IATIActivityBudgets.CallOpts, _activitiesRef, _activityRef, _index)
+}
+
+// GetReference is a free data retrieval call binding the contract method 0xeef67d78.
+//
+// Solidity: function getReference(bytes32 _activitiesRef, bytes32 _activityRef, uint256 _index) view returns(bytes32)
+func (_IATIActivityBudgets *IATIActivityBudgetsCallerSession) GetReference(_activitiesRef [32]byte, _activityRef [32]byte, _index *big.Int) ([32]byte, error) {
+	return _IATIActivityBudgets.Contract.GetReference(&_IATIActivityBudgets.CallOpts, _activitiesRef, _activityRef, _index)
+}
+
+// SetBudget is a paid mutator transaction binding the contract method 0x2a5a247c.
+//
+// Solidity: function setBudget(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef, BudgetsBudget _budget) returns()
+func (_IATIActivityBudgets *IATIActivityBudgetsTransactor) SetBudget(opts *bind.TransactOpts, _activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte, _budget BudgetsBudget) (*types.Transaction, error) {
+	return _IATIActivityBudgets.contract.Transact(opts, "setBudget", _activitiesRef, _activityRef, _budgetRef, _budget)
+}
+
+// SetBudget is a paid mutator transaction binding the contract method 0x2a5a247c.
+//
+// Solidity: function setBudget(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef, BudgetsBudget _budget) returns()
+func (_IATIActivityBudgets *IATIActivityBudgetsSession) SetBudget(_activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte, _budget BudgetsBudget) (*types.Transaction, error) {
+	return _IATIActivityBudgets.Contract.SetBudget(&_IATIActivityBudgets.TransactOpts, _activitiesRef, _activityRef, _budgetRef, _budget)
+}
+
+// SetBudget is a paid mutator transaction binding the contract method 0x2a5a247c.
+//
+// Solidity: function setBudget(bytes32 _activitiesRef, bytes32 _activityRef, bytes32 _budgetRef, BudgetsBudget _budget) returns()
+func (_IATIActivityBudgets *IATIActivityBudgetsTransactorSession) SetBudget(_activitiesRef [32]byte, _activityRef [32]byte, _budgetRef [32]byte, _budget BudgetsBudget) (*types.Transaction, error) {
+	return _IATIActivityBudgets.Contract.SetBudget(&_IATIActivityBudgets.TransactOpts, _activitiesRef, _activityRef, _budgetRef, _budget)
+}
+
 // IATIBudgetsABI is the input ABI used to generate the binding from.
 const IATIBudgetsABI = "[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"_owner\",\"type\":\"uint8\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"_firstRef\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"_secondRef\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"_budgetRef\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"uint8\",\"name\":\"budgetType\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"budgetLine\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"otherRef\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"uint8\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"start\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"end\",\"type\":\"bytes32\"}],\"internalType\":\"structBudgets.Finance\",\"name\":\"finance\",\"type\":\"tuple\"}],\"indexed\":false,\"internalType\":\"structBudgets.Budget\",\"name\":\"_budget\",\"type\":\"tuple\"}],\"name\":\"SetBudget\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint8\",\"name\":\"_owner\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"_firstRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_secondRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_budgetRef\",\"type\":\"bytes32\"}],\"name\":\"getBudget\",\"outputs\":[{\"components\":[{\"internalType\":\"uint8\",\"name\":\"budgetType\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"budgetLine\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"otherRef\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"uint8\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"start\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"end\",\"type\":\"bytes32\"}],\"internalType\":\"structBudgets.Finance\",\"name\":\"finance\",\"type\":\"tuple\"}],\"internalType\":\"structBudgets.Budget\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint8\",\"name\":\"_owner\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"_firstRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_secondRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_budgetRef\",\"type\":\"bytes32\"}],\"name\":\"getBudgetEnd\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint8\",\"name\":\"_owner\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"_firstRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_secondRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_budgetRef\",\"type\":\"bytes32\"}],\"name\":\"getBudgetLine\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint8\",\"name\":\"_owner\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"_firstRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_secondRef\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"_index\",\"type\":\"uint256\"}],\"name\":\"getBudgetReference\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint8\",\"name\":\"_owner\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"_firstRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_secondRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_budgetRef\",\"type\":\"bytes32\"}],\"name\":\"getBudgetStart\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint8\",\"name\":\"_owner\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"_firstRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_secondRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_budgetRef\",\"type\":\"bytes32\"}],\"name\":\"getBudgetStatus\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint8\",\"name\":\"_owner\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"_firstRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_secondRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_budgetRef\",\"type\":\"bytes32\"}],\"name\":\"getBudgetType\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint8\",\"name\":\"_owner\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"_firstRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_secondRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_budgetRef\",\"type\":\"bytes32\"}],\"name\":\"getBudgetValue\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint8\",\"name\":\"_owner\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"_firstRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_secondRef\",\"type\":\"bytes32\"}],\"name\":\"getNumBudgets\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint8\",\"name\":\"_owner\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"_firstRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_secondRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_budgetRef\",\"type\":\"bytes32\"}],\"name\":\"getOtherRef\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint8\",\"name\":\"_owner\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"_firstRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_secondRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_budgetRef\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"uint8\",\"name\":\"budgetType\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"budgetLine\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"otherRef\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"uint8\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"start\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"end\",\"type\":\"bytes32\"}],\"internalType\":\"structBudgets.Finance\",\"name\":\"finance\",\"type\":\"tuple\"}],\"internalType\":\"structBudgets.Budget\",\"name\":\"_budget\",\"type\":\"tuple\"}],\"name\":\"setBudget\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]"
 
@@ -640,7 +1431,7 @@ var IATIBudgetsFuncSigs = map[string]string{
 }
 
 // IATIBudgetsBin is the compiled bytecode used for deploying new contracts.
-var IATIBudgetsBin = "0x608060405234801561001057600080fd5b50610e7e806100206000396000f3fe608060405234801561001057600080fd5b50600436106100a95760003560e01c80636be5d013116100715780636be5d01314610130578063736d5735146101435780639541246c1461015657806398530d3b14610176578063c3bc348214610189578063f1e527791461019c576100a9565b8063193a4c6c146100ae578063366b6701146100d75780634b917df5146100ea57806354755d3f146100fd57806366cf0ca914610110575b600080fd5b6100c16100bc366004610bee565b6101b1565b6040516100ce9190610d62565b60405180910390f35b6100c16100e5366004610bbb565b61025b565b6100c16100f8366004610bee565b6102dd565b6100c161010b366004610bee565b610387565b61012361011e366004610bee565b61042f565b6040516100ce9190610dbb565b6100c161013e366004610d00565b610534565b6100c1610151366004610bee565b6105fc565b610169610164366004610bee565b6106a6565b6040516100ce9190610dc9565b610169610184366004610bee565b61074e565b6100c1610197366004610bee565b6107f3565b6101af6101aa366004610c28565b61089d565b005b600060ff8516158015906101c85750600760ff8616105b80156101e357508360001a60f81b6001600160f81b03191615155b80156101fe57508260001a60f81b6001600160f81b03191615155b801561021957508160001a60f81b6001600160f81b03191615155b61022257600080fd5b5060ff93909316600090815260016020908152604080832094835293815283822092825291825282812093815292905290206006015490565b600060ff8416158015906102725750600760ff8516105b801561028d57508260001a60f81b6001600160f81b03191615155b80156102a857508160001a60f81b6001600160f81b03191615155b6102b157600080fd5b5060ff831660009081526020818152604080832085845282528083208484529091529020549392505050565b600060ff8516158015906102f45750600760ff8616105b801561030f57508360001a60f81b6001600160f81b03191615155b801561032a57508260001a60f81b6001600160f81b03191615155b801561034557508160001a60f81b6001600160f81b03191615155b61034e57600080fd5b5060ff93909316600090815260016020908152604080832094835293815283822092825291825282812093815292905290206005015490565b600060ff85161580159061039e5750600760ff8616105b80156103b957508360001a60f81b6001600160f81b03191615155b80156103d457508260001a60f81b6001600160f81b03191615155b80156103ef57508160001a60f81b6001600160f81b03191615155b6103f857600080fd5b5060ff9390931660009081526001602081815260408084209584529481528483209383529283528382209482529390915220015490565b610437610b28565b60ff85161580159061044c5750600760ff8616105b801561046757508360001a60f81b6001600160f81b03191615155b801561048257508260001a60f81b6001600160f81b03191615155b801561049d57508160001a60f81b6001600160f81b03191615155b6104a657600080fd5b5060ff9384166000908152600160208181526040808420968452958152858320948352938452848220928252918352839020835160808082018652825487168252928201548185015260028201548186015284519283018552600382015490951682526004810154928201929092526005820154928101929092526006015460608083019190915282015290565b600060ff85161580159061054b5750600760ff8616105b801561056657508360001a60f81b6001600160f81b03191615155b801561058157508260001a60f81b6001600160f81b03191615155b80156105af575060ff8516600090815260208181526040808320878452825280832086845290915290205482105b6105b857600080fd5b60ff8516600090815260208181526040808320878452825280832086845290915290208054839081106105e757fe5b90600052602060002001549050949350505050565b600060ff8516158015906106135750600760ff8616105b801561062e57508360001a60f81b6001600160f81b03191615155b801561064957508260001a60f81b6001600160f81b03191615155b801561066457508160001a60f81b6001600160f81b03191615155b61066d57600080fd5b5060ff93909316600090815260016020908152604080832094835293815283822092825291825282812093815292905290206002015490565b600060ff8516158015906106bd5750600760ff8616105b80156106d857508360001a60f81b6001600160f81b03191615155b80156106f357508260001a60f81b6001600160f81b03191615155b801561070e57508160001a60f81b6001600160f81b03191615155b61071757600080fd5b5060ff9384166000908152600160209081526040808320958352948152848220938252928352838120918152915220600301541690565b600060ff8516158015906107655750600760ff8616105b801561078057508360001a60f81b6001600160f81b03191615155b801561079b57508260001a60f81b6001600160f81b03191615155b80156107b657508160001a60f81b6001600160f81b03191615155b6107bf57600080fd5b5060ff9384166000908152600160209081526040808320958352948152848220938252928352838120918152915220541690565b600060ff85161580159061080a5750600760ff8616105b801561082557508360001a60f81b6001600160f81b03191615155b801561084057508260001a60f81b6001600160f81b03191615155b801561085b57508160001a60f81b6001600160f81b03191615155b61086457600080fd5b5060ff93909316600090815260016020908152604080832094835293815283822092825291825282812093815292905290206004015490565b60ff8516158015906108b25750600760ff8616105b80156108cd57508360001a60f81b6001600160f81b03191615155b80156108e857508260001a60f81b6001600160f81b03191615155b801561090357508160001a60f81b6001600160f81b03191615155b8015610916575060608101515160ff1615155b801561092c5750606081015151600360ff909116105b801561094f575060608101516040015160001a60f81b6001600160f81b03191615155b80156109715750606080820151015160001a60f81b6001600160f81b03191615155b61097a57600080fd5b60ff80861660008181526001602081815260408084208a85528252808420898552825280842088855282528084208751815490881660ff199182161782558389015194820194909455818801516002820155606080890151805160038401805491909a169616959095179097558383015160048083019190915584830151600583015593909601516006909601959095559282528183528382208883528352838220878352909252829020915163745fca7b60e01b815273__$b620240993a55615b607189176fb82e62f$__9263745fca7b92610a5a9287929101610d6b565b60206040518083038186803b158015610a7257600080fd5b505af4158015610a86573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610aaa9190610b94565b610ae25760ff851660009081526020818152604080832087845282528083208684528252822080546001810182559083529120018290555b7f3a40e9aa34bf78f77f9b1617948f31ae91db81766f528296cc71aa7addab6e7c8585858585604051610b19959493929190610dd7565b60405180910390a15050505050565b604080516080810182526000808252602082018190529181019190915260608101610b51610b56565b905290565b60408051608081018252600080825260208201819052918101829052606081019190915290565b803560ff81168114610b8e57600080fd5b92915050565b600060208284031215610ba5578081fd5b81518015158114610bb4578182fd5b9392505050565b600080600060608486031215610bcf578182fd5b610bd98585610b7d565b95602085013595506040909401359392505050565b60008060008060808587031215610c03578081fd5b8435610c0e81610e36565b966020860135965060408601359560600135945092505050565b6000806000806000858703610160811215610c41578182fd5b8635610c4c81610e36565b955060208701359450604087013593506060870135925060e0607f1982011215610c74578182fd5b610c7e6080610e0f565b610c8b8960808a01610b7d565b815260a0880135602082015260c08801356040820152608060df1983011215610cb2578283fd5b610cbc6080610e0f565b9150610ccb8960e08a01610b7d565b825261010088013560208301526101208801356040830152610140909701356060808301919091528701525092959194509290565b60008060008060808587031215610c03578384fd5b60ff81511682526020810151602083015260408101516040830152606081015160ff815116606084015260208101516080840152604081015160a0840152606081015160c0840152505050565b90815260200190565b60006040820184835260206040818501528185548084526060860191508685528285209350845b81811015610dae57845483526001948501949284019201610d92565b5090979650505050505050565b60e08101610b8e8284610d15565b60ff91909116815260200190565b60006101608201905060ff87168252856020830152846040830152836060830152610e056080830184610d15565b9695505050505050565b60405181810167ffffffffffffffff81118282101715610e2e57600080fd5b604052919050565b60ff81168114610e4557600080fd5b5056fea2646970667358221220e28750147182d0e94db906ef5af67662d93c220a2f14a59e23480f809eaf996464736f6c63430006060033"
+var IATIBudgetsBin = "0x608060405234801561001057600080fd5b50610e7d806100206000396000f3fe608060405234801561001057600080fd5b50600436106100a95760003560e01c80636be5d013116100715780636be5d01314610130578063736d5735146101435780639541246c1461015657806398530d3b14610176578063c3bc348214610189578063f1e527791461019c576100a9565b8063193a4c6c146100ae578063366b6701146100d75780634b917df5146100ea57806354755d3f146100fd57806366cf0ca914610110575b600080fd5b6100c16100bc366004610bee565b6101b1565b6040516100ce9190610d61565b60405180910390f35b6100c16100e5366004610bbb565b61025b565b6100c16100f8366004610bee565b6102dd565b6100c161010b366004610bee565b610387565b61012361011e366004610bee565b61042f565b6040516100ce9190610dba565b6100c161013e366004610cff565b610534565b6100c1610151366004610bee565b6105fc565b610169610164366004610bee565b6106a6565b6040516100ce9190610dc8565b610169610184366004610bee565b61074e565b6100c1610197366004610bee565b6107f3565b6101af6101aa366004610c28565b61089d565b005b600060ff8516158015906101c85750600760ff8616105b80156101e357508360001a60f81b6001600160f81b03191615155b80156101fe57508260001a60f81b6001600160f81b03191615155b801561021957508160001a60f81b6001600160f81b03191615155b61022257600080fd5b5060ff93909316600090815260016020908152604080832094835293815283822092825291825282812093815292905290206006015490565b600060ff8416158015906102725750600760ff8516105b801561028d57508260001a60f81b6001600160f81b03191615155b80156102a857508160001a60f81b6001600160f81b03191615155b6102b157600080fd5b5060ff831660009081526020818152604080832085845282528083208484529091529020549392505050565b600060ff8516158015906102f45750600760ff8616105b801561030f57508360001a60f81b6001600160f81b03191615155b801561032a57508260001a60f81b6001600160f81b03191615155b801561034557508160001a60f81b6001600160f81b03191615155b61034e57600080fd5b5060ff93909316600090815260016020908152604080832094835293815283822092825291825282812093815292905290206005015490565b600060ff85161580159061039e5750600760ff8616105b80156103b957508360001a60f81b6001600160f81b03191615155b80156103d457508260001a60f81b6001600160f81b03191615155b80156103ef57508160001a60f81b6001600160f81b03191615155b6103f857600080fd5b5060ff9390931660009081526001602081815260408084209584529481528483209383529283528382209482529390915220015490565b610437610b28565b60ff85161580159061044c5750600760ff8616105b801561046757508360001a60f81b6001600160f81b03191615155b801561048257508260001a60f81b6001600160f81b03191615155b801561049d57508160001a60f81b6001600160f81b03191615155b6104a657600080fd5b5060ff9384166000908152600160208181526040808420968452958152858320948352938452848220928252918352839020835160808082018652825487168252928201548185015260028201548186015284519283018552600382015490951682526004810154928201929092526005820154928101929092526006015460608083019190915282015290565b600060ff85161580159061054b5750600760ff8616105b801561056657508360001a60f81b6001600160f81b03191615155b801561058157508260001a60f81b6001600160f81b03191615155b80156105af575060ff8516600090815260208181526040808320878452825280832086845290915290205482105b6105b857600080fd5b60ff8516600090815260208181526040808320878452825280832086845290915290208054839081106105e757fe5b90600052602060002001549050949350505050565b600060ff8516158015906106135750600760ff8616105b801561062e57508360001a60f81b6001600160f81b03191615155b801561064957508260001a60f81b6001600160f81b03191615155b801561066457508160001a60f81b6001600160f81b03191615155b61066d57600080fd5b5060ff93909316600090815260016020908152604080832094835293815283822092825291825282812093815292905290206002015490565b600060ff8516158015906106bd5750600760ff8616105b80156106d857508360001a60f81b6001600160f81b03191615155b80156106f357508260001a60f81b6001600160f81b03191615155b801561070e57508160001a60f81b6001600160f81b03191615155b61071757600080fd5b5060ff9384166000908152600160209081526040808320958352948152848220938252928352838120918152915220600301541690565b600060ff8516158015906107655750600760ff8616105b801561078057508360001a60f81b6001600160f81b03191615155b801561079b57508260001a60f81b6001600160f81b03191615155b80156107b657508160001a60f81b6001600160f81b03191615155b6107bf57600080fd5b5060ff9384166000908152600160209081526040808320958352948152848220938252928352838120918152915220541690565b600060ff85161580159061080a5750600760ff8616105b801561082557508360001a60f81b6001600160f81b03191615155b801561084057508260001a60f81b6001600160f81b03191615155b801561085b57508160001a60f81b6001600160f81b03191615155b61086457600080fd5b5060ff93909316600090815260016020908152604080832094835293815283822092825291825282812093815292905290206004015490565b60ff8516158015906108b25750600760ff8616105b80156108cd57508360001a60f81b6001600160f81b03191615155b80156108e857508260001a60f81b6001600160f81b03191615155b801561090357508160001a60f81b6001600160f81b03191615155b8015610916575060608101515160ff1615155b801561092c5750606081015151600360ff909116105b801561094f575060608101516040015160001a60f81b6001600160f81b03191615155b80156109715750606080820151015160001a60f81b6001600160f81b03191615155b61097a57600080fd5b60ff80861660008181526001602081815260408084208a85528252808420898552825280842088855282528084208751815490881660ff199182161782558389015194820194909455818801516002820155606080890151805160038401805491909a169616959095179097558383015160048083019190915584830151600583015593909601516006909601959095559282528183528382208883528352838220878352909252829020915163745fca7b60e01b815273__$b620240993a55615b607189176fb82e62f$__9263745fca7b92610a5a9287929101610d6a565b60206040518083038186803b158015610a7257600080fd5b505af4158015610a86573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610aaa9190610b94565b610ae25760ff851660009081526020818152604080832087845282528083208684528252822080546001810182559083529120018290555b7f3a40e9aa34bf78f77f9b1617948f31ae91db81766f528296cc71aa7addab6e7c8585858585604051610b19959493929190610dd6565b60405180910390a15050505050565b604080516080810182526000808252602082018190529181019190915260608101610b51610b56565b905290565b60408051608081018252600080825260208201819052918101829052606081019190915290565b803560ff81168114610b8e57600080fd5b92915050565b600060208284031215610ba5578081fd5b81518015158114610bb4578182fd5b9392505050565b600080600060608486031215610bcf578182fd5b610bd98585610b7d565b95602085013595506040909401359392505050565b60008060008060808587031215610c03578081fd5b8435610c0e81610e35565b966020860135965060408601359560600135945092505050565b6000806000806000858703610160811215610c41578182fd5b610c4b8888610b7d565b955060208701359450604087013593506060870135925060e0607f1982011215610c73578182fd5b610c7d6080610e0e565b610c8a8960808a01610b7d565b815260a0880135602082015260c08801356040820152608060df1983011215610cb1578283fd5b610cbb6080610e0e565b9150610cca8960e08a01610b7d565b825261010088013560208301526101208801356040830152610140909701356060808301919091528701525092959194509290565b60008060008060808587031215610c03578384fd5b60ff81511682526020810151602083015260408101516040830152606081015160ff815116606084015260208101516080840152604081015160a0840152606081015160c0840152505050565b90815260200190565b60006040820184835260206040818501528185548084526060860191508685528285209350845b81811015610dad57845483526001948501949284019201610d91565b5090979650505050505050565b60e08101610b8e8284610d14565b60ff91909116815260200190565b60006101608201905060ff87168252856020830152846040830152836060830152610e046080830184610d14565b9695505050505050565b60405181810167ffffffffffffffff81118282101715610e2d57600080fd5b604052919050565b60ff81168114610e4457600080fd5b5056fea2646970667358221220e28750147182d0e94db906ef5af67662d93c220a2f14a59e23480f809eaf996464736f6c63430006060033"
 
 // DeployIATIBudgets deploys a new Ethereum contract, binding an instance of IATIBudgets to it.
 func DeployIATIBudgets(auth *bind.TransactOpts, backend bind.ContractBackend) (common.Address, *types.Transaction, *IATIBudgets, error) {
