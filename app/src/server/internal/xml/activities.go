@@ -7,7 +7,6 @@ import (
   	"math/big"
 	"encoding/xml"
 
-	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
@@ -38,7 +37,7 @@ type totalActivities struct {
 }
 
 // GetNumActivites - Get the total number of activities
-func numActivites(contract *activities.IATIActivities) (int64) {
+func numActivities(contract *activities.IATIActivities) (int64) {
 
 	num, err := contract.GetNumActivities(&bind.CallOpts{})
 	if err != nil {
@@ -50,16 +49,16 @@ func numActivites(contract *activities.IATIActivities) (int64) {
 }
 
 // NumActivites - get total activities
-func NumActivites (c *ethclient.Client, contracts *contracts.Contracts, w http.ResponseWriter, r *http.Request) {
+func NumActivites (contracts *contracts.Contracts, w http.ResponseWriter, r *http.Request) {
 
-    num := numActivites(contracts.ActivitiesContract)
+    num := numActivities(contracts.ActivitiesContract)
     totalXML := &totalActivities{Total: num}
     thisXML, _ := xml.MarshalIndent(totalXML, "", " ")
     w.Write(thisXML)
 }
 
-// ActivitiesID get specific acvtitie
-func ActivitiesID (c *ethclient.Client, contracts *contracts.Contracts, ref [32]byte, w http.ResponseWriter, r *http.Request) {
+// ActivitiesID - get specific activitie
+func ActivitiesID (contracts *contracts.Contracts, ref [32]byte, w http.ResponseWriter, r *http.Request) {
 
     activities, err := contracts.ActivitiesContract.GetActivities(&bind.CallOpts{}, ref)
     if err != nil {
@@ -100,9 +99,9 @@ func ActivitiesID (c *ethclient.Client, contracts *contracts.Contracts, ref [32]
 
 
 // ListActivities - list all activities
-func ListActivities (c *ethclient.Client, contracts *contracts.Contracts, w http.ResponseWriter, r *http.Request) {
+func ListActivities (contracts *contracts.Contracts, w http.ResponseWriter, r *http.Request) {
 
-    num := numActivites(contracts.ActivitiesContract)
+    num := numActivities(contracts.ActivitiesContract)
     var i int64
     activitiesIDs := &activitiesList{}
     for ; i < num; i++ {
