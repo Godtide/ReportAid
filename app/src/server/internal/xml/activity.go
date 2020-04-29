@@ -8,8 +8,8 @@ import (
 	"encoding/xml"
 
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
-	//"github.com/ethereum/go-ethereum/common"
-	//"github.com/ethereum/go-ethereum/common/hexutil"
+	"github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/common/hexutil"
 
     "github.com/ReportAid/app/src/server/internal/contracts"
 	"github.com/ReportAid/app/src/server/internal/contracts/activity"
@@ -65,40 +65,60 @@ func NumActivity (contracts *contracts.Contracts, activitiesRef [32]byte, w http
 // ActivityID get specific acvtitie
 func ActivityID (contracts *contracts.Contracts, activitiesRef [32]byte, activityRef [32]byte, w http.ResponseWriter, r *http.Request) {
 
-    /*activity, err := contracts.ActivityContract.GetActivity(&bind.CallOpts{}, activitiesRef, activityRef)
+    activity, err := contracts.ActivityContract.GetActivity(&bind.CallOpts{}, activitiesRef, activityRef)
     if err != nil {
         log.Fatalf("%s: %v", configs.ErrorActivities, err)
     }
 
-    thisVersion := activities.Version
-    sliceVersion := thisVersion[:]
-    trimmedVersion := common.TrimRightZeroes(sliceVersion)
-    version := hexutil.Encode(trimmedVersion)
-    stringVersion, _ := hexutil.Decode(version)
+    /*Lang 	        string `xml:"xml:lang,attr"`
+	Currency 		string `xml:"default-currency,attr"`
+	Time            string `xml:"last-updated-datetime,attr"`
+    Humanitarian    int64 `xml:"humanitarian,attr"`
+	LinkedData      string `xml:"linked-data-uri,attr"`
+    Budget          int64 `xml:"budget-not-provided,attr"`*/
 
-    thisTime := activities.GeneratedTime
+    /*bool humanitarian;
+    uint8 hierarchy;
+    uint8 status;
+    uint8 budgetNotProvided;
+    ReportingOrg reportingOrg;
+    bytes32 lastUpdated;
+    bytes32 lang;
+    bytes32 currency;
+    bytes32 linkedData;
+    bytes32 identifier;
+    string title;
+    string description;*/
+
+    thisLang := activity.Lang
+    sliceLang := thisLang[:]
+    trimmedLang := common.TrimRightZeroes(sliceLang)
+    lang := hexutil.Encode(trimmedLang)
+    stringLang, _ := hexutil.Decode(lang)
+
+    thisTime := activity.LastUpdated
     sliceTime := thisTime[:]
     trimmedTime := common.TrimRightZeroes(sliceTime)
     time := hexutil.Encode(trimmedTime)
     stringTime, _ := hexutil.Decode(time)
 
-    thisLink := activities.LinkedData
+    thisLink := activity.LinkedData
     sliceLink := thisLink[:]
     trimmedLink := common.TrimRightZeroes(sliceLink)
     link := hexutil.Encode(trimmedLink)
-    stringLink, _ := hexutil.Decode(link)*/
+    stringLink, _ := hexutil.Decode(link)
 
     /* fmt.Printf("Version: %s\n", stringVersion)
     fmt.Printf("Generated Time: %s\n", stringTime)
     fmt.Printf("Linked Data: %s\n\n", stringLink)*/
 
-    /*activitiesXML := &iatiActivities{
-                                        Version: string(stringVersion),
-                                        Time: string(stringTime),
-                                        LinkedData: string(stringLink),
-                                    }
-    thisXML, _ := xml.MarshalIndent(activitiesXML, " ", " ")
-    w.Write(thisXML)*/
+    activityXML := &iatiActivity{
+                                    Lang: string(stringLang),
+                                    Time: string(stringTime),
+                                    LinkedData: string(stringLink),
+                                }
+    thisXML, _ := xml.MarshalIndent(activityXML, " ", " ")
+    w.Write(thisXML)
 	//fmt.Printf("Activities Reference: %x\n", ref)
 }
 

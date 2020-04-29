@@ -13,4 +13,6 @@ const (
 
     // URLListActivity - activities XML URL
     URLListActivity = `/list-activity/{ref}`
+    // URLActivity - activities XML URL
+    URLActivity = `/activity/{activitiesRef}/{activityRef}`
 )

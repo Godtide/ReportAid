@@ -33,11 +33,21 @@ func singleActivities (contracts *contracts.Contracts, w http.ResponseWriter, r 
 	xml.ActivitiesID(contracts, convertedValue, w, r)
 }
 
-
 func numActivities (contracts *contracts.Contracts, w http.ResponseWriter, r *http.Request) {
 
     xml.First(w, r)
     xml.NumActivites(contracts, w, r)
+}
+
+func singleActivity (contracts *contracts.Contracts, w http.ResponseWriter, r *http.Request) {
+
+    xml.First(w, r)
+	params := mux.Vars(r)
+	activitiesRef := params["activitiesRef"]
+	activityRef := params["activityRef"]
+	convertedActivitiesRef := common.HexToHash(activitiesRef)
+	convertedActivityRef := common.HexToHash(activityRef)
+	xml.ActivityID(contracts, convertedActivitiesRef, convertedActivityRef, w, r)
 }
 
 func listActivity (contracts *contracts.Contracts, w http.ResponseWriter, r *http.Request) {
@@ -70,6 +80,10 @@ func handleRequests(contracts *contracts.Contracts) {
 	})
 
     // Activity
+    router.HandleFunc(configs.URLActivity, func(w http.ResponseWriter, r *http.Request) {
+    	singleActivity(contracts, w, r)
+	})
+
     router.HandleFunc(configs.URLListActivity, func(w http.ResponseWriter, r *http.Request) {
     	listActivity(contracts, w, r)
 	})
