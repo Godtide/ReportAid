@@ -8,12 +8,11 @@ import (
 	"encoding/xml"
 
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/common/hexutil"
 
     "github.com/ReportAid/app/src/server/internal/contracts"
 	"github.com/ReportAid/app/src/server/internal/contracts/activity"
 	"github.com/ReportAid/app/src/server/internal/configs"
+	"github.com/ReportAid/app/src/server/internal/utils"
 )
 
 type activityList struct {
@@ -22,15 +21,43 @@ type activityList struct {
     ID			    []string `xml:"activity-ids>id"`
 }
 
-// Activities - the XML for the activities file
-type iatiActivity struct {
+// IATIActivity - the XML for the activities file
+type IATIActivity struct {
 	XMLName   	    xml.Name `xml:"iati-activity"`
 	Lang 	        string `xml:"xml:lang,attr"`
 	Currency 		string `xml:"default-currency,attr"`
 	Time            string `xml:"last-updated-datetime,attr"`
-    Humanitarian    int64 `xml:"humanitarian,attr"`
+    Humanitarian    bool `xml:"humanitarian,attr"`
 	LinkedData      string `xml:"linked-data-uri,attr"`
-    Budget          int64 `xml:"budget-not-provided,attr"`
+    Hierarchy       uint8 `xml:"hierarchy,attr"`
+    Budget          uint8 `xml:"budget-not-provided,attr"`
+    ReportingOrg    ReportingOrg
+    Status          Status
+    IATIIdentifier  string `xml:"iati-identifier"`
+    Title           string `xml:"title>narrative"`
+    Desc            Desc
+}
+
+// Status - activity status
+type Status struct {
+        XMLName   xml.Name `xml:"activity-status"`
+        Code      uint8 `xml:"code,attr"`
+}
+
+// Desc - activity description
+type Desc struct {
+        XMLName   	xml.Name `xml:"description"`
+        Type        uint8 `xml:"type,attr"`
+        Narrative   string `xml:"narrative"`
+}
+
+// ReportingOrg - activity reporting organisation
+type ReportingOrg struct {
+    XMLName   	xml.Name `xml:"reporting-org"`
+    Ref         string `xml:"ref,attr"`
+    Type        uint8 `xml:"type,attr"`
+    Secondary   bool `xml:"secondary-reporter,attr"`
+    Narrative   string `xml:"narrative"`
 }
 
 // TotalActivities - get the total number of activities
@@ -63,63 +90,46 @@ func NumActivity (contracts *contracts.Contracts, activitiesRef [32]byte, w http
 }
 
 // ActivityID get specific acvtitie
-func ActivityID (contracts *contracts.Contracts, activitiesRef [32]byte, activityRef [32]byte, w http.ResponseWriter, r *http.Request) {
+func ActivityID (contracts *contracts.Contracts, activitiesRef [32]byte, activityRef [32]byte, w http.ResponseWriter, r *http.Request) (*IATIActivity){
 
     activity, err := contracts.ActivityContract.GetActivity(&bind.CallOpts{}, activitiesRef, activityRef)
     if err != nil {
         log.Fatalf("%s: %v", configs.ErrorActivities, err)
     }
 
-    /*Lang 	        string `xml:"xml:lang,attr"`
-	Currency 		string `xml:"default-currency,attr"`
-	Time            string `xml:"last-updated-datetime,attr"`
-    Humanitarian    int64 `xml:"humanitarian,attr"`
-	LinkedData      string `xml:"linked-data-uri,attr"`
-    Budget          int64 `xml:"budget-not-provided,attr"`*/
+    lang := utils.GetString(activity.Lang)
+    curr := utils.GetString(activity.Currency)
+    time := utils.GetString(activity.LastUpdated)
+    thisHumanitarian := activity.Humanitarian
+    link := utils.GetString(activity.LinkedData)
+    hierarchy := activity.Hierarchy
+    budget := activity.BudgetNotProvided
+    reportingOrgRef :=  utils.GetString(activity.ReportingOrg.OrgRef)
+    reportingOrgType := activity.ReportingOrg.OrgType
+    reportingOrgIsSecondary := activity.ReportingOrg.IsSecondary
+    status := activity.Status
+    id := utils.GetString(activity.Identifier)
+    title := activity.Title
+    descType := uint8(1) // i think there's only one type at the moment
+    desc := activity.Description
 
-    /*bool humanitarian;
-    uint8 hierarchy;
-    uint8 status;
-    uint8 budgetNotProvided;
-    ReportingOrg reportingOrg;
-    bytes32 lastUpdated;
-    bytes32 lang;
-    bytes32 currency;
-    bytes32 linkedData;
-    bytes32 identifier;
-    string title;
-    string description;*/
 
-    thisLang := activity.Lang
-    sliceLang := thisLang[:]
-    trimmedLang := common.TrimRightZeroes(sliceLang)
-    lang := hexutil.Encode(trimmedLang)
-    stringLang, _ := hexutil.Decode(lang)
-
-    thisTime := activity.LastUpdated
-    sliceTime := thisTime[:]
-    trimmedTime := common.TrimRightZeroes(sliceTime)
-    time := hexutil.Encode(trimmedTime)
-    stringTime, _ := hexutil.Decode(time)
-
-    thisLink := activity.LinkedData
-    sliceLink := thisLink[:]
-    trimmedLink := common.TrimRightZeroes(sliceLink)
-    link := hexutil.Encode(trimmedLink)
-    stringLink, _ := hexutil.Decode(link)
-
-    /* fmt.Printf("Version: %s\n", stringVersion)
-    fmt.Printf("Generated Time: %s\n", stringTime)
-    fmt.Printf("Linked Data: %s\n\n", stringLink)*/
-
-    activityXML := &iatiActivity{
-                                    Lang: string(stringLang),
-                                    Time: string(stringTime),
-                                    LinkedData: string(stringLink),
+    activityXML := &IATIActivity{
+                                    Lang: lang,
+                                    Currency: curr,
+                                    Time: time,
+                                    LinkedData: link,
+                                    Humanitarian: thisHumanitarian,
+                                    Hierarchy: hierarchy,
+                                    Budget: budget,
+                                    ReportingOrg: ReportingOrg{Ref: reportingOrgRef, Type: reportingOrgType, Secondary: reportingOrgIsSecondary, Narrative: ""},
+                                    Status: Status{Code: status},
+                                    IATIIdentifier: id,
+                                    Title: title,
+                                    Desc: Desc{Type: descType, Narrative: desc},
                                 }
-    thisXML, _ := xml.MarshalIndent(activityXML, " ", " ")
-    w.Write(thisXML)
-	//fmt.Printf("Activities Reference: %x\n", ref)
+
+    return activityXML
 }
 
 

@@ -8,12 +8,11 @@ import (
 	"encoding/xml"
 
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/common/hexutil"
 
     "github.com/ReportAid/app/src/server/internal/contracts"
 	"github.com/ReportAid/app/src/server/internal/contracts/activities"
 	"github.com/ReportAid/app/src/server/internal/configs"
+	"github.com/ReportAid/app/src/server/internal/utils"
 )
 
 // ActivitiesList - a list if all activities
@@ -28,6 +27,7 @@ type iatiActivities struct {
 	Version 	string `xml:"version,attr"`
 	Time 		string `xml:"generated-datetime,attr"`
 	LinkedData  string `xml:"linked-data-default,attr"`
+    Activity    IATIActivity
 }
 
 // TotalActivities - get the total number of activities
@@ -58,39 +58,23 @@ func NumActivites (contracts *contracts.Contracts, w http.ResponseWriter, r *htt
 }
 
 // ActivitiesID - get specific activitie
-func ActivitiesID (contracts *contracts.Contracts, ref [32]byte, w http.ResponseWriter, r *http.Request) {
+func ActivitiesID (contracts *contracts.Contracts, activitiesRef [32]byte, activityRef [32]byte, w http.ResponseWriter, r *http.Request) {
 
-    activities, err := contracts.ActivitiesContract.GetActivities(&bind.CallOpts{}, ref)
+    activities, err := contracts.ActivitiesContract.GetActivities(&bind.CallOpts{}, activitiesRef)
     if err != nil {
         log.Fatalf("%s: %v", configs.ErrorActivities, err)
     }
 
-    thisVersion := activities.Version
-    sliceVersion := thisVersion[:]
-    trimmedVersion := common.TrimRightZeroes(sliceVersion)
-    version := hexutil.Encode(trimmedVersion)
-    stringVersion, _ := hexutil.Decode(version)
-
-    thisTime := activities.GeneratedTime
-    sliceTime := thisTime[:]
-    trimmedTime := common.TrimRightZeroes(sliceTime)
-    time := hexutil.Encode(trimmedTime)
-    stringTime, _ := hexutil.Decode(time)
-
-    thisLink := activities.LinkedData
-    sliceLink := thisLink[:]
-    trimmedLink := common.TrimRightZeroes(sliceLink)
-    link := hexutil.Encode(trimmedLink)
-    stringLink, _ := hexutil.Decode(link)
-
-    /* fmt.Printf("Version: %s\n", stringVersion)
-    fmt.Printf("Generated Time: %s\n", stringTime)
-    fmt.Printf("Linked Data: %s\n\n", stringLink)*/
+    version := utils.GetString(activities.Version)
+    time := utils.GetString(activities.GeneratedTime)
+    link := utils.GetString(activities.LinkedData)
+    activity := ActivityID(contracts, activitiesRef, activityRef, w, r)
 
     activitiesXML := &iatiActivities{
-                                        Version: string(stringVersion),
-                                        Time: string(stringTime),
-                                        LinkedData: string(stringLink),
+                                        Version: string(version),
+                                        Time: string(time),
+                                        LinkedData: string(link),
+                                        Activity: *activity,
                                     }
     thisXML, _ := xml.MarshalIndent(activitiesXML, " ", " ")
     w.Write(thisXML)

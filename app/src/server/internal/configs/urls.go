@@ -5,7 +5,7 @@ const (
     URLHome = "/"
 
     // URLActivities - activities XML URL
-    URLActivities = `/activities/{ref}`
+    URLActivities = `/activities/{activitiesRef}/{activityRef}`
     // URLListActivities - list activities XML URL
     URLListActivities = "/list-activities"
     // URLTotalActivities - total activities XML URL
@@ -13,6 +13,4 @@ const (
 
     // URLListActivity - activities XML URL
     URLListActivity = `/list-activity/{ref}`
-    // URLActivity - activities XML URL
-    URLActivity = `/activity/{activitiesRef}/{activityRef}`
 )
