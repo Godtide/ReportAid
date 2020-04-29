@@ -8,13 +8,17 @@ import (
 
 	"github.com/ReportAid/app/src/server/internal/contracts/activities"
 	"github.com/ReportAid/app/src/server/internal/contracts/activity"
+	"github.com/ReportAid/app/src/server/internal/contracts/orgs"
 	"github.com/ReportAid/app/src/server/internal/configs"
 )
 
 // Contracts - keeps pointers to all ethereum contracts
 type Contracts struct {
+
 	ActivitiesContract    	*activities.IATIActivities
 	ActivityContract    	*activity.IATIActivity
+	OrgsContract			*orgs.IATIOrgs
+
 }
 
 // ActivitesContract - get activities contract
@@ -39,15 +43,27 @@ func ActivityContract (c *ethclient.Client) (*activity.IATIActivity) {
 	return contract
 }
 
+// OrgsContract (c *ethclient.Client) (*activity.IATIActivity) {
+func OrgsContract (c *ethclient.Client) (*orgs.IATIOrgs) {
+	contract, err := orgs.NewIATIOrgs(common.HexToAddress(string(configs.AddrOrgsContract)), c)
+	if err != nil {
+		log.Fatalf("%s: %v", configs.ErrorOrgsContract, err)
+		return nil
+	}
+	return contract
+}
+
 //  AllContracts - get instances of aqll the ethereum contracts
 func AllContracts (c *ethclient.Client) (*Contracts) {
 
 	var contracts = new(Contracts)
 	var activitiesContract = ActivitesContract(c)
 	var activityContract = ActivityContract(c)
+	var orgsContract = OrgsContract(c)
 
     contracts.ActivitiesContract = activitiesContract
     contracts.ActivityContract = activityContract
-	
+    contracts.OrgsContract = orgsContract
+
 	return contracts
 }

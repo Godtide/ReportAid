@@ -41,7 +41,7 @@ func numActivities(contract *activities.IATIActivities) (int64) {
 
 	num, err := contract.GetNumActivities(&bind.CallOpts{})
 	if err != nil {
-		log.Fatalf("%s: %v", configs.ErrorNumActivities, err)
+		log.Fatalf("%s: %v", configs.ErrorActivitiesNum, err)
 		return 0
 	}
 	smallNum := num.Int64()

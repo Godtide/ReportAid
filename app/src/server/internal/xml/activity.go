@@ -72,7 +72,7 @@ func numActivity(contract *activity.IATIActivity, activitiesRef [32]byte) (int64
 
 	num, err := contract.GetNumActivities(&bind.CallOpts{}, activitiesRef)
 	if err != nil {
-		log.Fatalf("%s: %v", configs.ErrorNumActivity, err)
+		log.Fatalf("%s: %v", configs.ErrorActivityNum, err)
 		return 0
 	}
 	smallNum := num.Int64()
@@ -104,15 +104,19 @@ func ActivityID (contracts *contracts.Contracts, activitiesRef [32]byte, activit
     link := utils.GetString(activity.LinkedData)
     hierarchy := activity.Hierarchy
     budget := activity.BudgetNotProvided
-    reportingOrgRef :=  utils.GetString(activity.ReportingOrg.OrgRef)
+
+    //fmt.Println("%x", activity.ReportingOrg.OrgRef)
+
+    reportOrgName := OrgName(contracts, activity.ReportingOrg.OrgRef)
+    reportingOrgRef := OrgID(contracts, activity.ReportingOrg.OrgRef)
     reportingOrgType := activity.ReportingOrg.OrgType
     reportingOrgIsSecondary := activity.ReportingOrg.IsSecondary
+
     status := activity.Status
     id := utils.GetString(activity.Identifier)
     title := activity.Title
     descType := uint8(1) // i think there's only one type at the moment
     desc := activity.Description
-
 
     activityXML := &IATIActivity{
                                     Lang: lang,
@@ -122,13 +126,12 @@ func ActivityID (contracts *contracts.Contracts, activitiesRef [32]byte, activit
                                     Humanitarian: thisHumanitarian,
                                     Hierarchy: hierarchy,
                                     Budget: budget,
-                                    ReportingOrg: ReportingOrg{Ref: reportingOrgRef, Type: reportingOrgType, Secondary: reportingOrgIsSecondary, Narrative: ""},
+                                    ReportingOrg: ReportingOrg{Ref: reportingOrgRef, Type: reportingOrgType, Secondary: reportingOrgIsSecondary, Narrative: reportOrgName},
                                     Status: Status{Code: status},
                                     IATIIdentifier: id,
                                     Title: title,
                                     Desc: Desc{Type: descType, Narrative: desc},
                                 }
-
     return activityXML
 }
 

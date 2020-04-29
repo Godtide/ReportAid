@@ -7,8 +7,8 @@ const (
     ErrorActivitiesContract = "Failed to instantiate activities contract"
     // ErrorActivitiesContractType - error
     ErrorActivitiesContractType = "The passed parameter is not an activities contract"
-    // ErrorNumActivities - error
-    ErrorNumActivities = "Failed to get the number of Activities"
+    // ErrorActivitiesNum - error
+    ErrorActivitiesNum = "Failed to get the number of Activities"
     // ErrorActivities - error
     ErrorActivities = "Failed to get the Activities"
     // ErrorActivitiesID - error
@@ -16,9 +16,14 @@ const (
 
     // ErrorActivityContract - error
     ErrorActivityContract = "Failed to instantiate activity contract"
-    // ErrorNumActivity - error
-    ErrorNumActivity = "Failed to get the number of Activity"
+    // ErrorActivityNum - error
+    ErrorActivityNum = "Failed to get the number of Activity"
     // ErrorActivityID - error
     ErrorActivityID = "Failed to get the Activity ID"
+
+    // ErrorOrgsContract - error
+    ErrorOrgsContract = "Failed to instantiate orgs contract"
+    // ErrorOrgsName - error
+    ErrorOrgsName = "Failed to get orgs name"
 
 )
