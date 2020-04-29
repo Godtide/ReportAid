@@ -16,13 +16,21 @@ type Contracts struct {
 }
 
 // ActivitesContract - get activities contract address
-func ActivitesContract (c *ethclient.Client) (*activities.IATIActivities){
-    var activitiesContract = new(Contracts)
+func ActivitesContract (c *ethclient.Client) (*activities.IATIActivities) {
+
 	contract, err := activities.NewIATIActivities(common.HexToAddress(string(configs.AddrActivitiesContract)), c)
 	if err != nil {
 		log.Fatalf("%s: %v", configs.ErrorActivitiesContract, err)
 		return nil
 	}
-    activitiesContract.ActivitiesContract = contract
-	return activitiesContract.ActivitiesContract
+	return contract
+}
+
+//  AllContracts - get instances of aqll the ethereum contracts
+func AllContracts (c *ethclient.Client) (*Contracts) {
+
+	var contracts = new(Contracts)
+	var activitiesContract = ActivitesContract(c)
+    contracts.ActivitiesContract = activitiesContract
+	return contracts
 }

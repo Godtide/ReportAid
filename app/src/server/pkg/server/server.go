@@ -18,48 +18,47 @@ func homePage(w http.ResponseWriter, r *http.Request){
     xml.Home(w, r)
 }
 
-func listActivities (c *ethclient.Client, contract interface{}, w http.ResponseWriter, r *http.Request) {
+func listActivities (c *ethclient.Client, contracts *contracts.Contracts, w http.ResponseWriter, r *http.Request) {
 
     xml.First(w, r)
-    xml.ListActivities(c, contract, w, r)
+    xml.ListActivities(c, contracts, w, r)
 }
 
-func singleActivities (c *ethclient.Client, contract interface{}, w http.ResponseWriter, r *http.Request) {
+func singleActivities (c *ethclient.Client, contracts *contracts.Contracts, w http.ResponseWriter, r *http.Request) {
 
     xml.First(w, r)
 	params := mux.Vars(r)
 	value := params["ref"]
 	convertedValue := common.HexToHash(value)
-	xml.ActivitiesID(c, contract, convertedValue, w, r)
+	xml.ActivitiesID(c, contracts, convertedValue, w, r)
 }
 
 
-func numActivities (c *ethclient.Client, contract interface{}, w http.ResponseWriter, r *http.Request) {
+func numActivities (c *ethclient.Client, contracts *contracts.Contracts, w http.ResponseWriter, r *http.Request) {
 
     xml.First(w, r)
-    xml.NumActivites(c, contract, w, r)
+    xml.NumActivites(c, contracts, w, r)
 }
 
-func handleRequests(c *ethclient.Client) {
+func handleRequests(c *ethclient.Client, contracts *contracts.Contracts) {
 
 	router := mux.NewRouter().StrictSlash(true)
     router.HandleFunc(configs.URLHome, func(w http.ResponseWriter, r *http.Request) {
     	homePage(w, r)
 	})
 
-	contract := contracts.ActivitesContract(c)
 	router.HandleFunc(configs.URLActivities, func(w http.ResponseWriter, r *http.Request) {
-        singleActivities(c, contract, w, r)
+        singleActivities(c, contracts, w, r)
 	})
     //configs.URLActivities
     // "/activities/{ref}"
 
 	router.HandleFunc(configs.URLListActivities, func(w http.ResponseWriter, r *http.Request) {
-    	listActivities(c, contract, w, r)
+    	listActivities(c, contracts, w, r)
 	})
 
 	router.HandleFunc(configs.URLTotalActivities, func(w http.ResponseWriter, r *http.Request) {
-    	numActivities(c, contract, w, r)
+    	numActivities(c, contracts, w, r)
 	})
 
     log.Fatal(http.ListenAndServe(configs.ServerPort, router))
@@ -72,5 +71,6 @@ func Start() {
 	if err != nil {
 		log.Fatalf("%s: %v", configs.ErrorRinkeby, err)
 	}
-    handleRequests(conn)
+    contracts := contracts.AllContracts(conn)
+    handleRequests(conn, contracts)
 }
