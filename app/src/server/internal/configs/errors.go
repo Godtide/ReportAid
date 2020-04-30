@@ -1,6 +1,7 @@
 package configs
 
 const (
+    
     // ErrorRinkeby - error
     ErrorRinkeby = "Failed to connect to Rinkeby"// ErrorRinkeby - error
     // ErrorActivitiesContract - error
@@ -37,4 +38,6 @@ const (
     // ErrorUnMarshall - unmarshalling problems
     ErrorUnMarshall = "Failed to unmashall struct"
 
+    // ErrorNotFound - ErrorRinkeby
+    ErrorNotFound = "Error 404 - Page not found"
 )

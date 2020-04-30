@@ -30,8 +30,8 @@ type iatiActivities struct {
 
 // TotalActivities - get the total number of activities
 type activitiesTotal struct {
-	XMLName   	xml.Name `xml:"iati-total-activities"`
-	Total 		int64 `xml:"total"`
+	XMLName   	xml.Name `xml:"iati-activities-total"`
+	Total 		int64 `xml:"activities-total"`
 }
 
 // GetNumActivites - Get the total number of activities
@@ -51,11 +51,11 @@ func ActivitesNum (contracts *contracts.Contracts) ([]byte) {
     log := LogInit()
     num := activitiesNum(contracts.ActivitiesContract)
     totalXML := &activitiesTotal{Total: num}
-    thisXML, err := xml.MarshalIndent(totalXML, "", "  ")
+    thisXML, err := xml.MarshalIndent(totalXML, "", "")
     if err != nil {
         thisError := Log(configs.ErrorActivitiesNum + " - " + configs.ErrorUnMarshall, err)
         log.Errors = append(log.Errors, thisError)
-        thisXML, _ := xml.MarshalIndent(log, "", "  ")
+        thisXML, _ := xml.MarshalIndent(log, "", "")
         return thisXML
     }
     return thisXML
@@ -69,7 +69,7 @@ func ActivitiesID (contracts *contracts.Contracts, activitiesRef [32]byte, activ
     if err != nil {
         thisError := Log(configs.ErrorActivities, err)
         log.Errors = append(log.Errors, thisError)
-        error, _ := xml.MarshalIndent(log, "", "  ")
+        error, _ := xml.MarshalIndent(log, "", "")
         return error
     }
 
@@ -80,7 +80,7 @@ func ActivitiesID (contracts *contracts.Contracts, activitiesRef [32]byte, activ
     if activity == nil {
         thisError := Log(configs.ErrorActivity + " - " + errString, nil)
         log.Errors = append(log.Errors, thisError)
-        error, _ := xml.MarshalIndent(log, "", "  ")
+        error, _ := xml.MarshalIndent(log, "", "")
         return error
     }
 
@@ -90,11 +90,11 @@ func ActivitiesID (contracts *contracts.Contracts, activitiesRef [32]byte, activ
                                         LinkedData: string(link),
                                     }
     activitiesXML.Activity = append(activitiesXML.Activity, activity)
-    thisXML, err := xml.MarshalIndent(activitiesXML, " ", " ")
+    thisXML, err := xml.MarshalIndent(activitiesXML, "", "")
     if err != nil {
         thisError := Log(configs.ErrorActivity + " - " + configs.ErrorUnMarshall, err)
         log.Errors = append(log.Errors, thisError)
-        error, _ := xml.MarshalIndent(log, "", "  ")
+        error, _ := xml.MarshalIndent(log, "", "")
         return error
     }
     return thisXML
@@ -114,17 +114,17 @@ func ActivitiesList (contracts *contracts.Contracts) ([]byte) {
         if err != nil {
             thisError := Log(configs.ErrorActivitiesID, err)
             log.Errors = append(log.Errors, thisError)
-            thisXML, _ := xml.MarshalIndent(log, "", "  ")
+            thisXML, _ := xml.MarshalIndent(log, "", "")
             return thisXML
         }
         thisRef := fmt.Sprintf("%x", ref)
         activitiesIDs.ID = append(activitiesIDs.ID, thisRef)
     }
-    thisXML, err := xml.MarshalIndent(activitiesIDs, "", "  ")
+    thisXML, err := xml.MarshalIndent(activitiesIDs, "", "")
     if err != nil {
         thisError := Log(configs.ErrorActivitiesList + " - " + configs.ErrorUnMarshall, err)
         log.Errors = append(log.Errors, thisError)
-        error, _ := xml.MarshalIndent(log, "", "  ")
+        error, _ := xml.MarshalIndent(log, "", "")
         return error
     }
     return thisXML

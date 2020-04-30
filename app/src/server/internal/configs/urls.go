@@ -12,13 +12,13 @@ const (
     // URLActivities - activities XML URL
     URLActivities = "/activities/{" + URLParamActivitiesRef + "}/{" + URLParamActivityRef + "}"
     // URLListActivities - list activities XML URL
-    URLListActivities = "/list-activities"
+    URLListActivities = "/activities-list"
     // URLTotalActivities - total activities XML URL
-    URLTotalActivities = "/total-activities"
+    URLTotalActivities = "/activities-total"
 
     // URLListActivity - activities XML URL
-    URLListActivity = "/list-activity/{" + URLParamActivitiesRef + "}"
+    URLListActivity = "/activity-list/{" + URLParamActivitiesRef + "}"
     // URLTotalActivity - total activity for an activities file
-    URLTotalActivity = "/total-activity/{" + URLParamActivitiesRef + "}"
+    URLTotalActivity = "/activity-total/{" + URLParamActivitiesRef + "}"
 
 )

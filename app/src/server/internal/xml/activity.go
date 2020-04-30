@@ -60,9 +60,9 @@ type ReportingOrg struct {
 
 // TotalActivities - get the total number of activities
 type activityTotal struct {
-	XMLName   	      xml.Name   `xml:"iati-total-activity"`
+	XMLName   	      xml.Name   `xml:"iati-activity-total"`
     IATIActivities    string      `xml:"iati-activities-id"`
-	Total 		      int64       `xml:"total-activity"`
+	Total 		      int64       `xml:"activity-total"`
 }
 
 // GetNumActivites - Get the total number of activities
@@ -152,17 +152,17 @@ func ActivityList (contracts *contracts.Contracts, activitiesRef [32]byte) ([]by
         if err != nil {
             thisError := Log(configs.ErrorActivityList, err)
             log.Errors = append(log.Errors, thisError)
-            error, _ := xml.MarshalIndent(log, "", "  ")
+            error, _ := xml.MarshalIndent(log, "", "")
             return error
         }
         thisRef := fmt.Sprintf("%x", ref)
         activityIDs.ID = append(activityIDs.ID, thisRef)
     }
-    thisXML, err := xml.MarshalIndent(activityIDs, "", "  ")
+    thisXML, err := xml.MarshalIndent(activityIDs, "", "")
     if err != nil {
         thisError := Log(configs.ErrorActivityList + " - " + configs.ErrorUnMarshall, err)
         log.Errors = append(log.Errors, thisError)
-        error, _ := xml.MarshalIndent(log, "", "  ")
+        error, _ := xml.MarshalIndent(log, "", "")
         return error
     }
     return thisXML

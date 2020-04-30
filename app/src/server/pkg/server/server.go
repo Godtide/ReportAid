@@ -65,9 +65,16 @@ func activityNum (contracts *contracts.Contracts, w http.ResponseWriter, r *http
     w.Write(content)
 }
 
+func notFound(w http.ResponseWriter, r *http.Request) {
+    xml.Header(w)
+    content := xml.NotFound()
+    w.Write(content)
+}
+
 func handleRequests(contracts *contracts.Contracts) {
 
 	router := mux.NewRouter().StrictSlash(true)
+    
     router.HandleFunc(configs.URLHome, func(w http.ResponseWriter, r *http.Request) {
     	homePage(w)
 	})
@@ -92,6 +99,8 @@ func handleRequests(contracts *contracts.Contracts) {
     router.HandleFunc(configs.URLTotalActivity, func(w http.ResponseWriter, r *http.Request) {
     	activityNum(contracts, w, r)
 	})
+
+    router.NotFoundHandler = http.HandlerFunc(notFound)
 
     log.Fatal(http.ListenAndServe(configs.ServerPort, router))
 }
