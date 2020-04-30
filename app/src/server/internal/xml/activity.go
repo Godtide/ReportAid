@@ -2,8 +2,6 @@ package xml
 
 import (
     "fmt"
-	"log"
-    "net/http"
   	"math/big"
 	"encoding/xml"
 
@@ -63,8 +61,8 @@ type ReportingOrg struct {
 // TotalActivities - get the total number of activities
 type totalActivity struct {
 	XMLName   	      xml.Name   `xml:"iati-total-activity"`
-    IATIActivities    string      `xml:"iati-id"`
-	Total 		      int64       `xml:"total"`
+    IATIActivities    string      `xml:"iati-activities-id"`
+	Total 		      int64       `xml:"total-activity"`
 }
 
 // GetNumActivites - Get the total number of activities
@@ -72,7 +70,6 @@ func numActivity(contract *activity.IATIActivity, activitiesRef [32]byte) (int64
 
 	num, err := contract.GetNumActivities(&bind.CallOpts{}, activitiesRef)
 	if err != nil {
-		log.Fatalf("%s: %v", configs.ErrorActivityNum, err)
 		return 0
 	}
 	smallNum := num.Int64()
@@ -80,21 +77,21 @@ func numActivity(contract *activity.IATIActivity, activitiesRef [32]byte) (int64
 }
 
 // NumActivity - get total activity
-func NumActivity (contracts *contracts.Contracts, activitiesRef [32]byte, w http.ResponseWriter, r *http.Request) {
+func NumActivity (contracts *contracts.Contracts, activitiesRef [32]byte) ([]byte) {
 
     num := numActivity(contracts.ActivityContract, activitiesRef)
     ref := fmt.Sprintf("%x", activitiesRef)
     totalXML := &totalActivity{IATIActivities: ref, Total: num}
     thisXML, _ := xml.MarshalIndent(totalXML, "", "")
-    w.Write(thisXML)
+    return thisXML
 }
 
 // ActivityID get specific acvtitie
-func ActivityID (contracts *contracts.Contracts, activitiesRef [32]byte, activityRef [32]byte, w http.ResponseWriter, r *http.Request) (*IATIActivity){
+func ActivityID (contracts *contracts.Contracts, activitiesRef [32]byte, activityRef [32]byte) (*IATIActivity, string) {
 
     activity, err := contracts.ActivityContract.GetActivity(&bind.CallOpts{}, activitiesRef, activityRef)
     if err != nil {
-        log.Fatalf("%s: %v", configs.ErrorActivities, err)
+        return nil, configs.ErrorActivity
     }
 
     lang := utils.GetString(activity.Lang)
@@ -108,7 +105,13 @@ func ActivityID (contracts *contracts.Contracts, activitiesRef [32]byte, activit
     //fmt.Println("%x", activity.ReportingOrg.OrgRef)
 
     reportOrgName := OrgName(contracts, activity.ReportingOrg.OrgRef)
+    if reportOrgName == "" {
+        return nil, configs.ErrorOrgsName
+    }
     reportingOrgRef := OrgID(contracts, activity.ReportingOrg.OrgRef)
+    if reportingOrgRef == "" {
+        return nil, configs.ErrorOrgsID
+    }
     reportingOrgType := activity.ReportingOrg.OrgType
     reportingOrgIsSecondary := activity.ReportingOrg.IsSecondary
 
@@ -132,13 +135,14 @@ func ActivityID (contracts *contracts.Contracts, activitiesRef [32]byte, activit
                                     Title: title,
                                     Desc: Desc{Type: descType, Narrative: desc},
                                 }
-    return activityXML
+    return activityXML, ""
 }
 
 
 // ListActivity - list all activities
-func ListActivity (contracts *contracts.Contracts, activitiesRef [32]byte, w http.ResponseWriter, r *http.Request) {
+func ListActivity (contracts *contracts.Contracts, activitiesRef [32]byte) ([]byte){
 
+    log := LogInit()
     thisActivitiesRef := fmt.Sprintf("%x", activitiesRef)
     activityIDs := &activityList{ActivitiesID: thisActivitiesRef}
     num := numActivity(contracts.ActivityContract, activitiesRef)
@@ -146,11 +150,14 @@ func ListActivity (contracts *contracts.Contracts, activitiesRef [32]byte, w htt
     for ; i < num; i++ {
         ref, err := contracts.ActivityContract.GetReference(&bind.CallOpts{}, activitiesRef, big.NewInt(i))
         if err != nil {
-            log.Fatalf("%s: %v", configs.ErrorActivityID, err)
+            thisError := Log(configs.ErrorActivities, err)
+            log.Errors = append(log.Errors, thisError)
+            thisXML, _ := xml.MarshalIndent(log, "", "  ")
+            return thisXML
         }
         thisRef := fmt.Sprintf("%x", ref)
         activityIDs.ID = append(activityIDs.ID, thisRef)
     }
-    thisXML, _ := xml.MarshalIndent(activityIDs, configs.XMLTabDouble, configs.XMLTabDouble)
-    w.Write(thisXML)
+    thisXML, _ := xml.MarshalIndent(activityIDs, "", "  ")
+    return thisXML
 }

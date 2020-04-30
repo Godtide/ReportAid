@@ -12,49 +12,64 @@ import (
 	"github.com/ReportAid/app/src/server/internal/configs"
 )
 
-func homePage(w http.ResponseWriter, r *http.Request){
+func homePage(w http.ResponseWriter){
 
-    xml.First(w, r)
-    xml.Home(w, r)
+    xml.Header(w)
+    content := xml.Home()
+    w.Write(content)
 }
 
-func listActivities (contracts *contracts.Contracts, w http.ResponseWriter, r *http.Request) {
+func listActivities (contracts *contracts.Contracts, w http.ResponseWriter) {
 
-    xml.First(w, r)
-    xml.ListActivities(contracts, w, r)
+    xml.Header(w)
+    content := xml.ListActivities(contracts)
+    w.Write(content)
 }
 
 func singleActivities (contracts *contracts.Contracts, w http.ResponseWriter, r *http.Request) {
 
-    xml.First(w, r)
+    xml.Header(w)
 	params := mux.Vars(r)
-    activitiesRef := params["activitiesRef"]
-	activityRef := params["activityRef"]
+    activitiesRef := params[configs.URLParamActivitiesRef]
+	activityRef := params[configs.URLParamActivityRef]
 	convertedActivitiesRef := common.HexToHash(activitiesRef)
 	convertedActivityRef := common.HexToHash(activityRef)
-	xml.ActivitiesID(contracts, convertedActivitiesRef, convertedActivityRef, w, r)
+	content := xml.ActivitiesID(contracts, convertedActivitiesRef, convertedActivityRef)
+    w.Write(content)
 }
 
-func numActivities (contracts *contracts.Contracts, w http.ResponseWriter, r *http.Request) {
+func numActivities (contracts *contracts.Contracts, w http.ResponseWriter) {
 
-    xml.First(w, r)
-    xml.NumActivites(contracts, w, r)
+    xml.Header(w)
+    content := xml.NumActivites(contracts)
+    w.Write(content)
 }
 
 func listActivity (contracts *contracts.Contracts, w http.ResponseWriter, r *http.Request) {
 
-    xml.First(w, r)
+    xml.Header(w)
 	params := mux.Vars(r)
-	value := params["ref"]
-	convertedValue := common.HexToHash(value)
-	xml.ListActivity(contracts, convertedValue, w, r)
+    activitiesRef := params[configs.URLParamActivitiesRef]
+	convertedActivitiesRef := common.HexToHash(activitiesRef)
+	content := xml.ListActivity(contracts, convertedActivitiesRef)
+    w.Write(content)
+}
+
+func numActivity (contracts *contracts.Contracts, w http.ResponseWriter, r *http.Request) {
+
+    xml.Header(w)
+    params := mux.Vars(r)
+    activitiesRef := params[configs.URLParamActivitiesRef]
+	convertedActivitiesRef := common.HexToHash(activitiesRef)
+    content := xml.NumActivity(contracts, convertedActivitiesRef)
+    w.Write(content)
 }
 
 func handleRequests(contracts *contracts.Contracts) {
 
 	router := mux.NewRouter().StrictSlash(true)
     router.HandleFunc(configs.URLHome, func(w http.ResponseWriter, r *http.Request) {
-    	homePage(w, r)
+    	homePage(w)
 	})
 
     // Activities
@@ -63,15 +78,19 @@ func handleRequests(contracts *contracts.Contracts) {
 	})
 
 	router.HandleFunc(configs.URLListActivities, func(w http.ResponseWriter, r *http.Request) {
-    	listActivities(contracts, w, r)
+    	listActivities(contracts, w)
 	})
 
 	router.HandleFunc(configs.URLTotalActivities, func(w http.ResponseWriter, r *http.Request) {
-    	numActivities(contracts, w, r)
+    	numActivities(contracts, w)
 	})
 
     router.HandleFunc(configs.URLListActivity, func(w http.ResponseWriter, r *http.Request) {
     	listActivity(contracts, w, r)
+	})
+
+    router.HandleFunc(configs.URLTotalActivity, func(w http.ResponseWriter, r *http.Request) {
+    	numActivity(contracts, w, r)
 	})
 
     log.Fatal(http.ListenAndServe(configs.ServerPort, router))

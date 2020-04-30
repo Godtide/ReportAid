@@ -1,7 +1,6 @@
 package xml
 
 import (
-    "net/http"
 	"encoding/xml"
 
 	"github.com/ReportAid/app/src/server/internal/configs"
@@ -13,11 +12,10 @@ type home struct {
 	Text	    string `xml:"text"`
 }
 
-
 // Home - get total activities
-func Home (w http.ResponseWriter, r *http.Request) {
+func Home () ([]byte) {
 
 	homeXML := &home{Text: configs.TextHome}
-	thisXML, _ := xml.MarshalIndent(homeXML, "", " ")
-	w.Write(thisXML)
+	thisXML, _ := xml.MarshalIndent(homeXML, "", "  ")
+	return thisXML
 }

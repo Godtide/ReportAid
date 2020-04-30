@@ -18,6 +18,8 @@ const (
     ErrorActivityContract = "Failed to instantiate activity contract"
     // ErrorActivityNum - error
     ErrorActivityNum = "Failed to get the number of Activity"
+    // ErrorActivity - error
+    ErrorActivity = "Failed to get the Activity"
     // ErrorActivityID - error
     ErrorActivityID = "Failed to get the Activity ID"
 
@@ -25,5 +27,7 @@ const (
     ErrorOrgsContract = "Failed to instantiate orgs contract"
     // ErrorOrgsName - error
     ErrorOrgsName = "Failed to get orgs name"
+    // ErrorOrgsID - error
+    ErrorOrgsID = "Failed to get orgs ref"
 
 )

@@ -2,8 +2,6 @@ package xml
 
 import (
     "fmt"
-	"log"
-    "net/http"
   	"math/big"
 	"encoding/xml"
 
@@ -27,7 +25,7 @@ type iatiActivities struct {
 	Version 	string `xml:"version,attr"`
 	Time 		string `xml:"generated-datetime,attr"`
 	LinkedData  string `xml:"linked-data-default,attr"`
-    Activity    IATIActivity
+    Activity    []*IATIActivity
 }
 
 // TotalActivities - get the total number of activities
@@ -41,7 +39,6 @@ func numActivities(contract *activities.IATIActivities) (int64) {
 
 	num, err := contract.GetNumActivities(&bind.CallOpts{})
 	if err != nil {
-		log.Fatalf("%s: %v", configs.ErrorActivitiesNum, err)
 		return 0
 	}
 	smallNum := num.Int64()
@@ -49,53 +46,67 @@ func numActivities(contract *activities.IATIActivities) (int64) {
 }
 
 // NumActivites - get total activities
-func NumActivites (contracts *contracts.Contracts, w http.ResponseWriter, r *http.Request) {
+func NumActivites (contracts *contracts.Contracts) ([]byte) {
 
     num := numActivities(contracts.ActivitiesContract)
     totalXML := &totalActivities{Total: num}
-    thisXML, _ := xml.MarshalIndent(totalXML, "", " ")
-    w.Write(thisXML)
+    thisXML, _ := xml.MarshalIndent(totalXML, "", "  ")
+    return thisXML
 }
 
 // ActivitiesID - get specific activitie
-func ActivitiesID (contracts *contracts.Contracts, activitiesRef [32]byte, activityRef [32]byte, w http.ResponseWriter, r *http.Request) {
+func ActivitiesID (contracts *contracts.Contracts, activitiesRef [32]byte, activityRef [32]byte) ([]byte) {
 
+    log := LogInit()
     activities, err := contracts.ActivitiesContract.GetActivities(&bind.CallOpts{}, activitiesRef)
     if err != nil {
-        log.Fatalf("%s: %v", configs.ErrorActivities, err)
+        thisError := Log(configs.ErrorActivities, err)
+        log.Errors = append(log.Errors, thisError)
+        thisXML, _ := xml.MarshalIndent(log, "", "  ")
+        return thisXML
     }
 
     version := utils.GetString(activities.Version)
     time := utils.GetString(activities.GeneratedTime)
     link := utils.GetString(activities.LinkedData)
-    activity := ActivityID(contracts, activitiesRef, activityRef, w, r)
+    var activity, errString = ActivityID(contracts, activitiesRef, activityRef)
+    if activity == nil {
+        thisError := Log(configs.ErrorActivity + " - " + errString, nil)
+        log.Errors = append(log.Errors, thisError)
+        thisXML, _ := xml.MarshalIndent(log, "", "  ")
+        return thisXML
+    }
 
     activitiesXML := &iatiActivities{
                                         Version: string(version),
                                         Time: string(time),
                                         LinkedData: string(link),
-                                        Activity: *activity,
                                     }
+    activitiesXML.Activity = append(activitiesXML.Activity, activity)
     thisXML, _ := xml.MarshalIndent(activitiesXML, " ", " ")
-    w.Write(thisXML)
+    return thisXML
 	//fmt.Printf("Activities Reference: %x\n", ref)
 }
 
 
 // ListActivities - list all activities
-func ListActivities (contracts *contracts.Contracts, w http.ResponseWriter, r *http.Request) {
+func ListActivities (contracts *contracts.Contracts) ([]byte) {
 
+    log := LogInit()
     num := numActivities(contracts.ActivitiesContract)
     var i int64
     activitiesIDs := &activitiesList{}
     for ; i < num; i++ {
         ref, err := contracts.ActivitiesContract.GetReference(&bind.CallOpts{}, big.NewInt(i))
         if err != nil {
-            log.Fatalf("%s: %v", configs.ErrorActivitiesID, err)
+            thisError := Log(configs.ErrorActivitiesID, err)
+            log.Errors = append(log.Errors, thisError)
+            thisXML, _ := xml.MarshalIndent(log, "", "  ")
+            return thisXML
         }
         thisRef := fmt.Sprintf("%x", ref)
         activitiesIDs.ID = append(activitiesIDs.ID, thisRef)
     }
-    thisXML, _ := xml.MarshalIndent(activitiesIDs, " ", " ")
-    w.Write(thisXML)
+    thisXML, _ := xml.MarshalIndent(activitiesIDs, "", "  ")
+    return thisXML
 }
