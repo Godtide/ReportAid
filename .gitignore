@@ -9,6 +9,8 @@ app/src/blockchain/build/*
 app/src/blockchain/node_modules
 app/src/blockchain/node_modules/*
 app/src/server/vendor
+app/src/server/tmp
+app/src/server/air
 app/node_modules
 app/node_modules/*
 app/build
