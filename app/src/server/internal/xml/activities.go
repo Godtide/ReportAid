@@ -29,13 +29,13 @@ type iatiActivities struct {
 }
 
 // TotalActivities - get the total number of activities
-type totalActivities struct {
+type activitiesTotal struct {
 	XMLName   	xml.Name `xml:"iati-total-activities"`
 	Total 		int64 `xml:"total"`
 }
 
 // GetNumActivites - Get the total number of activities
-func numActivities(contract *activities.IATIActivities) (int64) {
+func activitiesNum(contract *activities.IATIActivities) (int64) {
 
 	num, err := contract.GetNumActivities(&bind.CallOpts{})
 	if err != nil {
@@ -45,12 +45,19 @@ func numActivities(contract *activities.IATIActivities) (int64) {
 	return smallNum
 }
 
-// NumActivites - get total activities
-func NumActivites (contracts *contracts.Contracts) ([]byte) {
+// ActivitesNum - get total activities
+func ActivitesNum (contracts *contracts.Contracts) ([]byte) {
 
-    num := numActivities(contracts.ActivitiesContract)
-    totalXML := &totalActivities{Total: num}
-    thisXML, _ := xml.MarshalIndent(totalXML, "", "  ")
+    log := LogInit()
+    num := activitiesNum(contracts.ActivitiesContract)
+    totalXML := &activitiesTotal{Total: num}
+    thisXML, err := xml.MarshalIndent(totalXML, "", "  ")
+    if err != nil {
+        thisError := Log(configs.ErrorActivitiesNum + " - " + configs.ErrorUnMarshall, err)
+        log.Errors = append(log.Errors, thisError)
+        thisXML, _ := xml.MarshalIndent(log, "", "  ")
+        return thisXML
+    }
     return thisXML
 }
 
@@ -62,8 +69,8 @@ func ActivitiesID (contracts *contracts.Contracts, activitiesRef [32]byte, activ
     if err != nil {
         thisError := Log(configs.ErrorActivities, err)
         log.Errors = append(log.Errors, thisError)
-        thisXML, _ := xml.MarshalIndent(log, "", "  ")
-        return thisXML
+        error, _ := xml.MarshalIndent(log, "", "  ")
+        return error
     }
 
     version := utils.GetString(activities.Version)
@@ -73,8 +80,8 @@ func ActivitiesID (contracts *contracts.Contracts, activitiesRef [32]byte, activ
     if activity == nil {
         thisError := Log(configs.ErrorActivity + " - " + errString, nil)
         log.Errors = append(log.Errors, thisError)
-        thisXML, _ := xml.MarshalIndent(log, "", "  ")
-        return thisXML
+        error, _ := xml.MarshalIndent(log, "", "  ")
+        return error
     }
 
     activitiesXML := &iatiActivities{
@@ -83,17 +90,23 @@ func ActivitiesID (contracts *contracts.Contracts, activitiesRef [32]byte, activ
                                         LinkedData: string(link),
                                     }
     activitiesXML.Activity = append(activitiesXML.Activity, activity)
-    thisXML, _ := xml.MarshalIndent(activitiesXML, " ", " ")
+    thisXML, err := xml.MarshalIndent(activitiesXML, " ", " ")
+    if err != nil {
+        thisError := Log(configs.ErrorActivity + " - " + configs.ErrorUnMarshall, err)
+        log.Errors = append(log.Errors, thisError)
+        error, _ := xml.MarshalIndent(log, "", "  ")
+        return error
+    }
     return thisXML
 	//fmt.Printf("Activities Reference: %x\n", ref)
 }
 
 
-// ListActivities - list all activities
-func ListActivities (contracts *contracts.Contracts) ([]byte) {
+// ActivitiesList - list all activities
+func ActivitiesList (contracts *contracts.Contracts) ([]byte) {
 
     log := LogInit()
-    num := numActivities(contracts.ActivitiesContract)
+    num := activitiesNum(contracts.ActivitiesContract)
     var i int64
     activitiesIDs := &activitiesList{}
     for ; i < num; i++ {
@@ -107,6 +120,12 @@ func ListActivities (contracts *contracts.Contracts) ([]byte) {
         thisRef := fmt.Sprintf("%x", ref)
         activitiesIDs.ID = append(activitiesIDs.ID, thisRef)
     }
-    thisXML, _ := xml.MarshalIndent(activitiesIDs, "", "  ")
+    thisXML, err := xml.MarshalIndent(activitiesIDs, "", "  ")
+    if err != nil {
+        thisError := Log(configs.ErrorActivitiesList + " - " + configs.ErrorUnMarshall, err)
+        log.Errors = append(log.Errors, thisError)
+        error, _ := xml.MarshalIndent(log, "", "  ")
+        return error
+    }
     return thisXML
 }
