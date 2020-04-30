@@ -13,6 +13,8 @@ const (
     ErrorActivities = "Failed to get the Activities"
     // ErrorActivitiesID - error
     ErrorActivitiesID = "Failed to get the Activities ID"
+    // ErrorActivitiesList - error
+    ErrorActivitiesList = "Failed to list activities"
 
     // ErrorActivityContract - error
     ErrorActivityContract = "Failed to instantiate activity contract"
@@ -22,6 +24,8 @@ const (
     ErrorActivity = "Failed to get the Activity"
     // ErrorActivityID - error
     ErrorActivityID = "Failed to get the Activity ID"
+    // ErrorActivityList - error
+    ErrorActivityList = "Failed to list activity"
 
     // ErrorOrgsContract - error
     ErrorOrgsContract = "Failed to instantiate orgs contract"
@@ -29,5 +33,8 @@ const (
     ErrorOrgsName = "Failed to get orgs name"
     // ErrorOrgsID - error
     ErrorOrgsID = "Failed to get orgs ref"
+
+    // ErrorUnMarshall - unmarshalling problems
+    ErrorUnMarshall = "Failed to unmashall struct"
 
 )

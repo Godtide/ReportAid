@@ -59,14 +59,14 @@ type ReportingOrg struct {
 }
 
 // TotalActivities - get the total number of activities
-type totalActivity struct {
+type activityTotal struct {
 	XMLName   	      xml.Name   `xml:"iati-total-activity"`
     IATIActivities    string      `xml:"iati-activities-id"`
 	Total 		      int64       `xml:"total-activity"`
 }
 
 // GetNumActivites - Get the total number of activities
-func numActivity(contract *activity.IATIActivity, activitiesRef [32]byte) (int64) {
+func activityNum(contract *activity.IATIActivity, activitiesRef [32]byte) (int64) {
 
 	num, err := contract.GetNumActivities(&bind.CallOpts{}, activitiesRef)
 	if err != nil {
@@ -76,12 +76,12 @@ func numActivity(contract *activity.IATIActivity, activitiesRef [32]byte) (int64
 	return smallNum
 }
 
-// NumActivity - get total activity
-func NumActivity (contracts *contracts.Contracts, activitiesRef [32]byte) ([]byte) {
+// ActivityNum - get total activity
+func ActivityNum (contracts *contracts.Contracts, activitiesRef [32]byte) ([]byte) {
 
-    num := numActivity(contracts.ActivityContract, activitiesRef)
+    num := activityNum(contracts.ActivityContract, activitiesRef)
     ref := fmt.Sprintf("%x", activitiesRef)
-    totalXML := &totalActivity{IATIActivities: ref, Total: num}
+    totalXML := &activityTotal{IATIActivities: ref, Total: num}
     thisXML, _ := xml.MarshalIndent(totalXML, "", "")
     return thisXML
 }
@@ -91,7 +91,7 @@ func ActivityID (contracts *contracts.Contracts, activitiesRef [32]byte, activit
 
     activity, err := contracts.ActivityContract.GetActivity(&bind.CallOpts{}, activitiesRef, activityRef)
     if err != nil {
-        return nil, configs.ErrorActivity
+        return nil, configs.ErrorActivityID
     }
 
     lang := utils.GetString(activity.Lang)
@@ -139,25 +139,31 @@ func ActivityID (contracts *contracts.Contracts, activitiesRef [32]byte, activit
 }
 
 
-// ListActivity - list all activities
-func ListActivity (contracts *contracts.Contracts, activitiesRef [32]byte) ([]byte){
+// ActivityList - list all activities
+func ActivityList (contracts *contracts.Contracts, activitiesRef [32]byte) ([]byte){
 
     log := LogInit()
     thisActivitiesRef := fmt.Sprintf("%x", activitiesRef)
     activityIDs := &activityList{ActivitiesID: thisActivitiesRef}
-    num := numActivity(contracts.ActivityContract, activitiesRef)
+    num := activityNum(contracts.ActivityContract, activitiesRef)
     var i int64
     for ; i < num; i++ {
         ref, err := contracts.ActivityContract.GetReference(&bind.CallOpts{}, activitiesRef, big.NewInt(i))
         if err != nil {
-            thisError := Log(configs.ErrorActivities, err)
+            thisError := Log(configs.ErrorActivityList, err)
             log.Errors = append(log.Errors, thisError)
-            thisXML, _ := xml.MarshalIndent(log, "", "  ")
-            return thisXML
+            error, _ := xml.MarshalIndent(log, "", "  ")
+            return error
         }
         thisRef := fmt.Sprintf("%x", ref)
         activityIDs.ID = append(activityIDs.ID, thisRef)
     }
-    thisXML, _ := xml.MarshalIndent(activityIDs, "", "  ")
+    thisXML, err := xml.MarshalIndent(activityIDs, "", "  ")
+    if err != nil {
+        thisError := Log(configs.ErrorActivityList + " - " + configs.ErrorUnMarshall, err)
+        log.Errors = append(log.Errors, thisError)
+        error, _ := xml.MarshalIndent(log, "", "  ")
+        return error
+    }
     return thisXML
 }
