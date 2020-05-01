@@ -15,7 +15,7 @@ import (
 
 // ActivitiesList - a list if all activities
 type activitiesList struct {
-	XMLName   	xml.Name `xml:"iati-activities-ids"`
+	XMLName   	xml.Name `xml:"iati-activities"`
 	ID			[]string `xml:"id"`
 }
 
