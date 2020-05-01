@@ -47,7 +47,7 @@ func activities (contracts *contracts.Contracts, w http.ResponseWriter, r *http.
 func activitiesNum (contracts *contracts.Contracts, w http.ResponseWriter) {
 
     xml.Header(w)
-    content := xml.ActivitesNum(contracts)
+    content := xml.ActivitiesNum(contracts)
     w.Write(content)
 }
 
@@ -117,6 +117,32 @@ func organisationNum (contracts *contracts.Contracts, w http.ResponseWriter, r *
     w.Write(content)
 }
 
+func orgsList (contracts *contracts.Contracts, w http.ResponseWriter) {
+
+    xml.Header(w)
+    content := xml.OrgsList(contracts)
+    w.Write(content)
+}
+
+func orgs (contracts *contracts.Contracts, w http.ResponseWriter, r *http.Request) {
+
+    xml.Header(w)
+	params := mux.Vars(r)
+    orgsRef := params[configs.URLParamOrgsRef]
+	activityRef := params[configs.URLParamActivityRef]
+	convertedOrgsRef := common.HexToHash(orgsRef)
+	convertedActivityRef := common.HexToHash(activityRef)
+	content := xml.OrgsID(contracts, convertedOrgsRef, convertedActivityRef)
+    w.Write(content)
+}
+
+func orgsNum (contracts *contracts.Contracts, w http.ResponseWriter) {
+
+    xml.Header(w)
+    content := xml.OrgsNum(contracts)
+    w.Write(content)
+}
+
 func handleRequests(contracts *contracts.Contracts) {
 
 	router := mux.NewRouter().StrictSlash(true)
@@ -132,19 +158,19 @@ func handleRequests(contracts *contracts.Contracts) {
         activities(contracts, w, r)
 	})
 
-	router.HandleFunc(configs.URLListActivities, func(w http.ResponseWriter, r *http.Request) {
+	router.HandleFunc(configs.URLActivitiesList, func(w http.ResponseWriter, r *http.Request) {
     	activitiesList(contracts, w)
 	})
 
-	router.HandleFunc(configs.URLTotalActivities, func(w http.ResponseWriter, r *http.Request) {
+	router.HandleFunc(configs.URLActivitiesTotal, func(w http.ResponseWriter, r *http.Request) {
     	activitiesNum(contracts, w)
 	})
 
-    router.HandleFunc(configs.URLListActivity, func(w http.ResponseWriter, r *http.Request) {
+    router.HandleFunc(configs.URLActivityList, func(w http.ResponseWriter, r *http.Request) {
     	activityList(contracts, w, r)
 	})
 
-    router.HandleFunc(configs.URLTotalActivity, func(w http.ResponseWriter, r *http.Request) {
+    router.HandleFunc(configs.URLActivityTotal, func(w http.ResponseWriter, r *http.Request) {
     	activityNum(contracts, w, r)
 	})
 
@@ -152,20 +178,33 @@ func handleRequests(contracts *contracts.Contracts) {
         organisations(contracts, w, r)
     })
 
-    router.HandleFunc(configs.URLListOrganisations, func(w http.ResponseWriter, r *http.Request) {
+    router.HandleFunc(configs.URLOrganisationsList, func(w http.ResponseWriter, r *http.Request) {
         organisationsList(contracts, w)
     })
 
-    router.HandleFunc(configs.URLTotalOrganisations, func(w http.ResponseWriter, r *http.Request) {
+    router.HandleFunc(configs.URLOrganisationsTotal, func(w http.ResponseWriter, r *http.Request) {
         organisationsNum(contracts, w)
     })
 
-    router.HandleFunc(configs.URLListOrganisation, func(w http.ResponseWriter, r *http.Request) {
+    router.HandleFunc(configs.URLOrganisationList, func(w http.ResponseWriter, r *http.Request) {
         organisationList(contracts, w, r)
     })
 
-    router.HandleFunc(configs.URLTotalOrganisation, func(w http.ResponseWriter, r *http.Request) {
+    router.HandleFunc(configs.URLOrganisationTotal, func(w http.ResponseWriter, r *http.Request) {
         organisationNum(contracts, w, r)
+    })
+
+    // Orgs
+    router.HandleFunc(configs.URLOrgs, func(w http.ResponseWriter, r *http.Request) {
+        orgs(contracts, w, r)
+    })
+
+    router.HandleFunc(configs.URLOrgsList, func(w http.ResponseWriter, r *http.Request) {
+        orgsList(contracts, w)
+    })
+
+    router.HandleFunc(configs.URLOrgsTotal, func(w http.ResponseWriter, r *http.Request) {
+        orgsNum(contracts, w)
     })
 
     log.Fatal(http.ListenAndServe(configs.ServerPort, router))

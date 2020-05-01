@@ -10,32 +10,41 @@ const (
     URLParamActivityRef = "activityRef"
 
     // URLParamOrganisationsRef - Organisations reference
-    URLParamOrganisationsRef = "OrganisationsRef"
+    URLParamOrganisationsRef = "organisationsRef"
     // URLParamOrganisationRef - Organisation reference
-    URLParamOrganisationRef = "OrganisationRef"
+    URLParamOrganisationRef = "organisationRef"
+    // URLParamOrgsRef - orgs ref'
+    URLParamOrgsRef = "orgsRef"
 
     // URLActivities - activities XML URL
     URLActivities = "/activities/{" + URLParamActivitiesRef + "}/{" + URLParamActivityRef + "}"
-    // URLListActivities - list activities XML URL
-    URLListActivities = "/activities-list"
-    // URLTotalActivities - total activities XML URL
-    URLTotalActivities = "/activities-total"
+    // URLActivitiesList - list activities XML URL
+    URLActivitiesList = "/activities-list"
+    // URLActivitiesTotal - total activities XML URL
+    URLActivitiesTotal = "/activities-total"
 
-    // URLListActivity - activities XML URL
-    URLListActivity = "/activity-list/{" + URLParamActivitiesRef + "}"
-    // URLTotalActivity - total activity for an activities file
-    URLTotalActivity = "/activity-total/{" + URLParamActivitiesRef + "}"
+    // URLActivityList - activities XML URL
+    URLActivityList = "/activity-list/{" + URLParamActivitiesRef + "}"
+    // URLActivityTotal - total activity for an activities file
+    URLActivityTotal = "/activity-total/{" + URLParamActivitiesRef + "}"
 
     // URLOrganisations - Organisations XML URL
     URLOrganisations = "/organisations/{" + URLParamOrganisationsRef + "}/{" + URLParamOrganisationRef + "}"
-    // URLListOrganisations - list Organisations XML URL
-    URLListOrganisations = "/organisations-list"
-    // URLTotalOrganisations - total Organisations XML URL
-    URLTotalOrganisations = "/organisations-total"
+    // URLOrganisationsList - list Organisations XML URL
+    URLOrganisationsList = "/organisations-list"
+    // URLOrganisationsTotal - total Organisations XML URL
+    URLOrganisationsTotal = "/organisations-total"
 
-    // URLListOrganisation - Organisations XML URL
-    URLListOrganisation = "/organisation-list/{" + URLParamOrganisationsRef + "}"
-    // URLTotalOrganisation - total Organisation for an Organisations file
-    URLTotalOrganisation = "/organisation-total/{" + URLParamOrganisationsRef + "}"
+    // URLOrganisationList - list Organisations XML URL
+    URLOrganisationList = "/organisation-list/{" + URLParamOrganisationRef + "}"
+    // URLOrganisationTotal - total Organisation XML URL
+    URLOrganisationTotal = "/organisation-total"
+
+    // URLOrgs - orgs XML URL
+    URLOrgs = "/orgs/{" + URLParamOrgsRef + "}"
+    // URLOrgsList - Orgs XML URL
+    URLOrgsList = "/orgs-list"
+    // URLOrgsTotal - total Orgs
+    URLOrgsTotal = "/orgs-total"
 
 )

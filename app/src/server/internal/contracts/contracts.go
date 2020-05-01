@@ -19,8 +19,8 @@ type Contracts struct {
 
 	ActivitiesContract    	*activities.IATIActivities
 	ActivityContract    	*activity.IATIActivity
-	OrganisationsContract    	*organisations.IATIOrganisations
-	OrganisationContract    	*organisation.IATIOrganisation
+	OrganisationsContract   *organisations.IATIOrganisations
+	OrganisationContract    *organisation.IATIOrganisation
 	OrgsContract			*orgs.IATIOrgs
 
 }

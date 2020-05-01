@@ -31,9 +31,9 @@ type IATIOrganisation struct {
 
 // organisationTotal - get the total number of organisations
 type organisationTotal struct {
-	XMLName   	      xml.Name   `xml:"iati-organisation-total"`
-    IATIOrganisations    string      `xml:"iati-organisations-id"`
-	Total 		      int64       `xml:"organisation-total"`
+	XMLName                xml.Name    `xml:"iati-organisation-total"`
+    IATIOrganisations      string      `xml:"iati-organisations-id"`
+	Total 		           int64       `xml:"organisation-total"`
 }
 
 // organisationNum - Get the total number of organisations

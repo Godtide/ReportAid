@@ -34,7 +34,7 @@ type activitiesTotal struct {
 	Total 		int64 `xml:"activities-total"`
 }
 
-// GetNumActivites - Get the total number of activities
+// GetNumActivities - Get the total number of activities
 func activitiesNum(contract *activities.IATIActivities) (int64) {
 
 	num, err := contract.GetNumActivities(&bind.CallOpts{})
@@ -45,8 +45,8 @@ func activitiesNum(contract *activities.IATIActivities) (int64) {
 	return smallNum
 }
 
-// ActivitesNum - get total activities
-func ActivitesNum (contracts *contracts.Contracts) ([]byte) {
+// ActivitiesNum - get total activities
+func ActivitiesNum (contracts *contracts.Contracts) ([]byte) {
 
     log := LogInit()
     num := activitiesNum(contracts.ActivitiesContract)
@@ -100,7 +100,6 @@ func ActivitiesID (contracts *contracts.Contracts, activitiesRef [32]byte, activ
     return thisXML
 	//fmt.Printf("Activities Reference: %x\n", ref)
 }
-
 
 // ActivitiesList - list all activities
 func ActivitiesList (contracts *contracts.Contracts) ([]byte) {

@@ -39,6 +39,4 @@ const (
     // AddrOrgsContract - orgs contract address
     AddrOrgsContract = "0xD115Ae22e2A72b25Ee6Ae6D392540C73AE36b373"
 
-
-
 )

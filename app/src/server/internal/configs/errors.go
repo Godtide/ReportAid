@@ -58,6 +58,12 @@ const (
     ErrorOrgsName = "Failed to get orgs name"
     // ErrorOrgsID - error
     ErrorOrgsID = "Failed to get orgs ref"
+    // ErrorOrgsNum - error
+    ErrorOrgsNum = "Failed to get the number of Orgs"
+    // ErrorOrgs - error
+    ErrorOrgs = "Failed to get the Orgs"
+    // ErrorOrgsList - error
+    ErrorOrgsList = "Failed to list Orgs"
 
     // ErrorUnMarshall - unmarshalling problems
     ErrorUnMarshall = "Failed to unmashall struct"
