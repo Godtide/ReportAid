@@ -94,7 +94,7 @@ func OrgsNum (contracts *contracts.Contracts) ([]byte) {
     return thisXML
 }
 
-// OrgsID - get specific activitie
+// OrgsID - get specific org
 func OrgsID (contracts *contracts.Contracts, orgsRef [32]byte, activityRef [32]byte) ([]byte) {
 
     log := LogInit()
