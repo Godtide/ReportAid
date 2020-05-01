@@ -1,7 +1,7 @@
 package configs
 
 const (
-    
+
     // ErrorRinkeby - error
     ErrorRinkeby = "Failed to connect to Rinkeby"// ErrorRinkeby - error
     // ErrorActivitiesContract - error
@@ -27,6 +27,30 @@ const (
     ErrorActivityID = "Failed to get the Activity ID"
     // ErrorActivityList - error
     ErrorActivityList = "Failed to list activity"
+
+    // ErrorOrganisationsContract - error
+    ErrorOrganisationsContract = "Failed to instantiate Organisations contract"
+    // ErrorOrganisationsContractType - error
+    ErrorOrganisationsContractType = "The passed parameter is not an Organisations contract"
+    // ErrorOrganisationsNum - error
+    ErrorOrganisationsNum = "Failed to get the number of Organisations"
+    // ErrorOrganisations - error
+    ErrorOrganisations = "Failed to get the Organisations"
+    // ErrorOrganisationsID - error
+    ErrorOrganisationsID = "Failed to get the Organisations ID"
+    // ErrorOrganisationsList - error
+    ErrorOrganisationsList = "Failed to list Organisations"
+
+    // ErrorOrganisationContract - error
+    ErrorOrganisationContract = "Failed to instantiate Organisation contract"
+    // ErrorOrganisationNum - error
+    ErrorOrganisationNum = "Failed to get the number of Organisation"
+    // ErrorOrganisation - error
+    ErrorOrganisation = "Failed to get the Organisation"
+    // ErrorOrganisationID - error
+    ErrorOrganisationID = "Failed to get the Organisation ID"
+    // ErrorOrganisationList - error
+    ErrorOrganisationList = "Failed to list Organisation"
 
     // ErrorOrgsContract - error
     ErrorOrgsContract = "Failed to instantiate orgs contract"

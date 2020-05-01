@@ -12,6 +12,12 @@ import (
 	"github.com/ReportAid/app/src/server/internal/configs"
 )
 
+func notFound(w http.ResponseWriter, r *http.Request) {
+    xml.Header(w)
+    content := xml.NotFound()
+    w.Write(content)
+}
+
 func homePage(w http.ResponseWriter){
 
     xml.Header(w)
@@ -65,16 +71,58 @@ func activityNum (contracts *contracts.Contracts, w http.ResponseWriter, r *http
     w.Write(content)
 }
 
-func notFound(w http.ResponseWriter, r *http.Request) {
+func organisationsList (contracts *contracts.Contracts, w http.ResponseWriter) {
+
     xml.Header(w)
-    content := xml.NotFound()
+    content := xml.OrganisationsList(contracts)
+    w.Write(content)
+}
+
+func organisations (contracts *contracts.Contracts, w http.ResponseWriter, r *http.Request) {
+
+    xml.Header(w)
+	params := mux.Vars(r)
+    organisationsRef := params[configs.URLParamOrganisationsRef]
+	organisationRef := params[configs.URLParamOrganisationRef]
+	convertedOrganisationsRef := common.HexToHash(organisationsRef)
+	convertedOrganisationRef := common.HexToHash(organisationRef)
+	content := xml.OrganisationsID(contracts, convertedOrganisationsRef, convertedOrganisationRef)
+    w.Write(content)
+}
+
+func organisationsNum (contracts *contracts.Contracts, w http.ResponseWriter) {
+
+    xml.Header(w)
+    content := xml.OrganisationsNum(contracts)
+    w.Write(content)
+}
+
+func organisationList (contracts *contracts.Contracts, w http.ResponseWriter, r *http.Request) {
+
+    xml.Header(w)
+	params := mux.Vars(r)
+    organisationsRef := params[configs.URLParamOrganisationsRef]
+	convertedOrganisationsRef := common.HexToHash(organisationsRef)
+	content := xml.OrganisationList(contracts, convertedOrganisationsRef)
+    w.Write(content)
+}
+
+func organisationNum (contracts *contracts.Contracts, w http.ResponseWriter, r *http.Request) {
+
+    xml.Header(w)
+    params := mux.Vars(r)
+    organisationsRef := params[configs.URLParamOrganisationsRef]
+	convertedOrganisationsRef := common.HexToHash(organisationsRef)
+    content := xml.OrganisationNum(contracts, convertedOrganisationsRef)
     w.Write(content)
 }
 
 func handleRequests(contracts *contracts.Contracts) {
 
 	router := mux.NewRouter().StrictSlash(true)
-    
+
+    router.NotFoundHandler = http.HandlerFunc(notFound)
+
     router.HandleFunc(configs.URLHome, func(w http.ResponseWriter, r *http.Request) {
     	homePage(w)
 	})
@@ -100,7 +148,25 @@ func handleRequests(contracts *contracts.Contracts) {
     	activityNum(contracts, w, r)
 	})
 
-    router.NotFoundHandler = http.HandlerFunc(notFound)
+    router.HandleFunc(configs.URLOrganisations, func(w http.ResponseWriter, r *http.Request) {
+        organisations(contracts, w, r)
+    })
+
+    router.HandleFunc(configs.URLListOrganisations, func(w http.ResponseWriter, r *http.Request) {
+        organisationsList(contracts, w)
+    })
+
+    router.HandleFunc(configs.URLTotalOrganisations, func(w http.ResponseWriter, r *http.Request) {
+        organisationsNum(contracts, w)
+    })
+
+    router.HandleFunc(configs.URLListOrganisation, func(w http.ResponseWriter, r *http.Request) {
+        organisationList(contracts, w, r)
+    })
+
+    router.HandleFunc(configs.URLTotalOrganisation, func(w http.ResponseWriter, r *http.Request) {
+        organisationNum(contracts, w, r)
+    })
 
     log.Fatal(http.ListenAndServe(configs.ServerPort, router))
 }

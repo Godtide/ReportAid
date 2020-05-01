@@ -42,22 +42,6 @@ type Status struct {
         Code      uint8 `xml:"code,attr"`
 }
 
-// Desc - activity description
-type Desc struct {
-        XMLName   	xml.Name `xml:"description"`
-        Type        uint8 `xml:"type,attr"`
-        Narrative   string `xml:"narrative"`
-}
-
-// ReportingOrg - activity reporting organisation
-type ReportingOrg struct {
-    XMLName   	xml.Name `xml:"reporting-org"`
-    Ref         string `xml:"ref,attr"`
-    Type        uint8 `xml:"type,attr"`
-    Secondary   bool `xml:"secondary-reporter,attr"`
-    Narrative   string `xml:"narrative"`
-}
-
 // TotalActivities - get the total number of activities
 type activityTotal struct {
 	XMLName   	      xml.Name   `xml:"iati-activity-total"`
