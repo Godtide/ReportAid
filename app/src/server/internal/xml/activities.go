@@ -6,6 +6,7 @@ import (
 	"encoding/xml"
 
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
+	"github.com/ethereum/go-ethereum/common"
 
     "github.com/ReportAid/app/src/server/internal/contracts"
 	"github.com/ReportAid/app/src/server/internal/contracts/activities"
@@ -65,12 +66,18 @@ func ActivitiesNum (contracts *contracts.Contracts) ([]byte) {
     return thisXML
 }
 
-func activitiesHeader (contract *activities.ActivitiesOrgActivities, activitiesRef [32]byte) (*iatiActivities) {
+func activitiesHeader (contracts *contracts.Contracts, activitiesRef [32]byte) (*iatiActivities, string) {
 
     thisActivitiesRef := fmt.Sprintf("%x", activitiesRef)
-    version := utils.GetString(contract.Version)
-    time := utils.GetString(contract.GeneratedTime)
-    link := utils.GetString(contract.LinkedData)
+
+    activities, err := contracts.ActivitiesContract.GetActivities(&bind.CallOpts{}, activitiesRef)
+    if err != nil {
+        return nil, configs.ErrorActivities
+    }
+
+    version := utils.GetString(activities.Version)
+    time := utils.GetString(activities.GeneratedTime)
+    link := utils.GetString(activities.LinkedData)
 
     activitiesXML := &iatiActivities{
                                         Namespace: configs.URLReportAidNamespace,
@@ -79,32 +86,75 @@ func activitiesHeader (contract *activities.ActivitiesOrgActivities, activitiesR
                                         LinkedData: string(link),
                                         Ref: thisActivitiesRef,
                                     }
-    return activitiesXML
+    return activitiesXML, ""
 }
 
 // Activities - get specific activities
 func Activities (contracts *contracts.Contracts, activitiesRef [32]byte, activityRef [32]byte) ([]byte) {
 
     log := LogInit()
-    activities, err := contracts.ActivitiesContract.GetActivities(&bind.CallOpts{}, activitiesRef)
-    if err != nil {
-        thisError := Log(configs.ErrorActivities, err)
+
+    activitiesXML, errString := activitiesHeader(contracts, activitiesRef)
+    if activitiesXML == nil {
+        thisError := Log(configs.ErrorActivities + " - " + errString, nil)
         log.Errors = append(log.Errors, thisError)
         error, _ := xml.MarshalIndent(log, "", "")
         return error
     }
 
-    activitiesXML := activitiesHeader(&activities, activitiesRef)
-
-    var activity, errString = Activity(contracts, activitiesRef, activityRef)
+    var activity, activityErrString = Activity(contracts, activitiesRef, activityRef)
     if activity == nil {
-        thisError := Log(configs.ErrorActivity + " - " + errString, nil)
+        thisError := Log(configs.ErrorActivity + " - " + activityErrString, nil)
         log.Errors = append(log.Errors, thisError)
         error, _ := xml.MarshalIndent(log, "", "")
         return error
     }
 
     activitiesXML.Activity = append(activitiesXML.Activity, activity)
+
+    thisXML, err := xml.MarshalIndent(activitiesXML, "", "")
+    if err != nil {
+        thisError := Log(configs.ErrorActivity + " - " + configs.ErrorUnMarshall, err)
+        log.Errors = append(log.Errors, thisError)
+        error, _ := xml.MarshalIndent(log, "", "")
+        return error
+    }
+    return thisXML
+}
+
+// ActivitiesAll - get specific activities
+func ActivitiesAll (contracts *contracts.Contracts, activitiesRef [32]byte) ([]byte) {
+
+    log := LogInit()
+
+    activitiesXML, errString := activitiesHeader(contracts, activitiesRef)
+    if activitiesXML == nil {
+        thisError := Log(configs.ErrorActivities + " - " + errString, nil)
+        log.Errors = append(log.Errors, thisError)
+        error, _ := xml.MarshalIndent(log, "", "")
+        return error
+    }
+
+    activityList, errString := ActivityList(contracts, activitiesRef)
+    if activityList == nil {
+        thisError := Log(configs.ErrorActivities + " - " + errString, nil)
+        log.Errors = append(log.Errors, thisError)
+        error, _ := xml.MarshalIndent(log, "", "")
+        return error
+    }
+
+    for i := 0; i < len(activityList); i++ {
+
+    	convertedActivityRef := common.HexToHash(activityList[i])
+        var activity, errString = Activity(contracts, activitiesRef, convertedActivityRef)
+        if activity == nil {
+            thisError := Log(configs.ErrorActivity + " - " + errString, nil)
+            log.Errors = append(log.Errors, thisError)
+            error, _ := xml.MarshalIndent(log, "", "")
+            return error
+        }
+        activitiesXML.Activity = append(activitiesXML.Activity, activity)
+    }
 
     thisXML, err := xml.MarshalIndent(activitiesXML, "", "")
     if err != nil {
@@ -121,9 +171,10 @@ func Activities (contracts *contracts.Contracts, activitiesRef [32]byte, activit
 func ActivitiesList (contracts *contracts.Contracts) ([]byte) {
 
     log := LogInit()
+    activitiesRefs := &activitiesList{Namespace: configs.URLReportAidNamespace}
+
     num := activitiesNum(contracts.ActivitiesContract)
     var i int64
-    activitiesRefs := &activitiesList{Namespace: configs.URLReportAidNamespace}
     for ; i < num; i++ {
         ref, err := contracts.ActivitiesContract.GetReference(&bind.CallOpts{}, big.NewInt(i))
         if err != nil {

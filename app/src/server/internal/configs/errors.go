@@ -12,7 +12,7 @@ const (
     ErrorActivitiesNum = "Failed to get the number of Activities"
     // ErrorActivities - error
     ErrorActivities = "Failed to get the Activities"
-    // ErrorActivitiesID - error
+    // ErrorActivitiesRef - error
     ErrorActivitiesRef = "Failed to get the Activities ID"
     // ErrorActivitiesList - error
     ErrorActivitiesList = "Failed to list activities"

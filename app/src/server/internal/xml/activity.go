@@ -74,7 +74,7 @@ func ActivityNum (contracts *contracts.Contracts, activitiesRef [32]byte) ([]byt
     return thisXML
 }
 
-// Activity get specific acvtitie
+// Activity get specific acvtity
 func Activity (contracts *contracts.Contracts, activitiesRef [32]byte, activityRef [32]byte) (*IATIActivity, string) {
 
     activity, err := contracts.ActivityContract.GetActivity(&bind.CallOpts{}, activitiesRef, activityRef)
@@ -131,27 +131,39 @@ func Activity (contracts *contracts.Contracts, activitiesRef [32]byte, activityR
     return activityXML, ""
 }
 
-
 // ActivityList - list all activities
-func ActivityList (contracts *contracts.Contracts, activitiesRef [32]byte) ([]byte){
+func ActivityList (contracts *contracts.Contracts, activitiesRef [32]byte) ([]string, string){
 
-    log := LogInit()
-    thisActivitiesRef := fmt.Sprintf("%x", activitiesRef)
-    activityRefs := &activityList{Namespace: configs.URLReportAidNamespace, ActivitiesRef: thisActivitiesRef}
+    var activityRefs []string
     num := activityNum(contracts.ActivityContract, activitiesRef)
     var i int64
     for ; i < num; i++ {
         ref, err := contracts.ActivityContract.GetReference(&bind.CallOpts{}, activitiesRef, big.NewInt(i))
         if err != nil {
-            thisError := Log(configs.ErrorActivityList, err)
-            log.Errors = append(log.Errors, thisError)
-            error, _ := xml.MarshalIndent(log, "", "")
-            return error
+            return nil, configs.ErrorActivityList
         }
         thisRef := fmt.Sprintf("%x", ref)
-        activityRefs.Ref = append(activityRefs.Ref, thisRef)
+        activityRefs = append(activityRefs, thisRef)
     }
-    thisXML, err := xml.MarshalIndent(activityRefs, "", "")
+    return activityRefs, ""
+}
+
+// ActivityListXML - list all activities
+func ActivityListXML (contracts *contracts.Contracts, activitiesRef [32]byte) ([]byte){
+
+    log := LogInit()
+    thisActivitiesRef := fmt.Sprintf("%x", activitiesRef)
+    activityRefs, errString := ActivityList(contracts, activitiesRef)
+    if activityRefs == nil {
+        thisError := Log(configs.ErrorActivityList + " - " + errString, nil)
+        log.Errors = append(log.Errors, thisError)
+        error, _ := xml.MarshalIndent(log, "", "")
+        return error
+    }
+
+    activityRefsXML := &activityList{Namespace: configs.URLReportAidNamespace, ActivitiesRef: thisActivitiesRef}
+    activityRefsXML.Ref = activityRefs
+    thisXML, err := xml.MarshalIndent(activityRefsXML, "", "")
     if err != nil {
         thisError := Log(configs.ErrorActivityList + " - " + configs.ErrorUnMarshall, err)
         log.Errors = append(log.Errors, thisError)

@@ -44,6 +44,16 @@ func activities (contracts *contracts.Contracts, w http.ResponseWriter, r *http.
     w.Write(content)
 }
 
+func activitiesAll (contracts *contracts.Contracts, w http.ResponseWriter, r *http.Request) {
+
+    xml.Header(w)
+	params := mux.Vars(r)
+    activitiesRef := params[configs.URLParamActivitiesRef]
+	convertedActivitiesRef := common.HexToHash(activitiesRef)
+	content := xml.ActivitiesAll(contracts, convertedActivitiesRef)
+    w.Write(content)
+}
+
 func activitiesNum (contracts *contracts.Contracts, w http.ResponseWriter) {
 
     xml.Header(w)
@@ -57,7 +67,7 @@ func activityList (contracts *contracts.Contracts, w http.ResponseWriter, r *htt
 	params := mux.Vars(r)
     activitiesRef := params[configs.URLParamActivitiesRef]
 	convertedActivitiesRef := common.HexToHash(activitiesRef)
-	content := xml.ActivityList(contracts, convertedActivitiesRef)
+	content := xml.ActivityListXML(contracts, convertedActivitiesRef)
     w.Write(content)
 }
 
@@ -156,6 +166,10 @@ func handleRequests(contracts *contracts.Contracts) {
     // Activities
 	router.HandleFunc(configs.URLActivities, func(w http.ResponseWriter, r *http.Request) {
         activities(contracts, w, r)
+	})
+
+    router.HandleFunc(configs.URLActivitiesAll, func(w http.ResponseWriter, r *http.Request) {
+        activitiesAll(contracts, w, r)
 	})
 
 	router.HandleFunc(configs.URLActivitiesList, func(w http.ResponseWriter, r *http.Request) {

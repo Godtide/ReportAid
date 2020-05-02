@@ -21,6 +21,8 @@ const (
 
     // URLActivities - activities XML URL
     URLActivities = "/activities/{" + URLParamActivitiesRef + "}/{" + URLParamActivityRef + "}"
+    // URLActivitiesAll - all activities activity XML URL
+    URLActivitiesAll = "/activities/{" + URLParamActivitiesRef + "}"
     // URLActivitiesList - list activities XML URL
     URLActivitiesList = "/activities-list"
     // URLActivitiesTotal - total activities XML URL
