@@ -65,8 +65,25 @@ func ActivitiesNum (contracts *contracts.Contracts) ([]byte) {
     return thisXML
 }
 
-// ActivitiesID - get specific activitie
-func ActivitiesID (contracts *contracts.Contracts, activitiesRef [32]byte, activityRef [32]byte) ([]byte) {
+func activitiesHeader (contract *activities.ActivitiesOrgActivities, activitiesRef [32]byte) (*iatiActivities) {
+
+    thisActivitiesRef := fmt.Sprintf("%x", activitiesRef)
+    version := utils.GetString(contract.Version)
+    time := utils.GetString(contract.GeneratedTime)
+    link := utils.GetString(contract.LinkedData)
+
+    activitiesXML := &iatiActivities{
+                                        Namespace: configs.URLReportAidNamespace,
+                                        Version: string(version),
+                                        Time: string(time),
+                                        LinkedData: string(link),
+                                        Ref: thisActivitiesRef,
+                                    }
+    return activitiesXML
+}
+
+// Activities - get specific activities
+func Activities (contracts *contracts.Contracts, activitiesRef [32]byte, activityRef [32]byte) ([]byte) {
 
     log := LogInit()
     activities, err := contracts.ActivitiesContract.GetActivities(&bind.CallOpts{}, activitiesRef)
@@ -77,10 +94,9 @@ func ActivitiesID (contracts *contracts.Contracts, activitiesRef [32]byte, activ
         return error
     }
 
-    version := utils.GetString(activities.Version)
-    time := utils.GetString(activities.GeneratedTime)
-    link := utils.GetString(activities.LinkedData)
-    var activity, errString = ActivityID(contracts, activitiesRef, activityRef)
+    activitiesXML := activitiesHeader(&activities, activitiesRef)
+
+    var activity, errString = Activity(contracts, activitiesRef, activityRef)
     if activity == nil {
         thisError := Log(configs.ErrorActivity + " - " + errString, nil)
         log.Errors = append(log.Errors, thisError)
@@ -88,15 +104,6 @@ func ActivitiesID (contracts *contracts.Contracts, activitiesRef [32]byte, activ
         return error
     }
 
-    thisActivitiesRef := fmt.Sprintf("%x", activitiesRef)
-
-    activitiesXML := &iatiActivities{
-                                        Namespace: configs.URLReportAidNamespace,
-                                        Version: string(version),
-                                        Time: string(time),
-                                        LinkedData: string(link),
-                                        Ref: thisActivitiesRef,
-                                    }
     activitiesXML.Activity = append(activitiesXML.Activity, activity)
 
     thisXML, err := xml.MarshalIndent(activitiesXML, "", "")
@@ -110,25 +117,25 @@ func ActivitiesID (contracts *contracts.Contracts, activitiesRef [32]byte, activ
 	//fmt.Printf("Activities Reference: %x\n", ref)
 }
 
-// ActivitiesList - list all activities
+// ActivitiesList - activities list
 func ActivitiesList (contracts *contracts.Contracts) ([]byte) {
 
     log := LogInit()
     num := activitiesNum(contracts.ActivitiesContract)
     var i int64
-    activitiesIDs := &activitiesList{Namespace: configs.URLReportAidNamespace}
+    activitiesRefs := &activitiesList{Namespace: configs.URLReportAidNamespace}
     for ; i < num; i++ {
         ref, err := contracts.ActivitiesContract.GetReference(&bind.CallOpts{}, big.NewInt(i))
         if err != nil {
-            thisError := Log(configs.ErrorActivitiesID, err)
+            thisError := Log(configs.ErrorActivitiesRef, err)
             log.Errors = append(log.Errors, thisError)
             thisXML, _ := xml.MarshalIndent(log, "", "")
             return thisXML
         }
         thisRef := fmt.Sprintf("%x", ref)
-        activitiesIDs.Ref = append(activitiesIDs.Ref, thisRef)
+        activitiesRefs.Ref = append(activitiesRefs.Ref, thisRef)
     }
-    thisXML, err := xml.MarshalIndent(activitiesIDs, "", "")
+    thisXML, err := xml.MarshalIndent(activitiesRefs, "", "")
     if err != nil {
         thisError := Log(configs.ErrorActivitiesList + " - " + configs.ErrorUnMarshall, err)
         log.Errors = append(log.Errors, thisError)

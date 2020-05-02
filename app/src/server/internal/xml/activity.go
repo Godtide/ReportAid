@@ -74,12 +74,12 @@ func ActivityNum (contracts *contracts.Contracts, activitiesRef [32]byte) ([]byt
     return thisXML
 }
 
-// ActivityID get specific acvtitie
-func ActivityID (contracts *contracts.Contracts, activitiesRef [32]byte, activityRef [32]byte) (*IATIActivity, string) {
+// Activity get specific acvtitie
+func Activity (contracts *contracts.Contracts, activitiesRef [32]byte, activityRef [32]byte) (*IATIActivity, string) {
 
     activity, err := contracts.ActivityContract.GetActivity(&bind.CallOpts{}, activitiesRef, activityRef)
     if err != nil {
-        return nil, configs.ErrorActivityID
+        return nil, configs.ErrorActivityRef
     }
 
     lang := utils.GetString(activity.Lang)
@@ -98,7 +98,7 @@ func ActivityID (contracts *contracts.Contracts, activitiesRef [32]byte, activit
     }
     reportingOrgRef := OrgID(contracts, activity.ReportingOrg.OrgRef)
     if reportingOrgRef == "" {
-        return nil, configs.ErrorOrgsID
+        return nil, configs.ErrorOrgsRef
     }
     reportingOrgType := activity.ReportingOrg.OrgType
     reportingOrgIsSecondary := activity.ReportingOrg.IsSecondary
@@ -137,7 +137,7 @@ func ActivityList (contracts *contracts.Contracts, activitiesRef [32]byte) ([]by
 
     log := LogInit()
     thisActivitiesRef := fmt.Sprintf("%x", activitiesRef)
-    activityIDs := &activityList{Namespace: configs.URLReportAidNamespace, ActivitiesRef: thisActivitiesRef}
+    activityRefs := &activityList{Namespace: configs.URLReportAidNamespace, ActivitiesRef: thisActivitiesRef}
     num := activityNum(contracts.ActivityContract, activitiesRef)
     var i int64
     for ; i < num; i++ {
@@ -149,9 +149,9 @@ func ActivityList (contracts *contracts.Contracts, activitiesRef [32]byte) ([]by
             return error
         }
         thisRef := fmt.Sprintf("%x", ref)
-        activityIDs.Ref = append(activityIDs.Ref, thisRef)
+        activityRefs.Ref = append(activityRefs.Ref, thisRef)
     }
-    thisXML, err := xml.MarshalIndent(activityIDs, "", "")
+    thisXML, err := xml.MarshalIndent(activityRefs, "", "")
     if err != nil {
         thisError := Log(configs.ErrorActivityList + " - " + configs.ErrorUnMarshall, err)
         log.Errors = append(log.Errors, thisError)

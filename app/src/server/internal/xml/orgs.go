@@ -137,19 +137,19 @@ func OrgsList (contracts *contracts.Contracts) ([]byte) {
     log := LogInit()
     num := orgsNum(contracts.OrgsContract)
     var i int64
-    orgsIDs := &orgsList{Namespace: configs.URLReportAidNamespace}
+    orgsRefs := &orgsList{Namespace: configs.URLReportAidNamespace}
     for ; i < num; i++ {
         ref, err := contracts.OrgsContract.GetOrgReference(&bind.CallOpts{}, big.NewInt(i))
         if err != nil {
-            thisError := Log(configs.ErrorOrgsID, err)
+            thisError := Log(configs.ErrorOrgsRef, err)
             log.Errors = append(log.Errors, thisError)
             thisXML, _ := xml.MarshalIndent(log, "", "")
             return thisXML
         }
         thisRef := fmt.Sprintf("%x", ref)
-        orgsIDs.Ref = append(orgsIDs.Ref, thisRef)
+        orgsRefs.Ref = append(orgsRefs.Ref, thisRef)
     }
-    thisXML, err := xml.MarshalIndent(orgsIDs, "", "")
+    thisXML, err := xml.MarshalIndent(orgsRefs, "", "")
     if err != nil {
         thisError := Log(configs.ErrorOrgsList + " - " + configs.ErrorUnMarshall, err)
         log.Errors = append(log.Errors, thisError)

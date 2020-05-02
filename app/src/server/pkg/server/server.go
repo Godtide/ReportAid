@@ -40,7 +40,7 @@ func activities (contracts *contracts.Contracts, w http.ResponseWriter, r *http.
 	activityRef := params[configs.URLParamActivityRef]
 	convertedActivitiesRef := common.HexToHash(activitiesRef)
 	convertedActivityRef := common.HexToHash(activityRef)
-	content := xml.ActivitiesID(contracts, convertedActivitiesRef, convertedActivityRef)
+	content := xml.Activities(contracts, convertedActivitiesRef, convertedActivityRef)
     w.Write(content)
 }
 

@@ -66,7 +66,7 @@ func OrganisationID (contracts *contracts.Contracts, organisationsRef [32]byte, 
 
     organisation, err := contracts.OrganisationContract.GetOrganisation(&bind.CallOpts{}, organisationsRef, organisationRef)
     if err != nil {
-        return nil, configs.ErrorOrganisationID
+        return nil, configs.ErrorOrganisationRef
     }
 
     lang := utils.GetString(organisation.Lang)
@@ -83,7 +83,7 @@ func OrganisationID (contracts *contracts.Contracts, organisationsRef [32]byte, 
     }
     reportingOrgRef := OrgID(contracts, organisation.ReportingOrg.OrgRef)
     if reportingOrgRef == "" {
-        return nil, configs.ErrorOrgsID
+        return nil, configs.ErrorOrgsRef
     }
     reportingOrgType := organisation.ReportingOrg.OrgType
     reportingOrgIsSecondary := organisation.ReportingOrg.IsSecondary
@@ -109,7 +109,7 @@ func OrganisationList (contracts *contracts.Contracts, organisationsRef [32]byte
 
     log := LogInit()
     thisOrganisationsRef := fmt.Sprintf("%x", organisationsRef)
-    organisationIDs := &organisationList{Namespace: configs.URLReportAidNamespace, OrganisationsRef: thisOrganisationsRef}
+    organisationRefs := &organisationList{Namespace: configs.URLReportAidNamespace, OrganisationsRef: thisOrganisationsRef}
     num := organisationNum(contracts.OrganisationContract, organisationsRef)
     var i int64
     for ; i < num; i++ {
@@ -121,9 +121,9 @@ func OrganisationList (contracts *contracts.Contracts, organisationsRef [32]byte
             return error
         }
         thisRef := fmt.Sprintf("%x", ref)
-        organisationIDs.Ref = append(organisationIDs.Ref, thisRef)
+        organisationRefs.Ref = append(organisationRefs.Ref, thisRef)
     }
-    thisXML, err := xml.MarshalIndent(organisationIDs, "", "")
+    thisXML, err := xml.MarshalIndent(organisationRefs, "", "")
     if err != nil {
         thisError := Log(configs.ErrorOrganisationList + " - " + configs.ErrorUnMarshall, err)
         log.Errors = append(log.Errors, thisError)

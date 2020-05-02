@@ -113,19 +113,19 @@ func OrganisationsList (contracts *contracts.Contracts) ([]byte) {
     log := LogInit()
     num := organisationsNum(contracts.OrganisationsContract)
     var i int64
-    organisationsIDs := &organisationsList{Namespace: configs.URLReportAidNamespace}
+    organisationsRefs := &organisationsList{Namespace: configs.URLReportAidNamespace}
     for ; i < num; i++ {
         ref, err := contracts.OrganisationsContract.GetOrganisationsReference(&bind.CallOpts{}, big.NewInt(i))
         if err != nil {
-            thisError := Log(configs.ErrorOrganisationsID, err)
+            thisError := Log(configs.ErrorOrganisationsRef, err)
             log.Errors = append(log.Errors, thisError)
             thisXML, _ := xml.MarshalIndent(log, "", "")
             return thisXML
         }
         thisRef := fmt.Sprintf("%x", ref)
-        organisationsIDs.Ref = append(organisationsIDs.Ref, thisRef)
+        organisationsRefs.Ref = append(organisationsRefs.Ref, thisRef)
     }
-    thisXML, err := xml.MarshalIndent(organisationsIDs, "", "")
+    thisXML, err := xml.MarshalIndent(organisationsRefs, "", "")
     if err != nil {
         thisError := Log(configs.ErrorOrganisationsList + " - " + configs.ErrorUnMarshall, err)
         log.Errors = append(log.Errors, thisError)

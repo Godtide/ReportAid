@@ -13,7 +13,7 @@ const (
     // ErrorActivities - error
     ErrorActivities = "Failed to get the Activities"
     // ErrorActivitiesID - error
-    ErrorActivitiesID = "Failed to get the Activities ID"
+    ErrorActivitiesRef = "Failed to get the Activities ID"
     // ErrorActivitiesList - error
     ErrorActivitiesList = "Failed to list activities"
 
@@ -23,8 +23,8 @@ const (
     ErrorActivityNum = "Failed to get the number of Activity"
     // ErrorActivity - error
     ErrorActivity = "Failed to get the Activity"
-    // ErrorActivityID - error
-    ErrorActivityID = "Failed to get the Activity ID"
+    // ErrorActivityRef - error
+    ErrorActivityRef = "Failed to get the Activity Ref"
     // ErrorActivityList - error
     ErrorActivityList = "Failed to list activity"
 
@@ -36,8 +36,8 @@ const (
     ErrorOrganisationsNum = "Failed to get the number of Organisations"
     // ErrorOrganisations - error
     ErrorOrganisations = "Failed to get the Organisations"
-    // ErrorOrganisationsID - error
-    ErrorOrganisationsID = "Failed to get the Organisations ID"
+    // ErrorOrganisationsRef - error
+    ErrorOrganisationsRef = "Failed to get the Organisations Ref"
     // ErrorOrganisationsList - error
     ErrorOrganisationsList = "Failed to list Organisations"
 
@@ -47,8 +47,8 @@ const (
     ErrorOrganisationNum = "Failed to get the number of Organisation"
     // ErrorOrganisation - error
     ErrorOrganisation = "Failed to get the Organisation"
-    // ErrorOrganisationID - error
-    ErrorOrganisationID = "Failed to get the Organisation ID"
+    // ErrorOrganisationRef - error
+    ErrorOrganisationRef = "Failed to get the Organisation Ref"
     // ErrorOrganisationList - error
     ErrorOrganisationList = "Failed to list Organisation"
 
@@ -56,8 +56,8 @@ const (
     ErrorOrgsContract = "Failed to instantiate orgs contract"
     // ErrorOrgsName - error
     ErrorOrgsName = "Failed to get orgs name"
-    // ErrorOrgsID - error
-    ErrorOrgsID = "Failed to get orgs ref"
+    // ErrorOrgsRef - error
+    ErrorOrgsRef = "Failed to get orgs Ref"
     // ErrorOrgsNum - error
     ErrorOrgsNum = "Failed to get the number of Orgs"
     // ErrorOrgs - error
