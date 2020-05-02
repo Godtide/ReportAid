@@ -6,6 +6,7 @@ import (
 	"encoding/xml"
 
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
+	"github.com/ethereum/go-ethereum/common"
 
     "github.com/ReportAid/app/src/server/internal/contracts"
 	"github.com/ReportAid/app/src/server/internal/contracts/organisations"
@@ -64,37 +65,94 @@ func OrganisationsNum (contracts *contracts.Contracts) ([]byte) {
     return thisXML
 }
 
-// OrganisationsID - get specific activitie
-func OrganisationsID (contracts *contracts.Contracts, organisationsRef [32]byte, organisationRef [32]byte) ([]byte) {
+func organisationsHeader (contracts *contracts.Contracts, organisationsRef [32]byte) (*iatiOrganisations, string) {
 
-    log := LogInit()
+    thisOrganisationsRef := fmt.Sprintf("%x", organisationsRef)
+
     organisations, err := contracts.OrganisationsContract.GetOrganisations(&bind.CallOpts{}, organisationsRef)
     if err != nil {
-        thisError := Log(configs.ErrorOrganisations, err)
-        log.Errors = append(log.Errors, thisError)
-        error, _ := xml.MarshalIndent(log, "", "")
-        return error
+        return nil, configs.ErrorOrganisations
     }
 
     version := utils.GetString(organisations.Version)
     time := utils.GetString(organisations.GeneratedTime)
-    var organisation, errString = OrganisationID(contracts, organisationsRef, organisationRef)
-    if organisation == nil {
-        thisError := Log(configs.ErrorOrganisation + " - " + errString, nil)
-        log.Errors = append(log.Errors, thisError)
-        error, _ := xml.MarshalIndent(log, "", "")
-        return error
-    }
-
-    thisOrganisationsRef := fmt.Sprintf("%x", organisationsRef)
 
     organisationsXML := &iatiOrganisations{
                                             Namespace: configs.URLReportAidNamespace,
                                             Version: string(version),
                                             Time: string(time),
                                             Ref: thisOrganisationsRef,
-                                          }
+                                    }
+    return organisationsXML, ""
+}
+
+// Organisations - get specific activitie
+func Organisations (contracts *contracts.Contracts, organisationsRef [32]byte, organisationRef [32]byte) ([]byte) {
+
+    log := LogInit()
+
+    organisationsXML, errString := organisationsHeader(contracts, organisationsRef)
+    if organisationsXML == nil {
+        thisError := Log(configs.ErrorOrganisations + " - " + errString, nil)
+        log.Errors = append(log.Errors, thisError)
+        error, _ := xml.MarshalIndent(log, "", "")
+        return error
+    }
+
+    var organisation, organisationErrString = Organisation(contracts, organisationsRef, organisationRef)
+    if organisation == nil {
+        thisError := Log(configs.ErrorOrganisation + " - " + organisationErrString, nil)
+        log.Errors = append(log.Errors, thisError)
+        error, _ := xml.MarshalIndent(log, "", "")
+        return error
+    }
+
     organisationsXML.Organisation = append(organisationsXML.Organisation, organisation)
+
+    thisXML, err := xml.MarshalIndent(organisationsXML, "", "")
+    if err != nil {
+        thisError := Log(configs.ErrorOrganisation + " - " + configs.ErrorUnMarshall, err)
+        log.Errors = append(log.Errors, thisError)
+        error, _ := xml.MarshalIndent(log, "", "")
+        return error
+    }
+    return thisXML
+}
+
+// OrganisationsAll - get specific organisations
+func OrganisationsAll (contracts *contracts.Contracts, organisationsRef [32]byte) ([]byte) {
+
+    log := LogInit()
+
+    organisationsXML, errString := organisationsHeader(contracts, organisationsRef)
+    if organisationsXML == nil {
+        thisError := Log(configs.ErrorOrganisations + " - " + errString, nil)
+        log.Errors = append(log.Errors, thisError)
+        error, _ := xml.MarshalIndent(log, "", "")
+        return error
+    }
+
+    organisationList, errString := OrganisationList(contracts, organisationsRef)
+    if organisationList == nil {
+        thisError := Log(configs.ErrorOrganisations + " - " + errString, nil)
+        log.Errors = append(log.Errors, thisError)
+        error, _ := xml.MarshalIndent(log, "", "")
+        return error
+    }
+
+    for i := 0; i < len(organisationList); i++ {
+
+    	convertedOrganisationRef := common.HexToHash(organisationList[i])
+        var organisation, errString = Organisation(contracts, organisationsRef, convertedOrganisationRef)
+        if organisation == nil {
+            thisError := Log(configs.ErrorOrganisation + " - " + errString, nil)
+            log.Errors = append(log.Errors, thisError)
+            error, _ := xml.MarshalIndent(log, "", "")
+            return error
+        }
+        organisationsXML.Organisation = append(organisationsXML.Organisation, organisation)
+    }
+
     thisXML, err := xml.MarshalIndent(organisationsXML, "", "")
     if err != nil {
         thisError := Log(configs.ErrorOrganisation + " - " + configs.ErrorUnMarshall, err)

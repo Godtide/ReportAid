@@ -96,7 +96,17 @@ func organisations (contracts *contracts.Contracts, w http.ResponseWriter, r *ht
 	organisationRef := params[configs.URLParamOrganisationRef]
 	convertedOrganisationsRef := common.HexToHash(organisationsRef)
 	convertedOrganisationRef := common.HexToHash(organisationRef)
-	content := xml.OrganisationsID(contracts, convertedOrganisationsRef, convertedOrganisationRef)
+	content := xml.Organisations(contracts, convertedOrganisationsRef, convertedOrganisationRef)
+    w.Write(content)
+}
+
+func organisationsAll (contracts *contracts.Contracts, w http.ResponseWriter, r *http.Request) {
+
+    xml.Header(w)
+	params := mux.Vars(r)
+    activitiesRef := params[configs.URLParamOrganisationsRef]
+	convertedActivitiesRef := common.HexToHash(activitiesRef)
+	content := xml.OrganisationsAll(contracts, convertedActivitiesRef)
     w.Write(content)
 }
 
@@ -113,7 +123,7 @@ func organisationList (contracts *contracts.Contracts, w http.ResponseWriter, r 
 	params := mux.Vars(r)
     organisationsRef := params[configs.URLParamOrganisationsRef]
 	convertedOrganisationsRef := common.HexToHash(organisationsRef)
-	content := xml.OrganisationList(contracts, convertedOrganisationsRef)
+	content := xml.OrganisationListXML(contracts, convertedOrganisationsRef)
     w.Write(content)
 }
 
@@ -180,6 +190,7 @@ func handleRequests(contracts *contracts.Contracts) {
     	activitiesNum(contracts, w)
 	})
 
+    // Activity
     router.HandleFunc(configs.URLActivityList, func(w http.ResponseWriter, r *http.Request) {
     	activityList(contracts, w, r)
 	})
@@ -188,9 +199,14 @@ func handleRequests(contracts *contracts.Contracts) {
     	activityNum(contracts, w, r)
 	})
 
+    // Organisations
     router.HandleFunc(configs.URLOrganisations, func(w http.ResponseWriter, r *http.Request) {
         organisations(contracts, w, r)
     })
+
+    router.HandleFunc(configs.URLOrganisationsAll, func(w http.ResponseWriter, r *http.Request) {
+        organisationsAll(contracts, w, r)
+	})
 
     router.HandleFunc(configs.URLOrganisationsList, func(w http.ResponseWriter, r *http.Request) {
         organisationsList(contracts, w)
@@ -200,6 +216,7 @@ func handleRequests(contracts *contracts.Contracts) {
         organisationsNum(contracts, w)
     })
 
+    // Organisation
     router.HandleFunc(configs.URLOrganisationList, func(w http.ResponseWriter, r *http.Request) {
         organisationList(contracts, w, r)
     })

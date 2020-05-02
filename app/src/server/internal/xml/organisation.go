@@ -61,8 +61,8 @@ func OrganisationNum (contracts *contracts.Contracts, organisationsRef [32]byte)
     return thisXML
 }
 
-// OrganisationID get specific organisation
-func OrganisationID (contracts *contracts.Contracts, organisationsRef [32]byte, organisationRef [32]byte) (*IATIOrganisation, string) {
+// Organisation get specific organisation
+func Organisation (contracts *contracts.Contracts, organisationsRef [32]byte, organisationRef [32]byte) (*IATIOrganisation, string) {
 
     organisation, err := contracts.OrganisationContract.GetOrganisation(&bind.CallOpts{}, organisationsRef, organisationRef)
     if err != nil {
@@ -103,27 +103,39 @@ func OrganisationID (contracts *contracts.Contracts, organisationsRef [32]byte, 
     return organisationXML, ""
 }
 
+// OrganisationList - return array of all organisation
+func OrganisationList (contracts *contracts.Contracts, organisationsRef [32]byte) ([]string, string){
 
-// OrganisationList - list all organisations
-func OrganisationList (contracts *contracts.Contracts, organisationsRef [32]byte) ([]byte){
-
-    log := LogInit()
-    thisOrganisationsRef := fmt.Sprintf("%x", organisationsRef)
-    organisationRefs := &organisationList{Namespace: configs.URLReportAidNamespace, OrganisationsRef: thisOrganisationsRef}
+    var organisationRefs []string
     num := organisationNum(contracts.OrganisationContract, organisationsRef)
     var i int64
     for ; i < num; i++ {
         ref, err := contracts.OrganisationContract.GetOrganisationReference(&bind.CallOpts{}, organisationsRef, big.NewInt(i))
         if err != nil {
-            thisError := Log(configs.ErrorOrganisationList, err)
-            log.Errors = append(log.Errors, thisError)
-            error, _ := xml.MarshalIndent(log, "", "")
-            return error
+            return nil, configs.ErrorOrganisationList
         }
         thisRef := fmt.Sprintf("%x", ref)
-        organisationRefs.Ref = append(organisationRefs.Ref, thisRef)
+        organisationRefs = append(organisationRefs, thisRef)
     }
-    thisXML, err := xml.MarshalIndent(organisationRefs, "", "")
+    return organisationRefs, ""
+}
+
+// OrganisationListXML - return XML of all organisation
+func OrganisationListXML (contracts *contracts.Contracts, organisationsRef [32]byte) ([]byte){
+
+    log := LogInit()
+    thisOrganisationsRef := fmt.Sprintf("%x", organisationsRef)
+    organisationRefs, errString := OrganisationList(contracts, organisationsRef)
+    if organisationRefs == nil {
+        thisError := Log(configs.ErrorOrganisationList + " - " + errString, nil)
+        log.Errors = append(log.Errors, thisError)
+        error, _ := xml.MarshalIndent(log, "", "")
+        return error
+    }
+
+    organisationRefsXML := &organisationList{Namespace: configs.URLReportAidNamespace, OrganisationsRef: thisOrganisationsRef}
+    organisationRefsXML.Ref = organisationRefs
+    thisXML, err := xml.MarshalIndent(organisationRefsXML, "", "")
     if err != nil {
         thisError := Log(configs.ErrorOrganisationList + " - " + configs.ErrorUnMarshall, err)
         log.Errors = append(log.Errors, thisError)

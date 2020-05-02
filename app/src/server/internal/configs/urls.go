@@ -35,6 +35,8 @@ const (
 
     // URLOrganisations - Organisations XML URL
     URLOrganisations = "/organisations/{" + URLParamOrganisationsRef + "}/{" + URLParamOrganisationRef + "}"
+    // URLOrganisationsAll - all organisations organisation XML URL
+    URLOrganisationsAll = "/organisations/{" + URLParamOrganisationsRef + "}"
     // URLOrganisationsList - list Organisations XML URL
     URLOrganisationsList = "/organisations-list"
     // URLOrganisationsTotal - total Organisations XML URL

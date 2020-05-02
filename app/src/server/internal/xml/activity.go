@@ -131,7 +131,7 @@ func Activity (contracts *contracts.Contracts, activitiesRef [32]byte, activityR
     return activityXML, ""
 }
 
-// ActivityList - list all activities
+// ActivityList - return array of all activity
 func ActivityList (contracts *contracts.Contracts, activitiesRef [32]byte) ([]string, string){
 
     var activityRefs []string
@@ -148,7 +148,7 @@ func ActivityList (contracts *contracts.Contracts, activitiesRef [32]byte) ([]st
     return activityRefs, ""
 }
 
-// ActivityListXML - list all activities
+// ActivityListXML - return XML of all activity
 func ActivityListXML (contracts *contracts.Contracts, activitiesRef [32]byte) ([]byte){
 
     log := LogInit()
