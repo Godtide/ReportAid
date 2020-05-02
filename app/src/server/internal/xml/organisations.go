@@ -15,22 +15,26 @@ import (
 
 // OrganisationsList - a list if all organisations
 type organisationsList struct {
-	XMLName   	xml.Name `xml:"iati-organisations-ids"`
-	ID			[]string `xml:"id"`
-}
-
-// Organisations - the XML for the organisations file
-type iatiOrganisations struct {
-	XMLName   	xml.Name `xml:"iati-organisations"`
-	Version 	string `xml:"version,attr"`
-	Time 		string `xml:"generated-datetime,attr"`
-    Organisation    []*IATIOrganisation
+	XMLName   	xml.Name `xml:"reportaid:organisations-list"`
+    Namespace   string   `xml:"xmlns:reportaid,attr"`
+	Ref			[]string `xml:"reportaid:organisations-ref"`
 }
 
 // TotalOrganisations - get the total number of organisations
 type organisationsTotal struct {
-	XMLName   	xml.Name `xml:"iati-organisations-total"`
-	Total 		int64 `xml:"organisations-total"`
+	XMLName   	xml.Name   `xml:"reportaid:organisations-total"`
+    Namespace   string     `xml:"xmlns:reportaid,attr"`
+	Total 		int64      `xml:"reportaid:total"`
+}
+
+// Organisations - the XML for the organisations file
+type iatiOrganisations struct {
+	XMLName   	    xml.Name                `xml:"iati-organisations"`
+    Namespace       string                  `xml:"xmlns:reportaid,attr"`
+	Version 	    string                  `xml:"version,attr"`
+	Time 		    string                  `xml:"generated-datetime,attr"`
+    Organisation    []*IATIOrganisation
+    Ref             string                  `xml:"reportaid:organisations-ref"`
 }
 
 // GetNumOrganisations - Get the total number of organisations
@@ -49,7 +53,7 @@ func OrganisationsNum (contracts *contracts.Contracts) ([]byte) {
 
     log := LogInit()
     num := organisationsNum(contracts.OrganisationsContract)
-    totalXML := &organisationsTotal{Total: num}
+    totalXML := &organisationsTotal{Namespace: configs.URLReportAidNamespace, Total: num}
     thisXML, err := xml.MarshalIndent(totalXML, "", "")
     if err != nil {
         thisError := Log(configs.ErrorOrganisationsNum + " - " + configs.ErrorUnMarshall, err)
@@ -82,10 +86,14 @@ func OrganisationsID (contracts *contracts.Contracts, organisationsRef [32]byte,
         return error
     }
 
+    thisOrganisationsRef := fmt.Sprintf("%x", organisationsRef)
+
     organisationsXML := &iatiOrganisations{
-                                        Version: string(version),
-                                        Time: string(time),
-                                    }
+                                            Namespace: configs.URLReportAidNamespace,
+                                            Version: string(version),
+                                            Time: string(time),
+                                            Ref: thisOrganisationsRef,
+                                          }
     organisationsXML.Organisation = append(organisationsXML.Organisation, organisation)
     thisXML, err := xml.MarshalIndent(organisationsXML, "", "")
     if err != nil {
@@ -105,7 +113,7 @@ func OrganisationsList (contracts *contracts.Contracts) ([]byte) {
     log := LogInit()
     num := organisationsNum(contracts.OrganisationsContract)
     var i int64
-    organisationsIDs := &organisationsList{}
+    organisationsIDs := &organisationsList{Namespace: configs.URLReportAidNamespace}
     for ; i < num; i++ {
         ref, err := contracts.OrganisationsContract.GetOrganisationsReference(&bind.CallOpts{}, big.NewInt(i))
         if err != nil {
@@ -115,7 +123,7 @@ func OrganisationsList (contracts *contracts.Contracts) ([]byte) {
             return thisXML
         }
         thisRef := fmt.Sprintf("%x", ref)
-        organisationsIDs.ID = append(organisationsIDs.ID, thisRef)
+        organisationsIDs.Ref = append(organisationsIDs.Ref, thisRef)
     }
     thisXML, err := xml.MarshalIndent(organisationsIDs, "", "")
     if err != nil {

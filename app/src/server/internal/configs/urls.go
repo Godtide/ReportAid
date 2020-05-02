@@ -16,6 +16,9 @@ const (
     // URLParamOrgsRef - orgs ref'
     URLParamOrgsRef = "orgsRef"
 
+    // URLReportAidNamespace - define namespace for extra info
+    URLReportAidNamespace = "http://reportaid.org/ns#"
+
     // URLActivities - activities XML URL
     URLActivities = "/activities/{" + URLParamActivitiesRef + "}/{" + URLParamActivityRef + "}"
     // URLActivitiesList - list activities XML URL
@@ -36,7 +39,7 @@ const (
     URLOrganisationsTotal = "/organisations-total"
 
     // URLOrganisationList - list Organisations XML URL
-    URLOrganisationList = "/organisation-list/{" + URLParamOrganisationRef + "}"
+    URLOrganisationList = "/organisation-list/{" + URLParamOrganisationsRef + "}"
     // URLOrganisationTotal - total Organisation XML URL
     URLOrganisationTotal = "/organisation-total"
 

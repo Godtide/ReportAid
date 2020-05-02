@@ -14,39 +14,43 @@ import (
 )
 
 type activityList struct {
-	XMLName   	    xml.Name `xml:"iati-activity-ids"`
-	ActivitiesID	string `xml:"activities-id"`
-    ID			    []string `xml:"activity-ids>id"`
-}
-
-// IATIActivity - the XML for the activities file
-type IATIActivity struct {
-	XMLName   	    xml.Name `xml:"iati-activity"`
-	Lang 	        string `xml:"xml:lang,attr"`
-	Currency 		string `xml:"default-currency,attr"`
-	Time            string `xml:"last-updated-datetime,attr"`
-    Humanitarian    bool `xml:"humanitarian,attr"`
-	LinkedData      string `xml:"linked-data-uri,attr"`
-    Hierarchy       uint8 `xml:"hierarchy,attr"`
-    Budget          uint8 `xml:"budget-not-provided,attr"`
-    ReportingOrg    ReportingOrg
-    Status          Status
-    IATIIdentifier  string `xml:"iati-identifier"`
-    Title           string `xml:"title>narrative"`
-    Desc            Desc
-}
-
-// Status - activity status
-type Status struct {
-        XMLName   xml.Name `xml:"activity-status"`
-        Code      uint8 `xml:"code,attr"`
+	XMLName   	    xml.Name `xml:"reportaid:activity-list"`
+    Namespace       string   `xml:"xmlns:reportaid,attr"`
+	ActivitiesRef	string   `xml:"reportaid:activities-ref,attr"`
+    Ref			    []string `xml:"reportaid:activity-ref"`
 }
 
 // TotalActivities - get the total number of activities
 type activityTotal struct {
-	XMLName   	      xml.Name   `xml:"iati-activity-total"`
-    IATIActivities    string      `xml:"iati-activities-id"`
-	Total 		      int64       `xml:"activity-total"`
+	XMLName   	      xml.Name  `xml:"reportaid:activity-total"`
+    Namespace         string    `xml:"xmlns:reportaid,attr"`
+    ActivitiesRef     string    `xml:"reportaid:activities-ref,attr"`
+	Total 		      int64     `xml:"reportaid:total"`
+}
+
+// IATIActivity - the XML for the activities file
+type IATIActivity struct {
+	XMLName   	    xml.Name        `xml:"iati-activity"`
+    Namespace       string          `xml:"xmlns:reportaid,attr"`
+	Lang 	        string          `xml:"xml:lang,attr"`
+	Currency 		string          `xml:"default-currency,attr"`
+	Time            string          `xml:"last-updated-datetime,attr"`
+    Humanitarian    bool            `xml:"humanitarian,attr"`
+	LinkedData      string          `xml:"linked-data-uri,attr"`
+    Hierarchy       uint8           `xml:"hierarchy,attr"`
+    Budget          uint8           `xml:"budget-not-provided,attr"`
+    ReportingOrg    ReportingOrg
+    Status          Status
+    IATIIdentifier  string          `xml:"iati-identifier"`
+    Title           string          `xml:"title>narrative"`
+    Desc            Desc
+    Ref             string          `xml:"reportaid:activity-ref"`
+}
+
+// Status - activity status
+type Status struct {
+    XMLName   xml.Name  `xml:"activity-status"`
+    Code      uint8     `xml:"code,attr"`
 }
 
 // GetNumActivites - Get the total number of activities
@@ -65,7 +69,7 @@ func ActivityNum (contracts *contracts.Contracts, activitiesRef [32]byte) ([]byt
 
     num := activityNum(contracts.ActivityContract, activitiesRef)
     ref := fmt.Sprintf("%x", activitiesRef)
-    totalXML := &activityTotal{IATIActivities: ref, Total: num}
+    totalXML := &activityTotal{Namespace: configs.URLReportAidNamespace, ActivitiesRef: ref, Total: num}
     thisXML, _ := xml.MarshalIndent(totalXML, "", "")
     return thisXML
 }
@@ -105,7 +109,10 @@ func ActivityID (contracts *contracts.Contracts, activitiesRef [32]byte, activit
     descType := uint8(1) // i think there's only one type at the moment
     desc := activity.Description
 
+    thisActivityRef := fmt.Sprintf("%x", activityRef)
+
     activityXML := &IATIActivity{
+                                    Namespace: configs.URLReportAidNamespace,
                                     Lang: lang,
                                     Currency: curr,
                                     Time: time,
@@ -118,7 +125,9 @@ func ActivityID (contracts *contracts.Contracts, activitiesRef [32]byte, activit
                                     IATIIdentifier: id,
                                     Title: title,
                                     Desc: Desc{Type: descType, Narrative: desc},
+                                    Ref: thisActivityRef,
                                 }
+
     return activityXML, ""
 }
 
@@ -128,7 +137,7 @@ func ActivityList (contracts *contracts.Contracts, activitiesRef [32]byte) ([]by
 
     log := LogInit()
     thisActivitiesRef := fmt.Sprintf("%x", activitiesRef)
-    activityIDs := &activityList{ActivitiesID: thisActivitiesRef}
+    activityIDs := &activityList{Namespace: configs.URLReportAidNamespace, ActivitiesRef: thisActivitiesRef}
     num := activityNum(contracts.ActivityContract, activitiesRef)
     var i int64
     for ; i < num; i++ {
@@ -140,7 +149,7 @@ func ActivityList (contracts *contracts.Contracts, activitiesRef [32]byte) ([]by
             return error
         }
         thisRef := fmt.Sprintf("%x", ref)
-        activityIDs.ID = append(activityIDs.ID, thisRef)
+        activityIDs.Ref = append(activityIDs.Ref, thisRef)
     }
     thisXML, err := xml.MarshalIndent(activityIDs, "", "")
     if err != nil {

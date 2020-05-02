@@ -14,26 +14,29 @@ import (
 
 // OrgsList - a list if all orgs
 type orgsList struct {
-	XMLName   	xml.Name `xml:"iati-orgs-ids"`
-	ID			[]string `xml:"id"`
-}
-
-// Orgs - the XML for the orgs file
-type iatiOrgs struct {
-	XMLName   	xml.Name 	`xml:"iati-orgs"`
-	Org 		[]*iatiorg 	`xml:"orgs"`
-}
-
-type iatiorg struct {
-	Ref         string `xml:"ref,attr"`
-	ID			string `xml:"iati-identifier"`
-	Name   		string `xml:"name>narrative"`
+	XMLName   	xml.Name `xml:"reportaid:orgs"`
+    Namespace   string   `xml:"xmlns:reportaid,attr"`
+	Ref			[]string `xml:"reportaid:orgs-ref"`
 }
 
 // TotalOrgs - get the total number of orgs
 type orgsTotal struct {
-	XMLName   	xml.Name `xml:"iati-orgs-total"`
-	Total 		int64 `xml:"orgs-total"`
+	XMLName   	xml.Name `xml:"reportaid:orgs-total"`
+    Namespace   string   `xml:"xmlns:reportaid,attr"`
+	Total 		int64    `xml:"reportaid:total"`
+}
+
+// Orgs - the XML for the orgs file
+type iatiOrgs struct {
+	XMLName   	xml.Name 	`xml:"reportaid:orgs"`
+    Namespace   string      `xml:"xmlns:reportaid,attr"`
+	Org 		[]*iatiorg 	`xml:"reportaid:orgs"`
+}
+
+type iatiorg struct {
+	Ref         string `xml:"reportaid:orgs-ref,attr"`
+	ID			string `xml:"iati-identifier"`
+	Name   		string `xml:"name>narrative"`
 }
 
 // ReportingOrg - organisation reporting organisation
@@ -83,7 +86,7 @@ func OrgsNum (contracts *contracts.Contracts) ([]byte) {
 
     log := LogInit()
     num := orgsNum(contracts.OrgsContract)
-    totalXML := &orgsTotal{Total: num}
+    totalXML := &orgsTotal{Namespace: configs.URLReportAidNamespace, Total: num}
     thisXML, err := xml.MarshalIndent(totalXML, "", "")
     if err != nil {
         thisError := Log(configs.ErrorOrgsNum + " - " + configs.ErrorUnMarshall, err)
@@ -106,7 +109,6 @@ func OrgsID (contracts *contracts.Contracts, orgsRef [32]byte, activityRef [32]b
         return error
     }
 
-
     thisOrgRef := fmt.Sprintf("%x", orgsRef)
     name := orgs.Name
     identifier := orgs.Identifier
@@ -117,7 +119,7 @@ func OrgsID (contracts *contracts.Contracts, orgsRef [32]byte, activityRef [32]b
 							Name: name,
 						}
 
-    orgsXML := &iatiOrgs{}
+    orgsXML := &iatiOrgs{Namespace: configs.URLReportAidNamespace}
     orgsXML.Org = append(orgsXML.Org, orgXML)
     thisXML, err := xml.MarshalIndent(orgsXML, "", "")
     if err != nil {
@@ -135,7 +137,7 @@ func OrgsList (contracts *contracts.Contracts) ([]byte) {
     log := LogInit()
     num := orgsNum(contracts.OrgsContract)
     var i int64
-    orgsIDs := &orgsList{}
+    orgsIDs := &orgsList{Namespace: configs.URLReportAidNamespace}
     for ; i < num; i++ {
         ref, err := contracts.OrgsContract.GetOrgReference(&bind.CallOpts{}, big.NewInt(i))
         if err != nil {
@@ -145,7 +147,7 @@ func OrgsList (contracts *contracts.Contracts) ([]byte) {
             return thisXML
         }
         thisRef := fmt.Sprintf("%x", ref)
-        orgsIDs.ID = append(orgsIDs.ID, thisRef)
+        orgsIDs.Ref = append(orgsIDs.Ref, thisRef)
     }
     thisXML, err := xml.MarshalIndent(orgsIDs, "", "")
     if err != nil {
