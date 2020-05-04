@@ -70,4 +70,6 @@ const (
 
     // ErrorNotFound - ErrorRinkeby
     ErrorNotFound = "Error 404 - Page not found"
+    // ErrorPostDisallowed - error
+    ErrorPostDisallowed = "This server only allows GET requests"
 )

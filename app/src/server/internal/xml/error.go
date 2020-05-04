@@ -9,20 +9,29 @@ import (
 
 // Error - create conditions for reporting back errors
 type Error struct {
-	XMLName    xml.Name `xml:"error"`
-    Errors []*Errors `xml:"error-list"`
+	XMLName    xml.Name `xml:"reportaid:error"`
+	Namespace  string   `xml:"xmlns:reportaid,attr"`
+    Errors 	   []*Errors `xml:"reportaid:error-list"`
 }
 
 // Errors - make specific error
 type Errors struct {
-	Error      string `xml:"error>narrative"`
-    ID         error `xml:"error>error"`
+	Error      string 	`xml:"reportaid:error>narrative"`
+    ID         error 	`xml:"reportaid:error>error"`
 }
 
-// home - homepage XML
+// notFound - 404 XML
 type notFound struct {
-	XMLName   	xml.Name `xml:"error"`
-	Text	    string `xml:"not-found"`
+	XMLName   	xml.Name `xml:"reportaid:error"`
+	Namespace   string   `xml:"xmlns:reportaid,attr"`
+	Text	    string 	 `xml:"reportaid:not-found"`
+}
+
+// disallowed - POST XML
+type disallowed struct {
+	XMLName   	xml.Name 	`xml:"reportaid:error"`
+	Namespace  string   	`xml:"xmlns:reportaid,attr"`
+	Text	    string 		`xml:"reportaid:method-disallowed"`
 }
 
 // LogInit =
@@ -42,10 +51,18 @@ func Log (e string, id error) (*Errors) {
     return thisError
 }
 
-// NotFound - get total activities
+// NotFound - 404
 func NotFound () ([]byte) {
 
 	notFound := &notFound{Text: configs.ErrorNotFound}
 	notFoundXML, _ := xml.MarshalIndent(notFound, "", "")
 	return notFoundXML
+}
+
+// PostDisallowed - handle POSt requests
+func PostDisallowed () ([]byte) {
+
+	disallowed := &disallowed{Text: configs.ErrorPostDisallowed}
+	disallowedXML, _ := xml.MarshalIndent(disallowed, "", "")
+	return disallowedXML
 }

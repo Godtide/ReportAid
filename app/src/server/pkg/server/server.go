@@ -18,6 +18,12 @@ func notFound(w http.ResponseWriter, r *http.Request) {
     w.Write(content)
 }
 
+func postHandler(w http.ResponseWriter, r *http.Request) {
+    xml.Header(w)
+    content := xml.PostDisallowed()
+    w.Write(content)
+}
+
 func homePage(w http.ResponseWriter){
 
     xml.Header(w)
@@ -165,80 +171,105 @@ func orgsNum (contracts *contracts.Contracts, w http.ResponseWriter) {
 
 func handleRequests(contracts *contracts.Contracts) {
 
-	router := mux.NewRouter().StrictSlash(true)
+	r := mux.NewRouter().StrictSlash(true)
 
-    router.NotFoundHandler = http.HandlerFunc(notFound)
+    // route all POST requests to defaultHandler:
+    r.PathPrefix("/").HandlerFunc(postHandler).Methods(
+                                                        "POST",
+                                                        "PUT",
+                                                        "PATCH",
+                                                        "DELETE",
+                                                        "COPY",
+                                                        "HEAD",
+                                                        "OPTIONS",
+                                                        "LINK",
+                                                        "UNLINK",
+                                                        "PURGE",
+                                                        "LOCK",
+                                                        "UNLOCK",
+                                                        "PROPFIND",
+                                                        "VIEW",
+                                                    )
 
-    router.HandleFunc(configs.URLHome, func(w http.ResponseWriter, r *http.Request) {
+    r.NotFoundHandler = http.HandlerFunc(notFound)
+
+    r.HandleFunc(configs.URLHome, func(w http.ResponseWriter, r *http.Request) {
     	homePage(w)
-	})
+	}).Methods("GET")
 
     // Activities
-	router.HandleFunc(configs.URLActivities, func(w http.ResponseWriter, r *http.Request) {
+	r.HandleFunc(configs.URLActivities, func(w http.ResponseWriter, r *http.Request) {
         activities(contracts, w, r)
-	})
+	}).Methods("GET")
 
-    router.HandleFunc(configs.URLActivitiesAll, func(w http.ResponseWriter, r *http.Request) {
+    r.HandleFunc(configs.URLActivitiesAll, func(w http.ResponseWriter, r *http.Request) {
         activitiesAll(contracts, w, r)
-	})
+	}).Methods("GET")
 
-	router.HandleFunc(configs.URLActivitiesList, func(w http.ResponseWriter, r *http.Request) {
+	r.HandleFunc(configs.URLActivitiesList, func(w http.ResponseWriter, r *http.Request) {
     	activitiesList(contracts, w)
-	})
+	}).Methods("GET")
 
-	router.HandleFunc(configs.URLActivitiesTotal, func(w http.ResponseWriter, r *http.Request) {
+	r.HandleFunc(configs.URLActivitiesTotal, func(w http.ResponseWriter, r *http.Request) {
     	activitiesNum(contracts, w)
-	})
+	}).Methods("GET")
 
     // Activity
-    router.HandleFunc(configs.URLActivityList, func(w http.ResponseWriter, r *http.Request) {
+    r.HandleFunc(configs.URLActivityList, func(w http.ResponseWriter, r *http.Request) {
     	activityList(contracts, w, r)
-	})
+	}).Methods("GET")
 
-    router.HandleFunc(configs.URLActivityTotal, func(w http.ResponseWriter, r *http.Request) {
+    r.HandleFunc(configs.URLActivityTotal, func(w http.ResponseWriter, r *http.Request) {
     	activityNum(contracts, w, r)
-	})
+	}).Methods("GET")
 
     // Organisations
-    router.HandleFunc(configs.URLOrganisations, func(w http.ResponseWriter, r *http.Request) {
+    r.HandleFunc(configs.URLOrganisations, func(w http.ResponseWriter, r *http.Request) {
         organisations(contracts, w, r)
-    })
+    }).Methods("GET")
 
-    router.HandleFunc(configs.URLOrganisationsAll, func(w http.ResponseWriter, r *http.Request) {
+    r.HandleFunc(configs.URLOrganisationsAll, func(w http.ResponseWriter, r *http.Request) {
         organisationsAll(contracts, w, r)
-	})
+	}).Methods("GET")
 
-    router.HandleFunc(configs.URLOrganisationsList, func(w http.ResponseWriter, r *http.Request) {
+    r.HandleFunc(configs.URLOrganisationsList, func(w http.ResponseWriter, r *http.Request) {
         organisationsList(contracts, w)
-    })
+    }).Methods("GET")
 
-    router.HandleFunc(configs.URLOrganisationsTotal, func(w http.ResponseWriter, r *http.Request) {
+    r.HandleFunc(configs.URLOrganisationsTotal, func(w http.ResponseWriter, r *http.Request) {
         organisationsNum(contracts, w)
-    })
+    }).Methods("GET")
 
     // Organisation
-    router.HandleFunc(configs.URLOrganisationList, func(w http.ResponseWriter, r *http.Request) {
+    r.HandleFunc(configs.URLOrganisationList, func(w http.ResponseWriter, r *http.Request) {
         organisationList(contracts, w, r)
-    })
+    }).Methods("GET")
 
-    router.HandleFunc(configs.URLOrganisationTotal, func(w http.ResponseWriter, r *http.Request) {
+    r.HandleFunc(configs.URLOrganisationTotal, func(w http.ResponseWriter, r *http.Request) {
         organisationNum(contracts, w, r)
-    })
+    }).Methods("GET")
 
     // Orgs
-    router.HandleFunc(configs.URLOrgs, func(w http.ResponseWriter, r *http.Request) {
+    r.HandleFunc(configs.URLOrgs, func(w http.ResponseWriter, r *http.Request) {
         orgs(contracts, w, r)
-    })
+    }).Methods("GET")
 
-    router.HandleFunc(configs.URLOrgsList, func(w http.ResponseWriter, r *http.Request) {
+    r.HandleFunc(configs.URLOrgsList, func(w http.ResponseWriter, r *http.Request) {
         orgsList(contracts, w)
-    })
+    }).Methods("GET")
 
-    router.HandleFunc(configs.URLOrgsTotal, func(w http.ResponseWriter, r *http.Request) {
+    r.HandleFunc(configs.URLOrgsTotal, func(w http.ResponseWriter, r *http.Request) {
         orgsNum(contracts, w)
-    })
+    }).Methods("GET")
 
-    log.Fatal(http.ListenAndServe(configs.ServerPort, router))
+    srv := &http.Server{
+		Handler:          r,
+        Addr:             "127.0.0.1" + configs.ServerPort,
+		WriteTimeout:     configs.WriteTimeout,
+		ReadTimeout:      configs.ReadTimeout,
+	}
+
+    log.Fatal(srv.ListenAndServe())
 }
 
 // Start - fire up the server
