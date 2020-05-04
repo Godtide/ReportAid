@@ -5,6 +5,8 @@ import (
 )
 
 const (
+    // ServerDomain - domain
+    ServerDomain = "www.reportaid.org"
     // ServerPort - port
     ServerPort  = ":10000"
     // WriteTimeout - disallow writes

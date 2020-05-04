@@ -24,10 +24,17 @@ func postHandler(w http.ResponseWriter, r *http.Request) {
     w.Write(content)
 }
 
-func homePage(w http.ResponseWriter){
+func home(w http.ResponseWriter){
 
     xml.Header(w)
     content := xml.Home()
+    w.Write(content)
+}
+
+func help(w http.ResponseWriter){
+
+    xml.Header(w)
+    content := xml.Help()
     w.Write(content)
 }
 
@@ -194,7 +201,11 @@ func handleRequests(contracts *contracts.Contracts) {
     r.NotFoundHandler = http.HandlerFunc(notFound)
 
     r.HandleFunc(configs.URLHome, func(w http.ResponseWriter, r *http.Request) {
-    	homePage(w)
+    	home(w)
+	}).Methods("GET")
+
+    r.HandleFunc(configs.URLHelp, func(w http.ResponseWriter, r *http.Request) {
+    	help(w)
 	}).Methods("GET")
 
     // Activities

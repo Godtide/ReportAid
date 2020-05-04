@@ -19,6 +19,9 @@ const (
     // URLReportAidNamespace - define namespace for extra info
     URLReportAidNamespace = "http://reportaid.org/ns#"
 
+    // URLHelp - help
+    URLHelp = "/help"
+
     // URLActivities - activities XML URL
     URLActivities = "/activities/{" + URLParamActivitiesRef + "}/{" + URLParamActivityRef + "}"
     // URLActivitiesAll - all activities activity XML URL
