@@ -50,7 +50,7 @@ To run **ReportAid** via [dat](https://dat.foundation/), you will need the [Fire
 
 RESTful API:  http://213.138.113.94:10000/
 
-To get some help using the server, load [http://localhost:10000/help](http://localhost:10000/help). The RESTful API is still in its early stages of development - more info' coming soon.
+To get some help using the server, load [http://213.138.113.94:10000/help](http://213.138.113.94:10000/help). The RESTful API is still in its early stages of development - more help is coming soon!
 
 ## Built Using
 
@@ -63,7 +63,7 @@ To get some help using the server, load [http://localhost:10000/help](http://loc
 
 ## Install
 
-The instruction below enable you to run **ReportAid** on a local, private, Ethereum test network (via [Ganache](https://github.com/trufflesuite/ganache)). Before following the instructions below, please install the [dependencies](#dependencies).
+The instruction below enable you to run **ReportAid** app' and RESTful API server on a local, private, Ethereum test network (via [Ganache](https://github.com/trufflesuite/ganache)). Before following the instructions below, please install the [dependencies](#dependencies).
 
 Follow the instructions in the [Ganache](https://github.com/trufflesuite/ganache) repository for downloading and installing Ganache; tl;dr - you need to clone the [Ganache](https://github.com/trufflesuite/ganache) repository, then run `npm install && npm start`.
 
@@ -89,10 +89,10 @@ Then fire up a [Firefox](https://www.mozilla.org/) browser and go to the URL [ht
 To run the RESTFul API server:
 
 1. Change to the **ReportAid** repository's [/app/src/server](/app/src/server) directory.
-2. Build the server by typing `go build -o ./tmp/goReportAid ./cmd/server/main.go`.
-3. Run the server by running `/tmp/goReportAid`.
-4. As an alternative to steps 2 and 3, you can use [air](https://github.com/cosmtrek/air), which will build and run the server for you ([air](https://github.com/cosmtrek/air) also features live reload, should you wish to do any development of the server).
-
+2. Edit the server's ethereum config file [./internal/configs/ethereum.go](./internal/configs/ethereum.go) so that the contract constants contain the addresses generated above.
+3. Build the server by typing `go build -o ./tmp/goReportAid ./cmd/server/main.go`.
+4. Run the server by running `/tmp/goReportAid`.
+5. As an alternative to steps 2 and 3, you can use [air](https://github.com/cosmtrek/air), which will build and run the server for you ([air](https://github.com/cosmtrek/air) also features live reload, should you wish to do any development of the server).
 
 The server runs on port 10000, so load a browser, then connect to [http://localhost:10000](http://localhost:10000). To get some help using the server, load [http://localhost:10000/help](http://localhost:10000/help).
 
