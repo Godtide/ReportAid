@@ -42,7 +42,7 @@ RESTful API: [http://213.138.113.94:10000/](http://213.138.113.94:10000/)
 
 e.g: [http://213.138.113.94:10000/activities-list](http://213.138.113.94:10000/activities-list)
 
-To get some help using the RESTful API, browse [http://213.138.113.94:10000/help](http://213.138.113.94:10000/help). Please note - the RESTful API is still in the early stages of development - more help is coming soon! indeed, **ReportAid** is an early proof of concept, so you should expect some bugs (please raise an [issue](https://github.com/glowkeeper/ReportAid/issues) if you find any).
+To get some help using the RESTful API, browse [http://213.138.113.94:10000/help](http://213.138.113.94:10000/help). Please note - the RESTful API is still in the early stages of development - more help is coming soon! Indeed, **ReportAid** is an early proof of concept, so you should expect some bugs (please raise an [issue](https://github.com/glowkeeper/ReportAid/issues) if you find any).
 
 ### Browser Application Demo Dependencies
 
