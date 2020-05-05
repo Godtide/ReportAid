@@ -275,7 +275,7 @@ func handleRequests(contracts *contracts.Contracts) {
 
     srv := &http.Server{
 		Handler:          r,
-        Addr:             "127.0.0.1" + configs.ServerPort,
+        Addr:             configs.ServerDomain + configs.ServerPort,
 		WriteTimeout:     configs.WriteTimeout,
 		ReadTimeout:      configs.ReadTimeout,
 	}
