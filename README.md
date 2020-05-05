@@ -32,7 +32,7 @@ Below describes using and installing the **ReportAid** demo'.
 
 A demo of the **ReportAid** browser application is available both via a web server and the distributed filesystem [dat](https://dat.foundation/). However, please read the [Demo Dependencies](#browser-application-demo-dependencies) before loading the URLs detailed below.
 
-web: [http://www.reportaid.org](http://www.reportaid.org)
+web: [https://www.reportaid.org](https://www.reportaid.org)
 
 dat: [http://4b1bdf7b0f6beeadab5dadaf019cddbc94f618792ea30b8a2f5d957267d5bd92/](http://4b1bdf7b0f6beeadab5dadaf019cddbc94f618792ea30b8a2f5d957267d5bd92/)
 
