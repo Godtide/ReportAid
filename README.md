@@ -9,9 +9,8 @@ This is the repository of **ReportAid**, a blockchain implementation of the [IAT
 
 - [Usage](#usage)
 - [Demo](#demo)
-  - [Demo Dependencies](#demo-dependencies)  
+  - [Demo Dependencies](#browser-application-demo-dependencies)  
   - [dat Dependencies](#dat-dependencies)
-- [RESTful API](#restful-api)
 - [Built Using](#built-using)  
 - [Install](#install)
   - [Getting Started](#getting-started)
@@ -23,34 +22,34 @@ This is the repository of **ReportAid**, a blockchain implementation of the [IAT
 
 ## Usage
 
-Below describes hot to run a demo' of **ReportAid**.
+Below describes using and installing the **ReportAid** demo'.
 
 ## Demo
 
-A demo of **ReportAid** is running both on the web and on the distributed filesystem [dat](https://dat.foundation/).
+**ReportAid** features both a [React](https://reactjs.org/) browser-based application for creating and reading [IATI Standard](https://iatistandard.org/en/) blockchain records, and a [Go](https://golang.org/) RESTful API server for reading those records.
 
-web: http://www.reportaid.org
-dat: http://4b1bdf7b0f6beeadab5dadaf019cddbc94f618792ea30b8a2f5d957267d5bd92/
+A demo of the **ReportAid** browser application is running both on the web and on the distributed filesystem [dat](https://dat.foundation/).
+
+web: [http://www.reportaid.org](http://www.reportaid.org)
+dat: [http://4b1bdf7b0f6beeadab5dadaf019cddbc94f618792ea30b8a2f5d957267d5bd92/](http://4b1bdf7b0f6beeadab5dadaf019cddbc94f618792ea30b8a2f5d957267d5bd92/)
 
 ![](/docs/paper/images/reportaidWriteSector.png)
 
-**ReportAid** is an early proof of concept, so you should expect some bugs (please raise an [issue](https://github.com/glowkeeper/ReportAid/issues) if you find any). Furthermore, the app' does not implement all of the [IATI Standard](https://iatistandard.org/en/).
+The [Go](https://golang.org/) RESTful API allows you to retrieve [IATI Standard XML](https://iatistandard.org/en/) records from  **ReportAid**.
 
-### Demo Dependencies
+RESTful API: [http://213.138.113.94:10000/](http://213.138.113.94:10000/)
+
+e.g: [http://213.138.113.94:10000/activities-list](http://213.138.113.94:10000/activities-list)
+
+To get some help using the RESTful API, browse [http://213.138.113.94:10000/help](http://213.138.113.94:10000/help). Please note - the RESTful API is still in the early stages of development - more help is coming soon! indeed, **ReportAid** is an early proof of concept, so you should expect some bugs (please raise an [issue](https://github.com/glowkeeper/ReportAid/issues) if you find any).
+
+### Browser Application Demo Dependencies
 
 **ReportAid** requires the [Firefox](https://www.mozilla.org/) browser with the [MetaMask](https://metamask.io/) extension. The smart contracts of **ReportAid** are running on the [Rinkeby Ethereum Testnet](https://www.rinkeby.io/); hence, for **ReportAid** to interact with those, [MetaMask](https://metamask.io/) should be pointing at [Rinkeby](https://www.rinkeby.io/). You will need a few test Ether in your [MetaMask](https://metamask.io/) wallet, which you can get from the [Rinkeby Faucet](https://faucet.rinkeby.io/). Those test Ether will allow you to sign the transactions necessary to create [IATI Standard](https://iatistandard.org/en/) records that **ReportAid**  supports.
 
 ### dat Dependencies
 
 To run **ReportAid** via [dat](https://dat.foundation/), you will need the [Firefox](https://www.mozilla.org/) [dat P2P Protocol](https://addons.mozilla.org/en-GB/firefox/addon/dat-p2p-protocol/) extension installed. Ensure [MetaMask](https://metamask.io/) is pointing at [Rinkeby](https://www.rinkeby.io/), then load the following URL: http://4b1bdf7b0f6beeadab5dadaf019cddbc94f618792ea30b8a2f5d957267d5bd92/
-
-## RESTful API
-
-**ReportAid** also features a RESTful API, written in [Go](https://golang.org/). That means you can retrieve [IATI Standard](https://iatistandard.org/en/) records from  **ReportAid** via http URLs.
-
-RESTful API:  http://213.138.113.94:10000/
-
-To get some help using the server, load [http://213.138.113.94:10000/help](http://213.138.113.94:10000/help). The RESTful API is still in its early stages of development - more help is coming soon!
 
 ## Built Using
 
