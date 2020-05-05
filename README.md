@@ -40,7 +40,13 @@ The [Go](https://golang.org/) RESTful API, which allows you to retrieve [IATI St
 
 RESTful API: [http://rest.reportaid.org:10000/](http://rest.reportaid.org:10000/)
 
-e.g: [http://rest.reportaid.org:10000/activities-list](http://rest.reportaid.org:10000/activities-list)
+For example, to get a list of IATI activities files recorded via **ReportAid**:
+
+[http://rest.reportaid.org:10000/activities-list](http://rest.reportaid.org:10000/activities-list)
+
+You could then then use one of the activities returned in that list and get the [IATI Standard XML](https://iatistandard.org/en/) for that activities file. For example:
+
+[http://rest.reportaid.org:10000/activities/4f564e66794b64565a0000000000000000000000000000000000000000000000](http://rest.reportaid.org:10000/activities/4f564e66794b64565a0000000000000000000000000000000000000000000000)
 
 To get some help using the RESTful API, browse [http://rest.reportaid.org:10000/help](http://rest.reportaid.org:10000/help). Please note - the RESTful API is still in the early stages of development - more help is coming soon! Indeed, **ReportAid** is an early proof of concept, so you should expect some bugs (please raise an [issue](https://github.com/glowkeeper/ReportAid/issues) if you find any).
 
