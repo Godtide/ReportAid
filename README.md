@@ -28,7 +28,7 @@ Below describes using and installing the **ReportAid** demo'.
 
 **ReportAid** features both a [React](https://reactjs.org/) browser-based application for creating and reading [IATI Standard](https://iatistandard.org/en/) blockchain records, and a [Go](https://golang.org/) RESTful API server for reading those records.
 
-A demo of the **ReportAid** browser application is running both on the web and on the distributed filesystem [dat](https://dat.foundation/).
+A demo of the **ReportAid** browser application is running both on the web and on the distributed filesystem [dat](https://dat.foundation/). However, please read the [Demo Dependencies](#browser-application-demo-dependencies) before loading the URLs detailed below.
 
 web: [http://www.reportaid.org](http://www.reportaid.org)
 
