@@ -28,7 +28,7 @@ Below describes using and installing the **ReportAid** demo'.
 
 ## Demo
 
-**ReportAid** features both a [React](https://reactjs.org/) browser-based application for creating and reading [IATI Standard](https://iatistandard.org/en/) blockchain records, and a [Go](https://golang.org/) RESTful API server for reading those records.
+**ReportAid** features both a [React](https://reactjs.org/) browser-based application for creating and reading [IATI Standard](https://iatistandard.org/en/) blockchain records, and a [Go](https://golang.org/) RESTful API server for returning [IATI Standard XML](https://iatistandard.org/en/) of those records.
 
 A demo of the **ReportAid** browser application is available both via a web server and the distributed filesystem [dat](https://dat.foundation/). However, please read the [Demo Dependencies](#browser-application-demo-dependencies) before loading the URLs detailed below.
 
@@ -36,7 +36,7 @@ web: [http://www.reportaid.org](http://www.reportaid.org)
 
 dat: [http://4b1bdf7b0f6beeadab5dadaf019cddbc94f618792ea30b8a2f5d957267d5bd92/](http://4b1bdf7b0f6beeadab5dadaf019cddbc94f618792ea30b8a2f5d957267d5bd92/)
 
-The [Go](https://golang.org/) RESTful API, which allows you to retrieve [IATI Standard XML](https://iatistandard.org/en/) records from  the **ReportAid** smart contracts on the blockchain, is available via a web server.
+The [Go](https://golang.org/) RESTful API, which allows you to retrieve [IATI Standard XML](https://iatistandard.org/en/) records from  the **ReportAid** smart contracts on the blockchain, is available via a server.
 
 RESTful API: [http://213.138.113.94:10000/](http://213.138.113.94:10000/)
 
