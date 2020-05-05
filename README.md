@@ -94,7 +94,7 @@ To run the RESTFul API server:
 4. Run the server by running `./tmp/goReportAid`.
 5. As an alternative to steps 3 and 4, you can use [air](https://github.com/cosmtrek/air), which will build and run the server for you ([air](https://github.com/cosmtrek/air) also features live reload, should you wish to do any development of the server).
 
-The server runs on port 10000, so load a browser, then connect to [http://rest.reportaid.org:10000/](http://rest.reportaid.org:10000/). To get some help using the server, load [http://rest.reportaid.org:10000/help](http://rest.reportaid.org:10000/help).
+The server runs on port 10000, so load a browser, then connect to [http://127.0.0.1:10000/](http://127.0.0.1:10000/). To get some help using the server, load [http://127.0.0.1:10000/help](http://127.0.0.1:10000/help).
 
 ### Dependencies
 
