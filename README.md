@@ -44,7 +44,7 @@ For example, to get a list of IATI activities files recorded via **ReportAid**:
 
 [http://rest.reportaid.org:10000/activities-list](http://rest.reportaid.org:10000/activities-list)
 
-You could then then use one of the activities references listed via the URL above to get the [IATI Standard XML](https://iatistandard.org/en/) for those IATI activities. For example:
+You could then then use one of those activities references to get the [IATI Standard XML](https://iatistandard.org/en/). For example:
 
 [http://rest.reportaid.org:10000/activities/4f564e66794b64565a0000000000000000000000000000000000000000000000](http://rest.reportaid.org:10000/activities/4f564e66794b64565a0000000000000000000000000000000000000000000000)
 
