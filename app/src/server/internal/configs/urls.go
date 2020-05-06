@@ -22,14 +22,16 @@ const (
     // URLHelp - help
     URLHelp = "/help"
 
-    // URLActivities - activities XML URL
-    URLActivities = "/activities/{" + URLParamActivitiesRef + "}/{" + URLParamActivityRef + "}"
+    // URLActivities -  URL
+    URLActivities = "/activities"
+    // URLActivitiesActivity - activities XML URL
+    URLActivitiesActivity = URLActivities + "/{" + URLParamActivitiesRef + "}/{" + URLParamActivityRef + "}"
     // URLActivitiesAll - all activities activity XML URL
-    URLActivitiesAll = "/activities/{" + URLParamActivitiesRef + "}"
+    URLActivitiesAll = URLActivities + "/{" + URLParamActivitiesRef + "}"
     // URLActivitiesList - list activities XML URL
-    URLActivitiesList = "/activities-list"
+    URLActivitiesList = URLActivities + "-list"
     // URLActivitiesTotal - total activities XML URL
-    URLActivitiesTotal = "/activities-total"
+    URLActivitiesTotal = URLActivities + "-total"
 
     // URLActivityList - activities XML URL
     URLActivityList = "/activity-list/{" + URLParamActivitiesRef + "}"

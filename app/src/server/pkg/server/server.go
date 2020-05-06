@@ -209,7 +209,7 @@ func handleRequests(contracts *contracts.Contracts) {
 	}).Methods("GET")
 
     // Activities
-	r.HandleFunc(configs.URLActivities, func(w http.ResponseWriter, r *http.Request) {
+	r.HandleFunc(configs.URLActivitiesActivity, func(w http.ResponseWriter, r *http.Request) {
         activities(contracts, w, r)
 	}).Methods("GET")
 
