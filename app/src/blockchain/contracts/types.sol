@@ -1,7 +1,32 @@
+pragma solidity >=0.4.16 <0.7.0;
+pragma experimental ABIEncoderV2;
+
+import "./enums.sol";
+
+struct KeyFlag {
+    bool deleted;
+    bytes32 key;
+}
+
 struct Activities {
     bytes32 version;
     bytes32 generatedTime;
     bytes32 linkedData;
+}
+
+struct Activity {
+    bool humanitarian;
+    uint8 hierarchy;
+    uint8 status;
+    uint8 budgetNotProvided;
+    ReportingOrg reportingOrg;
+    bytes32 lastUpdated;
+    bytes32 lang;
+    bytes32 currency;
+    bytes32 linkedData;
+    bytes32 identifier;
+    string title;
+    string description;
 }
 
 struct Additional {
@@ -43,21 +68,6 @@ struct ReportingOrg {
     uint8 orgType;
     bool isSecondary;
     bytes32 orgRef;
-}
-
-struct Activity {
-    bool humanitarian;
-    uint8 hierarchy;
-    uint8 status;
-    uint8 budgetNotProvided;
-    ReportingOrg reportingOrg;
-    bytes32 lastUpdated;
-    bytes32 lang;
-    bytes32 currency;
-    bytes32 linkedData;
-    bytes32 identifier;
-    string title;
-    string description;
 }
 
 struct Territory {
