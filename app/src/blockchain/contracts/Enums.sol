@@ -1,3 +1,6 @@
+pragma solidity >=0.4.16 <0.7.0;
+pragma experimental ABIEncoderV2;
+
 enum Scope {
     NONE,
     GLOBAL,
@@ -112,16 +115,6 @@ enum DisbursementChannel {
     BANKACCOUNT,
     NGO,
     DONORMANAGED,
-    MAX
-}
-
-enum TiedStatus {
-    UNSPECIFIED,
-    UNSPECIFIEDONE,
-    NONE,
-    PARTIALLYTIED,
-    TIED,
-    UNTIED,
     MAX
 }
 

@@ -1,19 +1,6 @@
 pragma solidity >=0.4.16 <0.7.0;
 pragma experimental ABIEncoderV2;
 
-import "./enums.sol";
-
-struct KeyFlag {
-    bool deleted;
-    bytes32 key;
-}
-
-struct Activities {
-    bytes32 version;
-    bytes32 generatedTime;
-    bytes32 linkedData;
-}
-
 struct Activity {
     bool humanitarian;
     uint8 hierarchy;

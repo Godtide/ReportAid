@@ -27,125 +27,136 @@ var (
 	_ = event.NewSubscription
 )
 
-// ActivitiesOrgActivities is an auto generated low-level Go binding around an user-defined struct.
-type ActivitiesOrgActivities struct {
+// ActivitiesData is an auto generated low-level Go binding around an user-defined struct.
+type ActivitiesData struct {
 	Version       [32]byte
 	GeneratedTime [32]byte
 	LinkedData    [32]byte
 }
 
-// ActivitiesABI is the input ABI used to generate the binding from.
-const ActivitiesABI = "[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"_activitiesRef\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"version\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"generatedTime\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"linkedData\",\"type\":\"bytes32\"}],\"indexed\":false,\"internalType\":\"structActivities.OrgActivities\",\"name\":\"_activities\",\"type\":\"tuple\"}],\"name\":\"SetActivities\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_activitiesRef\",\"type\":\"bytes32\"}],\"name\":\"getActivities\",\"outputs\":[{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"version\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"generatedTime\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"linkedData\",\"type\":\"bytes32\"}],\"internalType\":\"structActivities.OrgActivities\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_activitiesRef\",\"type\":\"bytes32\"}],\"name\":\"getGeneratedTime\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_activitiesRef\",\"type\":\"bytes32\"}],\"name\":\"getLinkedData\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getNumActivities\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_index\",\"type\":\"uint256\"}],\"name\":\"getReference\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_activitiesRef\",\"type\":\"bytes32\"}],\"name\":\"getVersion\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_activitiesRef\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"version\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"generatedTime\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"linkedData\",\"type\":\"bytes32\"}],\"internalType\":\"structActivities.OrgActivities\",\"name\":\"_activities\",\"type\":\"tuple\"}],\"name\":\"setActivities\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]"
+// ActivitiesStoreABI is the input ABI used to generate the binding from.
+const ActivitiesStoreABI = "[{\"inputs\":[{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"version\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"generatedTime\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"linkedData\",\"type\":\"bytes32\"}],\"internalType\":\"structActivitiesData\",\"name\":\"_activities\",\"type\":\"tuple\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"get\",\"outputs\":[{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"version\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"generatedTime\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"linkedData\",\"type\":\"bytes32\"}],\"internalType\":\"structActivitiesData\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]"
 
-// ActivitiesFuncSigs maps the 4-byte function signature to its string representation.
-var ActivitiesFuncSigs = map[string]string{
-	"81a695a4": "getActivities(bytes32)",
-	"ab73eba0": "getGeneratedTime(bytes32)",
-	"053cd86f": "getLinkedData(bytes32)",
-	"1f5771d9": "getNumActivities()",
-	"bc599341": "getReference(uint256)",
-	"9aaf9f08": "getVersion(bytes32)",
-	"b828c537": "setActivities(bytes32,(bytes32,bytes32,bytes32))",
+// ActivitiesStoreFuncSigs maps the 4-byte function signature to its string representation.
+var ActivitiesStoreFuncSigs = map[string]string{
+	"6d4ce63c": "get()",
 }
 
-// Activities is an auto generated Go binding around an Ethereum contract.
-type Activities struct {
-	ActivitiesCaller     // Read-only binding to the contract
-	ActivitiesTransactor // Write-only binding to the contract
-	ActivitiesFilterer   // Log filterer for contract events
+// ActivitiesStoreBin is the compiled bytecode used for deploying new contracts.
+var ActivitiesStoreBin = "0x608060405234801561001057600080fd5b506040516101f03803806101f083398101604081905261002f916100a3565b805160001a60f81b6001600160f81b031916158015906100625750602081015160001a60f81b6001600160f81b03191615155b80156100815750604081015160001a60f81b6001600160f81b03191615155b61008a57600080fd5b80516000556020810151600155604001516002556100f9565b6000606082840312156100b4578081fd5b604051606081016001600160401b03811182821017156100d2578283fd5b80604052508251815260208301516020820152604083015160408201528091505092915050565b60e9806101076000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c80636d4ce63c14602d575b600080fd5b60336047565b604051603e91906092565b60405180910390f35b604d6072565b5060408051606081018252600054815260015460208201526002549181019190915290565b604080516060810182526000808252602082018190529181019190915290565b8151815260208083015190820152604091820151918101919091526060019056fea26469706673582212201a9b9d320ed50be4b0237b03f97c90751ea4fe4b4d01ccb52044fbfb7da9bd9c64736f6c63430006060033"
+
+// DeployActivitiesStore deploys a new Ethereum contract, binding an instance of ActivitiesStore to it.
+func DeployActivitiesStore(auth *bind.TransactOpts, backend bind.ContractBackend, _activities ActivitiesData) (common.Address, *types.Transaction, *ActivitiesStore, error) {
+	parsed, err := abi.JSON(strings.NewReader(ActivitiesStoreABI))
+	if err != nil {
+		return common.Address{}, nil, nil, err
+	}
+
+	address, tx, contract, err := bind.DeployContract(auth, parsed, common.FromHex(ActivitiesStoreBin), backend, _activities)
+	if err != nil {
+		return common.Address{}, nil, nil, err
+	}
+	return address, tx, &ActivitiesStore{ActivitiesStoreCaller: ActivitiesStoreCaller{contract: contract}, ActivitiesStoreTransactor: ActivitiesStoreTransactor{contract: contract}, ActivitiesStoreFilterer: ActivitiesStoreFilterer{contract: contract}}, nil
 }
 
-// ActivitiesCaller is an auto generated read-only Go binding around an Ethereum contract.
-type ActivitiesCaller struct {
+// ActivitiesStore is an auto generated Go binding around an Ethereum contract.
+type ActivitiesStore struct {
+	ActivitiesStoreCaller     // Read-only binding to the contract
+	ActivitiesStoreTransactor // Write-only binding to the contract
+	ActivitiesStoreFilterer   // Log filterer for contract events
+}
+
+// ActivitiesStoreCaller is an auto generated read-only Go binding around an Ethereum contract.
+type ActivitiesStoreCaller struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// ActivitiesTransactor is an auto generated write-only Go binding around an Ethereum contract.
-type ActivitiesTransactor struct {
+// ActivitiesStoreTransactor is an auto generated write-only Go binding around an Ethereum contract.
+type ActivitiesStoreTransactor struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// ActivitiesFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
-type ActivitiesFilterer struct {
+// ActivitiesStoreFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
+type ActivitiesStoreFilterer struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// ActivitiesSession is an auto generated Go binding around an Ethereum contract,
+// ActivitiesStoreSession is an auto generated Go binding around an Ethereum contract,
 // with pre-set call and transact options.
-type ActivitiesSession struct {
-	Contract     *Activities       // Generic contract binding to set the session for
+type ActivitiesStoreSession struct {
+	Contract     *ActivitiesStore  // Generic contract binding to set the session for
 	CallOpts     bind.CallOpts     // Call options to use throughout this session
 	TransactOpts bind.TransactOpts // Transaction auth options to use throughout this session
 }
 
-// ActivitiesCallerSession is an auto generated read-only Go binding around an Ethereum contract,
+// ActivitiesStoreCallerSession is an auto generated read-only Go binding around an Ethereum contract,
 // with pre-set call options.
-type ActivitiesCallerSession struct {
-	Contract *ActivitiesCaller // Generic contract caller binding to set the session for
-	CallOpts bind.CallOpts     // Call options to use throughout this session
+type ActivitiesStoreCallerSession struct {
+	Contract *ActivitiesStoreCaller // Generic contract caller binding to set the session for
+	CallOpts bind.CallOpts          // Call options to use throughout this session
 }
 
-// ActivitiesTransactorSession is an auto generated write-only Go binding around an Ethereum contract,
+// ActivitiesStoreTransactorSession is an auto generated write-only Go binding around an Ethereum contract,
 // with pre-set transact options.
-type ActivitiesTransactorSession struct {
-	Contract     *ActivitiesTransactor // Generic contract transactor binding to set the session for
-	TransactOpts bind.TransactOpts     // Transaction auth options to use throughout this session
+type ActivitiesStoreTransactorSession struct {
+	Contract     *ActivitiesStoreTransactor // Generic contract transactor binding to set the session for
+	TransactOpts bind.TransactOpts          // Transaction auth options to use throughout this session
 }
 
-// ActivitiesRaw is an auto generated low-level Go binding around an Ethereum contract.
-type ActivitiesRaw struct {
-	Contract *Activities // Generic contract binding to access the raw methods on
+// ActivitiesStoreRaw is an auto generated low-level Go binding around an Ethereum contract.
+type ActivitiesStoreRaw struct {
+	Contract *ActivitiesStore // Generic contract binding to access the raw methods on
 }
 
-// ActivitiesCallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
-type ActivitiesCallerRaw struct {
-	Contract *ActivitiesCaller // Generic read-only contract binding to access the raw methods on
+// ActivitiesStoreCallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
+type ActivitiesStoreCallerRaw struct {
+	Contract *ActivitiesStoreCaller // Generic read-only contract binding to access the raw methods on
 }
 
-// ActivitiesTransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
-type ActivitiesTransactorRaw struct {
-	Contract *ActivitiesTransactor // Generic write-only contract binding to access the raw methods on
+// ActivitiesStoreTransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
+type ActivitiesStoreTransactorRaw struct {
+	Contract *ActivitiesStoreTransactor // Generic write-only contract binding to access the raw methods on
 }
 
-// NewActivities creates a new instance of Activities, bound to a specific deployed contract.
-func NewActivities(address common.Address, backend bind.ContractBackend) (*Activities, error) {
-	contract, err := bindActivities(address, backend, backend, backend)
+// NewActivitiesStore creates a new instance of ActivitiesStore, bound to a specific deployed contract.
+func NewActivitiesStore(address common.Address, backend bind.ContractBackend) (*ActivitiesStore, error) {
+	contract, err := bindActivitiesStore(address, backend, backend, backend)
 	if err != nil {
 		return nil, err
 	}
-	return &Activities{ActivitiesCaller: ActivitiesCaller{contract: contract}, ActivitiesTransactor: ActivitiesTransactor{contract: contract}, ActivitiesFilterer: ActivitiesFilterer{contract: contract}}, nil
+	return &ActivitiesStore{ActivitiesStoreCaller: ActivitiesStoreCaller{contract: contract}, ActivitiesStoreTransactor: ActivitiesStoreTransactor{contract: contract}, ActivitiesStoreFilterer: ActivitiesStoreFilterer{contract: contract}}, nil
 }
 
-// NewActivitiesCaller creates a new read-only instance of Activities, bound to a specific deployed contract.
-func NewActivitiesCaller(address common.Address, caller bind.ContractCaller) (*ActivitiesCaller, error) {
-	contract, err := bindActivities(address, caller, nil, nil)
+// NewActivitiesStoreCaller creates a new read-only instance of ActivitiesStore, bound to a specific deployed contract.
+func NewActivitiesStoreCaller(address common.Address, caller bind.ContractCaller) (*ActivitiesStoreCaller, error) {
+	contract, err := bindActivitiesStore(address, caller, nil, nil)
 	if err != nil {
 		return nil, err
 	}
-	return &ActivitiesCaller{contract: contract}, nil
+	return &ActivitiesStoreCaller{contract: contract}, nil
 }
 
-// NewActivitiesTransactor creates a new write-only instance of Activities, bound to a specific deployed contract.
-func NewActivitiesTransactor(address common.Address, transactor bind.ContractTransactor) (*ActivitiesTransactor, error) {
-	contract, err := bindActivities(address, nil, transactor, nil)
+// NewActivitiesStoreTransactor creates a new write-only instance of ActivitiesStore, bound to a specific deployed contract.
+func NewActivitiesStoreTransactor(address common.Address, transactor bind.ContractTransactor) (*ActivitiesStoreTransactor, error) {
+	contract, err := bindActivitiesStore(address, nil, transactor, nil)
 	if err != nil {
 		return nil, err
 	}
-	return &ActivitiesTransactor{contract: contract}, nil
+	return &ActivitiesStoreTransactor{contract: contract}, nil
 }
 
-// NewActivitiesFilterer creates a new log filterer instance of Activities, bound to a specific deployed contract.
-func NewActivitiesFilterer(address common.Address, filterer bind.ContractFilterer) (*ActivitiesFilterer, error) {
-	contract, err := bindActivities(address, nil, nil, filterer)
+// NewActivitiesStoreFilterer creates a new log filterer instance of ActivitiesStore, bound to a specific deployed contract.
+func NewActivitiesStoreFilterer(address common.Address, filterer bind.ContractFilterer) (*ActivitiesStoreFilterer, error) {
+	contract, err := bindActivitiesStore(address, nil, nil, filterer)
 	if err != nil {
 		return nil, err
 	}
-	return &ActivitiesFilterer{contract: contract}, nil
+	return &ActivitiesStoreFilterer{contract: contract}, nil
 }
 
-// bindActivities binds a generic wrapper to an already deployed contract.
-func bindActivities(address common.Address, caller bind.ContractCaller, transactor bind.ContractTransactor, filterer bind.ContractFilterer) (*bind.BoundContract, error) {
-	parsed, err := abi.JSON(strings.NewReader(ActivitiesABI))
+// bindActivitiesStore binds a generic wrapper to an already deployed contract.
+func bindActivitiesStore(address common.Address, caller bind.ContractCaller, transactor bind.ContractTransactor, filterer bind.ContractFilterer) (*bind.BoundContract, error) {
+	parsed, err := abi.JSON(strings.NewReader(ActivitiesStoreABI))
 	if err != nil {
 		return nil, err
 	}
@@ -156,367 +167,81 @@ func bindActivities(address common.Address, caller bind.ContractCaller, transact
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_Activities *ActivitiesRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
-	return _Activities.Contract.ActivitiesCaller.contract.Call(opts, result, method, params...)
+func (_ActivitiesStore *ActivitiesStoreRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+	return _ActivitiesStore.Contract.ActivitiesStoreCaller.contract.Call(opts, result, method, params...)
 }
 
 // Transfer initiates a plain transaction to move funds to the contract, calling
 // its default method if one is available.
-func (_Activities *ActivitiesRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _Activities.Contract.ActivitiesTransactor.contract.Transfer(opts)
+func (_ActivitiesStore *ActivitiesStoreRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _ActivitiesStore.Contract.ActivitiesStoreTransactor.contract.Transfer(opts)
 }
 
 // Transact invokes the (paid) contract method with params as input values.
-func (_Activities *ActivitiesRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
-	return _Activities.Contract.ActivitiesTransactor.contract.Transact(opts, method, params...)
+func (_ActivitiesStore *ActivitiesStoreRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _ActivitiesStore.Contract.ActivitiesStoreTransactor.contract.Transact(opts, method, params...)
 }
 
 // Call invokes the (constant) contract method with params as input values and
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_Activities *ActivitiesCallerRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
-	return _Activities.Contract.contract.Call(opts, result, method, params...)
+func (_ActivitiesStore *ActivitiesStoreCallerRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+	return _ActivitiesStore.Contract.contract.Call(opts, result, method, params...)
 }
 
 // Transfer initiates a plain transaction to move funds to the contract, calling
 // its default method if one is available.
-func (_Activities *ActivitiesTransactorRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _Activities.Contract.contract.Transfer(opts)
+func (_ActivitiesStore *ActivitiesStoreTransactorRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _ActivitiesStore.Contract.contract.Transfer(opts)
 }
 
 // Transact invokes the (paid) contract method with params as input values.
-func (_Activities *ActivitiesTransactorRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
-	return _Activities.Contract.contract.Transact(opts, method, params...)
+func (_ActivitiesStore *ActivitiesStoreTransactorRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _ActivitiesStore.Contract.contract.Transact(opts, method, params...)
 }
 
-// GetActivities is a free data retrieval call binding the contract method 0x81a695a4.
+// Get is a free data retrieval call binding the contract method 0x6d4ce63c.
 //
-// Solidity: function getActivities(bytes32 _activitiesRef) view returns(ActivitiesOrgActivities)
-func (_Activities *ActivitiesCaller) GetActivities(opts *bind.CallOpts, _activitiesRef [32]byte) (ActivitiesOrgActivities, error) {
+// Solidity: function get() view returns(ActivitiesData)
+func (_ActivitiesStore *ActivitiesStoreCaller) Get(opts *bind.CallOpts) (ActivitiesData, error) {
 	var (
-		ret0 = new(ActivitiesOrgActivities)
+		ret0 = new(ActivitiesData)
 	)
 	out := ret0
-	err := _Activities.contract.Call(opts, out, "getActivities", _activitiesRef)
+	err := _ActivitiesStore.contract.Call(opts, out, "get")
 	return *ret0, err
 }
 
-// GetActivities is a free data retrieval call binding the contract method 0x81a695a4.
+// Get is a free data retrieval call binding the contract method 0x6d4ce63c.
 //
-// Solidity: function getActivities(bytes32 _activitiesRef) view returns(ActivitiesOrgActivities)
-func (_Activities *ActivitiesSession) GetActivities(_activitiesRef [32]byte) (ActivitiesOrgActivities, error) {
-	return _Activities.Contract.GetActivities(&_Activities.CallOpts, _activitiesRef)
+// Solidity: function get() view returns(ActivitiesData)
+func (_ActivitiesStore *ActivitiesStoreSession) Get() (ActivitiesData, error) {
+	return _ActivitiesStore.Contract.Get(&_ActivitiesStore.CallOpts)
 }
 
-// GetActivities is a free data retrieval call binding the contract method 0x81a695a4.
+// Get is a free data retrieval call binding the contract method 0x6d4ce63c.
 //
-// Solidity: function getActivities(bytes32 _activitiesRef) view returns(ActivitiesOrgActivities)
-func (_Activities *ActivitiesCallerSession) GetActivities(_activitiesRef [32]byte) (ActivitiesOrgActivities, error) {
-	return _Activities.Contract.GetActivities(&_Activities.CallOpts, _activitiesRef)
-}
-
-// GetGeneratedTime is a free data retrieval call binding the contract method 0xab73eba0.
-//
-// Solidity: function getGeneratedTime(bytes32 _activitiesRef) view returns(bytes32)
-func (_Activities *ActivitiesCaller) GetGeneratedTime(opts *bind.CallOpts, _activitiesRef [32]byte) ([32]byte, error) {
-	var (
-		ret0 = new([32]byte)
-	)
-	out := ret0
-	err := _Activities.contract.Call(opts, out, "getGeneratedTime", _activitiesRef)
-	return *ret0, err
-}
-
-// GetGeneratedTime is a free data retrieval call binding the contract method 0xab73eba0.
-//
-// Solidity: function getGeneratedTime(bytes32 _activitiesRef) view returns(bytes32)
-func (_Activities *ActivitiesSession) GetGeneratedTime(_activitiesRef [32]byte) ([32]byte, error) {
-	return _Activities.Contract.GetGeneratedTime(&_Activities.CallOpts, _activitiesRef)
-}
-
-// GetGeneratedTime is a free data retrieval call binding the contract method 0xab73eba0.
-//
-// Solidity: function getGeneratedTime(bytes32 _activitiesRef) view returns(bytes32)
-func (_Activities *ActivitiesCallerSession) GetGeneratedTime(_activitiesRef [32]byte) ([32]byte, error) {
-	return _Activities.Contract.GetGeneratedTime(&_Activities.CallOpts, _activitiesRef)
-}
-
-// GetLinkedData is a free data retrieval call binding the contract method 0x053cd86f.
-//
-// Solidity: function getLinkedData(bytes32 _activitiesRef) view returns(bytes32)
-func (_Activities *ActivitiesCaller) GetLinkedData(opts *bind.CallOpts, _activitiesRef [32]byte) ([32]byte, error) {
-	var (
-		ret0 = new([32]byte)
-	)
-	out := ret0
-	err := _Activities.contract.Call(opts, out, "getLinkedData", _activitiesRef)
-	return *ret0, err
-}
-
-// GetLinkedData is a free data retrieval call binding the contract method 0x053cd86f.
-//
-// Solidity: function getLinkedData(bytes32 _activitiesRef) view returns(bytes32)
-func (_Activities *ActivitiesSession) GetLinkedData(_activitiesRef [32]byte) ([32]byte, error) {
-	return _Activities.Contract.GetLinkedData(&_Activities.CallOpts, _activitiesRef)
-}
-
-// GetLinkedData is a free data retrieval call binding the contract method 0x053cd86f.
-//
-// Solidity: function getLinkedData(bytes32 _activitiesRef) view returns(bytes32)
-func (_Activities *ActivitiesCallerSession) GetLinkedData(_activitiesRef [32]byte) ([32]byte, error) {
-	return _Activities.Contract.GetLinkedData(&_Activities.CallOpts, _activitiesRef)
-}
-
-// GetNumActivities is a free data retrieval call binding the contract method 0x1f5771d9.
-//
-// Solidity: function getNumActivities() view returns(uint256)
-func (_Activities *ActivitiesCaller) GetNumActivities(opts *bind.CallOpts) (*big.Int, error) {
-	var (
-		ret0 = new(*big.Int)
-	)
-	out := ret0
-	err := _Activities.contract.Call(opts, out, "getNumActivities")
-	return *ret0, err
-}
-
-// GetNumActivities is a free data retrieval call binding the contract method 0x1f5771d9.
-//
-// Solidity: function getNumActivities() view returns(uint256)
-func (_Activities *ActivitiesSession) GetNumActivities() (*big.Int, error) {
-	return _Activities.Contract.GetNumActivities(&_Activities.CallOpts)
-}
-
-// GetNumActivities is a free data retrieval call binding the contract method 0x1f5771d9.
-//
-// Solidity: function getNumActivities() view returns(uint256)
-func (_Activities *ActivitiesCallerSession) GetNumActivities() (*big.Int, error) {
-	return _Activities.Contract.GetNumActivities(&_Activities.CallOpts)
-}
-
-// GetReference is a free data retrieval call binding the contract method 0xbc599341.
-//
-// Solidity: function getReference(uint256 _index) view returns(bytes32)
-func (_Activities *ActivitiesCaller) GetReference(opts *bind.CallOpts, _index *big.Int) ([32]byte, error) {
-	var (
-		ret0 = new([32]byte)
-	)
-	out := ret0
-	err := _Activities.contract.Call(opts, out, "getReference", _index)
-	return *ret0, err
-}
-
-// GetReference is a free data retrieval call binding the contract method 0xbc599341.
-//
-// Solidity: function getReference(uint256 _index) view returns(bytes32)
-func (_Activities *ActivitiesSession) GetReference(_index *big.Int) ([32]byte, error) {
-	return _Activities.Contract.GetReference(&_Activities.CallOpts, _index)
-}
-
-// GetReference is a free data retrieval call binding the contract method 0xbc599341.
-//
-// Solidity: function getReference(uint256 _index) view returns(bytes32)
-func (_Activities *ActivitiesCallerSession) GetReference(_index *big.Int) ([32]byte, error) {
-	return _Activities.Contract.GetReference(&_Activities.CallOpts, _index)
-}
-
-// GetVersion is a free data retrieval call binding the contract method 0x9aaf9f08.
-//
-// Solidity: function getVersion(bytes32 _activitiesRef) view returns(bytes32)
-func (_Activities *ActivitiesCaller) GetVersion(opts *bind.CallOpts, _activitiesRef [32]byte) ([32]byte, error) {
-	var (
-		ret0 = new([32]byte)
-	)
-	out := ret0
-	err := _Activities.contract.Call(opts, out, "getVersion", _activitiesRef)
-	return *ret0, err
-}
-
-// GetVersion is a free data retrieval call binding the contract method 0x9aaf9f08.
-//
-// Solidity: function getVersion(bytes32 _activitiesRef) view returns(bytes32)
-func (_Activities *ActivitiesSession) GetVersion(_activitiesRef [32]byte) ([32]byte, error) {
-	return _Activities.Contract.GetVersion(&_Activities.CallOpts, _activitiesRef)
-}
-
-// GetVersion is a free data retrieval call binding the contract method 0x9aaf9f08.
-//
-// Solidity: function getVersion(bytes32 _activitiesRef) view returns(bytes32)
-func (_Activities *ActivitiesCallerSession) GetVersion(_activitiesRef [32]byte) ([32]byte, error) {
-	return _Activities.Contract.GetVersion(&_Activities.CallOpts, _activitiesRef)
-}
-
-// SetActivities is a paid mutator transaction binding the contract method 0xb828c537.
-//
-// Solidity: function setActivities(bytes32 _activitiesRef, ActivitiesOrgActivities _activities) returns()
-func (_Activities *ActivitiesTransactor) SetActivities(opts *bind.TransactOpts, _activitiesRef [32]byte, _activities ActivitiesOrgActivities) (*types.Transaction, error) {
-	return _Activities.contract.Transact(opts, "setActivities", _activitiesRef, _activities)
-}
-
-// SetActivities is a paid mutator transaction binding the contract method 0xb828c537.
-//
-// Solidity: function setActivities(bytes32 _activitiesRef, ActivitiesOrgActivities _activities) returns()
-func (_Activities *ActivitiesSession) SetActivities(_activitiesRef [32]byte, _activities ActivitiesOrgActivities) (*types.Transaction, error) {
-	return _Activities.Contract.SetActivities(&_Activities.TransactOpts, _activitiesRef, _activities)
-}
-
-// SetActivities is a paid mutator transaction binding the contract method 0xb828c537.
-//
-// Solidity: function setActivities(bytes32 _activitiesRef, ActivitiesOrgActivities _activities) returns()
-func (_Activities *ActivitiesTransactorSession) SetActivities(_activitiesRef [32]byte, _activities ActivitiesOrgActivities) (*types.Transaction, error) {
-	return _Activities.Contract.SetActivities(&_Activities.TransactOpts, _activitiesRef, _activities)
-}
-
-// ActivitiesSetActivitiesIterator is returned from FilterSetActivities and is used to iterate over the raw logs and unpacked data for SetActivities events raised by the Activities contract.
-type ActivitiesSetActivitiesIterator struct {
-	Event *ActivitiesSetActivities // Event containing the contract specifics and raw log
-
-	contract *bind.BoundContract // Generic contract to use for unpacking event data
-	event    string              // Event name to use for unpacking event data
-
-	logs chan types.Log        // Log channel receiving the found contract events
-	sub  ethereum.Subscription // Subscription for errors, completion and termination
-	done bool                  // Whether the subscription completed delivering logs
-	fail error                 // Occurred error to stop iteration
-}
-
-// Next advances the iterator to the subsequent event, returning whether there
-// are any more events found. In case of a retrieval or parsing error, false is
-// returned and Error() can be queried for the exact failure.
-func (it *ActivitiesSetActivitiesIterator) Next() bool {
-	// If the iterator failed, stop iterating
-	if it.fail != nil {
-		return false
-	}
-	// If the iterator completed, deliver directly whatever's available
-	if it.done {
-		select {
-		case log := <-it.logs:
-			it.Event = new(ActivitiesSetActivities)
-			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
-				it.fail = err
-				return false
-			}
-			it.Event.Raw = log
-			return true
-
-		default:
-			return false
-		}
-	}
-	// Iterator still in progress, wait for either a data or an error event
-	select {
-	case log := <-it.logs:
-		it.Event = new(ActivitiesSetActivities)
-		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
-			it.fail = err
-			return false
-		}
-		it.Event.Raw = log
-		return true
-
-	case err := <-it.sub.Err():
-		it.done = true
-		it.fail = err
-		return it.Next()
-	}
-}
-
-// Error returns any retrieval or parsing error occurred during filtering.
-func (it *ActivitiesSetActivitiesIterator) Error() error {
-	return it.fail
-}
-
-// Close terminates the iteration process, releasing any pending underlying
-// resources.
-func (it *ActivitiesSetActivitiesIterator) Close() error {
-	it.sub.Unsubscribe()
-	return nil
-}
-
-// ActivitiesSetActivities represents a SetActivities event raised by the Activities contract.
-type ActivitiesSetActivities struct {
-	ActivitiesRef [32]byte
-	Activities    ActivitiesOrgActivities
-	Raw           types.Log // Blockchain specific contextual infos
-}
-
-// FilterSetActivities is a free log retrieval operation binding the contract event 0xc6fb585a72eee30aaa08dd8cc66620d02cc0b6238a4d1ad4d9dc6abffdbaf609.
-//
-// Solidity: event SetActivities(bytes32 _activitiesRef, ActivitiesOrgActivities _activities)
-func (_Activities *ActivitiesFilterer) FilterSetActivities(opts *bind.FilterOpts) (*ActivitiesSetActivitiesIterator, error) {
-
-	logs, sub, err := _Activities.contract.FilterLogs(opts, "SetActivities")
-	if err != nil {
-		return nil, err
-	}
-	return &ActivitiesSetActivitiesIterator{contract: _Activities.contract, event: "SetActivities", logs: logs, sub: sub}, nil
-}
-
-// WatchSetActivities is a free log subscription operation binding the contract event 0xc6fb585a72eee30aaa08dd8cc66620d02cc0b6238a4d1ad4d9dc6abffdbaf609.
-//
-// Solidity: event SetActivities(bytes32 _activitiesRef, ActivitiesOrgActivities _activities)
-func (_Activities *ActivitiesFilterer) WatchSetActivities(opts *bind.WatchOpts, sink chan<- *ActivitiesSetActivities) (event.Subscription, error) {
-
-	logs, sub, err := _Activities.contract.WatchLogs(opts, "SetActivities")
-	if err != nil {
-		return nil, err
-	}
-	return event.NewSubscription(func(quit <-chan struct{}) error {
-		defer sub.Unsubscribe()
-		for {
-			select {
-			case log := <-logs:
-				// New log arrived, parse the event and forward to the user
-				event := new(ActivitiesSetActivities)
-				if err := _Activities.contract.UnpackLog(event, "SetActivities", log); err != nil {
-					return err
-				}
-				event.Raw = log
-
-				select {
-				case sink <- event:
-				case err := <-sub.Err():
-					return err
-				case <-quit:
-					return nil
-				}
-			case err := <-sub.Err():
-				return err
-			case <-quit:
-				return nil
-			}
-		}
-	}), nil
-}
-
-// ParseSetActivities is a log parse operation binding the contract event 0xc6fb585a72eee30aaa08dd8cc66620d02cc0b6238a4d1ad4d9dc6abffdbaf609.
-//
-// Solidity: event SetActivities(bytes32 _activitiesRef, ActivitiesOrgActivities _activities)
-func (_Activities *ActivitiesFilterer) ParseSetActivities(log types.Log) (*ActivitiesSetActivities, error) {
-	event := new(ActivitiesSetActivities)
-	if err := _Activities.contract.UnpackLog(event, "SetActivities", log); err != nil {
-		return nil, err
-	}
-	return event, nil
+// Solidity: function get() view returns(ActivitiesData)
+func (_ActivitiesStore *ActivitiesStoreCallerSession) Get() (ActivitiesData, error) {
+	return _ActivitiesStore.Contract.Get(&_ActivitiesStore.CallOpts)
 }
 
 // IATIActivitiesABI is the input ABI used to generate the binding from.
-const IATIActivitiesABI = "[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"_activitiesRef\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"version\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"generatedTime\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"linkedData\",\"type\":\"bytes32\"}],\"indexed\":false,\"internalType\":\"structActivities.OrgActivities\",\"name\":\"_activities\",\"type\":\"tuple\"}],\"name\":\"SetActivities\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_activitiesRef\",\"type\":\"bytes32\"}],\"name\":\"getActivities\",\"outputs\":[{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"version\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"generatedTime\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"linkedData\",\"type\":\"bytes32\"}],\"internalType\":\"structActivities.OrgActivities\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_activitiesRef\",\"type\":\"bytes32\"}],\"name\":\"getGeneratedTime\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_activitiesRef\",\"type\":\"bytes32\"}],\"name\":\"getLinkedData\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getNumActivities\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_index\",\"type\":\"uint256\"}],\"name\":\"getReference\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_activitiesRef\",\"type\":\"bytes32\"}],\"name\":\"getVersion\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_activitiesRef\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"version\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"generatedTime\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"linkedData\",\"type\":\"bytes32\"}],\"internalType\":\"structActivities.OrgActivities\",\"name\":\"_activities\",\"type\":\"tuple\"}],\"name\":\"setActivities\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]"
+const IATIActivitiesABI = "[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"contractName\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"_ref\",\"type\":\"bytes32\"}],\"name\":\"Set\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_ref\",\"type\":\"bytes32\"}],\"name\":\"get\",\"outputs\":[{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"version\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"generatedTime\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"linkedData\",\"type\":\"bytes32\"}],\"internalType\":\"structActivitiesData\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getNum\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_index\",\"type\":\"uint256\"}],\"name\":\"getReference\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getter\",\"outputs\":[{\"internalType\":\"bytes4\",\"name\":\"\",\"type\":\"bytes4\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_ref\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"version\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"generatedTime\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"linkedData\",\"type\":\"bytes32\"}],\"internalType\":\"structActivitiesData\",\"name\":\"_activities\",\"type\":\"tuple\"}],\"name\":\"set\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"setter\",\"outputs\":[{\"internalType\":\"bytes4\",\"name\":\"\",\"type\":\"bytes4\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]"
 
 // IATIActivitiesFuncSigs maps the 4-byte function signature to its string representation.
 var IATIActivitiesFuncSigs = map[string]string{
-	"81a695a4": "getActivities(bytes32)",
-	"ab73eba0": "getGeneratedTime(bytes32)",
-	"053cd86f": "getLinkedData(bytes32)",
-	"1f5771d9": "getNumActivities()",
+	"8eaa6ac0": "get(bytes32)",
+	"67e0badb": "getNum()",
 	"bc599341": "getReference(uint256)",
-	"9aaf9f08": "getVersion(bytes32)",
-	"b828c537": "setActivities(bytes32,(bytes32,bytes32,bytes32))",
+	"993a04b7": "getter()",
+	"91a95fbc": "set(bytes32,(bytes32,bytes32,bytes32))",
+	"3f3108f7": "setter()",
 }
 
 // IATIActivitiesBin is the compiled bytecode used for deploying new contracts.
-var IATIActivitiesBin = "0x608060405234801561001057600080fd5b5061055c806100206000396000f3fe608060405234801561001057600080fd5b506004361061007d5760003560e01c80639aaf9f081161005b5780639aaf9f08146100d3578063ab73eba0146100e6578063b828c537146100f9578063bc5993411461010e5761007d565b8063053cd86f146100825780631f5771d9146100ab57806381a695a4146100b3575b600080fd5b610095610090366004610401565b610121565b6040516100a291906104a5565b60405180910390f35b610095610152565b6100c66100c1366004610401565b610158565b6040516100a29190610512565b6100956100e1366004610401565b6101b2565b6100956100f4366004610401565b6101e0565b61010c610107366004610419565b610212565b005b61009561011c366004610401565b61038c565b600081811a60f81b6001600160f81b03191661013c57600080fd5b5060009081526001602052604090206002015490565b60005490565b6101606103ba565b8160001a60f81b6001600160f81b03191661017a57600080fd5b506000908152600160208181526040928390208351606081018552815481529281015491830191909152600201549181019190915290565b600081811a60f81b6001600160f81b0319166101cd57600080fd5b5060009081526001602052604090205490565b600081811a60f81b6001600160f81b0319166101fb57600080fd5b506000908152600160208190526040909120015490565b8160001a60f81b6001600160f81b031916158015906102415750805160001a60f81b6001600160f81b03191615155b80156102605750602081015160001a60f81b6001600160f81b03191615155b61026957600080fd5b6000828152600160208181526040808420855181559185015192820192909255818401516002909101555163745fca7b60e01b815273__$b620240993a55615b607189176fb82e62f$__9163745fca7b916102c89186916004016104ae565b60206040518083038186803b1580156102e057600080fd5b505af41580156102f4573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061031891906103da565b61034f57600080546001810182559080527f290decd9548b62a8d60345a988386fc84ba6bc95484008f6362f93160ef3e563018290555b7fc6fb585a72eee30aaa08dd8cc66620d02cc0b6238a4d1ad4d9dc6abffdbaf60982826040516103809291906104fe565b60405180910390a15050565b60008054821061039b57600080fd5b600082815481106103a857fe5b90600052602060002001549050919050565b604080516060810182526000808252602082018190529181019190915290565b6000602082840312156103eb578081fd5b815180151581146103fa578182fd5b9392505050565b600060208284031215610412578081fd5b5035919050565b600080828403608081121561042c578182fd5b833592506060601f1982011215610441578182fd5b506040516060810181811067ffffffffffffffff82111715610461578283fd5b8060405250602084013581526040840135602082015260608401356040820152809150509250929050565b8051825260208082015190830152604090810151910152565b90815260200190565b60006040820184835260206040818501528185548084526060860191508685528285209350845b818110156104f1578454835260019485019492840192016104d5565b5090979650505050505050565b828152608081016103fa602083018461048c565b60608101610520828461048c565b9291505056fea2646970667358221220ae95f92dada831895efaa309730417ef3b9d685d8ea883d8084ce0998c58636064736f6c63430006060033"
+var IATIActivitiesBin = "0x608060405234801561001057600080fd5b5060006002556106c3806100256000396000f3fe608060405234801561001057600080fd5b50600436106100625760003560e01c80633f3108f71461006757806367e0badb146100855780638eaa6ac01461009a57806391a95fbc146100ba578063993a04b7146100cf578063bc599341146100d7575b600080fd5b61006f6100ea565b60405161007c9190610414565b60405180910390f35b61008d6100f5565b60405161007c919061040b565b6100ad6100a836600461035d565b6100fb565b60405161007c9190610455565b6100cd6100c8366004610375565b6101d6565b005b61006f61025d565b61008d6100e536600461035d565b610268565b63246a57ef60e21b90565b60025490565b610103610330565b8160001a60f81b6001600160f81b03191661011d57600080fd5b6000828152602081905260409020600101546001600160a01b031661014157600080fd5b60008281526020819052604090819020600101548151631b53398f60e21b815291516001600160a01b03909116918291636d4ce63c91600480820192606092909190829003018186803b15801561019757600080fd5b505afa1580156101ab573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906101cf91906103ce565b9392505050565b6000816040516101e590610350565b6101ef9190610455565b604051809103906000f08015801561020b573d6000803e3d6000fd5b5090506102206000848363ffffffff6102a016565b507f89752cf887704c720fdae38088909ed147c755f39bd110525728448ec4cefc8b836040516102509190610429565b60405180910390a1505050565b63023aa9ab60e61b90565b600254600090821061027957600080fd5b600180548390811061028757fe5b9060005260206000209060020201600001549050919050565b60008281526020849052604081208054600190910180546001600160a01b0319166001600160a01b03851617905580156102de5760019150506101cf565b506001808501805491820180825560008681526020889052604090208190558591908390811061030a57fe5b600091825260208220600291820201929092559086018054600101905591506101cf9050565b604080516060810182526000808252602082018190529181019190915290565b6101f08061049e83390190565b60006020828403121561036e578081fd5b5035919050565b6000808284036080811215610388578182fd5b833592506060601f198201121561039d578182fd5b506103a86060610476565b602084013581526040840135602082015260608401356040820152809150509250929050565b6000606082840312156103df578081fd5b6103e96060610476565b8251815260208301516020820152604083015160408201528091505092915050565b90815260200190565b6001600160e01b031991909116815260200190565b6040808252600a90820152694163746976697469657360b01b6060820152602081019190915260800190565b81518152602080830151908201526040918201519181019190915260600190565b60405181810167ffffffffffffffff8111828210171561049557600080fd5b60405291905056fe608060405234801561001057600080fd5b506040516101f03803806101f083398101604081905261002f916100a3565b805160001a60f81b6001600160f81b031916158015906100625750602081015160001a60f81b6001600160f81b03191615155b80156100815750604081015160001a60f81b6001600160f81b03191615155b61008a57600080fd5b80516000556020810151600155604001516002556100f9565b6000606082840312156100b4578081fd5b604051606081016001600160401b03811182821017156100d2578283fd5b80604052508251815260208301516020820152604083015160408201528091505092915050565b60e9806101076000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c80636d4ce63c14602d575b600080fd5b60336047565b604051603e91906092565b60405180910390f35b604d6072565b5060408051606081018252600054815260015460208201526002549181019190915290565b604080516060810182526000808252602082018190529181019190915290565b8151815260208083015190820152604091820151918101919091526060019056fea26469706673582212201a9b9d320ed50be4b0237b03f97c90751ea4fe4b4d01ccb52044fbfb7da9bd9c64736f6c63430006060033a2646970667358221220c3c208085041b489ff848dcbde7f3285922005441d5a1945c480284beac7e4e764736f6c63430006060033"
 
 // DeployIATIActivities deploys a new Ethereum contract, binding an instance of IATIActivities to it.
 func DeployIATIActivities(auth *bind.TransactOpts, backend bind.ContractBackend) (common.Address, *types.Transaction, *IATIActivities, error) {
@@ -524,9 +249,6 @@ func DeployIATIActivities(auth *bind.TransactOpts, backend bind.ContractBackend)
 	if err != nil {
 		return common.Address{}, nil, nil, err
 	}
-
-	stringsAddr, _, _, _ := DeployStrings(auth, backend)
-	IATIActivitiesBin = strings.Replace(IATIActivitiesBin, "__$b620240993a55615b607189176fb82e62f$__", stringsAddr.String()[2:], -1)
 
 	address, tx, contract, err := bind.DeployContract(auth, parsed, common.FromHex(IATIActivitiesBin), backend)
 	if err != nil {
@@ -677,108 +399,56 @@ func (_IATIActivities *IATIActivitiesTransactorRaw) Transact(opts *bind.Transact
 	return _IATIActivities.Contract.contract.Transact(opts, method, params...)
 }
 
-// GetActivities is a free data retrieval call binding the contract method 0x81a695a4.
+// Get is a free data retrieval call binding the contract method 0x8eaa6ac0.
 //
-// Solidity: function getActivities(bytes32 _activitiesRef) view returns(ActivitiesOrgActivities)
-func (_IATIActivities *IATIActivitiesCaller) GetActivities(opts *bind.CallOpts, _activitiesRef [32]byte) (ActivitiesOrgActivities, error) {
+// Solidity: function get(bytes32 _ref) view returns(ActivitiesData)
+func (_IATIActivities *IATIActivitiesCaller) Get(opts *bind.CallOpts, _ref [32]byte) (ActivitiesData, error) {
 	var (
-		ret0 = new(ActivitiesOrgActivities)
+		ret0 = new(ActivitiesData)
 	)
 	out := ret0
-	err := _IATIActivities.contract.Call(opts, out, "getActivities", _activitiesRef)
+	err := _IATIActivities.contract.Call(opts, out, "get", _ref)
 	return *ret0, err
 }
 
-// GetActivities is a free data retrieval call binding the contract method 0x81a695a4.
+// Get is a free data retrieval call binding the contract method 0x8eaa6ac0.
 //
-// Solidity: function getActivities(bytes32 _activitiesRef) view returns(ActivitiesOrgActivities)
-func (_IATIActivities *IATIActivitiesSession) GetActivities(_activitiesRef [32]byte) (ActivitiesOrgActivities, error) {
-	return _IATIActivities.Contract.GetActivities(&_IATIActivities.CallOpts, _activitiesRef)
+// Solidity: function get(bytes32 _ref) view returns(ActivitiesData)
+func (_IATIActivities *IATIActivitiesSession) Get(_ref [32]byte) (ActivitiesData, error) {
+	return _IATIActivities.Contract.Get(&_IATIActivities.CallOpts, _ref)
 }
 
-// GetActivities is a free data retrieval call binding the contract method 0x81a695a4.
+// Get is a free data retrieval call binding the contract method 0x8eaa6ac0.
 //
-// Solidity: function getActivities(bytes32 _activitiesRef) view returns(ActivitiesOrgActivities)
-func (_IATIActivities *IATIActivitiesCallerSession) GetActivities(_activitiesRef [32]byte) (ActivitiesOrgActivities, error) {
-	return _IATIActivities.Contract.GetActivities(&_IATIActivities.CallOpts, _activitiesRef)
+// Solidity: function get(bytes32 _ref) view returns(ActivitiesData)
+func (_IATIActivities *IATIActivitiesCallerSession) Get(_ref [32]byte) (ActivitiesData, error) {
+	return _IATIActivities.Contract.Get(&_IATIActivities.CallOpts, _ref)
 }
 
-// GetGeneratedTime is a free data retrieval call binding the contract method 0xab73eba0.
+// GetNum is a free data retrieval call binding the contract method 0x67e0badb.
 //
-// Solidity: function getGeneratedTime(bytes32 _activitiesRef) view returns(bytes32)
-func (_IATIActivities *IATIActivitiesCaller) GetGeneratedTime(opts *bind.CallOpts, _activitiesRef [32]byte) ([32]byte, error) {
-	var (
-		ret0 = new([32]byte)
-	)
-	out := ret0
-	err := _IATIActivities.contract.Call(opts, out, "getGeneratedTime", _activitiesRef)
-	return *ret0, err
-}
-
-// GetGeneratedTime is a free data retrieval call binding the contract method 0xab73eba0.
-//
-// Solidity: function getGeneratedTime(bytes32 _activitiesRef) view returns(bytes32)
-func (_IATIActivities *IATIActivitiesSession) GetGeneratedTime(_activitiesRef [32]byte) ([32]byte, error) {
-	return _IATIActivities.Contract.GetGeneratedTime(&_IATIActivities.CallOpts, _activitiesRef)
-}
-
-// GetGeneratedTime is a free data retrieval call binding the contract method 0xab73eba0.
-//
-// Solidity: function getGeneratedTime(bytes32 _activitiesRef) view returns(bytes32)
-func (_IATIActivities *IATIActivitiesCallerSession) GetGeneratedTime(_activitiesRef [32]byte) ([32]byte, error) {
-	return _IATIActivities.Contract.GetGeneratedTime(&_IATIActivities.CallOpts, _activitiesRef)
-}
-
-// GetLinkedData is a free data retrieval call binding the contract method 0x053cd86f.
-//
-// Solidity: function getLinkedData(bytes32 _activitiesRef) view returns(bytes32)
-func (_IATIActivities *IATIActivitiesCaller) GetLinkedData(opts *bind.CallOpts, _activitiesRef [32]byte) ([32]byte, error) {
-	var (
-		ret0 = new([32]byte)
-	)
-	out := ret0
-	err := _IATIActivities.contract.Call(opts, out, "getLinkedData", _activitiesRef)
-	return *ret0, err
-}
-
-// GetLinkedData is a free data retrieval call binding the contract method 0x053cd86f.
-//
-// Solidity: function getLinkedData(bytes32 _activitiesRef) view returns(bytes32)
-func (_IATIActivities *IATIActivitiesSession) GetLinkedData(_activitiesRef [32]byte) ([32]byte, error) {
-	return _IATIActivities.Contract.GetLinkedData(&_IATIActivities.CallOpts, _activitiesRef)
-}
-
-// GetLinkedData is a free data retrieval call binding the contract method 0x053cd86f.
-//
-// Solidity: function getLinkedData(bytes32 _activitiesRef) view returns(bytes32)
-func (_IATIActivities *IATIActivitiesCallerSession) GetLinkedData(_activitiesRef [32]byte) ([32]byte, error) {
-	return _IATIActivities.Contract.GetLinkedData(&_IATIActivities.CallOpts, _activitiesRef)
-}
-
-// GetNumActivities is a free data retrieval call binding the contract method 0x1f5771d9.
-//
-// Solidity: function getNumActivities() view returns(uint256)
-func (_IATIActivities *IATIActivitiesCaller) GetNumActivities(opts *bind.CallOpts) (*big.Int, error) {
+// Solidity: function getNum() view returns(uint256)
+func (_IATIActivities *IATIActivitiesCaller) GetNum(opts *bind.CallOpts) (*big.Int, error) {
 	var (
 		ret0 = new(*big.Int)
 	)
 	out := ret0
-	err := _IATIActivities.contract.Call(opts, out, "getNumActivities")
+	err := _IATIActivities.contract.Call(opts, out, "getNum")
 	return *ret0, err
 }
 
-// GetNumActivities is a free data retrieval call binding the contract method 0x1f5771d9.
+// GetNum is a free data retrieval call binding the contract method 0x67e0badb.
 //
-// Solidity: function getNumActivities() view returns(uint256)
-func (_IATIActivities *IATIActivitiesSession) GetNumActivities() (*big.Int, error) {
-	return _IATIActivities.Contract.GetNumActivities(&_IATIActivities.CallOpts)
+// Solidity: function getNum() view returns(uint256)
+func (_IATIActivities *IATIActivitiesSession) GetNum() (*big.Int, error) {
+	return _IATIActivities.Contract.GetNum(&_IATIActivities.CallOpts)
 }
 
-// GetNumActivities is a free data retrieval call binding the contract method 0x1f5771d9.
+// GetNum is a free data retrieval call binding the contract method 0x67e0badb.
 //
-// Solidity: function getNumActivities() view returns(uint256)
-func (_IATIActivities *IATIActivitiesCallerSession) GetNumActivities() (*big.Int, error) {
-	return _IATIActivities.Contract.GetNumActivities(&_IATIActivities.CallOpts)
+// Solidity: function getNum() view returns(uint256)
+func (_IATIActivities *IATIActivitiesCallerSession) GetNum() (*big.Int, error) {
+	return _IATIActivities.Contract.GetNum(&_IATIActivities.CallOpts)
 }
 
 // GetReference is a free data retrieval call binding the contract method 0xbc599341.
@@ -807,56 +477,82 @@ func (_IATIActivities *IATIActivitiesCallerSession) GetReference(_index *big.Int
 	return _IATIActivities.Contract.GetReference(&_IATIActivities.CallOpts, _index)
 }
 
-// GetVersion is a free data retrieval call binding the contract method 0x9aaf9f08.
+// Getter is a free data retrieval call binding the contract method 0x993a04b7.
 //
-// Solidity: function getVersion(bytes32 _activitiesRef) view returns(bytes32)
-func (_IATIActivities *IATIActivitiesCaller) GetVersion(opts *bind.CallOpts, _activitiesRef [32]byte) ([32]byte, error) {
+// Solidity: function getter() view returns(bytes4)
+func (_IATIActivities *IATIActivitiesCaller) Getter(opts *bind.CallOpts) ([4]byte, error) {
 	var (
-		ret0 = new([32]byte)
+		ret0 = new([4]byte)
 	)
 	out := ret0
-	err := _IATIActivities.contract.Call(opts, out, "getVersion", _activitiesRef)
+	err := _IATIActivities.contract.Call(opts, out, "getter")
 	return *ret0, err
 }
 
-// GetVersion is a free data retrieval call binding the contract method 0x9aaf9f08.
+// Getter is a free data retrieval call binding the contract method 0x993a04b7.
 //
-// Solidity: function getVersion(bytes32 _activitiesRef) view returns(bytes32)
-func (_IATIActivities *IATIActivitiesSession) GetVersion(_activitiesRef [32]byte) ([32]byte, error) {
-	return _IATIActivities.Contract.GetVersion(&_IATIActivities.CallOpts, _activitiesRef)
+// Solidity: function getter() view returns(bytes4)
+func (_IATIActivities *IATIActivitiesSession) Getter() ([4]byte, error) {
+	return _IATIActivities.Contract.Getter(&_IATIActivities.CallOpts)
 }
 
-// GetVersion is a free data retrieval call binding the contract method 0x9aaf9f08.
+// Getter is a free data retrieval call binding the contract method 0x993a04b7.
 //
-// Solidity: function getVersion(bytes32 _activitiesRef) view returns(bytes32)
-func (_IATIActivities *IATIActivitiesCallerSession) GetVersion(_activitiesRef [32]byte) ([32]byte, error) {
-	return _IATIActivities.Contract.GetVersion(&_IATIActivities.CallOpts, _activitiesRef)
+// Solidity: function getter() view returns(bytes4)
+func (_IATIActivities *IATIActivitiesCallerSession) Getter() ([4]byte, error) {
+	return _IATIActivities.Contract.Getter(&_IATIActivities.CallOpts)
 }
 
-// SetActivities is a paid mutator transaction binding the contract method 0xb828c537.
+// Setter is a free data retrieval call binding the contract method 0x3f3108f7.
 //
-// Solidity: function setActivities(bytes32 _activitiesRef, ActivitiesOrgActivities _activities) returns()
-func (_IATIActivities *IATIActivitiesTransactor) SetActivities(opts *bind.TransactOpts, _activitiesRef [32]byte, _activities ActivitiesOrgActivities) (*types.Transaction, error) {
-	return _IATIActivities.contract.Transact(opts, "setActivities", _activitiesRef, _activities)
+// Solidity: function setter() view returns(bytes4)
+func (_IATIActivities *IATIActivitiesCaller) Setter(opts *bind.CallOpts) ([4]byte, error) {
+	var (
+		ret0 = new([4]byte)
+	)
+	out := ret0
+	err := _IATIActivities.contract.Call(opts, out, "setter")
+	return *ret0, err
 }
 
-// SetActivities is a paid mutator transaction binding the contract method 0xb828c537.
+// Setter is a free data retrieval call binding the contract method 0x3f3108f7.
 //
-// Solidity: function setActivities(bytes32 _activitiesRef, ActivitiesOrgActivities _activities) returns()
-func (_IATIActivities *IATIActivitiesSession) SetActivities(_activitiesRef [32]byte, _activities ActivitiesOrgActivities) (*types.Transaction, error) {
-	return _IATIActivities.Contract.SetActivities(&_IATIActivities.TransactOpts, _activitiesRef, _activities)
+// Solidity: function setter() view returns(bytes4)
+func (_IATIActivities *IATIActivitiesSession) Setter() ([4]byte, error) {
+	return _IATIActivities.Contract.Setter(&_IATIActivities.CallOpts)
 }
 
-// SetActivities is a paid mutator transaction binding the contract method 0xb828c537.
+// Setter is a free data retrieval call binding the contract method 0x3f3108f7.
 //
-// Solidity: function setActivities(bytes32 _activitiesRef, ActivitiesOrgActivities _activities) returns()
-func (_IATIActivities *IATIActivitiesTransactorSession) SetActivities(_activitiesRef [32]byte, _activities ActivitiesOrgActivities) (*types.Transaction, error) {
-	return _IATIActivities.Contract.SetActivities(&_IATIActivities.TransactOpts, _activitiesRef, _activities)
+// Solidity: function setter() view returns(bytes4)
+func (_IATIActivities *IATIActivitiesCallerSession) Setter() ([4]byte, error) {
+	return _IATIActivities.Contract.Setter(&_IATIActivities.CallOpts)
 }
 
-// IATIActivitiesSetActivitiesIterator is returned from FilterSetActivities and is used to iterate over the raw logs and unpacked data for SetActivities events raised by the IATIActivities contract.
-type IATIActivitiesSetActivitiesIterator struct {
-	Event *IATIActivitiesSetActivities // Event containing the contract specifics and raw log
+// Set is a paid mutator transaction binding the contract method 0x91a95fbc.
+//
+// Solidity: function set(bytes32 _ref, ActivitiesData _activities) returns()
+func (_IATIActivities *IATIActivitiesTransactor) Set(opts *bind.TransactOpts, _ref [32]byte, _activities ActivitiesData) (*types.Transaction, error) {
+	return _IATIActivities.contract.Transact(opts, "set", _ref, _activities)
+}
+
+// Set is a paid mutator transaction binding the contract method 0x91a95fbc.
+//
+// Solidity: function set(bytes32 _ref, ActivitiesData _activities) returns()
+func (_IATIActivities *IATIActivitiesSession) Set(_ref [32]byte, _activities ActivitiesData) (*types.Transaction, error) {
+	return _IATIActivities.Contract.Set(&_IATIActivities.TransactOpts, _ref, _activities)
+}
+
+// Set is a paid mutator transaction binding the contract method 0x91a95fbc.
+//
+// Solidity: function set(bytes32 _ref, ActivitiesData _activities) returns()
+func (_IATIActivities *IATIActivitiesTransactorSession) Set(_ref [32]byte, _activities ActivitiesData) (*types.Transaction, error) {
+	return _IATIActivities.Contract.Set(&_IATIActivities.TransactOpts, _ref, _activities)
+}
+
+// IATIActivitiesSetIterator is returned from FilterSet and is used to iterate over the raw logs and unpacked data for Set events raised by the IATIActivities contract.
+type IATIActivitiesSetIterator struct {
+	Event *IATIActivitiesSet // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -870,7 +566,7 @@ type IATIActivitiesSetActivitiesIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *IATIActivitiesSetActivitiesIterator) Next() bool {
+func (it *IATIActivitiesSetIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -879,7 +575,7 @@ func (it *IATIActivitiesSetActivitiesIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(IATIActivitiesSetActivities)
+			it.Event = new(IATIActivitiesSet)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -894,7 +590,7 @@ func (it *IATIActivitiesSetActivitiesIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(IATIActivitiesSetActivities)
+		it.Event = new(IATIActivitiesSet)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -910,42 +606,42 @@ func (it *IATIActivitiesSetActivitiesIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *IATIActivitiesSetActivitiesIterator) Error() error {
+func (it *IATIActivitiesSetIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *IATIActivitiesSetActivitiesIterator) Close() error {
+func (it *IATIActivitiesSetIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// IATIActivitiesSetActivities represents a SetActivities event raised by the IATIActivities contract.
-type IATIActivitiesSetActivities struct {
-	ActivitiesRef [32]byte
-	Activities    ActivitiesOrgActivities
-	Raw           types.Log // Blockchain specific contextual infos
+// IATIActivitiesSet represents a Set event raised by the IATIActivities contract.
+type IATIActivitiesSet struct {
+	ContractName string
+	Ref          [32]byte
+	Raw          types.Log // Blockchain specific contextual infos
 }
 
-// FilterSetActivities is a free log retrieval operation binding the contract event 0xc6fb585a72eee30aaa08dd8cc66620d02cc0b6238a4d1ad4d9dc6abffdbaf609.
+// FilterSet is a free log retrieval operation binding the contract event 0x89752cf887704c720fdae38088909ed147c755f39bd110525728448ec4cefc8b.
 //
-// Solidity: event SetActivities(bytes32 _activitiesRef, ActivitiesOrgActivities _activities)
-func (_IATIActivities *IATIActivitiesFilterer) FilterSetActivities(opts *bind.FilterOpts) (*IATIActivitiesSetActivitiesIterator, error) {
+// Solidity: event Set(string contractName, bytes32 _ref)
+func (_IATIActivities *IATIActivitiesFilterer) FilterSet(opts *bind.FilterOpts) (*IATIActivitiesSetIterator, error) {
 
-	logs, sub, err := _IATIActivities.contract.FilterLogs(opts, "SetActivities")
+	logs, sub, err := _IATIActivities.contract.FilterLogs(opts, "Set")
 	if err != nil {
 		return nil, err
 	}
-	return &IATIActivitiesSetActivitiesIterator{contract: _IATIActivities.contract, event: "SetActivities", logs: logs, sub: sub}, nil
+	return &IATIActivitiesSetIterator{contract: _IATIActivities.contract, event: "Set", logs: logs, sub: sub}, nil
 }
 
-// WatchSetActivities is a free log subscription operation binding the contract event 0xc6fb585a72eee30aaa08dd8cc66620d02cc0b6238a4d1ad4d9dc6abffdbaf609.
+// WatchSet is a free log subscription operation binding the contract event 0x89752cf887704c720fdae38088909ed147c755f39bd110525728448ec4cefc8b.
 //
-// Solidity: event SetActivities(bytes32 _activitiesRef, ActivitiesOrgActivities _activities)
-func (_IATIActivities *IATIActivitiesFilterer) WatchSetActivities(opts *bind.WatchOpts, sink chan<- *IATIActivitiesSetActivities) (event.Subscription, error) {
+// Solidity: event Set(string contractName, bytes32 _ref)
+func (_IATIActivities *IATIActivitiesFilterer) WatchSet(opts *bind.WatchOpts, sink chan<- *IATIActivitiesSet) (event.Subscription, error) {
 
-	logs, sub, err := _IATIActivities.contract.WatchLogs(opts, "SetActivities")
+	logs, sub, err := _IATIActivities.contract.WatchLogs(opts, "Set")
 	if err != nil {
 		return nil, err
 	}
@@ -955,8 +651,8 @@ func (_IATIActivities *IATIActivitiesFilterer) WatchSetActivities(opts *bind.Wat
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(IATIActivitiesSetActivities)
-				if err := _IATIActivities.contract.UnpackLog(event, "SetActivities", log); err != nil {
+				event := new(IATIActivitiesSet)
+				if err := _IATIActivities.contract.UnpackLog(event, "Set", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -977,145 +673,126 @@ func (_IATIActivities *IATIActivitiesFilterer) WatchSetActivities(opts *bind.Wat
 	}), nil
 }
 
-// ParseSetActivities is a log parse operation binding the contract event 0xc6fb585a72eee30aaa08dd8cc66620d02cc0b6238a4d1ad4d9dc6abffdbaf609.
+// ParseSet is a log parse operation binding the contract event 0x89752cf887704c720fdae38088909ed147c755f39bd110525728448ec4cefc8b.
 //
-// Solidity: event SetActivities(bytes32 _activitiesRef, ActivitiesOrgActivities _activities)
-func (_IATIActivities *IATIActivitiesFilterer) ParseSetActivities(log types.Log) (*IATIActivitiesSetActivities, error) {
-	event := new(IATIActivitiesSetActivities)
-	if err := _IATIActivities.contract.UnpackLog(event, "SetActivities", log); err != nil {
+// Solidity: event Set(string contractName, bytes32 _ref)
+func (_IATIActivities *IATIActivitiesFilterer) ParseSet(log types.Log) (*IATIActivitiesSet, error) {
+	event := new(IATIActivitiesSet)
+	if err := _IATIActivities.contract.UnpackLog(event, "Set", log); err != nil {
 		return nil, err
 	}
 	return event, nil
 }
 
-// StringsABI is the input ABI used to generate the binding from.
-const StringsABI = "[{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_x\",\"type\":\"bytes32\"}],\"name\":\"bytes32ToStr\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_a\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_b\",\"type\":\"bytes32\"}],\"name\":\"compare\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_a\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_b\",\"type\":\"string\"}],\"name\":\"compare\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_x\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32[]\",\"name\":\"_xs\",\"type\":\"bytes32[]\"}],\"name\":\"getExists\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_a\",\"type\":\"string\"},{\"internalType\":\"string[]\",\"name\":\"_xs\",\"type\":\"string[]\"}],\"name\":\"getIndex\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_x\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32[]\",\"name\":\"_xs\",\"type\":\"bytes32[]\"}],\"name\":\"getIndex\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"pure\",\"type\":\"function\"}]"
+// IDataABI is the input ABI used to generate the binding from.
+const IDataABI = "[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"contractName\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"_ref\",\"type\":\"bytes32\"}],\"name\":\"Set\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"getNum\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_index\",\"type\":\"uint256\"}],\"name\":\"getReference\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getter\",\"outputs\":[{\"internalType\":\"bytes4\",\"name\":\"\",\"type\":\"bytes4\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"setter\",\"outputs\":[{\"internalType\":\"bytes4\",\"name\":\"\",\"type\":\"bytes4\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]"
 
-// StringsFuncSigs maps the 4-byte function signature to its string representation.
-var StringsFuncSigs = map[string]string{
-	"ef0b2368": "bytes32ToStr(bytes32)",
-	"28602ab2": "compare(bytes32,bytes32)",
-	"3a96fdd7": "compare(string,string)",
-	"745fca7b": "getExists(bytes32,bytes32[])",
-	"c55f207f": "getIndex(bytes32,bytes32[])",
-	"02a33464": "getIndex(string,string[])",
+// IDataFuncSigs maps the 4-byte function signature to its string representation.
+var IDataFuncSigs = map[string]string{
+	"67e0badb": "getNum()",
+	"bc599341": "getReference(uint256)",
+	"993a04b7": "getter()",
+	"3f3108f7": "setter()",
 }
 
-// StringsBin is the compiled bytecode used for deploying new contracts.
-var StringsBin = "0x610662610026600b82828239805160001a60731461001957fe5b30600052607381538281f3fe730000000000000000000000000000000000000000301460806040526004361061006c5760003560e01c806302a334641461007157806328602ab21461009a5780633a96fdd7146100ba578063745fca7b146100cd578063c55f207f146100e0578063ef0b2368146100f3575b600080fd5b61008461007f36600461046d565b610113565b60405161009191906105dc565b60405180910390f35b6100ad6100a836600461044c565b610180565b604051610091919061057e565b6100ad6100c836600461051d565b6101bd565b6100ad6100db3660046103a8565b61020b565b6100846100ee3660046103a8565b61024b565b610106610101366004610390565b6102b5565b6040516100919190610589565b6000808351118015610126575060008251115b61012f57600080fd5b815160005b835181101561017657606084828151811061014b57fe5b6020026020010151905061015f86826101bd565b1561016d5781925050610176565b50600101610134565b5090505b92915050565b600082811a60f81b6001600160f81b031916158015906101af57508160001a60f81b6001600160f81b03191615155b6101b857600080fd5b501490565b60008083511180156101d0575060008251115b6101d957600080fd5b8151835184918491146101f15760009250505061017a565b80805190602001208280519060200120149250505061017a565b600082811a60f81b6001600160f81b03191661022657600080fd5b81516000901561024457600061023c858561024b565b845114159150505b9392505050565b600082811a60f81b6001600160f81b0319161580159061026c575060008251115b61027557600080fd5b815160005b8351811015610176576102a08585838151811061029357fe5b6020026020010151610180565b156102ad57809150610176565b60010161027a565b60408051602080825281830190925260609182919060208201818036833701905050905060005b6020811015610320578381602081106102f157fe5b1a60f81b82828151811061030157fe5b60200101906001600160f81b031916908160001a9053506001016102dc565b5092915050565b600082601f830112610337578081fd5b813567ffffffffffffffff81111561034d578182fd5b610360601f8201601f19166020016105e5565b915080825283602082850101111561037757600080fd5b8060208401602084013760009082016020015292915050565b6000602082840312156103a1578081fd5b5035919050565b600080604083850312156103ba578081fd5b8235915060208084013567ffffffffffffffff8111156103d8578283fd5b80850186601f8201126103e9578384fd5b803591506103fe6103f98361060c565b6105e5565b82815283810190828501858502840186018a101561041a578687fd5b8693505b8484101561043c57803583526001939093019291850191850161041e565b5080955050505050509250929050565b6000806040838503121561045e578182fd5b50508035926020909101359150565b6000806040838503121561047f578182fd5b823567ffffffffffffffff80821115610496578384fd5b6104a286838701610327565b93506020915081850135818111156104b8578384fd5b85019050601f810186136104ca578283fd5b80356104d86103f98261060c565b81815283810190838501865b8481101561050d576104fb8b888435890101610327565b845292860192908601906001016104e4565b5096999098509650505050505050565b6000806040838503121561052f578182fd5b823567ffffffffffffffff80821115610546578384fd5b61055286838701610327565b93506020850135915080821115610567578283fd5b5061057485828601610327565b9150509250929050565b901515815260200190565b6000602080835283518082850152825b818110156105b557858101830151858201604001528201610599565b818111156105c65783604083870101525b50601f01601f1916929092016040019392505050565b90815260200190565b60405181810167ffffffffffffffff8111828210171561060457600080fd5b604052919050565b600067ffffffffffffffff821115610622578081fd5b506020908102019056fea2646970667358221220afe80f7b79e21558518987b567fad792efadb78d8c923a4d1825b3998ada86f464736f6c63430006060033"
-
-// DeployStrings deploys a new Ethereum contract, binding an instance of Strings to it.
-func DeployStrings(auth *bind.TransactOpts, backend bind.ContractBackend) (common.Address, *types.Transaction, *Strings, error) {
-	parsed, err := abi.JSON(strings.NewReader(StringsABI))
-	if err != nil {
-		return common.Address{}, nil, nil, err
-	}
-
-	address, tx, contract, err := bind.DeployContract(auth, parsed, common.FromHex(StringsBin), backend)
-	if err != nil {
-		return common.Address{}, nil, nil, err
-	}
-	return address, tx, &Strings{StringsCaller: StringsCaller{contract: contract}, StringsTransactor: StringsTransactor{contract: contract}, StringsFilterer: StringsFilterer{contract: contract}}, nil
+// IData is an auto generated Go binding around an Ethereum contract.
+type IData struct {
+	IDataCaller     // Read-only binding to the contract
+	IDataTransactor // Write-only binding to the contract
+	IDataFilterer   // Log filterer for contract events
 }
 
-// Strings is an auto generated Go binding around an Ethereum contract.
-type Strings struct {
-	StringsCaller     // Read-only binding to the contract
-	StringsTransactor // Write-only binding to the contract
-	StringsFilterer   // Log filterer for contract events
-}
-
-// StringsCaller is an auto generated read-only Go binding around an Ethereum contract.
-type StringsCaller struct {
+// IDataCaller is an auto generated read-only Go binding around an Ethereum contract.
+type IDataCaller struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// StringsTransactor is an auto generated write-only Go binding around an Ethereum contract.
-type StringsTransactor struct {
+// IDataTransactor is an auto generated write-only Go binding around an Ethereum contract.
+type IDataTransactor struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// StringsFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
-type StringsFilterer struct {
+// IDataFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
+type IDataFilterer struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// StringsSession is an auto generated Go binding around an Ethereum contract,
+// IDataSession is an auto generated Go binding around an Ethereum contract,
 // with pre-set call and transact options.
-type StringsSession struct {
-	Contract     *Strings          // Generic contract binding to set the session for
+type IDataSession struct {
+	Contract     *IData            // Generic contract binding to set the session for
 	CallOpts     bind.CallOpts     // Call options to use throughout this session
 	TransactOpts bind.TransactOpts // Transaction auth options to use throughout this session
 }
 
-// StringsCallerSession is an auto generated read-only Go binding around an Ethereum contract,
+// IDataCallerSession is an auto generated read-only Go binding around an Ethereum contract,
 // with pre-set call options.
-type StringsCallerSession struct {
-	Contract *StringsCaller // Generic contract caller binding to set the session for
-	CallOpts bind.CallOpts  // Call options to use throughout this session
+type IDataCallerSession struct {
+	Contract *IDataCaller  // Generic contract caller binding to set the session for
+	CallOpts bind.CallOpts // Call options to use throughout this session
 }
 
-// StringsTransactorSession is an auto generated write-only Go binding around an Ethereum contract,
+// IDataTransactorSession is an auto generated write-only Go binding around an Ethereum contract,
 // with pre-set transact options.
-type StringsTransactorSession struct {
-	Contract     *StringsTransactor // Generic contract transactor binding to set the session for
-	TransactOpts bind.TransactOpts  // Transaction auth options to use throughout this session
+type IDataTransactorSession struct {
+	Contract     *IDataTransactor  // Generic contract transactor binding to set the session for
+	TransactOpts bind.TransactOpts // Transaction auth options to use throughout this session
 }
 
-// StringsRaw is an auto generated low-level Go binding around an Ethereum contract.
-type StringsRaw struct {
-	Contract *Strings // Generic contract binding to access the raw methods on
+// IDataRaw is an auto generated low-level Go binding around an Ethereum contract.
+type IDataRaw struct {
+	Contract *IData // Generic contract binding to access the raw methods on
 }
 
-// StringsCallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
-type StringsCallerRaw struct {
-	Contract *StringsCaller // Generic read-only contract binding to access the raw methods on
+// IDataCallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
+type IDataCallerRaw struct {
+	Contract *IDataCaller // Generic read-only contract binding to access the raw methods on
 }
 
-// StringsTransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
-type StringsTransactorRaw struct {
-	Contract *StringsTransactor // Generic write-only contract binding to access the raw methods on
+// IDataTransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
+type IDataTransactorRaw struct {
+	Contract *IDataTransactor // Generic write-only contract binding to access the raw methods on
 }
 
-// NewStrings creates a new instance of Strings, bound to a specific deployed contract.
-func NewStrings(address common.Address, backend bind.ContractBackend) (*Strings, error) {
-	contract, err := bindStrings(address, backend, backend, backend)
+// NewIData creates a new instance of IData, bound to a specific deployed contract.
+func NewIData(address common.Address, backend bind.ContractBackend) (*IData, error) {
+	contract, err := bindIData(address, backend, backend, backend)
 	if err != nil {
 		return nil, err
 	}
-	return &Strings{StringsCaller: StringsCaller{contract: contract}, StringsTransactor: StringsTransactor{contract: contract}, StringsFilterer: StringsFilterer{contract: contract}}, nil
+	return &IData{IDataCaller: IDataCaller{contract: contract}, IDataTransactor: IDataTransactor{contract: contract}, IDataFilterer: IDataFilterer{contract: contract}}, nil
 }
 
-// NewStringsCaller creates a new read-only instance of Strings, bound to a specific deployed contract.
-func NewStringsCaller(address common.Address, caller bind.ContractCaller) (*StringsCaller, error) {
-	contract, err := bindStrings(address, caller, nil, nil)
+// NewIDataCaller creates a new read-only instance of IData, bound to a specific deployed contract.
+func NewIDataCaller(address common.Address, caller bind.ContractCaller) (*IDataCaller, error) {
+	contract, err := bindIData(address, caller, nil, nil)
 	if err != nil {
 		return nil, err
 	}
-	return &StringsCaller{contract: contract}, nil
+	return &IDataCaller{contract: contract}, nil
 }
 
-// NewStringsTransactor creates a new write-only instance of Strings, bound to a specific deployed contract.
-func NewStringsTransactor(address common.Address, transactor bind.ContractTransactor) (*StringsTransactor, error) {
-	contract, err := bindStrings(address, nil, transactor, nil)
+// NewIDataTransactor creates a new write-only instance of IData, bound to a specific deployed contract.
+func NewIDataTransactor(address common.Address, transactor bind.ContractTransactor) (*IDataTransactor, error) {
+	contract, err := bindIData(address, nil, transactor, nil)
 	if err != nil {
 		return nil, err
 	}
-	return &StringsTransactor{contract: contract}, nil
+	return &IDataTransactor{contract: contract}, nil
 }
 
-// NewStringsFilterer creates a new log filterer instance of Strings, bound to a specific deployed contract.
-func NewStringsFilterer(address common.Address, filterer bind.ContractFilterer) (*StringsFilterer, error) {
-	contract, err := bindStrings(address, nil, nil, filterer)
+// NewIDataFilterer creates a new log filterer instance of IData, bound to a specific deployed contract.
+func NewIDataFilterer(address common.Address, filterer bind.ContractFilterer) (*IDataFilterer, error) {
+	contract, err := bindIData(address, nil, nil, filterer)
 	if err != nil {
 		return nil, err
 	}
-	return &StringsFilterer{contract: contract}, nil
+	return &IDataFilterer{contract: contract}, nil
 }
 
-// bindStrings binds a generic wrapper to an already deployed contract.
-func bindStrings(address common.Address, caller bind.ContractCaller, transactor bind.ContractTransactor, filterer bind.ContractFilterer) (*bind.BoundContract, error) {
-	parsed, err := abi.JSON(strings.NewReader(StringsABI))
+// bindIData binds a generic wrapper to an already deployed contract.
+func bindIData(address common.Address, caller bind.ContractCaller, transactor bind.ContractTransactor, filterer bind.ContractFilterer) (*bind.BoundContract, error) {
+	parsed, err := abi.JSON(strings.NewReader(IDataABI))
 	if err != nil {
 		return nil, err
 	}
@@ -1126,192 +803,436 @@ func bindStrings(address common.Address, caller bind.ContractCaller, transactor 
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_Strings *StringsRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
-	return _Strings.Contract.StringsCaller.contract.Call(opts, result, method, params...)
+func (_IData *IDataRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+	return _IData.Contract.IDataCaller.contract.Call(opts, result, method, params...)
 }
 
 // Transfer initiates a plain transaction to move funds to the contract, calling
 // its default method if one is available.
-func (_Strings *StringsRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _Strings.Contract.StringsTransactor.contract.Transfer(opts)
+func (_IData *IDataRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _IData.Contract.IDataTransactor.contract.Transfer(opts)
 }
 
 // Transact invokes the (paid) contract method with params as input values.
-func (_Strings *StringsRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
-	return _Strings.Contract.StringsTransactor.contract.Transact(opts, method, params...)
+func (_IData *IDataRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _IData.Contract.IDataTransactor.contract.Transact(opts, method, params...)
 }
 
 // Call invokes the (constant) contract method with params as input values and
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_Strings *StringsCallerRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
-	return _Strings.Contract.contract.Call(opts, result, method, params...)
+func (_IData *IDataCallerRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+	return _IData.Contract.contract.Call(opts, result, method, params...)
 }
 
 // Transfer initiates a plain transaction to move funds to the contract, calling
 // its default method if one is available.
-func (_Strings *StringsTransactorRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _Strings.Contract.contract.Transfer(opts)
+func (_IData *IDataTransactorRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _IData.Contract.contract.Transfer(opts)
 }
 
 // Transact invokes the (paid) contract method with params as input values.
-func (_Strings *StringsTransactorRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
-	return _Strings.Contract.contract.Transact(opts, method, params...)
+func (_IData *IDataTransactorRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _IData.Contract.contract.Transact(opts, method, params...)
 }
 
-// Bytes32ToStr is a free data retrieval call binding the contract method 0xef0b2368.
+// GetNum is a free data retrieval call binding the contract method 0x67e0badb.
 //
-// Solidity: function bytes32ToStr(bytes32 _x) pure returns(string)
-func (_Strings *StringsCaller) Bytes32ToStr(opts *bind.CallOpts, _x [32]byte) (string, error) {
-	var (
-		ret0 = new(string)
-	)
-	out := ret0
-	err := _Strings.contract.Call(opts, out, "bytes32ToStr", _x)
-	return *ret0, err
-}
-
-// Bytes32ToStr is a free data retrieval call binding the contract method 0xef0b2368.
-//
-// Solidity: function bytes32ToStr(bytes32 _x) pure returns(string)
-func (_Strings *StringsSession) Bytes32ToStr(_x [32]byte) (string, error) {
-	return _Strings.Contract.Bytes32ToStr(&_Strings.CallOpts, _x)
-}
-
-// Bytes32ToStr is a free data retrieval call binding the contract method 0xef0b2368.
-//
-// Solidity: function bytes32ToStr(bytes32 _x) pure returns(string)
-func (_Strings *StringsCallerSession) Bytes32ToStr(_x [32]byte) (string, error) {
-	return _Strings.Contract.Bytes32ToStr(&_Strings.CallOpts, _x)
-}
-
-// Compare is a free data retrieval call binding the contract method 0x28602ab2.
-//
-// Solidity: function compare(bytes32 _a, bytes32 _b) pure returns(bool)
-func (_Strings *StringsCaller) Compare(opts *bind.CallOpts, _a [32]byte, _b [32]byte) (bool, error) {
-	var (
-		ret0 = new(bool)
-	)
-	out := ret0
-	err := _Strings.contract.Call(opts, out, "compare", _a, _b)
-	return *ret0, err
-}
-
-// Compare is a free data retrieval call binding the contract method 0x28602ab2.
-//
-// Solidity: function compare(bytes32 _a, bytes32 _b) pure returns(bool)
-func (_Strings *StringsSession) Compare(_a [32]byte, _b [32]byte) (bool, error) {
-	return _Strings.Contract.Compare(&_Strings.CallOpts, _a, _b)
-}
-
-// Compare is a free data retrieval call binding the contract method 0x28602ab2.
-//
-// Solidity: function compare(bytes32 _a, bytes32 _b) pure returns(bool)
-func (_Strings *StringsCallerSession) Compare(_a [32]byte, _b [32]byte) (bool, error) {
-	return _Strings.Contract.Compare(&_Strings.CallOpts, _a, _b)
-}
-
-// Compare0 is a free data retrieval call binding the contract method 0x3a96fdd7.
-//
-// Solidity: function compare(string _a, string _b) pure returns(bool)
-func (_Strings *StringsCaller) Compare0(opts *bind.CallOpts, _a string, _b string) (bool, error) {
-	var (
-		ret0 = new(bool)
-	)
-	out := ret0
-	err := _Strings.contract.Call(opts, out, "compare0", _a, _b)
-	return *ret0, err
-}
-
-// Compare0 is a free data retrieval call binding the contract method 0x3a96fdd7.
-//
-// Solidity: function compare(string _a, string _b) pure returns(bool)
-func (_Strings *StringsSession) Compare0(_a string, _b string) (bool, error) {
-	return _Strings.Contract.Compare0(&_Strings.CallOpts, _a, _b)
-}
-
-// Compare0 is a free data retrieval call binding the contract method 0x3a96fdd7.
-//
-// Solidity: function compare(string _a, string _b) pure returns(bool)
-func (_Strings *StringsCallerSession) Compare0(_a string, _b string) (bool, error) {
-	return _Strings.Contract.Compare0(&_Strings.CallOpts, _a, _b)
-}
-
-// GetExists is a free data retrieval call binding the contract method 0x745fca7b.
-//
-// Solidity: function getExists(bytes32 _x, bytes32[] _xs) pure returns(bool)
-func (_Strings *StringsCaller) GetExists(opts *bind.CallOpts, _x [32]byte, _xs [][32]byte) (bool, error) {
-	var (
-		ret0 = new(bool)
-	)
-	out := ret0
-	err := _Strings.contract.Call(opts, out, "getExists", _x, _xs)
-	return *ret0, err
-}
-
-// GetExists is a free data retrieval call binding the contract method 0x745fca7b.
-//
-// Solidity: function getExists(bytes32 _x, bytes32[] _xs) pure returns(bool)
-func (_Strings *StringsSession) GetExists(_x [32]byte, _xs [][32]byte) (bool, error) {
-	return _Strings.Contract.GetExists(&_Strings.CallOpts, _x, _xs)
-}
-
-// GetExists is a free data retrieval call binding the contract method 0x745fca7b.
-//
-// Solidity: function getExists(bytes32 _x, bytes32[] _xs) pure returns(bool)
-func (_Strings *StringsCallerSession) GetExists(_x [32]byte, _xs [][32]byte) (bool, error) {
-	return _Strings.Contract.GetExists(&_Strings.CallOpts, _x, _xs)
-}
-
-// GetIndex is a free data retrieval call binding the contract method 0x02a33464.
-//
-// Solidity: function getIndex(string _a, string[] _xs) pure returns(uint256)
-func (_Strings *StringsCaller) GetIndex(opts *bind.CallOpts, _a string, _xs []string) (*big.Int, error) {
+// Solidity: function getNum() view returns(uint256)
+func (_IData *IDataCaller) GetNum(opts *bind.CallOpts) (*big.Int, error) {
 	var (
 		ret0 = new(*big.Int)
 	)
 	out := ret0
-	err := _Strings.contract.Call(opts, out, "getIndex", _a, _xs)
+	err := _IData.contract.Call(opts, out, "getNum")
 	return *ret0, err
 }
 
-// GetIndex is a free data retrieval call binding the contract method 0x02a33464.
+// GetNum is a free data retrieval call binding the contract method 0x67e0badb.
 //
-// Solidity: function getIndex(string _a, string[] _xs) pure returns(uint256)
-func (_Strings *StringsSession) GetIndex(_a string, _xs []string) (*big.Int, error) {
-	return _Strings.Contract.GetIndex(&_Strings.CallOpts, _a, _xs)
+// Solidity: function getNum() view returns(uint256)
+func (_IData *IDataSession) GetNum() (*big.Int, error) {
+	return _IData.Contract.GetNum(&_IData.CallOpts)
 }
 
-// GetIndex is a free data retrieval call binding the contract method 0x02a33464.
+// GetNum is a free data retrieval call binding the contract method 0x67e0badb.
 //
-// Solidity: function getIndex(string _a, string[] _xs) pure returns(uint256)
-func (_Strings *StringsCallerSession) GetIndex(_a string, _xs []string) (*big.Int, error) {
-	return _Strings.Contract.GetIndex(&_Strings.CallOpts, _a, _xs)
+// Solidity: function getNum() view returns(uint256)
+func (_IData *IDataCallerSession) GetNum() (*big.Int, error) {
+	return _IData.Contract.GetNum(&_IData.CallOpts)
 }
 
-// GetIndex0 is a free data retrieval call binding the contract method 0xc55f207f.
+// GetReference is a free data retrieval call binding the contract method 0xbc599341.
 //
-// Solidity: function getIndex(bytes32 _x, bytes32[] _xs) pure returns(uint256)
-func (_Strings *StringsCaller) GetIndex0(opts *bind.CallOpts, _x [32]byte, _xs [][32]byte) (*big.Int, error) {
+// Solidity: function getReference(uint256 _index) view returns(bytes32)
+func (_IData *IDataCaller) GetReference(opts *bind.CallOpts, _index *big.Int) ([32]byte, error) {
 	var (
-		ret0 = new(*big.Int)
+		ret0 = new([32]byte)
 	)
 	out := ret0
-	err := _Strings.contract.Call(opts, out, "getIndex0", _x, _xs)
+	err := _IData.contract.Call(opts, out, "getReference", _index)
 	return *ret0, err
 }
 
-// GetIndex0 is a free data retrieval call binding the contract method 0xc55f207f.
+// GetReference is a free data retrieval call binding the contract method 0xbc599341.
 //
-// Solidity: function getIndex(bytes32 _x, bytes32[] _xs) pure returns(uint256)
-func (_Strings *StringsSession) GetIndex0(_x [32]byte, _xs [][32]byte) (*big.Int, error) {
-	return _Strings.Contract.GetIndex0(&_Strings.CallOpts, _x, _xs)
+// Solidity: function getReference(uint256 _index) view returns(bytes32)
+func (_IData *IDataSession) GetReference(_index *big.Int) ([32]byte, error) {
+	return _IData.Contract.GetReference(&_IData.CallOpts, _index)
 }
 
-// GetIndex0 is a free data retrieval call binding the contract method 0xc55f207f.
+// GetReference is a free data retrieval call binding the contract method 0xbc599341.
 //
-// Solidity: function getIndex(bytes32 _x, bytes32[] _xs) pure returns(uint256)
-func (_Strings *StringsCallerSession) GetIndex0(_x [32]byte, _xs [][32]byte) (*big.Int, error) {
-	return _Strings.Contract.GetIndex0(&_Strings.CallOpts, _x, _xs)
+// Solidity: function getReference(uint256 _index) view returns(bytes32)
+func (_IData *IDataCallerSession) GetReference(_index *big.Int) ([32]byte, error) {
+	return _IData.Contract.GetReference(&_IData.CallOpts, _index)
+}
+
+// Getter is a free data retrieval call binding the contract method 0x993a04b7.
+//
+// Solidity: function getter() view returns(bytes4)
+func (_IData *IDataCaller) Getter(opts *bind.CallOpts) ([4]byte, error) {
+	var (
+		ret0 = new([4]byte)
+	)
+	out := ret0
+	err := _IData.contract.Call(opts, out, "getter")
+	return *ret0, err
+}
+
+// Getter is a free data retrieval call binding the contract method 0x993a04b7.
+//
+// Solidity: function getter() view returns(bytes4)
+func (_IData *IDataSession) Getter() ([4]byte, error) {
+	return _IData.Contract.Getter(&_IData.CallOpts)
+}
+
+// Getter is a free data retrieval call binding the contract method 0x993a04b7.
+//
+// Solidity: function getter() view returns(bytes4)
+func (_IData *IDataCallerSession) Getter() ([4]byte, error) {
+	return _IData.Contract.Getter(&_IData.CallOpts)
+}
+
+// Setter is a free data retrieval call binding the contract method 0x3f3108f7.
+//
+// Solidity: function setter() view returns(bytes4)
+func (_IData *IDataCaller) Setter(opts *bind.CallOpts) ([4]byte, error) {
+	var (
+		ret0 = new([4]byte)
+	)
+	out := ret0
+	err := _IData.contract.Call(opts, out, "setter")
+	return *ret0, err
+}
+
+// Setter is a free data retrieval call binding the contract method 0x3f3108f7.
+//
+// Solidity: function setter() view returns(bytes4)
+func (_IData *IDataSession) Setter() ([4]byte, error) {
+	return _IData.Contract.Setter(&_IData.CallOpts)
+}
+
+// Setter is a free data retrieval call binding the contract method 0x3f3108f7.
+//
+// Solidity: function setter() view returns(bytes4)
+func (_IData *IDataCallerSession) Setter() ([4]byte, error) {
+	return _IData.Contract.Setter(&_IData.CallOpts)
+}
+
+// IDataSetIterator is returned from FilterSet and is used to iterate over the raw logs and unpacked data for Set events raised by the IData contract.
+type IDataSetIterator struct {
+	Event *IDataSet // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *IDataSetIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(IDataSet)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(IDataSet)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *IDataSetIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *IDataSetIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// IDataSet represents a Set event raised by the IData contract.
+type IDataSet struct {
+	ContractName string
+	Ref          [32]byte
+	Raw          types.Log // Blockchain specific contextual infos
+}
+
+// FilterSet is a free log retrieval operation binding the contract event 0x89752cf887704c720fdae38088909ed147c755f39bd110525728448ec4cefc8b.
+//
+// Solidity: event Set(string contractName, bytes32 _ref)
+func (_IData *IDataFilterer) FilterSet(opts *bind.FilterOpts) (*IDataSetIterator, error) {
+
+	logs, sub, err := _IData.contract.FilterLogs(opts, "Set")
+	if err != nil {
+		return nil, err
+	}
+	return &IDataSetIterator{contract: _IData.contract, event: "Set", logs: logs, sub: sub}, nil
+}
+
+// WatchSet is a free log subscription operation binding the contract event 0x89752cf887704c720fdae38088909ed147c755f39bd110525728448ec4cefc8b.
+//
+// Solidity: event Set(string contractName, bytes32 _ref)
+func (_IData *IDataFilterer) WatchSet(opts *bind.WatchOpts, sink chan<- *IDataSet) (event.Subscription, error) {
+
+	logs, sub, err := _IData.contract.WatchLogs(opts, "Set")
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(IDataSet)
+				if err := _IData.contract.UnpackLog(event, "Set", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseSet is a log parse operation binding the contract event 0x89752cf887704c720fdae38088909ed147c755f39bd110525728448ec4cefc8b.
+//
+// Solidity: event Set(string contractName, bytes32 _ref)
+func (_IData *IDataFilterer) ParseSet(log types.Log) (*IDataSet, error) {
+	event := new(IDataSet)
+	if err := _IData.contract.UnpackLog(event, "Set", log); err != nil {
+		return nil, err
+	}
+	return event, nil
+}
+
+// IterableDataABI is the input ABI used to generate the binding from.
+const IterableDataABI = "[]"
+
+// IterableDataBin is the compiled bytecode used for deploying new contracts.
+var IterableDataBin = "0x60566023600b82828239805160001a607314601657fe5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea26469706673582212204712e050da4fa5d3eca663a59ab1b467a9e95c3f95440c8fe45549d6ef13b59664736f6c63430006060033"
+
+// DeployIterableData deploys a new Ethereum contract, binding an instance of IterableData to it.
+func DeployIterableData(auth *bind.TransactOpts, backend bind.ContractBackend) (common.Address, *types.Transaction, *IterableData, error) {
+	parsed, err := abi.JSON(strings.NewReader(IterableDataABI))
+	if err != nil {
+		return common.Address{}, nil, nil, err
+	}
+
+	address, tx, contract, err := bind.DeployContract(auth, parsed, common.FromHex(IterableDataBin), backend)
+	if err != nil {
+		return common.Address{}, nil, nil, err
+	}
+	return address, tx, &IterableData{IterableDataCaller: IterableDataCaller{contract: contract}, IterableDataTransactor: IterableDataTransactor{contract: contract}, IterableDataFilterer: IterableDataFilterer{contract: contract}}, nil
+}
+
+// IterableData is an auto generated Go binding around an Ethereum contract.
+type IterableData struct {
+	IterableDataCaller     // Read-only binding to the contract
+	IterableDataTransactor // Write-only binding to the contract
+	IterableDataFilterer   // Log filterer for contract events
+}
+
+// IterableDataCaller is an auto generated read-only Go binding around an Ethereum contract.
+type IterableDataCaller struct {
+	contract *bind.BoundContract // Generic contract wrapper for the low level calls
+}
+
+// IterableDataTransactor is an auto generated write-only Go binding around an Ethereum contract.
+type IterableDataTransactor struct {
+	contract *bind.BoundContract // Generic contract wrapper for the low level calls
+}
+
+// IterableDataFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
+type IterableDataFilterer struct {
+	contract *bind.BoundContract // Generic contract wrapper for the low level calls
+}
+
+// IterableDataSession is an auto generated Go binding around an Ethereum contract,
+// with pre-set call and transact options.
+type IterableDataSession struct {
+	Contract     *IterableData     // Generic contract binding to set the session for
+	CallOpts     bind.CallOpts     // Call options to use throughout this session
+	TransactOpts bind.TransactOpts // Transaction auth options to use throughout this session
+}
+
+// IterableDataCallerSession is an auto generated read-only Go binding around an Ethereum contract,
+// with pre-set call options.
+type IterableDataCallerSession struct {
+	Contract *IterableDataCaller // Generic contract caller binding to set the session for
+	CallOpts bind.CallOpts       // Call options to use throughout this session
+}
+
+// IterableDataTransactorSession is an auto generated write-only Go binding around an Ethereum contract,
+// with pre-set transact options.
+type IterableDataTransactorSession struct {
+	Contract     *IterableDataTransactor // Generic contract transactor binding to set the session for
+	TransactOpts bind.TransactOpts       // Transaction auth options to use throughout this session
+}
+
+// IterableDataRaw is an auto generated low-level Go binding around an Ethereum contract.
+type IterableDataRaw struct {
+	Contract *IterableData // Generic contract binding to access the raw methods on
+}
+
+// IterableDataCallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
+type IterableDataCallerRaw struct {
+	Contract *IterableDataCaller // Generic read-only contract binding to access the raw methods on
+}
+
+// IterableDataTransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
+type IterableDataTransactorRaw struct {
+	Contract *IterableDataTransactor // Generic write-only contract binding to access the raw methods on
+}
+
+// NewIterableData creates a new instance of IterableData, bound to a specific deployed contract.
+func NewIterableData(address common.Address, backend bind.ContractBackend) (*IterableData, error) {
+	contract, err := bindIterableData(address, backend, backend, backend)
+	if err != nil {
+		return nil, err
+	}
+	return &IterableData{IterableDataCaller: IterableDataCaller{contract: contract}, IterableDataTransactor: IterableDataTransactor{contract: contract}, IterableDataFilterer: IterableDataFilterer{contract: contract}}, nil
+}
+
+// NewIterableDataCaller creates a new read-only instance of IterableData, bound to a specific deployed contract.
+func NewIterableDataCaller(address common.Address, caller bind.ContractCaller) (*IterableDataCaller, error) {
+	contract, err := bindIterableData(address, caller, nil, nil)
+	if err != nil {
+		return nil, err
+	}
+	return &IterableDataCaller{contract: contract}, nil
+}
+
+// NewIterableDataTransactor creates a new write-only instance of IterableData, bound to a specific deployed contract.
+func NewIterableDataTransactor(address common.Address, transactor bind.ContractTransactor) (*IterableDataTransactor, error) {
+	contract, err := bindIterableData(address, nil, transactor, nil)
+	if err != nil {
+		return nil, err
+	}
+	return &IterableDataTransactor{contract: contract}, nil
+}
+
+// NewIterableDataFilterer creates a new log filterer instance of IterableData, bound to a specific deployed contract.
+func NewIterableDataFilterer(address common.Address, filterer bind.ContractFilterer) (*IterableDataFilterer, error) {
+	contract, err := bindIterableData(address, nil, nil, filterer)
+	if err != nil {
+		return nil, err
+	}
+	return &IterableDataFilterer{contract: contract}, nil
+}
+
+// bindIterableData binds a generic wrapper to an already deployed contract.
+func bindIterableData(address common.Address, caller bind.ContractCaller, transactor bind.ContractTransactor, filterer bind.ContractFilterer) (*bind.BoundContract, error) {
+	parsed, err := abi.JSON(strings.NewReader(IterableDataABI))
+	if err != nil {
+		return nil, err
+	}
+	return bind.NewBoundContract(address, parsed, caller, transactor, filterer), nil
+}
+
+// Call invokes the (constant) contract method with params as input values and
+// sets the output to result. The result type might be a single field for simple
+// returns, a slice of interfaces for anonymous returns and a struct for named
+// returns.
+func (_IterableData *IterableDataRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+	return _IterableData.Contract.IterableDataCaller.contract.Call(opts, result, method, params...)
+}
+
+// Transfer initiates a plain transaction to move funds to the contract, calling
+// its default method if one is available.
+func (_IterableData *IterableDataRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _IterableData.Contract.IterableDataTransactor.contract.Transfer(opts)
+}
+
+// Transact invokes the (paid) contract method with params as input values.
+func (_IterableData *IterableDataRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _IterableData.Contract.IterableDataTransactor.contract.Transact(opts, method, params...)
+}
+
+// Call invokes the (constant) contract method with params as input values and
+// sets the output to result. The result type might be a single field for simple
+// returns, a slice of interfaces for anonymous returns and a struct for named
+// returns.
+func (_IterableData *IterableDataCallerRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+	return _IterableData.Contract.contract.Call(opts, result, method, params...)
+}
+
+// Transfer initiates a plain transaction to move funds to the contract, calling
+// its default method if one is available.
+func (_IterableData *IterableDataTransactorRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _IterableData.Contract.contract.Transfer(opts)
+}
+
+// Transact invokes the (paid) contract method with params as input values.
+func (_IterableData *IterableDataTransactorRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _IterableData.Contract.contract.Transact(opts, method, params...)
 }
