@@ -8,7 +8,7 @@ contract IATIOrganisationExpenditure is OrganisationExpenditure {
 
   IATIBudgets budgets;
 
-  constructor(address _budgets) override virtual public {
+  constructor(address _budgets) public {
     require(_budgets != address(0x0));
     budgets = IATIBudgets(_budgets);
   }

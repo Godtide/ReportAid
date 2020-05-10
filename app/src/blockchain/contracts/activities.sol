@@ -38,7 +38,7 @@ contract ActivitiesNode is INode {
     }
 }
 
-contract ActivitiesFactory is IData, ITree {
+contract Activities is IData, ITree {
 
     Data store;
     Data factory;

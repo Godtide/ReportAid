@@ -1,4 +1,5 @@
 const StringsLib = artifacts.require("./Strings.sol");
+const IterableData = artifacts.require("./IterableData.sol");
 
 const IATIBudgets = artifacts.require("./IATIBudgets.sol");
 
@@ -12,9 +13,9 @@ const IATIOrganisationRecipientBudgets = artifacts.require("./IATIOrganisationRe
 const IATIOrganisationRegionBudgets = artifacts.require("./IATIOrganisationRegionBudgets.sol");
 const IATIOrganisationCountryBudgets = artifacts.require("./IATIOrganisationCountryBudgets.sol");
 
-const activities = artifacts.require("./activities.sol");
-const activity = artifacts.require("./activity.sol");
-const activityAdditional = artifacts.require("./activityAdditional.sol");
+const Activities = artifacts.require("./Activities.sol");
+const Activity = artifacts.require("./Activity.sol");
+const ActivityAdditional = artifacts.require("./ActivityAdditional.sol");
 const IATIActivityDates = artifacts.require("./IATIActivityDates.sol");
 const IATIActivityParticipatingOrgs = artifacts.require("./IATIActivityParticipatingOrgs.sol");
 const IATIActivitySectors = artifacts.require("./IATIActivitySectors.sol");
@@ -45,26 +46,15 @@ module.exports = function(deployer) {
   let activityTransactionsAddress;
   let activityRelatedActivitiesAddress;
 
+  // only internal funcitons, so IterableData wil get embedded - no need to deploy and link
+  //deployer.deploy(IterableData);
+  //deployer.link(IterableData, [Activities, Activity, ActivityAdditional]);
+
   deployer.deploy(StringsLib);
-  deployer.link(StringsLib, [IATIBudgets,
-                             IATIOrgs,
-                             IATIOrganisations,
-                             IATIOrganisation,
-                             IATIOrganisationDocs,
-                             activities,
-                             activity,
-                             activityAdditional,
-                             IATIActivityDates,
-                             IATIActivityParticipatingOrgs,
-                             IATIActivitySectors,
-                             IATIActivityTerritories,
-                             IATIActivityTransactions,
-                             IATIActivityRelatedActivities
-                            ]);
+  deployer.link(StringsLib, [IATIBudgets, IATIOrgs, IATIOrganisations, IATIOrganisation, IATIOrganisationDocs, IATIActivityDates, IATIActivityParticipatingOrgs, IATIActivitySectors, IATIActivityTerritories, IATIActivityTransactions, IATIActivityRelatedActivities]);
 
   deployer.deploy(IATIOrgs).then(() => {
     orgsAddress = "\"" + IATIOrgs.address + "\"";
-
   });
 
   deployer.deploy(IATIOrganisations).then(() => {
@@ -101,40 +91,38 @@ module.exports = function(deployer) {
     });
   });
 
-  deployer.deploy(activities).then(() => {
-    activitiesAddress = "\"" + IATIActivities.address + "\"";
-
-    deployer.deploy(activity, activities.address).then(() => {
-      activityAddress = "\"" + IATIActivity.address + "\"";
-
-      deployer.deploy(IATIActivityAdditional, activity.address).then(() => {
-        activityAdditionalAddress = "\"" + IATIActivityAdditional.address + "\"";
-      });
-
-      deployer.deploy(IATIActivityDates).then(() => {
-        activityDatesAddress = "\"" + IATIActivityDates.address + "\"";
-      });
-
-      deployer.deploy(IATIActivityParticipatingOrgs).then(() => {
-        activityParticipatingOrgsAddress = "\"" + IATIActivityParticipatingOrgs.address + "\"";
-      });
-
-      deployer.deploy(IATIActivitySectors).then(() => {
-        activitySectorsAddress = "\"" + IATIActivitySectors.address + "\"";
-      });
-
-      deployer.deploy(IATIActivityTerritories).then(() => {
-        activityTerritoriesAddress = "\"" + IATIActivityTerritories.address + "\"";
-      });
-
-      deployer.deploy(IATIActivityTransactions).then(() => {
-        activityTransactionsAddress = "\"" + IATIActivityTransactions.address + "\"";
-      });
-
-      deployer.deploy(IATIActivityRelatedActivities).then(() => {
-        activityRelatedActivitiesAddress = "\"" + IATIActivityRelatedActivities.address + "\"";
-      });
+  deployer.deploy(Activities).then(() => {
+    activitiesAddress = "\"" + Activities.address + "\"";
+    deployer.deploy(Activity, Activities.address).then(() => {
+        activityAddress = "\"" + Activity.address + "\"";
+        deployer.deploy(ActivityAdditional, Activity.address).then(() => {
+          activityAdditionalAddress = "\"" + ActivityAdditional.address + "\"";
+        });
     });
+  });
+
+  deployer.deploy(IATIActivityDates).then(() => {
+    activityDatesAddress = "\"" + IATIActivityDates.address + "\"";
+  });
+
+  deployer.deploy(IATIActivityParticipatingOrgs).then(() => {
+    activityParticipatingOrgsAddress = "\"" + IATIActivityParticipatingOrgs.address + "\"";
+  });
+
+  deployer.deploy(IATIActivitySectors).then(() => {
+    activitySectorsAddress = "\"" + IATIActivitySectors.address + "\"";
+  });
+
+  deployer.deploy(IATIActivityTerritories).then(() => {
+    activityTerritoriesAddress = "\"" + IATIActivityTerritories.address + "\"";
+  });
+
+  deployer.deploy(IATIActivityTransactions).then(() => {
+    activityTransactionsAddress = "\"" + IATIActivityTransactions.address + "\"";
+  });
+
+  deployer.deploy(IATIActivityRelatedActivities).then(() => {
+    activityRelatedActivitiesAddress = "\"" + IATIActivityRelatedActivities.address + "\"";
   });
 
   deployer.then( () => {

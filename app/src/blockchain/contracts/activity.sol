@@ -8,6 +8,7 @@ import "./Types.sol";
 import "./Mapping.sol";
 import "./Enums.sol";
 import "./Storage.sol";
+import "./activities.sol";
 
 contract ActivityNode is INode {
 
@@ -57,17 +58,16 @@ contract ActivityNode is INode {
     }
 }
 
-contract ActivityFactory is IData, ITree {
+contract Activity is IData, ITree {
 
-    address activitiesCon;
+    Activities activitiesCon;
     Data store;
     Data factory;
     using IterableData for Data;
 
     constructor(address _activitiesCon) public {
-        assert(_activitiesCon != address(0x0));
-
-        activitiesCon = _activitiesCon;
+        //require(_activitiesCon != address(0x0));
+        activitiesCon = Activities(_activitiesCon);
         store.size = 0;
         factory.size = 0;
     }
@@ -86,7 +86,7 @@ contract ActivityFactory is IData, ITree {
 
         ActivityNode data = new ActivityNode(_activity);
         store.insert(_thisRef, address(data));
-        ITree(activitiesCon).addChild(_parentRef, address(data), uint8(IATIElement.ACTIVITY));
+        activitiesCon.addChild(_parentRef, address(data), uint8(IATIElement.ACTIVITY));
 
         Factory warehouse = new Factory();
         factory.insert(_thisRef, address(warehouse));

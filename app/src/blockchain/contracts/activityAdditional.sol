@@ -8,6 +8,7 @@ import "./Types.sol";
 import "./Mapping.sol";
 import "./Enums.sol";
 import "./Storage.sol";
+import "./activity.sol";
 
 contract ActivityAdditionalNode is INode {
 
@@ -47,14 +48,14 @@ contract ActivityAdditionalNode is INode {
 
 contract ActivityAdditional is IData {
 
-    address activityCon;
+    Activity activityCon;
     Data store;
     using IterableData for Data;
 
     constructor(address _activityCon) public {
-        assert(activityCon != address(0x0));
+        assert(_activityCon != address(0x0));
 
-        activityCon = _activityCon;
+        activityCon = Activity(_activityCon);
         store.size = 0;
     }
 
@@ -72,7 +73,7 @@ contract ActivityAdditional is IData {
 
         ActivityAdditionalNode data = new ActivityAdditionalNode(_additional);
         store.insert(_thisRef, address(data));
-        ITree(activityCon).addChild(_parentRef, address(data), uint8(IATIElement.ACTIVITYADDITIONAL));
+        activityCon.addChild(_parentRef, address(data), uint8(IATIElement.ACTIVITYADDITIONAL));
 
         emit Set(uint8(IATIElement.ACTIVITYADDITIONAL), _thisRef);
     }
