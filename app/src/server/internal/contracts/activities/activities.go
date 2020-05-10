@@ -35,11 +35,13 @@ type ActivitiesData struct {
 }
 
 // ActivitiesFactoryABI is the input ABI used to generate the binding from.
-const ActivitiesFactoryABI = "[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"_elementType\",\"type\":\"uint8\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"_ref\",\"type\":\"bytes32\"}],\"name\":\"Set\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_ref\",\"type\":\"bytes32\"}],\"name\":\"get\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getNum\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_index\",\"type\":\"uint256\"}],\"name\":\"getReference\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_ref\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"version\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"generatedTime\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"linkedData\",\"type\":\"bytes32\"}],\"internalType\":\"structActivitiesData\",\"name\":\"_activities\",\"type\":\"tuple\"}],\"name\":\"set\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"setter\",\"outputs\":[{\"internalType\":\"bytes4\",\"name\":\"\",\"type\":\"bytes4\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]"
+const ActivitiesFactoryABI = "[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"_elementType\",\"type\":\"uint8\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"_ref\",\"type\":\"bytes32\"}],\"name\":\"AddChild\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"_elementType\",\"type\":\"uint8\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"_ref\",\"type\":\"bytes32\"}],\"name\":\"Set\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_ref\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"_child\",\"type\":\"address\"}],\"name\":\"addChild\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_ref\",\"type\":\"bytes32\"}],\"name\":\"get\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_ref\",\"type\":\"bytes32\"}],\"name\":\"getFactory\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getNum\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_index\",\"type\":\"uint256\"}],\"name\":\"getReference\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_ref\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"version\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"generatedTime\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"linkedData\",\"type\":\"bytes32\"}],\"internalType\":\"structActivitiesData\",\"name\":\"_activities\",\"type\":\"tuple\"}],\"name\":\"set\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"setter\",\"outputs\":[{\"internalType\":\"bytes4\",\"name\":\"\",\"type\":\"bytes4\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]"
 
 // ActivitiesFactoryFuncSigs maps the 4-byte function signature to its string representation.
 var ActivitiesFactoryFuncSigs = map[string]string{
+	"3d39ca7d": "addChild(bytes32,address)",
 	"8eaa6ac0": "get(bytes32)",
+	"17fc2761": "getFactory(bytes32)",
 	"67e0badb": "getNum()",
 	"bc599341": "getReference(uint256)",
 	"91a95fbc": "set(bytes32,(bytes32,bytes32,bytes32))",
@@ -47,7 +49,7 @@ var ActivitiesFactoryFuncSigs = map[string]string{
 }
 
 // ActivitiesFactoryBin is the compiled bytecode used for deploying new contracts.
-var ActivitiesFactoryBin = "0x608060405234801561001057600080fd5b506000600255610638806100256000396000f3fe608060405234801561001057600080fd5b50600436106100575760003560e01c80633f3108f71461005c57806367e0badb1461007a5780638eaa6ac01461008f57806391a95fbc146100af578063bc599341146100c4575b600080fd5b6100646100d7565b604051610071919061036e565b60405180910390f35b6100826100e2565b6040516100719190610365565b6100a261009d3660046102c6565b6100e8565b6040516100719190610351565b6100c26100bd3660046102de565b610146565b005b6100826100d23660046102c6565b6101ea565b63246a57ef60e21b90565b60025490565b600081811a60f81b6001600160f81b03191661010357600080fd5b6000828152602081905260409020600101546001600160a01b031661012757600080fd5b506000908152602081905260409020600101546001600160a01b031690565b8160001a60f81b6001600160f81b03191661016057600080fd5b60008160405161016f906102b9565b6101799190610383565b604051809103906000f080158015610195573d6000803e3d6000fd5b5090506101aa6000848363ffffffff61022216565b507f8353a4d574992e9eb676a31cd326ce2f9f6c4829c3b84ae33ee9febbb2962e7b6002846040516101dd9291906103a4565b60405180910390a1505050565b60025460009082106101fb57600080fd5b600180548390811061020957fe5b9060005260206000209060020201600001549050919050565b60008281526020849052604081208054600190910180546001600160a01b0319166001600160a01b03851617905580156102605760019150506102b2565b506001808501805491820180825560008681526020889052604090208190558591908390811061028c57fe5b600091825260208220600291820201929092559086018054600101905591506102b29050565b9392505050565b61024b806103b883390190565b6000602082840312156102d7578081fd5b5035919050565b60008082840360808112156102f1578182fd5b833592506060601f1982011215610306578182fd5b506040516060810181811067ffffffffffffffff82111715610326578283fd5b8060405250602084013581526040840135602082015260608401356040820152809150509250929050565b6001600160a01b0391909116815260200190565b90815260200190565b6001600160e01b031991909116815260200190565b81518152602080830151908201526040918201519181019190915260600190565b60ff92909216825260208201526040019056fe608060405234801561001057600080fd5b5060405161024b38038061024b83398101604081905261002f916100a3565b805160001a60f81b6001600160f81b031916158015906100625750602081015160001a60f81b6001600160f81b03191615155b80156100815750604081015160001a60f81b6001600160f81b03191615155b61008a57600080fd5b80516000556020810151600155604001516002556100f9565b6000606082840312156100b4578081fd5b604051606081016001600160401b03811182821017156100d2578283fd5b80604052508251815260208301516020820152604083015160408201528091505092915050565b610143806101086000396000f3fe608060405234801561001057600080fd5b50600436106100365760003560e01c80636d4ce63c1461003b578063993a04b71461005a575b600080fd5b61004361006f565b6040516100519291906100e1565b60405180910390f35b6100626100a1565b60405161005191906100cc565b60006100796100ac565b5050604080516060810182526000548152600154602082015260028054928201929092529091565b631b53398f60e21b90565b604080516060810182526000808252602082018190529181019190915290565b6001600160e01b031991909116815260200190565b60ff9290921682528051602080840191909152810151604080840191909152015160608201526080019056fea2646970667358221220a6f388934245b736da9827cd800b3bc1aeae803bacdeea98333ccea623463bbc64736f6c63430006060033a2646970667358221220fd5d9360b76941fdcababc42df86f26d6c450798768f4eb20d3ec8d2462cfba464736f6c63430006060033"
+var ActivitiesFactoryBin = "0x608060405234801561001057600080fd5b506000600255610a25806100256000396000f3fe608060405234801561001057600080fd5b506004361061007d5760003560e01c806367e0badb1161005b57806367e0badb146100d55780638eaa6ac0146100ea57806391a95fbc146100fd578063bc599341146101105761007d565b806317fc2761146100825780633d39ca7d146100ab5780633f3108f7146100c0575b600080fd5b610095610090366004610488565b610123565b6040516100a2919061054d565b60405180910390f35b6100be6100b93660046104a0565b610181565b005b6100c861024b565b6040516100a2919061056a565b6100dd610256565b6040516100a29190610561565b6100956100f8366004610488565b61025c565b6100be61010b3660046104da565b6102ba565b6100dd61011e366004610488565b61039f565b600081811a60f81b6001600160f81b03191661013e57600080fd5b6000828152600360205260409020600101546001600160a01b031661016257600080fd5b506000908152600360205260409020600101546001600160a01b031690565b8160001a60f81b6001600160f81b03191661019b57600080fd5b6001600160a01b0381166101ae57600080fd5b6000828152600360205260409020600101546001600160a01b03166101d257600080fd5b60008281526003602052604090819020600101549051630a3b0a4f60e01b81526001600160a01b03909116908190630a3b0a4f9061021490859060040161054d565b600060405180830381600087803b15801561022e57600080fd5b505af1158015610242573d6000803e3d6000fd5b50505050505050565b63246a57ef60e21b90565b60025490565b600081811a60f81b6001600160f81b03191661027757600080fd5b6000828152602081905260409020600101546001600160a01b031661029b57600080fd5b506000908152602081905260409020600101546001600160a01b031690565b8160001a60f81b6001600160f81b0319166102d457600080fd5b6000816040516102e39061046e565b6102ed919061057f565b604051809103906000f080158015610309573d6000803e3d6000fd5b50905061031e6000848363ffffffff6103d716565b50600060405161032d9061047b565b604051809103906000f080158015610349573d6000803e3d6000fd5b50905061035e6003858363ffffffff6103d716565b507f8353a4d574992e9eb676a31cd326ce2f9f6c4829c3b84ae33ee9febbb2962e7b6002856040516103919291906105a0565b60405180910390a150505050565b60025460009082106103b057600080fd5b60018054839081106103be57fe5b9060005260206000209060020201600001549050919050565b60008281526020849052604081208054600190910180546001600160a01b0319166001600160a01b0385161790558015610415576001915050610467565b506001808501805491820180825560008681526020889052604090208190558591908390811061044157fe5b600091825260208220600291820201929092559086018054600101905591506104679050565b9392505050565b61024b806105b483390190565b6101f1806107ff83390190565b600060208284031215610499578081fd5b5035919050565b600080604083850312156104b2578081fd5b8235915060208301356001600160a01b03811681146104cf578182fd5b809150509250929050565b60008082840360808112156104ed578283fd5b833592506060601f1982011215610502578182fd5b506040516060810181811067ffffffffffffffff82111715610522578283fd5b8060405250602084013581526040840135602082015260608401356040820152809150509250929050565b6001600160a01b0391909116815260200190565b90815260200190565b6001600160e01b031991909116815260200190565b81518152602080830151908201526040918201519181019190915260600190565b60ff92909216825260208201526040019056fe608060405234801561001057600080fd5b5060405161024b38038061024b83398101604081905261002f916100a3565b805160001a60f81b6001600160f81b031916158015906100625750602081015160001a60f81b6001600160f81b03191615155b80156100815750604081015160001a60f81b6001600160f81b03191615155b61008a57600080fd5b80516000556020810151600155604001516002556100f9565b6000606082840312156100b4578081fd5b604051606081016001600160401b03811182821017156100d2578283fd5b80604052508251815260208301516020820152604083015160408201528091505092915050565b610143806101086000396000f3fe608060405234801561001057600080fd5b50600436106100365760003560e01c80636d4ce63c1461003b578063993a04b71461005a575b600080fd5b61004361006f565b6040516100519291906100e1565b60405180910390f35b6100626100a1565b60405161005191906100cc565b60006100796100ac565b5050604080516060810182526000548152600154602082015260028054928201929092529091565b631b53398f60e21b90565b604080516060810182526000808252602082018190529181019190915290565b6001600160e01b031991909116815260200190565b60ff9290921682528051602080840191909152810151604080840191909152015160608201526080019056fea26469706673582212205fdc640d76943283e7d618f7e4afaf99f8b482d25ce93778e17abe4ec7a4fd6664736f6c63430006060033608060405234801561001057600080fd5b506101d1806100206000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c80630a3b0a4f146100465780634f0f4aa91461005b57806367e0badb14610084575b600080fd5b610059610054366004610138565b610099565b005b61006e610069366004610166565b6100fb565b60405161007b919061017e565b60405180910390f35b61008c610132565b60405161007b9190610192565b6001600160a01b0381166100ac57600080fd5b600080546001810182559080527f290decd9548b62a8d60345a988386fc84ba6bc95484008f6362f93160ef3e5630180546001600160a01b0319166001600160a01b0392909216919091179055565b60008054821061010a57600080fd5b6000828154811061011757fe5b6000918252602090912001546001600160a01b031692915050565b60005490565b600060208284031215610149578081fd5b81356001600160a01b038116811461015f578182fd5b9392505050565b600060208284031215610177578081fd5b5035919050565b6001600160a01b0391909116815260200190565b9081526020019056fea2646970667358221220edeebf7e8efa9b89e7696dbd120e34658d0864a83afa8b437f0c4a00c42c3b1d64736f6c63430006060033a2646970667358221220fe25042acddddddf5353543ec4141cbd55a7113ede3b342ac8faff5c2797362c64736f6c63430006060033"
 
 // DeployActivitiesFactory deploys a new Ethereum contract, binding an instance of ActivitiesFactory to it.
 func DeployActivitiesFactory(auth *bind.TransactOpts, backend bind.ContractBackend) (common.Address, *types.Transaction, *ActivitiesFactory, error) {
@@ -231,6 +233,32 @@ func (_ActivitiesFactory *ActivitiesFactoryCallerSession) Get(_ref [32]byte) (co
 	return _ActivitiesFactory.Contract.Get(&_ActivitiesFactory.CallOpts, _ref)
 }
 
+// GetFactory is a free data retrieval call binding the contract method 0x17fc2761.
+//
+// Solidity: function getFactory(bytes32 _ref) view returns(address)
+func (_ActivitiesFactory *ActivitiesFactoryCaller) GetFactory(opts *bind.CallOpts, _ref [32]byte) (common.Address, error) {
+	var (
+		ret0 = new(common.Address)
+	)
+	out := ret0
+	err := _ActivitiesFactory.contract.Call(opts, out, "getFactory", _ref)
+	return *ret0, err
+}
+
+// GetFactory is a free data retrieval call binding the contract method 0x17fc2761.
+//
+// Solidity: function getFactory(bytes32 _ref) view returns(address)
+func (_ActivitiesFactory *ActivitiesFactorySession) GetFactory(_ref [32]byte) (common.Address, error) {
+	return _ActivitiesFactory.Contract.GetFactory(&_ActivitiesFactory.CallOpts, _ref)
+}
+
+// GetFactory is a free data retrieval call binding the contract method 0x17fc2761.
+//
+// Solidity: function getFactory(bytes32 _ref) view returns(address)
+func (_ActivitiesFactory *ActivitiesFactoryCallerSession) GetFactory(_ref [32]byte) (common.Address, error) {
+	return _ActivitiesFactory.Contract.GetFactory(&_ActivitiesFactory.CallOpts, _ref)
+}
+
 // GetNum is a free data retrieval call binding the contract method 0x67e0badb.
 //
 // Solidity: function getNum() view returns(uint256)
@@ -309,6 +337,27 @@ func (_ActivitiesFactory *ActivitiesFactoryCallerSession) Setter() ([4]byte, err
 	return _ActivitiesFactory.Contract.Setter(&_ActivitiesFactory.CallOpts)
 }
 
+// AddChild is a paid mutator transaction binding the contract method 0x3d39ca7d.
+//
+// Solidity: function addChild(bytes32 _ref, address _child) returns()
+func (_ActivitiesFactory *ActivitiesFactoryTransactor) AddChild(opts *bind.TransactOpts, _ref [32]byte, _child common.Address) (*types.Transaction, error) {
+	return _ActivitiesFactory.contract.Transact(opts, "addChild", _ref, _child)
+}
+
+// AddChild is a paid mutator transaction binding the contract method 0x3d39ca7d.
+//
+// Solidity: function addChild(bytes32 _ref, address _child) returns()
+func (_ActivitiesFactory *ActivitiesFactorySession) AddChild(_ref [32]byte, _child common.Address) (*types.Transaction, error) {
+	return _ActivitiesFactory.Contract.AddChild(&_ActivitiesFactory.TransactOpts, _ref, _child)
+}
+
+// AddChild is a paid mutator transaction binding the contract method 0x3d39ca7d.
+//
+// Solidity: function addChild(bytes32 _ref, address _child) returns()
+func (_ActivitiesFactory *ActivitiesFactoryTransactorSession) AddChild(_ref [32]byte, _child common.Address) (*types.Transaction, error) {
+	return _ActivitiesFactory.Contract.AddChild(&_ActivitiesFactory.TransactOpts, _ref, _child)
+}
+
 // Set is a paid mutator transaction binding the contract method 0x91a95fbc.
 //
 // Solidity: function set(bytes32 _ref, ActivitiesData _activities) returns()
@@ -328,6 +377,140 @@ func (_ActivitiesFactory *ActivitiesFactorySession) Set(_ref [32]byte, _activiti
 // Solidity: function set(bytes32 _ref, ActivitiesData _activities) returns()
 func (_ActivitiesFactory *ActivitiesFactoryTransactorSession) Set(_ref [32]byte, _activities ActivitiesData) (*types.Transaction, error) {
 	return _ActivitiesFactory.Contract.Set(&_ActivitiesFactory.TransactOpts, _ref, _activities)
+}
+
+// ActivitiesFactoryAddChildIterator is returned from FilterAddChild and is used to iterate over the raw logs and unpacked data for AddChild events raised by the ActivitiesFactory contract.
+type ActivitiesFactoryAddChildIterator struct {
+	Event *ActivitiesFactoryAddChild // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *ActivitiesFactoryAddChildIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(ActivitiesFactoryAddChild)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(ActivitiesFactoryAddChild)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *ActivitiesFactoryAddChildIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *ActivitiesFactoryAddChildIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// ActivitiesFactoryAddChild represents a AddChild event raised by the ActivitiesFactory contract.
+type ActivitiesFactoryAddChild struct {
+	ElementType uint8
+	Ref         [32]byte
+	Raw         types.Log // Blockchain specific contextual infos
+}
+
+// FilterAddChild is a free log retrieval operation binding the contract event 0x10c6c03e0c7984056ff5fa555e803726e1219a70ddbbf604085b45c0eb34509d.
+//
+// Solidity: event AddChild(uint8 _elementType, bytes32 _ref)
+func (_ActivitiesFactory *ActivitiesFactoryFilterer) FilterAddChild(opts *bind.FilterOpts) (*ActivitiesFactoryAddChildIterator, error) {
+
+	logs, sub, err := _ActivitiesFactory.contract.FilterLogs(opts, "AddChild")
+	if err != nil {
+		return nil, err
+	}
+	return &ActivitiesFactoryAddChildIterator{contract: _ActivitiesFactory.contract, event: "AddChild", logs: logs, sub: sub}, nil
+}
+
+// WatchAddChild is a free log subscription operation binding the contract event 0x10c6c03e0c7984056ff5fa555e803726e1219a70ddbbf604085b45c0eb34509d.
+//
+// Solidity: event AddChild(uint8 _elementType, bytes32 _ref)
+func (_ActivitiesFactory *ActivitiesFactoryFilterer) WatchAddChild(opts *bind.WatchOpts, sink chan<- *ActivitiesFactoryAddChild) (event.Subscription, error) {
+
+	logs, sub, err := _ActivitiesFactory.contract.WatchLogs(opts, "AddChild")
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(ActivitiesFactoryAddChild)
+				if err := _ActivitiesFactory.contract.UnpackLog(event, "AddChild", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseAddChild is a log parse operation binding the contract event 0x10c6c03e0c7984056ff5fa555e803726e1219a70ddbbf604085b45c0eb34509d.
+//
+// Solidity: event AddChild(uint8 _elementType, bytes32 _ref)
+func (_ActivitiesFactory *ActivitiesFactoryFilterer) ParseAddChild(log types.Log) (*ActivitiesFactoryAddChild, error) {
+	event := new(ActivitiesFactoryAddChild)
+	if err := _ActivitiesFactory.contract.UnpackLog(event, "AddChild", log); err != nil {
+		return nil, err
+	}
+	return event, nil
 }
 
 // ActivitiesFactorySetIterator is returned from FilterSet and is used to iterate over the raw logs and unpacked data for Set events raised by the ActivitiesFactory contract.
@@ -474,7 +657,7 @@ var ActivitiesNodeFuncSigs = map[string]string{
 }
 
 // ActivitiesNodeBin is the compiled bytecode used for deploying new contracts.
-var ActivitiesNodeBin = "0x608060405234801561001057600080fd5b5060405161024b38038061024b83398101604081905261002f916100a3565b805160001a60f81b6001600160f81b031916158015906100625750602081015160001a60f81b6001600160f81b03191615155b80156100815750604081015160001a60f81b6001600160f81b03191615155b61008a57600080fd5b80516000556020810151600155604001516002556100f9565b6000606082840312156100b4578081fd5b604051606081016001600160401b03811182821017156100d2578283fd5b80604052508251815260208301516020820152604083015160408201528091505092915050565b610143806101086000396000f3fe608060405234801561001057600080fd5b50600436106100365760003560e01c80636d4ce63c1461003b578063993a04b71461005a575b600080fd5b61004361006f565b6040516100519291906100e1565b60405180910390f35b6100626100a1565b60405161005191906100cc565b60006100796100ac565b5050604080516060810182526000548152600154602082015260028054928201929092529091565b631b53398f60e21b90565b604080516060810182526000808252602082018190529181019190915290565b6001600160e01b031991909116815260200190565b60ff9290921682528051602080840191909152810151604080840191909152015160608201526080019056fea2646970667358221220a6f388934245b736da9827cd800b3bc1aeae803bacdeea98333ccea623463bbc64736f6c63430006060033"
+var ActivitiesNodeBin = "0x608060405234801561001057600080fd5b5060405161024b38038061024b83398101604081905261002f916100a3565b805160001a60f81b6001600160f81b031916158015906100625750602081015160001a60f81b6001600160f81b03191615155b80156100815750604081015160001a60f81b6001600160f81b03191615155b61008a57600080fd5b80516000556020810151600155604001516002556100f9565b6000606082840312156100b4578081fd5b604051606081016001600160401b03811182821017156100d2578283fd5b80604052508251815260208301516020820152604083015160408201528091505092915050565b610143806101086000396000f3fe608060405234801561001057600080fd5b50600436106100365760003560e01c80636d4ce63c1461003b578063993a04b71461005a575b600080fd5b61004361006f565b6040516100519291906100e1565b60405180910390f35b6100626100a1565b60405161005191906100cc565b60006100796100ac565b5050604080516060810182526000548152600154602082015260028054928201929092529091565b631b53398f60e21b90565b604080516060810182526000808252602082018190529181019190915290565b6001600160e01b031991909116815260200190565b60ff9290921682528051602080840191909152810151604080840191909152015160608201526080019056fea26469706673582212205fdc640d76943283e7d618f7e4afaf99f8b482d25ce93778e17abe4ec7a4fd6664736f6c63430006060033"
 
 // DeployActivitiesNode deploys a new Ethereum contract, binding an instance of ActivitiesNode to it.
 func DeployActivitiesNode(auth *bind.TransactOpts, backend bind.ContractBackend, _activities ActivitiesData) (common.Address, *types.Transaction, *ActivitiesNode, error) {
@@ -686,6 +869,248 @@ func (_ActivitiesNode *ActivitiesNodeSession) Getter() ([4]byte, error) {
 // Solidity: function getter() view returns(bytes4)
 func (_ActivitiesNode *ActivitiesNodeCallerSession) Getter() ([4]byte, error) {
 	return _ActivitiesNode.Contract.Getter(&_ActivitiesNode.CallOpts)
+}
+
+// FactoryABI is the input ABI used to generate the binding from.
+const FactoryABI = "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_node\",\"type\":\"address\"}],\"name\":\"add\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_index\",\"type\":\"uint256\"}],\"name\":\"getNode\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getNum\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]"
+
+// FactoryFuncSigs maps the 4-byte function signature to its string representation.
+var FactoryFuncSigs = map[string]string{
+	"0a3b0a4f": "add(address)",
+	"4f0f4aa9": "getNode(uint256)",
+	"67e0badb": "getNum()",
+}
+
+// FactoryBin is the compiled bytecode used for deploying new contracts.
+var FactoryBin = "0x608060405234801561001057600080fd5b506101d1806100206000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c80630a3b0a4f146100465780634f0f4aa91461005b57806367e0badb14610084575b600080fd5b610059610054366004610138565b610099565b005b61006e610069366004610166565b6100fb565b60405161007b919061017e565b60405180910390f35b61008c610132565b60405161007b9190610192565b6001600160a01b0381166100ac57600080fd5b600080546001810182559080527f290decd9548b62a8d60345a988386fc84ba6bc95484008f6362f93160ef3e5630180546001600160a01b0319166001600160a01b0392909216919091179055565b60008054821061010a57600080fd5b6000828154811061011757fe5b6000918252602090912001546001600160a01b031692915050565b60005490565b600060208284031215610149578081fd5b81356001600160a01b038116811461015f578182fd5b9392505050565b600060208284031215610177578081fd5b5035919050565b6001600160a01b0391909116815260200190565b9081526020019056fea2646970667358221220edeebf7e8efa9b89e7696dbd120e34658d0864a83afa8b437f0c4a00c42c3b1d64736f6c63430006060033"
+
+// DeployFactory deploys a new Ethereum contract, binding an instance of Factory to it.
+func DeployFactory(auth *bind.TransactOpts, backend bind.ContractBackend) (common.Address, *types.Transaction, *Factory, error) {
+	parsed, err := abi.JSON(strings.NewReader(FactoryABI))
+	if err != nil {
+		return common.Address{}, nil, nil, err
+	}
+
+	address, tx, contract, err := bind.DeployContract(auth, parsed, common.FromHex(FactoryBin), backend)
+	if err != nil {
+		return common.Address{}, nil, nil, err
+	}
+	return address, tx, &Factory{FactoryCaller: FactoryCaller{contract: contract}, FactoryTransactor: FactoryTransactor{contract: contract}, FactoryFilterer: FactoryFilterer{contract: contract}}, nil
+}
+
+// Factory is an auto generated Go binding around an Ethereum contract.
+type Factory struct {
+	FactoryCaller     // Read-only binding to the contract
+	FactoryTransactor // Write-only binding to the contract
+	FactoryFilterer   // Log filterer for contract events
+}
+
+// FactoryCaller is an auto generated read-only Go binding around an Ethereum contract.
+type FactoryCaller struct {
+	contract *bind.BoundContract // Generic contract wrapper for the low level calls
+}
+
+// FactoryTransactor is an auto generated write-only Go binding around an Ethereum contract.
+type FactoryTransactor struct {
+	contract *bind.BoundContract // Generic contract wrapper for the low level calls
+}
+
+// FactoryFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
+type FactoryFilterer struct {
+	contract *bind.BoundContract // Generic contract wrapper for the low level calls
+}
+
+// FactorySession is an auto generated Go binding around an Ethereum contract,
+// with pre-set call and transact options.
+type FactorySession struct {
+	Contract     *Factory          // Generic contract binding to set the session for
+	CallOpts     bind.CallOpts     // Call options to use throughout this session
+	TransactOpts bind.TransactOpts // Transaction auth options to use throughout this session
+}
+
+// FactoryCallerSession is an auto generated read-only Go binding around an Ethereum contract,
+// with pre-set call options.
+type FactoryCallerSession struct {
+	Contract *FactoryCaller // Generic contract caller binding to set the session for
+	CallOpts bind.CallOpts  // Call options to use throughout this session
+}
+
+// FactoryTransactorSession is an auto generated write-only Go binding around an Ethereum contract,
+// with pre-set transact options.
+type FactoryTransactorSession struct {
+	Contract     *FactoryTransactor // Generic contract transactor binding to set the session for
+	TransactOpts bind.TransactOpts  // Transaction auth options to use throughout this session
+}
+
+// FactoryRaw is an auto generated low-level Go binding around an Ethereum contract.
+type FactoryRaw struct {
+	Contract *Factory // Generic contract binding to access the raw methods on
+}
+
+// FactoryCallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
+type FactoryCallerRaw struct {
+	Contract *FactoryCaller // Generic read-only contract binding to access the raw methods on
+}
+
+// FactoryTransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
+type FactoryTransactorRaw struct {
+	Contract *FactoryTransactor // Generic write-only contract binding to access the raw methods on
+}
+
+// NewFactory creates a new instance of Factory, bound to a specific deployed contract.
+func NewFactory(address common.Address, backend bind.ContractBackend) (*Factory, error) {
+	contract, err := bindFactory(address, backend, backend, backend)
+	if err != nil {
+		return nil, err
+	}
+	return &Factory{FactoryCaller: FactoryCaller{contract: contract}, FactoryTransactor: FactoryTransactor{contract: contract}, FactoryFilterer: FactoryFilterer{contract: contract}}, nil
+}
+
+// NewFactoryCaller creates a new read-only instance of Factory, bound to a specific deployed contract.
+func NewFactoryCaller(address common.Address, caller bind.ContractCaller) (*FactoryCaller, error) {
+	contract, err := bindFactory(address, caller, nil, nil)
+	if err != nil {
+		return nil, err
+	}
+	return &FactoryCaller{contract: contract}, nil
+}
+
+// NewFactoryTransactor creates a new write-only instance of Factory, bound to a specific deployed contract.
+func NewFactoryTransactor(address common.Address, transactor bind.ContractTransactor) (*FactoryTransactor, error) {
+	contract, err := bindFactory(address, nil, transactor, nil)
+	if err != nil {
+		return nil, err
+	}
+	return &FactoryTransactor{contract: contract}, nil
+}
+
+// NewFactoryFilterer creates a new log filterer instance of Factory, bound to a specific deployed contract.
+func NewFactoryFilterer(address common.Address, filterer bind.ContractFilterer) (*FactoryFilterer, error) {
+	contract, err := bindFactory(address, nil, nil, filterer)
+	if err != nil {
+		return nil, err
+	}
+	return &FactoryFilterer{contract: contract}, nil
+}
+
+// bindFactory binds a generic wrapper to an already deployed contract.
+func bindFactory(address common.Address, caller bind.ContractCaller, transactor bind.ContractTransactor, filterer bind.ContractFilterer) (*bind.BoundContract, error) {
+	parsed, err := abi.JSON(strings.NewReader(FactoryABI))
+	if err != nil {
+		return nil, err
+	}
+	return bind.NewBoundContract(address, parsed, caller, transactor, filterer), nil
+}
+
+// Call invokes the (constant) contract method with params as input values and
+// sets the output to result. The result type might be a single field for simple
+// returns, a slice of interfaces for anonymous returns and a struct for named
+// returns.
+func (_Factory *FactoryRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+	return _Factory.Contract.FactoryCaller.contract.Call(opts, result, method, params...)
+}
+
+// Transfer initiates a plain transaction to move funds to the contract, calling
+// its default method if one is available.
+func (_Factory *FactoryRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _Factory.Contract.FactoryTransactor.contract.Transfer(opts)
+}
+
+// Transact invokes the (paid) contract method with params as input values.
+func (_Factory *FactoryRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _Factory.Contract.FactoryTransactor.contract.Transact(opts, method, params...)
+}
+
+// Call invokes the (constant) contract method with params as input values and
+// sets the output to result. The result type might be a single field for simple
+// returns, a slice of interfaces for anonymous returns and a struct for named
+// returns.
+func (_Factory *FactoryCallerRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+	return _Factory.Contract.contract.Call(opts, result, method, params...)
+}
+
+// Transfer initiates a plain transaction to move funds to the contract, calling
+// its default method if one is available.
+func (_Factory *FactoryTransactorRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _Factory.Contract.contract.Transfer(opts)
+}
+
+// Transact invokes the (paid) contract method with params as input values.
+func (_Factory *FactoryTransactorRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _Factory.Contract.contract.Transact(opts, method, params...)
+}
+
+// GetNode is a free data retrieval call binding the contract method 0x4f0f4aa9.
+//
+// Solidity: function getNode(uint256 _index) view returns(address)
+func (_Factory *FactoryCaller) GetNode(opts *bind.CallOpts, _index *big.Int) (common.Address, error) {
+	var (
+		ret0 = new(common.Address)
+	)
+	out := ret0
+	err := _Factory.contract.Call(opts, out, "getNode", _index)
+	return *ret0, err
+}
+
+// GetNode is a free data retrieval call binding the contract method 0x4f0f4aa9.
+//
+// Solidity: function getNode(uint256 _index) view returns(address)
+func (_Factory *FactorySession) GetNode(_index *big.Int) (common.Address, error) {
+	return _Factory.Contract.GetNode(&_Factory.CallOpts, _index)
+}
+
+// GetNode is a free data retrieval call binding the contract method 0x4f0f4aa9.
+//
+// Solidity: function getNode(uint256 _index) view returns(address)
+func (_Factory *FactoryCallerSession) GetNode(_index *big.Int) (common.Address, error) {
+	return _Factory.Contract.GetNode(&_Factory.CallOpts, _index)
+}
+
+// GetNum is a free data retrieval call binding the contract method 0x67e0badb.
+//
+// Solidity: function getNum() view returns(uint256)
+func (_Factory *FactoryCaller) GetNum(opts *bind.CallOpts) (*big.Int, error) {
+	var (
+		ret0 = new(*big.Int)
+	)
+	out := ret0
+	err := _Factory.contract.Call(opts, out, "getNum")
+	return *ret0, err
+}
+
+// GetNum is a free data retrieval call binding the contract method 0x67e0badb.
+//
+// Solidity: function getNum() view returns(uint256)
+func (_Factory *FactorySession) GetNum() (*big.Int, error) {
+	return _Factory.Contract.GetNum(&_Factory.CallOpts)
+}
+
+// GetNum is a free data retrieval call binding the contract method 0x67e0badb.
+//
+// Solidity: function getNum() view returns(uint256)
+func (_Factory *FactoryCallerSession) GetNum() (*big.Int, error) {
+	return _Factory.Contract.GetNum(&_Factory.CallOpts)
+}
+
+// Add is a paid mutator transaction binding the contract method 0x0a3b0a4f.
+//
+// Solidity: function add(address _node) returns()
+func (_Factory *FactoryTransactor) Add(opts *bind.TransactOpts, _node common.Address) (*types.Transaction, error) {
+	return _Factory.contract.Transact(opts, "add", _node)
+}
+
+// Add is a paid mutator transaction binding the contract method 0x0a3b0a4f.
+//
+// Solidity: function add(address _node) returns()
+func (_Factory *FactorySession) Add(_node common.Address) (*types.Transaction, error) {
+	return _Factory.Contract.Add(&_Factory.TransactOpts, _node)
+}
+
+// Add is a paid mutator transaction binding the contract method 0x0a3b0a4f.
+//
+// Solidity: function add(address _node) returns()
+func (_Factory *FactoryTransactorSession) Add(_node common.Address) (*types.Transaction, error) {
+	return _Factory.Contract.Add(&_Factory.TransactOpts, _node)
 }
 
 // IDataABI is the input ABI used to generate the binding from.
@@ -1079,6 +1504,231 @@ func (_IData *IDataFilterer) ParseSet(log types.Log) (*IDataSet, error) {
 	return event, nil
 }
 
+// IFactoryABI is the input ABI used to generate the binding from.
+const IFactoryABI = "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_node\",\"type\":\"address\"}],\"name\":\"add\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_index\",\"type\":\"uint256\"}],\"name\":\"getNode\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getNum\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]"
+
+// IFactoryFuncSigs maps the 4-byte function signature to its string representation.
+var IFactoryFuncSigs = map[string]string{
+	"0a3b0a4f": "add(address)",
+	"4f0f4aa9": "getNode(uint256)",
+	"67e0badb": "getNum()",
+}
+
+// IFactory is an auto generated Go binding around an Ethereum contract.
+type IFactory struct {
+	IFactoryCaller     // Read-only binding to the contract
+	IFactoryTransactor // Write-only binding to the contract
+	IFactoryFilterer   // Log filterer for contract events
+}
+
+// IFactoryCaller is an auto generated read-only Go binding around an Ethereum contract.
+type IFactoryCaller struct {
+	contract *bind.BoundContract // Generic contract wrapper for the low level calls
+}
+
+// IFactoryTransactor is an auto generated write-only Go binding around an Ethereum contract.
+type IFactoryTransactor struct {
+	contract *bind.BoundContract // Generic contract wrapper for the low level calls
+}
+
+// IFactoryFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
+type IFactoryFilterer struct {
+	contract *bind.BoundContract // Generic contract wrapper for the low level calls
+}
+
+// IFactorySession is an auto generated Go binding around an Ethereum contract,
+// with pre-set call and transact options.
+type IFactorySession struct {
+	Contract     *IFactory         // Generic contract binding to set the session for
+	CallOpts     bind.CallOpts     // Call options to use throughout this session
+	TransactOpts bind.TransactOpts // Transaction auth options to use throughout this session
+}
+
+// IFactoryCallerSession is an auto generated read-only Go binding around an Ethereum contract,
+// with pre-set call options.
+type IFactoryCallerSession struct {
+	Contract *IFactoryCaller // Generic contract caller binding to set the session for
+	CallOpts bind.CallOpts   // Call options to use throughout this session
+}
+
+// IFactoryTransactorSession is an auto generated write-only Go binding around an Ethereum contract,
+// with pre-set transact options.
+type IFactoryTransactorSession struct {
+	Contract     *IFactoryTransactor // Generic contract transactor binding to set the session for
+	TransactOpts bind.TransactOpts   // Transaction auth options to use throughout this session
+}
+
+// IFactoryRaw is an auto generated low-level Go binding around an Ethereum contract.
+type IFactoryRaw struct {
+	Contract *IFactory // Generic contract binding to access the raw methods on
+}
+
+// IFactoryCallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
+type IFactoryCallerRaw struct {
+	Contract *IFactoryCaller // Generic read-only contract binding to access the raw methods on
+}
+
+// IFactoryTransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
+type IFactoryTransactorRaw struct {
+	Contract *IFactoryTransactor // Generic write-only contract binding to access the raw methods on
+}
+
+// NewIFactory creates a new instance of IFactory, bound to a specific deployed contract.
+func NewIFactory(address common.Address, backend bind.ContractBackend) (*IFactory, error) {
+	contract, err := bindIFactory(address, backend, backend, backend)
+	if err != nil {
+		return nil, err
+	}
+	return &IFactory{IFactoryCaller: IFactoryCaller{contract: contract}, IFactoryTransactor: IFactoryTransactor{contract: contract}, IFactoryFilterer: IFactoryFilterer{contract: contract}}, nil
+}
+
+// NewIFactoryCaller creates a new read-only instance of IFactory, bound to a specific deployed contract.
+func NewIFactoryCaller(address common.Address, caller bind.ContractCaller) (*IFactoryCaller, error) {
+	contract, err := bindIFactory(address, caller, nil, nil)
+	if err != nil {
+		return nil, err
+	}
+	return &IFactoryCaller{contract: contract}, nil
+}
+
+// NewIFactoryTransactor creates a new write-only instance of IFactory, bound to a specific deployed contract.
+func NewIFactoryTransactor(address common.Address, transactor bind.ContractTransactor) (*IFactoryTransactor, error) {
+	contract, err := bindIFactory(address, nil, transactor, nil)
+	if err != nil {
+		return nil, err
+	}
+	return &IFactoryTransactor{contract: contract}, nil
+}
+
+// NewIFactoryFilterer creates a new log filterer instance of IFactory, bound to a specific deployed contract.
+func NewIFactoryFilterer(address common.Address, filterer bind.ContractFilterer) (*IFactoryFilterer, error) {
+	contract, err := bindIFactory(address, nil, nil, filterer)
+	if err != nil {
+		return nil, err
+	}
+	return &IFactoryFilterer{contract: contract}, nil
+}
+
+// bindIFactory binds a generic wrapper to an already deployed contract.
+func bindIFactory(address common.Address, caller bind.ContractCaller, transactor bind.ContractTransactor, filterer bind.ContractFilterer) (*bind.BoundContract, error) {
+	parsed, err := abi.JSON(strings.NewReader(IFactoryABI))
+	if err != nil {
+		return nil, err
+	}
+	return bind.NewBoundContract(address, parsed, caller, transactor, filterer), nil
+}
+
+// Call invokes the (constant) contract method with params as input values and
+// sets the output to result. The result type might be a single field for simple
+// returns, a slice of interfaces for anonymous returns and a struct for named
+// returns.
+func (_IFactory *IFactoryRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+	return _IFactory.Contract.IFactoryCaller.contract.Call(opts, result, method, params...)
+}
+
+// Transfer initiates a plain transaction to move funds to the contract, calling
+// its default method if one is available.
+func (_IFactory *IFactoryRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _IFactory.Contract.IFactoryTransactor.contract.Transfer(opts)
+}
+
+// Transact invokes the (paid) contract method with params as input values.
+func (_IFactory *IFactoryRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _IFactory.Contract.IFactoryTransactor.contract.Transact(opts, method, params...)
+}
+
+// Call invokes the (constant) contract method with params as input values and
+// sets the output to result. The result type might be a single field for simple
+// returns, a slice of interfaces for anonymous returns and a struct for named
+// returns.
+func (_IFactory *IFactoryCallerRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+	return _IFactory.Contract.contract.Call(opts, result, method, params...)
+}
+
+// Transfer initiates a plain transaction to move funds to the contract, calling
+// its default method if one is available.
+func (_IFactory *IFactoryTransactorRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _IFactory.Contract.contract.Transfer(opts)
+}
+
+// Transact invokes the (paid) contract method with params as input values.
+func (_IFactory *IFactoryTransactorRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _IFactory.Contract.contract.Transact(opts, method, params...)
+}
+
+// GetNode is a free data retrieval call binding the contract method 0x4f0f4aa9.
+//
+// Solidity: function getNode(uint256 _index) view returns(address)
+func (_IFactory *IFactoryCaller) GetNode(opts *bind.CallOpts, _index *big.Int) (common.Address, error) {
+	var (
+		ret0 = new(common.Address)
+	)
+	out := ret0
+	err := _IFactory.contract.Call(opts, out, "getNode", _index)
+	return *ret0, err
+}
+
+// GetNode is a free data retrieval call binding the contract method 0x4f0f4aa9.
+//
+// Solidity: function getNode(uint256 _index) view returns(address)
+func (_IFactory *IFactorySession) GetNode(_index *big.Int) (common.Address, error) {
+	return _IFactory.Contract.GetNode(&_IFactory.CallOpts, _index)
+}
+
+// GetNode is a free data retrieval call binding the contract method 0x4f0f4aa9.
+//
+// Solidity: function getNode(uint256 _index) view returns(address)
+func (_IFactory *IFactoryCallerSession) GetNode(_index *big.Int) (common.Address, error) {
+	return _IFactory.Contract.GetNode(&_IFactory.CallOpts, _index)
+}
+
+// GetNum is a free data retrieval call binding the contract method 0x67e0badb.
+//
+// Solidity: function getNum() view returns(uint256)
+func (_IFactory *IFactoryCaller) GetNum(opts *bind.CallOpts) (*big.Int, error) {
+	var (
+		ret0 = new(*big.Int)
+	)
+	out := ret0
+	err := _IFactory.contract.Call(opts, out, "getNum")
+	return *ret0, err
+}
+
+// GetNum is a free data retrieval call binding the contract method 0x67e0badb.
+//
+// Solidity: function getNum() view returns(uint256)
+func (_IFactory *IFactorySession) GetNum() (*big.Int, error) {
+	return _IFactory.Contract.GetNum(&_IFactory.CallOpts)
+}
+
+// GetNum is a free data retrieval call binding the contract method 0x67e0badb.
+//
+// Solidity: function getNum() view returns(uint256)
+func (_IFactory *IFactoryCallerSession) GetNum() (*big.Int, error) {
+	return _IFactory.Contract.GetNum(&_IFactory.CallOpts)
+}
+
+// Add is a paid mutator transaction binding the contract method 0x0a3b0a4f.
+//
+// Solidity: function add(address _node) returns()
+func (_IFactory *IFactoryTransactor) Add(opts *bind.TransactOpts, _node common.Address) (*types.Transaction, error) {
+	return _IFactory.contract.Transact(opts, "add", _node)
+}
+
+// Add is a paid mutator transaction binding the contract method 0x0a3b0a4f.
+//
+// Solidity: function add(address _node) returns()
+func (_IFactory *IFactorySession) Add(_node common.Address) (*types.Transaction, error) {
+	return _IFactory.Contract.Add(&_IFactory.TransactOpts, _node)
+}
+
+// Add is a paid mutator transaction binding the contract method 0x0a3b0a4f.
+//
+// Solidity: function add(address _node) returns()
+func (_IFactory *IFactoryTransactorSession) Add(_node common.Address) (*types.Transaction, error) {
+	return _IFactory.Contract.Add(&_IFactory.TransactOpts, _node)
+}
+
 // INodeABI is the input ABI used to generate the binding from.
 const INodeABI = "[{\"inputs\":[],\"name\":\"getter\",\"outputs\":[{\"internalType\":\"bytes4\",\"name\":\"\",\"type\":\"bytes4\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]"
 
@@ -1255,11 +1905,343 @@ func (_INode *INodeCallerSession) Getter() ([4]byte, error) {
 	return _INode.Contract.Getter(&_INode.CallOpts)
 }
 
+// ITreeABI is the input ABI used to generate the binding from.
+const ITreeABI = "[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"_elementType\",\"type\":\"uint8\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"_ref\",\"type\":\"bytes32\"}],\"name\":\"AddChild\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_ref\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"_child\",\"type\":\"address\"}],\"name\":\"addChild\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_ref\",\"type\":\"bytes32\"}],\"name\":\"getFactory\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]"
+
+// ITreeFuncSigs maps the 4-byte function signature to its string representation.
+var ITreeFuncSigs = map[string]string{
+	"3d39ca7d": "addChild(bytes32,address)",
+	"17fc2761": "getFactory(bytes32)",
+}
+
+// ITree is an auto generated Go binding around an Ethereum contract.
+type ITree struct {
+	ITreeCaller     // Read-only binding to the contract
+	ITreeTransactor // Write-only binding to the contract
+	ITreeFilterer   // Log filterer for contract events
+}
+
+// ITreeCaller is an auto generated read-only Go binding around an Ethereum contract.
+type ITreeCaller struct {
+	contract *bind.BoundContract // Generic contract wrapper for the low level calls
+}
+
+// ITreeTransactor is an auto generated write-only Go binding around an Ethereum contract.
+type ITreeTransactor struct {
+	contract *bind.BoundContract // Generic contract wrapper for the low level calls
+}
+
+// ITreeFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
+type ITreeFilterer struct {
+	contract *bind.BoundContract // Generic contract wrapper for the low level calls
+}
+
+// ITreeSession is an auto generated Go binding around an Ethereum contract,
+// with pre-set call and transact options.
+type ITreeSession struct {
+	Contract     *ITree            // Generic contract binding to set the session for
+	CallOpts     bind.CallOpts     // Call options to use throughout this session
+	TransactOpts bind.TransactOpts // Transaction auth options to use throughout this session
+}
+
+// ITreeCallerSession is an auto generated read-only Go binding around an Ethereum contract,
+// with pre-set call options.
+type ITreeCallerSession struct {
+	Contract *ITreeCaller  // Generic contract caller binding to set the session for
+	CallOpts bind.CallOpts // Call options to use throughout this session
+}
+
+// ITreeTransactorSession is an auto generated write-only Go binding around an Ethereum contract,
+// with pre-set transact options.
+type ITreeTransactorSession struct {
+	Contract     *ITreeTransactor  // Generic contract transactor binding to set the session for
+	TransactOpts bind.TransactOpts // Transaction auth options to use throughout this session
+}
+
+// ITreeRaw is an auto generated low-level Go binding around an Ethereum contract.
+type ITreeRaw struct {
+	Contract *ITree // Generic contract binding to access the raw methods on
+}
+
+// ITreeCallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
+type ITreeCallerRaw struct {
+	Contract *ITreeCaller // Generic read-only contract binding to access the raw methods on
+}
+
+// ITreeTransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
+type ITreeTransactorRaw struct {
+	Contract *ITreeTransactor // Generic write-only contract binding to access the raw methods on
+}
+
+// NewITree creates a new instance of ITree, bound to a specific deployed contract.
+func NewITree(address common.Address, backend bind.ContractBackend) (*ITree, error) {
+	contract, err := bindITree(address, backend, backend, backend)
+	if err != nil {
+		return nil, err
+	}
+	return &ITree{ITreeCaller: ITreeCaller{contract: contract}, ITreeTransactor: ITreeTransactor{contract: contract}, ITreeFilterer: ITreeFilterer{contract: contract}}, nil
+}
+
+// NewITreeCaller creates a new read-only instance of ITree, bound to a specific deployed contract.
+func NewITreeCaller(address common.Address, caller bind.ContractCaller) (*ITreeCaller, error) {
+	contract, err := bindITree(address, caller, nil, nil)
+	if err != nil {
+		return nil, err
+	}
+	return &ITreeCaller{contract: contract}, nil
+}
+
+// NewITreeTransactor creates a new write-only instance of ITree, bound to a specific deployed contract.
+func NewITreeTransactor(address common.Address, transactor bind.ContractTransactor) (*ITreeTransactor, error) {
+	contract, err := bindITree(address, nil, transactor, nil)
+	if err != nil {
+		return nil, err
+	}
+	return &ITreeTransactor{contract: contract}, nil
+}
+
+// NewITreeFilterer creates a new log filterer instance of ITree, bound to a specific deployed contract.
+func NewITreeFilterer(address common.Address, filterer bind.ContractFilterer) (*ITreeFilterer, error) {
+	contract, err := bindITree(address, nil, nil, filterer)
+	if err != nil {
+		return nil, err
+	}
+	return &ITreeFilterer{contract: contract}, nil
+}
+
+// bindITree binds a generic wrapper to an already deployed contract.
+func bindITree(address common.Address, caller bind.ContractCaller, transactor bind.ContractTransactor, filterer bind.ContractFilterer) (*bind.BoundContract, error) {
+	parsed, err := abi.JSON(strings.NewReader(ITreeABI))
+	if err != nil {
+		return nil, err
+	}
+	return bind.NewBoundContract(address, parsed, caller, transactor, filterer), nil
+}
+
+// Call invokes the (constant) contract method with params as input values and
+// sets the output to result. The result type might be a single field for simple
+// returns, a slice of interfaces for anonymous returns and a struct for named
+// returns.
+func (_ITree *ITreeRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+	return _ITree.Contract.ITreeCaller.contract.Call(opts, result, method, params...)
+}
+
+// Transfer initiates a plain transaction to move funds to the contract, calling
+// its default method if one is available.
+func (_ITree *ITreeRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _ITree.Contract.ITreeTransactor.contract.Transfer(opts)
+}
+
+// Transact invokes the (paid) contract method with params as input values.
+func (_ITree *ITreeRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _ITree.Contract.ITreeTransactor.contract.Transact(opts, method, params...)
+}
+
+// Call invokes the (constant) contract method with params as input values and
+// sets the output to result. The result type might be a single field for simple
+// returns, a slice of interfaces for anonymous returns and a struct for named
+// returns.
+func (_ITree *ITreeCallerRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+	return _ITree.Contract.contract.Call(opts, result, method, params...)
+}
+
+// Transfer initiates a plain transaction to move funds to the contract, calling
+// its default method if one is available.
+func (_ITree *ITreeTransactorRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _ITree.Contract.contract.Transfer(opts)
+}
+
+// Transact invokes the (paid) contract method with params as input values.
+func (_ITree *ITreeTransactorRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _ITree.Contract.contract.Transact(opts, method, params...)
+}
+
+// GetFactory is a free data retrieval call binding the contract method 0x17fc2761.
+//
+// Solidity: function getFactory(bytes32 _ref) view returns(address)
+func (_ITree *ITreeCaller) GetFactory(opts *bind.CallOpts, _ref [32]byte) (common.Address, error) {
+	var (
+		ret0 = new(common.Address)
+	)
+	out := ret0
+	err := _ITree.contract.Call(opts, out, "getFactory", _ref)
+	return *ret0, err
+}
+
+// GetFactory is a free data retrieval call binding the contract method 0x17fc2761.
+//
+// Solidity: function getFactory(bytes32 _ref) view returns(address)
+func (_ITree *ITreeSession) GetFactory(_ref [32]byte) (common.Address, error) {
+	return _ITree.Contract.GetFactory(&_ITree.CallOpts, _ref)
+}
+
+// GetFactory is a free data retrieval call binding the contract method 0x17fc2761.
+//
+// Solidity: function getFactory(bytes32 _ref) view returns(address)
+func (_ITree *ITreeCallerSession) GetFactory(_ref [32]byte) (common.Address, error) {
+	return _ITree.Contract.GetFactory(&_ITree.CallOpts, _ref)
+}
+
+// AddChild is a paid mutator transaction binding the contract method 0x3d39ca7d.
+//
+// Solidity: function addChild(bytes32 _ref, address _child) returns()
+func (_ITree *ITreeTransactor) AddChild(opts *bind.TransactOpts, _ref [32]byte, _child common.Address) (*types.Transaction, error) {
+	return _ITree.contract.Transact(opts, "addChild", _ref, _child)
+}
+
+// AddChild is a paid mutator transaction binding the contract method 0x3d39ca7d.
+//
+// Solidity: function addChild(bytes32 _ref, address _child) returns()
+func (_ITree *ITreeSession) AddChild(_ref [32]byte, _child common.Address) (*types.Transaction, error) {
+	return _ITree.Contract.AddChild(&_ITree.TransactOpts, _ref, _child)
+}
+
+// AddChild is a paid mutator transaction binding the contract method 0x3d39ca7d.
+//
+// Solidity: function addChild(bytes32 _ref, address _child) returns()
+func (_ITree *ITreeTransactorSession) AddChild(_ref [32]byte, _child common.Address) (*types.Transaction, error) {
+	return _ITree.Contract.AddChild(&_ITree.TransactOpts, _ref, _child)
+}
+
+// ITreeAddChildIterator is returned from FilterAddChild and is used to iterate over the raw logs and unpacked data for AddChild events raised by the ITree contract.
+type ITreeAddChildIterator struct {
+	Event *ITreeAddChild // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *ITreeAddChildIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(ITreeAddChild)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(ITreeAddChild)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *ITreeAddChildIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *ITreeAddChildIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// ITreeAddChild represents a AddChild event raised by the ITree contract.
+type ITreeAddChild struct {
+	ElementType uint8
+	Ref         [32]byte
+	Raw         types.Log // Blockchain specific contextual infos
+}
+
+// FilterAddChild is a free log retrieval operation binding the contract event 0x10c6c03e0c7984056ff5fa555e803726e1219a70ddbbf604085b45c0eb34509d.
+//
+// Solidity: event AddChild(uint8 _elementType, bytes32 _ref)
+func (_ITree *ITreeFilterer) FilterAddChild(opts *bind.FilterOpts) (*ITreeAddChildIterator, error) {
+
+	logs, sub, err := _ITree.contract.FilterLogs(opts, "AddChild")
+	if err != nil {
+		return nil, err
+	}
+	return &ITreeAddChildIterator{contract: _ITree.contract, event: "AddChild", logs: logs, sub: sub}, nil
+}
+
+// WatchAddChild is a free log subscription operation binding the contract event 0x10c6c03e0c7984056ff5fa555e803726e1219a70ddbbf604085b45c0eb34509d.
+//
+// Solidity: event AddChild(uint8 _elementType, bytes32 _ref)
+func (_ITree *ITreeFilterer) WatchAddChild(opts *bind.WatchOpts, sink chan<- *ITreeAddChild) (event.Subscription, error) {
+
+	logs, sub, err := _ITree.contract.WatchLogs(opts, "AddChild")
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(ITreeAddChild)
+				if err := _ITree.contract.UnpackLog(event, "AddChild", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseAddChild is a log parse operation binding the contract event 0x10c6c03e0c7984056ff5fa555e803726e1219a70ddbbf604085b45c0eb34509d.
+//
+// Solidity: event AddChild(uint8 _elementType, bytes32 _ref)
+func (_ITree *ITreeFilterer) ParseAddChild(log types.Log) (*ITreeAddChild, error) {
+	event := new(ITreeAddChild)
+	if err := _ITree.contract.UnpackLog(event, "AddChild", log); err != nil {
+		return nil, err
+	}
+	return event, nil
+}
+
 // IterableDataABI is the input ABI used to generate the binding from.
 const IterableDataABI = "[]"
 
 // IterableDataBin is the compiled bytecode used for deploying new contracts.
-var IterableDataBin = "0x60566023600b82828239805160001a607314601657fe5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea2646970667358221220639fde409591a50ea363fa5ac56002a4dddc1a289b9fa726aa3c16ee9067391964736f6c63430006060033"
+var IterableDataBin = "0x60566023600b82828239805160001a607314601657fe5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea2646970667358221220782ef2038af4f5d8b3e98ea8108fa61a89cea92d74f913b2998b694282ffcc3564736f6c63430006060033"
 
 // DeployIterableData deploys a new Ethereum contract, binding an instance of IterableData to it.
 func DeployIterableData(auth *bind.TransactOpts, backend bind.ContractBackend) (common.Address, *types.Transaction, *IterableData, error) {

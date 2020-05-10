@@ -1,31 +1,14 @@
 pragma solidity >=0.4.16 <0.7.0;
 pragma experimental ABIEncoderV2;
 
+import "./ITree.sol";
 import "./IData.sol";
 import "./INode.sol";
 import "./Types.sol";
 import "./Mapping.sol";
 import "./Enums.sol";
 import "./Storage.sol";
-
-/*
-uint8 orgType;
-bool isSecondary;
-bytes32 orgRef;
-
-bool humanitarian;
-uint8 hierarchy;
-uint8 status;
-uint8 budgetNotProvided;
-ReportingOrgData reportingOrg;
-bytes32 lastUpdated;
-bytes32 lang;
-bytes32 currency;
-bytes32 linkedData;
-bytes32 identifier;
-string title;
-string description;
-*/
+import "./activities.sol";
 
 contract ActivityNode is INode {
 
@@ -75,13 +58,19 @@ contract ActivityNode is INode {
     }
 }
 
-contract ActivityFactory is IData {
+contract ActivityFactory is IData, ITree {
 
+    address activitiesCon;
     Data store;
+    Data factory;
     using IterableData for Data;
 
-    constructor() public {
-      store.size = 0;
+    constructor(address _activitiesCon) public {
+        assert(_activitiesCon != address(0x0));
+
+        activitiesCon = _activitiesCon;
+        store.size = 0;
+        factory.size = 0;
     }
 
     function setter() override virtual public view returns (bytes4)
@@ -92,12 +81,27 @@ contract ActivityFactory is IData {
         return this.set.selector;
     }
 
-    function set(bytes32 _ref, ActivityData memory _activity) public {
-        require (_ref[0] != 0);
+    function set(bytes32 _parentRef, bytes32 _thisRef,  ActivityData memory _activity) public {
+        require (_parentRef[0] != 0);
+        require (_thisRef[0] != 0);
 
         ActivityNode data = new ActivityNode(_activity);
-        store.insert(_ref, address(data));
-        emit Set(uint8(IATIElement.ACTIVITY), _ref);
+        store.insert(_thisRef, address(data));
+        ITree(activitiesCon).addChild(_parentRef, address(data));
+
+        Factory warehouse = new Factory();
+        factory.insert(_thisRef, address(warehouse));
+
+        emit Set(uint8(IATIElement.ACTIVITY), _thisRef);
+    }
+
+    function addChild(bytes32 _ref, address _child) override virtual public {
+        require (_ref[0] != 0);
+        require (_child != address(0x0));
+        require (factory.data[_ref].value != address(0x0));
+
+        Factory warehouse = Factory(factory.data[_ref].value);
+        warehouse.add(_child);
     }
 
     function get(bytes32 _ref) override virtual public view returns (address) {
@@ -117,5 +121,12 @@ contract ActivityFactory is IData {
         require (_index < store.size);
 
         return store.keys[_index].key;
+    }
+
+    function getFactory(bytes32 _ref) override virtual public view returns (address) {
+        require (_ref[0] != 0);
+        require (factory.data[_ref].value != address(0x0));
+
+        return factory.data[_ref].value;
     }
 }

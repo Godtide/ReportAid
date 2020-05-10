@@ -1,6 +1,7 @@
 pragma solidity >=0.4.16 <0.7.0;
 pragma experimental ABIEncoderV2;
 
+import "./ITree.sol";
 import "./IData.sol";
 import "./INode.sol";
 import "./Types.sol";
@@ -37,17 +38,18 @@ contract ActivitiesNode is INode {
     }
 }
 
-contract ActivitiesFactory is IData {
+contract ActivitiesFactory is IData, ITree {
 
     Data store;
+    Data factory;
     using IterableData for Data;
 
     constructor() public {
+
       store.size = 0;
     }
 
-    function setter() override virtual public view returns (bytes4)
-    {
+    function setter() override virtual public view returns (bytes4) {
         require(this.setter.address == address(this));
         require(this.set.address == address(this));
 
@@ -59,7 +61,19 @@ contract ActivitiesFactory is IData {
 
         ActivitiesNode data = new ActivitiesNode(_activities);
         store.insert(_ref, address(data));
+        Factory warehouse = new Factory();
+        factory.insert(_ref, address(warehouse));
+
         emit Set(uint8(IATIElement.ACTIVITIES), _ref);
+    }
+
+    function addChild(bytes32 _ref, address _child) override virtual public {
+        require (_ref[0] != 0);
+        require (_child != address(0x0));
+        require (factory.data[_ref].value != address(0x0));
+
+        Factory warehouse = Factory(factory.data[_ref].value);
+        warehouse.add(_child);
     }
 
     function get(bytes32 _ref) override virtual public view returns (address) {
@@ -79,5 +93,12 @@ contract ActivitiesFactory is IData {
         require (_index < store.size);
 
         return store.keys[_index].key;
+    }
+
+    function getFactory(bytes32 _ref) override virtual public view returns (address) {
+        require (_ref[0] != 0);
+        require (factory.data[_ref].value != address(0x0));
+
+        return factory.data[_ref].value;
     }
 }
