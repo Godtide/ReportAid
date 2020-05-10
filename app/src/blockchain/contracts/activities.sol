@@ -2,6 +2,7 @@ pragma solidity >=0.4.16 <0.7.0;
 pragma experimental ABIEncoderV2;
 
 import "./IData.sol";
+import "./INode.sol";
 import "./Mapping.sol";
 import "./Enums.sol";
 import "./Storage.sol";
@@ -12,7 +13,7 @@ struct ActivitiesData {
     bytes32 linkedData;
 }
 
-contract ActivitiesStore {
+contract ActivitiesNode is INode {
 
     ActivitiesData data;
 
@@ -28,12 +29,20 @@ contract ActivitiesStore {
         data.linkedData = _activities.linkedData;
     }
 
-    function get() public view returns (ActivitiesData memory) {
-        return data;
+    function getter() override virtual public view returns (bytes4)
+    {
+        require(this.getter.address == address(this));
+        require(this.get.address == address(this));
+
+        return this.get.selector;
+    }
+
+    function get() public view returns (uint8, ActivitiesData memory) {
+        return (uint8(IATIElement.ACTIVITIES), data);
     }
 }
 
-contract IATIActivities is IData {
+contract ActivitiesFactory is IData {
 
     Data store;
     using IterableData for Data;
@@ -42,33 +51,27 @@ contract IATIActivities is IData {
       store.size = 0;
     }
 
-    function setter() override  virtual public view returns (bytes4)
+    function setter() override virtual public view returns (bytes4)
     {
-        assert(this.setter.address == address(this));
-        assert(this.set.address == address(this));
+        require(this.setter.address == address(this));
+        require(this.set.address == address(this));
+
         return this.set.selector;
     }
 
-    function getter() override  virtual public view returns (bytes4)
-    {
-        assert(this.getter.address == address(this));
-        assert(this.get.address == address(this));
-        return this.get.selector;
-    }
-
     function set(bytes32 _ref, ActivitiesData memory _activities) public {
+        require (_ref[0] != 0);
 
-        ActivitiesStore data = new ActivitiesStore(_activities);
+        ActivitiesNode data = new ActivitiesNode(_activities);
         store.insert(_ref, address(data));
-        emit Set("Activities", _ref);
+        emit Set(uint8(IATIElement.ACTIVITIES), _ref);
     }
 
-    function get(bytes32 _ref) public view returns (ActivitiesData memory) {
+    function get(bytes32 _ref) override virtual public view returns (address) {
         require (_ref[0] != 0);
         require (store.data[_ref].value != address(0x0));
 
-        ActivitiesStore data = ActivitiesStore(store.data[_ref].value);
-        return data.get();
+        return store.data[_ref].value;
     }
 
     function getNum() override virtual public view returns (uint256)
