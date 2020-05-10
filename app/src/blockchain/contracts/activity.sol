@@ -8,7 +8,6 @@ import "./Types.sol";
 import "./Mapping.sol";
 import "./Enums.sol";
 import "./Storage.sol";
-import "./activities.sol";
 
 contract ActivityNode is INode {
 

@@ -12,9 +12,9 @@ const IATIOrganisationRecipientBudgets = artifacts.require("./IATIOrganisationRe
 const IATIOrganisationRegionBudgets = artifacts.require("./IATIOrganisationRegionBudgets.sol");
 const IATIOrganisationCountryBudgets = artifacts.require("./IATIOrganisationCountryBudgets.sol");
 
-const IATIActivities = artifacts.require("./IATIActivities.sol");
-const IATIActivity = artifacts.require("./IATIActivity.sol");
-const IATIActivityAdditional = artifacts.require("./IATIActivityAdditional.sol");
+const activities = artifacts.require("./activities.sol");
+const activity = artifacts.require("./activity.sol");
+const activityAdditional = artifacts.require("./activityAdditional.sol");
 const IATIActivityDates = artifacts.require("./IATIActivityDates.sol");
 const IATIActivityParticipatingOrgs = artifacts.require("./IATIActivityParticipatingOrgs.sol");
 const IATIActivitySectors = artifacts.require("./IATIActivitySectors.sol");
@@ -51,9 +51,9 @@ module.exports = function(deployer) {
                              IATIOrganisations,
                              IATIOrganisation,
                              IATIOrganisationDocs,
-                             IATIActivities,
-                             IATIActivity,
-                             IATIActivityAdditional,
+                             activities,
+                             activity,
+                             activityAdditional,
                              IATIActivityDates,
                              IATIActivityParticipatingOrgs,
                              IATIActivitySectors,
@@ -101,40 +101,40 @@ module.exports = function(deployer) {
     });
   });
 
-  deployer.deploy(IATIActivities).then(() => {
+  deployer.deploy(activities).then(() => {
     activitiesAddress = "\"" + IATIActivities.address + "\"";
-  });
 
-  deployer.deploy(IATIActivity).then(() => {
-    activityAddress = "\"" + IATIActivity.address + "\"";
-  });
+    deployer.deploy(activity, activities.address).then(() => {
+      activityAddress = "\"" + IATIActivity.address + "\"";
 
-  deployer.deploy(IATIActivityAdditional).then(() => {
-    activityAdditionalAddress = "\"" + IATIActivityAdditional.address + "\"";
-  });
+      deployer.deploy(IATIActivityAdditional, activity.address).then(() => {
+        activityAdditionalAddress = "\"" + IATIActivityAdditional.address + "\"";
+      });
 
-  deployer.deploy(IATIActivityDates).then(() => {
-    activityDatesAddress = "\"" + IATIActivityDates.address + "\"";
-  });
+      deployer.deploy(IATIActivityDates).then(() => {
+        activityDatesAddress = "\"" + IATIActivityDates.address + "\"";
+      });
 
-  deployer.deploy(IATIActivityParticipatingOrgs).then(() => {
-    activityParticipatingOrgsAddress = "\"" + IATIActivityParticipatingOrgs.address + "\"";
-  });
+      deployer.deploy(IATIActivityParticipatingOrgs).then(() => {
+        activityParticipatingOrgsAddress = "\"" + IATIActivityParticipatingOrgs.address + "\"";
+      });
 
-  deployer.deploy(IATIActivitySectors).then(() => {
-    activitySectorsAddress = "\"" + IATIActivitySectors.address + "\"";
-  });
+      deployer.deploy(IATIActivitySectors).then(() => {
+        activitySectorsAddress = "\"" + IATIActivitySectors.address + "\"";
+      });
 
-  deployer.deploy(IATIActivityTerritories).then(() => {
-    activityTerritoriesAddress = "\"" + IATIActivityTerritories.address + "\"";
-  });
+      deployer.deploy(IATIActivityTerritories).then(() => {
+        activityTerritoriesAddress = "\"" + IATIActivityTerritories.address + "\"";
+      });
 
-  deployer.deploy(IATIActivityTransactions).then(() => {
-    activityTransactionsAddress = "\"" + IATIActivityTransactions.address + "\"";
-  });
+      deployer.deploy(IATIActivityTransactions).then(() => {
+        activityTransactionsAddress = "\"" + IATIActivityTransactions.address + "\"";
+      });
 
-  deployer.deploy(IATIActivityRelatedActivities).then(() => {
-    activityRelatedActivitiesAddress = "\"" + IATIActivityRelatedActivities.address + "\"";
+      deployer.deploy(IATIActivityRelatedActivities).then(() => {
+        activityRelatedActivitiesAddress = "\"" + IATIActivityRelatedActivities.address + "\"";
+      });
+    });
   });
 
   deployer.then( () => {
@@ -156,6 +156,6 @@ module.exports = function(deployer) {
     console.log("static activityBudgetsAddress =", activityBudgetsAddress);
     console.log("static activityTerritoriesAddress =", activityTerritoriesAddress);
     console.log("static activityTransactionsAddress =", activityTransactionsAddress);
-    console.log("static activityRelatedActivitiesAddress =", activityRelatedActivitiesAddress);    
+    console.log("static activityRelatedActivitiesAddress =", activityRelatedActivitiesAddress);
   });
 };
