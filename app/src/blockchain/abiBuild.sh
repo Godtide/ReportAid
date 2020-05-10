@@ -57,7 +57,7 @@ done
 
 abigen --sol="./contracts/${ACTIVITIES}.sol" --pkg="${ACTIVITIES}" --out="${ACTIVITIESDIR}/${ACTIVITIES}.go"
 abigen --sol="./contracts/${ACTIVITY}.sol" --pkg="${ACTIVITY}" --out="${ACTIVITYDIR}/${ACTIVITY}.go"
-#abigen --sol=./contracts/IATIActivityAdditional.sol --pkg=${ACTIVITYADDITIONAL} --out="${ACTIVITYADDITIONALDIR}/${ACTIVITYADDITIONAL}.go"
+abigen --sol="./contracts/${ACTIVITYADDITIONAL}.sol" --pkg=${ACTIVITYADDITIONAL} --out="${ACTIVITYADDITIONALDIR}/${ACTIVITYADDITIONAL}.go"
 #abigen --sol=./contracts/IATIActivityBudgets.sol --pkg=${ACTIVITYBUDGETS} --out="${ACTIVITYBUDGETSDIR}/${ACTIVITYBUDGETS}.go"
 #abigen --sol=./contracts/IATIActivityDates.sol --pkg=${ACTIVITYDATES} --out="${ACTIVITYDATESDIR}/${ACTIVITYDATES}.go"
 #abigen --sol=./contracts/IATIActivityParticipatingOrgs.sol --pkg=${ACTIVITYPARTICIPATINGORGS} --out="${ACTIVITYPARTICIPATINGORGSDIR}/${ACTIVITYPARTICIPATINGORGS}.go"

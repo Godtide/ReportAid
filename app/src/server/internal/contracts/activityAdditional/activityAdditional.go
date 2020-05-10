@@ -1,7 +1,7 @@
 // Code generated - DO NOT EDIT.
 // This file is a generated binding and any manual changes will be lost.
 
-package activity
+package activityAdditional
 
 import (
 	"math/big"
@@ -34,27 +34,15 @@ type ActivitiesData struct {
 	LinkedData    [32]byte
 }
 
-// ActivityData is an auto generated low-level Go binding around an user-defined struct.
-type ActivityData struct {
-	Humanitarian      bool
-	Hierarchy         uint8
-	Status            uint8
-	BudgetNotProvided uint8
-	ReportingOrg      ReportingOrgData
-	LastUpdated       [32]byte
-	Lang              [32]byte
-	Currency          [32]byte
-	LinkedData        [32]byte
-	Identifier        [32]byte
-	Title             string
-	Description       string
-}
-
-// ReportingOrgData is an auto generated low-level Go binding around an user-defined struct.
-type ReportingOrgData struct {
-	OrgType     uint8
-	IsSecondary bool
-	OrgRef      [32]byte
+// AdditionalData is an auto generated low-level Go binding around an user-defined struct.
+type AdditionalData struct {
+	Scope              uint8
+	CapitalSpend       uint8
+	CollaborationType  uint8
+	DefaultFlowType    uint8
+	DefaultTiedStatus  uint8
+	DefaultAidType     [32]byte
+	DefaultFinanceType *big.Int
 }
 
 // ActivitiesFactoryABI is the input ABI used to generate the binding from.
@@ -895,135 +883,133 @@ func (_ActivitiesNode *ActivitiesNodeCallerSession) Getter() ([4]byte, error) {
 	return _ActivitiesNode.Contract.Getter(&_ActivitiesNode.CallOpts)
 }
 
-// ActivityFactoryABI is the input ABI used to generate the binding from.
-const ActivityFactoryABI = "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_activitiesCon\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"_ref\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"_child\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"_childType\",\"type\":\"uint8\"}],\"name\":\"AddChild\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"_elementType\",\"type\":\"uint8\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"_ref\",\"type\":\"bytes32\"}],\"name\":\"Set\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_ref\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"_child\",\"type\":\"address\"},{\"internalType\":\"uint8\",\"name\":\"_childType\",\"type\":\"uint8\"}],\"name\":\"addChild\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_ref\",\"type\":\"bytes32\"}],\"name\":\"get\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_ref\",\"type\":\"bytes32\"}],\"name\":\"getFactory\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getNum\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_index\",\"type\":\"uint256\"}],\"name\":\"getReference\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_parentRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_thisRef\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"bool\",\"name\":\"humanitarian\",\"type\":\"bool\"},{\"internalType\":\"uint8\",\"name\":\"hierarchy\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"budgetNotProvided\",\"type\":\"uint8\"},{\"components\":[{\"internalType\":\"uint8\",\"name\":\"orgType\",\"type\":\"uint8\"},{\"internalType\":\"bool\",\"name\":\"isSecondary\",\"type\":\"bool\"},{\"internalType\":\"bytes32\",\"name\":\"orgRef\",\"type\":\"bytes32\"}],\"internalType\":\"structReportingOrgData\",\"name\":\"reportingOrg\",\"type\":\"tuple\"},{\"internalType\":\"bytes32\",\"name\":\"lastUpdated\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"lang\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"currency\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"linkedData\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"identifier\",\"type\":\"bytes32\"},{\"internalType\":\"string\",\"name\":\"title\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"}],\"internalType\":\"structActivityData\",\"name\":\"_activity\",\"type\":\"tuple\"}],\"name\":\"set\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"setter\",\"outputs\":[{\"internalType\":\"bytes4\",\"name\":\"\",\"type\":\"bytes4\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]"
+// ActivityAdditionalABI is the input ABI used to generate the binding from.
+const ActivityAdditionalABI = "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_activityCon\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"_elementType\",\"type\":\"uint8\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"_ref\",\"type\":\"bytes32\"}],\"name\":\"Set\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_ref\",\"type\":\"bytes32\"}],\"name\":\"get\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getNum\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_index\",\"type\":\"uint256\"}],\"name\":\"getReference\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_parentRef\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_thisRef\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"uint8\",\"name\":\"scope\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"capitalSpend\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"collaborationType\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"defaultFlowType\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"defaultTiedStatus\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"defaultAidType\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"defaultFinanceType\",\"type\":\"uint256\"}],\"internalType\":\"structAdditionalData\",\"name\":\"_additional\",\"type\":\"tuple\"}],\"name\":\"set\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"setter\",\"outputs\":[{\"internalType\":\"bytes4\",\"name\":\"\",\"type\":\"bytes4\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]"
 
-// ActivityFactoryFuncSigs maps the 4-byte function signature to its string representation.
-var ActivityFactoryFuncSigs = map[string]string{
-	"cbb2dc95": "addChild(bytes32,address,uint8)",
+// ActivityAdditionalFuncSigs maps the 4-byte function signature to its string representation.
+var ActivityAdditionalFuncSigs = map[string]string{
 	"8eaa6ac0": "get(bytes32)",
-	"17fc2761": "getFactory(bytes32)",
 	"67e0badb": "getNum()",
 	"bc599341": "getReference(uint256)",
-	"1006fbc7": "set(bytes32,bytes32,(bool,uint8,uint8,uint8,(uint8,bool,bytes32),bytes32,bytes32,bytes32,bytes32,bytes32,string,string))",
+	"d9a958cf": "set(bytes32,bytes32,(uint8,uint8,uint8,uint8,uint8,bytes32,uint256))",
 	"3f3108f7": "setter()",
 }
 
-// ActivityFactoryBin is the compiled bytecode used for deploying new contracts.
-var ActivityFactoryBin = "0x608060405234801561001057600080fd5b5060405161174738038061174783398101604081905261002f9161006c565b6001600160a01b03811661003f57fe5b600080546001600160a01b0319166001600160a01b0392909216919091178155600381905560065561009a565b60006020828403121561007d578081fd5b81516001600160a01b0381168114610093578182fd5b9392505050565b61169e806100a96000396000f3fe60806040523480156200001157600080fd5b5060043610620000885760003560e01c806367e0badb116200006357806367e0badb14620000ee5780638eaa6ac01462000107578063bc599341146200011e578063cbb2dc9514620001355762000088565b80631006fbc7146200008d57806317fc276114620000a65780633f3108f714620000d5575b600080fd5b620000a46200009e366004620006ee565b6200014c565b005b620000bd620000b736600462000688565b620002c5565b604051620000cc9190620008ba565b60405180910390f35b620000df62000325565b604051620000cc9190620008f9565b620000f862000330565b604051620000cc9190620008ce565b620000bd6200011836600462000688565b62000336565b620000f86200012f36600462000688565b62000398565b620000a462000146366004620006a1565b620003d2565b8260001a60f81b6001600160f81b0319166200016757600080fd5b8160001a60f81b6001600160f81b0319166200018257600080fd5b60008160405162000193906200057c565b6200019f91906200090e565b604051809103906000f080158015620001bc573d6000803e3d6000fd5b509050620001d36001848363ffffffff620004e116565b506000546001600160a01b031663cbb2dc95858360036040518463ffffffff1660e01b81526004016200020993929190620008d7565b600060405180830381600087803b1580156200022457600080fd5b505af115801562000239573d6000803e3d6000fd5b5050505060006040516200024d906200058a565b604051809103906000f0801580156200026a573d6000803e3d6000fd5b509050620002816004858363ffffffff620004e116565b507f8353a4d574992e9eb676a31cd326ce2f9f6c4829c3b84ae33ee9febbb2962e7b600385604051620002b692919062000a07565b60405180910390a15050505050565b600081811a60f81b6001600160f81b031916620002e157600080fd5b6000828152600460205260409020600101546001600160a01b03166200030657600080fd5b506000908152600460205260409020600101546001600160a01b031690565b631006fbc760e01b90565b60035490565b600081811a60f81b6001600160f81b0319166200035257600080fd5b600082815260016020819052604090912001546001600160a01b03166200037857600080fd5b50600090815260016020819052604090912001546001600160a01b031690565b6003546000908210620003aa57600080fd5b6002805483908110620003b957fe5b9060005260206000209060020201600001549050919050565b8260001a60f81b6001600160f81b031916620003ed57600080fd5b6001600160a01b0382166200040157600080fd5b6000838152600460205260409020600101546001600160a01b03166200042657600080fd5b600083815260046020819052604091829020600101549151630a3b0a4f60e01b81526001600160a01b03909216918291630a3b0a4f916200046a91879101620008ba565b600060405180830381600087803b1580156200048557600080fd5b505af11580156200049a573d6000803e3d6000fd5b505050507f4f2635eaa771447d282168d4763629c4b855ff7c733898eefc20b8699278d0c0848484604051620004d393929190620008d7565b60405180910390a150505050565b60008281526020849052604081208054600190910180546001600160a01b0319166001600160a01b03851617905580156200052157600191505062000575565b50600180850180549182018082556000868152602088905260409020819055859190839081106200054e57fe5b60009182526020822060029182020192909255908601805460010190559150620005759050565b9392505050565b610a358062000a4383390190565b6101f1806200147883390190565b80358015158114620005a957600080fd5b92915050565b600082601f830112620005c0578081fd5b813567ffffffffffffffff811115620005d7578182fd5b620005ec601f8201601f191660200162000a1a565b91508082528360208285010111156200060457600080fd5b8060208401602084013760009082016020015292915050565b6000606082840312156200062f578081fd5b6200063b606062000a1a565b905062000649838362000676565b8152602082013580151581146200065f57600080fd5b806020830152506040820135604082015292915050565b803560ff81168114620005a957600080fd5b6000602082840312156200069a578081fd5b5035919050565b600080600060608486031215620006b6578182fd5b8335925060208401356001600160a01b0381168114620006d4578283fd5b9150620006e5856040860162000676565b90509250925092565b60008060006060848603121562000703578283fd5b8335925060208401359150604084013567ffffffffffffffff8082111562000729578283fd5b8186016101c081890312156200073d578384fd5b61018092506200074d8362000a1a565b62000759898362000598565b81526200076a896020840162000676565b60208201526200077e896040840162000676565b604082015262000792896060840162000676565b6060820152620007a689608084016200061d565b608082015260e082013560a08201526101008083013560c08301526101208084013560e084015261014080850135838501526101609250828501358285015286850135915085821115620007f8578788fd5b620008068c838701620005af565b90840152506101a083013594508385111562000820578586fd5b6200082e8a868501620005af565b8183015250809450505050509250925092565b15159052565b60008151808452815b818110156200086e5760208185018101518683018201520162000850565b81811115620008805782602083870101525b50601f01601f19169290920160200192915050565b805160ff168252602080820151151590830152604090810151910152565b60ff169052565b6001600160a01b0391909116815260200190565b90815260200190565b9283526001600160a01b0391909116602083015260ff16604082015260600190565b6001600160e01b031991909116815260200190565b6000602082526200092460208301845162000841565b6020830151620009386040840182620008b3565b5060408301516200094d6060840182620008b3565b506060830151620009626080840182620008b3565b5060808301516200097760a084018262000895565b5060a0830151610100818185015260c08501519150610120828186015260e086015192506101408381870152828701519350610160925083838701528187015161018087015280870151935050506101c0806101a0860152620009df6101e086018462000847565b86830151868203601f1901838801529350620009fc818562000847565b979650505050505050565b60ff929092168252602082015260400190565b60405181810167ffffffffffffffff8111828210171562000a3a57600080fd5b60405291905056fe60806040523480156200001157600080fd5b5060405162000a3538038062000a35833981016040819052620000349162000435565b61012081015160001a60f81b6001600160f81b0319161580159062000070575060808101516040015160001a60f81b6001600160f81b03191615155b801562000084575060808101515160ff1615155b8015620000975750600081610140015151115b8015620000b7575060a081015160001a60f81b6001600160f81b03191615155b8015620000d7575060c081015160001a60f81b6001600160f81b03191615155b8015620000f7575060e081015160001a60f81b6001600160f81b03191615155b80156200010a5750602081015160ff1615155b8015620001215750600460ff16816020015160ff16105b8015620001345750604081015160ff1615155b80156200014b5750600760ff16816040015160ff16105b80156200015e5750606081015160ff1615155b8015620001755750600460ff16816060015160ff16105b8015620001885750600081610160015151115b6200019257600080fd5b6101208101516007556080810151602080820151600180546040850151600255935160ff1660ff199215156101000261ff00199095169490941791909116929092179091556101408201518051620001ef92600892019062000279565b5060a081015160035560c081015160045560e0810151600555602080820151600080546040850151606086015161ff001990921661010060ff958616021762ff0000191662010000918516919091021763ff00000019166301000000939091169290920291909117905561016082015180516200027192600992019062000279565b505062000598565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f10620002bc57805160ff1916838001178555620002ec565b82800160010185558215620002ec579182015b82811115620002ec578251825591602001919060010190620002cf565b50620002fa929150620002fe565b5090565b6200031b91905b80821115620002fa576000815560010162000305565b90565b805180151581146200032f57600080fd5b92915050565b600082601f83011262000346578081fd5b81516001600160401b038111156200035c578182fd5b602062000372601f8301601f1916820162000571565b925081835284818386010111156200038957600080fd5b60005b82811015620003a95784810182015184820183015281016200038c565b82811115620003bb5760008284860101525b50505092915050565b600060608284031215620003d6578081fd5b620003e2606062000571565b9050815160ff81168114620003f657600080fd5b8152602082015180151581146200040c57600080fd5b806020830152506040820151604082015292915050565b805160ff811681146200032f57600080fd5b60006020828403121562000447578081fd5b81516001600160401b03808211156200045e578283fd5b8184016101c0818703121562000472578384fd5b6101809250620004828362000571565b6200048e87836200031e565b81526200049f876020840162000423565b6020820152620004b3876040840162000423565b6040820152620004c7876060840162000423565b6060820152620004db8760808401620003c4565b608082015260e082015160a08201526101008083015160c08301526101208084015160e0840152610140808501518385015261016092508285015182850152868501519150858211156200052d578788fd5b6200053b8a83870162000335565b90840152506101a083015194508385111562000555578586fd5b620005638886850162000335565b908201529695505050505050565b6040518181016001600160401b03811182821017156200059057600080fd5b604052919050565b61048d80620005a86000396000f3fe608060405234801561001057600080fd5b50600436106100365760003560e01c80636d4ce63c1461003b578063993a04b71461005a575b600080fd5b61004361006f565b604051610051929190610364565b60405180910390f35b610062610244565b604051610051919061034f565b600061007961024f565b600360408051610180810182526000805460ff80821615158452610100808304821660208087019190915262010000840483168688015263010000009093048216606080870191909152865190810187526001805480851683528390049093161515818501526002805482890152608087019190915260035460a087015260045460c087015260055460e087015260065482870152600754610120870152600880548851948116159093026000190190921604601f81018490048402830184019096528582529294859361014086019390919083018282801561019d5780601f106101725761010080835404028352916020019161019d565b820191906000526020600020905b81548152906001019060200180831161018057829003601f168201915b505050918352505060098201805460408051602060026001851615610100026000190190941693909304601f81018490048402820184019092528181529382019392918301828280156102315780601f1061020657610100808354040283529160200191610231565b820191906000526020600020905b81548152906001019060200180831161021457829003601f168201915b5050505050815250509050915091509091565b631b53398f60e21b90565b60408051610180810182526000808252602082018190529181018290526060810191909152608081016102806102b9565b81526000602082018190526040820181905260608083018290526080830182905260a083019190915260c0820181905260e09091015290565b604080516060810182526000808252602082018190529181019190915290565b15159052565b60008151808452815b81811015610304576020818501810151868301820152016102e8565b818111156103155782602083870101525b50601f01601f19169290920160200192915050565b805160ff168252602080820151151590830152604090810151910152565b60ff169052565b6001600160e01b031991909116815260200190565b600060ff84168252604060208301526103816040830184516102d9565b60208301516103936060840182610348565b5060408301516103a66080840182610348565b5060608301516103b960a0840182610348565b5060808301516103cc60c084018261032a565b5060a0830151610120818185015260c08501519150610140828186015260e086015192506101608381870152610100870151610180870152828701516101a08701528187015193506101c09250828387015261042c6102008701856102df565b90870151868203603f19016101e08801529350915061044d905081836102df565b969550505050505056fea264697066735822122034635eec72ab30edd5fe223c5ec26c6f763718a175f527a4c37dbd5349e30a5d64736f6c63430006060033608060405234801561001057600080fd5b506101d1806100206000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c80630a3b0a4f146100465780634f0f4aa91461005b57806367e0badb14610084575b600080fd5b610059610054366004610138565b610099565b005b61006e610069366004610166565b6100fb565b60405161007b919061017e565b60405180910390f35b61008c610132565b60405161007b9190610192565b6001600160a01b0381166100ac57600080fd5b600080546001810182559080527f290decd9548b62a8d60345a988386fc84ba6bc95484008f6362f93160ef3e5630180546001600160a01b0319166001600160a01b0392909216919091179055565b60008054821061010a57600080fd5b6000828154811061011757fe5b6000918252602090912001546001600160a01b031692915050565b60005490565b600060208284031215610149578081fd5b81356001600160a01b038116811461015f578182fd5b9392505050565b600060208284031215610177578081fd5b5035919050565b6001600160a01b0391909116815260200190565b9081526020019056fea26469706673582212200b1d0f60a813a64e8e7204f784c414c6a9bd1c546926bc9e4be49f667646b48864736f6c63430006060033a2646970667358221220c8c21717c3055534272abd0ad56b0fdcf5da67d2986b9110689c9678148e665a64736f6c63430006060033"
+// ActivityAdditionalBin is the compiled bytecode used for deploying new contracts.
+var ActivityAdditionalBin = "0x608060405234801561001057600080fd5b50604051610a07380380610a0783398101604081905261002f91610069565b6000546001600160a01b031661004157fe5b600080546001600160a01b0319166001600160a01b0392909216919091178155600355610097565b60006020828403121561007a578081fd5b81516001600160a01b0381168114610090578182fd5b9392505050565b610961806100a66000396000f3fe608060405234801561001057600080fd5b50600436106100575760003560e01c80633f3108f71461005c57806367e0badb1461007a5780638eaa6ac01461008f578063bc599341146100af578063d9a958cf146100c2575b600080fd5b6100646100d7565b604051610071919061048a565b60405180910390f35b6100826100e2565b604051610071919061045f565b6100a261009d366004610367565b6100e8565b604051610071919061044b565b6100826100bd366004610367565b610148565b6100d56100d036600461037f565b610180565b005b63d9a958cf60e01b90565b60035490565b600081811a60f81b6001600160f81b03191661010357600080fd5b600082815260016020819052604090912001546001600160a01b031661012857600080fd5b50600090815260016020819052604090912001546001600160a01b031690565b600354600090821061015957600080fd5b600280548390811061016757fe5b9060005260206000209060020201600001549050919050565b8260001a60f81b6001600160f81b03191661019a57600080fd5b8160001a60f81b6001600160f81b0319166101b457600080fd5b6000816040516101c390610343565b6101cd919061049f565b604051809103906000f0801580156101e9573d6000803e3d6000fd5b5090506101fe6001848363ffffffff6102ac16565b506000546001600160a01b031663cbb2dc95858360046040518463ffffffff1660e01b815260040161023293929190610468565b600060405180830381600087803b15801561024c57600080fd5b505af1158015610260573d6000803e3d6000fd5b507f8353a4d574992e9eb676a31cd326ce2f9f6c4829c3b84ae33ee9febbb2962e7b92506004915061028f9050565b8460405161029e9291906104fc565b60405180910390a150505050565b60008281526020849052604081208054600190910180546001600160a01b0319166001600160a01b03851617905580156102ea57600191505061033c565b506001808501805491820180825560008681526020889052604090208190558591908390811061031657fe5b6000918252602082206002918202019290925590860180546001019055915061033c9050565b9392505050565b61041c8061051083390190565b803560ff8116811461036157600080fd5b92915050565b600060208284031215610378578081fd5b5035919050565b6000806000838503610120811215610395578283fd5b843593506020850135925060e0603f19820112156103b1578182fd5b5060405160e0810181811067ffffffffffffffff821117156103d1578283fd5b80604052506103e38660408701610350565b81526103f28660608701610350565b60208201526104048660808701610350565b60408201526104168660a08701610350565b60608201526104288660c08701610350565b608082015260e085013560a08201526101009094013560c0850152509093909250565b6001600160a01b0391909116815260200190565b90815260200190565b9283526001600160a01b0391909116602083015260ff16604082015260600190565b6001600160e01b031991909116815260200190565b600060e08201905060ff835116825260ff602084015116602083015260ff604084015116604083015260ff606084015116606083015260ff608084015116608083015260a083015160a083015260c083015160c083015292915050565b60ff92909216825260208201526040019056fe608060405234801561001057600080fd5b5060405161041c38038061041c83398101604081905261002f91610195565b805160ff161580159061004857508051600960ff909116105b801561005c57506064816020015160ff1611155b801561006e5750604081015160ff1615155b80156100845750600860ff16816040015160ff16105b80156100bb575060a081015160001a60f81b7fff000000000000000000000000000000000000000000000000000000000000001615155b80156100d15750600260ff16816080015160ff16115b80156100e75750600660ff16816080015160ff16105b6100f057600080fd5b805160008054602084015160408501516080860151606087015160ff90811663010000000263ff000000199282166401000000000260ff60201b19948316620100000262ff0000199684166101000261ff001994909a1660ff19909816979097179290921697909717939093169390931716171691909117905560a081015160015560c00151600255610239565b805160ff8116811461018f57600080fd5b92915050565b600060e082840312156101a6578081fd5b60405160e081016001600160401b03811182821017156101c4578283fd5b6040526101d1848461017e565b81526101e0846020850161017e565b60208201526101f2846040850161017e565b6040820152610204846060850161017e565b6060820152610216846080850161017e565b608082015260a083015160a082015260c083015160c08201528091505092915050565b6101d4806102486000396000f3fe608060405234801561001057600080fd5b50600436106100365760003560e01c80636d4ce63c1461003b578063993a04b71461005a575b600080fd5b61004361006f565b604051610051929190610139565b60405180910390f35b6100626100dd565b6040516100519190610124565b60006100796100e8565b50506040805160e08101825260005460ff808216835261010082048116602084015262010000820481169383019390935263010000008104831660608301526401000000009004909116608082015260015460a082015260025460c0820152600491565b631b53398f60e21b90565b6040805160e081018252600080825260208201819052918101829052606081018290526080810182905260a0810182905260c081019190915290565b6001600160e01b031991909116815260200190565b60006101008201905060ff80851683528084511660208401528060208501511660408401528060408501511660608401528060608501511660808401528060808501511660a08401525060a083015160c083015260c083015160e0830152939250505056fea2646970667358221220c9f01dbbbc2bc8135a3a7f5945921c3c1dd08f33aa31d77a35c99861457b2d6f64736f6c63430006060033a26469706673582212209a2df23fd56d11d8af7fa50e274546717baf3517968078d135c3bd0116b9e64f64736f6c63430006060033"
 
-// DeployActivityFactory deploys a new Ethereum contract, binding an instance of ActivityFactory to it.
-func DeployActivityFactory(auth *bind.TransactOpts, backend bind.ContractBackend, _activitiesCon common.Address) (common.Address, *types.Transaction, *ActivityFactory, error) {
-	parsed, err := abi.JSON(strings.NewReader(ActivityFactoryABI))
+// DeployActivityAdditional deploys a new Ethereum contract, binding an instance of ActivityAdditional to it.
+func DeployActivityAdditional(auth *bind.TransactOpts, backend bind.ContractBackend, _activityCon common.Address) (common.Address, *types.Transaction, *ActivityAdditional, error) {
+	parsed, err := abi.JSON(strings.NewReader(ActivityAdditionalABI))
 	if err != nil {
 		return common.Address{}, nil, nil, err
 	}
 
-	address, tx, contract, err := bind.DeployContract(auth, parsed, common.FromHex(ActivityFactoryBin), backend, _activitiesCon)
+	address, tx, contract, err := bind.DeployContract(auth, parsed, common.FromHex(ActivityAdditionalBin), backend, _activityCon)
 	if err != nil {
 		return common.Address{}, nil, nil, err
 	}
-	return address, tx, &ActivityFactory{ActivityFactoryCaller: ActivityFactoryCaller{contract: contract}, ActivityFactoryTransactor: ActivityFactoryTransactor{contract: contract}, ActivityFactoryFilterer: ActivityFactoryFilterer{contract: contract}}, nil
+	return address, tx, &ActivityAdditional{ActivityAdditionalCaller: ActivityAdditionalCaller{contract: contract}, ActivityAdditionalTransactor: ActivityAdditionalTransactor{contract: contract}, ActivityAdditionalFilterer: ActivityAdditionalFilterer{contract: contract}}, nil
 }
 
-// ActivityFactory is an auto generated Go binding around an Ethereum contract.
-type ActivityFactory struct {
-	ActivityFactoryCaller     // Read-only binding to the contract
-	ActivityFactoryTransactor // Write-only binding to the contract
-	ActivityFactoryFilterer   // Log filterer for contract events
+// ActivityAdditional is an auto generated Go binding around an Ethereum contract.
+type ActivityAdditional struct {
+	ActivityAdditionalCaller     // Read-only binding to the contract
+	ActivityAdditionalTransactor // Write-only binding to the contract
+	ActivityAdditionalFilterer   // Log filterer for contract events
 }
 
-// ActivityFactoryCaller is an auto generated read-only Go binding around an Ethereum contract.
-type ActivityFactoryCaller struct {
+// ActivityAdditionalCaller is an auto generated read-only Go binding around an Ethereum contract.
+type ActivityAdditionalCaller struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// ActivityFactoryTransactor is an auto generated write-only Go binding around an Ethereum contract.
-type ActivityFactoryTransactor struct {
+// ActivityAdditionalTransactor is an auto generated write-only Go binding around an Ethereum contract.
+type ActivityAdditionalTransactor struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// ActivityFactoryFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
-type ActivityFactoryFilterer struct {
+// ActivityAdditionalFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
+type ActivityAdditionalFilterer struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// ActivityFactorySession is an auto generated Go binding around an Ethereum contract,
+// ActivityAdditionalSession is an auto generated Go binding around an Ethereum contract,
 // with pre-set call and transact options.
-type ActivityFactorySession struct {
-	Contract     *ActivityFactory  // Generic contract binding to set the session for
-	CallOpts     bind.CallOpts     // Call options to use throughout this session
-	TransactOpts bind.TransactOpts // Transaction auth options to use throughout this session
+type ActivityAdditionalSession struct {
+	Contract     *ActivityAdditional // Generic contract binding to set the session for
+	CallOpts     bind.CallOpts       // Call options to use throughout this session
+	TransactOpts bind.TransactOpts   // Transaction auth options to use throughout this session
 }
 
-// ActivityFactoryCallerSession is an auto generated read-only Go binding around an Ethereum contract,
+// ActivityAdditionalCallerSession is an auto generated read-only Go binding around an Ethereum contract,
 // with pre-set call options.
-type ActivityFactoryCallerSession struct {
-	Contract *ActivityFactoryCaller // Generic contract caller binding to set the session for
-	CallOpts bind.CallOpts          // Call options to use throughout this session
+type ActivityAdditionalCallerSession struct {
+	Contract *ActivityAdditionalCaller // Generic contract caller binding to set the session for
+	CallOpts bind.CallOpts             // Call options to use throughout this session
 }
 
-// ActivityFactoryTransactorSession is an auto generated write-only Go binding around an Ethereum contract,
+// ActivityAdditionalTransactorSession is an auto generated write-only Go binding around an Ethereum contract,
 // with pre-set transact options.
-type ActivityFactoryTransactorSession struct {
-	Contract     *ActivityFactoryTransactor // Generic contract transactor binding to set the session for
-	TransactOpts bind.TransactOpts          // Transaction auth options to use throughout this session
+type ActivityAdditionalTransactorSession struct {
+	Contract     *ActivityAdditionalTransactor // Generic contract transactor binding to set the session for
+	TransactOpts bind.TransactOpts             // Transaction auth options to use throughout this session
 }
 
-// ActivityFactoryRaw is an auto generated low-level Go binding around an Ethereum contract.
-type ActivityFactoryRaw struct {
-	Contract *ActivityFactory // Generic contract binding to access the raw methods on
+// ActivityAdditionalRaw is an auto generated low-level Go binding around an Ethereum contract.
+type ActivityAdditionalRaw struct {
+	Contract *ActivityAdditional // Generic contract binding to access the raw methods on
 }
 
-// ActivityFactoryCallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
-type ActivityFactoryCallerRaw struct {
-	Contract *ActivityFactoryCaller // Generic read-only contract binding to access the raw methods on
+// ActivityAdditionalCallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
+type ActivityAdditionalCallerRaw struct {
+	Contract *ActivityAdditionalCaller // Generic read-only contract binding to access the raw methods on
 }
 
-// ActivityFactoryTransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
-type ActivityFactoryTransactorRaw struct {
-	Contract *ActivityFactoryTransactor // Generic write-only contract binding to access the raw methods on
+// ActivityAdditionalTransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
+type ActivityAdditionalTransactorRaw struct {
+	Contract *ActivityAdditionalTransactor // Generic write-only contract binding to access the raw methods on
 }
 
-// NewActivityFactory creates a new instance of ActivityFactory, bound to a specific deployed contract.
-func NewActivityFactory(address common.Address, backend bind.ContractBackend) (*ActivityFactory, error) {
-	contract, err := bindActivityFactory(address, backend, backend, backend)
+// NewActivityAdditional creates a new instance of ActivityAdditional, bound to a specific deployed contract.
+func NewActivityAdditional(address common.Address, backend bind.ContractBackend) (*ActivityAdditional, error) {
+	contract, err := bindActivityAdditional(address, backend, backend, backend)
 	if err != nil {
 		return nil, err
 	}
-	return &ActivityFactory{ActivityFactoryCaller: ActivityFactoryCaller{contract: contract}, ActivityFactoryTransactor: ActivityFactoryTransactor{contract: contract}, ActivityFactoryFilterer: ActivityFactoryFilterer{contract: contract}}, nil
+	return &ActivityAdditional{ActivityAdditionalCaller: ActivityAdditionalCaller{contract: contract}, ActivityAdditionalTransactor: ActivityAdditionalTransactor{contract: contract}, ActivityAdditionalFilterer: ActivityAdditionalFilterer{contract: contract}}, nil
 }
 
-// NewActivityFactoryCaller creates a new read-only instance of ActivityFactory, bound to a specific deployed contract.
-func NewActivityFactoryCaller(address common.Address, caller bind.ContractCaller) (*ActivityFactoryCaller, error) {
-	contract, err := bindActivityFactory(address, caller, nil, nil)
+// NewActivityAdditionalCaller creates a new read-only instance of ActivityAdditional, bound to a specific deployed contract.
+func NewActivityAdditionalCaller(address common.Address, caller bind.ContractCaller) (*ActivityAdditionalCaller, error) {
+	contract, err := bindActivityAdditional(address, caller, nil, nil)
 	if err != nil {
 		return nil, err
 	}
-	return &ActivityFactoryCaller{contract: contract}, nil
+	return &ActivityAdditionalCaller{contract: contract}, nil
 }
 
-// NewActivityFactoryTransactor creates a new write-only instance of ActivityFactory, bound to a specific deployed contract.
-func NewActivityFactoryTransactor(address common.Address, transactor bind.ContractTransactor) (*ActivityFactoryTransactor, error) {
-	contract, err := bindActivityFactory(address, nil, transactor, nil)
+// NewActivityAdditionalTransactor creates a new write-only instance of ActivityAdditional, bound to a specific deployed contract.
+func NewActivityAdditionalTransactor(address common.Address, transactor bind.ContractTransactor) (*ActivityAdditionalTransactor, error) {
+	contract, err := bindActivityAdditional(address, nil, transactor, nil)
 	if err != nil {
 		return nil, err
 	}
-	return &ActivityFactoryTransactor{contract: contract}, nil
+	return &ActivityAdditionalTransactor{contract: contract}, nil
 }
 
-// NewActivityFactoryFilterer creates a new log filterer instance of ActivityFactory, bound to a specific deployed contract.
-func NewActivityFactoryFilterer(address common.Address, filterer bind.ContractFilterer) (*ActivityFactoryFilterer, error) {
-	contract, err := bindActivityFactory(address, nil, nil, filterer)
+// NewActivityAdditionalFilterer creates a new log filterer instance of ActivityAdditional, bound to a specific deployed contract.
+func NewActivityAdditionalFilterer(address common.Address, filterer bind.ContractFilterer) (*ActivityAdditionalFilterer, error) {
+	contract, err := bindActivityAdditional(address, nil, nil, filterer)
 	if err != nil {
 		return nil, err
 	}
-	return &ActivityFactoryFilterer{contract: contract}, nil
+	return &ActivityAdditionalFilterer{contract: contract}, nil
 }
 
-// bindActivityFactory binds a generic wrapper to an already deployed contract.
-func bindActivityFactory(address common.Address, caller bind.ContractCaller, transactor bind.ContractTransactor, filterer bind.ContractFilterer) (*bind.BoundContract, error) {
-	parsed, err := abi.JSON(strings.NewReader(ActivityFactoryABI))
+// bindActivityAdditional binds a generic wrapper to an already deployed contract.
+func bindActivityAdditional(address common.Address, caller bind.ContractCaller, transactor bind.ContractTransactor, filterer bind.ContractFilterer) (*bind.BoundContract, error) {
+	parsed, err := abi.JSON(strings.NewReader(ActivityAdditionalABI))
 	if err != nil {
 		return nil, err
 	}
@@ -1034,215 +1020,168 @@ func bindActivityFactory(address common.Address, caller bind.ContractCaller, tra
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_ActivityFactory *ActivityFactoryRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
-	return _ActivityFactory.Contract.ActivityFactoryCaller.contract.Call(opts, result, method, params...)
+func (_ActivityAdditional *ActivityAdditionalRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+	return _ActivityAdditional.Contract.ActivityAdditionalCaller.contract.Call(opts, result, method, params...)
 }
 
 // Transfer initiates a plain transaction to move funds to the contract, calling
 // its default method if one is available.
-func (_ActivityFactory *ActivityFactoryRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _ActivityFactory.Contract.ActivityFactoryTransactor.contract.Transfer(opts)
+func (_ActivityAdditional *ActivityAdditionalRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _ActivityAdditional.Contract.ActivityAdditionalTransactor.contract.Transfer(opts)
 }
 
 // Transact invokes the (paid) contract method with params as input values.
-func (_ActivityFactory *ActivityFactoryRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
-	return _ActivityFactory.Contract.ActivityFactoryTransactor.contract.Transact(opts, method, params...)
+func (_ActivityAdditional *ActivityAdditionalRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _ActivityAdditional.Contract.ActivityAdditionalTransactor.contract.Transact(opts, method, params...)
 }
 
 // Call invokes the (constant) contract method with params as input values and
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_ActivityFactory *ActivityFactoryCallerRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
-	return _ActivityFactory.Contract.contract.Call(opts, result, method, params...)
+func (_ActivityAdditional *ActivityAdditionalCallerRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+	return _ActivityAdditional.Contract.contract.Call(opts, result, method, params...)
 }
 
 // Transfer initiates a plain transaction to move funds to the contract, calling
 // its default method if one is available.
-func (_ActivityFactory *ActivityFactoryTransactorRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _ActivityFactory.Contract.contract.Transfer(opts)
+func (_ActivityAdditional *ActivityAdditionalTransactorRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _ActivityAdditional.Contract.contract.Transfer(opts)
 }
 
 // Transact invokes the (paid) contract method with params as input values.
-func (_ActivityFactory *ActivityFactoryTransactorRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
-	return _ActivityFactory.Contract.contract.Transact(opts, method, params...)
+func (_ActivityAdditional *ActivityAdditionalTransactorRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _ActivityAdditional.Contract.contract.Transact(opts, method, params...)
 }
 
 // Get is a free data retrieval call binding the contract method 0x8eaa6ac0.
 //
 // Solidity: function get(bytes32 _ref) view returns(address)
-func (_ActivityFactory *ActivityFactoryCaller) Get(opts *bind.CallOpts, _ref [32]byte) (common.Address, error) {
+func (_ActivityAdditional *ActivityAdditionalCaller) Get(opts *bind.CallOpts, _ref [32]byte) (common.Address, error) {
 	var (
 		ret0 = new(common.Address)
 	)
 	out := ret0
-	err := _ActivityFactory.contract.Call(opts, out, "get", _ref)
+	err := _ActivityAdditional.contract.Call(opts, out, "get", _ref)
 	return *ret0, err
 }
 
 // Get is a free data retrieval call binding the contract method 0x8eaa6ac0.
 //
 // Solidity: function get(bytes32 _ref) view returns(address)
-func (_ActivityFactory *ActivityFactorySession) Get(_ref [32]byte) (common.Address, error) {
-	return _ActivityFactory.Contract.Get(&_ActivityFactory.CallOpts, _ref)
+func (_ActivityAdditional *ActivityAdditionalSession) Get(_ref [32]byte) (common.Address, error) {
+	return _ActivityAdditional.Contract.Get(&_ActivityAdditional.CallOpts, _ref)
 }
 
 // Get is a free data retrieval call binding the contract method 0x8eaa6ac0.
 //
 // Solidity: function get(bytes32 _ref) view returns(address)
-func (_ActivityFactory *ActivityFactoryCallerSession) Get(_ref [32]byte) (common.Address, error) {
-	return _ActivityFactory.Contract.Get(&_ActivityFactory.CallOpts, _ref)
-}
-
-// GetFactory is a free data retrieval call binding the contract method 0x17fc2761.
-//
-// Solidity: function getFactory(bytes32 _ref) view returns(address)
-func (_ActivityFactory *ActivityFactoryCaller) GetFactory(opts *bind.CallOpts, _ref [32]byte) (common.Address, error) {
-	var (
-		ret0 = new(common.Address)
-	)
-	out := ret0
-	err := _ActivityFactory.contract.Call(opts, out, "getFactory", _ref)
-	return *ret0, err
-}
-
-// GetFactory is a free data retrieval call binding the contract method 0x17fc2761.
-//
-// Solidity: function getFactory(bytes32 _ref) view returns(address)
-func (_ActivityFactory *ActivityFactorySession) GetFactory(_ref [32]byte) (common.Address, error) {
-	return _ActivityFactory.Contract.GetFactory(&_ActivityFactory.CallOpts, _ref)
-}
-
-// GetFactory is a free data retrieval call binding the contract method 0x17fc2761.
-//
-// Solidity: function getFactory(bytes32 _ref) view returns(address)
-func (_ActivityFactory *ActivityFactoryCallerSession) GetFactory(_ref [32]byte) (common.Address, error) {
-	return _ActivityFactory.Contract.GetFactory(&_ActivityFactory.CallOpts, _ref)
+func (_ActivityAdditional *ActivityAdditionalCallerSession) Get(_ref [32]byte) (common.Address, error) {
+	return _ActivityAdditional.Contract.Get(&_ActivityAdditional.CallOpts, _ref)
 }
 
 // GetNum is a free data retrieval call binding the contract method 0x67e0badb.
 //
 // Solidity: function getNum() view returns(uint256)
-func (_ActivityFactory *ActivityFactoryCaller) GetNum(opts *bind.CallOpts) (*big.Int, error) {
+func (_ActivityAdditional *ActivityAdditionalCaller) GetNum(opts *bind.CallOpts) (*big.Int, error) {
 	var (
 		ret0 = new(*big.Int)
 	)
 	out := ret0
-	err := _ActivityFactory.contract.Call(opts, out, "getNum")
+	err := _ActivityAdditional.contract.Call(opts, out, "getNum")
 	return *ret0, err
 }
 
 // GetNum is a free data retrieval call binding the contract method 0x67e0badb.
 //
 // Solidity: function getNum() view returns(uint256)
-func (_ActivityFactory *ActivityFactorySession) GetNum() (*big.Int, error) {
-	return _ActivityFactory.Contract.GetNum(&_ActivityFactory.CallOpts)
+func (_ActivityAdditional *ActivityAdditionalSession) GetNum() (*big.Int, error) {
+	return _ActivityAdditional.Contract.GetNum(&_ActivityAdditional.CallOpts)
 }
 
 // GetNum is a free data retrieval call binding the contract method 0x67e0badb.
 //
 // Solidity: function getNum() view returns(uint256)
-func (_ActivityFactory *ActivityFactoryCallerSession) GetNum() (*big.Int, error) {
-	return _ActivityFactory.Contract.GetNum(&_ActivityFactory.CallOpts)
+func (_ActivityAdditional *ActivityAdditionalCallerSession) GetNum() (*big.Int, error) {
+	return _ActivityAdditional.Contract.GetNum(&_ActivityAdditional.CallOpts)
 }
 
 // GetReference is a free data retrieval call binding the contract method 0xbc599341.
 //
 // Solidity: function getReference(uint256 _index) view returns(bytes32)
-func (_ActivityFactory *ActivityFactoryCaller) GetReference(opts *bind.CallOpts, _index *big.Int) ([32]byte, error) {
+func (_ActivityAdditional *ActivityAdditionalCaller) GetReference(opts *bind.CallOpts, _index *big.Int) ([32]byte, error) {
 	var (
 		ret0 = new([32]byte)
 	)
 	out := ret0
-	err := _ActivityFactory.contract.Call(opts, out, "getReference", _index)
+	err := _ActivityAdditional.contract.Call(opts, out, "getReference", _index)
 	return *ret0, err
 }
 
 // GetReference is a free data retrieval call binding the contract method 0xbc599341.
 //
 // Solidity: function getReference(uint256 _index) view returns(bytes32)
-func (_ActivityFactory *ActivityFactorySession) GetReference(_index *big.Int) ([32]byte, error) {
-	return _ActivityFactory.Contract.GetReference(&_ActivityFactory.CallOpts, _index)
+func (_ActivityAdditional *ActivityAdditionalSession) GetReference(_index *big.Int) ([32]byte, error) {
+	return _ActivityAdditional.Contract.GetReference(&_ActivityAdditional.CallOpts, _index)
 }
 
 // GetReference is a free data retrieval call binding the contract method 0xbc599341.
 //
 // Solidity: function getReference(uint256 _index) view returns(bytes32)
-func (_ActivityFactory *ActivityFactoryCallerSession) GetReference(_index *big.Int) ([32]byte, error) {
-	return _ActivityFactory.Contract.GetReference(&_ActivityFactory.CallOpts, _index)
+func (_ActivityAdditional *ActivityAdditionalCallerSession) GetReference(_index *big.Int) ([32]byte, error) {
+	return _ActivityAdditional.Contract.GetReference(&_ActivityAdditional.CallOpts, _index)
 }
 
 // Setter is a free data retrieval call binding the contract method 0x3f3108f7.
 //
 // Solidity: function setter() view returns(bytes4)
-func (_ActivityFactory *ActivityFactoryCaller) Setter(opts *bind.CallOpts) ([4]byte, error) {
+func (_ActivityAdditional *ActivityAdditionalCaller) Setter(opts *bind.CallOpts) ([4]byte, error) {
 	var (
 		ret0 = new([4]byte)
 	)
 	out := ret0
-	err := _ActivityFactory.contract.Call(opts, out, "setter")
+	err := _ActivityAdditional.contract.Call(opts, out, "setter")
 	return *ret0, err
 }
 
 // Setter is a free data retrieval call binding the contract method 0x3f3108f7.
 //
 // Solidity: function setter() view returns(bytes4)
-func (_ActivityFactory *ActivityFactorySession) Setter() ([4]byte, error) {
-	return _ActivityFactory.Contract.Setter(&_ActivityFactory.CallOpts)
+func (_ActivityAdditional *ActivityAdditionalSession) Setter() ([4]byte, error) {
+	return _ActivityAdditional.Contract.Setter(&_ActivityAdditional.CallOpts)
 }
 
 // Setter is a free data retrieval call binding the contract method 0x3f3108f7.
 //
 // Solidity: function setter() view returns(bytes4)
-func (_ActivityFactory *ActivityFactoryCallerSession) Setter() ([4]byte, error) {
-	return _ActivityFactory.Contract.Setter(&_ActivityFactory.CallOpts)
+func (_ActivityAdditional *ActivityAdditionalCallerSession) Setter() ([4]byte, error) {
+	return _ActivityAdditional.Contract.Setter(&_ActivityAdditional.CallOpts)
 }
 
-// AddChild is a paid mutator transaction binding the contract method 0xcbb2dc95.
+// Set is a paid mutator transaction binding the contract method 0xd9a958cf.
 //
-// Solidity: function addChild(bytes32 _ref, address _child, uint8 _childType) returns()
-func (_ActivityFactory *ActivityFactoryTransactor) AddChild(opts *bind.TransactOpts, _ref [32]byte, _child common.Address, _childType uint8) (*types.Transaction, error) {
-	return _ActivityFactory.contract.Transact(opts, "addChild", _ref, _child, _childType)
+// Solidity: function set(bytes32 _parentRef, bytes32 _thisRef, AdditionalData _additional) returns()
+func (_ActivityAdditional *ActivityAdditionalTransactor) Set(opts *bind.TransactOpts, _parentRef [32]byte, _thisRef [32]byte, _additional AdditionalData) (*types.Transaction, error) {
+	return _ActivityAdditional.contract.Transact(opts, "set", _parentRef, _thisRef, _additional)
 }
 
-// AddChild is a paid mutator transaction binding the contract method 0xcbb2dc95.
+// Set is a paid mutator transaction binding the contract method 0xd9a958cf.
 //
-// Solidity: function addChild(bytes32 _ref, address _child, uint8 _childType) returns()
-func (_ActivityFactory *ActivityFactorySession) AddChild(_ref [32]byte, _child common.Address, _childType uint8) (*types.Transaction, error) {
-	return _ActivityFactory.Contract.AddChild(&_ActivityFactory.TransactOpts, _ref, _child, _childType)
+// Solidity: function set(bytes32 _parentRef, bytes32 _thisRef, AdditionalData _additional) returns()
+func (_ActivityAdditional *ActivityAdditionalSession) Set(_parentRef [32]byte, _thisRef [32]byte, _additional AdditionalData) (*types.Transaction, error) {
+	return _ActivityAdditional.Contract.Set(&_ActivityAdditional.TransactOpts, _parentRef, _thisRef, _additional)
 }
 
-// AddChild is a paid mutator transaction binding the contract method 0xcbb2dc95.
+// Set is a paid mutator transaction binding the contract method 0xd9a958cf.
 //
-// Solidity: function addChild(bytes32 _ref, address _child, uint8 _childType) returns()
-func (_ActivityFactory *ActivityFactoryTransactorSession) AddChild(_ref [32]byte, _child common.Address, _childType uint8) (*types.Transaction, error) {
-	return _ActivityFactory.Contract.AddChild(&_ActivityFactory.TransactOpts, _ref, _child, _childType)
+// Solidity: function set(bytes32 _parentRef, bytes32 _thisRef, AdditionalData _additional) returns()
+func (_ActivityAdditional *ActivityAdditionalTransactorSession) Set(_parentRef [32]byte, _thisRef [32]byte, _additional AdditionalData) (*types.Transaction, error) {
+	return _ActivityAdditional.Contract.Set(&_ActivityAdditional.TransactOpts, _parentRef, _thisRef, _additional)
 }
 
-// Set is a paid mutator transaction binding the contract method 0x1006fbc7.
-//
-// Solidity: function set(bytes32 _parentRef, bytes32 _thisRef, ActivityData _activity) returns()
-func (_ActivityFactory *ActivityFactoryTransactor) Set(opts *bind.TransactOpts, _parentRef [32]byte, _thisRef [32]byte, _activity ActivityData) (*types.Transaction, error) {
-	return _ActivityFactory.contract.Transact(opts, "set", _parentRef, _thisRef, _activity)
-}
-
-// Set is a paid mutator transaction binding the contract method 0x1006fbc7.
-//
-// Solidity: function set(bytes32 _parentRef, bytes32 _thisRef, ActivityData _activity) returns()
-func (_ActivityFactory *ActivityFactorySession) Set(_parentRef [32]byte, _thisRef [32]byte, _activity ActivityData) (*types.Transaction, error) {
-	return _ActivityFactory.Contract.Set(&_ActivityFactory.TransactOpts, _parentRef, _thisRef, _activity)
-}
-
-// Set is a paid mutator transaction binding the contract method 0x1006fbc7.
-//
-// Solidity: function set(bytes32 _parentRef, bytes32 _thisRef, ActivityData _activity) returns()
-func (_ActivityFactory *ActivityFactoryTransactorSession) Set(_parentRef [32]byte, _thisRef [32]byte, _activity ActivityData) (*types.Transaction, error) {
-	return _ActivityFactory.Contract.Set(&_ActivityFactory.TransactOpts, _parentRef, _thisRef, _activity)
-}
-
-// ActivityFactoryAddChildIterator is returned from FilterAddChild and is used to iterate over the raw logs and unpacked data for AddChild events raised by the ActivityFactory contract.
-type ActivityFactoryAddChildIterator struct {
-	Event *ActivityFactoryAddChild // Event containing the contract specifics and raw log
+// ActivityAdditionalSetIterator is returned from FilterSet and is used to iterate over the raw logs and unpacked data for Set events raised by the ActivityAdditional contract.
+type ActivityAdditionalSetIterator struct {
+	Event *ActivityAdditionalSet // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -1256,7 +1195,7 @@ type ActivityFactoryAddChildIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *ActivityFactoryAddChildIterator) Next() bool {
+func (it *ActivityAdditionalSetIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -1265,7 +1204,7 @@ func (it *ActivityFactoryAddChildIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(ActivityFactoryAddChild)
+			it.Event = new(ActivityAdditionalSet)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -1280,7 +1219,7 @@ func (it *ActivityFactoryAddChildIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(ActivityFactoryAddChild)
+		it.Event = new(ActivityAdditionalSet)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -1296,154 +1235,19 @@ func (it *ActivityFactoryAddChildIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *ActivityFactoryAddChildIterator) Error() error {
+func (it *ActivityAdditionalSetIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *ActivityFactoryAddChildIterator) Close() error {
+func (it *ActivityAdditionalSetIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// ActivityFactoryAddChild represents a AddChild event raised by the ActivityFactory contract.
-type ActivityFactoryAddChild struct {
-	Ref       [32]byte
-	Child     common.Address
-	ChildType uint8
-	Raw       types.Log // Blockchain specific contextual infos
-}
-
-// FilterAddChild is a free log retrieval operation binding the contract event 0x4f2635eaa771447d282168d4763629c4b855ff7c733898eefc20b8699278d0c0.
-//
-// Solidity: event AddChild(bytes32 _ref, address _child, uint8 _childType)
-func (_ActivityFactory *ActivityFactoryFilterer) FilterAddChild(opts *bind.FilterOpts) (*ActivityFactoryAddChildIterator, error) {
-
-	logs, sub, err := _ActivityFactory.contract.FilterLogs(opts, "AddChild")
-	if err != nil {
-		return nil, err
-	}
-	return &ActivityFactoryAddChildIterator{contract: _ActivityFactory.contract, event: "AddChild", logs: logs, sub: sub}, nil
-}
-
-// WatchAddChild is a free log subscription operation binding the contract event 0x4f2635eaa771447d282168d4763629c4b855ff7c733898eefc20b8699278d0c0.
-//
-// Solidity: event AddChild(bytes32 _ref, address _child, uint8 _childType)
-func (_ActivityFactory *ActivityFactoryFilterer) WatchAddChild(opts *bind.WatchOpts, sink chan<- *ActivityFactoryAddChild) (event.Subscription, error) {
-
-	logs, sub, err := _ActivityFactory.contract.WatchLogs(opts, "AddChild")
-	if err != nil {
-		return nil, err
-	}
-	return event.NewSubscription(func(quit <-chan struct{}) error {
-		defer sub.Unsubscribe()
-		for {
-			select {
-			case log := <-logs:
-				// New log arrived, parse the event and forward to the user
-				event := new(ActivityFactoryAddChild)
-				if err := _ActivityFactory.contract.UnpackLog(event, "AddChild", log); err != nil {
-					return err
-				}
-				event.Raw = log
-
-				select {
-				case sink <- event:
-				case err := <-sub.Err():
-					return err
-				case <-quit:
-					return nil
-				}
-			case err := <-sub.Err():
-				return err
-			case <-quit:
-				return nil
-			}
-		}
-	}), nil
-}
-
-// ParseAddChild is a log parse operation binding the contract event 0x4f2635eaa771447d282168d4763629c4b855ff7c733898eefc20b8699278d0c0.
-//
-// Solidity: event AddChild(bytes32 _ref, address _child, uint8 _childType)
-func (_ActivityFactory *ActivityFactoryFilterer) ParseAddChild(log types.Log) (*ActivityFactoryAddChild, error) {
-	event := new(ActivityFactoryAddChild)
-	if err := _ActivityFactory.contract.UnpackLog(event, "AddChild", log); err != nil {
-		return nil, err
-	}
-	return event, nil
-}
-
-// ActivityFactorySetIterator is returned from FilterSet and is used to iterate over the raw logs and unpacked data for Set events raised by the ActivityFactory contract.
-type ActivityFactorySetIterator struct {
-	Event *ActivityFactorySet // Event containing the contract specifics and raw log
-
-	contract *bind.BoundContract // Generic contract to use for unpacking event data
-	event    string              // Event name to use for unpacking event data
-
-	logs chan types.Log        // Log channel receiving the found contract events
-	sub  ethereum.Subscription // Subscription for errors, completion and termination
-	done bool                  // Whether the subscription completed delivering logs
-	fail error                 // Occurred error to stop iteration
-}
-
-// Next advances the iterator to the subsequent event, returning whether there
-// are any more events found. In case of a retrieval or parsing error, false is
-// returned and Error() can be queried for the exact failure.
-func (it *ActivityFactorySetIterator) Next() bool {
-	// If the iterator failed, stop iterating
-	if it.fail != nil {
-		return false
-	}
-	// If the iterator completed, deliver directly whatever's available
-	if it.done {
-		select {
-		case log := <-it.logs:
-			it.Event = new(ActivityFactorySet)
-			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
-				it.fail = err
-				return false
-			}
-			it.Event.Raw = log
-			return true
-
-		default:
-			return false
-		}
-	}
-	// Iterator still in progress, wait for either a data or an error event
-	select {
-	case log := <-it.logs:
-		it.Event = new(ActivityFactorySet)
-		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
-			it.fail = err
-			return false
-		}
-		it.Event.Raw = log
-		return true
-
-	case err := <-it.sub.Err():
-		it.done = true
-		it.fail = err
-		return it.Next()
-	}
-}
-
-// Error returns any retrieval or parsing error occurred during filtering.
-func (it *ActivityFactorySetIterator) Error() error {
-	return it.fail
-}
-
-// Close terminates the iteration process, releasing any pending underlying
-// resources.
-func (it *ActivityFactorySetIterator) Close() error {
-	it.sub.Unsubscribe()
-	return nil
-}
-
-// ActivityFactorySet represents a Set event raised by the ActivityFactory contract.
-type ActivityFactorySet struct {
+// ActivityAdditionalSet represents a Set event raised by the ActivityAdditional contract.
+type ActivityAdditionalSet struct {
 	ElementType uint8
 	Ref         [32]byte
 	Raw         types.Log // Blockchain specific contextual infos
@@ -1452,21 +1256,21 @@ type ActivityFactorySet struct {
 // FilterSet is a free log retrieval operation binding the contract event 0x8353a4d574992e9eb676a31cd326ce2f9f6c4829c3b84ae33ee9febbb2962e7b.
 //
 // Solidity: event Set(uint8 _elementType, bytes32 _ref)
-func (_ActivityFactory *ActivityFactoryFilterer) FilterSet(opts *bind.FilterOpts) (*ActivityFactorySetIterator, error) {
+func (_ActivityAdditional *ActivityAdditionalFilterer) FilterSet(opts *bind.FilterOpts) (*ActivityAdditionalSetIterator, error) {
 
-	logs, sub, err := _ActivityFactory.contract.FilterLogs(opts, "Set")
+	logs, sub, err := _ActivityAdditional.contract.FilterLogs(opts, "Set")
 	if err != nil {
 		return nil, err
 	}
-	return &ActivityFactorySetIterator{contract: _ActivityFactory.contract, event: "Set", logs: logs, sub: sub}, nil
+	return &ActivityAdditionalSetIterator{contract: _ActivityAdditional.contract, event: "Set", logs: logs, sub: sub}, nil
 }
 
 // WatchSet is a free log subscription operation binding the contract event 0x8353a4d574992e9eb676a31cd326ce2f9f6c4829c3b84ae33ee9febbb2962e7b.
 //
 // Solidity: event Set(uint8 _elementType, bytes32 _ref)
-func (_ActivityFactory *ActivityFactoryFilterer) WatchSet(opts *bind.WatchOpts, sink chan<- *ActivityFactorySet) (event.Subscription, error) {
+func (_ActivityAdditional *ActivityAdditionalFilterer) WatchSet(opts *bind.WatchOpts, sink chan<- *ActivityAdditionalSet) (event.Subscription, error) {
 
-	logs, sub, err := _ActivityFactory.contract.WatchLogs(opts, "Set")
+	logs, sub, err := _ActivityAdditional.contract.WatchLogs(opts, "Set")
 	if err != nil {
 		return nil, err
 	}
@@ -1476,8 +1280,8 @@ func (_ActivityFactory *ActivityFactoryFilterer) WatchSet(opts *bind.WatchOpts, 
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(ActivityFactorySet)
-				if err := _ActivityFactory.contract.UnpackLog(event, "Set", log); err != nil {
+				event := new(ActivityAdditionalSet)
+				if err := _ActivityAdditional.contract.UnpackLog(event, "Set", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -1501,138 +1305,138 @@ func (_ActivityFactory *ActivityFactoryFilterer) WatchSet(opts *bind.WatchOpts, 
 // ParseSet is a log parse operation binding the contract event 0x8353a4d574992e9eb676a31cd326ce2f9f6c4829c3b84ae33ee9febbb2962e7b.
 //
 // Solidity: event Set(uint8 _elementType, bytes32 _ref)
-func (_ActivityFactory *ActivityFactoryFilterer) ParseSet(log types.Log) (*ActivityFactorySet, error) {
-	event := new(ActivityFactorySet)
-	if err := _ActivityFactory.contract.UnpackLog(event, "Set", log); err != nil {
+func (_ActivityAdditional *ActivityAdditionalFilterer) ParseSet(log types.Log) (*ActivityAdditionalSet, error) {
+	event := new(ActivityAdditionalSet)
+	if err := _ActivityAdditional.contract.UnpackLog(event, "Set", log); err != nil {
 		return nil, err
 	}
 	return event, nil
 }
 
-// ActivityNodeABI is the input ABI used to generate the binding from.
-const ActivityNodeABI = "[{\"inputs\":[{\"components\":[{\"internalType\":\"bool\",\"name\":\"humanitarian\",\"type\":\"bool\"},{\"internalType\":\"uint8\",\"name\":\"hierarchy\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"budgetNotProvided\",\"type\":\"uint8\"},{\"components\":[{\"internalType\":\"uint8\",\"name\":\"orgType\",\"type\":\"uint8\"},{\"internalType\":\"bool\",\"name\":\"isSecondary\",\"type\":\"bool\"},{\"internalType\":\"bytes32\",\"name\":\"orgRef\",\"type\":\"bytes32\"}],\"internalType\":\"structReportingOrgData\",\"name\":\"reportingOrg\",\"type\":\"tuple\"},{\"internalType\":\"bytes32\",\"name\":\"lastUpdated\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"lang\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"currency\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"linkedData\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"identifier\",\"type\":\"bytes32\"},{\"internalType\":\"string\",\"name\":\"title\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"}],\"internalType\":\"structActivityData\",\"name\":\"_activity\",\"type\":\"tuple\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"get\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"},{\"components\":[{\"internalType\":\"bool\",\"name\":\"humanitarian\",\"type\":\"bool\"},{\"internalType\":\"uint8\",\"name\":\"hierarchy\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"budgetNotProvided\",\"type\":\"uint8\"},{\"components\":[{\"internalType\":\"uint8\",\"name\":\"orgType\",\"type\":\"uint8\"},{\"internalType\":\"bool\",\"name\":\"isSecondary\",\"type\":\"bool\"},{\"internalType\":\"bytes32\",\"name\":\"orgRef\",\"type\":\"bytes32\"}],\"internalType\":\"structReportingOrgData\",\"name\":\"reportingOrg\",\"type\":\"tuple\"},{\"internalType\":\"bytes32\",\"name\":\"lastUpdated\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"lang\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"currency\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"linkedData\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"identifier\",\"type\":\"bytes32\"},{\"internalType\":\"string\",\"name\":\"title\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"}],\"internalType\":\"structActivityData\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getter\",\"outputs\":[{\"internalType\":\"bytes4\",\"name\":\"\",\"type\":\"bytes4\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]"
+// ActivityAdditionalNodeABI is the input ABI used to generate the binding from.
+const ActivityAdditionalNodeABI = "[{\"inputs\":[{\"components\":[{\"internalType\":\"uint8\",\"name\":\"scope\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"capitalSpend\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"collaborationType\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"defaultFlowType\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"defaultTiedStatus\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"defaultAidType\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"defaultFinanceType\",\"type\":\"uint256\"}],\"internalType\":\"structAdditionalData\",\"name\":\"_additional\",\"type\":\"tuple\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"get\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"},{\"components\":[{\"internalType\":\"uint8\",\"name\":\"scope\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"capitalSpend\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"collaborationType\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"defaultFlowType\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"defaultTiedStatus\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"defaultAidType\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"defaultFinanceType\",\"type\":\"uint256\"}],\"internalType\":\"structAdditionalData\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getter\",\"outputs\":[{\"internalType\":\"bytes4\",\"name\":\"\",\"type\":\"bytes4\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]"
 
-// ActivityNodeFuncSigs maps the 4-byte function signature to its string representation.
-var ActivityNodeFuncSigs = map[string]string{
+// ActivityAdditionalNodeFuncSigs maps the 4-byte function signature to its string representation.
+var ActivityAdditionalNodeFuncSigs = map[string]string{
 	"6d4ce63c": "get()",
 	"993a04b7": "getter()",
 }
 
-// ActivityNodeBin is the compiled bytecode used for deploying new contracts.
-var ActivityNodeBin = "0x60806040523480156200001157600080fd5b5060405162000a3538038062000a35833981016040819052620000349162000435565b61012081015160001a60f81b6001600160f81b0319161580159062000070575060808101516040015160001a60f81b6001600160f81b03191615155b801562000084575060808101515160ff1615155b8015620000975750600081610140015151115b8015620000b7575060a081015160001a60f81b6001600160f81b03191615155b8015620000d7575060c081015160001a60f81b6001600160f81b03191615155b8015620000f7575060e081015160001a60f81b6001600160f81b03191615155b80156200010a5750602081015160ff1615155b8015620001215750600460ff16816020015160ff16105b8015620001345750604081015160ff1615155b80156200014b5750600760ff16816040015160ff16105b80156200015e5750606081015160ff1615155b8015620001755750600460ff16816060015160ff16105b8015620001885750600081610160015151115b6200019257600080fd5b6101208101516007556080810151602080820151600180546040850151600255935160ff1660ff199215156101000261ff00199095169490941791909116929092179091556101408201518051620001ef92600892019062000279565b5060a081015160035560c081015160045560e0810151600555602080820151600080546040850151606086015161ff001990921661010060ff958616021762ff0000191662010000918516919091021763ff00000019166301000000939091169290920291909117905561016082015180516200027192600992019062000279565b505062000598565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f10620002bc57805160ff1916838001178555620002ec565b82800160010185558215620002ec579182015b82811115620002ec578251825591602001919060010190620002cf565b50620002fa929150620002fe565b5090565b6200031b91905b80821115620002fa576000815560010162000305565b90565b805180151581146200032f57600080fd5b92915050565b600082601f83011262000346578081fd5b81516001600160401b038111156200035c578182fd5b602062000372601f8301601f1916820162000571565b925081835284818386010111156200038957600080fd5b60005b82811015620003a95784810182015184820183015281016200038c565b82811115620003bb5760008284860101525b50505092915050565b600060608284031215620003d6578081fd5b620003e2606062000571565b9050815160ff81168114620003f657600080fd5b8152602082015180151581146200040c57600080fd5b806020830152506040820151604082015292915050565b805160ff811681146200032f57600080fd5b60006020828403121562000447578081fd5b81516001600160401b03808211156200045e578283fd5b8184016101c0818703121562000472578384fd5b6101809250620004828362000571565b6200048e87836200031e565b81526200049f876020840162000423565b6020820152620004b3876040840162000423565b6040820152620004c7876060840162000423565b6060820152620004db8760808401620003c4565b608082015260e082015160a08201526101008083015160c08301526101208084015160e0840152610140808501518385015261016092508285015182850152868501519150858211156200052d578788fd5b6200053b8a83870162000335565b90840152506101a083015194508385111562000555578586fd5b620005638886850162000335565b908201529695505050505050565b6040518181016001600160401b03811182821017156200059057600080fd5b604052919050565b61048d80620005a86000396000f3fe608060405234801561001057600080fd5b50600436106100365760003560e01c80636d4ce63c1461003b578063993a04b71461005a575b600080fd5b61004361006f565b604051610051929190610364565b60405180910390f35b610062610244565b604051610051919061034f565b600061007961024f565b600360408051610180810182526000805460ff80821615158452610100808304821660208087019190915262010000840483168688015263010000009093048216606080870191909152865190810187526001805480851683528390049093161515818501526002805482890152608087019190915260035460a087015260045460c087015260055460e087015260065482870152600754610120870152600880548851948116159093026000190190921604601f81018490048402830184019096528582529294859361014086019390919083018282801561019d5780601f106101725761010080835404028352916020019161019d565b820191906000526020600020905b81548152906001019060200180831161018057829003601f168201915b505050918352505060098201805460408051602060026001851615610100026000190190941693909304601f81018490048402820184019092528181529382019392918301828280156102315780601f1061020657610100808354040283529160200191610231565b820191906000526020600020905b81548152906001019060200180831161021457829003601f168201915b5050505050815250509050915091509091565b631b53398f60e21b90565b60408051610180810182526000808252602082018190529181018290526060810191909152608081016102806102b9565b81526000602082018190526040820181905260608083018290526080830182905260a083019190915260c0820181905260e09091015290565b604080516060810182526000808252602082018190529181019190915290565b15159052565b60008151808452815b81811015610304576020818501810151868301820152016102e8565b818111156103155782602083870101525b50601f01601f19169290920160200192915050565b805160ff168252602080820151151590830152604090810151910152565b60ff169052565b6001600160e01b031991909116815260200190565b600060ff84168252604060208301526103816040830184516102d9565b60208301516103936060840182610348565b5060408301516103a66080840182610348565b5060608301516103b960a0840182610348565b5060808301516103cc60c084018261032a565b5060a0830151610120818185015260c08501519150610140828186015260e086015192506101608381870152610100870151610180870152828701516101a08701528187015193506101c09250828387015261042c6102008701856102df565b90870151868203603f19016101e08801529350915061044d905081836102df565b969550505050505056fea264697066735822122034635eec72ab30edd5fe223c5ec26c6f763718a175f527a4c37dbd5349e30a5d64736f6c63430006060033"
+// ActivityAdditionalNodeBin is the compiled bytecode used for deploying new contracts.
+var ActivityAdditionalNodeBin = "0x608060405234801561001057600080fd5b5060405161041c38038061041c83398101604081905261002f91610195565b805160ff161580159061004857508051600960ff909116105b801561005c57506064816020015160ff1611155b801561006e5750604081015160ff1615155b80156100845750600860ff16816040015160ff16105b80156100bb575060a081015160001a60f81b7fff000000000000000000000000000000000000000000000000000000000000001615155b80156100d15750600260ff16816080015160ff16115b80156100e75750600660ff16816080015160ff16105b6100f057600080fd5b805160008054602084015160408501516080860151606087015160ff90811663010000000263ff000000199282166401000000000260ff60201b19948316620100000262ff0000199684166101000261ff001994909a1660ff19909816979097179290921697909717939093169390931716171691909117905560a081015160015560c00151600255610239565b805160ff8116811461018f57600080fd5b92915050565b600060e082840312156101a6578081fd5b60405160e081016001600160401b03811182821017156101c4578283fd5b6040526101d1848461017e565b81526101e0846020850161017e565b60208201526101f2846040850161017e565b6040820152610204846060850161017e565b6060820152610216846080850161017e565b608082015260a083015160a082015260c083015160c08201528091505092915050565b6101d4806102486000396000f3fe608060405234801561001057600080fd5b50600436106100365760003560e01c80636d4ce63c1461003b578063993a04b71461005a575b600080fd5b61004361006f565b604051610051929190610139565b60405180910390f35b6100626100dd565b6040516100519190610124565b60006100796100e8565b50506040805160e08101825260005460ff808216835261010082048116602084015262010000820481169383019390935263010000008104831660608301526401000000009004909116608082015260015460a082015260025460c0820152600491565b631b53398f60e21b90565b6040805160e081018252600080825260208201819052918101829052606081018290526080810182905260a0810182905260c081019190915290565b6001600160e01b031991909116815260200190565b60006101008201905060ff80851683528084511660208401528060208501511660408401528060408501511660608401528060608501511660808401528060808501511660a08401525060a083015160c083015260c083015160e0830152939250505056fea2646970667358221220c9f01dbbbc2bc8135a3a7f5945921c3c1dd08f33aa31d77a35c99861457b2d6f64736f6c63430006060033"
 
-// DeployActivityNode deploys a new Ethereum contract, binding an instance of ActivityNode to it.
-func DeployActivityNode(auth *bind.TransactOpts, backend bind.ContractBackend, _activity ActivityData) (common.Address, *types.Transaction, *ActivityNode, error) {
-	parsed, err := abi.JSON(strings.NewReader(ActivityNodeABI))
+// DeployActivityAdditionalNode deploys a new Ethereum contract, binding an instance of ActivityAdditionalNode to it.
+func DeployActivityAdditionalNode(auth *bind.TransactOpts, backend bind.ContractBackend, _additional AdditionalData) (common.Address, *types.Transaction, *ActivityAdditionalNode, error) {
+	parsed, err := abi.JSON(strings.NewReader(ActivityAdditionalNodeABI))
 	if err != nil {
 		return common.Address{}, nil, nil, err
 	}
 
-	address, tx, contract, err := bind.DeployContract(auth, parsed, common.FromHex(ActivityNodeBin), backend, _activity)
+	address, tx, contract, err := bind.DeployContract(auth, parsed, common.FromHex(ActivityAdditionalNodeBin), backend, _additional)
 	if err != nil {
 		return common.Address{}, nil, nil, err
 	}
-	return address, tx, &ActivityNode{ActivityNodeCaller: ActivityNodeCaller{contract: contract}, ActivityNodeTransactor: ActivityNodeTransactor{contract: contract}, ActivityNodeFilterer: ActivityNodeFilterer{contract: contract}}, nil
+	return address, tx, &ActivityAdditionalNode{ActivityAdditionalNodeCaller: ActivityAdditionalNodeCaller{contract: contract}, ActivityAdditionalNodeTransactor: ActivityAdditionalNodeTransactor{contract: contract}, ActivityAdditionalNodeFilterer: ActivityAdditionalNodeFilterer{contract: contract}}, nil
 }
 
-// ActivityNode is an auto generated Go binding around an Ethereum contract.
-type ActivityNode struct {
-	ActivityNodeCaller     // Read-only binding to the contract
-	ActivityNodeTransactor // Write-only binding to the contract
-	ActivityNodeFilterer   // Log filterer for contract events
+// ActivityAdditionalNode is an auto generated Go binding around an Ethereum contract.
+type ActivityAdditionalNode struct {
+	ActivityAdditionalNodeCaller     // Read-only binding to the contract
+	ActivityAdditionalNodeTransactor // Write-only binding to the contract
+	ActivityAdditionalNodeFilterer   // Log filterer for contract events
 }
 
-// ActivityNodeCaller is an auto generated read-only Go binding around an Ethereum contract.
-type ActivityNodeCaller struct {
+// ActivityAdditionalNodeCaller is an auto generated read-only Go binding around an Ethereum contract.
+type ActivityAdditionalNodeCaller struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// ActivityNodeTransactor is an auto generated write-only Go binding around an Ethereum contract.
-type ActivityNodeTransactor struct {
+// ActivityAdditionalNodeTransactor is an auto generated write-only Go binding around an Ethereum contract.
+type ActivityAdditionalNodeTransactor struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// ActivityNodeFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
-type ActivityNodeFilterer struct {
+// ActivityAdditionalNodeFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
+type ActivityAdditionalNodeFilterer struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// ActivityNodeSession is an auto generated Go binding around an Ethereum contract,
+// ActivityAdditionalNodeSession is an auto generated Go binding around an Ethereum contract,
 // with pre-set call and transact options.
-type ActivityNodeSession struct {
-	Contract     *ActivityNode     // Generic contract binding to set the session for
-	CallOpts     bind.CallOpts     // Call options to use throughout this session
-	TransactOpts bind.TransactOpts // Transaction auth options to use throughout this session
-}
-
-// ActivityNodeCallerSession is an auto generated read-only Go binding around an Ethereum contract,
-// with pre-set call options.
-type ActivityNodeCallerSession struct {
-	Contract *ActivityNodeCaller // Generic contract caller binding to set the session for
-	CallOpts bind.CallOpts       // Call options to use throughout this session
-}
-
-// ActivityNodeTransactorSession is an auto generated write-only Go binding around an Ethereum contract,
-// with pre-set transact options.
-type ActivityNodeTransactorSession struct {
-	Contract     *ActivityNodeTransactor // Generic contract transactor binding to set the session for
+type ActivityAdditionalNodeSession struct {
+	Contract     *ActivityAdditionalNode // Generic contract binding to set the session for
+	CallOpts     bind.CallOpts           // Call options to use throughout this session
 	TransactOpts bind.TransactOpts       // Transaction auth options to use throughout this session
 }
 
-// ActivityNodeRaw is an auto generated low-level Go binding around an Ethereum contract.
-type ActivityNodeRaw struct {
-	Contract *ActivityNode // Generic contract binding to access the raw methods on
+// ActivityAdditionalNodeCallerSession is an auto generated read-only Go binding around an Ethereum contract,
+// with pre-set call options.
+type ActivityAdditionalNodeCallerSession struct {
+	Contract *ActivityAdditionalNodeCaller // Generic contract caller binding to set the session for
+	CallOpts bind.CallOpts                 // Call options to use throughout this session
 }
 
-// ActivityNodeCallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
-type ActivityNodeCallerRaw struct {
-	Contract *ActivityNodeCaller // Generic read-only contract binding to access the raw methods on
+// ActivityAdditionalNodeTransactorSession is an auto generated write-only Go binding around an Ethereum contract,
+// with pre-set transact options.
+type ActivityAdditionalNodeTransactorSession struct {
+	Contract     *ActivityAdditionalNodeTransactor // Generic contract transactor binding to set the session for
+	TransactOpts bind.TransactOpts                 // Transaction auth options to use throughout this session
 }
 
-// ActivityNodeTransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
-type ActivityNodeTransactorRaw struct {
-	Contract *ActivityNodeTransactor // Generic write-only contract binding to access the raw methods on
+// ActivityAdditionalNodeRaw is an auto generated low-level Go binding around an Ethereum contract.
+type ActivityAdditionalNodeRaw struct {
+	Contract *ActivityAdditionalNode // Generic contract binding to access the raw methods on
 }
 
-// NewActivityNode creates a new instance of ActivityNode, bound to a specific deployed contract.
-func NewActivityNode(address common.Address, backend bind.ContractBackend) (*ActivityNode, error) {
-	contract, err := bindActivityNode(address, backend, backend, backend)
+// ActivityAdditionalNodeCallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
+type ActivityAdditionalNodeCallerRaw struct {
+	Contract *ActivityAdditionalNodeCaller // Generic read-only contract binding to access the raw methods on
+}
+
+// ActivityAdditionalNodeTransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
+type ActivityAdditionalNodeTransactorRaw struct {
+	Contract *ActivityAdditionalNodeTransactor // Generic write-only contract binding to access the raw methods on
+}
+
+// NewActivityAdditionalNode creates a new instance of ActivityAdditionalNode, bound to a specific deployed contract.
+func NewActivityAdditionalNode(address common.Address, backend bind.ContractBackend) (*ActivityAdditionalNode, error) {
+	contract, err := bindActivityAdditionalNode(address, backend, backend, backend)
 	if err != nil {
 		return nil, err
 	}
-	return &ActivityNode{ActivityNodeCaller: ActivityNodeCaller{contract: contract}, ActivityNodeTransactor: ActivityNodeTransactor{contract: contract}, ActivityNodeFilterer: ActivityNodeFilterer{contract: contract}}, nil
+	return &ActivityAdditionalNode{ActivityAdditionalNodeCaller: ActivityAdditionalNodeCaller{contract: contract}, ActivityAdditionalNodeTransactor: ActivityAdditionalNodeTransactor{contract: contract}, ActivityAdditionalNodeFilterer: ActivityAdditionalNodeFilterer{contract: contract}}, nil
 }
 
-// NewActivityNodeCaller creates a new read-only instance of ActivityNode, bound to a specific deployed contract.
-func NewActivityNodeCaller(address common.Address, caller bind.ContractCaller) (*ActivityNodeCaller, error) {
-	contract, err := bindActivityNode(address, caller, nil, nil)
+// NewActivityAdditionalNodeCaller creates a new read-only instance of ActivityAdditionalNode, bound to a specific deployed contract.
+func NewActivityAdditionalNodeCaller(address common.Address, caller bind.ContractCaller) (*ActivityAdditionalNodeCaller, error) {
+	contract, err := bindActivityAdditionalNode(address, caller, nil, nil)
 	if err != nil {
 		return nil, err
 	}
-	return &ActivityNodeCaller{contract: contract}, nil
+	return &ActivityAdditionalNodeCaller{contract: contract}, nil
 }
 
-// NewActivityNodeTransactor creates a new write-only instance of ActivityNode, bound to a specific deployed contract.
-func NewActivityNodeTransactor(address common.Address, transactor bind.ContractTransactor) (*ActivityNodeTransactor, error) {
-	contract, err := bindActivityNode(address, nil, transactor, nil)
+// NewActivityAdditionalNodeTransactor creates a new write-only instance of ActivityAdditionalNode, bound to a specific deployed contract.
+func NewActivityAdditionalNodeTransactor(address common.Address, transactor bind.ContractTransactor) (*ActivityAdditionalNodeTransactor, error) {
+	contract, err := bindActivityAdditionalNode(address, nil, transactor, nil)
 	if err != nil {
 		return nil, err
 	}
-	return &ActivityNodeTransactor{contract: contract}, nil
+	return &ActivityAdditionalNodeTransactor{contract: contract}, nil
 }
 
-// NewActivityNodeFilterer creates a new log filterer instance of ActivityNode, bound to a specific deployed contract.
-func NewActivityNodeFilterer(address common.Address, filterer bind.ContractFilterer) (*ActivityNodeFilterer, error) {
-	contract, err := bindActivityNode(address, nil, nil, filterer)
+// NewActivityAdditionalNodeFilterer creates a new log filterer instance of ActivityAdditionalNode, bound to a specific deployed contract.
+func NewActivityAdditionalNodeFilterer(address common.Address, filterer bind.ContractFilterer) (*ActivityAdditionalNodeFilterer, error) {
+	contract, err := bindActivityAdditionalNode(address, nil, nil, filterer)
 	if err != nil {
 		return nil, err
 	}
-	return &ActivityNodeFilterer{contract: contract}, nil
+	return &ActivityAdditionalNodeFilterer{contract: contract}, nil
 }
 
-// bindActivityNode binds a generic wrapper to an already deployed contract.
-func bindActivityNode(address common.Address, caller bind.ContractCaller, transactor bind.ContractTransactor, filterer bind.ContractFilterer) (*bind.BoundContract, error) {
-	parsed, err := abi.JSON(strings.NewReader(ActivityNodeABI))
+// bindActivityAdditionalNode binds a generic wrapper to an already deployed contract.
+func bindActivityAdditionalNode(address common.Address, caller bind.ContractCaller, transactor bind.ContractTransactor, filterer bind.ContractFilterer) (*bind.BoundContract, error) {
+	parsed, err := abi.JSON(strings.NewReader(ActivityAdditionalNodeABI))
 	if err != nil {
 		return nil, err
 	}
@@ -1643,94 +1447,94 @@ func bindActivityNode(address common.Address, caller bind.ContractCaller, transa
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_ActivityNode *ActivityNodeRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
-	return _ActivityNode.Contract.ActivityNodeCaller.contract.Call(opts, result, method, params...)
+func (_ActivityAdditionalNode *ActivityAdditionalNodeRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+	return _ActivityAdditionalNode.Contract.ActivityAdditionalNodeCaller.contract.Call(opts, result, method, params...)
 }
 
 // Transfer initiates a plain transaction to move funds to the contract, calling
 // its default method if one is available.
-func (_ActivityNode *ActivityNodeRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _ActivityNode.Contract.ActivityNodeTransactor.contract.Transfer(opts)
+func (_ActivityAdditionalNode *ActivityAdditionalNodeRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _ActivityAdditionalNode.Contract.ActivityAdditionalNodeTransactor.contract.Transfer(opts)
 }
 
 // Transact invokes the (paid) contract method with params as input values.
-func (_ActivityNode *ActivityNodeRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
-	return _ActivityNode.Contract.ActivityNodeTransactor.contract.Transact(opts, method, params...)
+func (_ActivityAdditionalNode *ActivityAdditionalNodeRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _ActivityAdditionalNode.Contract.ActivityAdditionalNodeTransactor.contract.Transact(opts, method, params...)
 }
 
 // Call invokes the (constant) contract method with params as input values and
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_ActivityNode *ActivityNodeCallerRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
-	return _ActivityNode.Contract.contract.Call(opts, result, method, params...)
+func (_ActivityAdditionalNode *ActivityAdditionalNodeCallerRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+	return _ActivityAdditionalNode.Contract.contract.Call(opts, result, method, params...)
 }
 
 // Transfer initiates a plain transaction to move funds to the contract, calling
 // its default method if one is available.
-func (_ActivityNode *ActivityNodeTransactorRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _ActivityNode.Contract.contract.Transfer(opts)
+func (_ActivityAdditionalNode *ActivityAdditionalNodeTransactorRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _ActivityAdditionalNode.Contract.contract.Transfer(opts)
 }
 
 // Transact invokes the (paid) contract method with params as input values.
-func (_ActivityNode *ActivityNodeTransactorRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
-	return _ActivityNode.Contract.contract.Transact(opts, method, params...)
+func (_ActivityAdditionalNode *ActivityAdditionalNodeTransactorRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _ActivityAdditionalNode.Contract.contract.Transact(opts, method, params...)
 }
 
 // Get is a free data retrieval call binding the contract method 0x6d4ce63c.
 //
-// Solidity: function get() view returns(uint8, ActivityData)
-func (_ActivityNode *ActivityNodeCaller) Get(opts *bind.CallOpts) (uint8, ActivityData, error) {
+// Solidity: function get() view returns(uint8, AdditionalData)
+func (_ActivityAdditionalNode *ActivityAdditionalNodeCaller) Get(opts *bind.CallOpts) (uint8, AdditionalData, error) {
 	var (
 		ret0 = new(uint8)
-		ret1 = new(ActivityData)
+		ret1 = new(AdditionalData)
 	)
 	out := &[]interface{}{
 		ret0,
 		ret1,
 	}
-	err := _ActivityNode.contract.Call(opts, out, "get")
+	err := _ActivityAdditionalNode.contract.Call(opts, out, "get")
 	return *ret0, *ret1, err
 }
 
 // Get is a free data retrieval call binding the contract method 0x6d4ce63c.
 //
-// Solidity: function get() view returns(uint8, ActivityData)
-func (_ActivityNode *ActivityNodeSession) Get() (uint8, ActivityData, error) {
-	return _ActivityNode.Contract.Get(&_ActivityNode.CallOpts)
+// Solidity: function get() view returns(uint8, AdditionalData)
+func (_ActivityAdditionalNode *ActivityAdditionalNodeSession) Get() (uint8, AdditionalData, error) {
+	return _ActivityAdditionalNode.Contract.Get(&_ActivityAdditionalNode.CallOpts)
 }
 
 // Get is a free data retrieval call binding the contract method 0x6d4ce63c.
 //
-// Solidity: function get() view returns(uint8, ActivityData)
-func (_ActivityNode *ActivityNodeCallerSession) Get() (uint8, ActivityData, error) {
-	return _ActivityNode.Contract.Get(&_ActivityNode.CallOpts)
+// Solidity: function get() view returns(uint8, AdditionalData)
+func (_ActivityAdditionalNode *ActivityAdditionalNodeCallerSession) Get() (uint8, AdditionalData, error) {
+	return _ActivityAdditionalNode.Contract.Get(&_ActivityAdditionalNode.CallOpts)
 }
 
 // Getter is a free data retrieval call binding the contract method 0x993a04b7.
 //
 // Solidity: function getter() view returns(bytes4)
-func (_ActivityNode *ActivityNodeCaller) Getter(opts *bind.CallOpts) ([4]byte, error) {
+func (_ActivityAdditionalNode *ActivityAdditionalNodeCaller) Getter(opts *bind.CallOpts) ([4]byte, error) {
 	var (
 		ret0 = new([4]byte)
 	)
 	out := ret0
-	err := _ActivityNode.contract.Call(opts, out, "getter")
+	err := _ActivityAdditionalNode.contract.Call(opts, out, "getter")
 	return *ret0, err
 }
 
 // Getter is a free data retrieval call binding the contract method 0x993a04b7.
 //
 // Solidity: function getter() view returns(bytes4)
-func (_ActivityNode *ActivityNodeSession) Getter() ([4]byte, error) {
-	return _ActivityNode.Contract.Getter(&_ActivityNode.CallOpts)
+func (_ActivityAdditionalNode *ActivityAdditionalNodeSession) Getter() ([4]byte, error) {
+	return _ActivityAdditionalNode.Contract.Getter(&_ActivityAdditionalNode.CallOpts)
 }
 
 // Getter is a free data retrieval call binding the contract method 0x993a04b7.
 //
 // Solidity: function getter() view returns(bytes4)
-func (_ActivityNode *ActivityNodeCallerSession) Getter() ([4]byte, error) {
-	return _ActivityNode.Contract.Getter(&_ActivityNode.CallOpts)
+func (_ActivityAdditionalNode *ActivityAdditionalNodeCallerSession) Getter() ([4]byte, error) {
+	return _ActivityAdditionalNode.Contract.Getter(&_ActivityAdditionalNode.CallOpts)
 }
 
 // FactoryABI is the input ABI used to generate the binding from.

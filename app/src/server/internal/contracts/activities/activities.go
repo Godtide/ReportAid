@@ -35,11 +35,11 @@ type ActivitiesData struct {
 }
 
 // ActivitiesFactoryABI is the input ABI used to generate the binding from.
-const ActivitiesFactoryABI = "[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"_elementType\",\"type\":\"uint8\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"_ref\",\"type\":\"bytes32\"}],\"name\":\"AddChild\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"_elementType\",\"type\":\"uint8\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"_ref\",\"type\":\"bytes32\"}],\"name\":\"Set\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_ref\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"_child\",\"type\":\"address\"}],\"name\":\"addChild\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_ref\",\"type\":\"bytes32\"}],\"name\":\"get\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_ref\",\"type\":\"bytes32\"}],\"name\":\"getFactory\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getNum\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_index\",\"type\":\"uint256\"}],\"name\":\"getReference\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_ref\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"version\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"generatedTime\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"linkedData\",\"type\":\"bytes32\"}],\"internalType\":\"structActivitiesData\",\"name\":\"_activities\",\"type\":\"tuple\"}],\"name\":\"set\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"setter\",\"outputs\":[{\"internalType\":\"bytes4\",\"name\":\"\",\"type\":\"bytes4\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]"
+const ActivitiesFactoryABI = "[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"_ref\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"_child\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"_childType\",\"type\":\"uint8\"}],\"name\":\"AddChild\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"_elementType\",\"type\":\"uint8\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"_ref\",\"type\":\"bytes32\"}],\"name\":\"Set\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_ref\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"_child\",\"type\":\"address\"},{\"internalType\":\"uint8\",\"name\":\"_childType\",\"type\":\"uint8\"}],\"name\":\"addChild\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_ref\",\"type\":\"bytes32\"}],\"name\":\"get\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_ref\",\"type\":\"bytes32\"}],\"name\":\"getFactory\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getNum\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_index\",\"type\":\"uint256\"}],\"name\":\"getReference\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_ref\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"version\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"generatedTime\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"linkedData\",\"type\":\"bytes32\"}],\"internalType\":\"structActivitiesData\",\"name\":\"_activities\",\"type\":\"tuple\"}],\"name\":\"set\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"setter\",\"outputs\":[{\"internalType\":\"bytes4\",\"name\":\"\",\"type\":\"bytes4\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]"
 
 // ActivitiesFactoryFuncSigs maps the 4-byte function signature to its string representation.
 var ActivitiesFactoryFuncSigs = map[string]string{
-	"3d39ca7d": "addChild(bytes32,address)",
+	"cbb2dc95": "addChild(bytes32,address,uint8)",
 	"8eaa6ac0": "get(bytes32)",
 	"17fc2761": "getFactory(bytes32)",
 	"67e0badb": "getNum()",
@@ -49,7 +49,7 @@ var ActivitiesFactoryFuncSigs = map[string]string{
 }
 
 // ActivitiesFactoryBin is the compiled bytecode used for deploying new contracts.
-var ActivitiesFactoryBin = "0x608060405234801561001057600080fd5b506000600255610a25806100256000396000f3fe608060405234801561001057600080fd5b506004361061007d5760003560e01c806367e0badb1161005b57806367e0badb146100d55780638eaa6ac0146100ea57806391a95fbc146100fd578063bc599341146101105761007d565b806317fc2761146100825780633d39ca7d146100ab5780633f3108f7146100c0575b600080fd5b610095610090366004610488565b610123565b6040516100a2919061054d565b60405180910390f35b6100be6100b93660046104a0565b610181565b005b6100c861024b565b6040516100a2919061056a565b6100dd610256565b6040516100a29190610561565b6100956100f8366004610488565b61025c565b6100be61010b3660046104da565b6102ba565b6100dd61011e366004610488565b61039f565b600081811a60f81b6001600160f81b03191661013e57600080fd5b6000828152600360205260409020600101546001600160a01b031661016257600080fd5b506000908152600360205260409020600101546001600160a01b031690565b8160001a60f81b6001600160f81b03191661019b57600080fd5b6001600160a01b0381166101ae57600080fd5b6000828152600360205260409020600101546001600160a01b03166101d257600080fd5b60008281526003602052604090819020600101549051630a3b0a4f60e01b81526001600160a01b03909116908190630a3b0a4f9061021490859060040161054d565b600060405180830381600087803b15801561022e57600080fd5b505af1158015610242573d6000803e3d6000fd5b50505050505050565b63246a57ef60e21b90565b60025490565b600081811a60f81b6001600160f81b03191661027757600080fd5b6000828152602081905260409020600101546001600160a01b031661029b57600080fd5b506000908152602081905260409020600101546001600160a01b031690565b8160001a60f81b6001600160f81b0319166102d457600080fd5b6000816040516102e39061046e565b6102ed919061057f565b604051809103906000f080158015610309573d6000803e3d6000fd5b50905061031e6000848363ffffffff6103d716565b50600060405161032d9061047b565b604051809103906000f080158015610349573d6000803e3d6000fd5b50905061035e6003858363ffffffff6103d716565b507f8353a4d574992e9eb676a31cd326ce2f9f6c4829c3b84ae33ee9febbb2962e7b6002856040516103919291906105a0565b60405180910390a150505050565b60025460009082106103b057600080fd5b60018054839081106103be57fe5b9060005260206000209060020201600001549050919050565b60008281526020849052604081208054600190910180546001600160a01b0319166001600160a01b0385161790558015610415576001915050610467565b506001808501805491820180825560008681526020889052604090208190558591908390811061044157fe5b600091825260208220600291820201929092559086018054600101905591506104679050565b9392505050565b61024b806105b483390190565b6101f1806107ff83390190565b600060208284031215610499578081fd5b5035919050565b600080604083850312156104b2578081fd5b8235915060208301356001600160a01b03811681146104cf578182fd5b809150509250929050565b60008082840360808112156104ed578283fd5b833592506060601f1982011215610502578182fd5b506040516060810181811067ffffffffffffffff82111715610522578283fd5b8060405250602084013581526040840135602082015260608401356040820152809150509250929050565b6001600160a01b0391909116815260200190565b90815260200190565b6001600160e01b031991909116815260200190565b81518152602080830151908201526040918201519181019190915260600190565b60ff92909216825260208201526040019056fe608060405234801561001057600080fd5b5060405161024b38038061024b83398101604081905261002f916100a3565b805160001a60f81b6001600160f81b031916158015906100625750602081015160001a60f81b6001600160f81b03191615155b80156100815750604081015160001a60f81b6001600160f81b03191615155b61008a57600080fd5b80516000556020810151600155604001516002556100f9565b6000606082840312156100b4578081fd5b604051606081016001600160401b03811182821017156100d2578283fd5b80604052508251815260208301516020820152604083015160408201528091505092915050565b610143806101086000396000f3fe608060405234801561001057600080fd5b50600436106100365760003560e01c80636d4ce63c1461003b578063993a04b71461005a575b600080fd5b61004361006f565b6040516100519291906100e1565b60405180910390f35b6100626100a1565b60405161005191906100cc565b60006100796100ac565b5050604080516060810182526000548152600154602082015260028054928201929092529091565b631b53398f60e21b90565b604080516060810182526000808252602082018190529181019190915290565b6001600160e01b031991909116815260200190565b60ff9290921682528051602080840191909152810151604080840191909152015160608201526080019056fea26469706673582212205fdc640d76943283e7d618f7e4afaf99f8b482d25ce93778e17abe4ec7a4fd6664736f6c63430006060033608060405234801561001057600080fd5b506101d1806100206000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c80630a3b0a4f146100465780634f0f4aa91461005b57806367e0badb14610084575b600080fd5b610059610054366004610138565b610099565b005b61006e610069366004610166565b6100fb565b60405161007b919061017e565b60405180910390f35b61008c610132565b60405161007b9190610192565b6001600160a01b0381166100ac57600080fd5b600080546001810182559080527f290decd9548b62a8d60345a988386fc84ba6bc95484008f6362f93160ef3e5630180546001600160a01b0319166001600160a01b0392909216919091179055565b60008054821061010a57600080fd5b6000828154811061011757fe5b6000918252602090912001546001600160a01b031692915050565b60005490565b600060208284031215610149578081fd5b81356001600160a01b038116811461015f578182fd5b9392505050565b600060208284031215610177578081fd5b5035919050565b6001600160a01b0391909116815260200190565b9081526020019056fea2646970667358221220edeebf7e8efa9b89e7696dbd120e34658d0864a83afa8b437f0c4a00c42c3b1d64736f6c63430006060033a2646970667358221220fe25042acddddddf5353543ec4141cbd55a7113ede3b342ac8faff5c2797362c64736f6c63430006060033"
+var ActivitiesFactoryBin = "0x608060405234801561001057600080fd5b506000600255610a8c806100256000396000f3fe608060405234801561001057600080fd5b506004361061007d5760003560e01c80638eaa6ac01161005b5780638eaa6ac0146100d557806391a95fbc146100e8578063bc599341146100fd578063cbb2dc95146101105761007d565b806317fc2761146100825780633f3108f7146100ab57806367e0badb146100c0575b600080fd5b6100956100903660046104b6565b610123565b6040516100a29190610592565b60405180910390f35b6100b3610181565b6040516100a291906105d1565b6100c861018c565b6040516100a291906105a6565b6100956100e33660046104b6565b610192565b6100fb6100f636600461051f565b6101f0565b005b6100c861010b3660046104b6565b6102d5565b6100fb61011e3660046104ce565b61030d565b600081811a60f81b6001600160f81b03191661013e57600080fd5b6000828152600360205260409020600101546001600160a01b031661016257600080fd5b506000908152600360205260409020600101546001600160a01b031690565b63246a57ef60e21b90565b60025490565b600081811a60f81b6001600160f81b0319166101ad57600080fd5b6000828152602081905260409020600101546001600160a01b03166101d157600080fd5b506000908152602081905260409020600101546001600160a01b031690565b8160001a60f81b6001600160f81b03191661020a57600080fd5b6000816040516102199061049c565b61022391906105e6565b604051809103906000f08015801561023f573d6000803e3d6000fd5b5090506102546000848363ffffffff61040516565b506000604051610263906104a9565b604051809103906000f08015801561027f573d6000803e3d6000fd5b5090506102946003858363ffffffff61040516565b507f8353a4d574992e9eb676a31cd326ce2f9f6c4829c3b84ae33ee9febbb2962e7b6002856040516102c7929190610607565b60405180910390a150505050565b60025460009082106102e657600080fd5b60018054839081106102f457fe5b9060005260206000209060020201600001549050919050565b8260001a60f81b6001600160f81b03191661032757600080fd5b6001600160a01b03821661033a57600080fd5b6000838152600360205260409020600101546001600160a01b031661035e57600080fd5b60008381526003602052604090819020600101549051630a3b0a4f60e01b81526001600160a01b03909116908190630a3b0a4f906103a0908690600401610592565b600060405180830381600087803b1580156103ba57600080fd5b505af11580156103ce573d6000803e3d6000fd5b505050507f4f2635eaa771447d282168d4763629c4b855ff7c733898eefc20b8699278d0c08484846040516102c7939291906105af565b60008281526020849052604081208054600190910180546001600160a01b0319166001600160a01b0385161790558015610443576001915050610495565b506001808501805491820180825560008681526020889052604090208190558591908390811061046f57fe5b600091825260208220600291820201929092559086018054600101905591506104959050565b9392505050565b61024b8061061b83390190565b6101f18061086683390190565b6000602082840312156104c7578081fd5b5035919050565b6000806000606084860312156104e2578182fd5b8335925060208401356001600160a01b03811681146104ff578283fd5b9150604084013560ff81168114610514578182fd5b809150509250925092565b6000808284036080811215610532578283fd5b833592506060601f1982011215610547578182fd5b506040516060810181811067ffffffffffffffff82111715610567578283fd5b8060405250602084013581526040840135602082015260608401356040820152809150509250929050565b6001600160a01b0391909116815260200190565b90815260200190565b9283526001600160a01b0391909116602083015260ff16604082015260600190565b6001600160e01b031991909116815260200190565b81518152602080830151908201526040918201519181019190915260600190565b60ff92909216825260208201526040019056fe608060405234801561001057600080fd5b5060405161024b38038061024b83398101604081905261002f916100a3565b805160001a60f81b6001600160f81b031916158015906100625750602081015160001a60f81b6001600160f81b03191615155b80156100815750604081015160001a60f81b6001600160f81b03191615155b61008a57600080fd5b80516000556020810151600155604001516002556100f9565b6000606082840312156100b4578081fd5b604051606081016001600160401b03811182821017156100d2578283fd5b80604052508251815260208301516020820152604083015160408201528091505092915050565b610143806101086000396000f3fe608060405234801561001057600080fd5b50600436106100365760003560e01c80636d4ce63c1461003b578063993a04b71461005a575b600080fd5b61004361006f565b6040516100519291906100e1565b60405180910390f35b6100626100a1565b60405161005191906100cc565b60006100796100ac565b5050604080516060810182526000548152600154602082015260028054928201929092529091565b631b53398f60e21b90565b604080516060810182526000808252602082018190529181019190915290565b6001600160e01b031991909116815260200190565b60ff9290921682528051602080840191909152810151604080840191909152015160608201526080019056fea2646970667358221220eec00c6eaf3474471c84e4b224a48d8c6c2ad827d2194c1c55472de8b0719a8664736f6c63430006060033608060405234801561001057600080fd5b506101d1806100206000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c80630a3b0a4f146100465780634f0f4aa91461005b57806367e0badb14610084575b600080fd5b610059610054366004610138565b610099565b005b61006e610069366004610166565b6100fb565b60405161007b919061017e565b60405180910390f35b61008c610132565b60405161007b9190610192565b6001600160a01b0381166100ac57600080fd5b600080546001810182559080527f290decd9548b62a8d60345a988386fc84ba6bc95484008f6362f93160ef3e5630180546001600160a01b0319166001600160a01b0392909216919091179055565b60008054821061010a57600080fd5b6000828154811061011757fe5b6000918252602090912001546001600160a01b031692915050565b60005490565b600060208284031215610149578081fd5b81356001600160a01b038116811461015f578182fd5b9392505050565b600060208284031215610177578081fd5b5035919050565b6001600160a01b0391909116815260200190565b9081526020019056fea26469706673582212200b1d0f60a813a64e8e7204f784c414c6a9bd1c546926bc9e4be49f667646b48864736f6c63430006060033a264697066735822122088c6892c5c1f426f4efa854b16038342d078e21f057fce6666a4af1afa00afee64736f6c63430006060033"
 
 // DeployActivitiesFactory deploys a new Ethereum contract, binding an instance of ActivitiesFactory to it.
 func DeployActivitiesFactory(auth *bind.TransactOpts, backend bind.ContractBackend) (common.Address, *types.Transaction, *ActivitiesFactory, error) {
@@ -337,25 +337,25 @@ func (_ActivitiesFactory *ActivitiesFactoryCallerSession) Setter() ([4]byte, err
 	return _ActivitiesFactory.Contract.Setter(&_ActivitiesFactory.CallOpts)
 }
 
-// AddChild is a paid mutator transaction binding the contract method 0x3d39ca7d.
+// AddChild is a paid mutator transaction binding the contract method 0xcbb2dc95.
 //
-// Solidity: function addChild(bytes32 _ref, address _child) returns()
-func (_ActivitiesFactory *ActivitiesFactoryTransactor) AddChild(opts *bind.TransactOpts, _ref [32]byte, _child common.Address) (*types.Transaction, error) {
-	return _ActivitiesFactory.contract.Transact(opts, "addChild", _ref, _child)
+// Solidity: function addChild(bytes32 _ref, address _child, uint8 _childType) returns()
+func (_ActivitiesFactory *ActivitiesFactoryTransactor) AddChild(opts *bind.TransactOpts, _ref [32]byte, _child common.Address, _childType uint8) (*types.Transaction, error) {
+	return _ActivitiesFactory.contract.Transact(opts, "addChild", _ref, _child, _childType)
 }
 
-// AddChild is a paid mutator transaction binding the contract method 0x3d39ca7d.
+// AddChild is a paid mutator transaction binding the contract method 0xcbb2dc95.
 //
-// Solidity: function addChild(bytes32 _ref, address _child) returns()
-func (_ActivitiesFactory *ActivitiesFactorySession) AddChild(_ref [32]byte, _child common.Address) (*types.Transaction, error) {
-	return _ActivitiesFactory.Contract.AddChild(&_ActivitiesFactory.TransactOpts, _ref, _child)
+// Solidity: function addChild(bytes32 _ref, address _child, uint8 _childType) returns()
+func (_ActivitiesFactory *ActivitiesFactorySession) AddChild(_ref [32]byte, _child common.Address, _childType uint8) (*types.Transaction, error) {
+	return _ActivitiesFactory.Contract.AddChild(&_ActivitiesFactory.TransactOpts, _ref, _child, _childType)
 }
 
-// AddChild is a paid mutator transaction binding the contract method 0x3d39ca7d.
+// AddChild is a paid mutator transaction binding the contract method 0xcbb2dc95.
 //
-// Solidity: function addChild(bytes32 _ref, address _child) returns()
-func (_ActivitiesFactory *ActivitiesFactoryTransactorSession) AddChild(_ref [32]byte, _child common.Address) (*types.Transaction, error) {
-	return _ActivitiesFactory.Contract.AddChild(&_ActivitiesFactory.TransactOpts, _ref, _child)
+// Solidity: function addChild(bytes32 _ref, address _child, uint8 _childType) returns()
+func (_ActivitiesFactory *ActivitiesFactoryTransactorSession) AddChild(_ref [32]byte, _child common.Address, _childType uint8) (*types.Transaction, error) {
+	return _ActivitiesFactory.Contract.AddChild(&_ActivitiesFactory.TransactOpts, _ref, _child, _childType)
 }
 
 // Set is a paid mutator transaction binding the contract method 0x91a95fbc.
@@ -448,14 +448,15 @@ func (it *ActivitiesFactoryAddChildIterator) Close() error {
 
 // ActivitiesFactoryAddChild represents a AddChild event raised by the ActivitiesFactory contract.
 type ActivitiesFactoryAddChild struct {
-	ElementType uint8
-	Ref         [32]byte
-	Raw         types.Log // Blockchain specific contextual infos
+	Ref       [32]byte
+	Child     common.Address
+	ChildType uint8
+	Raw       types.Log // Blockchain specific contextual infos
 }
 
-// FilterAddChild is a free log retrieval operation binding the contract event 0x10c6c03e0c7984056ff5fa555e803726e1219a70ddbbf604085b45c0eb34509d.
+// FilterAddChild is a free log retrieval operation binding the contract event 0x4f2635eaa771447d282168d4763629c4b855ff7c733898eefc20b8699278d0c0.
 //
-// Solidity: event AddChild(uint8 _elementType, bytes32 _ref)
+// Solidity: event AddChild(bytes32 _ref, address _child, uint8 _childType)
 func (_ActivitiesFactory *ActivitiesFactoryFilterer) FilterAddChild(opts *bind.FilterOpts) (*ActivitiesFactoryAddChildIterator, error) {
 
 	logs, sub, err := _ActivitiesFactory.contract.FilterLogs(opts, "AddChild")
@@ -465,9 +466,9 @@ func (_ActivitiesFactory *ActivitiesFactoryFilterer) FilterAddChild(opts *bind.F
 	return &ActivitiesFactoryAddChildIterator{contract: _ActivitiesFactory.contract, event: "AddChild", logs: logs, sub: sub}, nil
 }
 
-// WatchAddChild is a free log subscription operation binding the contract event 0x10c6c03e0c7984056ff5fa555e803726e1219a70ddbbf604085b45c0eb34509d.
+// WatchAddChild is a free log subscription operation binding the contract event 0x4f2635eaa771447d282168d4763629c4b855ff7c733898eefc20b8699278d0c0.
 //
-// Solidity: event AddChild(uint8 _elementType, bytes32 _ref)
+// Solidity: event AddChild(bytes32 _ref, address _child, uint8 _childType)
 func (_ActivitiesFactory *ActivitiesFactoryFilterer) WatchAddChild(opts *bind.WatchOpts, sink chan<- *ActivitiesFactoryAddChild) (event.Subscription, error) {
 
 	logs, sub, err := _ActivitiesFactory.contract.WatchLogs(opts, "AddChild")
@@ -502,9 +503,9 @@ func (_ActivitiesFactory *ActivitiesFactoryFilterer) WatchAddChild(opts *bind.Wa
 	}), nil
 }
 
-// ParseAddChild is a log parse operation binding the contract event 0x10c6c03e0c7984056ff5fa555e803726e1219a70ddbbf604085b45c0eb34509d.
+// ParseAddChild is a log parse operation binding the contract event 0x4f2635eaa771447d282168d4763629c4b855ff7c733898eefc20b8699278d0c0.
 //
-// Solidity: event AddChild(uint8 _elementType, bytes32 _ref)
+// Solidity: event AddChild(bytes32 _ref, address _child, uint8 _childType)
 func (_ActivitiesFactory *ActivitiesFactoryFilterer) ParseAddChild(log types.Log) (*ActivitiesFactoryAddChild, error) {
 	event := new(ActivitiesFactoryAddChild)
 	if err := _ActivitiesFactory.contract.UnpackLog(event, "AddChild", log); err != nil {
@@ -657,7 +658,7 @@ var ActivitiesNodeFuncSigs = map[string]string{
 }
 
 // ActivitiesNodeBin is the compiled bytecode used for deploying new contracts.
-var ActivitiesNodeBin = "0x608060405234801561001057600080fd5b5060405161024b38038061024b83398101604081905261002f916100a3565b805160001a60f81b6001600160f81b031916158015906100625750602081015160001a60f81b6001600160f81b03191615155b80156100815750604081015160001a60f81b6001600160f81b03191615155b61008a57600080fd5b80516000556020810151600155604001516002556100f9565b6000606082840312156100b4578081fd5b604051606081016001600160401b03811182821017156100d2578283fd5b80604052508251815260208301516020820152604083015160408201528091505092915050565b610143806101086000396000f3fe608060405234801561001057600080fd5b50600436106100365760003560e01c80636d4ce63c1461003b578063993a04b71461005a575b600080fd5b61004361006f565b6040516100519291906100e1565b60405180910390f35b6100626100a1565b60405161005191906100cc565b60006100796100ac565b5050604080516060810182526000548152600154602082015260028054928201929092529091565b631b53398f60e21b90565b604080516060810182526000808252602082018190529181019190915290565b6001600160e01b031991909116815260200190565b60ff9290921682528051602080840191909152810151604080840191909152015160608201526080019056fea26469706673582212205fdc640d76943283e7d618f7e4afaf99f8b482d25ce93778e17abe4ec7a4fd6664736f6c63430006060033"
+var ActivitiesNodeBin = "0x608060405234801561001057600080fd5b5060405161024b38038061024b83398101604081905261002f916100a3565b805160001a60f81b6001600160f81b031916158015906100625750602081015160001a60f81b6001600160f81b03191615155b80156100815750604081015160001a60f81b6001600160f81b03191615155b61008a57600080fd5b80516000556020810151600155604001516002556100f9565b6000606082840312156100b4578081fd5b604051606081016001600160401b03811182821017156100d2578283fd5b80604052508251815260208301516020820152604083015160408201528091505092915050565b610143806101086000396000f3fe608060405234801561001057600080fd5b50600436106100365760003560e01c80636d4ce63c1461003b578063993a04b71461005a575b600080fd5b61004361006f565b6040516100519291906100e1565b60405180910390f35b6100626100a1565b60405161005191906100cc565b60006100796100ac565b5050604080516060810182526000548152600154602082015260028054928201929092529091565b631b53398f60e21b90565b604080516060810182526000808252602082018190529181019190915290565b6001600160e01b031991909116815260200190565b60ff9290921682528051602080840191909152810151604080840191909152015160608201526080019056fea2646970667358221220eec00c6eaf3474471c84e4b224a48d8c6c2ad827d2194c1c55472de8b0719a8664736f6c63430006060033"
 
 // DeployActivitiesNode deploys a new Ethereum contract, binding an instance of ActivitiesNode to it.
 func DeployActivitiesNode(auth *bind.TransactOpts, backend bind.ContractBackend, _activities ActivitiesData) (common.Address, *types.Transaction, *ActivitiesNode, error) {
@@ -882,7 +883,7 @@ var FactoryFuncSigs = map[string]string{
 }
 
 // FactoryBin is the compiled bytecode used for deploying new contracts.
-var FactoryBin = "0x608060405234801561001057600080fd5b506101d1806100206000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c80630a3b0a4f146100465780634f0f4aa91461005b57806367e0badb14610084575b600080fd5b610059610054366004610138565b610099565b005b61006e610069366004610166565b6100fb565b60405161007b919061017e565b60405180910390f35b61008c610132565b60405161007b9190610192565b6001600160a01b0381166100ac57600080fd5b600080546001810182559080527f290decd9548b62a8d60345a988386fc84ba6bc95484008f6362f93160ef3e5630180546001600160a01b0319166001600160a01b0392909216919091179055565b60008054821061010a57600080fd5b6000828154811061011757fe5b6000918252602090912001546001600160a01b031692915050565b60005490565b600060208284031215610149578081fd5b81356001600160a01b038116811461015f578182fd5b9392505050565b600060208284031215610177578081fd5b5035919050565b6001600160a01b0391909116815260200190565b9081526020019056fea2646970667358221220edeebf7e8efa9b89e7696dbd120e34658d0864a83afa8b437f0c4a00c42c3b1d64736f6c63430006060033"
+var FactoryBin = "0x608060405234801561001057600080fd5b506101d1806100206000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c80630a3b0a4f146100465780634f0f4aa91461005b57806367e0badb14610084575b600080fd5b610059610054366004610138565b610099565b005b61006e610069366004610166565b6100fb565b60405161007b919061017e565b60405180910390f35b61008c610132565b60405161007b9190610192565b6001600160a01b0381166100ac57600080fd5b600080546001810182559080527f290decd9548b62a8d60345a988386fc84ba6bc95484008f6362f93160ef3e5630180546001600160a01b0319166001600160a01b0392909216919091179055565b60008054821061010a57600080fd5b6000828154811061011757fe5b6000918252602090912001546001600160a01b031692915050565b60005490565b600060208284031215610149578081fd5b81356001600160a01b038116811461015f578182fd5b9392505050565b600060208284031215610177578081fd5b5035919050565b6001600160a01b0391909116815260200190565b9081526020019056fea26469706673582212200b1d0f60a813a64e8e7204f784c414c6a9bd1c546926bc9e4be49f667646b48864736f6c63430006060033"
 
 // DeployFactory deploys a new Ethereum contract, binding an instance of Factory to it.
 func DeployFactory(auth *bind.TransactOpts, backend bind.ContractBackend) (common.Address, *types.Transaction, *Factory, error) {
@@ -1906,11 +1907,11 @@ func (_INode *INodeCallerSession) Getter() ([4]byte, error) {
 }
 
 // ITreeABI is the input ABI used to generate the binding from.
-const ITreeABI = "[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"_elementType\",\"type\":\"uint8\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"_ref\",\"type\":\"bytes32\"}],\"name\":\"AddChild\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_ref\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"_child\",\"type\":\"address\"}],\"name\":\"addChild\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_ref\",\"type\":\"bytes32\"}],\"name\":\"getFactory\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]"
+const ITreeABI = "[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"_ref\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"_child\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"_childType\",\"type\":\"uint8\"}],\"name\":\"AddChild\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_ref\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"_child\",\"type\":\"address\"},{\"internalType\":\"uint8\",\"name\":\"_childType\",\"type\":\"uint8\"}],\"name\":\"addChild\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_ref\",\"type\":\"bytes32\"}],\"name\":\"getFactory\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]"
 
 // ITreeFuncSigs maps the 4-byte function signature to its string representation.
 var ITreeFuncSigs = map[string]string{
-	"3d39ca7d": "addChild(bytes32,address)",
+	"cbb2dc95": "addChild(bytes32,address,uint8)",
 	"17fc2761": "getFactory(bytes32)",
 }
 
@@ -2082,25 +2083,25 @@ func (_ITree *ITreeCallerSession) GetFactory(_ref [32]byte) (common.Address, err
 	return _ITree.Contract.GetFactory(&_ITree.CallOpts, _ref)
 }
 
-// AddChild is a paid mutator transaction binding the contract method 0x3d39ca7d.
+// AddChild is a paid mutator transaction binding the contract method 0xcbb2dc95.
 //
-// Solidity: function addChild(bytes32 _ref, address _child) returns()
-func (_ITree *ITreeTransactor) AddChild(opts *bind.TransactOpts, _ref [32]byte, _child common.Address) (*types.Transaction, error) {
-	return _ITree.contract.Transact(opts, "addChild", _ref, _child)
+// Solidity: function addChild(bytes32 _ref, address _child, uint8 _childType) returns()
+func (_ITree *ITreeTransactor) AddChild(opts *bind.TransactOpts, _ref [32]byte, _child common.Address, _childType uint8) (*types.Transaction, error) {
+	return _ITree.contract.Transact(opts, "addChild", _ref, _child, _childType)
 }
 
-// AddChild is a paid mutator transaction binding the contract method 0x3d39ca7d.
+// AddChild is a paid mutator transaction binding the contract method 0xcbb2dc95.
 //
-// Solidity: function addChild(bytes32 _ref, address _child) returns()
-func (_ITree *ITreeSession) AddChild(_ref [32]byte, _child common.Address) (*types.Transaction, error) {
-	return _ITree.Contract.AddChild(&_ITree.TransactOpts, _ref, _child)
+// Solidity: function addChild(bytes32 _ref, address _child, uint8 _childType) returns()
+func (_ITree *ITreeSession) AddChild(_ref [32]byte, _child common.Address, _childType uint8) (*types.Transaction, error) {
+	return _ITree.Contract.AddChild(&_ITree.TransactOpts, _ref, _child, _childType)
 }
 
-// AddChild is a paid mutator transaction binding the contract method 0x3d39ca7d.
+// AddChild is a paid mutator transaction binding the contract method 0xcbb2dc95.
 //
-// Solidity: function addChild(bytes32 _ref, address _child) returns()
-func (_ITree *ITreeTransactorSession) AddChild(_ref [32]byte, _child common.Address) (*types.Transaction, error) {
-	return _ITree.Contract.AddChild(&_ITree.TransactOpts, _ref, _child)
+// Solidity: function addChild(bytes32 _ref, address _child, uint8 _childType) returns()
+func (_ITree *ITreeTransactorSession) AddChild(_ref [32]byte, _child common.Address, _childType uint8) (*types.Transaction, error) {
+	return _ITree.Contract.AddChild(&_ITree.TransactOpts, _ref, _child, _childType)
 }
 
 // ITreeAddChildIterator is returned from FilterAddChild and is used to iterate over the raw logs and unpacked data for AddChild events raised by the ITree contract.
@@ -2172,14 +2173,15 @@ func (it *ITreeAddChildIterator) Close() error {
 
 // ITreeAddChild represents a AddChild event raised by the ITree contract.
 type ITreeAddChild struct {
-	ElementType uint8
-	Ref         [32]byte
-	Raw         types.Log // Blockchain specific contextual infos
+	Ref       [32]byte
+	Child     common.Address
+	ChildType uint8
+	Raw       types.Log // Blockchain specific contextual infos
 }
 
-// FilterAddChild is a free log retrieval operation binding the contract event 0x10c6c03e0c7984056ff5fa555e803726e1219a70ddbbf604085b45c0eb34509d.
+// FilterAddChild is a free log retrieval operation binding the contract event 0x4f2635eaa771447d282168d4763629c4b855ff7c733898eefc20b8699278d0c0.
 //
-// Solidity: event AddChild(uint8 _elementType, bytes32 _ref)
+// Solidity: event AddChild(bytes32 _ref, address _child, uint8 _childType)
 func (_ITree *ITreeFilterer) FilterAddChild(opts *bind.FilterOpts) (*ITreeAddChildIterator, error) {
 
 	logs, sub, err := _ITree.contract.FilterLogs(opts, "AddChild")
@@ -2189,9 +2191,9 @@ func (_ITree *ITreeFilterer) FilterAddChild(opts *bind.FilterOpts) (*ITreeAddChi
 	return &ITreeAddChildIterator{contract: _ITree.contract, event: "AddChild", logs: logs, sub: sub}, nil
 }
 
-// WatchAddChild is a free log subscription operation binding the contract event 0x10c6c03e0c7984056ff5fa555e803726e1219a70ddbbf604085b45c0eb34509d.
+// WatchAddChild is a free log subscription operation binding the contract event 0x4f2635eaa771447d282168d4763629c4b855ff7c733898eefc20b8699278d0c0.
 //
-// Solidity: event AddChild(uint8 _elementType, bytes32 _ref)
+// Solidity: event AddChild(bytes32 _ref, address _child, uint8 _childType)
 func (_ITree *ITreeFilterer) WatchAddChild(opts *bind.WatchOpts, sink chan<- *ITreeAddChild) (event.Subscription, error) {
 
 	logs, sub, err := _ITree.contract.WatchLogs(opts, "AddChild")
@@ -2226,9 +2228,9 @@ func (_ITree *ITreeFilterer) WatchAddChild(opts *bind.WatchOpts, sink chan<- *IT
 	}), nil
 }
 
-// ParseAddChild is a log parse operation binding the contract event 0x10c6c03e0c7984056ff5fa555e803726e1219a70ddbbf604085b45c0eb34509d.
+// ParseAddChild is a log parse operation binding the contract event 0x4f2635eaa771447d282168d4763629c4b855ff7c733898eefc20b8699278d0c0.
 //
-// Solidity: event AddChild(uint8 _elementType, bytes32 _ref)
+// Solidity: event AddChild(bytes32 _ref, address _child, uint8 _childType)
 func (_ITree *ITreeFilterer) ParseAddChild(log types.Log) (*ITreeAddChild, error) {
 	event := new(ITreeAddChild)
 	if err := _ITree.contract.UnpackLog(event, "AddChild", log); err != nil {
@@ -2241,7 +2243,7 @@ func (_ITree *ITreeFilterer) ParseAddChild(log types.Log) (*ITreeAddChild, error
 const IterableDataABI = "[]"
 
 // IterableDataBin is the compiled bytecode used for deploying new contracts.
-var IterableDataBin = "0x60566023600b82828239805160001a607314601657fe5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea2646970667358221220782ef2038af4f5d8b3e98ea8108fa61a89cea92d74f913b2998b694282ffcc3564736f6c63430006060033"
+var IterableDataBin = "0x60566023600b82828239805160001a607314601657fe5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea264697066735822122079cdbd1314ea6e222fa565c37c6a42d359afb4d017dabcb7081a6ef3690c3a3e64736f6c63430006060033"
 
 // DeployIterableData deploys a new Ethereum contract, binding an instance of IterableData to it.
 func DeployIterableData(auth *bind.TransactOpts, backend bind.ContractBackend) (common.Address, *types.Transaction, *IterableData, error) {

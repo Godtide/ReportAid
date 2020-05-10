@@ -37,7 +37,7 @@ struct ActivityData {
     string description;
 }
 
-struct Additional {
+struct AdditionalData {
     uint8 scope;
     uint8 capitalSpend;
     uint8 collaborationType;

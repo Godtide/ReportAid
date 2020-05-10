@@ -87,7 +87,7 @@ contract ActivityFactory is IData, ITree {
 
         ActivityNode data = new ActivityNode(_activity);
         store.insert(_thisRef, address(data));
-        ITree(activitiesCon).addChild(_parentRef, address(data));
+        ITree(activitiesCon).addChild(_parentRef, address(data), uint8(IATIElement.ACTIVITY));
 
         Factory warehouse = new Factory();
         factory.insert(_thisRef, address(warehouse));
@@ -95,13 +95,15 @@ contract ActivityFactory is IData, ITree {
         emit Set(uint8(IATIElement.ACTIVITY), _thisRef);
     }
 
-    function addChild(bytes32 _ref, address _child) override virtual public {
+    function addChild(bytes32 _ref, address _child, uint8 _childType) override virtual public {
         require (_ref[0] != 0);
         require (_child != address(0x0));
         require (factory.data[_ref].value != address(0x0));
 
         Factory warehouse = Factory(factory.data[_ref].value);
         warehouse.add(_child);
+
+        emit AddChild(_ref, _child, _childType);
     }
 
     function get(bytes32 _ref) override virtual public view returns (address) {
