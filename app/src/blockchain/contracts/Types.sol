@@ -1,12 +1,33 @@
 pragma solidity >=0.4.16 <0.7.0;
 pragma experimental ABIEncoderV2;
 
-struct Activity {
+// Orgs
+
+struct Org {
+    string name;
+    string identifier;
+}
+
+// Activities
+
+struct ActivitiesData {
+    bytes32 version;
+    bytes32 generatedTime;
+    bytes32 linkedData;
+}
+
+struct ReportingOrgData {
+    uint8 orgType;
+    bool isSecondary;
+    bytes32 orgRef;
+}
+
+struct ActivityData {
     bool humanitarian;
     uint8 hierarchy;
     uint8 status;
     uint8 budgetNotProvided;
-    ReportingOrg reportingOrg;
+    ReportingOrgData reportingOrg;
     bytes32 lastUpdated;
     bytes32 lang;
     bytes32 currency;
@@ -49,12 +70,6 @@ struct RelatedActivity {
 struct Sector {
     uint8 percentage;
     uint256 dacCode;
-}
-
-struct ReportingOrg {
-    uint8 orgType;
-    bool isSecondary;
-    bytes32 orgRef;
 }
 
 struct Territory {
@@ -104,6 +119,21 @@ struct Budget {
     Finance finance;
 }
 
+// Organisations
+
+struct Organisations {
+    bytes32 version;
+    bytes32 generatedTime;
+}
+
+struct Organisation {
+    ReportingOrgData reportingOrg;
+    bytes32 orgRef;
+    bytes32 lang;
+    bytes32 currency;
+    bytes32 lastUpdatedTime;
+}
+
 struct Document {
     bytes32 category;
     bytes32 countryRef;
@@ -113,22 +143,4 @@ struct Document {
     string title;
     string format;
     string url;
-}
-
-struct Organisation {
-    ReportingOrg reportingOrg;
-    bytes32 orgRef;
-    bytes32 lang;
-    bytes32 currency;
-    bytes32 lastUpdatedTime;
-}
-
-struct Orgs {
-    bytes32 version;
-    bytes32 generatedTime;
-}
-
-struct Org {
-    string name;
-    string identifier;
 }

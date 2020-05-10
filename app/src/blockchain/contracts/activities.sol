@@ -3,15 +3,10 @@ pragma experimental ABIEncoderV2;
 
 import "./IData.sol";
 import "./INode.sol";
+import "./Types.sol";
 import "./Mapping.sol";
 import "./Enums.sol";
 import "./Storage.sol";
-
-struct ActivitiesData {
-    bytes32 version;
-    bytes32 generatedTime;
-    bytes32 linkedData;
-}
 
 contract ActivitiesNode is INode {
 
